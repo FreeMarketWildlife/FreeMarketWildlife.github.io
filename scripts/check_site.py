@@ -23,7 +23,7 @@ class Document(HTMLParser):
    if attrs.get(attr):self.refs.append(attrs[attr])
   if tag=='input':require(attrs.get('type')!='tel',f'{self.path}: unexpected contact field')
  def handle_startendtag(self,tag,attrs):self.handle_starttag(tag,attrs)
-PAGES=['index.html','portfolio/index.html','tanoshi/index.html','contact/index.html','troy-kearns/index.html','troykearns/index.html','troykearns/statistics/index.html','troykearns/connect/index.html','kat-kai/index.html','kat-kai/statistics/index.html','404.html']
+PAGES=['philip-aram/index.html','index.html','portfolio/index.html','tanoshi/index.html','contact/index.html','troy-kearns/index.html','troykearns/index.html','troykearns/statistics/index.html','troykearns/connect/index.html','kat-kai/index.html','kat-kai/statistics/index.html','404.html']
 for name in PAGES:
  path=ROOT/name;text=path.read_text();doc=Document(name);doc.feed(text)
  require(doc.h1==1,f'{name}: expected one h1');require(doc.main,f'{name}: missing main')
@@ -37,7 +37,7 @@ for name in PAGES:
    if target.is_dir():target/= 'index.html'
    require(target.is_file(),f'{name}: missing local reference {ref}')
   elif url.fragment:require(url.fragment in doc.ids,f'{name}: missing fragment {url.fragment}')
- if name.startswith(('troy-kearns/','troykearns/','kat-kai/')):
+ if name.startswith(('philip-aram/','troy-kearns/','troykearns/','kat-kai/')):
   require(doc.gate and doc.hidden,f'{name}: workspace must start gated, hidden, inert')
 home=(ROOT/'index.html').read_text()
 require('Build a Career</a>' in home,'Homepage career menu link missing')

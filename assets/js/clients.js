@@ -3,6 +3,7 @@
  */
 export const clients = Object.freeze({
   'troy-kearns': Object.freeze({ passcode: 'Password', path: '/troykearns/' }),
+  'philip-aram': Object.freeze({ passcode: 'PHILIP-ARAM', path: '/philip-aram/' }),
   'kat-kai': Object.freeze({ passcode: 'KATKAI-10K', path: '/kat-kai/' }),
 });
 export function clientForPasscode(passcode) {

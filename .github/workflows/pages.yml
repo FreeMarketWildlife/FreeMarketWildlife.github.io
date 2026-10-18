@@ -59,13 +59,15 @@ jobs:
       - name: Test collector
         run: python3 -m unittest discover -s tests -v
       - name: Validate static source
-        run: python3 scripts/check_site.py
+        run: |
+          python3 scripts/check_site.py
+          node tests/test_quiet_time.mjs
       - uses: actions/configure-pages@v5
       - name: Prepare public files
         run: |
           mkdir _site
           cp index.html 404.html CNAME .nojekyll _site/
-          cp -R assets portfolio tanoshi contact troy-kearns troykearns kat-kai _site/
+          cp -R assets portfolio tanoshi contact troy-kearns troykearns kat-kai philip-aram _site/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

@@ -144,3 +144,9 @@ Generated catalog data is deployed as assets/data/youtube-videos.json, refreshed
 `services/youtube-analytics/` is an independent private Worker/D1 service with read-only OAuth, encrypted refresh-token storage, invitation handling, verified administrator access, historical collection queues, bulk report ingestion, exports, and analysis-plan records. It is not hosted by GitHub Pages and is not activated yet. The public connection-information page is `/troykearns/connect/`; its service URL stays unset until private hosting and real OAuth acceptance tests pass.
 
 See `docs/analytics/DEPLOYMENT.md` for the exact deployment/acceptance steps and `docs/analytics/request-to-troy.txt` for the unsent access-request draft. No private data or new Google OAuth credentials were collected. Run `npm ci`, `npm test`, `npm run check`, and `npm run db:local` from `services/youtube-analytics/` to validate the backend locally.
+
+## Philip Aram workspace
+
+`/philip-aram/` uses the temporary preview code `PHILIP-ARAM`. Tabs are Quiet Time, Sermons, Tanoshi, Equip, and Critz; only Quiet Time has content. It creates today's dated editor using the device's local date, saves edits in localStorage, and provides a JSON backup export. Each passage, quote, and prayer field allows 5,000 characters. Search supports book names and verse ranges; canonical Bible sorting and book/chapter filters cover 66 books. Entries and OAuth credentials are never written to the repository. Browser storage is device-specific, unencrypted, and cleared when site data is removed. This is not private account authentication or cross-device sync. No personal social accounts are connected yet.
+
+Run `node tests/test_quiet_time.mjs` for passage/search/date checks.

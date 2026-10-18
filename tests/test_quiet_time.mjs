@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const source=readFileSync('assets/js/quiet-time.js','utf8');
+const {books,dateLabel,selectEntries}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
+assert.equal(books.length,66);assert.equal(books.find(b=>b.name==='Psalms').chapters,150);
+assert.equal(dateLabel('2026-10-18'),'Sunday, October 18th, 2026');
+const entries=[{date:'2026-10-18',passage:'John 3:16–21'},{date:'2026-10-17',passage:'Genesis 1:1'},{date:'2026-10-16',passage:'1 John 3:16'}];
+assert.equal(selectEntries(entries,{search:'John 3:18'}).length,1);
+assert.equal(selectEntries(entries,{search:'John 3:30'}).length,0);
+assert.equal(selectEntries(entries,{book:'John',chapter:'3'}).length,1);
+assert.equal(selectEntries(entries,{book:'John',chapter:'4'}).length,0);
+assert.equal(selectEntries(entries,{sort:'bible'})[0].passage,'Genesis 1:1');
+assert.equal(selectEntries(entries,{sort:'oldest'})[0].date,'2026-10-16');
+assert.equal(selectEntries(entries,{sort:'newest'})[0].date,'2026-10-18');
+console.log('PASS: Bible metadata, ordinal date, verse-range search, book/chapter filters and three sort orders.');

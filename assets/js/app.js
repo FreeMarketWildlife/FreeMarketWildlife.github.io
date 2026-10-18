@@ -1,4 +1,4 @@
-import { clients, clientForPasscode } from './clients.js?v=2';
+import { clients, clientForPasscode } from './clients.js?v=3';
 
 const $ = (selector, parent = document) => parent.querySelector(selector);
 const $$ = (selector, parent = document) => [...parent.querySelectorAll(selector)];
