@@ -29,6 +29,14 @@ def build(small=False):
   # anatomy and produces real one-bit pixels. No traced AI letterforms.
   mask=Image.new('1',(max(1,advance+2),cap))
   ImageDraw.Draw(mask).text((0,cap),char,font=source,fill=1,anchor='ls')
+  if char in 'FE':
+   # A short upright terminal on the middle arm, confined to title F/E glyphs.
+   arm_rows=(6,6) if small else ((10,11) if char=='F' else (9,10))
+   tip=max(x for y in range(arm_rows[0],arm_rows[1]+1)
+           for x in range(mask.width) if mask.getpixel((x,y)))
+   thickness=1 if small else 2
+   ImageDraw.Draw(mask).rectangle(
+    (tip-thickness+1,arm_rows[0]-thickness,tip,arm_rows[1]+thickness),fill=1)
   pen=TTGlyphPen(None)
   for y in range(mask.height):
    x=0
