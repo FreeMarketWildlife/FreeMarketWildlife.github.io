@@ -51,7 +51,6 @@ CNAME
     <div class="landing-copy">
       <img class="landing-logo" src="/assets/images/mark.svg" width="96" height="96" alt="Free Market Wildlife emblem">
       <h1>Free Market<br>Wildlife</h1>
-      <p class="landing-tagline">Build a Career</p>
       <nav class="landing-nav" aria-label="Primary">
         <a href="/contact/"><span class="menu-arrow" aria-hidden="true"></span>Build a Career</a>
         <a href="/portfolio/"><span class="menu-arrow" aria-hidden="true"></span>Portfolio</a>

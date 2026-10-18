@@ -40,7 +40,8 @@ for name in PAGES:
  if name.startswith(('troy-kearns/','troykearns/','kat-kai/')):
   require(doc.gate and doc.hidden,f'{name}: workspace must start gated, hidden, inert')
 home=(ROOT/'index.html').read_text()
-require('Build a Career' in home,'Homepage tagline missing')
+require('Build a Career</a>' in home,'Homepage career menu link missing')
+require('class="landing-tagline"' not in home,'Removed homepage tagline has returned')
 require(home.index('/contact/')<home.index('/portfolio/')<home.index('/tanoshi/'),'Homepage navigation order wrong')
 css=(ROOT/'assets/css/styles.css').read_text()
 colors={c.lower() for c in re.findall(r'#[0-9a-fA-F]{3,8}\b',css)}
