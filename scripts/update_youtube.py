@@ -43,9 +43,11 @@ def snapshot(item, now):
             'subscribers': None if hidden else count(stats, 'subscriberCount'),
             'views': count(stats, 'viewCount'), 'videos': count(stats, 'videoCount')}
 
-def fetch_channel(key, channel_id=None, handle=None):
+def fetch_channel(key, channel_id=None, handle=None, legacy_username=None):
     filters = [{'id': channel_id}] if channel_id else [{'forHandle': handle}] if handle else [
         {'forUsername': 'troykearns'}, {'forHandle': 'troykearns'}]
+    if not channel_id and legacy_username:
+        filters = [{'forUsername': legacy_username}, *filters]
     payload = {}
     for channel_filter in filters:
         params = {'part': 'snippet,statistics,contentDetails', **channel_filter}
@@ -136,6 +138,7 @@ def fetch_catalog(key, channel_id, now, request=api_get):
 
 
 def main(prefix='youtube', handle=None, channel_url=CHANNEL_URL, channel_title='Troy Kearns'):
+    restore_public_state(prefix)
     state_path = ROOT / f'.youtube-state/{prefix}.json'
     output_path = ROOT / f'assets/data/{prefix}.json'
     previous = {}
@@ -143,7 +146,7 @@ def main(prefix='youtube', handle=None, channel_url=CHANNEL_URL, channel_title='
         previous = json.loads(state_path.read_text())
         if previous.get('channelUrl') != channel_url:
             previous = {}
-    fetch = (lambda key, channel_id: fetch_channel(key, channel_id, handle)) if handle else fetch_channel
+    fetch = (lambda key, channel_id: fetch_channel(key, channel_id, handle, CURRENT_ACCOUNT.get('legacyUsername'))) if handle else fetch_channel
     data = update(previous, os.environ.get('YOUTUBE_API_KEY', '').strip(), datetime.now(timezone.utc), fetch, channel_url, channel_title)
     output_path.write_text(json.dumps(data, indent=2) + '\n')
     print('YouTube collector status: ' + data['status'])
@@ -169,7 +172,7 @@ def main(prefix='youtube', handle=None, channel_url=CHANNEL_URL, channel_title='
     elif catalog_path.exists():
         saved = json.loads(catalog_path.read_text())
         try:
-            if datetime.now(timezone.utc) - timestamp(saved['updatedAt']) <= timedelta(days=MAX_AGE_DAYS):
+            if saved.get('channelId') == data['channelId'] and datetime.now(timezone.utc) - timestamp(saved['updatedAt']) <= timedelta(days=MAX_AGE_DAYS):
                 saved['collectionStatus'] = catalog['status']
                 catalog = saved
         except (KeyError, ValueError, TypeError):
@@ -181,6 +184,25 @@ def main(prefix='youtube', handle=None, channel_url=CHANNEL_URL, channel_title='
     if summary:
         with open(summary, 'a') as stream:
             stream.write(f"YouTube collector: **{data['status']}**. {channel_title}. Retained channel snapshots: {len(data['snapshots'])}. Public videos: {len(catalog['videos'])}.\n")
+
+def restore_public_state(prefix):
+    """The last deployed rolling window is a second recovery source after CI artifact expiry."""
+    state = ROOT / '.youtube-state'
+    state.mkdir(parents=True, exist_ok=True)
+    for suffix in ['', '-videos', '-history']:
+        target = state / f'{prefix}{suffix}.json'
+        if target.exists():
+            continue
+        try:
+            request = Request(f'https://freemarketwildlife.com/assets/data/{prefix}{suffix}.json',
+                              headers={'Accept': 'application/json'})
+            with urlopen(request, timeout=15) as response:
+                saved = json.load(response)
+            if isinstance(saved, dict) and saved.get('schemaVersion') == 1:
+                target.write_text(json.dumps(saved))
+        except (HTTPError, URLError, TimeoutError, OSError, ValueError):
+            pass  # New accounts have no deployed baseline; first successful collection starts one.
+
 
 def persist_video_history(prefix, catalog):
     now = datetime.now(timezone.utc)

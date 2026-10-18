@@ -62,7 +62,6 @@ class HistoryTests(unittest.TestCase):
         with self.assertRaises(ValueError): self.record(resources={'../escape': {'views': 1}})
         with self.assertRaises(ValueError): history.record({}, IDENTITY, {}, at(0), NOW, retention_days=365)
 
-if __name__ == '__main__': unittest.main()
 
 class YouTubePersistenceTests(unittest.TestCase):
     def test_real_file_round_trip_and_failed_collection(self):
@@ -90,3 +89,23 @@ class YouTubePersistenceTests(unittest.TestCase):
                 self.assertEqual(failed['status'], 'update_failed')
                 collector.persist_video_history('kat-kai-youtube', {**catalog, 'videos': []})
                 self.assertFalse(resource.exists())
+
+    def test_restore_uses_deployed_backup_only_when_ci_state_is_missing(self):
+        import tempfile, json, io, sys
+        from unittest.mock import patch
+        sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'scripts'))
+        import update_youtube as collector
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder); state = root / '.youtube-state'; state.mkdir()
+            (state / 'youtube.json').write_text('{"preserved":true}')
+            replies = [io.BytesIO(json.dumps({'schemaVersion': 1, 'videos': []}).encode()),
+                       io.BytesIO(json.dumps({'schemaVersion': 1, 'resources': {}}).encode())]
+            with patch.object(collector, 'ROOT', root), patch.object(collector, 'urlopen', side_effect=replies) as network:
+                collector.restore_public_state('youtube')
+                self.assertEqual(network.call_count, 2)
+                self.assertTrue(json.loads((state / 'youtube.json').read_text())['preserved'])
+                self.assertTrue((state / 'youtube-history.json').exists())
+                collector.restore_public_state('youtube')
+                self.assertEqual(network.call_count, 2)
+
+if __name__ == '__main__': unittest.main()
