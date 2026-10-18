@@ -19,6 +19,15 @@
       "url": "https://www.youtube.com/@KatandKaiPeakOfficial",
       "output": "kat-kai-youtube",
       "retentionDays": 27
+    },
+    {
+      "client": "philip-tanoshi",
+      "platform": "youtube",
+      "account": "TanoshiSan",
+      "title": "Tanoshi",
+      "url": "https://www.youtube.com/@TanoshiSan",
+      "output": "tanoshi-youtube",
+      "retentionDays": 27
     }
   ]
 }

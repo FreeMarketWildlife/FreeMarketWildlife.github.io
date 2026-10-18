@@ -1,0 +1,28 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const source=readFileSync('assets/js/planner.js','utf8');
+const {monthKey,recentRows,measure,goalProgress,defaultPlan,validatePlan}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
+const now=Date.parse('2026-10-18T16:00:00Z');
+const data={status:'ok',snapshots:[{observedAt:'2026-10-18T15:00:00Z',subscribers:2000,views:130000,videos:12},{observedAt:'2026-10-01T16:00:00Z',subscribers:1000,views:100000,videos:10},{observedAt:'2026-09-30T16:00:00Z',subscribers:900,views:99000,videos:9}]};
+assert.equal(monthKey('2026-11-01T06:30:00Z'),'2026-10','month uses Pacific time');
+assert.equal(measure(data,'subscribers',now).value,2000,'sort newest independently of input ordering');
+const month=measure(data,'monthlyViews',now);assert.equal(month.value,30000);assert.equal(month.partial,true);assert.match(month.note,/not an exact/);
+assert.equal(goalProgress({metric:'subscribers',target:1000},data,now).state,'Target observed');
+assert.equal(goalProgress({metric:'monthlyViews',target:1000},data,now).state,'Observed progress','partial period must not be certified achieved');
+assert.equal(measure({...data,status:'update_failed'},'subscribers',now).stale,true);
+assert.equal(goalProgress({metric:'subscribers',target:1000},{...data,status:'update_failed'},now).state,'Update overdue');
+assert.equal(measure(data,'monthlyViews',Date.parse('2026-11-01T20:00:00Z')).value,null,'month resets');
+assert.equal(measure({status:'ok',snapshots:[data.snapshots[0]]},'monthlyViews',now).value,null,'single snapshot is not zero monthly views');
+assert.equal(measure({status:'ok',snapshots:[{...data.snapshots[0],subscribers:null}]},'subscribers',now).value,null,'hidden count is unknown');
+assert.equal(measure({status:'ok',snapshots:[{...data.snapshots[0],views:10},data.snapshots[1]]},'monthlyViews',now).value,null,'decrease cannot be monthly views');
+assert.equal(recentRows({snapshots:[{observedAt:'2026-01-01T00:00:00Z'},{observedAt:'2027-01-01T00:00:00Z'}]},now).length,0);
+assert.deepEqual(validatePlan(defaultPlan()),defaultPlan());
+assert.throws(()=>validatePlan({...defaultPlan(),strategy:'x'.repeat(5001)}));
+assert.throws(()=>validatePlan({...defaultPlan(),goals:[{...defaultPlan().goals[0],target:0}]}));
+assert.throws(()=>validatePlan({...defaultPlan(),goals:[{...defaultPlan().goals[0],due:'2026-02-30'}]}));
+assert.throws(()=>validatePlan({...defaultPlan(),goals:[{...defaultPlan().goals[0],metric:'not-a-metric'}]}));
+assert.throws(()=>validatePlan({...defaultPlan(),goals:[defaultPlan().goals[0],defaultPlan().goals[0]]}));
+const config=JSON.parse(readFileSync('config/social-accounts.json','utf8'));
+assert.equal(config.accounts.find(a=>a.client==='philip-tanoshi').account,'TanoshiSan');
+for(const folder of ['troykearns','kat-kai'])for(const view of ['strategy','roadmap']){const page=readFileSync(`${folder}/${view}/index.html`,'utf8');assert.match(page,/id="workspace-content" hidden inert/);assert.match(page,/id="workspace-gate" open/);for(const link of ['Statistics','Links','Strategy','Roadmap'])assert(page.includes(`>${link}</a>`));}
+console.log('PASS: live goal math, Pacific month rollover, missing/hidden/stale/decreasing counts, partial-period labeling, plan validation, channel registration and gated routes.');

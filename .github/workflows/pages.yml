@@ -62,6 +62,7 @@ jobs:
         run: |
           python3 scripts/check_site.py
           node tests/test_quiet_time.mjs
+          node tests/test_planner.mjs
       - uses: actions/configure-pages@v5
       - name: Prepare public files
         run: |

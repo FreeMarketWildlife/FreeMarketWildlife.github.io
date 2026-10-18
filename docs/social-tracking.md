@@ -23,3 +23,13 @@ Implement an official API collector and explicitly register its dispatch in `scr
 ## Verification
 
 Run `python3 -m unittest discover -s tests -v` and `python3 scripts/check_site.py`. Test that both live client Details panels load their own histories after deployment. Verify at least two different UTC collection days to confirm a real trend; same-day deployments intentionally leave one dot.
+
+## Strategy and automatic Roadmap
+
+Client navigation includes Statistics, Links, Strategy, and Roadmap. Troy and Kat & Kai share `assets/js/planner.js`; Philip's Tanoshi, Equip, and Critz tabs embed the same four-section planner. Plans are isolated by workspace ID in localStorage and can be exported/imported. They are browser-local, not shared client records or authenticated cloud storage. Import keeps existing goal IDs and nonempty notes. Starter targets (100,000 monthly views and 1,000,000 subscribers) are editable examples, not an agreed client strategy. Goal title, metric, positive integer target and optional date are configurable. Strategy and extra links begin empty.
+
+`philip-tanoshi` registers the owner-supplied `@TanoshiSan` channel in the same daily pipeline. No new credential is needed for public totals. Equip and Critz show an unconnected state until an actual channel is supplied. Plans are evaluated from fresh published observations on opening, returning to the tab, refreshing manually, and every five minutes while visible. Collection itself continues via the daily workflow even while the website is closed. Stale or failed feeds do not certify completed goals. Hidden counts stay unknown, old observations expire, and first-day/failed collections never invent zero progress.
+
+Subscriber and cumulative targets use the latest collected channel total. Subscriber counts are rounded by YouTube. The monthly goal currently shows **observed public channel view growth within the current Pacific calendar month**, measured between the earliest and latest retained snapshots of that month. It requires two snapshots, labels the observation dates, and always identifies this as partial observed growth. A decrease is unavailable, rather than clamped to zero. It resets for the next calendar month. Because public observations retain only 27 days and lack a full period's Analytics view count, this metric never certifies an exact monthly-views achievement. Owner-authorized YouTube Analytics remains a separate integration. No linear forecast or fabricated past monthly total is used.
+
+Verify with `node tests/test_planner.mjs` in addition to the collector/static checks. References: https://developers.google.com/youtube/data/reference/rest/v3/channels#statistics ; https://developers.google.com/youtube/analytics/metrics#views.
