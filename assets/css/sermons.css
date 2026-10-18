@@ -7,3 +7,8 @@
 [data-sermon-notebook] button { min-height:44px; margin:8px 8px 8px 0; }
 [data-sermon-notebook] .goal-card { margin:20px 0; overflow-wrap:anywhere; }
 .sermon-notes { white-space:pre-wrap; }
+
+.sermon-meta { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:16px; }
+.sermon-meta label { min-width:0; }
+.sermon-location { overflow-wrap:anywhere; }
+@media(max-width:540px) { .sermon-meta { grid-template-columns:1fr; gap:0; } }
