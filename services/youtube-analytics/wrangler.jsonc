@@ -1,0 +1,18 @@
+{
+  "name": "fmw-youtube-analytics",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-10-17",
+  "workers_dev": false,
+  "preview_urls": false,
+  "observability": {"enabled": false},
+  "vars": {
+    "PUBLIC_ORIGIN": "https://analytics.freemarketwildlife.com",
+    "EXPECTED_CHANNEL_ID": "UCyLnzmIiCEvTpw8V7bWdj5g",
+    "ADMIN_EMAILS": "freemarketwildlife@gmail.com",
+    "ACCESS_ISSUER": "",
+    "ACCESS_AUD": "",
+    "GOOGLE_CLIENT_ID": ""
+  },
+  "d1_databases": [{"binding":"DB","database_name":"fmw-youtube-analytics","database_id":"REPLACE_WITH_CREATED_DATABASE_ID","migrations_dir":"migrations"}],
+  "triggers": {"crons":["*/15 * * * *"]}
+}

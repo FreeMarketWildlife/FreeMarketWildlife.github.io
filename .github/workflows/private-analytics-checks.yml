@@ -1,0 +1,25 @@
+name: Check private analytics service
+on:
+  push:
+    paths: ['services/youtube-analytics/**', '.github/workflows/private-analytics-checks.yml']
+  pull_request:
+    paths: ['services/youtube-analytics/**', '.github/workflows/private-analytics-checks.yml']
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: services/youtube-analytics
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+          cache-dependency-path: services/youtube-analytics/package-lock.json
+      - run: npm ci
+      - run: npm test
+      - run: npm run check
+      - run: npm run db:local

@@ -138,3 +138,9 @@ Statistics now includes a searchable, sortable, paginated video table. The daily
 The current catalog includes the metadata returned for snippet, statistics, contentDetails, status, liveStreamingDetails, recordingDetails, localizations, and paidProductPlacementDetails. It does not download video files, transcripts, or individual comments. Comment counts are included when available. Expand Details for descriptions, tags, languages, and all returned public metadata. Shorts are not guessed from duration because the Data API does not provide a reliable universal isShort flag. Views follow YouTube's platform definitions.
 
 Generated catalog data is deployed as assets/data/youtube-videos.json, refreshed daily, and is never committed to Git. The tracked file is an empty setup placeholder. Full video metadata is not copied into the rolling channel-history artifact. For around 5,330 uploads a full refresh typically takes about 215 one-unit requests, within the standard quota.
+
+## Owner-authorized private analytics infrastructure
+
+`services/youtube-analytics/` is an independent private Worker/D1 service with read-only OAuth, encrypted refresh-token storage, invitation handling, verified administrator access, historical collection queues, bulk report ingestion, exports, and analysis-plan records. It is not hosted by GitHub Pages and is not activated yet. The public connection-information page is `/troykearns/connect/`; its service URL stays unset until private hosting and real OAuth acceptance tests pass.
+
+See `docs/analytics/DEPLOYMENT.md` for the exact deployment/acceptance steps and `docs/analytics/request-to-troy.txt` for the unsent access-request draft. No private data or new Google OAuth credentials were collected. Run `npm ci`, `npm test`, `npm run check`, and `npm run db:local` from `services/youtube-analytics/` to validate the backend locally.

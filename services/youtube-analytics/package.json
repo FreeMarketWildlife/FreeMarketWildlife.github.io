@@ -1,0 +1,1 @@
+{"name":"fmw-youtube-analytics","private":true,"type":"module","scripts":{"test":"node --test","dev":"wrangler dev","check":"wrangler deploy --dry-run","deploy":"wrangler deploy","db:local":"wrangler d1 migrations apply DB --local","db:remote":"wrangler d1 migrations apply DB --remote"},"dependencies":{"jose":"^6.1.0"},"devDependencies":{"wrangler":"^4.0.0"}}

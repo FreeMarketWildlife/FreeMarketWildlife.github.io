@@ -1,0 +1,4 @@
+# Copy to .dev.vars; use wrangler secret put for deployment. Never commit real values.
+GOOGLE_CLIENT_SECRET=
+TOKEN_ENCRYPTION_KEY=
+# 32 random bytes encoded as base64; retain securely or encrypted data cannot be read.

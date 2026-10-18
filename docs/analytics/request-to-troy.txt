@@ -1,0 +1,13 @@
+DRAFT — do not send until private hosting and OAuth acceptance checks pass.
+
+Hey Troy — I’m setting up a private analytics workspace so we can evaluate which videos connect with your audience and use those lessons in future content.
+
+Once the connection is ready, I’ll send you a single-use Google authorization link. You’ll sign into the Google account that owns the Troy Kearns YouTube channel, select that channel if prompted, and approve two read-only permissions: view your YouTube channel information and view its YouTube Analytics reports.
+
+You won’t need to share your password. This won’t let us publish, edit, or delete videos, and we aren’t requesting revenue access.
+
+We’ll use the available historical and ongoing watch time, retention, subscriber gains/losses, traffic sources, audience segments, and thumbnail-reach reports to compare content fairly. Private/unlisted video metadata will remain in the private service. Some historical metrics, deleted videos, and privacy-suppressed audience data may be unavailable. If older reach data isn’t provided through the API, we may ask for a YouTube Studio export.
+
+You can revoke access through your Google account connections at any time, or ask us to disconnect and delete the collected private analytics.
+
+[Insert the freshly generated private connection invitation only after setup is verified.]
