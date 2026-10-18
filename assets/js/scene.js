@@ -8,6 +8,7 @@ if (stage) {
   let width = 240, height = 94, pixel = 2, time = 0, last = 0, frame;
   let soldiers = [], shots = [], debris = [], nextSpawn = 0, nextShot = 2;
   let castleHP=600, engineHP=120, nextArrow=0, nextDefender=5;
+  let hoverPoint = null;
   const ground = () => height - 10;
   const castle = () => width - 64;
   const rect = (x,y,w,h,color='#fff') => { ctx.fillStyle=color; ctx.fillRect(Math.round(x),Math.round(y),w,h); };
@@ -67,7 +68,32 @@ if (stage) {
     soldiers.forEach(soldier);
     for(const shot of shots){const p=shot.age/shot.duration;const x=shot.start+(shot.end-shot.start)*p,y=shot.y+(shot.targetY-shot.y)*p-Math.sin(p*Math.PI)*shot.arc;if(shot.arrow)line(x,y,x+4,y+1);else rect(x,y,3,3);}
     for(const d of debris)rect(d.x,d.y,1,1);
+    drawHealthBar();
   }
+  function hoveredHealth() {
+    if(!hoverPoint)return null;
+    const {x,y}=hoverPoint,g=ground();
+    const unit=soldiers.filter(s=>!s.dead&&Math.abs(s.x-x)<(s.kind==='giant'?16:10)&&Math.abs(g-s.lane-5-y)<16).sort((a,b)=>Math.abs(a.x-x)-Math.abs(b.x-x))[0];
+    if(unit)return {x:unit.x,y:g-unit.lane-(unit.kind==='giant'?34:22),hp:unit.hp,max:unit.kind==='foot'?25:180};
+    if(x>castle()-8&&x<castle()+60&&y>g-65)return {x:castle()+26,y:g-75,hp:castleHP,max:600};
+    const tx=engineHP>0?Math.min(37,-20+time*7):37;
+    if(x>tx-25&&x<tx+28&&y>g-47)return {x:tx,y:g-55,hp:engineHP,max:120};
+    return null;
+  }
+  function drawHealthBar() {
+    const target=hoveredHealth();if(!target)return;
+    const w=30,h=6,x=Math.max(1,Math.min(width-w-1,Math.round(target.x-w/2))),y=Math.max(1,Math.round(target.y));
+    rect(x-1,y-1,w+2,h+2,'#000');
+    rect(x,y,w,h);rect(x+1,y+1,w-2,h-2,'#000');
+    const filled=Math.round((w-4)*Math.max(0,Math.min(1,target.hp/target.max)));
+    if(filled)rect(x+2,y+2,filled,h-4);
+  }
+  canvas.addEventListener('pointermove',event=>{
+    if(event.pointerType==='touch')return;
+    const bounds=canvas.getBoundingClientRect();
+    hoverPoint={x:(event.clientX-bounds.left)/pixel,y:(event.clientY-bounds.top)/pixel};draw();
+  });
+  canvas.addEventListener('pointerleave',()=>{hoverPoint=null;draw();});
   function update(dt) {
     time+=dt;
     if(time>nextSpawn){nextSpawn=time+8+Math.random()*7;spawn(1);}
