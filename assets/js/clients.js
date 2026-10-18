@@ -2,7 +2,7 @@
  * Replace demo codes before sharing. Never store confidential material here.
  */
 export const clients = Object.freeze({
-  'troy-kearns': Object.freeze({ passcode: 'TROY-2026', path: '/troy-kearns/' }),
+  'troy-kearns': Object.freeze({ passcode: 'Password', path: '/troykearns/' }),
   'kat-kai': Object.freeze({ passcode: 'KATKAI-10K', path: '/kat-kai/' }),
 });
 export function clientForPasscode(passcode) {

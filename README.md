@@ -21,7 +21,8 @@ index.html                    Full-screen landing page
 portfolio/index.html          Creator showcase and pending testimonials
 tanoshi/index.html            Tanoshi media showcase
 contact/index.html            Email contact form
-troy-kearns/index.html         Gated video review template
+troykearns/index.html          Troy channel, links, and video review workspace
+troy-kearns/index.html         Compatibility alias for Troy workspace
 kat-kai/index.html             Gated four-phase creator roadmap
 404.html                      Custom error page
 assets/css/styles.css         Shared two-color design system
@@ -65,10 +66,10 @@ The contact form validates required fields and prepares a `mailto:` message to *
 
 | Workspace | Public demonstration passcode |
 | --- | --- |
-| `/troy-kearns/` | `TROY-2026` |
+| `/troykearns/` | `Password` |
 | `/kat-kai/` | `KATKAI-10K` |
 
-Edit `assets/js/clients.js` to change these values. The home launcher routes to the matching folder, where the workspace asks for its own passcode. Every load starts locked; lock state is not saved in local/session storage. Escape does not dismiss a workspace barrier. Regular access dialogs remain dismissible.
+Edit `assets/js/clients.js` to change these values. The small top-right Sign in button opens the password dialog. A successful password routes to the matching workspace. Preview access lasts for the current browser tab through sessionStorage, avoiding a second prompt. Signing out clears that workspace session. If browser storage is blocked, the destination asks for the password again. Escape does not dismiss a workspace barrier. Regular access dialogs remain dismissible.
 
 **This is a static interface barrier, not authentication.** Public HTML and JavaScript can be read or altered by a visitor. Only public demonstration information belongs in this repository. Confidential client work requires actual authorization on a suitable host.
 
@@ -78,7 +79,7 @@ Edit `assets/js/clients.js` to change these values. The home launcher routes to 
 python3 scripts/check_site.py
 ```
 
-The check verifies all seven pages, local references and fonts, unique element IDs, initial workspace barriers, naming, the monochrome source palette, PNG dimensions/checksums/bit depth, and absence of autonomous scene animation. Browser QA is recorded in `design/verification.md`.
+The check verifies all eight pages, local references and fonts, unique element IDs, initial workspace barriers, naming, the monochrome source palette, PNG dimensions/checksums/bit depth, and absence of autonomous scene animation. Browser QA is recorded in `design/verification.md`.
 
 To regenerate the original fonts, install `fonttools` in a development environment and run `scripts/build_pixel_font.py`. The checked-in TTF files work without that dependency. Prepared 1-bit sprite scanlines can be packaged with `python3 scripts/package_pixel_masks.py`; the page needs no build step.
 
@@ -96,3 +97,9 @@ GitHub's repository website is hosted on `github.io` or the configured custom do
 For an Actions deployment, a CNAME file alone does not configure the domain. Domain and DNS setup remain external steps; this checkout has not been published or connected to a remote repository by this work.
 
 Official references: [GitHub Pages workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages), [custom domains](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site).
+
+## Troy workspace
+
+The canonical route is `/troykearns/`; `/troy-kearns/` remains a working alias. Both currently use the exact temporary password `Password`. The channel and seven other links were supplied by the owner, including Troy's public business email. YouTube's remote page could not be fetched during development; links are preserved as supplied with YouTube redirect wrappers removed. The workspace includes an empty six-column review structure and no invented metrics.
+
+Google and email-code authentication are deferred at the owner's request. Neither this password nor sessionStorage provides security. Before adding private material, move workspace content to a protected origin with enforced access rules covering documents, media, APIs, and alternate hostnames. Do not publish confidential material in this public repository.

@@ -23,7 +23,7 @@ class Document(HTMLParser):
    if attrs.get(attr):self.refs.append(attrs[attr])
   if tag=='input':require(attrs.get('type')!='tel',f'{self.path}: unexpected contact field')
  def handle_startendtag(self,tag,attrs):self.handle_starttag(tag,attrs)
-PAGES=['index.html','portfolio/index.html','tanoshi/index.html','contact/index.html','troy-kearns/index.html','kat-kai/index.html','404.html']
+PAGES=['index.html','portfolio/index.html','tanoshi/index.html','contact/index.html','troy-kearns/index.html','troykearns/index.html','kat-kai/index.html','404.html']
 for name in PAGES:
  path=ROOT/name;text=path.read_text();doc=Document(name);doc.feed(text)
  require(doc.h1==1,f'{name}: expected one h1');require(doc.main,f'{name}: missing main')
@@ -37,7 +37,7 @@ for name in PAGES:
    if target.is_dir():target/= 'index.html'
    require(target.is_file(),f'{name}: missing local reference {ref}')
   elif url.fragment:require(url.fragment in doc.ids,f'{name}: missing fragment {url.fragment}')
- if name.startswith(('troy-kearns/','kat-kai/')):
+ if name.startswith(('troy-kearns/','troykearns/','kat-kai/')):
   require(doc.gate and doc.hidden,f'{name}: workspace must start gated, hidden, inert')
 home=(ROOT/'index.html').read_text()
 require('Build a Career' in home,'Homepage tagline missing')
@@ -64,12 +64,12 @@ for name,expected in [('landscape',(263,168)),('bird',(18,16))]:
  require(len(zlib.decompress(compressed))==(1+(expected[0]+7)//8)*expected[1],f'{name}: invalid PNG scanlines')
 for path in (ROOT/'assets/css').glob('*.css'):
  for ref in re.findall(r'url\([\"\']?([^\)\"\']+)',path.read_text()):
-  require((path.parent/ref).is_file(),f'{path.name}: missing font/image {ref}')
+  require((path.parent/urlsplit(ref).path).is_file(),f'{path.name}: missing font/image {ref}')
 for path in (ROOT/'assets/js').glob('*.js'):
  text=path.read_text()
- for ref in re.findall(r"from\s+['\"]([^'\"]+)['\"]",text):require((path.parent/ref).is_file(),f'{path.name}: missing module {ref}')
+ for ref in re.findall(r"from\s+['\"]([^'\"]+)['\"]",text):require((path.parent/urlsplit(ref).path).is_file(),f'{path.name}: missing module {ref}')
  if path.name=='scene.js':require(not re.search(r'\b(requestAnimationFrame|setInterval|setTimeout)\s*\(',text),'Autonomous scene animation found')
 require((ROOT/'CNAME').read_text().strip()=='freemarketwildlife.com','Custom domain mismatch')
 if errors:
  print('\n'.join(errors));raise SystemExit(1)
-print('PASS: 7 pages, local references, workspace barriers, monochrome palette, binary sprites, fonts, and static scene contract.')
+print('PASS: 8 pages, local references, workspace barriers, monochrome palette, binary sprites, fonts, and static scene contract.')

@@ -84,3 +84,17 @@ dialog { background: var(--black); color: var(--white); border: 1px solid var(--
 ::-webkit-scrollbar { width: 8px; height: 8px; background: var(--black); }
 ::-webkit-scrollbar-thumb { background: var(--white); border: 2px solid var(--black); }
 ::-webkit-scrollbar-track, ::-webkit-scrollbar-corner, ::-webkit-resizer { background: var(--black); }
+/* Quiet sign-in control stays in the top-right on all viewport sizes. */
+.home .home-access { top: 16px; right: 24px; bottom: auto; font-size: 12px; min-height: 44px; padding: 12px 0; display: inline-flex; align-items: center; gap: 8px; }
+.home .home-access .pixel-lock { width: 12px; height: 14px; }
+.site-header > .access-button { border: 0; font-size: 12px; margin-left: auto; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; }
+.site-header > .access-button .pixel-lock { width: 12px; height: 14px; }
+.site-header > .access-button > span { display: inline; }
+.home-access:hover, .site-header > .access-button:hover { text-decoration: underline; text-underline-offset: 6px; }
+.access-dialog .dialog-panel { padding: 32px; }
+.access-dialog .dialog-panel h2 { font-size: 32px; margin: 16px 0; }
+.access-dialog .dialog-panel form { margin-top: 24px; }
+.access-dialog .dialog-panel > p, .access-dialog label, .access-dialog input, .access-dialog .button, .access-dialog .form-error { font-size: 16px; }
+.access-dialog .dialog-panel .micro { font-size: 11px; }
+.access-dialog .lock-emblem { margin-top: 16px; }
+@media (max-width: 540px) { .access-dialog .dialog-panel { padding: 24px; } }

@@ -1,4 +1,4 @@
-import { clients, clientForPasscode } from './clients.js';
+import { clients, clientForPasscode } from './clients.js?v=2';
 
 const $ = (selector, parent = document) => parent.querySelector(selector);
 const $$ = (selector, parent = document) => [...parent.querySelectorAll(selector)];
@@ -17,7 +17,19 @@ function resetError(input, error) {
   });
 }
 
-// A shared passcode-only launcher routes directly to the matching folder.
+// Temporary browser-only preview access; this is not authentication.
+// Session storage avoids asking twice when moving from the launcher to a page.
+const previewKey = client => `fmw-preview:${client}`;
+function rememberPreview(client) {
+  try { sessionStorage.setItem(previewKey(client), 'open'); } catch { /* Direct gate still works. */ }
+}
+function hasPreview(client) {
+  try { return sessionStorage.getItem(previewKey(client)) === 'open'; } catch { return false; }
+}
+function forgetPreview(client) {
+  try { sessionStorage.removeItem(previewKey(client)); } catch { /* No persisted state. */ }
+}
+// A shared password launcher routes directly to the matching folder.
 const access = $('#access-dialog');
 const accessForm = $('[data-access-form]');
 const accessInput = $('#access-code');
@@ -35,12 +47,16 @@ if (access && accessForm) {
   accessForm.addEventListener('submit', event => {
     event.preventDefault();
     const client = clientForPasscode(accessInput.value.trim());
-    if (client) location.assign(client.path);
-    else rejectPasscode(accessInput, accessError, 'Passcode not recognized. Check it and try again.');
+    if (client) {
+      const clientId = Object.keys(clients).find(id => clients[id] === client);
+      rememberPreview(clientId);
+      location.assign(client.path);
+    }
+    else rejectPasscode(accessInput, accessError, 'Password not recognized. Check it and try again.');
   });
 }
 
-// Every workspace load starts locked. Nothing is persisted in browser storage.
+// Workspaces require the demo password once per tab session.
 const gate = $('#workspace-gate');
 const workspace = $('#workspace-content');
 if (gate && workspace) {
@@ -48,7 +64,15 @@ if (gate && workspace) {
   const input = $('#gate-code');
   const error = $('#gate-error');
   const client = clients[document.body.dataset.client];
+  const revealWorkspace = () => {
+    workspace.hidden = false;
+    if (gate.open) gate.close();
+    workspace.inert = false;
+    $('#main').focus({ preventScroll: true });
+    form.reset();
+  };
   const openGate = () => {
+    forgetPreview(document.body.dataset.client);
     workspace.hidden = true;
     workspace.inert = true;
     if (gate.open) gate.close();
@@ -60,24 +84,24 @@ if (gate && workspace) {
   };
   // Convert the immediately visible HTML barrier into a focus-trapping dialog.
   gate.removeAttribute('open');
-  openGate();
+  if (hasPreview(document.body.dataset.client)) revealWorkspace();
+  else openGate();
   gate.addEventListener('cancel', event => event.preventDefault());
   resetError(input, error);
   form.addEventListener('submit', event => {
     event.preventDefault();
     if (!client || input.value.trim() !== client.passcode) {
-      rejectPasscode(input, error, 'Incorrect workspace passcode. Please try again.');
+      rejectPasscode(input, error, 'Incorrect workspace password. Please try again.');
       return;
     }
-    workspace.hidden = false;
-    gate.close();
-    workspace.inert = false;
-    $('#main').focus({ preventScroll: true });
-    form.reset();
+    rememberPreview(document.body.dataset.client);
+    revealWorkspace();
   });
   $('[data-lock-workspace]').addEventListener('click', openGate);
-  // Re-lock restored history entries as well as normal reloads.
-  window.addEventListener('pageshow', event => { if (event.persisted) openGate(); });
+  // Re-lock restored history entries after signing out.
+  window.addEventListener('pageshow', event => {
+    if (event.persisted && !hasPreview(document.body.dataset.client)) openGate();
+  });
 }
 
 const email = 'FreeMarketWildlife@gmail.com';

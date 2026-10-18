@@ -11,7 +11,7 @@
   <link rel="preload" href="/assets/fonts/fmw-display.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="/assets/fonts/fmw-pixel.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="/assets/css/styles.css">
-  <script type="module" src="/assets/js/app.js"></script>
+  <script type="module" src="/assets/js/app.js?v=2"></script>
   <script type="module" src="/assets/js/scene.js"></script>
 </head>
 <body class="home">
@@ -33,21 +33,21 @@
       </nav>
     </div>
   </main>
-  <button class="home-access" type="button" data-open-access aria-label="Client access"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""><span>Client access</span></button>
+  <button class="home-access" type="button" data-open-access aria-label="Sign in"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""><span>Sign in</span></button>
   <dialog class="access-dialog" id="access-dialog" aria-labelledby="access-title">
   <div class="dialog-panel">
     <button class="close-button" type="button" data-close-access aria-label="Close client access">×</button>
-    <span class="eyebrow">CLIENT ACCESS / PRIVATE PATH</span>
+    <span class="eyebrow">CLIENT WORKSPACE</span>
     <div class="lock-emblem"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""></div>
-    <h2 id="access-title">Your space.<br>Your next move.</h2>
-    <p class="muted">Enter your workspace passcode to continue.</p>
+    <h2 id="access-title">Sign in.</h2>
+    <p class="muted">Enter your workspace password to continue.</p>
     <form data-access-form>
-      <label for="access-code">Workspace passcode</label>
-      <input id="access-code" name="passcode" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" required aria-describedby="access-error" placeholder="Enter passcode">
+      <label for="access-code">Password</label>
+      <input id="access-code" name="passcode" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" required aria-describedby="access-error" placeholder="Enter password">
       <p class="form-error" id="access-error" aria-live="polite"></p>
-      <button class="button primary" type="submit">Open workspace <span aria-hidden="true">→</span></button>
+      <button class="button primary" type="submit">Continue <span aria-hidden="true">→</span></button>
     </form>
-    <p class="micro">Static passcode access is a convenience barrier. Please keep confidential information off this public site.</p>
+    <p class="micro">Temporary preview access. Public content only.</p>
   </div>
 </dialog>
 </body>

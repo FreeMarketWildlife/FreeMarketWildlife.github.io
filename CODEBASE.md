@@ -5,6 +5,7 @@ The actual editable files live at the paths below. Local font and sprite files a
 ```text
 index.html
 assets/css/styles.css
+assets/css/troy.css
 assets/js/app.js
 assets/js/clients.js
 assets/js/scene.js
@@ -13,6 +14,7 @@ portfolio/index.html
 tanoshi/index.html
 contact/index.html
 troy-kearns/index.html
+troykearns/index.html
 kat-kai/index.html
 404.html
 .github/workflows/pages.yml
@@ -35,7 +37,7 @@ CNAME
   <link rel="preload" href="/assets/fonts/fmw-display.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="/assets/fonts/fmw-pixel.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="/assets/css/styles.css">
-  <script type="module" src="/assets/js/app.js"></script>
+  <script type="module" src="/assets/js/app.js?v=2"></script>
   <script type="module" src="/assets/js/scene.js"></script>
 </head>
 <body class="home">
@@ -57,21 +59,21 @@ CNAME
       </nav>
     </div>
   </main>
-  <button class="home-access" type="button" data-open-access aria-label="Client access"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""><span>Client access</span></button>
+  <button class="home-access" type="button" data-open-access aria-label="Sign in"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""><span>Sign in</span></button>
   <dialog class="access-dialog" id="access-dialog" aria-labelledby="access-title">
   <div class="dialog-panel">
     <button class="close-button" type="button" data-close-access aria-label="Close client access">×</button>
-    <span class="eyebrow">CLIENT ACCESS / PRIVATE PATH</span>
+    <span class="eyebrow">CLIENT WORKSPACE</span>
     <div class="lock-emblem"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""></div>
-    <h2 id="access-title">Your space.<br>Your next move.</h2>
-    <p class="muted">Enter your workspace passcode to continue.</p>
+    <h2 id="access-title">Sign in.</h2>
+    <p class="muted">Enter your workspace password to continue.</p>
     <form data-access-form>
-      <label for="access-code">Workspace passcode</label>
-      <input id="access-code" name="passcode" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" required aria-describedby="access-error" placeholder="Enter passcode">
+      <label for="access-code">Password</label>
+      <input id="access-code" name="passcode" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" required aria-describedby="access-error" placeholder="Enter password">
       <p class="form-error" id="access-error" aria-live="polite"></p>
-      <button class="button primary" type="submit">Open workspace <span aria-hidden="true">→</span></button>
+      <button class="button primary" type="submit">Continue <span aria-hidden="true">→</span></button>
     </form>
-    <p class="micro">Static passcode access is a convenience barrier. Please keep confidential information off this public site.</p>
+    <p class="micro">Temporary preview access. Public content only.</p>
   </div>
 </dialog>
 </body>
@@ -167,12 +169,48 @@ dialog { background: var(--black); color: var(--white); border: 1px solid var(--
 ::-webkit-scrollbar { width: 8px; height: 8px; background: var(--black); }
 ::-webkit-scrollbar-thumb { background: var(--white); border: 2px solid var(--black); }
 ::-webkit-scrollbar-track, ::-webkit-scrollbar-corner, ::-webkit-resizer { background: var(--black); }
+/* Quiet sign-in control stays in the top-right on all viewport sizes. */
+.home .home-access { top: 16px; right: 24px; bottom: auto; font-size: 12px; min-height: 44px; padding: 12px 0; display: inline-flex; align-items: center; gap: 8px; }
+.home .home-access .pixel-lock { width: 12px; height: 14px; }
+.site-header > .access-button { border: 0; font-size: 12px; margin-left: auto; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; }
+.site-header > .access-button .pixel-lock { width: 12px; height: 14px; }
+.site-header > .access-button > span { display: inline; }
+.home-access:hover, .site-header > .access-button:hover { text-decoration: underline; text-underline-offset: 6px; }
+.access-dialog .dialog-panel { padding: 32px; }
+.access-dialog .dialog-panel h2 { font-size: 32px; margin: 16px 0; }
+.access-dialog .dialog-panel form { margin-top: 24px; }
+.access-dialog .dialog-panel > p, .access-dialog label, .access-dialog input, .access-dialog .button, .access-dialog .form-error { font-size: 16px; }
+.access-dialog .dialog-panel .micro { font-size: 11px; }
+.access-dialog .lock-emblem { margin-top: 16px; }
+@media (max-width: 540px) { .access-dialog .dialog-panel { padding: 24px; } }
+```
+
+## assets/css/troy.css
+
+```css
+/* Troy's workspace extends the existing black-and-white pixel identity. */
+.tk-page { font-family: Arial, Helvetica, sans-serif; font-size: 15px; line-height: 1.55; }
+.tk-page h1, .tk-monogram { font-family: 'FMW Display', monospace; }
+.tk-small, .tk-header, .tk-sidebar, .tk-outline-label, .tk-primary, .tk-channel-top, .tk-channel-cta, .tk-link-number, .tk-link-type, .tk-footer, .tk-method > div > span, .tk-gate { font-family: 'FMW Pixel', monospace; }
+.tk-header { min-height: 100px; border-bottom: 1px solid #fff; padding: 24px 40px; display: flex; align-items: center; gap: 32px; }
+.tk-header .brand img { width: 40px; height: 40px; }.tk-header .brand span { font-size: 12px; }.tk-header-label { margin-left: auto; font-size: 12px; }.tk-signout { font-family: inherit; font-size: 12px; border: 0; padding: 12px 0 12px 24px; }.tk-signout:hover { text-decoration: underline; }
+.tk-layout { display: grid; grid-template-columns: 230px minmax(0,1fr); max-width: 1680px; margin: auto; }.tk-sidebar { border-right: 1px solid #fff; padding: 40px 24px; }.tk-monogram { font-size: 48px; line-height: 1.5; border: 1px solid #fff; width: 100%; aspect-ratio: 1; display: grid; place-content: center; position: relative; }.tk-monogram > span { position: absolute; right: 12px; top: 0; font: 24px Arial, sans-serif; }.tk-sidebar-name { margin-top: 24px; }.tk-sidebar .tk-small { font-size: 10px; margin-top: 8px; }.tk-sidebar nav { display: grid; margin-top: 48px; gap: 12px; }.tk-sidebar nav a { display: flex; gap: 16px; font-size: 12px; padding: 12px 0; }.tk-sidebar nav a:hover span { text-decoration: underline; text-underline-offset: 6px; }.tk-back { display: block; border-top: 1px solid #fff; margin-top: 64px; padding-top: 24px; font-size: 10px; }
+.tk-main { min-width: 0; padding: 32px 48px 0; }.tk-small { font-size: 11px; line-height: 1.8; }.tk-outline-label { border: 1px solid #fff; padding: 6px 8px; font-size: 10px; white-space: nowrap; }.tk-intro { display: flex; justify-content: space-between; gap: 20px; align-items: center; }.tk-hero { display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; padding: 56px 0 64px; align-items: end; }.tk-hero h1 { font-size: clamp(48px,5.2vw,80px); line-height: 1.2; margin: 24px 0; }.tk-period { font-family: Arial, sans-serif; }.tk-hero-copy { font-size: 18px; line-height: 1.6; }.tk-primary { display: inline-flex; justify-content: space-between; align-items: center; gap: 32px; padding: 16px; margin-top: 28px; background: #fff; color: #000; border: 1px solid #fff; font-size: 12px; }.tk-primary:hover { background: #000; color: #fff; }
+.tk-channel { display: flex; flex-direction: column; border: 1px solid #fff; min-width: 0; }.tk-channel:hover { outline: 2px solid #fff; outline-offset: -6px; }.tk-channel-top { display: flex; justify-content: space-between; padding: 16px; border-bottom: 1px solid #fff; font-size: 10px; }.tk-channel-art { min-height: 180px; display: grid; place-items: center; background-image: radial-gradient(#fff 0.65px,transparent 0.65px); background-size: 12px 12px; }.tk-channel-art svg { width: 120px; height: 88px; background: #000; box-shadow: 0 0 0 16px #000; }.tk-channel-bottom { padding: 24px; border-top: 1px solid #fff; display: grid; gap: 6px; }.tk-channel-bottom strong { font-weight: 400; font-size: 24px; }.tk-channel-bottom > span { overflow-wrap: anywhere; }.tk-channel-cta { font-size: 10px; margin-top: 18px; }
+.tk-section-heading { border-top: 1px solid #fff; padding: 28px 0; display: flex; align-items: center; justify-content: space-between; gap: 24px; scroll-margin-top: 24px; }.tk-section-heading h2 { font-size: 28px; font-family: Arial, Helvetica, sans-serif; margin-top: 8px; letter-spacing: -.7px; }.tk-review { border: 1px solid #fff; }.tk-review-top { padding: 24px; }.tk-review-top h3 { font-size: 18px; margin-bottom: 8px; }.tk-review-top p { font-size: 14px; }.tk-table-wrap { overflow-x: auto; }.tk-table { min-width: 820px; font-size: 12px; }.tk-table th { padding: 14px 16px; text-decoration: none; font-size: 12px; }.tk-table td { padding: 0; }.tk-empty { min-height: 170px; display: flex; align-items: center; gap: 24px; padding: 28px; }.tk-empty-icon { font: 20px 'FMW Pixel', monospace; white-space: nowrap; }.tk-empty strong { font-size: 16px; font-weight: 400; }.tk-empty p { margin-top: 8px; font-size: 14px; max-width: 400px; }.tk-empty a { white-space: nowrap; text-decoration: underline; text-underline-offset: 4px; margin-left: auto; }
+.tk-method { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; margin: 32px 0 56px; }.tk-method > div > span { font-size: 10px; }.tk-method h3 { font-size: 18px; margin: 12px 0 8px; }.tk-method p { font-size: 14px; }.tk-directory { border-top: 1px solid #fff; }.tk-link { display: grid; grid-template-columns: 32px minmax(0,1fr) 120px 20px; align-items: center; gap: 24px; padding: 24px 8px; border-bottom: 1px solid #fff; }.tk-link:hover { background: #fff; color: #000; }.tk-link-number, .tk-link-type { font-size: 10px; }.tk-link strong { display: block; font-size: 19px; font-weight: 400; }.tk-link small { display: block; margin-top: 4px; font-size: 14px; overflow-wrap: anywhere; }.tk-link-type { text-align: right; }.tk-footer { display: flex; justify-content: space-between; gap: 24px; padding: 40px 0 24px; font-size: 9px; }
+.tk-gate .dialog-panel { width: min(100%,480px); }.tk-gate h2 { font-family: 'FMW Display',monospace; font-size: 40px; }.tk-gate .micro { font-size: 11px; }.tk-gate .brand img { width: 40px; height: 40px; }.tk-gate .brand span { font-size: 12px; }
+@media (min-width: 1500px) { .tk-hero h1 { font-size: 88px; } }
+@media (max-width: 1100px) { .tk-layout { grid-template-columns: 180px minmax(0,1fr); }.tk-main { padding: 28px 28px 0; }.tk-sidebar { padding: 32px 16px; }.tk-hero { gap: 24px; }.tk-hero h1 { font-size: 48px; }.tk-hero > div > .tk-small { max-width: 240px; }.tk-channel-art { min-height: 160px; }.tk-section-heading { align-items: flex-start; flex-direction: column; gap: 12px; }.tk-method { gap: 20px; }.tk-primary { font-size: 10px; gap: 12px; }.tk-intro { flex-wrap: wrap; }.tk-footer { flex-wrap: wrap; } }
+@media (max-width: 760px) { .tk-header { padding: 20px 24px; min-height: 84px; justify-content: space-between; }.tk-header-label { display: none; }.tk-layout { display: block; }.tk-sidebar { padding: 0 24px; border-right: 0; border-bottom: 1px solid #fff; }.tk-monogram,.tk-sidebar-name,.tk-sidebar > .tk-small,.tk-back { display: none; }.tk-sidebar nav { margin: 0; display: flex; justify-content: space-between; gap: 16px; }.tk-sidebar nav a { font-size: 10px; gap: 8px; padding: 20px 0; }.tk-main { padding: 24px 24px 0; }.tk-hero { padding: 36px 0 40px; gap: 32px; }.tk-hero h1 { font-size: 48px; }.tk-channel-top { font-size: 9px; padding: 12px; }.tk-channel-art { min-height: 144px; }.tk-channel-bottom { padding: 16px; }.tk-channel-bottom strong { font-size: 20px; }.tk-channel-bottom > span { font-size: 12px; }.tk-channel-bottom .tk-channel-cta { font-size: 9px; }.tk-hero-copy { font-size: 16px; }.tk-hero > div > .tk-small { font-size: 9px; }.tk-primary { padding: 12px; }.tk-link { grid-template-columns: 24px minmax(0,1fr) 16px; gap: 16px; }.tk-link-type { display: none; }.tk-method { margin-bottom: 40px; }.tk-method h3 { font-size: 16px; } }
+@media (max-width: 540px) { .tk-hero { grid-template-columns: 1fr; }.tk-hero h1 { font-size: 64px; }.tk-hero > div > .tk-small { max-width: none; }.tk-channel-art { min-height: 160px; }.tk-hero-copy br { display: none; }.tk-primary { width: 100%; font-size: 12px; }.tk-method { grid-template-columns: 1fr; gap: 24px; }.tk-method > div { border-left: 1px solid #fff; padding-left: 16px; }.tk-section-heading h2 { font-size: 25px; }.tk-link strong { font-size: 18px; }.tk-small { font-size: 10px; }.tk-sidebar nav a { font-size: 9px; }.tk-footer { font-size: 9px; }.tk-footer > span:nth-child(2) { order: 3; width: 100%; } }
+.tk-main:focus { outline: none; }
 ```
 
 ## assets/js/app.js
 
 ```javascript
-import { clients, clientForPasscode } from './clients.js';
+import { clients, clientForPasscode } from './clients.js?v=2';
 
 const $ = (selector, parent = document) => parent.querySelector(selector);
 const $$ = (selector, parent = document) => [...parent.querySelectorAll(selector)];
@@ -191,7 +229,19 @@ function resetError(input, error) {
   });
 }
 
-// A shared passcode-only launcher routes directly to the matching folder.
+// Temporary browser-only preview access; this is not authentication.
+// Session storage avoids asking twice when moving from the launcher to a page.
+const previewKey = client => `fmw-preview:${client}`;
+function rememberPreview(client) {
+  try { sessionStorage.setItem(previewKey(client), 'open'); } catch { /* Direct gate still works. */ }
+}
+function hasPreview(client) {
+  try { return sessionStorage.getItem(previewKey(client)) === 'open'; } catch { return false; }
+}
+function forgetPreview(client) {
+  try { sessionStorage.removeItem(previewKey(client)); } catch { /* No persisted state. */ }
+}
+// A shared password launcher routes directly to the matching folder.
 const access = $('#access-dialog');
 const accessForm = $('[data-access-form]');
 const accessInput = $('#access-code');
@@ -209,12 +259,16 @@ if (access && accessForm) {
   accessForm.addEventListener('submit', event => {
     event.preventDefault();
     const client = clientForPasscode(accessInput.value.trim());
-    if (client) location.assign(client.path);
-    else rejectPasscode(accessInput, accessError, 'Passcode not recognized. Check it and try again.');
+    if (client) {
+      const clientId = Object.keys(clients).find(id => clients[id] === client);
+      rememberPreview(clientId);
+      location.assign(client.path);
+    }
+    else rejectPasscode(accessInput, accessError, 'Password not recognized. Check it and try again.');
   });
 }
 
-// Every workspace load starts locked. Nothing is persisted in browser storage.
+// Workspaces require the demo password once per tab session.
 const gate = $('#workspace-gate');
 const workspace = $('#workspace-content');
 if (gate && workspace) {
@@ -222,7 +276,15 @@ if (gate && workspace) {
   const input = $('#gate-code');
   const error = $('#gate-error');
   const client = clients[document.body.dataset.client];
+  const revealWorkspace = () => {
+    workspace.hidden = false;
+    if (gate.open) gate.close();
+    workspace.inert = false;
+    $('#main').focus({ preventScroll: true });
+    form.reset();
+  };
   const openGate = () => {
+    forgetPreview(document.body.dataset.client);
     workspace.hidden = true;
     workspace.inert = true;
     if (gate.open) gate.close();
@@ -234,24 +296,24 @@ if (gate && workspace) {
   };
   // Convert the immediately visible HTML barrier into a focus-trapping dialog.
   gate.removeAttribute('open');
-  openGate();
+  if (hasPreview(document.body.dataset.client)) revealWorkspace();
+  else openGate();
   gate.addEventListener('cancel', event => event.preventDefault());
   resetError(input, error);
   form.addEventListener('submit', event => {
     event.preventDefault();
     if (!client || input.value.trim() !== client.passcode) {
-      rejectPasscode(input, error, 'Incorrect workspace passcode. Please try again.');
+      rejectPasscode(input, error, 'Incorrect workspace password. Please try again.');
       return;
     }
-    workspace.hidden = false;
-    gate.close();
-    workspace.inert = false;
-    $('#main').focus({ preventScroll: true });
-    form.reset();
+    rememberPreview(document.body.dataset.client);
+    revealWorkspace();
   });
   $('[data-lock-workspace]').addEventListener('click', openGate);
-  // Re-lock restored history entries as well as normal reloads.
-  window.addEventListener('pageshow', event => { if (event.persisted) openGate(); });
+  // Re-lock restored history entries after signing out.
+  window.addEventListener('pageshow', event => {
+    if (event.persisted && !hasPreview(document.body.dataset.client)) openGate();
+  });
 }
 
 const email = 'FreeMarketWildlife@gmail.com';
@@ -294,7 +356,7 @@ if (copyButton) {
  * Replace demo codes before sharing. Never store confidential material here.
  */
 export const clients = Object.freeze({
-  'troy-kearns': Object.freeze({ passcode: 'TROY-2026', path: '/troy-kearns/' }),
+  'troy-kearns': Object.freeze({ passcode: 'Password', path: '/troykearns/' }),
   'kat-kai': Object.freeze({ passcode: 'KATKAI-10K', path: '/kat-kai/' }),
 });
 export function clientForPasscode(passcode) {
@@ -425,38 +487,38 @@ export async function loadSceneSprites() {
   <title>Creator portfolio — Free Market Wildlife</title>
   <link rel="icon" href="/assets/images/mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/css/styles.css">
-  <script type="module" src="/assets/js/app.js"></script>
+  <script type="module" src="/assets/js/app.js?v=2"></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <a class="brand" href="/" aria-label="Free Market Wildlife home"><img src="/assets/images/mark.svg" width="64" height="64" alt=""><span>FREE MARKET<br>WILDLIFE</span></a>
   <nav aria-label="Primary"><a href="/portfolio/" aria-current="page">Portfolio</a><a href="/tanoshi/">Tanoshi</a><a href="/contact/">Contact</a></nav>
-  <button class="access-button" type="button" data-open-access aria-label="Client access"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""><span>Client access</span></button>
+  <button class="access-button" type="button" data-open-access aria-label="Sign in"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""><span>Sign in</span></button>
 </header>
 <main class="page-main" id="main" tabindex="-1">
   <div class="page-heading"><div><span class="eyebrow">01 / COLLABORATIONS</span><h1>Good work.<br><span class="muted">Shared momentum.</span></h1></div><p>Clearer processes. More intentional content. More room for the people doing the creating.</p></div>
   <div class="section-rule"><h2>Creator spotlight</h2><span class="badge">SHOWCASE IN PREPARATION</span></div>
   <p class="editorial-note">These are workspace previews. Project results and creator testimonials will be published only after approval.</p>
-  <section class="creator-row panel" aria-labelledby="troy-title"><div class="creator-visual troy-visual"><span class="eyebrow">CONTENT STRATEGY / ANALYTICS</span><span class="creator-monogram" aria-hidden="true">TK<span>↗</span></span><span class="micro">WORKSPACE PREVIEW</span></div><div class="creator-story"><span class="eyebrow">CREATOR / 01</span><h2 id="troy-title">Troy Kearns</h2><p>A dedicated space to connect video performance with practical lessons for the next upload.</p><blockquote><p>Approved creator testimonial coming soon.</p><footer>Testimonial placeholder · no quotation supplied</footer></blockquote><div class="tag-row"><span>Video analysis</span><span>Content direction</span></div><button class="text-button" type="button" data-open-access aria-label="Client access">Client workspace <span aria-hidden="true">↗</span></button></div></section>
-  <section class="creator-row reverse panel" aria-labelledby="kat-title"><div class="creator-visual kat-visual"><span class="eyebrow">COMMUNITY / CREATOR SYSTEMS</span><span class="creator-monogram" aria-hidden="true">K<span>&</span>K</span><span class="micro">WORKSPACE PREVIEW</span></div><div class="creator-story"><span class="eyebrow">CREATOR / 02</span><h2 id="kat-title">Kat & Kai</h2><p>A focused roadmap from niche development to partnerships, community, and cross-platform content.</p><blockquote><p>Approved creator testimonial coming soon.</p><footer>Testimonial placeholder · no quotation supplied</footer></blockquote><div class="tag-row"><span>Creator roadmap</span><span>Community strategy</span></div><button class="text-button" type="button" data-open-access aria-label="Client access">Client workspace <span aria-hidden="true">↗</span></button></div></section>
+  <section class="creator-row panel" aria-labelledby="troy-title"><div class="creator-visual troy-visual"><span class="eyebrow">CONTENT STRATEGY / ANALYTICS</span><span class="creator-monogram" aria-hidden="true">TK<span>↗</span></span><span class="micro">WORKSPACE PREVIEW</span></div><div class="creator-story"><span class="eyebrow">CREATOR / 01</span><h2 id="troy-title">Troy Kearns</h2><p>A dedicated space to connect video performance with practical lessons for the next upload.</p><blockquote><p>Approved creator testimonial coming soon.</p><footer>Testimonial placeholder · no quotation supplied</footer></blockquote><div class="tag-row"><span>Video analysis</span><span>Content direction</span></div><button class="text-button" type="button" data-open-access aria-label="Sign in">Client workspace <span aria-hidden="true">↗</span></button></div></section>
+  <section class="creator-row reverse panel" aria-labelledby="kat-title"><div class="creator-visual kat-visual"><span class="eyebrow">COMMUNITY / CREATOR SYSTEMS</span><span class="creator-monogram" aria-hidden="true">K<span>&</span>K</span><span class="micro">WORKSPACE PREVIEW</span></div><div class="creator-story"><span class="eyebrow">CREATOR / 02</span><h2 id="kat-title">Kat & Kai</h2><p>A focused roadmap from niche development to partnerships, community, and cross-platform content.</p><blockquote><p>Approved creator testimonial coming soon.</p><footer>Testimonial placeholder · no quotation supplied</footer></blockquote><div class="tag-row"><span>Creator roadmap</span><span>Community strategy</span></div><button class="text-button" type="button" data-open-access aria-label="Sign in">Client workspace <span aria-hidden="true">↗</span></button></div></section>
   <a class="bottom-cta panel" href="/contact/"><div><span class="eyebrow">THE NEXT COLLABORATION</span><h2>Let’s build your momentum.</h2></div><span class="round-arrow">↗</span></a>
 </main>
 <footer class="site-footer"><span>INDEPENDENT THINKING. INTENTIONAL GROWTH.</span><span>© <span data-year>2026</span> FREE MARKET WILDLIFE</span></footer>
 <dialog class="access-dialog" id="access-dialog" aria-labelledby="access-title">
   <div class="dialog-panel">
     <button class="close-button" type="button" data-close-access aria-label="Close client access">×</button>
-    <span class="eyebrow">CLIENT ACCESS / PRIVATE PATH</span>
+    <span class="eyebrow">CLIENT WORKSPACE</span>
     <div class="lock-emblem"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""></div>
-    <h2 id="access-title">Your space.<br>Your next move.</h2>
-    <p class="muted">Enter your workspace passcode to continue.</p>
+    <h2 id="access-title">Sign in.</h2>
+    <p class="muted">Enter your workspace password to continue.</p>
     <form data-access-form>
-      <label for="access-code">Workspace passcode</label>
-      <input id="access-code" name="passcode" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" required aria-describedby="access-error" placeholder="Enter passcode">
+      <label for="access-code">Password</label>
+      <input id="access-code" name="passcode" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" required aria-describedby="access-error" placeholder="Enter password">
       <p class="form-error" id="access-error" aria-live="polite"></p>
-      <button class="button primary" type="submit">Open workspace <span aria-hidden="true">→</span></button>
+      <button class="button primary" type="submit">Continue <span aria-hidden="true">→</span></button>
     </form>
-    <p class="micro">Static passcode access is a convenience barrier. Please keep confidential information off this public site.</p>
+    <p class="micro">Temporary preview access. Public content only.</p>
   </div>
 </dialog>
 </body>
@@ -477,14 +539,14 @@ export async function loadSceneSprites() {
   <title>Tanoshi — Free Market Wildlife</title>
   <link rel="icon" href="/assets/images/mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/css/styles.css">
-  <script type="module" src="/assets/js/app.js"></script>
+  <script type="module" src="/assets/js/app.js?v=2"></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <a class="brand" href="/" aria-label="Free Market Wildlife home"><img src="/assets/images/mark.svg" width="64" height="64" alt=""><span>FREE MARKET<br>WILDLIFE</span></a>
   <nav aria-label="Primary"><a href="/portfolio/">Portfolio</a><a href="/tanoshi/" aria-current="page">Tanoshi</a><a href="/contact/">Contact</a></nav>
-  <button class="access-button" type="button" data-open-access aria-label="Client access"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""><span>Client access</span></button>
+  <button class="access-button" type="button" data-open-access aria-label="Sign in"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""><span>Sign in</span></button>
 </header>
 <main class="page-main" id="main" tabindex="-1">
   <div class="page-heading"><div><span class="eyebrow">02 / THE CREATIVE PRACTICE</span><h1>Tanoshi<span class="accent">.</span><br><span class="muted">A little less ordinary.</span></h1></div><p>Moving images. Original sound. Imagined worlds. A home for work made with curiosity.</p></div>
@@ -500,17 +562,17 @@ export async function loadSceneSprites() {
 <dialog class="access-dialog" id="access-dialog" aria-labelledby="access-title">
   <div class="dialog-panel">
     <button class="close-button" type="button" data-close-access aria-label="Close client access">×</button>
-    <span class="eyebrow">CLIENT ACCESS / PRIVATE PATH</span>
+    <span class="eyebrow">CLIENT WORKSPACE</span>
     <div class="lock-emblem"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""></div>
-    <h2 id="access-title">Your space.<br>Your next move.</h2>
-    <p class="muted">Enter your workspace passcode to continue.</p>
+    <h2 id="access-title">Sign in.</h2>
+    <p class="muted">Enter your workspace password to continue.</p>
     <form data-access-form>
-      <label for="access-code">Workspace passcode</label>
-      <input id="access-code" name="passcode" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" required aria-describedby="access-error" placeholder="Enter passcode">
+      <label for="access-code">Password</label>
+      <input id="access-code" name="passcode" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" required aria-describedby="access-error" placeholder="Enter password">
       <p class="form-error" id="access-error" aria-live="polite"></p>
-      <button class="button primary" type="submit">Open workspace <span aria-hidden="true">→</span></button>
+      <button class="button primary" type="submit">Continue <span aria-hidden="true">→</span></button>
     </form>
-    <p class="micro">Static passcode access is a convenience barrier. Please keep confidential information off this public site.</p>
+    <p class="micro">Temporary preview access. Public content only.</p>
   </div>
 </dialog>
 </body>
@@ -531,14 +593,14 @@ export async function loadSceneSprites() {
   <title>Contact — Free Market Wildlife</title>
   <link rel="icon" href="/assets/images/mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/css/styles.css">
-  <script type="module" src="/assets/js/app.js"></script>
+  <script type="module" src="/assets/js/app.js?v=2"></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <a class="brand" href="/" aria-label="Free Market Wildlife home"><img src="/assets/images/mark.svg" width="64" height="64" alt=""><span>FREE MARKET<br>WILDLIFE</span></a>
   <nav aria-label="Primary"><a href="/portfolio/">Portfolio</a><a href="/tanoshi/">Tanoshi</a><a href="/contact/" aria-current="page">Contact</a></nav>
-  <button class="access-button" type="button" data-open-access aria-label="Client access"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""><span>Client access</span></button>
+  <button class="access-button" type="button" data-open-access aria-label="Sign in"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""><span>Sign in</span></button>
 </header>
 <main class="page-main contact-main" id="main" tabindex="-1">
   <div class="page-heading"><div><span class="eyebrow">03 / START A CONVERSATION</span><h1>Big idea?<br><span class="accent">Let’s hear it.</span></h1></div><p>A creative challenge, a clearer direction, or a better way of working. Tell us what’s on your mind.</p></div>
@@ -549,17 +611,17 @@ export async function loadSceneSprites() {
 <dialog class="access-dialog" id="access-dialog" aria-labelledby="access-title">
   <div class="dialog-panel">
     <button class="close-button" type="button" data-close-access aria-label="Close client access">×</button>
-    <span class="eyebrow">CLIENT ACCESS / PRIVATE PATH</span>
+    <span class="eyebrow">CLIENT WORKSPACE</span>
     <div class="lock-emblem"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""></div>
-    <h2 id="access-title">Your space.<br>Your next move.</h2>
-    <p class="muted">Enter your workspace passcode to continue.</p>
+    <h2 id="access-title">Sign in.</h2>
+    <p class="muted">Enter your workspace password to continue.</p>
     <form data-access-form>
-      <label for="access-code">Workspace passcode</label>
-      <input id="access-code" name="passcode" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" required aria-describedby="access-error" placeholder="Enter passcode">
+      <label for="access-code">Password</label>
+      <input id="access-code" name="passcode" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" required aria-describedby="access-error" placeholder="Enter password">
       <p class="form-error" id="access-error" aria-live="polite"></p>
-      <button class="button primary" type="submit">Open workspace <span aria-hidden="true">→</span></button>
+      <button class="button primary" type="submit">Continue <span aria-hidden="true">→</span></button>
     </form>
-    <p class="micro">Static passcode access is a convenience barrier. Please keep confidential information off this public site.</p>
+    <p class="micro">Temporary preview access. Public content only.</p>
   </div>
 </dialog>
 </body>
@@ -572,50 +634,82 @@ export async function loadSceneSprites() {
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="dark">
-  <meta name="theme-color" content="#000000">
-  <meta name="description" content="Free Market Wildlife client workspace. Public demonstration content; passcode access is a convenience barrier.">
-  <title>Troy Kearns workspace — Free Market Wildlife</title>
-  <link rel="icon" href="/assets/images/mark.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/css/styles.css">
-  <script type="module" src="/assets/js/app.js"></script>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#000000">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Troy Kearns creator workspace: channel, content reviews, and the places to connect.">
+<title>Troy Kearns — Free Market Wildlife</title>
+<link rel="icon" href="/assets/images/mark.svg" type="image/svg+xml">
+<link rel="canonical" href="https://freemarketwildlife.com/troykearns/">
+<link rel="stylesheet" href="/assets/css/styles.css"><link rel="stylesheet" href="/assets/css/troy.css">
+<script type="module" src="/assets/js/app.js?v=2"></script>
 </head>
-<body class="workspace-page" data-client="troy-kearns">
-  <div id="workspace-content" hidden inert>
-  <a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header">
-  <a class="brand" href="/" aria-label="Free Market Wildlife home"><img src="/assets/images/mark.svg" width="64" height="64" alt=""><span>FREE MARKET<br>WILDLIFE</span></a>
-  <nav aria-label="Primary"><a href="/portfolio/">Portfolio</a><a href="/tanoshi/">Tanoshi</a><a href="/contact/">Contact</a></nav>
-  <button class="access-button" type="button" data-open-access aria-label="Client access"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""><span>Client access</span></button>
-</header>
-  <main class="page-main" id="main" tabindex="-1"><div class="workspace-bar"><a href="/">← Back to Free Market Wildlife</a><div><span class="badge unlocked"><span class="status-dot"></span> WORKSPACE UNLOCKED</span><button class="text-button" type="button" data-lock-workspace>Lock workspace <img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""></button></div></div>
-  <div class="page-heading"><div><span class="eyebrow">CLIENT WORKSPACE / TK</span><h1>Troy Kearns<span class="accent">.</span></h1></div><p>A shared place for clear priorities<br>and the next meaningful move.</p></div>
-  <p class="editorial-note">Foundation preview · Demonstration structure only. No private client information or verified performance data is stored here.</p>
-  <div class="summary-grid"><section class="panel summary-card"><span class="eyebrow">THE FOCUS</span><h2>Learn from every upload.</h2><p>Turn observations into a repeatable creative advantage.</p></section><section class="panel summary-card"><span class="eyebrow">VIDEOS REVIEWED</span><strong class="metric">—</strong><span class="micro muted">AWAITING VERIFIED DATA</span></section><section class="panel summary-card"><span class="eyebrow">NEXT STEP</span><h2>Start the first review.</h2><p>Add a video, its reporting window, and source analytics.</p></section></div>
-<section class="panel performance-panel" aria-labelledby="performance-title"><div class="module-heading"><div><span class="eyebrow">CONTENT INTELLIGENCE</span><h2 id="performance-title">Video performance review</h2></div><span class="badge">TEMPLATE / NO DATA</span></div><p class="table-help" id="table-help">Compare the same reporting window for each upload. Scroll horizontally to review all six columns.</p><div class="table-scroll" tabindex="0" role="region" aria-label="Video performance table" aria-describedby="table-help"><table><caption class="sr-only">Video analysis template. No client analytics have been entered.</caption><thead><tr><th scope="col">Video Title</th><th scope="col">View Count</th><th scope="col">What Worked</th><th scope="col">What Fell Short</th><th scope="col">Root Analytical Cause</th><th scope="col">Content Lessons</th></tr></thead><tbody><tr><th scope="row">01 / First video<br><span class="muted">Title pending</span></th><td>—<small>Reporting window pending</small></td><td>Record the strongest audience signal.</td><td>Identify where attention or intent dropped.</td><td>Support the explanation with source analytics.</td><td>Define one change to test next.</td></tr><tr><th scope="row">02 / Next video<br><span class="muted">Title pending</span></th><td>—<small>Reporting window pending</small></td><td colspan="4" class="muted">Awaiting review. Add observations after source analytics are available.</td></tr></tbody></table></div></section>
-<div class="insight-grid"><section class="panel note-card"><span class="eyebrow">01 / OBSERVE</span><h2>Signal before assumption.</h2><p>Read retention, click-through rate, and traffic sources together before naming a cause.</p></section><section class="panel note-card"><span class="eyebrow">02 / APPLY</span><h2>One lesson. One next test.</h2><p>Make the takeaway specific enough to change the next title, opening, or editorial choice.</p></section></div>
-  </main><footer class="site-footer"><span>INDEPENDENT THINKING. INTENTIONAL GROWTH.</span><span>© <span data-year>2026</span> FREE MARKET WILDLIFE</span></footer></div>
-  <dialog class="gate-dialog" id="workspace-gate" open aria-labelledby="gate-title"><div class="gate-shell"><a class="brand" href="/"><img src="/assets/images/mark.svg" width="64" height="64" alt=""><span>FREE MARKET<br>WILDLIFE.</span></a><div class="dialog-panel"><span class="eyebrow">TK / CLIENT WORKSPACE</span><div class="lock-emblem"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""></div><h2 id="gate-title">A little focus.<br>A lot of possibility.</h2><p class="muted">Enter the passcode for Troy Kearns to open this workspace.</p><form data-gate-form><label for="gate-code">Workspace passcode</label><input id="gate-code" name="passcode" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Enter passcode" required aria-describedby="gate-error" autofocus><p class="form-error" id="gate-error" aria-live="polite"></p><button class="button primary" type="submit">Unlock workspace <span aria-hidden="true">→</span></button></form><p class="micro">This static passcode is an interface barrier. Files on this public website are not confidential.</p><a class="text-button" href="/">← Return home</a><noscript><p class="form-error">Enable JavaScript to use passcode access.</p></noscript></div><span class="micro muted">FREE MARKET WILDLIFE / CLEAR DIRECTION</span></div></dialog>
-  <dialog class="access-dialog" id="access-dialog" aria-labelledby="access-title">
-  <div class="dialog-panel">
-    <button class="close-button" type="button" data-close-access aria-label="Close client access">×</button>
-    <span class="eyebrow">CLIENT ACCESS / PRIVATE PATH</span>
-    <div class="lock-emblem"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""></div>
-    <h2 id="access-title">Your space.<br>Your next move.</h2>
-    <p class="muted">Enter your workspace passcode to continue.</p>
-    <form data-access-form>
-      <label for="access-code">Workspace passcode</label>
-      <input id="access-code" name="passcode" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" required aria-describedby="access-error" placeholder="Enter passcode">
-      <p class="form-error" id="access-error" aria-live="polite"></p>
-      <button class="button primary" type="submit">Open workspace <span aria-hidden="true">→</span></button>
-    </form>
-    <p class="micro">Static passcode access is a convenience barrier. Please keep confidential information off this public site.</p>
-  </div>
-</dialog>
-</body>
-</html>
+<body class="tk-page" data-client="troy-kearns">
+<div id="workspace-content" hidden inert>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="tk-header"><a class="brand" href="/" aria-label="Free Market Wildlife home"><img src="/assets/images/mark.svg" width="40" height="40" alt=""><span>FREE MARKET<br>WILDLIFE</span></a><span class="tk-header-label">CLIENT WORKSPACE / 01</span><button class="tk-signout" type="button" data-lock-workspace>Sign out ↗</button></header>
+<div class="tk-layout">
+<aside class="tk-sidebar"><div class="tk-monogram" aria-hidden="true">TK<span>↗</span></div><p class="tk-sidebar-name">Troy Kearns</p><p class="tk-small">CREATOR WORKSPACE</p><nav aria-label="Workspace"><a href="#main">01 <span>Overview</span></a><a href="#reviews">02 <span>Video reviews</span></a><a href="#connect">03 <span>Links & contact</span></a></nav><a class="tk-back" href="/">← Free Market Wildlife</a></aside>
+<main id="main" class="tk-main" tabindex="-1">
+<div class="tk-intro"><p class="tk-small">FREE MARKET WILDLIFE / TROY KEARNS</p><span class="tk-outline-label">WORKSPACE PREVIEW</span></div>
+<section class="tk-hero" aria-labelledby="troy-heading"><div><p class="tk-small">THE CREATOR. THE CONTENT. THE NEXT MOVE.</p><h1 id="troy-heading">Troy<br>Kearns<span class="tk-period">.</span></h1><p class="tk-hero-copy">A clear view of the content.<br>A shared place to move it forward.</p><a class="tk-primary" href="https://www.youtube.com/troykearns" target="_blank" rel="noopener noreferrer">Open YouTube channel <span aria-hidden="true">↗</span></a></div><a class="tk-channel" href="https://www.youtube.com/troykearns" target="_blank" rel="noopener noreferrer" aria-label="Visit Troy Kearns on YouTube"><div class="tk-channel-top"><span>YOUTUBE / MAIN CHANNEL</span><span aria-hidden="true">↗</span></div><div class="tk-channel-art" aria-hidden="true"><svg viewBox="0 0 120 88"><path fill="currentColor" d="M12 0h96v8h12v72h-12v8H12v-8H0V8h12z"/><path fill="#000" d="M48 24h8v8h16v8h8v8h-8v8H56v8h-8z"/></svg></div><div class="tk-channel-bottom"><strong>Troy Kearns</strong><span>youtube.com/troykearns</span><span class="tk-channel-cta">Videos, stories & conversations →</span></div></a></section>
+<div class="tk-section-heading" id="reviews"><div><p class="tk-small">01 / CONTENT INTELLIGENCE</p><h2>Every upload is a lesson.</h2></div><span class="tk-outline-label">READY FOR THE FIRST REVIEW</span></div>
+<section class="tk-review" aria-labelledby="review-title"><div class="tk-review-top"><h3 id="review-title">Video performance review</h3><p>Compare the same reporting window. Turn the evidence into a next step.</p></div><div class="tk-table-wrap" role="region" tabindex="0" aria-label="Video review columns; scroll horizontally on smaller screens"><table class="tk-table"><caption class="sr-only">Review structure. No analytics or video reviews have been added.</caption><thead><tr><th scope="col">Video title</th><th scope="col">View count</th><th scope="col">What worked</th><th scope="col">What fell short</th><th scope="col">Root analytical cause</th><th scope="col">Content lessons</th></tr></thead><tbody><tr><td colspan="6"><div class="tk-empty"><span class="tk-empty-icon" aria-hidden="true">[ + ]</span><div><strong>The first review starts here.</strong><p>Video titles, source analytics, and review notes will appear here once supplied.</p></div><a href="https://www.youtube.com/troykearns/videos" target="_blank" rel="noopener noreferrer">Browse uploads ↗</a></div></td></tr></tbody></table></div></section>
+<section class="tk-method" aria-label="Review process"><div><span>01 / OBSERVE</span><h3>Find the signal.</h3><p>Look at the title, opening, retention, and audience response.</p></div><div><span>02 / UNDERSTAND</span><h3>Ask what changed.</h3><p>Separate what the data shows from what still needs testing.</p></div><div><span>03 / APPLY</span><h3>Make the next move.</h3><p>Take one clear lesson into the next upload.</p></div></section>
+<div class="tk-section-heading" id="connect"><div><p class="tk-small">02 / TROY’S WORLD</p><h2>Everything connects.</h2></div><span class="tk-small">CHANNELS / COMMUNITY / CONTACT</span></div>
+<section class="tk-directory" aria-label="Troy Kearns links"><a class="tk-link" href="https://www.instagram.com/thetroykearns/" target="_blank" rel="noopener noreferrer"><span class="tk-link-number">01</span><span><strong>Instagram</strong><small>@thetroykearns</small></span><span class="tk-link-type">Social</span><span aria-hidden="true">↗</span></a>
+<a class="tk-link" href="https://www.tiktok.com/@thetroykearns" target="_blank" rel="noopener noreferrer"><span class="tk-link-number">02</span><span><strong>TikTok</strong><small>@thetroykearns</small></span><span class="tk-link-type">Social</span><span aria-hidden="true">↗</span></a>
+<a class="tk-link" href="https://www.facebook.com/groups/374488864645587/" target="_blank" rel="noopener noreferrer"><span class="tk-link-number">03</span><span><strong>Facebook community</strong><small>Join the community</small></span><span class="tk-link-type">Community</span><span aria-hidden="true">↗</span></a>
+<a class="tk-link" href="https://open.spotify.com/show/0HJPBOWnR9TzVajjKEaS2w" target="_blank" rel="noopener noreferrer"><span class="tk-link-number">04</span><span><strong>Millionaire Mentorship</strong><small>Listen to the podcast</small></span><span class="tk-link-type">Podcast</span><span aria-hidden="true">↗</span></a>
+<a class="tk-link" href="https://takeaction.troykearns.com/work-with-us-3" target="_blank" rel="noopener noreferrer"><span class="tk-link-number">05</span><span><strong>Work with Troy</strong><small>Coaching & mentorship</small></span><span class="tk-link-type">Coaching</span><span aria-hidden="true">↗</span></a>
+<a class="tk-link" href="https://www.amazon.com/MILLIONAIRE-MENTORSHIP-ESTATE-STARTING-SCRATCH/dp/0578390965" target="_blank" rel="noopener noreferrer"><span class="tk-link-number">06</span><span><strong>The book</strong><small>Millionaire Mentorship</small></span><span class="tk-link-type">Book</span><span aria-hidden="true">↗</span></a>
+<a class="tk-link" href="mailto:tk@troykearns.com"><span class="tk-link-number">07</span><span><strong>Email Troy</strong><small>tk@troykearns.com</small></span><span class="tk-link-type">Contact</span><span aria-hidden="true">↗</span></a></section>
+<footer class="tk-footer"><a href="/">FREE MARKET WILDLIFE</a><span>PUBLIC LINKS ONLY · TEMPORARY PASSWORD ACCESS</span><span>© <span data-year>2026</span></span></footer>
+</main></div></div>
+<dialog class="gate-dialog tk-gate" id="workspace-gate" open aria-labelledby="gate-title"><div class="gate-shell"><a class="brand" href="/"><img src="/assets/images/mark.svg" width="40" height="40" alt=""><span>FREE MARKET<br>WILDLIFE</span></a><div class="dialog-panel"><span class="eyebrow">TROY KEARNS / WORKSPACE</span><h2 id="gate-title">Sign in.</h2><p>Good to have you here.</p><form data-gate-form><label for="gate-code">Password</label><input id="gate-code" name="passcode" type="password" autocomplete="current-password" autocapitalize="off" spellcheck="false" required aria-describedby="gate-error" autofocus><p class="form-error" id="gate-error" aria-live="polite"></p><button class="button primary" type="submit">Continue <span aria-hidden="true">→</span></button></form><p class="micro">Temporary preview access. Public content only.</p><a class="text-button" href="/">← Back home</a><noscript><p>Enable JavaScript to use this preview.</p></noscript></div><span class="micro">FREE MARKET WILDLIFE</span></div></dialog>
+</body></html>
+```
+
+## troykearns/index.html
+
+```html
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#000000">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Troy Kearns creator workspace: channel, content reviews, and the places to connect.">
+<title>Troy Kearns — Free Market Wildlife</title>
+<link rel="icon" href="/assets/images/mark.svg" type="image/svg+xml">
+<link rel="canonical" href="https://freemarketwildlife.com/troykearns/">
+<link rel="stylesheet" href="/assets/css/styles.css"><link rel="stylesheet" href="/assets/css/troy.css">
+<script type="module" src="/assets/js/app.js?v=2"></script>
+</head>
+<body class="tk-page" data-client="troy-kearns">
+<div id="workspace-content" hidden inert>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="tk-header"><a class="brand" href="/" aria-label="Free Market Wildlife home"><img src="/assets/images/mark.svg" width="40" height="40" alt=""><span>FREE MARKET<br>WILDLIFE</span></a><span class="tk-header-label">CLIENT WORKSPACE / 01</span><button class="tk-signout" type="button" data-lock-workspace>Sign out ↗</button></header>
+<div class="tk-layout">
+<aside class="tk-sidebar"><div class="tk-monogram" aria-hidden="true">TK<span>↗</span></div><p class="tk-sidebar-name">Troy Kearns</p><p class="tk-small">CREATOR WORKSPACE</p><nav aria-label="Workspace"><a href="#main">01 <span>Overview</span></a><a href="#reviews">02 <span>Video reviews</span></a><a href="#connect">03 <span>Links & contact</span></a></nav><a class="tk-back" href="/">← Free Market Wildlife</a></aside>
+<main id="main" class="tk-main" tabindex="-1">
+<div class="tk-intro"><p class="tk-small">FREE MARKET WILDLIFE / TROY KEARNS</p><span class="tk-outline-label">WORKSPACE PREVIEW</span></div>
+<section class="tk-hero" aria-labelledby="troy-heading"><div><p class="tk-small">THE CREATOR. THE CONTENT. THE NEXT MOVE.</p><h1 id="troy-heading">Troy<br>Kearns<span class="tk-period">.</span></h1><p class="tk-hero-copy">A clear view of the content.<br>A shared place to move it forward.</p><a class="tk-primary" href="https://www.youtube.com/troykearns" target="_blank" rel="noopener noreferrer">Open YouTube channel <span aria-hidden="true">↗</span></a></div><a class="tk-channel" href="https://www.youtube.com/troykearns" target="_blank" rel="noopener noreferrer" aria-label="Visit Troy Kearns on YouTube"><div class="tk-channel-top"><span>YOUTUBE / MAIN CHANNEL</span><span aria-hidden="true">↗</span></div><div class="tk-channel-art" aria-hidden="true"><svg viewBox="0 0 120 88"><path fill="currentColor" d="M12 0h96v8h12v72h-12v8H12v-8H0V8h12z"/><path fill="#000" d="M48 24h8v8h16v8h8v8h-8v8H56v8h-8z"/></svg></div><div class="tk-channel-bottom"><strong>Troy Kearns</strong><span>youtube.com/troykearns</span><span class="tk-channel-cta">Videos, stories & conversations →</span></div></a></section>
+<div class="tk-section-heading" id="reviews"><div><p class="tk-small">01 / CONTENT INTELLIGENCE</p><h2>Every upload is a lesson.</h2></div><span class="tk-outline-label">READY FOR THE FIRST REVIEW</span></div>
+<section class="tk-review" aria-labelledby="review-title"><div class="tk-review-top"><h3 id="review-title">Video performance review</h3><p>Compare the same reporting window. Turn the evidence into a next step.</p></div><div class="tk-table-wrap" role="region" tabindex="0" aria-label="Video review columns; scroll horizontally on smaller screens"><table class="tk-table"><caption class="sr-only">Review structure. No analytics or video reviews have been added.</caption><thead><tr><th scope="col">Video title</th><th scope="col">View count</th><th scope="col">What worked</th><th scope="col">What fell short</th><th scope="col">Root analytical cause</th><th scope="col">Content lessons</th></tr></thead><tbody><tr><td colspan="6"><div class="tk-empty"><span class="tk-empty-icon" aria-hidden="true">[ + ]</span><div><strong>The first review starts here.</strong><p>Video titles, source analytics, and review notes will appear here once supplied.</p></div><a href="https://www.youtube.com/troykearns/videos" target="_blank" rel="noopener noreferrer">Browse uploads ↗</a></div></td></tr></tbody></table></div></section>
+<section class="tk-method" aria-label="Review process"><div><span>01 / OBSERVE</span><h3>Find the signal.</h3><p>Look at the title, opening, retention, and audience response.</p></div><div><span>02 / UNDERSTAND</span><h3>Ask what changed.</h3><p>Separate what the data shows from what still needs testing.</p></div><div><span>03 / APPLY</span><h3>Make the next move.</h3><p>Take one clear lesson into the next upload.</p></div></section>
+<div class="tk-section-heading" id="connect"><div><p class="tk-small">02 / TROY’S WORLD</p><h2>Everything connects.</h2></div><span class="tk-small">CHANNELS / COMMUNITY / CONTACT</span></div>
+<section class="tk-directory" aria-label="Troy Kearns links"><a class="tk-link" href="https://www.instagram.com/thetroykearns/" target="_blank" rel="noopener noreferrer"><span class="tk-link-number">01</span><span><strong>Instagram</strong><small>@thetroykearns</small></span><span class="tk-link-type">Social</span><span aria-hidden="true">↗</span></a>
+<a class="tk-link" href="https://www.tiktok.com/@thetroykearns" target="_blank" rel="noopener noreferrer"><span class="tk-link-number">02</span><span><strong>TikTok</strong><small>@thetroykearns</small></span><span class="tk-link-type">Social</span><span aria-hidden="true">↗</span></a>
+<a class="tk-link" href="https://www.facebook.com/groups/374488864645587/" target="_blank" rel="noopener noreferrer"><span class="tk-link-number">03</span><span><strong>Facebook community</strong><small>Join the community</small></span><span class="tk-link-type">Community</span><span aria-hidden="true">↗</span></a>
+<a class="tk-link" href="https://open.spotify.com/show/0HJPBOWnR9TzVajjKEaS2w" target="_blank" rel="noopener noreferrer"><span class="tk-link-number">04</span><span><strong>Millionaire Mentorship</strong><small>Listen to the podcast</small></span><span class="tk-link-type">Podcast</span><span aria-hidden="true">↗</span></a>
+<a class="tk-link" href="https://takeaction.troykearns.com/work-with-us-3" target="_blank" rel="noopener noreferrer"><span class="tk-link-number">05</span><span><strong>Work with Troy</strong><small>Coaching & mentorship</small></span><span class="tk-link-type">Coaching</span><span aria-hidden="true">↗</span></a>
+<a class="tk-link" href="https://www.amazon.com/MILLIONAIRE-MENTORSHIP-ESTATE-STARTING-SCRATCH/dp/0578390965" target="_blank" rel="noopener noreferrer"><span class="tk-link-number">06</span><span><strong>The book</strong><small>Millionaire Mentorship</small></span><span class="tk-link-type">Book</span><span aria-hidden="true">↗</span></a>
+<a class="tk-link" href="mailto:tk@troykearns.com"><span class="tk-link-number">07</span><span><strong>Email Troy</strong><small>tk@troykearns.com</small></span><span class="tk-link-type">Contact</span><span aria-hidden="true">↗</span></a></section>
+<footer class="tk-footer"><a href="/">FREE MARKET WILDLIFE</a><span>PUBLIC LINKS ONLY · TEMPORARY PASSWORD ACCESS</span><span>© <span data-year>2026</span></span></footer>
+</main></div></div>
+<dialog class="gate-dialog tk-gate" id="workspace-gate" open aria-labelledby="gate-title"><div class="gate-shell"><a class="brand" href="/"><img src="/assets/images/mark.svg" width="40" height="40" alt=""><span>FREE MARKET<br>WILDLIFE</span></a><div class="dialog-panel"><span class="eyebrow">TROY KEARNS / WORKSPACE</span><h2 id="gate-title">Sign in.</h2><p>Good to have you here.</p><form data-gate-form><label for="gate-code">Password</label><input id="gate-code" name="passcode" type="password" autocomplete="current-password" autocapitalize="off" spellcheck="false" required aria-describedby="gate-error" autofocus><p class="form-error" id="gate-error" aria-live="polite"></p><button class="button primary" type="submit">Continue <span aria-hidden="true">→</span></button></form><p class="micro">Temporary preview access. Public content only.</p><a class="text-button" href="/">← Back home</a><noscript><p>Enable JavaScript to use this preview.</p></noscript></div><span class="micro">FREE MARKET WILDLIFE</span></div></dialog>
+</body></html>
 ```
 
 ## kat-kai/index.html
@@ -632,7 +726,7 @@ export async function loadSceneSprites() {
   <title>Kat &amp; Kai workspace — Free Market Wildlife</title>
   <link rel="icon" href="/assets/images/mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/css/styles.css">
-  <script type="module" src="/assets/js/app.js"></script>
+  <script type="module" src="/assets/js/app.js?v=2"></script>
 </head>
 <body class="workspace-page" data-client="kat-kai">
   <div id="workspace-content" hidden inert>
@@ -640,7 +734,7 @@ export async function loadSceneSprites() {
 <header class="site-header">
   <a class="brand" href="/" aria-label="Free Market Wildlife home"><img src="/assets/images/mark.svg" width="64" height="64" alt=""><span>FREE MARKET<br>WILDLIFE</span></a>
   <nav aria-label="Primary"><a href="/portfolio/">Portfolio</a><a href="/tanoshi/">Tanoshi</a><a href="/contact/">Contact</a></nav>
-  <button class="access-button" type="button" data-open-access aria-label="Client access"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""><span>Client access</span></button>
+  <button class="access-button" type="button" data-open-access aria-label="Sign in"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""><span>Sign in</span></button>
 </header>
   <main class="page-main" id="main" tabindex="-1"><div class="workspace-bar"><a href="/">← Back to Free Market Wildlife</a><div><span class="badge unlocked"><span class="status-dot"></span> WORKSPACE UNLOCKED</span><button class="text-button" type="button" data-lock-workspace>Lock workspace <img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""></button></div></div>
   <div class="page-heading"><div><span class="eyebrow">CLIENT WORKSPACE / K&K</span><h1>Kat &amp; Kai<span class="accent">.</span></h1></div><p>A shared place for clear priorities<br>and the next meaningful move.</p></div>
@@ -648,21 +742,21 @@ export async function loadSceneSprites() {
   <section class="panel roadmap-intro"><div><span class="eyebrow">THE LONG GAME</span><h2>Road to <span class="accent">10,000</span><br>Subscribers</h2><p>Four intentional phases. One connected creator journey.</p></div><div class="target-mark" aria-hidden="true"><span>10<span>K</span></span></div><div class="roadmap-meta"><span class="micro">CURRENT SUBSCRIBERS</span><strong>Not connected</strong><span class="micro muted">Milestone progress will follow verified channel data.</span></div></section>
 <div class="section-rule"><h2>The growth roadmap</h2><span class="micro muted">PROPOSED PLAN / COMPLETION NOT YET RECORDED</span></div><ol class="timeline"><li class="timeline-item"><span class="phase-number" aria-hidden="true">01</span><section class="panel phase-card"><div class="card-top"><span class="eyebrow">PHASE 1</span><span class="badge">PLANNING</span></div><h3>Active Niche Solidification</h3><p>Build a recognizable reason to subscribe.</p><ul class="phase-tasks"><li>Clarify the audience and core content promise.</li><li>Define repeatable formats and review audience signals.</li></ul><div class="phase-outcome"><span class="micro">MILESTONE TO UNLOCK</span><p>A clear niche and a sustainable publishing direction.</p></div></section></li><li class="timeline-item"><span class="phase-number" aria-hidden="true">02</span><section class="panel phase-card"><div class="card-top"><span class="eyebrow">PHASE 2</span><span class="badge">UPCOMING</span></div><h3>Sponsorship and Brand Alignment Sourcing</h3><p>Find partnerships that belong in the story.</p><ul class="phase-tasks"><li>Map aligned brand categories and partnership criteria.</li><li>Prepare a media kit using verified channel analytics.</li></ul><div class="phase-outcome"><span class="micro">MILESTONE TO UNLOCK</span><p>An approved outreach shortlist and sponsorship positioning.</p></div></section></li><li class="timeline-item"><span class="phase-number" aria-hidden="true">03</span><section class="panel phase-card"><div class="card-top"><span class="eyebrow">PHASE 3</span><span class="badge">UPCOMING</span></div><h3>10k Subscriber Discord Community Scaling</h3><p>Give the community a place to connect.</p><ul class="phase-tasks"><li>Plan channel structure, community guidelines, and moderation.</li><li>Define launch readiness around the 10k subscriber milestone.</li></ul><div class="phase-outcome"><span class="micro">MILESTONE TO UNLOCK</span><p>A community launch plan with clear ownership and capacity.</p></div></section></li><li class="timeline-item"><span class="phase-number" aria-hidden="true">04</span><section class="panel phase-card"><div class="card-top"><span class="eyebrow">PHASE 4</span><span class="badge">UPCOMING</span></div><h3>Cross-Platform Content Repurposing Funnels</h3><p>Let good stories travel further.</p><ul class="phase-tasks"><li>Map each long-form story into platform-native cuts.</li><li>Define a repeatable path back to the primary channel.</li></ul><div class="phase-outcome"><span class="micro">MILESTONE TO UNLOCK</span><p>A sustainable repurposing workflow and measurable referral path.</p></div></section></li></ol>
   </main><footer class="site-footer"><span>INDEPENDENT THINKING. INTENTIONAL GROWTH.</span><span>© <span data-year>2026</span> FREE MARKET WILDLIFE</span></footer></div>
-  <dialog class="gate-dialog" id="workspace-gate" open aria-labelledby="gate-title"><div class="gate-shell"><a class="brand" href="/"><img src="/assets/images/mark.svg" width="64" height="64" alt=""><span>FREE MARKET<br>WILDLIFE.</span></a><div class="dialog-panel"><span class="eyebrow">K&K / CLIENT WORKSPACE</span><div class="lock-emblem"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""></div><h2 id="gate-title">A little focus.<br>A lot of possibility.</h2><p class="muted">Enter the passcode for Kat &amp; Kai to open this workspace.</p><form data-gate-form><label for="gate-code">Workspace passcode</label><input id="gate-code" name="passcode" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Enter passcode" required aria-describedby="gate-error" autofocus><p class="form-error" id="gate-error" aria-live="polite"></p><button class="button primary" type="submit">Unlock workspace <span aria-hidden="true">→</span></button></form><p class="micro">This static passcode is an interface barrier. Files on this public website are not confidential.</p><a class="text-button" href="/">← Return home</a><noscript><p class="form-error">Enable JavaScript to use passcode access.</p></noscript></div><span class="micro muted">FREE MARKET WILDLIFE / CLEAR DIRECTION</span></div></dialog>
+  <dialog class="gate-dialog" id="workspace-gate" open aria-labelledby="gate-title"><div class="gate-shell"><a class="brand" href="/"><img src="/assets/images/mark.svg" width="64" height="64" alt=""><span>FREE MARKET<br>WILDLIFE.</span></a><div class="dialog-panel"><span class="eyebrow">K&K / CLIENT WORKSPACE</span><div class="lock-emblem"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""></div><h2 id="gate-title">A little focus.<br>A lot of possibility.</h2><p class="muted">Enter the passcode for Kat &amp; Kai to open this workspace.</p><form data-gate-form><label for="gate-code">Password</label><input id="gate-code" name="passcode" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Enter password" required aria-describedby="gate-error" autofocus><p class="form-error" id="gate-error" aria-live="polite"></p><button class="button primary" type="submit">Unlock workspace <span aria-hidden="true">→</span></button></form><p class="micro">This static passcode is an interface barrier. Files on this public website are not confidential.</p><a class="text-button" href="/">← Return home</a><noscript><p class="form-error">Enable JavaScript to use passcode access.</p></noscript></div><span class="micro muted">FREE MARKET WILDLIFE / CLEAR DIRECTION</span></div></dialog>
   <dialog class="access-dialog" id="access-dialog" aria-labelledby="access-title">
   <div class="dialog-panel">
     <button class="close-button" type="button" data-close-access aria-label="Close client access">×</button>
-    <span class="eyebrow">CLIENT ACCESS / PRIVATE PATH</span>
+    <span class="eyebrow">CLIENT WORKSPACE</span>
     <div class="lock-emblem"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""></div>
-    <h2 id="access-title">Your space.<br>Your next move.</h2>
-    <p class="muted">Enter your workspace passcode to continue.</p>
+    <h2 id="access-title">Sign in.</h2>
+    <p class="muted">Enter your workspace password to continue.</p>
     <form data-access-form>
-      <label for="access-code">Workspace passcode</label>
-      <input id="access-code" name="passcode" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" required aria-describedby="access-error" placeholder="Enter passcode">
+      <label for="access-code">Password</label>
+      <input id="access-code" name="passcode" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" required aria-describedby="access-error" placeholder="Enter password">
       <p class="form-error" id="access-error" aria-live="polite"></p>
-      <button class="button primary" type="submit">Open workspace <span aria-hidden="true">→</span></button>
+      <button class="button primary" type="submit">Continue <span aria-hidden="true">→</span></button>
     </form>
-    <p class="micro">Static passcode access is a convenience barrier. Please keep confidential information off this public site.</p>
+    <p class="micro">Temporary preview access. Public content only.</p>
   </div>
 </dialog>
 </body>
@@ -683,31 +777,31 @@ export async function loadSceneSprites() {
   <title>Page not found — Free Market Wildlife</title>
   <link rel="icon" href="/assets/images/mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/css/styles.css">
-  <script type="module" src="/assets/js/app.js"></script>
+  <script type="module" src="/assets/js/app.js?v=2"></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <a class="brand" href="/" aria-label="Free Market Wildlife home"><img src="/assets/images/mark.svg" width="64" height="64" alt=""><span>FREE MARKET<br>WILDLIFE</span></a>
   <nav aria-label="Primary"><a href="/portfolio/">Portfolio</a><a href="/tanoshi/">Tanoshi</a><a href="/contact/">Contact</a></nav>
-  <button class="access-button" type="button" data-open-access aria-label="Client access"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""><span>Client access</span></button>
+  <button class="access-button" type="button" data-open-access aria-label="Sign in"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""><span>Sign in</span></button>
 </header>
 <main class="page-main not-found" id="main" tabindex="-1"><span class="eyebrow">404 / A DIFFERENT PATH</span><h1>Let’s find<br>your next move.</h1><p class="muted">This page doesn’t exist. Head home or enter your client passcode.</p><a class="button primary" href="/">Back to home <span aria-hidden="true">→</span></a></main>
 <footer class="site-footer"><span>INDEPENDENT THINKING. INTENTIONAL GROWTH.</span><span>© <span data-year>2026</span> FREE MARKET WILDLIFE</span></footer>
 <dialog class="access-dialog" id="access-dialog" aria-labelledby="access-title">
   <div class="dialog-panel">
     <button class="close-button" type="button" data-close-access aria-label="Close client access">×</button>
-    <span class="eyebrow">CLIENT ACCESS / PRIVATE PATH</span>
+    <span class="eyebrow">CLIENT WORKSPACE</span>
     <div class="lock-emblem"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""></div>
-    <h2 id="access-title">Your space.<br>Your next move.</h2>
-    <p class="muted">Enter your workspace passcode to continue.</p>
+    <h2 id="access-title">Sign in.</h2>
+    <p class="muted">Enter your workspace password to continue.</p>
     <form data-access-form>
-      <label for="access-code">Workspace passcode</label>
-      <input id="access-code" name="passcode" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" required aria-describedby="access-error" placeholder="Enter passcode">
+      <label for="access-code">Password</label>
+      <input id="access-code" name="passcode" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" required aria-describedby="access-error" placeholder="Enter password">
       <p class="form-error" id="access-error" aria-live="polite"></p>
-      <button class="button primary" type="submit">Open workspace <span aria-hidden="true">→</span></button>
+      <button class="button primary" type="submit">Continue <span aria-hidden="true">→</span></button>
     </form>
-    <p class="micro">Static passcode access is a convenience barrier. Please keep confidential information off this public site.</p>
+    <p class="micro">Temporary preview access. Public content only.</p>
   </div>
 </dialog>
 </body>
@@ -744,7 +838,7 @@ jobs:
         run: |
           mkdir _site
           cp index.html 404.html CNAME .nojekyll _site/
-          cp -R assets portfolio tanoshi contact troy-kearns kat-kai _site/
+          cp -R assets portfolio tanoshi contact troy-kearns troykearns kat-kai _site/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
