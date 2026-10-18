@@ -11,3 +11,9 @@ Actual Google API fetch is not verified because no YOUTUBE_API_KEY has been conf
 Google Cloud project voltaic-sensor-512006-f6 now has YouTube Data API v3 enabled. The key named Free Market Wildlife YouTube tracker was created with only YouTube Data API v3 allowed; verified in the Google credentials listing. YOUTUBE_API_KEY was saved as a repository secret through GitHub. No key is stored in this checkout.
 
 Run 39103885201 succeeded, returned collector status ok, and deployed the first real observation. Browser verified the live timestamp and all three count fields. Resolved channel ID matched the channel's own public Posts link. The channel uses a handle rather than the initially assumed legacy username; the collector now falls back to handle resolution. The seven collector tests include this regression case. Counts and screenshots of live counts are intentionally not committed into permanent Git history.
+
+## Full public video catalog
+
+Run 39104188280 completed a full API refresh and deployment. All uploads playlist IDs were traversed; the unique returned public-video count matched the channel total at collection time. No video data was committed to source. Ten tests passed, including multi-page collection, 50-ID batches, duplicates, privacy filtering, wrong-channel rejection, and pagination-loop failure.
+
+Live browser checks verified total video count, title/description/tag search, sorting by views, page two navigation, reset to page one after sorting, and expanded descriptions. The catalog contains latest public metadata only; it does not retain per-video daily history, download media, or collect individual comment text.

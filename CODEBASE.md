@@ -401,6 +401,7 @@ if (copyButton) {
 ## assets/js/youtube.js
 
 ```javascript
+const source = document.body.dataset.youtubeSource || 'youtube';
 const status = document.querySelector('#youtube-status');
 const body = document.querySelector('#youtube-history');
 const date = value => new Date(value).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' });
@@ -410,7 +411,7 @@ const cell = value => {
   return td;
 };
 try {
-  const response = await fetch('/assets/data/youtube.json', { cache: 'no-store' });
+  const response = await fetch(`/assets/data/${source}.json`, { cache: 'no-store' });
   if (!response.ok) throw new Error('Data unavailable');
   const data = await response.json();
   const cutoff = Date.now() - 27 * 86400000;
@@ -509,7 +510,7 @@ if (videoStatus) {
   previous.addEventListener('click', () => { page--; renderVideos(); });
   next.addEventListener('click', () => { page++; renderVideos(); });
   try {
-    const response = await fetch('/assets/data/youtube-videos.json', { cache: 'no-store' });
+    const response = await fetch(`/assets/data/${source}-videos.json`, { cache: 'no-store' });
     if (!response.ok) throw new Error('Video data unavailable');
     const catalog = await response.json();
     const age = Date.now() - Date.parse(catalog.updatedAt);
@@ -572,8 +573,8 @@ def snapshot(item, now):
             'subscribers': None if hidden else count(stats, 'subscriberCount'),
             'views': count(stats, 'viewCount'), 'videos': count(stats, 'videoCount')}
 
-def fetch_channel(key, channel_id=None):
-    filters = [{'id': channel_id}] if channel_id else [
+def fetch_channel(key, channel_id=None, handle=None):
+    filters = [{'id': channel_id}] if channel_id else [{'forHandle': handle}] if handle else [
         {'forUsername': 'troykearns'}, {'forHandle': 'troykearns'}]
     payload = {}
     for channel_filter in filters:
@@ -591,9 +592,9 @@ def fetch_channel(key, channel_id=None):
         raise ValueError('Invalid channel ID')
     return item
 
-def update(previous, key, now, fetch=fetch_channel):
-    data = {'schemaVersion': 1, 'status': 'not_configured', 'channelUrl': CHANNEL_URL,
-            'channelTitle': 'Troy Kearns', 'channelId': previous.get('channelId'),
+def update(previous, key, now, fetch=fetch_channel, channel_url=CHANNEL_URL, channel_title='Troy Kearns'):
+    data = {'schemaVersion': 1, 'status': 'not_configured', 'channelUrl': channel_url,
+            'channelTitle': channel_title, 'channelId': previous.get('channelId'),
             'updatedAt': None, 'snapshots': prune(previous.get('snapshots', []), now)}
     if data['snapshots']:
         data['updatedAt'] = data['snapshots'][0]['observedAt']
@@ -664,13 +665,14 @@ def fetch_catalog(key, channel_id, now, request=api_get):
             'uploadIdsChecked': len(ids), 'publicVideosReturned': len(videos), 'videos': videos}
 
 
-def main():
-    state_path = ROOT / '.youtube-state/youtube.json'
-    output_path = ROOT / 'assets/data/youtube.json'
+def main(prefix='youtube', handle=None, channel_url=CHANNEL_URL, channel_title='Troy Kearns'):
+    state_path = ROOT / f'.youtube-state/{prefix}.json'
+    output_path = ROOT / f'assets/data/{prefix}.json'
     previous = {}
     if state_path.exists():
         previous = json.loads(state_path.read_text())
-    data = update(previous, os.environ.get('YOUTUBE_API_KEY', '').strip(), datetime.now(timezone.utc))
+    fetch = (lambda key, channel_id: fetch_channel(key, channel_id, handle)) if handle else fetch_channel
+    data = update(previous, os.environ.get('YOUTUBE_API_KEY', '').strip(), datetime.now(timezone.utc), fetch, channel_url, channel_title)
     output_path.write_text(json.dumps(data, indent=2) + '\n')
     print('YouTube collector status: ' + data['status'])
     catalog = {'schemaVersion': 1, 'status': 'not_configured', 'updatedAt': None, 'videos': []}
@@ -683,7 +685,7 @@ def main():
             print('::warning::Video catalog update failed; no partial catalog was published.')
     elif key:
         catalog['status'] = 'update_failed'
-    (ROOT / 'assets/data/youtube-videos.json').write_text(json.dumps(catalog, ensure_ascii=False) + '\n')
+    (ROOT / f'assets/data/{prefix}-videos.json').write_text(json.dumps(catalog, ensure_ascii=False) + '\n')
     print('YouTube video catalog: ' + catalog['status'] + '; public videos: ' + str(len(catalog['videos'])))
     summary = os.environ.get('GITHUB_STEP_SUMMARY')
     if summary:
@@ -692,6 +694,7 @@ def main():
 
 if __name__ == '__main__':
     main()
+    main('kat-kai-youtube', 'KatandKaiPeakOfficial', 'https://www.youtube.com/@KatandKaiPeakOfficial', 'Kat & Kai')
 ```
 
 ## assets/js/clients.js
@@ -1042,7 +1045,7 @@ export async function loadSceneSprites() {
 <meta name="color-scheme" content="dark"><meta name="theme-color" content="#000000"><meta name="robots" content="noindex, nofollow">
 <title>Statistics — Troy Kearns</title>
 <link rel="icon" href="/assets/images/mark.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/css/troy.css?v=4">
+<link rel="stylesheet" href="/assets/css/troy.css?v=5">
 <script type="module" src="/assets/js/app.js?v=2"></script>
 <script type="module" src="/assets/js/youtube.js?v=5"></script>
 </head><body data-client="troy-kearns">
@@ -1072,51 +1075,27 @@ export async function loadSceneSprites() {
 
 ```html
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="color-scheme" content="dark">
-  <meta name="theme-color" content="#000000">
-  <meta name="description" content="Free Market Wildlife client workspace. Public demonstration content; passcode access is a convenience barrier.">
-  <title>Kat &amp; Kai workspace — Free Market Wildlife</title>
-  <link rel="icon" href="/assets/images/mark.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/assets/css/styles.css">
-  <script type="module" src="/assets/js/app.js?v=2"></script>
-</head>
-<body class="workspace-page" data-client="kat-kai">
-  <div id="workspace-content" hidden inert>
-  <a class="skip-link" href="#main">Skip to content</a>
-<header class="site-header">
-  <a class="brand" href="/" aria-label="Free Market Wildlife home"><img src="/assets/images/mark.svg" width="64" height="64" alt=""><span>FREE MARKET<br>WILDLIFE</span></a>
-  <nav aria-label="Primary"><a href="/portfolio/">Portfolio</a><a href="/tanoshi/">Tanoshi</a><a href="/contact/">Contact</a></nav>
-  <button class="access-button" type="button" data-open-access aria-label="Sign in"><span>Sign in</span></button>
-</header>
-  <main class="page-main" id="main" tabindex="-1"><div class="workspace-bar"><a href="/">← Back to Free Market Wildlife</a><div><span class="badge unlocked"><span class="status-dot"></span> WORKSPACE UNLOCKED</span><button class="text-button" type="button" data-lock-workspace>Lock workspace <img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""></button></div></div>
-  <div class="page-heading"><div><span class="eyebrow">CLIENT WORKSPACE / K&K</span><h1>Kat &amp; Kai<span class="accent">.</span></h1></div><p>A shared place for clear priorities<br>and the next meaningful move.</p></div>
-  <p class="editorial-note">Foundation preview · Demonstration structure only. No private client information or verified performance data is stored here.</p>
-  <section class="panel roadmap-intro"><div><span class="eyebrow">THE LONG GAME</span><h2>Road to <span class="accent">10,000</span><br>Subscribers</h2><p>Four intentional phases. One connected creator journey.</p></div><div class="target-mark" aria-hidden="true"><span>10<span>K</span></span></div><div class="roadmap-meta"><span class="micro">CURRENT SUBSCRIBERS</span><strong>Not connected</strong><span class="micro muted">Milestone progress will follow verified channel data.</span></div></section>
-<div class="section-rule"><h2>The growth roadmap</h2><span class="micro muted">PROPOSED PLAN / COMPLETION NOT YET RECORDED</span></div><ol class="timeline"><li class="timeline-item"><span class="phase-number" aria-hidden="true">01</span><section class="panel phase-card"><div class="card-top"><span class="eyebrow">PHASE 1</span><span class="badge">PLANNING</span></div><h3>Active Niche Solidification</h3><p>Build a recognizable reason to subscribe.</p><ul class="phase-tasks"><li>Clarify the audience and core content promise.</li><li>Define repeatable formats and review audience signals.</li></ul><div class="phase-outcome"><span class="micro">MILESTONE TO UNLOCK</span><p>A clear niche and a sustainable publishing direction.</p></div></section></li><li class="timeline-item"><span class="phase-number" aria-hidden="true">02</span><section class="panel phase-card"><div class="card-top"><span class="eyebrow">PHASE 2</span><span class="badge">UPCOMING</span></div><h3>Sponsorship and Brand Alignment Sourcing</h3><p>Find partnerships that belong in the story.</p><ul class="phase-tasks"><li>Map aligned brand categories and partnership criteria.</li><li>Prepare a media kit using verified channel analytics.</li></ul><div class="phase-outcome"><span class="micro">MILESTONE TO UNLOCK</span><p>An approved outreach shortlist and sponsorship positioning.</p></div></section></li><li class="timeline-item"><span class="phase-number" aria-hidden="true">03</span><section class="panel phase-card"><div class="card-top"><span class="eyebrow">PHASE 3</span><span class="badge">UPCOMING</span></div><h3>10k Subscriber Discord Community Scaling</h3><p>Give the community a place to connect.</p><ul class="phase-tasks"><li>Plan channel structure, community guidelines, and moderation.</li><li>Define launch readiness around the 10k subscriber milestone.</li></ul><div class="phase-outcome"><span class="micro">MILESTONE TO UNLOCK</span><p>A community launch plan with clear ownership and capacity.</p></div></section></li><li class="timeline-item"><span class="phase-number" aria-hidden="true">04</span><section class="panel phase-card"><div class="card-top"><span class="eyebrow">PHASE 4</span><span class="badge">UPCOMING</span></div><h3>Cross-Platform Content Repurposing Funnels</h3><p>Let good stories travel further.</p><ul class="phase-tasks"><li>Map each long-form story into platform-native cuts.</li><li>Define a repeatable path back to the primary channel.</li></ul><div class="phase-outcome"><span class="micro">MILESTONE TO UNLOCK</span><p>A sustainable repurposing workflow and measurable referral path.</p></div></section></li></ol>
-  </main><footer class="site-footer"><span>INDEPENDENT THINKING. INTENTIONAL GROWTH.</span><span>© <span data-year>2026</span> FREE MARKET WILDLIFE</span></footer></div>
-  <dialog class="gate-dialog" id="workspace-gate" open aria-labelledby="gate-title"><div class="gate-shell"><a class="brand" href="/"><img src="/assets/images/mark.svg" width="64" height="64" alt=""><span>FREE MARKET<br>WILDLIFE.</span></a><div class="dialog-panel"><span class="eyebrow">K&K / CLIENT WORKSPACE</span><div class="lock-emblem"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""></div><h2 id="gate-title">A little focus.<br>A lot of possibility.</h2><p class="muted">Enter the passcode for Kat &amp; Kai to open this workspace.</p><form data-gate-form><label for="gate-code">Password</label><input id="gate-code" name="passcode" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Enter password" required aria-describedby="gate-error" autofocus><p class="form-error" id="gate-error" aria-live="polite"></p><button class="button primary" type="submit">Unlock workspace <span aria-hidden="true">→</span></button></form><p class="micro">This static passcode is an interface barrier. Files on this public website are not confidential.</p><a class="text-button" href="/">← Return home</a><noscript><p class="form-error">Enable JavaScript to use passcode access.</p></noscript></div><span class="micro muted">FREE MARKET WILDLIFE / CLEAR DIRECTION</span></div></dialog>
-  <dialog class="access-dialog" id="access-dialog" aria-labelledby="access-title">
-  <div class="dialog-panel">
-    <button class="close-button" type="button" data-close-access aria-label="Close client access">×</button>
-    <span class="eyebrow">CLIENT WORKSPACE</span>
-    <div class="lock-emblem"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""></div>
-    <h2 id="access-title">Sign in.</h2>
-    <p class="muted">Enter your workspace password to continue.</p>
-    <form data-access-form>
-      <label for="access-code">Password</label>
-      <input id="access-code" name="passcode" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" required aria-describedby="access-error" placeholder="Enter password">
-      <p class="form-error" id="access-error" aria-live="polite"></p>
-      <button class="button primary" type="submit">Continue <span aria-hidden="true">→</span></button>
-    </form>
-    <p class="micro">Temporary preview access. Public content only.</p>
-  </div>
-</dialog>
-</body>
-</html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#000000"><meta name="robots" content="noindex, nofollow">
+<title>Links — Kat &amp; Kai</title>
+<link rel="icon" href="/assets/images/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/troy.css?v=3">
+<script type="module" src="/assets/js/app.js?v=2"></script>
+<link rel="stylesheet" href="/assets/css/kat-kai.css?v=1">
+</head><body data-client="kat-kai" data-youtube-source="kat-kai-youtube">
+<div id="workspace-content" hidden inert>
+<header><a href="/" aria-label="Free Market Wildlife home"><img src="/assets/images/mark.svg" width="40" height="40" alt="Free Market Wildlife"></a><nav aria-label="Kat and Kai workspace"><a href="/kat-kai/statistics/">Statistics</a><a href="/kat-kai/" aria-current="page">Links</a></nav><button type="button" data-lock-workspace>Sign out</button></header>
+<main id="main" tabindex="-1"><h1>Links <span class="tiny-flair" aria-hidden="true">♡</span></h1><ul>
+<li>YouTube: <a href="https://www.youtube.com/@KatandKaiPeakOfficial" target="_blank" rel="noopener noreferrer">@KatandKaiPeakOfficial</a></li>
+<li>Videos: <a href="https://www.youtube.com/@KatandKaiPeakOfficial/videos" target="_blank" rel="noopener noreferrer">Latest uploads</a></li>
+<li>Shorts: <a href="https://www.youtube.com/@KatandKaiPeakOfficial/shorts" target="_blank" rel="noopener noreferrer">Watch Shorts</a></li>
+<li>Playlists: <a href="https://www.youtube.com/@KatandKaiPeakOfficial/playlists" target="_blank" rel="noopener noreferrer">Browse playlists</a></li>
+</ul></main>
+</div>
+<dialog class="gate-dialog tk-gate" id="workspace-gate" open aria-labelledby="gate-title"><div class="gate-shell"><a class="brand" href="/"><img src="/assets/images/mark.svg" width="40" height="40" alt=""><span>FREE MARKET<br>WILDLIFE</span></a><div class="dialog-panel"><span class="eyebrow">KAT &amp; KAI / WORKSPACE</span><h2 id="gate-title">Sign in.</h2><p>Good to have you here.</p><form data-gate-form><label for="gate-code">Password</label><input id="gate-code" name="passcode" type="password" autocomplete="current-password" autocapitalize="off" spellcheck="false" required aria-describedby="gate-error" autofocus><p class="form-error" id="gate-error" aria-live="polite"></p><button class="button primary" type="submit">Continue <span aria-hidden="true">→</span></button></form><p class="micro">Temporary preview access. Public content only.</p><a class="text-button" href="/">← Back home</a><noscript><p>Enable JavaScript to use this preview.</p></noscript></div><span class="micro">FREE MARKET WILDLIFE</span></div></dialog>
+
+</body></html>
 ```
 
 ## 404.html
@@ -1213,7 +1192,7 @@ jobs:
         run: |
           mkdir -p .youtube-state
           if [ -f "$RUNNER_TEMP/youtube-history.zip" ]; then
-            unzip -p "$RUNNER_TEMP/youtube-history.zip" youtube.json > .youtube-state/youtube.json
+            unzip -o "$RUNNER_TEMP/youtube-history.zip" -d .youtube-state
           fi
       - name: Collect YouTube totals
         env:
@@ -1223,7 +1202,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: youtube-history
-          path: assets/data/youtube.json
+          path: |
+            assets/data/youtube.json
+            assets/data/kat-kai-youtube.json
           retention-days: 2
       - name: Test collector
         run: python3 -m unittest discover -s tests -v
