@@ -41,7 +41,7 @@ for name in PAGES:
   require(doc.gate and doc.hidden,f'{name}: workspace must start gated, hidden, inert')
 home=(ROOT/'index.html').read_text()
 require('Build a Career' in home,'Homepage tagline missing')
-require(home.index('/portfolio/')<home.index('/tanoshi/')<home.index('/contact/'),'Homepage navigation order wrong')
+require(home.index('/contact/')<home.index('/portfolio/')<home.index('/tanoshi/'),'Homepage navigation order wrong')
 css=(ROOT/'assets/css/styles.css').read_text()
 colors={c.lower() for c in re.findall(r'#[0-9a-fA-F]{3,8}\b',css)}
 require(colors<={'#000','#fff','#000000','#ffffff'},f'Non-binary CSS colors: {colors}')

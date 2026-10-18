@@ -53,13 +53,13 @@ CNAME
       <h1>Free Market<br>Wildlife</h1>
       <p class="landing-tagline">Build a Career</p>
       <nav class="landing-nav" aria-label="Primary">
+        <a href="/contact/"><span class="menu-arrow" aria-hidden="true"></span>Build a Career</a>
         <a href="/portfolio/"><span class="menu-arrow" aria-hidden="true"></span>Portfolio</a>
         <a href="/tanoshi/"><span class="menu-arrow" aria-hidden="true"></span>Tanoshi</a>
-        <a href="/contact/"><span class="menu-arrow" aria-hidden="true"></span>Contact</a>
       </nav>
     </div>
   </main>
-  <button class="home-access" type="button" data-open-access aria-label="Sign in"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""><span>Sign in</span></button>
+  <button class="home-access" type="button" data-open-access aria-label="Sign in"><span>Sign in</span></button>
   <dialog class="access-dialog" id="access-dialog" aria-labelledby="access-title">
   <div class="dialog-panel">
     <button class="close-button" type="button" data-close-access aria-label="Close client access">×</button>
@@ -129,7 +129,7 @@ p { line-height: 1.75; }
 .landing-tagline { margin-top: calc(var(--pixel) * 8); line-height: 1; font-size: calc(var(--pixel) * 8); }
 .landing-nav { display: flex; flex-direction: column; gap: calc(var(--pixel) * 4); align-items: flex-start; margin-top: calc(var(--pixel) * 20); }
 .landing-nav a { position: relative; display: block; line-height: 1; padding: calc(var(--pixel) * 4) 0; min-height: 44px; text-transform: uppercase; font-size: calc(var(--pixel) * 8); }
-.menu-arrow { position: absolute; left: calc(var(--pixel) * -11); top: 50%; width: calc(var(--pixel) * 7); height: calc(var(--pixel) * 9); margin-top: calc(var(--pixel) * -4); background: url("../images/arrow.svg") no-repeat 0 0 / 100% 100%; visibility: hidden; }
+.menu-arrow { position: absolute; left: calc(var(--pixel) * -11); top: 50%; width: calc(var(--pixel) * 7); height: calc(var(--pixel) * 9); margin-top: calc(var(--pixel) * -5); background: url("../images/arrow.svg") no-repeat 0 0 / 100% 100%; visibility: hidden; }
 @media (hover: hover) { .landing-nav a:hover .menu-arrow { visibility: visible; } }
 .landing-nav a:focus-visible .menu-arrow { visibility: visible; }
 .landing-nav a:focus-visible { outline: 0; text-decoration: underline; text-decoration-thickness: var(--pixel); text-underline-offset: calc(var(--pixel) * 4); }
@@ -183,6 +183,16 @@ dialog { background: var(--black); color: var(--white); border: 1px solid var(--
 .access-dialog .dialog-panel .micro { font-size: 11px; }
 .access-dialog .lock-emblem { margin-top: 16px; }
 @media (max-width: 540px) { .access-dialog .dialog-panel { padding: 24px; } }
+
+/* Preserve the exact supplied silhouette without stretching its proportions. */
+.landing-logo, .brand img { object-fit: contain; }
+
+/* A quiet, tiny copy of the supplied emblem; no reinterpretation. */
+.home .landing-logo { width: 24px; height: 24px; margin-bottom: 24px; }
+/* Centre the arrow against the actual text line, including roomy hit areas. */
+.landing-nav .menu-arrow { top: calc(var(--pixel) * 4); margin-top: calc(var(--pixel) * -1); }
+@media (max-width: 680px) { .landing-nav .menu-arrow { top: 14px; } }
+@media (max-height: 480px) and (orientation: landscape) { .landing-nav .menu-arrow { top: 12px; } }
 ```
 
 ## assets/css/troy.css
@@ -494,7 +504,7 @@ export async function loadSceneSprites() {
 <header class="site-header">
   <a class="brand" href="/" aria-label="Free Market Wildlife home"><img src="/assets/images/mark.svg" width="64" height="64" alt=""><span>FREE MARKET<br>WILDLIFE</span></a>
   <nav aria-label="Primary"><a href="/portfolio/" aria-current="page">Portfolio</a><a href="/tanoshi/">Tanoshi</a><a href="/contact/">Contact</a></nav>
-  <button class="access-button" type="button" data-open-access aria-label="Sign in"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""><span>Sign in</span></button>
+  <button class="access-button" type="button" data-open-access aria-label="Sign in"><span>Sign in</span></button>
 </header>
 <main class="page-main" id="main" tabindex="-1">
   <div class="page-heading"><div><span class="eyebrow">01 / COLLABORATIONS</span><h1>Good work.<br><span class="muted">Shared momentum.</span></h1></div><p>Clearer processes. More intentional content. More room for the people doing the creating.</p></div>
@@ -546,7 +556,7 @@ export async function loadSceneSprites() {
 <header class="site-header">
   <a class="brand" href="/" aria-label="Free Market Wildlife home"><img src="/assets/images/mark.svg" width="64" height="64" alt=""><span>FREE MARKET<br>WILDLIFE</span></a>
   <nav aria-label="Primary"><a href="/portfolio/">Portfolio</a><a href="/tanoshi/" aria-current="page">Tanoshi</a><a href="/contact/">Contact</a></nav>
-  <button class="access-button" type="button" data-open-access aria-label="Sign in"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""><span>Sign in</span></button>
+  <button class="access-button" type="button" data-open-access aria-label="Sign in"><span>Sign in</span></button>
 </header>
 <main class="page-main" id="main" tabindex="-1">
   <div class="page-heading"><div><span class="eyebrow">02 / THE CREATIVE PRACTICE</span><h1>Tanoshi<span class="accent">.</span><br><span class="muted">A little less ordinary.</span></h1></div><p>Moving images. Original sound. Imagined worlds. A home for work made with curiosity.</p></div>
@@ -600,7 +610,7 @@ export async function loadSceneSprites() {
 <header class="site-header">
   <a class="brand" href="/" aria-label="Free Market Wildlife home"><img src="/assets/images/mark.svg" width="64" height="64" alt=""><span>FREE MARKET<br>WILDLIFE</span></a>
   <nav aria-label="Primary"><a href="/portfolio/">Portfolio</a><a href="/tanoshi/">Tanoshi</a><a href="/contact/" aria-current="page">Contact</a></nav>
-  <button class="access-button" type="button" data-open-access aria-label="Sign in"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""><span>Sign in</span></button>
+  <button class="access-button" type="button" data-open-access aria-label="Sign in"><span>Sign in</span></button>
 </header>
 <main class="page-main contact-main" id="main" tabindex="-1">
   <div class="page-heading"><div><span class="eyebrow">03 / START A CONVERSATION</span><h1>Big idea?<br><span class="accent">Let’s hear it.</span></h1></div><p>A creative challenge, a clearer direction, or a better way of working. Tell us what’s on your mind.</p></div>
@@ -734,7 +744,7 @@ export async function loadSceneSprites() {
 <header class="site-header">
   <a class="brand" href="/" aria-label="Free Market Wildlife home"><img src="/assets/images/mark.svg" width="64" height="64" alt=""><span>FREE MARKET<br>WILDLIFE</span></a>
   <nav aria-label="Primary"><a href="/portfolio/">Portfolio</a><a href="/tanoshi/">Tanoshi</a><a href="/contact/">Contact</a></nav>
-  <button class="access-button" type="button" data-open-access aria-label="Sign in"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""><span>Sign in</span></button>
+  <button class="access-button" type="button" data-open-access aria-label="Sign in"><span>Sign in</span></button>
 </header>
   <main class="page-main" id="main" tabindex="-1"><div class="workspace-bar"><a href="/">← Back to Free Market Wildlife</a><div><span class="badge unlocked"><span class="status-dot"></span> WORKSPACE UNLOCKED</span><button class="text-button" type="button" data-lock-workspace>Lock workspace <img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""></button></div></div>
   <div class="page-heading"><div><span class="eyebrow">CLIENT WORKSPACE / K&K</span><h1>Kat &amp; Kai<span class="accent">.</span></h1></div><p>A shared place for clear priorities<br>and the next meaningful move.</p></div>
@@ -784,7 +794,7 @@ export async function loadSceneSprites() {
 <header class="site-header">
   <a class="brand" href="/" aria-label="Free Market Wildlife home"><img src="/assets/images/mark.svg" width="64" height="64" alt=""><span>FREE MARKET<br>WILDLIFE</span></a>
   <nav aria-label="Primary"><a href="/portfolio/">Portfolio</a><a href="/tanoshi/">Tanoshi</a><a href="/contact/">Contact</a></nav>
-  <button class="access-button" type="button" data-open-access aria-label="Sign in"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""><span>Sign in</span></button>
+  <button class="access-button" type="button" data-open-access aria-label="Sign in"><span>Sign in</span></button>
 </header>
 <main class="page-main not-found" id="main" tabindex="-1"><span class="eyebrow">404 / A DIFFERENT PATH</span><h1>Let’s find<br>your next move.</h1><p class="muted">This page doesn’t exist. Head home or enter your client passcode.</p><a class="button primary" href="/">Back to home <span aria-hidden="true">→</span></a></main>
 <footer class="site-footer"><span>INDEPENDENT THINKING. INTENTIONAL GROWTH.</span><span>© <span data-year>2026</span> FREE MARKET WILDLIFE</span></footer>

@@ -44,7 +44,7 @@ p { line-height: 1.75; }
 .landing-tagline { margin-top: calc(var(--pixel) * 8); line-height: 1; font-size: calc(var(--pixel) * 8); }
 .landing-nav { display: flex; flex-direction: column; gap: calc(var(--pixel) * 4); align-items: flex-start; margin-top: calc(var(--pixel) * 20); }
 .landing-nav a { position: relative; display: block; line-height: 1; padding: calc(var(--pixel) * 4) 0; min-height: 44px; text-transform: uppercase; font-size: calc(var(--pixel) * 8); }
-.menu-arrow { position: absolute; left: calc(var(--pixel) * -11); top: 50%; width: calc(var(--pixel) * 7); height: calc(var(--pixel) * 9); margin-top: calc(var(--pixel) * -4); background: url("../images/arrow.svg") no-repeat 0 0 / 100% 100%; visibility: hidden; }
+.menu-arrow { position: absolute; left: calc(var(--pixel) * -11); top: 50%; width: calc(var(--pixel) * 7); height: calc(var(--pixel) * 9); margin-top: calc(var(--pixel) * -5); background: url("../images/arrow.svg") no-repeat 0 0 / 100% 100%; visibility: hidden; }
 @media (hover: hover) { .landing-nav a:hover .menu-arrow { visibility: visible; } }
 .landing-nav a:focus-visible .menu-arrow { visibility: visible; }
 .landing-nav a:focus-visible { outline: 0; text-decoration: underline; text-decoration-thickness: var(--pixel); text-underline-offset: calc(var(--pixel) * 4); }
@@ -98,3 +98,13 @@ dialog { background: var(--black); color: var(--white); border: 1px solid var(--
 .access-dialog .dialog-panel .micro { font-size: 11px; }
 .access-dialog .lock-emblem { margin-top: 16px; }
 @media (max-width: 540px) { .access-dialog .dialog-panel { padding: 24px; } }
+
+/* Preserve the exact supplied silhouette without stretching its proportions. */
+.landing-logo, .brand img { object-fit: contain; }
+
+/* A quiet, tiny copy of the supplied emblem; no reinterpretation. */
+.home .landing-logo { width: 24px; height: 24px; margin-bottom: 24px; }
+/* Centre the arrow against the actual text line, including roomy hit areas. */
+.landing-nav .menu-arrow { top: calc(var(--pixel) * 4); margin-top: calc(var(--pixel) * -1); }
+@media (max-width: 680px) { .landing-nav .menu-arrow { top: 14px; } }
+@media (max-height: 480px) and (orientation: landscape) { .landing-nav .menu-arrow { top: 12px; } }

@@ -44,3 +44,7 @@ Browser captures are JPEGs, so their compression can introduce gray edge pixels.
 ## External state
 
 No remote Git repository, GitHub Pages publishing setting, DNS record, or domain certificate was changed. No public deployment is claimed. Browser layout overrides were reset, and the local homepage was left open for review.
+
+## Homepage refinement
+
+The supplied handheld-screen emblem was directly isolated into a white/transparent pixel mask, without a generative redraw. The homepage displays that copied emblem at 24 × 24 CSS pixels. Navigation is now Build a Career (the existing contact portal), Portfolio, and Tanoshi. The arrow is aligned to the text line rather than the full hit area, which keeps its point centered at every breakpoint. The existing top-right sign-in flow was preserved; lock icons were removed from top-right sign-in controls. Browser inspection confirmed the 24px logo, three updated labels, and zero images inside the homepage sign-in button. Source checks passed for all eight current pages.

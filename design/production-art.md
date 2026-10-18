@@ -9,7 +9,7 @@ Final production files:
 - `assets/images/pixel/landscape.png`: 263 × 168, white + transparency.
 - `assets/images/pixel/bird.png`: 18 × 16, white + transparency.
 - `assets/js/scene-sprites.js`: separate 9 × 8 butterfly mask.
-- `assets/images/mark.svg`: code-native 32 × 32 pixel-mask interpretation of the supplied logo, no raster tracing artifacts or colored background.
+- `assets/images/mark.svg`: direct pixel-mask extraction of the supplied logo from `design/references/logo-exact-source.png`, preserving the source silhouette and converting its ink to white with a transparent background. `scripts/extract_supplied_logo.py` documents the exact extraction.
 - `assets/images/arrow.svg` and `lock.svg`: code-native integer-grid icons.
 
 The logo reference images are retained under `design/references/`. These colored references and old concept images are excluded from the deployment artifact. All production artwork is black, white, or transparent.

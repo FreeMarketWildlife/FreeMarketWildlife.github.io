@@ -45,12 +45,12 @@ CNAME                         freemarketwildlife.com
 ## Current design contract
 
 - Pure black `#000000` and pure white `#ffffff`, plus transparent pixels in the artwork.
-- The landing page uses exactly **Portfolio**, **Tanoshi**, **Contact** in a vertical list, with **Build a Career** as the tagline.
+- The landing page uses exactly **Build a Career**, **Portfolio**, **Tanoshi** in a vertical list, with **Build a Career** as the tagline.
 - The menu arrow appears instantly on hover or keyboard focus. No idle selection is forced.
 - No CSS animations, transitions, scene timers, or requestAnimationFrame loop run.
 - The viewport-sized transparent stage has independent scenery, wildlife, and foreground canvases. The landscape and perched bird are separate PNG files; butterfly masks are defined independently.
 - Homepage art uses 3 CSS pixels per logical pixel on wide screens at least 700px tall, and 2 on smaller screens. Canvas output sizes are whole multiples of that pixel size, with overflow clipped at the viewport edges.
-- The local display typeface and compact portrait variant use rectangular pixel contours. The emblem has a 32 × 32 source grid. Navigation is real HTML, not text baked into an image.
+- The local display typeface and compact portrait variant use rectangular pixel contours. The emblem is copied directly from the supplied pixel-art silhouette, preserving its original contour. Navigation is real HTML, not text baked into an image.
 - The landscape is a **263 × 168** white/transparent bitmap, isolated from the approved concept. The perched bird is **18 × 16**. Both are genuinely 1-bit PNGs, not merely grayscale images.
 - Portrait and short screens get a different scenery composition. Art never captures pointer events or controls navigation.
 
