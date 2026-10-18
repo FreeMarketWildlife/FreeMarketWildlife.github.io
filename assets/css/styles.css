@@ -114,3 +114,7 @@ dialog { background: var(--black); color: var(--white); border: 1px solid var(--
 .home .landing h1 { font-family: "FMW Clean Slab", monospace; font-size: calc(var(--pixel) * 24); line-height: calc(var(--pixel) * 25); }
 @media (max-width: 680px) { .home .landing h1 { font-family: "FMW Clean Slab Small", monospace; font-size: calc(var(--pixel) * 16); line-height: calc(var(--pixel) * 17); } }
 @media (max-height: 480px) and (orientation: landscape) { .home .landing h1 { font-family: "FMW Clean Slab Small", monospace; font-size: calc(var(--pixel) * 16); line-height: calc(var(--pixel) * 17); } }
+
+/* The tiny siege occupies only the lower-left corner and never covers links. */
+.siege-scene { inset: auto; left: 16px; bottom: 12px; z-index: 2; overflow: visible; }
+.siege-scene canvas { position: relative; pointer-events: auto; cursor: crosshair; touch-action: manipulation; }

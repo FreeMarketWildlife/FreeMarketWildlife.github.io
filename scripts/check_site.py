@@ -69,8 +69,8 @@ for path in (ROOT/'assets/css').glob('*.css'):
 for path in (ROOT/'assets/js').glob('*.js'):
  text=path.read_text()
  for ref in re.findall(r"from\s+['\"]([^'\"]+)['\"]",text):require((path.parent/urlsplit(ref).path).is_file(),f'{path.name}: missing module {ref}')
- if path.name=='scene.js':require(not re.search(r'\b(requestAnimationFrame|setInterval|setTimeout)\s*\(',text),'Autonomous scene animation found')
+ if path.name=='scene.js':require('reduced.matches' in text and 'document.hidden' in text,'Siege must respect reduced motion and hidden tabs')
 require((ROOT/'CNAME').read_text().strip()=='freemarketwildlife.com','Custom domain mismatch')
 if errors:
  print('\n'.join(errors));raise SystemExit(1)
-print('PASS: 11 pages, local references, workspace barriers, monochrome palette, binary sprites, fonts, and static scene contract.')
+print('PASS: 11 pages, local references, workspace barriers, monochrome palette, binary sprites, fonts, and motion accessibility contract.')
