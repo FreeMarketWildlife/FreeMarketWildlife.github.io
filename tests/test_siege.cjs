@@ -3,7 +3,7 @@ const {readFileSync}=require('node:fs');
 const vm=require('node:vm');
 const assert=require('node:assert/strict');
 const source=readFileSync('assets/js/scene.js','utf8').replace(/^import .*\n/,'').replace('  spawn(1);spawn(-1);resize();resume();',`  spawn(1);spawn(-1);resize();resume();
-  globalThis.test={update,spawn,hurtCastle,draw,state:()=>({castleHP,engineHP,soldiers,shots,width,pixel,time}),clear:()=>{soldiers=[];shots=[];},hit:canvas.listeners.pointerdown,move:canvas.listeners.pointermove,leave:canvas.listeners.pointerleave,hoveredHealth};`);
+  globalThis.test={update,spawn,hurtCastle,draw,state:()=>({castleHP,engineHP,soldiers,shots,width,pixel,time,victory,wallArchers}),clear:()=>{soldiers=[];shots=[];},hit:canvas.listeners.pointerdown,move:canvas.listeners.pointermove,leave:canvas.listeners.pointerleave,hoveredHealth};`);
 function load(random=.5){
  const ctx=new Proxy({}, {get:()=>()=>{}});
  const canvas={getContext:()=>ctx,style:{},listeners:{},addEventListener:(name,fn)=>canvas.listeners[name]=fn,getBoundingClientRect:()=>({left:0,top:0})};
@@ -13,7 +13,7 @@ function load(random=.5){
  vm.runInNewContext(source,sandbox);return sandbox.test;
 }
 let battle=load();let state=battle.state();
-assert.equal(state.pixel,.75);assert.equal(state.width,729);
+assert.equal(state.pixel,.75);assert.equal(state.width,883);
 battle.hit({clientX:(state.width-40)*.75,clientY:40*.75});assert.equal(battle.state().castleHP,565);
 battle.hit({clientX:37*.75,clientY:65*.75});assert.equal(battle.state().engineHP,95);
 assert.equal(battle.hoveredHealth(),null);
@@ -32,4 +32,16 @@ battle.draw();
 const rare=load(.005).state().soldiers;
 assert.equal(rare[0].kind,'giant');assert.equal(rare[1].kind,'horse');assert.equal(rare[1].power,45);
 assert.equal(load().state().castleHP,600,'new page starts intact');
-console.log('PASS: quarter scale, long field, click damage, persistent destruction, slow spawns, rare units, reload reset.');
+const ending=load();ending.clear();ending.spawn(1);ending.hurtCastle(10000);
+const victor=ending.state().soldiers[0];victor.x=ending.state().width-72;
+ending.update(.05);assert.equal(ending.state().victory,true);assert.equal(victor.celebrating,true);
+const count=ending.state().soldiers.length;
+for(let i=0;i<1000;i++)ending.update(.05);
+assert.equal(ending.state().soldiers.length,count,'no more attackers spawn after reaching rubble');
+assert.equal(victor.celebrating,true);ending.draw();
+const archery=load();archery.clear();archery.spawn(1);
+const invader=archery.state().soldiers[0];invader.x=archery.state().width-180;
+archery.update(.05);assert.equal(archery.state().shots.filter(s=>s.arrow).length,3,'all wall archers fire');
+for(let i=0;i<31;i++)archery.update(.05);
+assert(invader.hp<25,'arrows damage the approaching enemy');
+console.log('PASS: quarter scale, long field, click damage, persistent destruction, slow spawns, rare units, reload reset, wall archery, and victory celebrations.');

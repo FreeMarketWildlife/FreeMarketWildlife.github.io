@@ -1,5 +1,11 @@
 import { loadSceneSprites } from './scene-sprites.js';
 /** One-bit siege on a quarter-size grid; nature retains the original page grid. */
+// Both layers use this layout so the fortress and the hillside share one anchor.
+function battleLayout() {
+  const pagePixel=parseInt(getComputedStyle(document.body).getPropertyValue('--pixel'),10)||2;
+  const pixel=pagePixel/4;
+  return {pagePixel,pixel,width:Math.floor(Math.min(innerWidth-32,innerWidth*(innerWidth<681?.9:.46))/pixel),bottom:24};
+}
 const stage = document.querySelector('[data-pixel-scene]');
 if (stage) {
   const canvas = stage.querySelector('canvas');
@@ -8,7 +14,8 @@ if (stage) {
   let width = 240, height = 94, pixel = 2, time = 0, last = 0, frame;
   let soldiers = [], shots = [], debris = [], nextSpawn = 0, nextShot = 2;
   let castleHP=600, engineHP=120, nextArrow=0, nextDefender=5;
-  let hoverPoint = null;
+  let hoverPoint = null, victory = false;
+  const wallArchers=[{offset:3,flash:0},{offset:26,flash:0},{offset:47,flash:0}];
   const ground = () => height - 10;
   const castle = () => width - 64;
   const rect = (x,y,w,h,color='#fff') => { ctx.fillStyle=color; ctx.fillRect(Math.round(x),Math.round(y),w,h); };
@@ -18,8 +25,7 @@ if (stage) {
     for (;;) { rect(x,y,1,1); if(x===xx&&y===yy)break; const e=2*error;if(e>=dy){error+=dy;x+=sx;}if(e<=dx){error+=dx;y+=sy;} }
   }
   function resize() {
-    pixel=(parseInt(getComputedStyle(document.body).getPropertyValue('--pixel'),10)||2)/4;
-    width=Math.floor(Math.min(innerWidth-32,innerWidth*(innerWidth<681?.9:.38))/pixel);
+    ({pixel,width}=battleLayout());
     height=100;
     canvas.width=width;canvas.height=height;canvas.style.width=`${width*pixel}px`;canvas.style.height=`${height*pixel}px`;
     ctx.imageSmoothingEnabled=false;stage.dataset.ready='true';stage.dataset.grid=`${width}x${height}`;draw();
@@ -30,7 +36,9 @@ if (stage) {
     if(s.kind==='giant'){ctx.translate(Math.round(s.x),ground()-s.lane);ctx.scale(2,2);ctx.translate(-Math.round(s.x),-ground()+s.lane);}
     if(s.kind==='horse'&&!s.dead){const y=ground()-s.lane;rect(s.x-7,y-8,13,5);rect(s.x-9,y-12,4,6);line(s.x-6,y-3,s.x-8,y+2);line(s.x+5,y-3,s.x+7,y+2);}
 
-    const x=Math.round(s.x),y=ground()-s.lane, step=Math.floor(time*7+s.seed)%2;
+    const jump=s.celebrating?Math.round(Math.abs(Math.sin(time*5+s.seed))*7):0;
+    const x=Math.round(s.x),y=ground()-s.lane-jump, step=Math.floor(time*7+s.seed)%2;
+    if(s.celebrating){rect(x-1,y-10,3,3);rect(x-1,y-7,3,4);line(x-1,y-6,x-5,y-11);line(x+1,y-6,x+5,y-11);line(x,y-3,x-2,y);line(x+1,y-3,x+3,y);ctx.restore();return;}
     if(s.dead){line(x-3,y-1,x+4,y-1);rect(x+4,y-3,2,2);ctx.restore();return;}
     rect(x-1,y-10,3,3);rect(x-2,y-7,4,4);rect(x-3,y-10,5,1);
     line(x,y-3,x-2-step,y);line(x+1,y-3,x+2+step,y);
@@ -51,7 +59,13 @@ if (stage) {
     for(let row=0;row<3;row++)for(let col=0;col<4;col++)rect(c+15+col*6+(row%2)*2,g-29+row*7,3,1,'#000');
     line(c+46,g-50,c+46,g-65);rect(c+47,g-65,12,6);rect(c+55,g-62,4,3,'#000');
     for(let i=0;i<Math.floor((600-castleHP)/35);i++){const x=c+15+(i*11)%25,y=g-34+(i*7)%19;rect(x,y,3,2,'#000');rect(x+2,y+2,2,3,'#000');}
-    for(const x of [c+3,c+47]){rect(x,g-58,3,3);rect(x,g-55,2,5);line(x-2,g-54,x-5,g-50);line(x-5,g-50,x-5,g-57);}
+    for(const archer of wallArchers){
+      const x=c+archer.offset,y=g-(archer.offset===26?40:50);
+      rect(x,y-9,3,3);rect(x,y-6,2,5);line(x,y-2,x-1,y);line(x+1,y-2,x+3,y);
+      // A bow facing the approaching army, plus a visible release pose.
+      line(x-4,y-8,x-6,y-5);line(x-6,y-5,x-4,y-2);line(x-4,y-8,x-4,y-2);line(x,y-5,x-4,y-5);
+      if(archer.flash>0)line(x-8,y-5,x-3,y-5);
+    }
     }else{for(let i=0;i<22;i++)rect(c-4+(i*13)%62,g-1-(i*7)%8,3+(i%4),2+(i%3));}
     // Trebuchet rolls in, then periodically winds and releases its throwing arm.
     const tx=Math.min(37,-20+time*7),ty=g-2;
@@ -96,10 +110,16 @@ if (stage) {
   canvas.addEventListener('pointerleave',()=>{hoverPoint=null;draw();});
   function update(dt) {
     time+=dt;
-    if(time>nextSpawn){nextSpawn=time+8+Math.random()*7;spawn(1);}
+    if(!victory&&time>nextSpawn){nextSpawn=time+8+Math.random()*7;spawn(1);}
     if(castleHP>0&&time>nextDefender){nextDefender=time+11+Math.random()*7;spawn(-1);}
+    for(const archer of wallArchers)archer.flash=Math.max(0,archer.flash-dt);
     for(const s of soldiers){
       if(s.dead){s.dead-=dt;continue;}
+      if(s.celebrating)continue;
+      if(victory&&s.side===-1){s.x-=dt*8;continue;}
+      if(s.side===1&&castleHP===0&&s.x>=castle()-8){
+        victory=true;s.x=castle()+Math.min(45,soldiers.filter(unit=>unit.celebrating).length*9);s.celebrating=true;continue;
+      }
       s.cooldown=Math.max(0,(s.cooldown||0)-dt);
       const enemy=soldiers.find(e=>!e.dead&&e.side!==s.side&&Math.abs(e.x-s.x)<(s.kind==='giant'?15:9));
       if(enemy){if(!s.cooldown){enemy.hp-=s.power;s.cooldown=1.2;if(enemy.hp<=0){enemy.dead=2;burst(enemy.x,ground()-5);}}}
@@ -109,7 +129,14 @@ if (stage) {
     }
     soldiers=soldiers.filter(s=>s.dead>=0&&s.x>-20&&s.x<width+20);
     if(time>nextShot&&time>7&&engineHP>0&&castleHP>0){nextShot=time+12;shots.push({age:0,start:43,end:castle()+26,y:ground()-27,targetY:ground()-27,duration:3.5,arc:48});}
-    if(time>nextArrow&&castleHP>0){nextArrow=time+3;const target=soldiers.find(s=>s.side===1&&!s.dead&&s.x>castle()-180);if(target)for(const offset of [3,47])shots.push({age:0,start:castle()+offset,end:target.x,y:ground()-56,targetY:ground()-6,duration:1.5,arc:12,arrow:true,target});}
+    if(time>nextArrow&&castleHP>0){
+      nextArrow=time+2.5;
+      const targets=soldiers.filter(s=>s.side===1&&!s.dead&&s.x>castle()-240).sort((a,b)=>b.x-a.x);
+      if(targets.length)wallArchers.forEach((archer,index)=>{
+        const target=targets[index%targets.length];archer.flash=.4;
+        shots.push({age:0,start:castle()+archer.offset,end:target.x,y:ground()-(archer.offset===26?45:55),targetY:ground()-target.lane-6,duration:1.5,arc:12,arrow:true,target});
+      });
+    }
     for(const shot of shots){shot.age+=dt;if(shot.age>=shot.duration){if(shot.arrow){if(!shot.target.dead){shot.target.hp-=10;if(shot.target.hp<=0)shot.target.dead=2;}}else hurtCastle(8);burst(shot.end,shot.targetY);}}
     shots=shots.filter(s=>s.age<s.duration);
     for(const d of debris){d.x+=d.vx*dt;d.y+=d.vy*dt;d.vy+=65*dt;d.life-=dt;}debris=debris.filter(d=>d.life>0);
@@ -140,6 +167,24 @@ if(nature){
     nature.style.width=`${w*p}px`;nature.style.height=`${h*p}px`;ctx.imageSmoothingEnabled=false;ctx.clearRect(0,0,w,h);
     const x=w-263+(innerWidth<681?30:0),y=h-168;
     ctx.drawImage(sprites.landscape,x,y);
+    const layout=battleLayout();
+    const fortX=Math.round((16+(layout.width-64)*layout.pixel)/p);
+    const fortY=Math.round((innerHeight-layout.bottom-10*layout.pixel)/p);
+    // Cut a level shelf into the existing cliff. The original tree stays intact.
+    ctx.clearRect(fortX-5,fortY-22,22,22);
+    ctx.fillStyle='#fff';
+    for(let column=-13;column<45;column++){
+      const top=column<-4?Math.floor((-column-4)/2):column<17?0:-Math.floor((column-17)*.65);
+      const depth=column<17?Math.max(2,Math.round(8-Math.abs(column-5)*.35)):3+(column%4);
+      ctx.fillRect(fortX+column,fortY+top,1,depth);
+    }
+    // Broken rock seams and a stepped approach beneath the tiny keep.
+    ctx.fillStyle='#000';
+    for(let row=2;row<8;row+=3)for(let column=-2;column<16;column+=7){
+      ctx.fillRect(fortX+column+(row%3),fortY+row,3,1);
+      ctx.fillRect(fortX+column+1,fortY+row+1,1,1);
+    }
+    for(let step=0;step<5;step++)ctx.clearRect(fortX-14+step*2,fortY+2+step,2,1);
     const cycle=t%28,fly=cycle>6&&cycle<23;
     const bx=fly?x+75-(cycle-6)*18:x+75,by=fly?y+94-Math.sin((cycle-6)/17*Math.PI)*60:y+94;
     ctx.drawImage(sprites.bird,Math.round(bx),Math.round(by));
