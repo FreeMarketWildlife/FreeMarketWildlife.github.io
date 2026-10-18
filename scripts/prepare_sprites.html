@@ -1,0 +1,48 @@
+<!doctype html><meta charset="utf-8"><title>FMW sprite preparation</title>
+<style>body{background:#000;color:#fff;font:16px monospace}canvas{display:block;image-rendering:pixelated;margin:24px 0}#landscape{width:1052px;height:672px}#bird{width:72px;height:64px}</style>
+<h1>Approved concept → binary transparent sprite assets</h1><p id="status">Preparing</p>
+<canvas id="landscape" width="263" height="168"></canvas><canvas id="bird" width="18" height="16"></canvas>
+<script type="module">
+const image = new Image();
+image.src='/design/concepts/01-the-clearing.png';
+await image.decode();
+function prepare(id, crop, mask) {
+ const canvas=document.getElementById(id), ctx=canvas.getContext('2d',{willReadFrequently:true});
+ ctx.imageSmoothingEnabled=false;
+ ctx.drawImage(image,...crop,0,0,canvas.width,canvas.height);
+ const data=ctx.getImageData(0,0,canvas.width,canvas.height);
+ for(let y=0;y<canvas.height;y++) for(let x=0;x<canvas.width;x++) {
+  const offset=(y*canvas.width+x)*4;
+  const sourceX=crop[0]+(x+.5)*crop[2]/canvas.width;
+  const sourceY=crop[1]+(y+.5)*crop[3]/canvas.height;
+  const white=(data.data[offset]+data.data[offset+1]+data.data[offset+2])/3>=192;
+  const keep=white && (!mask || mask(sourceX,sourceY));
+  data.data[offset]=data.data[offset+1]=data.data[offset+2]=255;
+  data.data[offset+3]=keep?255:0;
+ }
+ ctx.putImageData(data,0,0);
+}
+prepare('landscape',[620,269,1052,672],(x,y)=>!(x<1000&&y<600)&&!(x>=918&&x<=996&&y>=642&&y<708)&&!(x>=1420&&y>=860));
+prepare('bird',[920,644,72,64]);
+for (const id of ['landscape','bird']) {
+ const link=document.createElement('a');
+ link.href=document.getElementById(id).toDataURL('image/png');
+ link.download=id+'.png';link.textContent='Download '+id;
+ link.style='display:block;color:#fff;margin:24px';
+ document.body.append(link);
+}
+for (const id of ['landscape','bird']) {
+ const canvas=document.getElementById(id),data=canvas.getContext('2d').getImageData(0,0,canvas.width,canvas.height).data;
+ const stride=Math.ceil(canvas.width/8)+1,bytes=new Uint8Array(stride*canvas.height);
+ for(let y=0;y<canvas.height;y++) for(let x=0;x<canvas.width;x++) if(data[(y*canvas.width+x)*4+3]) bytes[y*stride+1+(x>>3)]|=128>>(x%8);
+ const stream=new Blob([bytes]).stream().pipeThrough(new CompressionStream('deflate'));
+ const compressed=new Uint8Array(await new Response(stream).arrayBuffer());
+ const pre=document.createElement('pre');pre.id=id+'-export';pre.textContent=btoa(String.fromCharCode(...compressed));document.body.append(pre);
+}
+const recorded=await fetch('/scripts/pixel-masks.json').then(r=>r.json());
+const wanted=document.getElementById('landscape-export').textContent;
+const have=recorded.landscape.deflate;
+let first=0;while(first<Math.min(wanted.length,have.length)&&wanted[first]===have[first])first++;
+const comparison=document.createElement('p');comparison.id='comparison';comparison.textContent=JSON.stringify({first,wanted:wanted.slice(first-16,first+64),have:have.slice(first-16,first+64),wantedLength:wanted.length,haveLength:have.length});document.body.append(comparison);
+document.getElementById('status').textContent='Ready · only opaque white and transparent pixels';
+</script>

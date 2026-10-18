@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Free Market Wildlife. Build a Career. Explore the portfolio, Tanoshi, or start a conversation.">
+  <title>Free Market Wildlife — Build a Career</title>
+  <link rel="icon" href="/assets/images/mark.svg" type="image/svg+xml">
+  <link rel="preload" href="/assets/fonts/fmw-display.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="/assets/fonts/fmw-pixel.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <script type="module" src="/assets/js/app.js"></script>
+  <script type="module" src="/assets/js/scene.js"></script>
+</head>
+<body class="home">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="pixel-scene" aria-hidden="true" data-pixel-scene data-animation="off">
+    <canvas data-scene-layer="scenery"></canvas>
+    <canvas data-scene-layer="wildlife"></canvas>
+    <canvas data-scene-layer="foreground"></canvas>
+  </div>
+  <main class="landing" id="main" tabindex="-1">
+    <div class="landing-copy">
+      <img class="landing-logo" src="/assets/images/mark.svg" width="96" height="96" alt="Free Market Wildlife emblem">
+      <h1>Free Market<br>Wildlife</h1>
+      <p class="landing-tagline">Build a Career</p>
+      <nav class="landing-nav" aria-label="Primary">
+        <a href="/portfolio/"><span class="menu-arrow" aria-hidden="true"></span>Portfolio</a>
+        <a href="/tanoshi/"><span class="menu-arrow" aria-hidden="true"></span>Tanoshi</a>
+        <a href="/contact/"><span class="menu-arrow" aria-hidden="true"></span>Contact</a>
+      </nav>
+    </div>
+  </main>
+  <button class="home-access" type="button" data-open-access aria-label="Client access"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""><span>Client access</span></button>
+  <dialog class="access-dialog" id="access-dialog" aria-labelledby="access-title">
+  <div class="dialog-panel">
+    <button class="close-button" type="button" data-close-access aria-label="Close client access">×</button>
+    <span class="eyebrow">CLIENT ACCESS / PRIVATE PATH</span>
+    <div class="lock-emblem"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""></div>
+    <h2 id="access-title">Your space.<br>Your next move.</h2>
+    <p class="muted">Enter your workspace passcode to continue.</p>
+    <form data-access-form>
+      <label for="access-code">Workspace passcode</label>
+      <input id="access-code" name="passcode" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" required aria-describedby="access-error" placeholder="Enter passcode">
+      <p class="form-error" id="access-error" aria-live="polite"></p>
+      <button class="button primary" type="submit">Open workspace <span aria-hidden="true">→</span></button>
+    </form>
+    <p class="micro">Static passcode access is a convenience barrier. Please keep confidential information off this public site.</p>
+  </div>
+</dialog>
+</body>
+</html>
