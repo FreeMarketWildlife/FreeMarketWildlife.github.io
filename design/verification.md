@@ -58,3 +58,9 @@ Applied the selected Pixel Slab direction as real heading text with original loc
 Replaced the approximate hand-built slab glyphs with glyphs sampled directly from the approved Pixel Slab concept. Desktop uses a 21-cell cap height and natural reference proportions; portrait uses a separate 14-cell rendering at the same proportions, rather than horizontal compression. Coverage thresholding keeps counters open and removes borderline edge weight. Both fonts use integer-grid contours and pure white/black rendering. Line advances are 25 and 17 logical cells to match the reference's tighter two-line setting.
 
 Browser checks passed at 1440 × 800 (603px title), 390 × 780 (262px title), and 320 × 568 (262px title), without title or document overflow and with every menu/sign-in control in bounds. Refreshed both homepage screenshots. Only typography files, documentation, and previews were edited; scene modules were untouched.
+
+## Clean normal-font pixel pass
+
+Replaced concept-image tracing with normal Roboto Slab Regular (weight 400), rendered through FreeType monochrome hinting and converted into native integer-grid font contours. Natural glyph anatomy, advance widths, and pair spacing come from the source font. Desktop uses a 21-pixel cap; the smaller type uses a 13-pixel cap. Both remain binary white/black at the shared integer display scale. The Apache 2.0 source license and attribution are included.
+
+Browser checks passed at 1440 × 800 (630px title), 390 × 780 (266px title), and 320 × 568 (266px title). Title scroll and client widths matched, the document did not overflow, and every menu/sign-in control fit. Desktop/mobile screenshots were refreshed and browser sizing was restored. Scene files were untouched.

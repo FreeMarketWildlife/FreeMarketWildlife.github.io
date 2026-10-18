@@ -1,0 +1,6 @@
+FMW Clean Slab and FMW Clean Slab Small are monochrome rasterized derivatives of Roboto Slab Regular.
+Copyright 2018 The Roboto Slab Project Authors (https://github.com/googlefonts/robotoslab)
+Source: https://github.com/google/fonts/tree/main/apache/robotoslab
+Source font: scripts/fonts/RobotoSlab-Variable.ttf
+License: Apache License, Version 2.0; see RobotoSlab-LICENSE.txt.
+Modifications: integer-grid monochrome rasterization, title-only glyph subset, renamed family, and reconstructed pixel contours.

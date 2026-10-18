@@ -109,8 +109,8 @@ dialog { background: var(--black); color: var(--white); border: 1px solid var(--
 @media (max-width: 680px) { .landing-nav .menu-arrow { top: 14px; } }
 @media (max-height: 480px) and (orientation: landscape) { .landing-nav .menu-arrow { top: 12px; } }
 /* Approved Pixel Slab direction: real text, original bitmap slab-serif fonts. */
-@font-face { font-family: "FMW Slab Reference"; src: url("../fonts/fmw-slab-reference.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
-@font-face { font-family: "FMW Slab Small"; src: url("../fonts/fmw-slab-small.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
-.home .landing h1 { font-family: "FMW Slab Reference", monospace; font-size: calc(var(--pixel) * 24); line-height: calc(var(--pixel) * 25); }
-@media (max-width: 680px) { .home .landing h1 { font-family: "FMW Slab Small", monospace; font-size: calc(var(--pixel) * 16); line-height: calc(var(--pixel) * 17); } }
-@media (max-height: 480px) and (orientation: landscape) { .home .landing h1 { font-family: "FMW Slab Small", monospace; font-size: calc(var(--pixel) * 16); line-height: calc(var(--pixel) * 17); } }
+@font-face { font-family: "FMW Clean Slab"; src: url("../fonts/fmw-clean-slab.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "FMW Clean Slab Small"; src: url("../fonts/fmw-clean-slab-small.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+.home .landing h1 { font-family: "FMW Clean Slab", monospace; font-size: calc(var(--pixel) * 24); line-height: calc(var(--pixel) * 25); }
+@media (max-width: 680px) { .home .landing h1 { font-family: "FMW Clean Slab Small", monospace; font-size: calc(var(--pixel) * 16); line-height: calc(var(--pixel) * 17); } }
+@media (max-height: 480px) and (orientation: landscape) { .home .landing h1 { font-family: "FMW Clean Slab Small", monospace; font-size: calc(var(--pixel) * 16); line-height: calc(var(--pixel) * 17); } }

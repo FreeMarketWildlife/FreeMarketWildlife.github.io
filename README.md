@@ -49,7 +49,7 @@ CNAME                         freemarketwildlife.com
 
 - Pure black `#000000` and pure white `#ffffff`, plus transparent pixels in the artwork.
 - The landing page uses exactly **Build a Career**, **Portfolio**, **Tanoshi** in a vertical list, with no tagline beneath the title.
-- The homepage wordmark uses the approved **Pixel Slab** direction through local `fmw-slab-reference.ttf` and `fmw-slab-small.ttf` bitmap fonts sampled from the approved reference. Rebuild them with `scripts/build_slab_font.py` in a fonttools and Pillow development environment.
+- The homepage wordmark starts from **Roboto Slab Regular**, rasterized through native monochrome font hinting into `fmw-clean-slab.ttf` and `fmw-clean-slab-small.ttf`. It uses normal letterforms and spacing rather than traced concept-image shapes. Source and derivative attribution are in `assets/fonts/NOTICE.txt`, with the Apache 2.0 license alongside it. Rebuild them with `scripts/build_slab_font.py` in a fonttools and Pillow development environment.
 - The menu arrow appears instantly on hover or keyboard focus. No idle selection is forced.
 - No CSS animations, transitions, scene timers, or requestAnimationFrame loop run.
 - The viewport-sized transparent stage has independent scenery, wildlife, and foreground canvases. The landscape and perched bird are separate PNG files; butterfly masks are defined independently.

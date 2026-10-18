@@ -1,64 +1,60 @@
-"""Build the Pixel Slab heading directly from the approved concept's glyphs.
-Developer dependencies: fonttools and Pillow. No website runtime dependency.
-Only source pixels are read; output is a native font with integer-grid contours.
+"""Normal type -> monochrome hinted pixel glyphs -> a native web typeface.
+Developer dependencies: Pillow and fonttools. Runtime dependencies: none.
+Source: Roboto Slab Regular, Apache 2.0, bundled with attribution/license.
 """
 from pathlib import Path
-from PIL import Image
+from math import ceil
+from PIL import Image, ImageDraw, ImageFont
 from fontTools.fontBuilder import FontBuilder
 from fontTools.pens.ttGlyphPen import TTGlyphPen
+from fontTools.ttLib import newTable, TTFont
+from fontTools.ttLib.tables._k_e_r_n import KernTable_format_0
 ROOT=Path(__file__).resolve().parents[1]
-REFERENCE=ROOT/'design/type-concepts/02-pixel-slab.png'
-# Measured ink bounds in the actual approved concept, not approximated letters.
-BOUNDS={
- 'F':(112,211,260,393),'R':(280,211,444,393),'E':(459,211,593,393),
- 'M':(835,211,1014,393),'A':(1028,211,1194,393),'K':(1378,211,1529,393),
- 'T':(1690,211,1809,393),'W':(112,426,337,607),'I':(356,426,432,607),
- 'L':(457,426,593,607),'D':(607,426,756,607),
-}
-source=Image.open(REFERENCE).convert('L')
-def sample(bounds,height):
- left,top,right,bottom=bounds;sw=right-left;sh=bottom-top
- width=round(sw*height/sh)
- grid=[]
- for y in range(height):
-  y0=top+y*sh//height;y1=top+(y+1)*sh//height
-  row=[]
-  for x in range(width):
-   x0=left+x*sw//width;x1=left+(x+1)*sw//width
-   white=sum(source.getpixel((xx,yy))>=180 for yy in range(y0,y1) for xx in range(x0,x1))
-   # Majority coverage gently trims boundary weight, preserving open counters.
-   row.append(int(white/((x1-x0)*(y1-y0))>=.55))
-  grid.append(row)
- return grid
+SOURCE=ROOT/'scripts/fonts/RobotoSlab-Variable.ttf'
+CHARS=sorted(set('FREE MARKETWILDLIFE'))
+copyright_text=TTFont(SOURCE)['name'].getDebugName(0)
 
 def build(small=False):
- height=14 if small else 21;em_cells=16 if small else 24;gap=1 if small else 2
- grids={char:sample(bounds,height) for char,bounds in BOUNDS.items()}
- grids[' ']=[[0]*(5 if small else 8) for _ in range(height)]
- fb=FontBuilder(em_cells*100,isTTF=True)
- names=['.notdef']+[f'u{ord(c):04X}' for c in grids]
- fb.setupGlyphOrder(names);fb.setupCharacterMap({ord(c):f'u{ord(c):04X}' for c in grids})
+ size=18 if small else 29;em=16 if small else 24
+ source=ImageFont.truetype(str(SOURCE),size)
+ source.set_variation_by_axes([400])
+ cap=-source.getbbox('H',anchor='ls')[1]
+ fb=FontBuilder(em*100,isTTF=True)
+ names=['.notdef']+[f'u{ord(c):04X}' for c in CHARS]
+ fb.setupGlyphOrder(names);fb.setupCharacterMap({ord(c):f'u{ord(c):04X}' for c in CHARS})
  glyphs={};metrics={}
- for char,name in [('F','.notdef')]+[(c,f'u{ord(c):04X}') for c in grids]:
-  grid=grids[char];pen=TTGlyphPen(None)
-  for y,row in enumerate(grid):
+ for char,name in [('F','.notdef')]+[(c,f'u{ord(c):04X}') for c in CHARS]:
+  advance=round(source.getlength(char))
+  # FreeType's native monochrome rasterization/hinting retains normal letter
+  # anatomy and produces real one-bit pixels. No traced AI letterforms.
+  mask=Image.new('1',(max(1,advance+2),cap))
+  ImageDraw.Draw(mask).text((0,cap),char,font=source,fill=1,anchor='ls')
+  pen=TTGlyphPen(None)
+  for y in range(mask.height):
    x=0
-   while x<len(row):
-    if not row[x]:x+=1;continue
+   while x<mask.width:
+    if not mask.getpixel((x,y)):x+=1;continue
     end=x+1
-    while end<len(row) and row[end]:end+=1
-    x0,x1=x*100,end*100;y0=(height-1-y)*100
+    while end<mask.width and mask.getpixel((end,y)):end+=1
+    x0,x1=x*100,end*100;y0=(cap-1-y)*100
     pen.moveTo((x0,y0));pen.lineTo((x0,y0+100));pen.lineTo((x1,y0+100));pen.lineTo((x1,y0));pen.closePath();x=end
-  glyphs[name]=pen.glyph();metrics[name]=((len(grid[0])+gap)*100,0)
+  glyphs[name]=pen.glyph();metrics[name]=(advance*100,0)
  fb.setupGlyf(glyphs);fb.setupHorizontalMetrics(metrics)
- ascent=height*100;descent=(em_cells-height)*100
- fb.setupHorizontalHeader(ascent=ascent,descent=-descent)
- family='FMW Slab Small' if small else 'FMW Slab Reference'
- fb.setupNameTable({'familyName':family,'styleName':'Regular','uniqueFontIdentifier':family+'-2','fullName':family,'psName':family.replace(' ',''),'version':'Version 2.0'})
- fb.setupOS2(sTypoAscender=ascent,sTypoDescender=-descent,sTypoLineGap=0,usWinAscent=ascent,usWinDescent=descent)
+ fb.setupHorizontalHeader(ascent=cap*100,descent=-(em-cap)*100)
+ family='FMW Clean Slab Small' if small else 'FMW Clean Slab'
+ fb.setupNameTable({'familyName':family,'styleName':'Regular','uniqueFontIdentifier':family+'-1','fullName':family,'psName':family.replace(' ',''),'version':'Version 1.0','copyright':copyright_text,'licenseDescription':'Derived from Roboto Slab, Apache License 2.0. See RobotoSlab-LICENSE.txt and NOTICE.txt.','licenseInfoURL':'https://www.apache.org/licenses/LICENSE-2.0'})
+ fb.setupOS2(sTypoAscender=cap*100,sTypoDescender=-(em-cap)*100,sTypoLineGap=0,usWinAscent=cap*100,usWinDescent=(em-cap)*100)
  fb.setupPost();fb.setupMaxp()
- path=ROOT/'assets/fonts'/('fmw-slab-small.ttf' if small else 'fmw-slab-reference.ttf')
+ kern={}
+ for a in CHARS:
+  for b in CHARS:
+   value=round(source.getlength(a+b)-source.getlength(a)-source.getlength(b))*100
+   if value:kern[(f'u{ord(a):04X}',f'u{ord(b):04X}')]=value
+ if kern:
+  table=newTable('kern');table.version=0
+  sub=KernTable_format_0();sub.version=0;sub.coverage=1;sub.kernTable=kern;table.kernTables=[sub];fb.font['kern']=table
+ path=ROOT/'assets/fonts'/('fmw-clean-slab-small.ttf' if small else 'fmw-clean-slab.ttf')
  fb.save(path)
- text='FREE MARKET'
- print(f'{family}: cap {height}, line {sum(metrics[f"u{ord(c):04X}"][0] for c in text)//100} logical pixels')
+ print(f'{family}: normal weight 400, {cap}-pixel cap, {round(source.getlength("FREE MARKET"))}-pixel title width')
 build();build(True)
+(ROOT/'assets/fonts/NOTICE.txt').write_text('FMW Clean Slab and FMW Clean Slab Small are monochrome rasterized derivatives of Roboto Slab Regular.\n'+copyright_text+'\nSource: https://github.com/google/fonts/tree/main/apache/robotoslab\nSource font: scripts/fonts/RobotoSlab-Variable.ttf\nLicense: Apache License, Version 2.0; see RobotoSlab-LICENSE.txt.\nModifications: integer-grid monochrome rasterization, title-only glyph subset, renamed family, and reconstructed pixel contours.\n')
