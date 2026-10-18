@@ -48,3 +48,7 @@ No remote Git repository, GitHub Pages publishing setting, DNS record, or domain
 ## Homepage refinement
 
 The supplied handheld-screen emblem was directly isolated into a white/transparent pixel mask, without a generative redraw. The homepage displays that copied emblem at 24 × 24 CSS pixels. Navigation is now Build a Career (the existing contact portal), Portfolio, and Tanoshi. The arrow is aligned to the text line rather than the full hit area, which keeps its point centered at every breakpoint. The existing top-right sign-in flow was preserved; lock icons were removed from top-right sign-in controls. Browser inspection confirmed the 24px logo, three updated labels, and zero images inside the homepage sign-in button. Source checks passed for all eight current pages.
+
+## Pixel Slab wordmark
+
+Applied the selected Pixel Slab direction as real heading text with original local bitmap fonts. Desktop uses FMW Slab; portrait uses FMW Slab Narrow. Browser checks at 1440 × 800, 390 × 780, and 320 × 568 confirmed the selected family, matching title scroll/client widths, no document overflow, and all menu/sign-in controls in bounds. Source checks passed for all eight current pages. Desktop/mobile screenshots were refreshed.

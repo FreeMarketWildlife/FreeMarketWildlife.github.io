@@ -34,7 +34,7 @@ CNAME
   <meta name="description" content="Free Market Wildlife. Build a Career. Explore the portfolio, Tanoshi, or start a conversation.">
   <title>Free Market Wildlife — Build a Career</title>
   <link rel="icon" href="/assets/images/mark.svg" type="image/svg+xml">
-  <link rel="preload" href="/assets/fonts/fmw-display.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="/assets/fonts/fmw-slab.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="/assets/fonts/fmw-pixel.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="/assets/css/styles.css">
   <script type="module" src="/assets/js/app.js?v=2"></script>
@@ -192,6 +192,12 @@ dialog { background: var(--black); color: var(--white); border: 1px solid var(--
 .landing-nav .menu-arrow { top: calc(var(--pixel) * 4); margin-top: calc(var(--pixel) * -1); }
 @media (max-width: 680px) { .landing-nav .menu-arrow { top: 14px; } }
 @media (max-height: 480px) and (orientation: landscape) { .landing-nav .menu-arrow { top: 12px; } }
+/* Approved Pixel Slab direction: real text, original bitmap slab-serif fonts. */
+@font-face { font-family: "FMW Slab"; src: url("../fonts/fmw-slab.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "FMW Slab Narrow"; src: url("../fonts/fmw-slab-narrow.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+.home .landing h1 { font-family: "FMW Slab", monospace; font-size: calc(var(--pixel) * 20); line-height: 1.2; }
+@media (max-width: 680px) { .home .landing h1 { font-family: "FMW Slab Narrow", monospace; } }
+@media (max-height: 480px) and (orientation: landscape) { .home .landing h1 { font-family: "FMW Slab Narrow", monospace; } }
 ```
 
 ## assets/css/troy.css
