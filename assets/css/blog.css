@@ -1,0 +1,9 @@
+/* Blog reading type; established homepage lettering remains unchanged. */
+@font-face { font-family: "DotGothic16"; src: url("../fonts/DotGothic16-Regular.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+.blog-page { font-family: "DotGothic16", monospace; font-size: 16px; line-height: 2; }
+.blog-page button, .blog-page input, .blog-page select { font-family: inherit; }
+.blog-copy, .blog-post { font-size: 16px; line-height: 2; max-width: 65ch; overflow-wrap: anywhere; }
+.blog-sort { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; }
+.blog-sort select { font: inherit; color: var(--white); background: var(--black); border: 2px solid var(--white); border-radius: 0; padding: 8px; min-height: 44px; max-width: 100%; }
+.blog-sort option { color: var(--white); background: var(--black); }
+.blog-post { padding: 24px 0; border-bottom: 1px solid var(--white); }

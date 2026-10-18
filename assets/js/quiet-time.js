@@ -118,7 +118,7 @@ if (typeof document !== 'undefined') {
       $('import-json').value='';$('import-file').value='';importDialog.close();
     } catch(error){$('import-status').textContent=`Import stopped: ${error.message} Your saved entries were not changed.`;}
   });
-  function switchTab(){let section=location.hash.slice(1);if(!['quiet-time','sermons','tanoshi','equip','critz'].includes(section))section='quiet-time';for(const link of document.querySelectorAll('[data-section]')){const active=link.dataset.section===section;$(link.dataset.section).hidden=!active;if(active)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current');}}
+  function switchTab(){let section=location.hash.slice(1);if(!['quiet-time','sermons','tanoshi','equip','critz','content-ideas','presentations'].includes(section))section='quiet-time';for(const link of document.querySelectorAll('[data-section]')){const active=link.dataset.section===section;$(link.dataset.section).hidden=!active;if(active)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current');}}
   window.addEventListener('hashchange',switchTab);window.addEventListener('focus',()=>{if(!entries.some(e=>e.date===todayKey()))render();});setInterval(()=>{if(!entries.some(e=>e.date===todayKey()))render();},60000);
   render();switchTab();
 }

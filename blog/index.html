@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="The Free Market Wildlife blog. No posts published yet.">
+  <title>Blog — Free Market Wildlife</title>
+  <link rel="icon" href="/assets/images/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/blog.css">
+  <link rel="preload" href="/assets/fonts/DotGothic16-Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <script type="module" src="/assets/js/blog.js"></script>
+  <script type="module" src="/assets/js/app.js?v=2"></script>
+</head>
+<body class="blog-page">
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <a class="brand" href="/" aria-label="Free Market Wildlife home"><img src="/assets/images/mark.svg" width="64" height="64" alt=""><span>FREE MARKET<br>WILDLIFE</span></a>
+  <nav aria-label="Primary"><a href="/">Home</a><a href="/blog/" aria-current="page">Blog</a><a href="/contact/">Contact</a></nav>
+  <button class="access-button" type="button" data-open-access aria-label="Sign in"><span>Sign in</span></button>
+</header>
+<main class="page-main" id="main" tabindex="-1">
+  <div class="page-heading"><div><span class="eyebrow">FREE MARKET WILDLIFE</span><h1>Blog</h1></div></div>
+  <section aria-labelledby="posts-title">
+    <div class="section-rule"><h2 id="posts-title">Posts</h2>
+      <label class="blog-sort" for="blog-sort">Sort
+        <select id="blog-sort" name="sort">
+          <option value="newest" selected>Newest</option>
+          <option value="oldest">Oldest</option>
+          <option value="popular">Most popular</option>
+        </select>
+      </label>
+    </div>
+    <div data-blog-posts></div>
+    <p class="editorial-note blog-copy" data-blog-status aria-live="polite">No posts published yet.</p>
+    <a class="text-button" href="/">Back to home <span aria-hidden="true">←</span></a>
+  </section>
+</main>
+<footer class="site-footer"><span>INDEPENDENT THINKING. INTENTIONAL GROWTH.</span><span>© <span data-year>2026</span> FREE MARKET WILDLIFE</span></footer>
+<dialog class="access-dialog" id="access-dialog" aria-labelledby="access-title">
+  <div class="dialog-panel">
+    <button class="close-button" type="button" data-close-access aria-label="Close client access">×</button>
+    <span class="eyebrow">CLIENT WORKSPACE</span>
+    <div class="lock-emblem"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""></div>
+    <h2 id="access-title">Sign in.</h2>
+    <p class="muted">Enter your workspace password to continue.</p>
+    <form data-access-form>
+      <label for="access-code">Password</label>
+      <input id="access-code" name="passcode" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" required aria-describedby="access-error" placeholder="Enter password">
+      <p class="form-error" id="access-error" aria-live="polite"></p>
+      <button class="button primary" type="submit">Continue <span aria-hidden="true">→</span></button>
+    </form>
+    <p class="micro">Temporary preview access. Public content only.</p>
+  </div>
+</dialog>
+</body>
+</html>

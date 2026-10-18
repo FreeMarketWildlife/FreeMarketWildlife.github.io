@@ -1,1 +1,14 @@
 header nav { flex-wrap:wrap; gap:20px; } header { flex-wrap:wrap; } main { max-width:1200px; } .planner-tabs { display:flex; flex-wrap:wrap; gap:8px; margin:20px 0; }.planner-tabs button[aria-pressed=true] { background:#fff;color:#000; }.planner-note,.planner-status,.goal-state { font-size:13px; }.planner-toolbar { display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin:24px 0; }.planner-import { margin:0; }.planner-import input { width:auto; max-width:250px; display:block; font-size:12px; padding:4px; }.goal-grid { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin:24px 0; }.goal-card { border:1px solid #fff; padding:20px; min-width:0; }.goal-card h3 { margin:8px 0 20px; font-size:20px; }.metric-total { font-size:26px; font-weight:bold; margin:12px 0; }.goal-state { margin:0; text-transform:uppercase; letter-spacing:1px; }.goal-card progress { display:block;width:100%;height:12px; accent-color:#fff; border:1px solid #fff; background:#000; }.goal-card progress::-webkit-progress-bar { background:#000; }.goal-card progress::-webkit-progress-value { background:#fff; }.goal-card progress::-moz-progress-bar { background:#fff; } [data-planner] textarea { display:block; width:100%; font:inherit; line-height:1.7; color:#fff;background:#000;border:1px solid #fff; padding:16px;resize:vertical; margin-top:16px; } .goal-form { margin:16px 0 0; }.goal-form label { margin:12px 0; }.goal-form select { display:block;width:100%;padding:10px;background:#000;color:#fff;border:1px solid #fff;font:inherit; }.goal-form button { width:auto; }.goal-card summary, [data-planner] > div > details > summary { cursor:pointer; text-decoration:underline; } #tanoshi [data-planner],#equip [data-planner],#critz [data-planner] { margin-top:12px; } @media(max-width:650px){.goal-grid{grid-template-columns:1fr;}header nav{width:100%;order:3;gap:18px;}header{gap:16px;}.metric-total{font-size:23px;}}
+
+/* Shared Content Ideas editor; browser-local and scoped per workspace. */
+.idea-filters { display:flex; flex-wrap:wrap; gap:16px; margin:24px 0; }
+.idea-filters label { flex:1 1 150px; min-width:0; }
+.idea-filters input,.idea-filters select,.idea-form input,.idea-form select,.idea-form textarea { display:block; width:100%; max-width:100%; min-height:44px; padding:10px; color:#fff; background:#000; border:1px solid #fff; font:inherit; box-sizing:border-box; }
+.idea-form { max-width:720px; margin-top:16px; }
+.idea-form label { display:block; margin:16px 0; }
+.idea-form textarea { line-height:1.7; }
+[data-content-ideas] summary { cursor:pointer; text-decoration:underline; padding:12px 0; }
+[data-content-ideas] button { min-height:44px; margin:8px 8px 8px 0; }
+[data-content-ideas] .goal-card { margin:16px 0; overflow-wrap:anywhere; }
+[data-content-ideas] h4 { font-size:18px; margin:0 0 12px; }
+.idea-notes { white-space:pre-wrap; }

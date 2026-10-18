@@ -1,0 +1,17 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const source=readFileSync('assets/js/content-ideas.js','utf8');
+const {validateIdeas,mergeIdeas,storageKey}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
+const idea={id:'fixture-1',title:'QA fixture',topic:'Testing',format:'Short',stage:'Idea',notes:'Synthetic test data'};
+const current={version:1,workspace:'troy-kearns',ideas:[idea]};
+assert.notEqual(storageKey('troy-kearns'),storageKey('kat-kai'));
+assert.notEqual(storageKey('philip-aram'),storageKey('philip-tanoshi'));
+assert.deepEqual(validateIdeas(current,'troy-kearns'),current);
+assert.throws(()=>validateIdeas(current,'kat-kai'));
+assert.throws(()=>mergeIdeas(current,{...current,workspace:'kat-kai'}));
+assert.equal(mergeIdeas(current,current).ideas.length,1,'repeat import does not duplicate');
+assert.equal(mergeIdeas(current,{...current,ideas:[{...idea,id:'fixture-2'}]}).ideas.length,2);
+assert.equal(mergeIdeas(current,{...current,ideas:[{...idea,title:'Older backup'}]}).ideas[0].title,'QA fixture','backup must not overwrite current edits');
+for(const patch of [{format:'Invented'},{stage:'Published'},{title:''},{notes:'x'.repeat(5001)}])assert.throws(()=>validateIdeas({...current,ideas:[{...idea,...patch}]},'troy-kearns'));
+assert.throws(()=>validateIdeas({...current,ideas:[idea,idea]},'troy-kearns'));
+console.log('PASS: Content Ideas validation, separate workspace keys, cross-client import rejection, non-overwriting/repeat-safe merge and limits.');

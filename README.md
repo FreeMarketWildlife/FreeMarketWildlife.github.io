@@ -48,7 +48,7 @@ CNAME                         freemarketwildlife.com
 ## Current design contract
 
 - Pure black `#000000` and pure white `#ffffff`, plus transparent pixels in the artwork.
-- The landing page uses exactly **Build a Career**, **Portfolio**, **Tanoshi** in a vertical list, with no tagline beneath the title.
+- The landing page uses **Build a Career**, **Portfolio**, **Tanoshi**, **Blog**, in that order in a vertical list, with no tagline beneath the title.
 - The homepage wordmark starts from **Roboto Slab Regular**, rasterized through native monochrome font hinting into `fmw-clean-slab.ttf` and `fmw-clean-slab-small.ttf`. It uses normal letterforms and spacing rather than traced concept-image shapes. Source and derivative attribution are in `assets/fonts/NOTICE.txt`, with the Apache 2.0 license alongside it. Rebuild them with `scripts/build_slab_font.py` in a fonttools and Pillow development environment.
 - The menu arrow appears instantly on hover or keyboard focus. No idle selection is forced.
 - No CSS animations, transitions, scene timers, or requestAnimationFrame loop run.
@@ -152,3 +152,9 @@ See `docs/analytics/DEPLOYMENT.md` for the exact deployment/acceptance steps and
 Run `node tests/test_quiet_time.mjs` for passage/search/date checks.
 
 Quiet Time also supports importing JSON backups (versions 1 and 2). Imports merge without overwriting existing IDs or duplicating identical entries; invalid files and over-limit fields are rejected before saving. Undated entries remain explicitly undated and sort after dated entries in date order; they can be assigned an original date later. Optional reflections and source notes preserve context separately from Scripture and prayers. Import files are processed locally in the browser, never uploaded. Journal content and personal backups belong outside this public repository.
+
+## Blog and content organization
+
+`/blog/` is the final homepage menu destination. It starts empty, with Newest, Oldest and Most popular sorting. Popularity is unavailable until genuine sourced data exists. Blog text and controls use the selected self-hosted DotGothic16 font with its retained SIL OFL license; homepage type is preserved. Shared artwork and typography rules are in `design/production-art.md`.
+
+Content Ideas is available in Troy, Kat & Kai, Philip’s personal workspace, and his Tanoshi, Equip and Critz planning areas. Lists are browser-local with per-workspace backup validation, not authenticated shared storage. See `docs/content-ideas.md`. Philip’s Presentations section starts empty; no private family/property presentation is included in public assets.
