@@ -34,7 +34,7 @@ CNAME
   <meta name="description" content="Free Market Wildlife. Build a Career. Explore the portfolio, Tanoshi, or start a conversation.">
   <title>Free Market Wildlife — Build a Career</title>
   <link rel="icon" href="/assets/images/mark.svg" type="image/svg+xml">
-  <link rel="preload" href="/assets/fonts/fmw-slab.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="/assets/fonts/fmw-slab-reference.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="/assets/fonts/fmw-pixel.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="/assets/css/styles.css">
   <script type="module" src="/assets/js/app.js?v=2"></script>
@@ -193,11 +193,11 @@ dialog { background: var(--black); color: var(--white); border: 1px solid var(--
 @media (max-width: 680px) { .landing-nav .menu-arrow { top: 14px; } }
 @media (max-height: 480px) and (orientation: landscape) { .landing-nav .menu-arrow { top: 12px; } }
 /* Approved Pixel Slab direction: real text, original bitmap slab-serif fonts. */
-@font-face { font-family: "FMW Slab"; src: url("../fonts/fmw-slab.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
-@font-face { font-family: "FMW Slab Narrow"; src: url("../fonts/fmw-slab-narrow.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
-.home .landing h1 { font-family: "FMW Slab", monospace; font-size: calc(var(--pixel) * 20); line-height: 1.2; }
-@media (max-width: 680px) { .home .landing h1 { font-family: "FMW Slab Narrow", monospace; } }
-@media (max-height: 480px) and (orientation: landscape) { .home .landing h1 { font-family: "FMW Slab Narrow", monospace; } }
+@font-face { font-family: "FMW Slab Reference"; src: url("../fonts/fmw-slab-reference.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "FMW Slab Small"; src: url("../fonts/fmw-slab-small.ttf") format("truetype"); font-weight: 400; font-style: normal; font-display: swap; }
+.home .landing h1 { font-family: "FMW Slab Reference", monospace; font-size: calc(var(--pixel) * 24); line-height: calc(var(--pixel) * 25); }
+@media (max-width: 680px) { .home .landing h1 { font-family: "FMW Slab Small", monospace; font-size: calc(var(--pixel) * 16); line-height: calc(var(--pixel) * 17); } }
+@media (max-height: 480px) and (orientation: landscape) { .home .landing h1 { font-family: "FMW Slab Small", monospace; font-size: calc(var(--pixel) * 16); line-height: calc(var(--pixel) * 17); } }
 ```
 
 ## assets/css/troy.css

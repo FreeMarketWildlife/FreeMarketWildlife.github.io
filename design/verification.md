@@ -52,3 +52,9 @@ The supplied handheld-screen emblem was directly isolated into a white/transpare
 ## Pixel Slab wordmark
 
 Applied the selected Pixel Slab direction as real heading text with original local bitmap fonts. Desktop uses FMW Slab; portrait uses FMW Slab Narrow. Browser checks at 1440 × 800, 390 × 780, and 320 × 568 confirmed the selected family, matching title scroll/client widths, no document overflow, and all menu/sign-in controls in bounds. Source checks passed for all eight current pages. Desktop/mobile screenshots were refreshed.
+
+## Pixel Slab reference correction
+
+Replaced the approximate hand-built slab glyphs with glyphs sampled directly from the approved Pixel Slab concept. Desktop uses a 21-cell cap height and natural reference proportions; portrait uses a separate 14-cell rendering at the same proportions, rather than horizontal compression. Coverage thresholding keeps counters open and removes borderline edge weight. Both fonts use integer-grid contours and pure white/black rendering. Line advances are 25 and 17 logical cells to match the reference's tighter two-line setting.
+
+Browser checks passed at 1440 × 800 (603px title), 390 × 780 (262px title), and 320 × 568 (262px title), without title or document overflow and with every menu/sign-in control in bounds. Refreshed both homepage screenshots. Only typography files, documentation, and previews were edited; scene modules were untouched.
