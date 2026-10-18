@@ -7,6 +7,8 @@ index.html
 assets/css/styles.css
 assets/css/troy.css
 assets/js/app.js
+assets/js/youtube.js
+scripts/update_youtube.py
 assets/js/clients.js
 assets/js/scene.js
 assets/js/scene-sprites.js
@@ -233,6 +235,11 @@ input { width: 100%; padding: 10px; } .form-error { min-height: 26px; margin: 8p
 form button { width: 100%; text-align: left; padding: 10px; }.button span { float: right; }
 .micro { font-size: 12px; margin-top: 20px; }.text-button { display: inline-block; margin-top: 12px; }
 @media(max-width: 480px) { header { gap: 20px; padding: 16px; } nav { gap: 16px; } main { padding: 16px; } header button { padding: 6px 0; } }
+.youtube-table { overflow-x: auto; margin-top: 20px; }
+table { border-collapse: collapse; width: 100%; min-width: 540px; text-align: left; }
+th, td { border: 1px solid #fff; padding: 10px 12px; font-weight: normal; }
+th { font-weight: bold; }
+.statistics-note { font-size: 13px; margin-top: 16px; }
 ```
 
 ## assets/js/app.js
@@ -375,6 +382,154 @@ if (copyButton) {
     }
   });
 }
+```
+
+## assets/js/youtube.js
+
+```javascript
+const status = document.querySelector('#youtube-status');
+const body = document.querySelector('#youtube-history');
+const date = value => new Date(value).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' });
+const cell = value => {
+  const td = document.createElement('td');
+  td.textContent = value;
+  return td;
+};
+try {
+  const response = await fetch('/assets/data/youtube.json', { cache: 'no-store' });
+  if (!response.ok) throw new Error('Data unavailable');
+  const data = await response.json();
+  const cutoff = Date.now() - 27 * 86400000;
+  const rows = data.snapshots.filter(row => Number.isFinite(Date.parse(row.observedAt)) &&
+    Date.parse(row.observedAt) >= cutoff && Date.parse(row.observedAt) <= Date.now());
+  const latest = rows[0];
+  if (latest) {
+    status.textContent = `Last successful update: ${date(latest.observedAt)}.`;
+    if (Date.now() - Date.parse(latest.observedAt) > 36 * 3600000) status.textContent += ' Update overdue; these counts are not current.';
+    if (data.status !== 'ok') status.textContent += ' The latest collection did not complete.';
+    for (const row of rows) {
+      const tr = document.createElement('tr');
+      tr.append(cell(date(row.observedAt)), ...['subscribers', 'views', 'videos'].map(key =>
+        cell(row[key] === null ? 'Not public' : Number(row[key]).toLocaleString())));
+      body.append(tr);
+    }
+  } else {
+    status.textContent = data.status === 'not_configured'
+      ? 'Not connected yet. Counts will appear after the YouTube API key is configured and the first update runs.'
+      : 'No recent data available. Check the latest GitHub Actions run.';
+    const tr = document.createElement('tr');
+    const td = cell('No observations yet.');
+    td.colSpan = 4;
+    tr.append(td);
+    body.append(tr);
+  }
+} catch {
+  status.textContent = 'YouTube data could not be loaded. Try again later.';
+}
+```
+
+## scripts/update_youtube.py
+
+```text
+"""Collect public YouTube channel totals. API key stays in the process environment.
+No database dependency; rolling state is held in short-lived CI artifacts, not Git.
+"""
+import json
+import os
+from pathlib import Path
+import sys
+from datetime import datetime, timedelta, timezone
+from urllib.request import Request, urlopen
+from urllib.parse import urlencode
+from urllib.error import HTTPError, URLError
+
+ROOT = Path(__file__).resolve().parents[1]
+MAX_AGE_DAYS = 27  # plus two-day CI artifact retention stays below 30 days
+CHANNEL_URL = 'https://www.youtube.com/troykearns'
+
+def timestamp(value):
+    return datetime.fromisoformat(value.replace('Z', '+00:00'))
+
+def prune(rows, now):
+    valid = {}
+    for row in rows:
+        try:
+            observed = timestamp(row['observedAt'])
+            if now - timedelta(days=MAX_AGE_DAYS) <= observed <= now:
+                valid[observed.date().isoformat()] = row
+        except (KeyError, TypeError, ValueError):
+            continue
+    return [valid[key] for key in sorted(valid, reverse=True)]
+
+def count(stats, key):
+    value = stats[key]
+    if not str(value).isdigit():
+        raise ValueError('Invalid count')
+    return int(value)
+
+def snapshot(item, now):
+    stats = item['statistics']
+    hidden = stats.get('hiddenSubscriberCount', False)
+    return {'observedAt': now.isoformat().replace('+00:00', 'Z'),
+            'subscribers': None if hidden else count(stats, 'subscriberCount'),
+            'views': count(stats, 'viewCount'), 'videos': count(stats, 'videoCount')}
+
+def fetch_channel(key, channel_id=None):
+    params = {'part': 'snippet,statistics'}
+    # The owner supplied a legacy /troykearns URL; resolve its username once.
+    params.update({'id': channel_id} if channel_id else {'forUsername': 'troykearns'})
+    req = Request('https://www.googleapis.com/youtube/v3/channels?' + urlencode(params),
+                  headers={'X-Goog-Api-Key': key, 'Accept': 'application/json'})
+    with urlopen(req, timeout=30) as response:
+        payload = json.load(response)
+    if len(payload.get('items', [])) != 1:
+        raise ValueError('Channel not found')
+    item = payload['items'][0]
+    if not isinstance(item.get('id'), str) or not item['id'].startswith('UC'):
+        raise ValueError('Invalid channel ID')
+    return item
+
+def update(previous, key, now, fetch=fetch_channel):
+    data = {'schemaVersion': 1, 'status': 'not_configured', 'channelUrl': CHANNEL_URL,
+            'channelTitle': 'Troy Kearns', 'channelId': previous.get('channelId'),
+            'updatedAt': None, 'snapshots': prune(previous.get('snapshots', []), now)}
+    if data['snapshots']:
+        data['updatedAt'] = data['snapshots'][0]['observedAt']
+    if not data['snapshots']:
+        data['channelId'] = None
+    if not key:
+        return data
+    try:
+        item = fetch(key, data['channelId'])
+        row = snapshot(item, now)
+        data['channelId'] = item['id']
+        data['channelTitle'] = item['snippet']['title']
+        data['snapshots'] = prune([row, *[r for r in data['snapshots']
+            if timestamp(r['observedAt']).date() != now.date()]], now)
+        data['updatedAt'] = row['observedAt']
+        data['status'] = 'ok'
+    except (HTTPError, URLError, TimeoutError, OSError, ValueError, KeyError, TypeError):
+        # Never print API responses, request objects, headers, or credentials.
+        data['status'] = 'update_failed'
+        print('::warning::YouTube update failed. Check API enablement, key restrictions, quota, and channel username.')
+    return data
+
+def main():
+    state_path = ROOT / '.youtube-state/youtube.json'
+    output_path = ROOT / 'assets/data/youtube.json'
+    previous = {}
+    if state_path.exists():
+        previous = json.loads(state_path.read_text())
+    data = update(previous, os.environ.get('YOUTUBE_API_KEY', '').strip(), datetime.now(timezone.utc))
+    output_path.write_text(json.dumps(data, indent=2) + '\n')
+    print('YouTube collector status: ' + data['status'])
+    summary = os.environ.get('GITHUB_STEP_SUMMARY')
+    if summary:
+        with open(summary, 'a') as stream:
+            stream.write(f"YouTube collector: **{data['status']}**. Retained snapshots: {len(data['snapshots'])}.\n")
+
+if __name__ == '__main__':
+    main()
 ```
 
 ## assets/js/clients.js
@@ -725,12 +880,18 @@ export async function loadSceneSprites() {
 <meta name="color-scheme" content="dark"><meta name="theme-color" content="#000000"><meta name="robots" content="noindex, nofollow">
 <title>Statistics — Troy Kearns</title>
 <link rel="icon" href="/assets/images/mark.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/assets/css/troy.css?v=3">
+<link rel="stylesheet" href="/assets/css/troy.css?v=4">
 <script type="module" src="/assets/js/app.js?v=2"></script>
+<script type="module" src="/assets/js/youtube.js"></script>
 </head><body data-client="troy-kearns">
 <div id="workspace-content" hidden inert>
 <header><a href="/" aria-label="Free Market Wildlife home"><img src="/assets/images/mark.svg" width="40" height="40" alt="Free Market Wildlife"></a><nav aria-label="Troy workspace"><a href="/troykearns/statistics/" aria-current="page">Statistics</a><a href="/troykearns/">Links</a></nav><button type="button" data-lock-workspace>Sign out</button></header>
-<main id="main" tabindex="-1"><h1>Statistics</h1><p>The spreadsheet will go here.</p></main>
+<main id="main" tabindex="-1"><h1>Statistics</h1><h2>YouTube</h2>
+<p><a href="https://www.youtube.com/troykearns" target="_blank" rel="noopener noreferrer">Troy Kearns on YouTube</a></p>
+<p id="youtube-status" role="status">Loading YouTube statistics…</p>
+<div class="youtube-table" role="region" tabindex="0" aria-label="YouTube channel history"><table><caption>Daily channel totals · rolling 27-day history</caption><thead><tr><th scope="col">Observed at</th><th scope="col">Subscribers (rounded)</th><th scope="col">Total views</th><th scope="col">Public videos</th></tr></thead><tbody id="youtube-history"></tbody></table></div>
+<p class="statistics-note">Source: YouTube Data API. Subscriber totals are rounded by YouTube. Each row is a channel snapshot, not views or subscribers gained that day. Missing days are not filled in.</p>
+<noscript><p>Enable JavaScript to load channel statistics.</p></noscript></main>
 </div>
 <dialog class="gate-dialog tk-gate" id="workspace-gate" open aria-labelledby="gate-title"><div class="gate-shell"><a class="brand" href="/"><img src="/assets/images/mark.svg" width="40" height="40" alt=""><span>FREE MARKET<br>WILDLIFE</span></a><div class="dialog-panel"><span class="eyebrow">TROY KEARNS / WORKSPACE</span><h2 id="gate-title">Sign in.</h2><p>Good to have you here.</p><form data-gate-form><label for="gate-code">Password</label><input id="gate-code" name="passcode" type="password" autocomplete="current-password" autocapitalize="off" spellcheck="false" required aria-describedby="gate-error" autofocus><p class="form-error" id="gate-error" aria-live="polite"></p><button class="button primary" type="submit">Continue <span aria-hidden="true">→</span></button></form><p class="micro">Temporary preview access. Public content only.</p><a class="text-button" href="/">← Back home</a><noscript><p>Enable JavaScript to use this preview.</p></noscript></div><span class="micro">FREE MARKET WILDLIFE</span></div></dialog>
 
@@ -840,8 +1001,11 @@ name: Deploy static site to GitHub Pages
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: '23 16 * * *'
   workflow_dispatch:
 permissions:
+  actions: read
   contents: read
   pages: write
   id-token: write
@@ -850,12 +1014,49 @@ concurrency:
   cancel-in-progress: false
 jobs:
   deploy:
+    timeout-minutes: 10
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Restore recent YouTube observations
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const artifacts = await github.rest.actions.listArtifactsForRepo({
+              owner: context.repo.owner, repo: context.repo.repo, per_page: 100,
+              name: 'youtube-history'
+            });
+            const latest = artifacts.data.artifacts.find(a => !a.expired &&
+              a.workflow_run?.head_branch === context.payload.repository.default_branch);
+            if (latest) {
+              const archive = await github.rest.actions.downloadArtifact({
+                owner: context.repo.owner, repo: context.repo.repo,
+                artifact_id: latest.id, archive_format: 'zip'
+              });
+              fs.writeFileSync(process.env.RUNNER_TEMP + '/youtube-history.zip', Buffer.from(archive.data));
+            }
+      - name: Read saved observations
+        run: |
+          mkdir -p .youtube-state
+          if [ -f "$RUNNER_TEMP/youtube-history.zip" ]; then
+            unzip -p "$RUNNER_TEMP/youtube-history.zip" youtube.json > .youtube-state/youtube.json
+          fi
+      - name: Collect YouTube totals
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: python3 scripts/update_youtube.py
+      - name: Retain rolling observations (not Git history)
+        uses: actions/upload-artifact@v4
+        with:
+          name: youtube-history
+          path: assets/data/youtube.json
+          retention-days: 2
+      - name: Test collector
+        run: python3 -m unittest discover -s tests -v
       - name: Validate static source
         run: python3 scripts/check_site.py
       - uses: actions/configure-pages@v5

@@ -105,3 +105,26 @@ Official references: [GitHub Pages workflows](https://docs.github.com/en/pages/g
 The canonical route is `/troykearns/`; `/troy-kearns/` remains a working alias. Both currently use the exact temporary password `Password`. The channel and seven other links were supplied by the owner, including Troy's public business email. YouTube's remote page could not be fetched during development; links are preserved as supplied with YouTube redirect wrappers removed. The workspace contains a plain Links page and a separate Statistics placeholder for the future spreadsheet. There is no overview, dashboard, or analytics table yet. Typography is standard sans-serif; only the home-link logo uses pixel art.
 
 Google and email-code authentication are deferred at the owner's request. Neither this password nor sessionStorage provides security. Before adding private material, move workspace content to a protected origin with enforced access rules covering documents, media, APIs, and alternate hostnames. Do not publish confidential material in this public repository.
+
+## YouTube automatic updates (free starter)
+
+The Statistics page reads `assets/data/youtube.json`. The Pages workflow runs at 16:23 UTC daily (9:23 AM Pacific daylight time / 8:23 AM Pacific standard time), on pushes to main, or manually. One channels.list request normally costs one quota unit. It fetches public subscribers (rounded), total views, and public video count. The supplied legacy username resolves the channel ID on first success; later updates use the stable ID. No channel-owner credentials are needed for these public totals.
+
+### One-time setup
+
+1. Sign in at https://console.cloud.google.com/ with your own Google account. Create a project named **Free Market Wildlife**. Do not start a paid trial or enable unrelated paid APIs for this starter.
+2. Open **APIs & Services → Library**, find **YouTube Data API v3**, and click **Enable**.
+3. Open **APIs & Services → Credentials → Create credentials → API key**. Restrict the key under **API restrictions** to **YouTube Data API v3** only. This collector runs on GitHub servers, so website/referrer restrictions do not apply; standard hosted runners do not have a stable outbound IP. Keep the key in GitHub Secrets, never in HTML, a commit, or chat. If Google offers a service-account binding, do not use that option for this public API-key collector.
+4. Open https://github.com/FreeMarketWildlife/FreeMarketWildlife.github.io/settings/secrets/actions and choose **New repository secret**. Name: `YOUTUBE_API_KEY`. Value: your API key. Save it.
+5. Open the repository's **Actions → Deploy static site to GitHub Pages → Run workflow → main → Run workflow**. A successful collection is shown in the run summary as **ok**. A green deployment by itself does not prove the API is connected: **not_configured** means the secret is missing, and **update_failed** means check API enablement, restrictions, quota, or the channel username.
+6. Visit `/troykearns/statistics/` and check the first observation and its timestamp. Confirm that the resolved channel shown by the API is Troy's channel before relying on the numbers. Later runs happen on GitHub even with this computer off.
+
+### History and limits
+
+API observations are NOT committed to Git. The workflow restores its most recent `youtube-history` artifact, keeps a rolling 27 days, and stores a new artifact for two days. This leaves a buffer below YouTube's standard 30-day non-authorized statistics retention limit. If updates stop for over two days, the artifact may expire and history starts again. This is an initial short-term tracker, not a permanent archive. Long-term history needs channel-owner authorization or applicable approved YouTube terms, plus suitable storage and expiry handling.
+
+The page shows stale data warnings and hides expired observations. Failed collections never invent zero counts. It is a static generated dataset, not a live browser request. If scheduling is disabled or publication fails, the deployed file can become stale; check failed workflows and remove/redeploy expired datasets rather than relying solely on the page hiding them. GitHub can delay scheduled jobs and automatically disables public-repository schedules after 60 days of repository inactivity; re-enable the workflow when notified. Keep short artifact retention; do not download and archive these snapshots indefinitely.
+
+Standard GitHub-hosted Actions execution is free in public repositories. This tiny dataset uses negligible artifact storage, which still has account allowances. No Social Blade, Cloudflare, paid Google subscription, or database is required. Developer accounts and API terms still apply. The public website password remains a preview barrier, so this version collects public totals only.
+
+References: https://developers.google.com/youtube/v3/docs/channels/list ; https://developers.google.com/youtube/terms/developer-policies ; https://docs.github.com/en/billing/concepts/product-billing/github-actions ; https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows

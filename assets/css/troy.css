@@ -27,3 +27,8 @@ input { width: 100%; padding: 10px; } .form-error { min-height: 26px; margin: 8p
 form button { width: 100%; text-align: left; padding: 10px; }.button span { float: right; }
 .micro { font-size: 12px; margin-top: 20px; }.text-button { display: inline-block; margin-top: 12px; }
 @media(max-width: 480px) { header { gap: 20px; padding: 16px; } nav { gap: 16px; } main { padding: 16px; } header button { padding: 6px 0; } }
+.youtube-table { overflow-x: auto; margin-top: 20px; }
+table { border-collapse: collapse; width: 100%; min-width: 540px; text-align: left; }
+th, td { border: 1px solid #fff; padding: 10px 12px; font-weight: normal; }
+th { font-weight: bold; }
+.statistics-note { font-size: 13px; margin-top: 16px; }
