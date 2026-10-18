@@ -240,6 +240,20 @@ table { border-collapse: collapse; width: 100%; min-width: 540px; text-align: le
 th, td { border: 1px solid #fff; padding: 10px 12px; font-weight: normal; }
 th { font-weight: bold; }
 .statistics-note { font-size: 13px; margin-top: 16px; }
+section[aria-labelledby="videos-title"] { margin-top: 40px; }
+.video-controls { display: flex; flex-wrap: wrap; gap: 20px; margin: 24px 0 12px; }
+.video-controls label { margin: 0; }
+.video-controls input, .video-controls select { display: block; margin-top: 6px; padding: 8px; width: 100%; font: inherit; background: #000; color: #fff; border: 1px solid #fff; border-radius: 0; }
+.video-controls label:first-child { flex: 1; min-width: 180px; }
+.video-controls label:last-child { min-width: 160px; }
+.video-pagination { display: flex; align-items: center; gap: 16px; margin-top: 16px; }
+.video-pagination button:disabled { cursor: default; border-style: dashed; }
+#video-rows td { vertical-align: top; }
+#video-rows td:first-child { min-width: 300px; width: 45%; }
+#video-rows details { margin-top: 8px; font-size: 13px; }
+#video-rows summary { cursor: pointer; text-decoration: underline; }
+.video-description, #video-rows pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+#video-rows pre { max-width: 500px; font-size: 12px; }
 ```
 
 ## assets/js/app.js
@@ -426,6 +440,90 @@ try {
 } catch {
   status.textContent = 'YouTube data could not be loaded. Try again later.';
 }
+
+const videoStatus = document.querySelector('#video-status');
+const videoRows = document.querySelector('#video-rows');
+const search = document.querySelector('#video-search');
+const sort = document.querySelector('#video-sort');
+const previous = document.querySelector('#video-prev');
+const next = document.querySelector('#video-next');
+const pageLabel = document.querySelector('#video-page');
+const resultsLabel = document.querySelector('#video-results');
+const number = value => value === undefined || value === null ? '—' : Number(value).toLocaleString();
+const duration = iso => {
+  const match = /^P(?:(\d+)D)?(?:T(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?)?$/.exec(iso || '');
+  if (!match) return '—';
+  const hours = Number(match[1] || 0) * 24 + Number(match[2] || 0);
+  const mins = Number(match[3] || 0);
+  const secs = String(Number(match[4] || 0)).padStart(2, '0');
+  return hours ? `${hours}:${String(mins).padStart(2, '0')}:${secs}` : `${mins}:${secs}`;
+};
+let videos = [], page = 0;
+function renderVideos() {
+  const query = search.value.trim().toLocaleLowerCase();
+  const filtered = videos.filter(v => [v.snippet.title, v.snippet.description, ...(v.snippet.tags || [])]
+    .join(' ').toLocaleLowerCase().includes(query));
+  filtered.sort((a, b) => {
+    if (sort.value === 'oldest') return a.snippet.publishedAt.localeCompare(b.snippet.publishedAt);
+    if (sort.value === 'newest') return b.snippet.publishedAt.localeCompare(a.snippet.publishedAt);
+    const field = { views: 'viewCount', likes: 'likeCount', comments: 'commentCount' }[sort.value];
+    return Number(b.statistics?.[field] ?? -1) - Number(a.statistics?.[field] ?? -1);
+  });
+  const pages = Math.max(1, Math.ceil(filtered.length / 50));
+  page = Math.min(page, pages - 1);
+  videoRows.replaceChildren();
+  for (const video of filtered.slice(page * 50, page * 50 + 50)) {
+    const tr = document.createElement('tr');
+    const titleCell = document.createElement('td');
+    const link = document.createElement('a');
+    link.href = `https://www.youtube.com/watch?v=${encodeURIComponent(video.id)}`;
+    link.target = '_blank'; link.rel = 'noopener noreferrer';
+    link.textContent = video.snippet.title;
+    const details = document.createElement('details');
+    const summary = document.createElement('summary'); summary.textContent = 'Details';
+    const description = document.createElement('p'); description.className = 'video-description';
+    description.textContent = video.snippet.description || 'No description.';
+    const tags = document.createElement('p'); tags.textContent = `Tags: ${(video.snippet.tags || []).join(', ') || '—'}`;
+    const meta = document.createElement('p');
+    meta.textContent = `Language: ${video.snippet.defaultAudioLanguage || video.snippet.defaultLanguage || '—'} · Captions: ${video.contentDetails?.caption ?? '—'} · License: ${video.status?.license || '—'}`;
+    const rawDetails = document.createElement('details');
+    const rawSummary = document.createElement('summary'); rawSummary.textContent = 'All returned public metadata';
+    const raw = document.createElement('pre'); raw.textContent = JSON.stringify(video, null, 2);
+    rawDetails.append(rawSummary, raw);
+    details.append(summary, description, tags, meta, rawDetails);
+    titleCell.append(link, details);
+    tr.append(titleCell, cell(new Date(video.snippet.publishedAt).toLocaleDateString()),
+      cell(duration(video.contentDetails?.duration)), cell(number(video.statistics?.viewCount)),
+      cell(number(video.statistics?.likeCount)), cell(number(video.statistics?.commentCount)));
+    videoRows.append(tr);
+  }
+  if (!filtered.length) { const tr = document.createElement('tr'); const td = cell('No matching videos.'); td.colSpan = 6; tr.append(td); videoRows.append(tr); }
+  resultsLabel.textContent = `${filtered.length.toLocaleString()} videos${query ? ' match your search' : ''}.`;
+  pageLabel.textContent = `Page ${page + 1} of ${pages}`;
+  previous.disabled = page === 0;
+  next.disabled = page + 1 >= pages;
+}
+if (videoStatus) {
+  search.addEventListener('input', () => { page = 0; renderVideos(); });
+  sort.addEventListener('change', () => { page = 0; renderVideos(); });
+  previous.addEventListener('click', () => { page--; renderVideos(); });
+  next.addEventListener('click', () => { page++; renderVideos(); });
+  try {
+    const response = await fetch('/assets/data/youtube-videos.json', { cache: 'no-store' });
+    if (!response.ok) throw new Error('Video data unavailable');
+    const catalog = await response.json();
+    const age = Date.now() - Date.parse(catalog.updatedAt);
+    if (catalog.status !== 'ok' || !Number.isFinite(age) || age > 27 * 86400000 || age < 0) {
+      throw new Error('No recent catalog');
+    }
+    videos = catalog.videos;
+    videoStatus.textContent = `Last successful video update: ${date(catalog.updatedAt)}. Checked ${catalog.uploadIdsChecked.toLocaleString()} upload IDs; ${videos.length.toLocaleString()} public videos returned.`;
+    if (age > 36 * 3600000) videoStatus.textContent += ' Update overdue.';
+    renderVideos();
+  } catch {
+    videoStatus.textContent = 'Video catalog is not available yet. Check the latest scheduled update.';
+  }
+}
 ```
 
 ## scripts/update_youtube.py
@@ -479,7 +577,7 @@ def fetch_channel(key, channel_id=None):
         {'forUsername': 'troykearns'}, {'forHandle': 'troykearns'}]
     payload = {}
     for channel_filter in filters:
-        params = {'part': 'snippet,statistics', **channel_filter}
+        params = {'part': 'snippet,statistics,contentDetails', **channel_filter}
         req = Request('https://www.googleapis.com/youtube/v3/channels?' + urlencode(params),
                       headers={'X-Goog-Api-Key': key, 'Accept': 'application/json'})
         with urlopen(req, timeout=30) as response:
@@ -523,6 +621,49 @@ def update(previous, key, now, fetch=fetch_channel):
         print('::warning::YouTube update failed. ' + reason)
     return data
 
+def api_get(key, endpoint, params):
+    req = Request('https://www.googleapis.com/youtube/v3/' + endpoint + '?' + urlencode(params),
+                  headers={'X-Goog-Api-Key': key, 'Accept': 'application/json'})
+    with urlopen(req, timeout=30) as response:
+        return json.load(response)
+
+
+def fetch_catalog(key, channel_id, now, request=api_get):
+    channels = request(key, 'channels', {'part': 'contentDetails', 'id': channel_id})
+    uploads = channels['items'][0]['contentDetails']['relatedPlaylists']['uploads']
+    ids, seen_ids, seen_tokens = [], set(), set()
+    token = None
+    while True:
+        params = {'part': 'contentDetails', 'playlistId': uploads, 'maxResults': 50}
+        if token:
+            params['pageToken'] = token
+        page = request(key, 'playlistItems', params)
+        for entry in page.get('items', []):
+            video_id = entry['contentDetails']['videoId']
+            if video_id not in seen_ids:
+                ids.append(video_id)
+                seen_ids.add(video_id)
+        token = page.get('nextPageToken')
+        if not token:
+            break
+        if token in seen_tokens:
+            raise ValueError('Repeated pagination token')
+        seen_tokens.add(token)
+    videos = []
+    parts = 'snippet,statistics,contentDetails,status,liveStreamingDetails,recordingDetails,localizations,paidProductPlacementDetails'
+    for start in range(0, len(ids), 50):
+        page = request(key, 'videos', {'part': parts, 'id': ','.join(ids[start:start + 50])})
+        for video in page.get('items', []):
+            if video.get('snippet', {}).get('channelId') != channel_id:
+                raise ValueError('Unexpected channel')
+            if video.get('status', {}).get('privacyStatus') == 'public':
+                videos.append(video)
+    videos.sort(key=lambda v: (v['snippet'].get('publishedAt', ''), v['id']), reverse=True)
+    return {'schemaVersion': 1, 'status': 'ok', 'channelId': channel_id,
+            'updatedAt': now.isoformat().replace('+00:00', 'Z'),
+            'uploadIdsChecked': len(ids), 'publicVideosReturned': len(videos), 'videos': videos}
+
+
 def main():
     state_path = ROOT / '.youtube-state/youtube.json'
     output_path = ROOT / 'assets/data/youtube.json'
@@ -532,6 +673,18 @@ def main():
     data = update(previous, os.environ.get('YOUTUBE_API_KEY', '').strip(), datetime.now(timezone.utc))
     output_path.write_text(json.dumps(data, indent=2) + '\n')
     print('YouTube collector status: ' + data['status'])
+    catalog = {'schemaVersion': 1, 'status': 'not_configured', 'updatedAt': None, 'videos': []}
+    key = os.environ.get('YOUTUBE_API_KEY', '').strip()
+    if key and data['channelId']:
+        try:
+            catalog = fetch_catalog(key, data['channelId'], datetime.now(timezone.utc))
+        except (HTTPError, URLError, TimeoutError, OSError, ValueError, KeyError, TypeError):
+            catalog['status'] = 'update_failed'
+            print('::warning::Video catalog update failed; no partial catalog was published.')
+    elif key:
+        catalog['status'] = 'update_failed'
+    (ROOT / 'assets/data/youtube-videos.json').write_text(json.dumps(catalog, ensure_ascii=False) + '\n')
+    print('YouTube video catalog: ' + catalog['status'] + '; public videos: ' + str(len(catalog['videos'])))
     summary = os.environ.get('GITHUB_STEP_SUMMARY')
     if summary:
         with open(summary, 'a') as stream:
@@ -891,7 +1044,7 @@ export async function loadSceneSprites() {
 <link rel="icon" href="/assets/images/mark.svg" type="image/svg+xml">
 <link rel="stylesheet" href="/assets/css/troy.css?v=4">
 <script type="module" src="/assets/js/app.js?v=2"></script>
-<script type="module" src="/assets/js/youtube.js"></script>
+<script type="module" src="/assets/js/youtube.js?v=5"></script>
 </head><body data-client="troy-kearns">
 <div id="workspace-content" hidden inert>
 <header><a href="/" aria-label="Free Market Wildlife home"><img src="/assets/images/mark.svg" width="40" height="40" alt="Free Market Wildlife"></a><nav aria-label="Troy workspace"><a href="/troykearns/statistics/" aria-current="page">Statistics</a><a href="/troykearns/">Links</a></nav><button type="button" data-lock-workspace>Sign out</button></header>
@@ -900,7 +1053,15 @@ export async function loadSceneSprites() {
 <p id="youtube-status" role="status">Loading YouTube statistics…</p>
 <div class="youtube-table" role="region" tabindex="0" aria-label="YouTube channel history"><table><caption>Daily channel totals · rolling 27-day history</caption><thead><tr><th scope="col">Observed at</th><th scope="col">Subscribers (rounded)</th><th scope="col">Total views</th><th scope="col">Public videos</th></tr></thead><tbody id="youtube-history"></tbody></table></div>
 <p class="statistics-note">Source: YouTube Data API. Subscriber totals are rounded by YouTube. Each row is a channel snapshot, not views or subscribers gained that day. Missing days are not filled in.</p>
-<noscript><p>Enable JavaScript to load channel statistics.</p></noscript></main>
+<section aria-labelledby="videos-title"><h2 id="videos-title">Videos</h2>
+<p id="video-status" role="status">Loading public videos…</p>
+<div class="video-controls"><label for="video-search">Search videos <input id="video-search" type="search" placeholder="Title, description, or tag"></label>
+<label for="video-sort">Sort <select id="video-sort"><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="views">Most views</option><option value="likes">Most likes</option><option value="comments">Most comments</option></select></label></div>
+<p id="video-results" role="status"></p>
+<div class="youtube-table" role="region" tabindex="0" aria-label="Public YouTube videos"><table><thead><tr><th scope="col">Video</th><th scope="col">Published</th><th scope="col">Duration</th><th scope="col">Views</th><th scope="col">Likes</th><th scope="col">Comments</th></tr></thead><tbody id="video-rows"></tbody></table></div>
+<div class="video-pagination"><button id="video-prev" type="button" disabled>Previous</button><span id="video-page"></span><button id="video-next" type="button" disabled>Next</button></div>
+<p class="statistics-note">50 videos per page. Details include descriptions, tags, language, caption availability, and other public metadata returned by YouTube. Unavailable counts show “—”. Private/deleted videos and owner-only analytics are excluded. Views use YouTube’s definitions, which differ for Shorts.</p></section>
+<noscript><p>Enable JavaScript to load channel and video statistics.</p></noscript></main>
 </div>
 <dialog class="gate-dialog tk-gate" id="workspace-gate" open aria-labelledby="gate-title"><div class="gate-shell"><a class="brand" href="/"><img src="/assets/images/mark.svg" width="40" height="40" alt=""><span>FREE MARKET<br>WILDLIFE</span></a><div class="dialog-panel"><span class="eyebrow">TROY KEARNS / WORKSPACE</span><h2 id="gate-title">Sign in.</h2><p>Good to have you here.</p><form data-gate-form><label for="gate-code">Password</label><input id="gate-code" name="passcode" type="password" autocomplete="current-password" autocapitalize="off" spellcheck="false" required aria-describedby="gate-error" autofocus><p class="form-error" id="gate-error" aria-live="polite"></p><button class="button primary" type="submit">Continue <span aria-hidden="true">→</span></button></form><p class="micro">Temporary preview access. Public content only.</p><a class="text-button" href="/">← Back home</a><noscript><p>Enable JavaScript to use this preview.</p></noscript></div><span class="micro">FREE MARKET WILDLIFE</span></div></dialog>
 

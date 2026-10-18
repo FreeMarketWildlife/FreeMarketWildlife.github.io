@@ -130,3 +130,11 @@ The page shows stale data warnings and hides expired observations. Failed collec
 Standard GitHub-hosted Actions execution is free in public repositories. This tiny dataset uses negligible artifact storage, which still has account allowances. No Social Blade, Cloudflare, paid Google subscription, or database is required. Developer accounts and API terms still apply. The public website password remains a preview barrier, so this version collects public totals only.
 
 References: https://developers.google.com/youtube/v3/docs/channels/list ; https://developers.google.com/youtube/terms/developer-policies ; https://docs.github.com/en/billing/concepts/product-billing/github-actions ; https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows
+
+## Public video catalog
+
+Statistics now includes a searchable, sortable, paginated video table. The daily collector traverses every page of the channel uploads playlist, deduplicates IDs, and requests public video metadata in batches of 50. It verifies channel ownership and public visibility for each returned video. No search-result cap or deliberate recent-video limit is used. The page reports both upload IDs checked and public videos returned; private, deleted, unavailable, and unlisted records are not displayed. A complete refresh replaces the catalog; failures publish an unavailable state rather than a partial catalog.
+
+The current catalog includes the metadata returned for snippet, statistics, contentDetails, status, liveStreamingDetails, recordingDetails, localizations, and paidProductPlacementDetails. It does not download video files, transcripts, or individual comments. Comment counts are included when available. Expand Details for descriptions, tags, languages, and all returned public metadata. Shorts are not guessed from duration because the Data API does not provide a reliable universal isShort flag. Views follow YouTube's platform definitions.
+
+Generated catalog data is deployed as assets/data/youtube-videos.json, refreshed daily, and is never committed to Git. The tracked file is an empty setup placeholder. Full video metadata is not copied into the rolling channel-history artifact. For around 5,330 uploads a full refresh typically takes about 215 one-unit requests, within the standard quota.

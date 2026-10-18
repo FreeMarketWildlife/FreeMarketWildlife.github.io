@@ -46,7 +46,7 @@ def fetch_channel(key, channel_id=None):
         {'forUsername': 'troykearns'}, {'forHandle': 'troykearns'}]
     payload = {}
     for channel_filter in filters:
-        params = {'part': 'snippet,statistics', **channel_filter}
+        params = {'part': 'snippet,statistics,contentDetails', **channel_filter}
         req = Request('https://www.googleapis.com/youtube/v3/channels?' + urlencode(params),
                       headers={'X-Goog-Api-Key': key, 'Accept': 'application/json'})
         with urlopen(req, timeout=30) as response:
@@ -90,6 +90,49 @@ def update(previous, key, now, fetch=fetch_channel):
         print('::warning::YouTube update failed. ' + reason)
     return data
 
+def api_get(key, endpoint, params):
+    req = Request('https://www.googleapis.com/youtube/v3/' + endpoint + '?' + urlencode(params),
+                  headers={'X-Goog-Api-Key': key, 'Accept': 'application/json'})
+    with urlopen(req, timeout=30) as response:
+        return json.load(response)
+
+
+def fetch_catalog(key, channel_id, now, request=api_get):
+    channels = request(key, 'channels', {'part': 'contentDetails', 'id': channel_id})
+    uploads = channels['items'][0]['contentDetails']['relatedPlaylists']['uploads']
+    ids, seen_ids, seen_tokens = [], set(), set()
+    token = None
+    while True:
+        params = {'part': 'contentDetails', 'playlistId': uploads, 'maxResults': 50}
+        if token:
+            params['pageToken'] = token
+        page = request(key, 'playlistItems', params)
+        for entry in page.get('items', []):
+            video_id = entry['contentDetails']['videoId']
+            if video_id not in seen_ids:
+                ids.append(video_id)
+                seen_ids.add(video_id)
+        token = page.get('nextPageToken')
+        if not token:
+            break
+        if token in seen_tokens:
+            raise ValueError('Repeated pagination token')
+        seen_tokens.add(token)
+    videos = []
+    parts = 'snippet,statistics,contentDetails,status,liveStreamingDetails,recordingDetails,localizations,paidProductPlacementDetails'
+    for start in range(0, len(ids), 50):
+        page = request(key, 'videos', {'part': parts, 'id': ','.join(ids[start:start + 50])})
+        for video in page.get('items', []):
+            if video.get('snippet', {}).get('channelId') != channel_id:
+                raise ValueError('Unexpected channel')
+            if video.get('status', {}).get('privacyStatus') == 'public':
+                videos.append(video)
+    videos.sort(key=lambda v: (v['snippet'].get('publishedAt', ''), v['id']), reverse=True)
+    return {'schemaVersion': 1, 'status': 'ok', 'channelId': channel_id,
+            'updatedAt': now.isoformat().replace('+00:00', 'Z'),
+            'uploadIdsChecked': len(ids), 'publicVideosReturned': len(videos), 'videos': videos}
+
+
 def main():
     state_path = ROOT / '.youtube-state/youtube.json'
     output_path = ROOT / 'assets/data/youtube.json'
@@ -99,6 +142,18 @@ def main():
     data = update(previous, os.environ.get('YOUTUBE_API_KEY', '').strip(), datetime.now(timezone.utc))
     output_path.write_text(json.dumps(data, indent=2) + '\n')
     print('YouTube collector status: ' + data['status'])
+    catalog = {'schemaVersion': 1, 'status': 'not_configured', 'updatedAt': None, 'videos': []}
+    key = os.environ.get('YOUTUBE_API_KEY', '').strip()
+    if key and data['channelId']:
+        try:
+            catalog = fetch_catalog(key, data['channelId'], datetime.now(timezone.utc))
+        except (HTTPError, URLError, TimeoutError, OSError, ValueError, KeyError, TypeError):
+            catalog['status'] = 'update_failed'
+            print('::warning::Video catalog update failed; no partial catalog was published.')
+    elif key:
+        catalog['status'] = 'update_failed'
+    (ROOT / 'assets/data/youtube-videos.json').write_text(json.dumps(catalog, ensure_ascii=False) + '\n')
+    print('YouTube video catalog: ' + catalog['status'] + '; public videos: ' + str(len(catalog['videos'])))
     summary = os.environ.get('GITHUB_STEP_SUMMARY')
     if summary:
         with open(summary, 'a') as stream:

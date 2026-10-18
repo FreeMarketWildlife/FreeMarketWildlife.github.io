@@ -60,4 +60,39 @@ class CollectorTests(unittest.TestCase):
         self.assertEqual(result['status'], 'update_failed')
         self.assertEqual(result['snapshots'], [])
 
+class VideoCatalogTests(unittest.TestCase):
+    def test_all_pages_batched_and_nonpublic_excluded(self):
+        calls = []
+        def request(key, endpoint, params):
+            calls.append((endpoint, params))
+            if endpoint == 'channels':
+                return {'items': [{'contentDetails': {'relatedPlaylists': {'uploads': 'uploads'}}}]}
+            if endpoint == 'playlistItems':
+                indices = range(50) if 'pageToken' not in params else range(49, 52)
+                result = {'items': [{'contentDetails': {'videoId': f'v{i}'}} for i in indices]}
+                if 'pageToken' not in params: result['nextPageToken'] = 'page2'
+                return result
+            return {'items': [{'id': id, 'snippet': {'channelId': 'UCtest', 'publishedAt': '2026-10-01T00:00:00Z'},
+                               'status': {'privacyStatus': 'private' if id == 'v51' else 'public'}}
+                              for id in params['id'].split(',')]}
+        result = collector.fetch_catalog('key', 'UCtest', NOW, request)
+        self.assertEqual(result['uploadIdsChecked'], 52)
+        self.assertEqual(result['publicVideosReturned'], 51)
+        batches = [params['id'].split(',') for endpoint, params in calls if endpoint == 'videos']
+        self.assertEqual([len(batch) for batch in batches], [50, 2])
+        self.assertNotIn('v51', [video['id'] for video in result['videos']])
+
+    def test_repeated_page_token_fails_instead_of_partial_catalog(self):
+        def request(key, endpoint, params):
+            if endpoint == 'channels': return {'items': [{'contentDetails': {'relatedPlaylists': {'uploads': 'uploads'}}}]}
+            return {'items': [], 'nextPageToken': 'repeat'}
+        with self.assertRaises(ValueError): collector.fetch_catalog('key', 'UCtest', NOW, request)
+
+    def test_other_channel_rejected(self):
+        def request(key, endpoint, params):
+            if endpoint == 'channels': return {'items': [{'contentDetails': {'relatedPlaylists': {'uploads': 'uploads'}}}]}
+            if endpoint == 'playlistItems': return {'items': [{'contentDetails': {'videoId': 'video'}}]}
+            return {'items': [{'id': 'video', 'snippet': {'channelId': 'UCwrong'}, 'status': {'privacyStatus': 'public'}}]}
+        with self.assertRaises(ValueError): collector.fetch_catalog('key', 'UCtest', NOW, request)
+
 if __name__ == '__main__': unittest.main()
