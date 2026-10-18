@@ -26,6 +26,16 @@ class CollectorTests(unittest.TestCase):
         self.assertIn('forHandle=troykearns', network.call_args_list[1].args[0].full_url)
         self.assertNotIn('test-key', network.call_args_list[1].args[0].full_url)
 
+    def test_kat_kai_handle_and_channel_identity(self):
+        reply = io.BytesIO(json.dumps({'items': [item()]}).encode())
+        with patch.object(collector, 'urlopen', return_value=reply) as network:
+            collector.fetch_channel('test-key', handle='KatandKaiPeakOfficial')
+        self.assertIn('forHandle=KatandKaiPeakOfficial', network.call_args.args[0].full_url)
+        result = collector.update({}, '', NOW, channel_url='https://www.youtube.com/@KatandKaiPeakOfficial', channel_title='Kat & Kai')
+        self.assertEqual(result['channelTitle'], 'Kat & Kai')
+        self.assertEqual(result['channelUrl'], 'https://www.youtube.com/@KatandKaiPeakOfficial')
+        self.assertEqual(result['snapshots'], [])
+
     def test_missing_key_does_not_fetch(self):
         def fail(*args): raise AssertionError('No network call without key')
         self.assertEqual(collector.update({}, '', NOW, fail)['status'], 'not_configured')

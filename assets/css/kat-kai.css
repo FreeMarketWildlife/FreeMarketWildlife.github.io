@@ -1,0 +1,4 @@
+/* Small accents for Kat & Kai; the shared workspace stays simple. */
+body[data-client="kat-kai"] .tiny-flair { color: #edc7d9; font-size: 20px; margin-left: 6px; font-weight: normal; }
+body[data-client="kat-kai"] nav a[aria-current] { text-decoration-color: #edc7d9; }
+body[data-client="kat-kai"] h1 { letter-spacing: .01em; }

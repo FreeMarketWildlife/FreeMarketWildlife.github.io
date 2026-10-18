@@ -41,8 +41,8 @@ def snapshot(item, now):
             'subscribers': None if hidden else count(stats, 'subscriberCount'),
             'views': count(stats, 'viewCount'), 'videos': count(stats, 'videoCount')}
 
-def fetch_channel(key, channel_id=None):
-    filters = [{'id': channel_id}] if channel_id else [
+def fetch_channel(key, channel_id=None, handle=None):
+    filters = [{'id': channel_id}] if channel_id else [{'forHandle': handle}] if handle else [
         {'forUsername': 'troykearns'}, {'forHandle': 'troykearns'}]
     payload = {}
     for channel_filter in filters:
@@ -60,9 +60,9 @@ def fetch_channel(key, channel_id=None):
         raise ValueError('Invalid channel ID')
     return item
 
-def update(previous, key, now, fetch=fetch_channel):
-    data = {'schemaVersion': 1, 'status': 'not_configured', 'channelUrl': CHANNEL_URL,
-            'channelTitle': 'Troy Kearns', 'channelId': previous.get('channelId'),
+def update(previous, key, now, fetch=fetch_channel, channel_url=CHANNEL_URL, channel_title='Troy Kearns'):
+    data = {'schemaVersion': 1, 'status': 'not_configured', 'channelUrl': channel_url,
+            'channelTitle': channel_title, 'channelId': previous.get('channelId'),
             'updatedAt': None, 'snapshots': prune(previous.get('snapshots', []), now)}
     if data['snapshots']:
         data['updatedAt'] = data['snapshots'][0]['observedAt']
@@ -133,13 +133,14 @@ def fetch_catalog(key, channel_id, now, request=api_get):
             'uploadIdsChecked': len(ids), 'publicVideosReturned': len(videos), 'videos': videos}
 
 
-def main():
-    state_path = ROOT / '.youtube-state/youtube.json'
-    output_path = ROOT / 'assets/data/youtube.json'
+def main(prefix='youtube', handle=None, channel_url=CHANNEL_URL, channel_title='Troy Kearns'):
+    state_path = ROOT / f'.youtube-state/{prefix}.json'
+    output_path = ROOT / f'assets/data/{prefix}.json'
     previous = {}
     if state_path.exists():
         previous = json.loads(state_path.read_text())
-    data = update(previous, os.environ.get('YOUTUBE_API_KEY', '').strip(), datetime.now(timezone.utc))
+    fetch = (lambda key, channel_id: fetch_channel(key, channel_id, handle)) if handle else fetch_channel
+    data = update(previous, os.environ.get('YOUTUBE_API_KEY', '').strip(), datetime.now(timezone.utc), fetch, channel_url, channel_title)
     output_path.write_text(json.dumps(data, indent=2) + '\n')
     print('YouTube collector status: ' + data['status'])
     catalog = {'schemaVersion': 1, 'status': 'not_configured', 'updatedAt': None, 'videos': []}
@@ -152,7 +153,7 @@ def main():
             print('::warning::Video catalog update failed; no partial catalog was published.')
     elif key:
         catalog['status'] = 'update_failed'
-    (ROOT / 'assets/data/youtube-videos.json').write_text(json.dumps(catalog, ensure_ascii=False) + '\n')
+    (ROOT / f'assets/data/{prefix}-videos.json').write_text(json.dumps(catalog, ensure_ascii=False) + '\n')
     print('YouTube video catalog: ' + catalog['status'] + '; public videos: ' + str(len(catalog['videos'])))
     summary = os.environ.get('GITHUB_STEP_SUMMARY')
     if summary:
@@ -161,3 +162,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    main('kat-kai-youtube', 'KatandKaiPeakOfficial', 'https://www.youtube.com/@KatandKaiPeakOfficial', 'Kat & Kai')

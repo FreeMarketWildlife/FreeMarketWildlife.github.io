@@ -1,3 +1,4 @@
+const source = document.body.dataset.youtubeSource || 'youtube';
 const status = document.querySelector('#youtube-status');
 const body = document.querySelector('#youtube-history');
 const date = value => new Date(value).toLocaleString(undefined, { dateStyle: 'medium', timeStyle: 'short' });
@@ -7,7 +8,7 @@ const cell = value => {
   return td;
 };
 try {
-  const response = await fetch('/assets/data/youtube.json', { cache: 'no-store' });
+  const response = await fetch(`/assets/data/${source}.json`, { cache: 'no-store' });
   if (!response.ok) throw new Error('Data unavailable');
   const data = await response.json();
   const cutoff = Date.now() - 27 * 86400000;
@@ -106,7 +107,7 @@ if (videoStatus) {
   previous.addEventListener('click', () => { page--; renderVideos(); });
   next.addEventListener('click', () => { page++; renderVideos(); });
   try {
-    const response = await fetch('/assets/data/youtube-videos.json', { cache: 'no-store' });
+    const response = await fetch(`/assets/data/${source}-videos.json`, { cache: 'no-store' });
     if (!response.ok) throw new Error('Video data unavailable');
     const catalog = await response.json();
     const age = Date.now() - Date.parse(catalog.updatedAt);

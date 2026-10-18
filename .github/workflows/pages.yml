@@ -44,7 +44,7 @@ jobs:
         run: |
           mkdir -p .youtube-state
           if [ -f "$RUNNER_TEMP/youtube-history.zip" ]; then
-            unzip -p "$RUNNER_TEMP/youtube-history.zip" youtube.json > .youtube-state/youtube.json
+            unzip -o "$RUNNER_TEMP/youtube-history.zip" -d .youtube-state
           fi
       - name: Collect YouTube totals
         env:
@@ -54,7 +54,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: youtube-history
-          path: assets/data/youtube.json
+          path: |
+            assets/data/youtube.json
+            assets/data/kat-kai-youtube.json
           retention-days: 2
       - name: Test collector
         run: python3 -m unittest discover -s tests -v
