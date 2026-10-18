@@ -475,13 +475,17 @@ def snapshot(item, now):
             'views': count(stats, 'viewCount'), 'videos': count(stats, 'videoCount')}
 
 def fetch_channel(key, channel_id=None):
-    params = {'part': 'snippet,statistics'}
-    # The owner supplied a legacy /troykearns URL; resolve its username once.
-    params.update({'id': channel_id} if channel_id else {'forUsername': 'troykearns'})
-    req = Request('https://www.googleapis.com/youtube/v3/channels?' + urlencode(params),
-                  headers={'X-Goog-Api-Key': key, 'Accept': 'application/json'})
-    with urlopen(req, timeout=30) as response:
-        payload = json.load(response)
+    filters = [{'id': channel_id}] if channel_id else [
+        {'forUsername': 'troykearns'}, {'forHandle': 'troykearns'}]
+    payload = {}
+    for channel_filter in filters:
+        params = {'part': 'snippet,statistics', **channel_filter}
+        req = Request('https://www.googleapis.com/youtube/v3/channels?' + urlencode(params),
+                      headers={'X-Goog-Api-Key': key, 'Accept': 'application/json'})
+        with urlopen(req, timeout=30) as response:
+            payload = json.load(response)
+        if payload.get('items'):
+            break
     if len(payload.get('items', [])) != 1:
         raise ValueError('Channel not found')
     item = payload['items'][0]
@@ -508,10 +512,15 @@ def update(previous, key, now, fetch=fetch_channel):
             if timestamp(r['observedAt']).date() != now.date()]], now)
         data['updatedAt'] = row['observedAt']
         data['status'] = 'ok'
-    except (HTTPError, URLError, TimeoutError, OSError, ValueError, KeyError, TypeError):
+    except HTTPError as error:
+        data['status'] = 'update_failed'
+        # Only emit the numeric HTTP status, never Google's response or key.
+        print(f'::warning::YouTube API returned HTTP {error.code}. Check key activation, API restrictions, and quota.')
+    except (URLError, TimeoutError, OSError, ValueError, KeyError, TypeError) as error:
         # Never print API responses, request objects, headers, or credentials.
         data['status'] = 'update_failed'
-        print('::warning::YouTube update failed. Check API enablement, key restrictions, quota, and channel username.')
+        reason = 'Channel lookup returned no result.' if isinstance(error, ValueError) and str(error) == 'Channel not found' else 'Network error or invalid response.'
+        print('::warning::YouTube update failed. ' + reason)
     return data
 
 def main():
