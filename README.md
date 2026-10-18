@@ -1,5 +1,7 @@
 # Free Market Wildlife
 
+Free Market Wildlife has one purpose: help people make a career out of their passion.
+
 A buildless, black-and-white consulting and creative website for `freemarketwildlife.com`. HTML, CSS, local bitmap fonts, and vanilla JavaScript. No runtime packages, framework, server backend, or database.
 
 ## Preview
