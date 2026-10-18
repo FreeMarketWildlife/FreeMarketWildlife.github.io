@@ -21,7 +21,8 @@ index.html                    Full-screen landing page
 portfolio/index.html          Creator showcase and pending testimonials
 tanoshi/index.html            Tanoshi media showcase
 contact/index.html            Email contact form
-troykearns/index.html          Troy channel, links, and video review workspace
+troykearns/index.html          Plain Troy links page
+troykearns/statistics/index.html  Statistics page reserved for the spreadsheet
 troy-kearns/index.html         Compatibility alias for Troy workspace
 kat-kai/index.html             Gated four-phase creator roadmap
 404.html                      Custom error page
@@ -80,7 +81,7 @@ Edit `assets/js/clients.js` to change these values. The small top-right Sign in 
 python3 scripts/check_site.py
 ```
 
-The check verifies all eight pages, local references and fonts, unique element IDs, initial workspace barriers, naming, the monochrome source palette, PNG dimensions/checksums/bit depth, and absence of autonomous scene animation. Browser QA is recorded in `design/verification.md`.
+The check verifies all nine pages, local references and fonts, unique element IDs, initial workspace barriers, naming, the monochrome source palette, PNG dimensions/checksums/bit depth, and absence of autonomous scene animation. Browser QA is recorded in `design/verification.md`.
 
 To regenerate the original fonts, install `fonttools` in a development environment and run `scripts/build_pixel_font.py`. The checked-in TTF files work without that dependency. Prepared 1-bit sprite scanlines can be packaged with `python3 scripts/package_pixel_masks.py`; the page needs no build step.
 
@@ -101,6 +102,6 @@ Official references: [GitHub Pages workflows](https://docs.github.com/en/pages/g
 
 ## Troy workspace
 
-The canonical route is `/troykearns/`; `/troy-kearns/` remains a working alias. Both currently use the exact temporary password `Password`. The channel and seven other links were supplied by the owner, including Troy's public business email. YouTube's remote page could not be fetched during development; links are preserved as supplied with YouTube redirect wrappers removed. The workspace includes an empty six-column review structure and no invented metrics.
+The canonical route is `/troykearns/`; `/troy-kearns/` remains a working alias. Both currently use the exact temporary password `Password`. The channel and seven other links were supplied by the owner, including Troy's public business email. YouTube's remote page could not be fetched during development; links are preserved as supplied with YouTube redirect wrappers removed. The workspace contains a plain Links page and a separate Statistics placeholder for the future spreadsheet. There is no overview, dashboard, or analytics table yet. Typography is standard sans-serif; only the home-link logo uses pixel art.
 
 Google and email-code authentication are deferred at the owner's request. Neither this password nor sessionStorage provides security. Before adding private material, move workspace content to a protected origin with enforced access rules covering documents, media, APIs, and alternate hostnames. Do not publish confidential material in this public repository.

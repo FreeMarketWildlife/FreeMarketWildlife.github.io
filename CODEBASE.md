@@ -15,6 +15,7 @@ tanoshi/index.html
 contact/index.html
 troy-kearns/index.html
 troykearns/index.html
+troykearns/statistics/index.html
 kat-kai/index.html
 404.html
 .github/workflows/pages.yml
@@ -203,23 +204,35 @@ dialog { background: var(--black); color: var(--white); border: 1px solid var(--
 ## assets/css/troy.css
 
 ```css
-/* Troy's workspace extends the existing black-and-white pixel identity. */
-.tk-page { font-family: Arial, Helvetica, sans-serif; font-size: 15px; line-height: 1.55; }
-.tk-page h1, .tk-monogram { font-family: 'FMW Display', monospace; }
-.tk-small, .tk-header, .tk-sidebar, .tk-outline-label, .tk-primary, .tk-channel-top, .tk-channel-cta, .tk-link-number, .tk-link-type, .tk-footer, .tk-method > div > span, .tk-gate { font-family: 'FMW Pixel', monospace; }
-.tk-header { min-height: 100px; border-bottom: 1px solid #fff; padding: 24px 40px; display: flex; align-items: center; gap: 32px; }
-.tk-header .brand img { width: 40px; height: 40px; }.tk-header .brand span { font-size: 12px; }.tk-header-label { margin-left: auto; font-size: 12px; }.tk-signout { font-family: inherit; font-size: 12px; border: 0; padding: 12px 0 12px 24px; }.tk-signout:hover { text-decoration: underline; }
-.tk-layout { display: grid; grid-template-columns: 230px minmax(0,1fr); max-width: 1680px; margin: auto; }.tk-sidebar { border-right: 1px solid #fff; padding: 40px 24px; }.tk-monogram { font-size: 48px; line-height: 1.5; border: 1px solid #fff; width: 100%; aspect-ratio: 1; display: grid; place-content: center; position: relative; }.tk-monogram > span { position: absolute; right: 12px; top: 0; font: 24px Arial, sans-serif; }.tk-sidebar-name { margin-top: 24px; }.tk-sidebar .tk-small { font-size: 10px; margin-top: 8px; }.tk-sidebar nav { display: grid; margin-top: 48px; gap: 12px; }.tk-sidebar nav a { display: flex; gap: 16px; font-size: 12px; padding: 12px 0; }.tk-sidebar nav a:hover span { text-decoration: underline; text-underline-offset: 6px; }.tk-back { display: block; border-top: 1px solid #fff; margin-top: 64px; padding-top: 24px; font-size: 10px; }
-.tk-main { min-width: 0; padding: 32px 48px 0; }.tk-small { font-size: 11px; line-height: 1.8; }.tk-outline-label { border: 1px solid #fff; padding: 6px 8px; font-size: 10px; white-space: nowrap; }.tk-intro { display: flex; justify-content: space-between; gap: 20px; align-items: center; }.tk-hero { display: grid; grid-template-columns: 1.15fr 1fr; gap: 48px; padding: 56px 0 64px; align-items: end; }.tk-hero h1 { font-size: clamp(48px,5.2vw,80px); line-height: 1.2; margin: 24px 0; }.tk-period { font-family: Arial, sans-serif; }.tk-hero-copy { font-size: 18px; line-height: 1.6; }.tk-primary { display: inline-flex; justify-content: space-between; align-items: center; gap: 32px; padding: 16px; margin-top: 28px; background: #fff; color: #000; border: 1px solid #fff; font-size: 12px; }.tk-primary:hover { background: #000; color: #fff; }
-.tk-channel { display: flex; flex-direction: column; border: 1px solid #fff; min-width: 0; }.tk-channel:hover { outline: 2px solid #fff; outline-offset: -6px; }.tk-channel-top { display: flex; justify-content: space-between; padding: 16px; border-bottom: 1px solid #fff; font-size: 10px; }.tk-channel-art { min-height: 180px; display: grid; place-items: center; background-image: radial-gradient(#fff 0.65px,transparent 0.65px); background-size: 12px 12px; }.tk-channel-art svg { width: 120px; height: 88px; background: #000; box-shadow: 0 0 0 16px #000; }.tk-channel-bottom { padding: 24px; border-top: 1px solid #fff; display: grid; gap: 6px; }.tk-channel-bottom strong { font-weight: 400; font-size: 24px; }.tk-channel-bottom > span { overflow-wrap: anywhere; }.tk-channel-cta { font-size: 10px; margin-top: 18px; }
-.tk-section-heading { border-top: 1px solid #fff; padding: 28px 0; display: flex; align-items: center; justify-content: space-between; gap: 24px; scroll-margin-top: 24px; }.tk-section-heading h2 { font-size: 28px; font-family: Arial, Helvetica, sans-serif; margin-top: 8px; letter-spacing: -.7px; }.tk-review { border: 1px solid #fff; }.tk-review-top { padding: 24px; }.tk-review-top h3 { font-size: 18px; margin-bottom: 8px; }.tk-review-top p { font-size: 14px; }.tk-table-wrap { overflow-x: auto; }.tk-table { min-width: 820px; font-size: 12px; }.tk-table th { padding: 14px 16px; text-decoration: none; font-size: 12px; }.tk-table td { padding: 0; }.tk-empty { min-height: 170px; display: flex; align-items: center; gap: 24px; padding: 28px; }.tk-empty-icon { font: 20px 'FMW Pixel', monospace; white-space: nowrap; }.tk-empty strong { font-size: 16px; font-weight: 400; }.tk-empty p { margin-top: 8px; font-size: 14px; max-width: 400px; }.tk-empty a { white-space: nowrap; text-decoration: underline; text-underline-offset: 4px; margin-left: auto; }
-.tk-method { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; margin: 32px 0 56px; }.tk-method > div > span { font-size: 10px; }.tk-method h3 { font-size: 18px; margin: 12px 0 8px; }.tk-method p { font-size: 14px; }.tk-directory { border-top: 1px solid #fff; }.tk-link { display: grid; grid-template-columns: 32px minmax(0,1fr) 120px 20px; align-items: center; gap: 24px; padding: 24px 8px; border-bottom: 1px solid #fff; }.tk-link:hover { background: #fff; color: #000; }.tk-link-number, .tk-link-type { font-size: 10px; }.tk-link strong { display: block; font-size: 19px; font-weight: 400; }.tk-link small { display: block; margin-top: 4px; font-size: 14px; overflow-wrap: anywhere; }.tk-link-type { text-align: right; }.tk-footer { display: flex; justify-content: space-between; gap: 24px; padding: 40px 0 24px; font-size: 9px; }
-.tk-gate .dialog-panel { width: min(100%,480px); }.tk-gate h2 { font-family: 'FMW Display',monospace; font-size: 40px; }.tk-gate .micro { font-size: 11px; }.tk-gate .brand img { width: 40px; height: 40px; }.tk-gate .brand span { font-size: 12px; }
-@media (min-width: 1500px) { .tk-hero h1 { font-size: 88px; } }
-@media (max-width: 1100px) { .tk-layout { grid-template-columns: 180px minmax(0,1fr); }.tk-main { padding: 28px 28px 0; }.tk-sidebar { padding: 32px 16px; }.tk-hero { gap: 24px; }.tk-hero h1 { font-size: 48px; }.tk-hero > div > .tk-small { max-width: 240px; }.tk-channel-art { min-height: 160px; }.tk-section-heading { align-items: flex-start; flex-direction: column; gap: 12px; }.tk-method { gap: 20px; }.tk-primary { font-size: 10px; gap: 12px; }.tk-intro { flex-wrap: wrap; }.tk-footer { flex-wrap: wrap; } }
-@media (max-width: 760px) { .tk-header { padding: 20px 24px; min-height: 84px; justify-content: space-between; }.tk-header-label { display: none; }.tk-layout { display: block; }.tk-sidebar { padding: 0 24px; border-right: 0; border-bottom: 1px solid #fff; }.tk-monogram,.tk-sidebar-name,.tk-sidebar > .tk-small,.tk-back { display: none; }.tk-sidebar nav { margin: 0; display: flex; justify-content: space-between; gap: 16px; }.tk-sidebar nav a { font-size: 10px; gap: 8px; padding: 20px 0; }.tk-main { padding: 24px 24px 0; }.tk-hero { padding: 36px 0 40px; gap: 32px; }.tk-hero h1 { font-size: 48px; }.tk-channel-top { font-size: 9px; padding: 12px; }.tk-channel-art { min-height: 144px; }.tk-channel-bottom { padding: 16px; }.tk-channel-bottom strong { font-size: 20px; }.tk-channel-bottom > span { font-size: 12px; }.tk-channel-bottom .tk-channel-cta { font-size: 9px; }.tk-hero-copy { font-size: 16px; }.tk-hero > div > .tk-small { font-size: 9px; }.tk-primary { padding: 12px; }.tk-link { grid-template-columns: 24px minmax(0,1fr) 16px; gap: 16px; }.tk-link-type { display: none; }.tk-method { margin-bottom: 40px; }.tk-method h3 { font-size: 16px; } }
-@media (max-width: 540px) { .tk-hero { grid-template-columns: 1fr; }.tk-hero h1 { font-size: 64px; }.tk-hero > div > .tk-small { max-width: none; }.tk-channel-art { min-height: 160px; }.tk-hero-copy br { display: none; }.tk-primary { width: 100%; font-size: 12px; }.tk-method { grid-template-columns: 1fr; gap: 24px; }.tk-method > div { border-left: 1px solid #fff; padding-left: 16px; }.tk-section-heading h2 { font-size: 25px; }.tk-link strong { font-size: 18px; }.tk-small { font-size: 10px; }.tk-sidebar nav a { font-size: 9px; }.tk-footer { font-size: 9px; }.tk-footer > span:nth-child(2) { order: 3; width: 100%; } }
-.tk-main:focus { outline: none; }
+/* Plain black-and-white client pages. Only the home logo uses pixel art. */
+:root { color-scheme: dark; font-family: Arial, Helvetica, sans-serif; background: #000; color: #fff; }
+* { box-sizing: border-box; }
+body { margin: 0; font-size: 16px; line-height: 1.6; background: #000; color: #fff; }
+a { color: #fff; text-underline-offset: 3px; }
+button, input { font: inherit; color: #fff; background: #000; border: 1px solid #fff; border-radius: 0; }
+button { cursor: pointer; padding: 6px 12px; }
+header { display: flex; align-items: center; gap: 32px; padding: 20px 24px; }
+header img { display: block; image-rendering: pixelated; }
+nav { display: flex; gap: 24px; } nav a[aria-current] { font-weight: bold; }
+header button { margin-left: auto; border: 0; font-size: 13px; }
+main { padding: 16px 24px 48px; max-width: 960px; }
+h1 { font-size: 24px; margin: 0 0 20px; }
+ul { margin: 0; padding-left: 20px; } li { margin-bottom: 12px; overflow-wrap: anywhere; }
+main:focus { outline: none; }
+[hidden] { display: none !important; }
+:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+dialog { color: #fff; background: #000; border: 0; }
+dialog::backdrop { background: #000; }
+.gate-dialog { position: fixed; inset: 0; margin: 0; padding: 24px; width: 100%; height: 100%; max-width: none; max-height: none; }
+.gate-shell { min-height: 100%; display: flex; flex-direction: column; }
+.brand img { width: 40px; height: 40px; image-rendering: pixelated; }.brand span,.gate-shell > .micro { display: none; }
+.dialog-panel { width: min(100%,360px); margin: auto; padding: 32px 0; }
+.eyebrow { font-size: 13px; } h2 { font-size: 24px; margin: 16px 0; }
+form { margin-top: 24px; } label { display: block; margin-bottom: 8px; }
+input { width: 100%; padding: 10px; } .form-error { min-height: 26px; margin: 8px 0; }
+form button { width: 100%; text-align: left; padding: 10px; }.button span { float: right; }
+.micro { font-size: 12px; margin-top: 20px; }.text-button { display: inline-block; margin-top: 12px; }
+@media(max-width: 480px) { header { gap: 20px; padding: 16px; } nav { gap: 16px; } main { padding: 16px; } header button { padding: 6px 0; } }
 ```
 
 ## assets/js/app.js
@@ -647,41 +660,29 @@ export async function loadSceneSprites() {
 
 ```html
 <!doctype html>
-<html lang="en">
-<head>
+<html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="dark"><meta name="theme-color" content="#000000">
-<meta name="robots" content="noindex, nofollow">
-<meta name="description" content="Troy Kearns creator workspace: channel, content reviews, and the places to connect.">
-<title>Troy Kearns — Free Market Wildlife</title>
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#000000"><meta name="robots" content="noindex, nofollow">
+<title>Links — Troy Kearns</title>
 <link rel="icon" href="/assets/images/mark.svg" type="image/svg+xml">
-<link rel="canonical" href="https://freemarketwildlife.com/troykearns/">
-<link rel="stylesheet" href="/assets/css/styles.css"><link rel="stylesheet" href="/assets/css/troy.css">
+<link rel="stylesheet" href="/assets/css/troy.css?v=3">
 <script type="module" src="/assets/js/app.js?v=2"></script>
-</head>
-<body class="tk-page" data-client="troy-kearns">
+</head><body data-client="troy-kearns">
 <div id="workspace-content" hidden inert>
-<a class="skip-link" href="#main">Skip to content</a>
-<header class="tk-header"><a class="brand" href="/" aria-label="Free Market Wildlife home"><img src="/assets/images/mark.svg" width="40" height="40" alt=""><span>FREE MARKET<br>WILDLIFE</span></a><span class="tk-header-label">CLIENT WORKSPACE / 01</span><button class="tk-signout" type="button" data-lock-workspace>Sign out ↗</button></header>
-<div class="tk-layout">
-<aside class="tk-sidebar"><div class="tk-monogram" aria-hidden="true">TK<span>↗</span></div><p class="tk-sidebar-name">Troy Kearns</p><p class="tk-small">CREATOR WORKSPACE</p><nav aria-label="Workspace"><a href="#main">01 <span>Overview</span></a><a href="#reviews">02 <span>Video reviews</span></a><a href="#connect">03 <span>Links & contact</span></a></nav><a class="tk-back" href="/">← Free Market Wildlife</a></aside>
-<main id="main" class="tk-main" tabindex="-1">
-<div class="tk-intro"><p class="tk-small">FREE MARKET WILDLIFE / TROY KEARNS</p><span class="tk-outline-label">WORKSPACE PREVIEW</span></div>
-<section class="tk-hero" aria-labelledby="troy-heading"><div><p class="tk-small">THE CREATOR. THE CONTENT. THE NEXT MOVE.</p><h1 id="troy-heading">Troy<br>Kearns<span class="tk-period">.</span></h1><p class="tk-hero-copy">A clear view of the content.<br>A shared place to move it forward.</p><a class="tk-primary" href="https://www.youtube.com/troykearns" target="_blank" rel="noopener noreferrer">Open YouTube channel <span aria-hidden="true">↗</span></a></div><a class="tk-channel" href="https://www.youtube.com/troykearns" target="_blank" rel="noopener noreferrer" aria-label="Visit Troy Kearns on YouTube"><div class="tk-channel-top"><span>YOUTUBE / MAIN CHANNEL</span><span aria-hidden="true">↗</span></div><div class="tk-channel-art" aria-hidden="true"><svg viewBox="0 0 120 88"><path fill="currentColor" d="M12 0h96v8h12v72h-12v8H12v-8H0V8h12z"/><path fill="#000" d="M48 24h8v8h16v8h8v8h-8v8H56v8h-8z"/></svg></div><div class="tk-channel-bottom"><strong>Troy Kearns</strong><span>youtube.com/troykearns</span><span class="tk-channel-cta">Videos, stories & conversations →</span></div></a></section>
-<div class="tk-section-heading" id="reviews"><div><p class="tk-small">01 / CONTENT INTELLIGENCE</p><h2>Every upload is a lesson.</h2></div><span class="tk-outline-label">READY FOR THE FIRST REVIEW</span></div>
-<section class="tk-review" aria-labelledby="review-title"><div class="tk-review-top"><h3 id="review-title">Video performance review</h3><p>Compare the same reporting window. Turn the evidence into a next step.</p></div><div class="tk-table-wrap" role="region" tabindex="0" aria-label="Video review columns; scroll horizontally on smaller screens"><table class="tk-table"><caption class="sr-only">Review structure. No analytics or video reviews have been added.</caption><thead><tr><th scope="col">Video title</th><th scope="col">View count</th><th scope="col">What worked</th><th scope="col">What fell short</th><th scope="col">Root analytical cause</th><th scope="col">Content lessons</th></tr></thead><tbody><tr><td colspan="6"><div class="tk-empty"><span class="tk-empty-icon" aria-hidden="true">[ + ]</span><div><strong>The first review starts here.</strong><p>Video titles, source analytics, and review notes will appear here once supplied.</p></div><a href="https://www.youtube.com/troykearns/videos" target="_blank" rel="noopener noreferrer">Browse uploads ↗</a></div></td></tr></tbody></table></div></section>
-<section class="tk-method" aria-label="Review process"><div><span>01 / OBSERVE</span><h3>Find the signal.</h3><p>Look at the title, opening, retention, and audience response.</p></div><div><span>02 / UNDERSTAND</span><h3>Ask what changed.</h3><p>Separate what the data shows from what still needs testing.</p></div><div><span>03 / APPLY</span><h3>Make the next move.</h3><p>Take one clear lesson into the next upload.</p></div></section>
-<div class="tk-section-heading" id="connect"><div><p class="tk-small">02 / TROY’S WORLD</p><h2>Everything connects.</h2></div><span class="tk-small">CHANNELS / COMMUNITY / CONTACT</span></div>
-<section class="tk-directory" aria-label="Troy Kearns links"><a class="tk-link" href="https://www.instagram.com/thetroykearns/" target="_blank" rel="noopener noreferrer"><span class="tk-link-number">01</span><span><strong>Instagram</strong><small>@thetroykearns</small></span><span class="tk-link-type">Social</span><span aria-hidden="true">↗</span></a>
-<a class="tk-link" href="https://www.tiktok.com/@thetroykearns" target="_blank" rel="noopener noreferrer"><span class="tk-link-number">02</span><span><strong>TikTok</strong><small>@thetroykearns</small></span><span class="tk-link-type">Social</span><span aria-hidden="true">↗</span></a>
-<a class="tk-link" href="https://www.facebook.com/groups/374488864645587/" target="_blank" rel="noopener noreferrer"><span class="tk-link-number">03</span><span><strong>Facebook community</strong><small>Join the community</small></span><span class="tk-link-type">Community</span><span aria-hidden="true">↗</span></a>
-<a class="tk-link" href="https://open.spotify.com/show/0HJPBOWnR9TzVajjKEaS2w" target="_blank" rel="noopener noreferrer"><span class="tk-link-number">04</span><span><strong>Millionaire Mentorship</strong><small>Listen to the podcast</small></span><span class="tk-link-type">Podcast</span><span aria-hidden="true">↗</span></a>
-<a class="tk-link" href="https://takeaction.troykearns.com/work-with-us-3" target="_blank" rel="noopener noreferrer"><span class="tk-link-number">05</span><span><strong>Work with Troy</strong><small>Coaching & mentorship</small></span><span class="tk-link-type">Coaching</span><span aria-hidden="true">↗</span></a>
-<a class="tk-link" href="https://www.amazon.com/MILLIONAIRE-MENTORSHIP-ESTATE-STARTING-SCRATCH/dp/0578390965" target="_blank" rel="noopener noreferrer"><span class="tk-link-number">06</span><span><strong>The book</strong><small>Millionaire Mentorship</small></span><span class="tk-link-type">Book</span><span aria-hidden="true">↗</span></a>
-<a class="tk-link" href="mailto:tk@troykearns.com"><span class="tk-link-number">07</span><span><strong>Email Troy</strong><small>tk@troykearns.com</small></span><span class="tk-link-type">Contact</span><span aria-hidden="true">↗</span></a></section>
-<footer class="tk-footer"><a href="/">FREE MARKET WILDLIFE</a><span>PUBLIC LINKS ONLY · TEMPORARY PASSWORD ACCESS</span><span>© <span data-year>2026</span></span></footer>
-</main></div></div>
+<header><a href="/" aria-label="Free Market Wildlife home"><img src="/assets/images/mark.svg" width="40" height="40" alt="Free Market Wildlife"></a><nav aria-label="Troy workspace"><a href="/troykearns/" aria-current="page">Links</a><a href="/troykearns/statistics/">Statistics</a></nav><button type="button" data-lock-workspace>Sign out</button></header>
+<main id="main" tabindex="-1"><h1>Links:</h1><ul>
+<li>YouTube: <a href="https://www.youtube.com/troykearns" target="_blank" rel="noopener noreferrer">youtube.com/troykearns</a></li>
+<li>Instagram: <a href="https://www.instagram.com/thetroykearns/" target="_blank" rel="noopener noreferrer">@thetroykearns</a></li>
+<li>TikTok: <a href="https://www.tiktok.com/@thetroykearns" target="_blank" rel="noopener noreferrer">@thetroykearns</a></li>
+<li>Facebook community: <a href="https://www.facebook.com/groups/374488864645587/" target="_blank" rel="noopener noreferrer">facebook.com/groups/374488864645587</a></li>
+<li>Podcast: <a href="https://open.spotify.com/show/0HJPBOWnR9TzVajjKEaS2w" target="_blank" rel="noopener noreferrer">Millionaire Mentorship</a></li>
+<li>Coaching: <a href="https://takeaction.troykearns.com/work-with-us-3" target="_blank" rel="noopener noreferrer">takeaction.troykearns.com/work-with-us-3</a></li>
+<li>Book: <a href="https://www.amazon.com/MILLIONAIRE-MENTORSHIP-ESTATE-STARTING-SCRATCH/dp/0578390965" target="_blank" rel="noopener noreferrer">Millionaire Mentorship on Amazon</a></li>
+<li>Email: <a href="mailto:tk@troykearns.com">tk@troykearns.com</a></li>
+</ul></main>
+</div>
 <dialog class="gate-dialog tk-gate" id="workspace-gate" open aria-labelledby="gate-title"><div class="gate-shell"><a class="brand" href="/"><img src="/assets/images/mark.svg" width="40" height="40" alt=""><span>FREE MARKET<br>WILDLIFE</span></a><div class="dialog-panel"><span class="eyebrow">TROY KEARNS / WORKSPACE</span><h2 id="gate-title">Sign in.</h2><p>Good to have you here.</p><form data-gate-form><label for="gate-code">Password</label><input id="gate-code" name="passcode" type="password" autocomplete="current-password" autocapitalize="off" spellcheck="false" required aria-describedby="gate-error" autofocus><p class="form-error" id="gate-error" aria-live="polite"></p><button class="button primary" type="submit">Continue <span aria-hidden="true">→</span></button></form><p class="micro">Temporary preview access. Public content only.</p><a class="text-button" href="/">← Back home</a><noscript><p>Enable JavaScript to use this preview.</p></noscript></div><span class="micro">FREE MARKET WILDLIFE</span></div></dialog>
+
 </body></html>
 ```
 
@@ -689,41 +690,50 @@ export async function loadSceneSprites() {
 
 ```html
 <!doctype html>
-<html lang="en">
-<head>
+<html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="dark"><meta name="theme-color" content="#000000">
-<meta name="robots" content="noindex, nofollow">
-<meta name="description" content="Troy Kearns creator workspace: channel, content reviews, and the places to connect.">
-<title>Troy Kearns — Free Market Wildlife</title>
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#000000"><meta name="robots" content="noindex, nofollow">
+<title>Links — Troy Kearns</title>
 <link rel="icon" href="/assets/images/mark.svg" type="image/svg+xml">
-<link rel="canonical" href="https://freemarketwildlife.com/troykearns/">
-<link rel="stylesheet" href="/assets/css/styles.css"><link rel="stylesheet" href="/assets/css/troy.css">
+<link rel="stylesheet" href="/assets/css/troy.css?v=3">
 <script type="module" src="/assets/js/app.js?v=2"></script>
-</head>
-<body class="tk-page" data-client="troy-kearns">
+</head><body data-client="troy-kearns">
 <div id="workspace-content" hidden inert>
-<a class="skip-link" href="#main">Skip to content</a>
-<header class="tk-header"><a class="brand" href="/" aria-label="Free Market Wildlife home"><img src="/assets/images/mark.svg" width="40" height="40" alt=""><span>FREE MARKET<br>WILDLIFE</span></a><span class="tk-header-label">CLIENT WORKSPACE / 01</span><button class="tk-signout" type="button" data-lock-workspace>Sign out ↗</button></header>
-<div class="tk-layout">
-<aside class="tk-sidebar"><div class="tk-monogram" aria-hidden="true">TK<span>↗</span></div><p class="tk-sidebar-name">Troy Kearns</p><p class="tk-small">CREATOR WORKSPACE</p><nav aria-label="Workspace"><a href="#main">01 <span>Overview</span></a><a href="#reviews">02 <span>Video reviews</span></a><a href="#connect">03 <span>Links & contact</span></a></nav><a class="tk-back" href="/">← Free Market Wildlife</a></aside>
-<main id="main" class="tk-main" tabindex="-1">
-<div class="tk-intro"><p class="tk-small">FREE MARKET WILDLIFE / TROY KEARNS</p><span class="tk-outline-label">WORKSPACE PREVIEW</span></div>
-<section class="tk-hero" aria-labelledby="troy-heading"><div><p class="tk-small">THE CREATOR. THE CONTENT. THE NEXT MOVE.</p><h1 id="troy-heading">Troy<br>Kearns<span class="tk-period">.</span></h1><p class="tk-hero-copy">A clear view of the content.<br>A shared place to move it forward.</p><a class="tk-primary" href="https://www.youtube.com/troykearns" target="_blank" rel="noopener noreferrer">Open YouTube channel <span aria-hidden="true">↗</span></a></div><a class="tk-channel" href="https://www.youtube.com/troykearns" target="_blank" rel="noopener noreferrer" aria-label="Visit Troy Kearns on YouTube"><div class="tk-channel-top"><span>YOUTUBE / MAIN CHANNEL</span><span aria-hidden="true">↗</span></div><div class="tk-channel-art" aria-hidden="true"><svg viewBox="0 0 120 88"><path fill="currentColor" d="M12 0h96v8h12v72h-12v8H12v-8H0V8h12z"/><path fill="#000" d="M48 24h8v8h16v8h8v8h-8v8H56v8h-8z"/></svg></div><div class="tk-channel-bottom"><strong>Troy Kearns</strong><span>youtube.com/troykearns</span><span class="tk-channel-cta">Videos, stories & conversations →</span></div></a></section>
-<div class="tk-section-heading" id="reviews"><div><p class="tk-small">01 / CONTENT INTELLIGENCE</p><h2>Every upload is a lesson.</h2></div><span class="tk-outline-label">READY FOR THE FIRST REVIEW</span></div>
-<section class="tk-review" aria-labelledby="review-title"><div class="tk-review-top"><h3 id="review-title">Video performance review</h3><p>Compare the same reporting window. Turn the evidence into a next step.</p></div><div class="tk-table-wrap" role="region" tabindex="0" aria-label="Video review columns; scroll horizontally on smaller screens"><table class="tk-table"><caption class="sr-only">Review structure. No analytics or video reviews have been added.</caption><thead><tr><th scope="col">Video title</th><th scope="col">View count</th><th scope="col">What worked</th><th scope="col">What fell short</th><th scope="col">Root analytical cause</th><th scope="col">Content lessons</th></tr></thead><tbody><tr><td colspan="6"><div class="tk-empty"><span class="tk-empty-icon" aria-hidden="true">[ + ]</span><div><strong>The first review starts here.</strong><p>Video titles, source analytics, and review notes will appear here once supplied.</p></div><a href="https://www.youtube.com/troykearns/videos" target="_blank" rel="noopener noreferrer">Browse uploads ↗</a></div></td></tr></tbody></table></div></section>
-<section class="tk-method" aria-label="Review process"><div><span>01 / OBSERVE</span><h3>Find the signal.</h3><p>Look at the title, opening, retention, and audience response.</p></div><div><span>02 / UNDERSTAND</span><h3>Ask what changed.</h3><p>Separate what the data shows from what still needs testing.</p></div><div><span>03 / APPLY</span><h3>Make the next move.</h3><p>Take one clear lesson into the next upload.</p></div></section>
-<div class="tk-section-heading" id="connect"><div><p class="tk-small">02 / TROY’S WORLD</p><h2>Everything connects.</h2></div><span class="tk-small">CHANNELS / COMMUNITY / CONTACT</span></div>
-<section class="tk-directory" aria-label="Troy Kearns links"><a class="tk-link" href="https://www.instagram.com/thetroykearns/" target="_blank" rel="noopener noreferrer"><span class="tk-link-number">01</span><span><strong>Instagram</strong><small>@thetroykearns</small></span><span class="tk-link-type">Social</span><span aria-hidden="true">↗</span></a>
-<a class="tk-link" href="https://www.tiktok.com/@thetroykearns" target="_blank" rel="noopener noreferrer"><span class="tk-link-number">02</span><span><strong>TikTok</strong><small>@thetroykearns</small></span><span class="tk-link-type">Social</span><span aria-hidden="true">↗</span></a>
-<a class="tk-link" href="https://www.facebook.com/groups/374488864645587/" target="_blank" rel="noopener noreferrer"><span class="tk-link-number">03</span><span><strong>Facebook community</strong><small>Join the community</small></span><span class="tk-link-type">Community</span><span aria-hidden="true">↗</span></a>
-<a class="tk-link" href="https://open.spotify.com/show/0HJPBOWnR9TzVajjKEaS2w" target="_blank" rel="noopener noreferrer"><span class="tk-link-number">04</span><span><strong>Millionaire Mentorship</strong><small>Listen to the podcast</small></span><span class="tk-link-type">Podcast</span><span aria-hidden="true">↗</span></a>
-<a class="tk-link" href="https://takeaction.troykearns.com/work-with-us-3" target="_blank" rel="noopener noreferrer"><span class="tk-link-number">05</span><span><strong>Work with Troy</strong><small>Coaching & mentorship</small></span><span class="tk-link-type">Coaching</span><span aria-hidden="true">↗</span></a>
-<a class="tk-link" href="https://www.amazon.com/MILLIONAIRE-MENTORSHIP-ESTATE-STARTING-SCRATCH/dp/0578390965" target="_blank" rel="noopener noreferrer"><span class="tk-link-number">06</span><span><strong>The book</strong><small>Millionaire Mentorship</small></span><span class="tk-link-type">Book</span><span aria-hidden="true">↗</span></a>
-<a class="tk-link" href="mailto:tk@troykearns.com"><span class="tk-link-number">07</span><span><strong>Email Troy</strong><small>tk@troykearns.com</small></span><span class="tk-link-type">Contact</span><span aria-hidden="true">↗</span></a></section>
-<footer class="tk-footer"><a href="/">FREE MARKET WILDLIFE</a><span>PUBLIC LINKS ONLY · TEMPORARY PASSWORD ACCESS</span><span>© <span data-year>2026</span></span></footer>
-</main></div></div>
+<header><a href="/" aria-label="Free Market Wildlife home"><img src="/assets/images/mark.svg" width="40" height="40" alt="Free Market Wildlife"></a><nav aria-label="Troy workspace"><a href="/troykearns/" aria-current="page">Links</a><a href="/troykearns/statistics/">Statistics</a></nav><button type="button" data-lock-workspace>Sign out</button></header>
+<main id="main" tabindex="-1"><h1>Links:</h1><ul>
+<li>YouTube: <a href="https://www.youtube.com/troykearns" target="_blank" rel="noopener noreferrer">youtube.com/troykearns</a></li>
+<li>Instagram: <a href="https://www.instagram.com/thetroykearns/" target="_blank" rel="noopener noreferrer">@thetroykearns</a></li>
+<li>TikTok: <a href="https://www.tiktok.com/@thetroykearns" target="_blank" rel="noopener noreferrer">@thetroykearns</a></li>
+<li>Facebook community: <a href="https://www.facebook.com/groups/374488864645587/" target="_blank" rel="noopener noreferrer">facebook.com/groups/374488864645587</a></li>
+<li>Podcast: <a href="https://open.spotify.com/show/0HJPBOWnR9TzVajjKEaS2w" target="_blank" rel="noopener noreferrer">Millionaire Mentorship</a></li>
+<li>Coaching: <a href="https://takeaction.troykearns.com/work-with-us-3" target="_blank" rel="noopener noreferrer">takeaction.troykearns.com/work-with-us-3</a></li>
+<li>Book: <a href="https://www.amazon.com/MILLIONAIRE-MENTORSHIP-ESTATE-STARTING-SCRATCH/dp/0578390965" target="_blank" rel="noopener noreferrer">Millionaire Mentorship on Amazon</a></li>
+<li>Email: <a href="mailto:tk@troykearns.com">tk@troykearns.com</a></li>
+</ul></main>
+</div>
 <dialog class="gate-dialog tk-gate" id="workspace-gate" open aria-labelledby="gate-title"><div class="gate-shell"><a class="brand" href="/"><img src="/assets/images/mark.svg" width="40" height="40" alt=""><span>FREE MARKET<br>WILDLIFE</span></a><div class="dialog-panel"><span class="eyebrow">TROY KEARNS / WORKSPACE</span><h2 id="gate-title">Sign in.</h2><p>Good to have you here.</p><form data-gate-form><label for="gate-code">Password</label><input id="gate-code" name="passcode" type="password" autocomplete="current-password" autocapitalize="off" spellcheck="false" required aria-describedby="gate-error" autofocus><p class="form-error" id="gate-error" aria-live="polite"></p><button class="button primary" type="submit">Continue <span aria-hidden="true">→</span></button></form><p class="micro">Temporary preview access. Public content only.</p><a class="text-button" href="/">← Back home</a><noscript><p>Enable JavaScript to use this preview.</p></noscript></div><span class="micro">FREE MARKET WILDLIFE</span></div></dialog>
+
+</body></html>
+```
+
+## troykearns/statistics/index.html
+
+```html
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark"><meta name="theme-color" content="#000000"><meta name="robots" content="noindex, nofollow">
+<title>Statistics — Troy Kearns</title>
+<link rel="icon" href="/assets/images/mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/assets/css/troy.css?v=3">
+<script type="module" src="/assets/js/app.js?v=2"></script>
+</head><body data-client="troy-kearns">
+<div id="workspace-content" hidden inert>
+<header><a href="/" aria-label="Free Market Wildlife home"><img src="/assets/images/mark.svg" width="40" height="40" alt="Free Market Wildlife"></a><nav aria-label="Troy workspace"><a href="/troykearns/">Links</a><a href="/troykearns/statistics/" aria-current="page">Statistics</a></nav><button type="button" data-lock-workspace>Sign out</button></header>
+<main id="main" tabindex="-1"><h1>Statistics</h1><p>The spreadsheet will go here.</p></main>
+</div>
+<dialog class="gate-dialog tk-gate" id="workspace-gate" open aria-labelledby="gate-title"><div class="gate-shell"><a class="brand" href="/"><img src="/assets/images/mark.svg" width="40" height="40" alt=""><span>FREE MARKET<br>WILDLIFE</span></a><div class="dialog-panel"><span class="eyebrow">TROY KEARNS / WORKSPACE</span><h2 id="gate-title">Sign in.</h2><p>Good to have you here.</p><form data-gate-form><label for="gate-code">Password</label><input id="gate-code" name="passcode" type="password" autocomplete="current-password" autocapitalize="off" spellcheck="false" required aria-describedby="gate-error" autofocus><p class="form-error" id="gate-error" aria-live="polite"></p><button class="button primary" type="submit">Continue <span aria-hidden="true">→</span></button></form><p class="micro">Temporary preview access. Public content only.</p><a class="text-button" href="/">← Back home</a><noscript><p>Enable JavaScript to use this preview.</p></noscript></div><span class="micro">FREE MARKET WILDLIFE</span></div></dialog>
+
 </body></html>
 ```
 
