@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Restore recent YouTube observations
+      - name: Restore client social tracking state
         uses: actions/github-script@v7
         with:
           script: |
@@ -46,7 +46,7 @@ jobs:
           if [ -f "$RUNNER_TEMP/youtube-history.zip" ]; then
             unzip -o "$RUNNER_TEMP/youtube-history.zip" -d .youtube-state
           fi
-      - name: Collect YouTube totals
+      - name: Collect client channels and daily video history
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
         run: python3 scripts/update_youtube.py
@@ -54,9 +54,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: youtube-history
-          path: |
-            assets/data/youtube.json
-            assets/data/kat-kai-youtube.json
+          path: assets/data/*.json
           retention-days: 2
       - name: Test collector
         run: python3 -m unittest discover -s tests -v
@@ -74,3 +72,5 @@ jobs:
       - name: Deploy
         id: deployment
         uses: actions/deploy-pages@v4
+      - name: Report unsuccessful social collections
+        run: python3 scripts/check_social_collection.py

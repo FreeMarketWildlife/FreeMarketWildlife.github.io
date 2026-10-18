@@ -9,3 +9,7 @@ assets/data/youtube-live.json
 design/youtube-statistics-live.png
 design/youtube-api-enable.png
 design/youtube-videos-live.png
+
+# Generated rolling social metrics are published and retained in CI, never Git.
+assets/data/history/
+assets/data/*-history.json

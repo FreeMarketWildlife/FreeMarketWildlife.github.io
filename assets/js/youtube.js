@@ -1,3 +1,4 @@
+import { historyPanel } from './social-charts.js?v=1';
 const source = document.body.dataset.youtubeSource || 'youtube';
 const status = document.querySelector('#youtube-status');
 const body = document.querySelector('#youtube-history');
@@ -59,7 +60,7 @@ const duration = iso => {
 let videos = [], page = 0;
 function renderVideos() {
   const query = search.value.trim().toLocaleLowerCase();
-  const filtered = videos.filter(v => [v.snippet.title, v.snippet.description, ...(v.snippet.tags || [])]
+  const filtered = videos.filter(v => [v.snippet.title]
     .join(' ').toLocaleLowerCase().includes(query));
   filtered.sort((a, b) => {
     if (sort.value === 'oldest') return a.snippet.publishedAt.localeCompare(b.snippet.publishedAt);
@@ -79,16 +80,9 @@ function renderVideos() {
     link.textContent = video.snippet.title;
     const details = document.createElement('details');
     const summary = document.createElement('summary'); summary.textContent = 'Details';
-    const description = document.createElement('p'); description.className = 'video-description';
-    description.textContent = video.snippet.description || 'No description.';
-    const tags = document.createElement('p'); tags.textContent = `Tags: ${(video.snippet.tags || []).join(', ') || '—'}`;
-    const meta = document.createElement('p');
-    meta.textContent = `Language: ${video.snippet.defaultAudioLanguage || video.snippet.defaultLanguage || '—'} · Captions: ${video.contentDetails?.caption ?? '—'} · License: ${video.status?.license || '—'}`;
-    const rawDetails = document.createElement('details');
-    const rawSummary = document.createElement('summary'); rawSummary.textContent = 'All returned public metadata';
-    const raw = document.createElement('pre'); raw.textContent = JSON.stringify(video, null, 2);
-    rawDetails.append(rawSummary, raw);
-    details.append(summary, description, tags, meta, rawDetails);
+    const history = historyPanel(source, video.id);
+    details.append(summary, history);
+    details.addEventListener('toggle', () => { if (details.open) history.load(); });
     titleCell.append(link, details);
     tr.append(titleCell, cell(new Date(video.snippet.publishedAt).toLocaleDateString()),
       cell(duration(video.contentDetails?.duration)), cell(number(video.statistics?.viewCount)),
@@ -116,6 +110,7 @@ if (videoStatus) {
     }
     videos = catalog.videos;
     videoStatus.textContent = `Last successful video update: ${date(catalog.updatedAt)}. Checked ${catalog.uploadIdsChecked.toLocaleString()} upload IDs; ${videos.length.toLocaleString()} public videos returned.`;
+    if (catalog.collectionStatus) videoStatus.textContent += ' Latest collection incomplete; showing the last successful catalog.';
     if (age > 36 * 3600000) videoStatus.textContent += ' Update overdue.';
     renderVideos();
   } catch {

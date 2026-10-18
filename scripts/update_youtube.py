@@ -1,10 +1,12 @@
 """Collect public YouTube channel totals. API key stays in the process environment.
-No database dependency; rolling state is held in short-lived CI artifacts, not Git.
+Daily channel and per-video observations are restored from CI artifacts, never Git.
 """
 import json
 import os
 from pathlib import Path
 import sys
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from social_history import record, identifier
 from datetime import datetime, timedelta, timezone
 from urllib.request import Request, urlopen
 from urllib.parse import urlencode
@@ -139,6 +141,8 @@ def main(prefix='youtube', handle=None, channel_url=CHANNEL_URL, channel_title='
     previous = {}
     if state_path.exists():
         previous = json.loads(state_path.read_text())
+        if previous.get('channelUrl') != channel_url:
+            previous = {}
     fetch = (lambda key, channel_id: fetch_channel(key, channel_id, handle)) if handle else fetch_channel
     data = update(previous, os.environ.get('YOUTUBE_API_KEY', '').strip(), datetime.now(timezone.utc), fetch, channel_url, channel_title)
     output_path.write_text(json.dumps(data, indent=2) + '\n')
@@ -153,13 +157,73 @@ def main(prefix='youtube', handle=None, channel_url=CHANNEL_URL, channel_title='
             print('::warning::Video catalog update failed; no partial catalog was published.')
     elif key:
         catalog['status'] = 'update_failed'
+    # Retain a successful compact catalog through transient failures, without extending its timestamp.
+    catalog_path = ROOT / f'.youtube-state/{prefix}-videos.json'
+    if catalog['status'] == 'ok':
+        catalog['videos'] = [
+            {'id': video['id'], 'snippet': {field: video['snippet'].get(field, '')
+                for field in ('title', 'publishedAt')},
+             'statistics': video.get('statistics', {}),
+             'contentDetails': {'duration': video.get('contentDetails', {}).get('duration')}}
+            for video in catalog['videos']]
+    elif catalog_path.exists():
+        saved = json.loads(catalog_path.read_text())
+        try:
+            if datetime.now(timezone.utc) - timestamp(saved['updatedAt']) <= timedelta(days=MAX_AGE_DAYS):
+                saved['collectionStatus'] = catalog['status']
+                catalog = saved
+        except (KeyError, ValueError, TypeError):
+            pass
+    persist_video_history(prefix, catalog)
     (ROOT / f'assets/data/{prefix}-videos.json').write_text(json.dumps(catalog, ensure_ascii=False) + '\n')
     print('YouTube video catalog: ' + catalog['status'] + '; public videos: ' + str(len(catalog['videos'])))
     summary = os.environ.get('GITHUB_STEP_SUMMARY')
     if summary:
         with open(summary, 'a') as stream:
-            stream.write(f"YouTube collector: **{data['status']}**. Retained snapshots: {len(data['snapshots'])}.\n")
+            stream.write(f"YouTube collector: **{data['status']}**. {channel_title}. Retained channel snapshots: {len(data['snapshots'])}. Public videos: {len(catalog['videos'])}.\n")
 
+def persist_video_history(prefix, catalog):
+    now = datetime.now(timezone.utc)
+    state_path = ROOT / f'.youtube-state/{prefix}-history.json'
+    previous = json.loads(state_path.read_text()) if state_path.exists() else {}
+    identity = {'client': CURRENT_ACCOUNT['client'], 'platform': 'youtube',
+                'account': CURRENT_ACCOUNT['account'], 'channelId': catalog.get('channelId')}
+    # Failed requests still prune existing history under its known identity.
+    success = catalog.get('status') == 'ok' and not catalog.get('collectionStatus')
+    if not success and previous:
+        identity = previous['identity']
+    metrics = {}
+    if success:
+        for video in catalog['videos']:
+            metrics[identifier(video['id'])] = {
+                metric: int(video['statistics'][field]) if field in video['statistics'] else None
+                for metric, field in [('views', 'viewCount'), ('likes', 'likeCount'), ('comments', 'commentCount')]}
+    history = record(previous, identity, metrics, catalog.get('updatedAt'), now,
+                     CURRENT_ACCOUNT['retentionDays'], success)
+    # Generated files are deployment data, never committed API history.
+    destination = ROOT / f'assets/data/history/{prefix}'
+    destination.mkdir(parents=True, exist_ok=True)
+    for path in destination.glob('*.json'):
+        path.unlink()
+    for resource_id, rows in history['resources'].items():
+        (destination / f'{resource_id}.json').write_text(json.dumps({
+            'schemaVersion': 1, 'identity': identity, 'resourceId': resource_id,
+            'retentionDays': history['retentionDays'], 'status': history['status'],
+            'lastAttemptAt': history['lastAttemptAt'], 'observations': rows}, separators=(',', ':')) + '\n')
+    state_path.parent.mkdir(parents=True, exist_ok=True)
+    (ROOT / f'assets/data/{prefix}-history.json').write_text(json.dumps(history, separators=(',', ':')) + '\n')
+
+
+CURRENT_ACCOUNT = {}
 if __name__ == '__main__':
-    main()
-    main('kat-kai-youtube', 'KatandKaiPeakOfficial', 'https://www.youtube.com/@KatandKaiPeakOfficial', 'Kat & Kai')
+    config = json.loads((ROOT / 'config/social-accounts.json').read_text())
+    outputs = set()
+    for account in config['accounts']:
+        if account['platform'] != 'youtube':
+            raise ValueError('Platform collector not installed: ' + account['platform'])
+        identifier(account['output'])
+        if account['output'] in outputs:
+            raise ValueError('Duplicate account output')
+        outputs.add(account['output'])
+        CURRENT_ACCOUNT = account
+        main(account['output'], account['account'], account['url'], account['title'])

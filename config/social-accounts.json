@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "accounts": [
+    {"client": "troy-kearns", "platform": "youtube", "account": "troykearns", "title": "Troy Kearns", "url": "https://www.youtube.com/troykearns", "output": "youtube", "retentionDays": 27},
+    {"client": "kat-kai", "platform": "youtube", "account": "KatandKaiPeakOfficial", "title": "Kat & Kai", "url": "https://www.youtube.com/@KatandKaiPeakOfficial", "output": "kat-kai-youtube", "retentionDays": 27}
+  ]
+}

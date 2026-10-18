@@ -46,3 +46,21 @@ section[aria-labelledby="videos-title"] { margin-top: 40px; }
 #video-rows summary { cursor: pointer; text-decoration: underline; }
 .video-description, #video-rows pre { white-space: pre-wrap; overflow-wrap: anywhere; }
 #video-rows pre { max-width: 500px; font-size: 12px; }
+
+.history-panel { max-width: 460px; min-width: 260px; padding: 8px 0 12px; }
+.history-panel > p:first-child { font-weight: bold; }
+.chart-controls { display: flex; flex-wrap: wrap; gap: 6px; }
+.chart-controls button { font-size: 12px; padding: 5px 9px; border-color: #777; border-radius: 4px; }
+.chart-controls button[aria-pressed="true"] { color: #000; background: #fff; border-color: #fff; }
+.chart-total { font-size: 15px; margin: 14px 0 4px; font-weight: bold; }
+.history-panel svg { width: 100%; height: auto; display: block; overflow: visible; }
+.history-panel svg text { fill: #aaa; font-size: 10px; font-family: Arial, sans-serif; }
+.chart-grid { stroke: #333; stroke-dasharray: 3 4; }
+.chart-line { fill: none; stroke: #fff; stroke-width: 2; stroke-linejoin: round; }
+.history-panel circle { fill: #fff; stroke: #000; stroke-width: 1.5; }
+.history-panel circle:hover, .history-panel circle:focus { r: 5; outline: none; stroke: #fff; }
+.chart-note { color: #aaa; font-size: 12px; }
+.history-panel table { min-width: 0; font-size: 11px; }
+.history-panel th, .history-panel td { padding: 5px; border-color: #444; }
+body[data-client="kat-kai"] .chart-line { stroke: #edc7d9; }
+body[data-client="kat-kai"] .history-panel circle { fill: #edc7d9; }
