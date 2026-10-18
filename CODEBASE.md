@@ -669,7 +669,7 @@ export async function loadSceneSprites() {
 <script type="module" src="/assets/js/app.js?v=2"></script>
 </head><body data-client="troy-kearns">
 <div id="workspace-content" hidden inert>
-<header><a href="/" aria-label="Free Market Wildlife home"><img src="/assets/images/mark.svg" width="40" height="40" alt="Free Market Wildlife"></a><nav aria-label="Troy workspace"><a href="/troykearns/" aria-current="page">Links</a><a href="/troykearns/statistics/">Statistics</a></nav><button type="button" data-lock-workspace>Sign out</button></header>
+<header><a href="/" aria-label="Free Market Wildlife home"><img src="/assets/images/mark.svg" width="40" height="40" alt="Free Market Wildlife"></a><nav aria-label="Troy workspace"><a href="/troykearns/statistics/">Statistics</a><a href="/troykearns/" aria-current="page">Links</a></nav><button type="button" data-lock-workspace>Sign out</button></header>
 <main id="main" tabindex="-1"><h1>Links:</h1><ul>
 <li>YouTube: <a href="https://www.youtube.com/troykearns" target="_blank" rel="noopener noreferrer">youtube.com/troykearns</a></li>
 <li>Instagram: <a href="https://www.instagram.com/thetroykearns/" target="_blank" rel="noopener noreferrer">@thetroykearns</a></li>
@@ -699,7 +699,7 @@ export async function loadSceneSprites() {
 <script type="module" src="/assets/js/app.js?v=2"></script>
 </head><body data-client="troy-kearns">
 <div id="workspace-content" hidden inert>
-<header><a href="/" aria-label="Free Market Wildlife home"><img src="/assets/images/mark.svg" width="40" height="40" alt="Free Market Wildlife"></a><nav aria-label="Troy workspace"><a href="/troykearns/" aria-current="page">Links</a><a href="/troykearns/statistics/">Statistics</a></nav><button type="button" data-lock-workspace>Sign out</button></header>
+<header><a href="/" aria-label="Free Market Wildlife home"><img src="/assets/images/mark.svg" width="40" height="40" alt="Free Market Wildlife"></a><nav aria-label="Troy workspace"><a href="/troykearns/statistics/">Statistics</a><a href="/troykearns/" aria-current="page">Links</a></nav><button type="button" data-lock-workspace>Sign out</button></header>
 <main id="main" tabindex="-1"><h1>Links:</h1><ul>
 <li>YouTube: <a href="https://www.youtube.com/troykearns" target="_blank" rel="noopener noreferrer">youtube.com/troykearns</a></li>
 <li>Instagram: <a href="https://www.instagram.com/thetroykearns/" target="_blank" rel="noopener noreferrer">@thetroykearns</a></li>
@@ -729,7 +729,7 @@ export async function loadSceneSprites() {
 <script type="module" src="/assets/js/app.js?v=2"></script>
 </head><body data-client="troy-kearns">
 <div id="workspace-content" hidden inert>
-<header><a href="/" aria-label="Free Market Wildlife home"><img src="/assets/images/mark.svg" width="40" height="40" alt="Free Market Wildlife"></a><nav aria-label="Troy workspace"><a href="/troykearns/">Links</a><a href="/troykearns/statistics/" aria-current="page">Statistics</a></nav><button type="button" data-lock-workspace>Sign out</button></header>
+<header><a href="/" aria-label="Free Market Wildlife home"><img src="/assets/images/mark.svg" width="40" height="40" alt="Free Market Wildlife"></a><nav aria-label="Troy workspace"><a href="/troykearns/statistics/" aria-current="page">Statistics</a><a href="/troykearns/">Links</a></nav><button type="button" data-lock-workspace>Sign out</button></header>
 <main id="main" tabindex="-1"><h1>Statistics</h1><p>The spreadsheet will go here.</p></main>
 </div>
 <dialog class="gate-dialog tk-gate" id="workspace-gate" open aria-labelledby="gate-title"><div class="gate-shell"><a class="brand" href="/"><img src="/assets/images/mark.svg" width="40" height="40" alt=""><span>FREE MARKET<br>WILDLIFE</span></a><div class="dialog-panel"><span class="eyebrow">TROY KEARNS / WORKSPACE</span><h2 id="gate-title">Sign in.</h2><p>Good to have you here.</p><form data-gate-form><label for="gate-code">Password</label><input id="gate-code" name="passcode" type="password" autocomplete="current-password" autocapitalize="off" spellcheck="false" required aria-describedby="gate-error" autofocus><p class="form-error" id="gate-error" aria-live="polite"></p><button class="button primary" type="submit">Continue <span aria-hidden="true">→</span></button></form><p class="micro">Temporary preview access. Public content only.</p><a class="text-button" href="/">← Back home</a><noscript><p>Enable JavaScript to use this preview.</p></noscript></div><span class="micro">FREE MARKET WILDLIFE</span></div></dialog>
