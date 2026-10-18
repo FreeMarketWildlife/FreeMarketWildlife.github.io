@@ -1,0 +1,9 @@
+[data-sermon-notebook] > label { display:block; max-width:720px; margin:20px 0; }
+[data-sermon-notebook] input,[data-sermon-notebook] textarea { display:block; width:100%; max-width:100%; box-sizing:border-box; color:#fff; background:#000; border:1px solid #fff; font:inherit; padding:12px; min-height:44px; }
+[data-sermon-notebook] textarea { line-height:1.7; resize:vertical; }
+.sermon-form { max-width:720px; }
+.sermon-form label { display:block; margin:16px 0; }
+[data-sermon-notebook] summary { cursor:pointer; text-decoration:underline; padding:12px 0; }
+[data-sermon-notebook] button { min-height:44px; margin:8px 8px 8px 0; }
+[data-sermon-notebook] .goal-card { margin:20px 0; overflow-wrap:anywhere; }
+.sermon-notes { white-space:pre-wrap; }
