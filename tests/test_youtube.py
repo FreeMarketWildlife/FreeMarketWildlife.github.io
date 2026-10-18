@@ -2,6 +2,9 @@ import importlib.util
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 import unittest
+from unittest.mock import patch
+import io
+import json
 from urllib.error import URLError
 spec = importlib.util.spec_from_file_location('collector', Path(__file__).resolve().parents[1] / 'scripts/update_youtube.py')
 collector = importlib.util.module_from_spec(spec)
@@ -13,6 +16,16 @@ def item(hidden=False):
             {'subscriberCount': '123000', 'viewCount': '987654', 'videoCount': '25', 'hiddenSubscriberCount': hidden}}
 
 class CollectorTests(unittest.TestCase):
+    def test_handle_fallback_after_empty_legacy_username(self):
+        replies = [io.BytesIO(json.dumps({'items': []}).encode()),
+                   io.BytesIO(json.dumps({'items': [item()]}).encode())]
+        with patch.object(collector, 'urlopen', side_effect=replies) as network:
+            result = collector.fetch_channel('test-key')
+        self.assertEqual(result['id'], 'UCtest')
+        self.assertIn('forUsername=troykearns', network.call_args_list[0].args[0].full_url)
+        self.assertIn('forHandle=troykearns', network.call_args_list[1].args[0].full_url)
+        self.assertNotIn('test-key', network.call_args_list[1].args[0].full_url)
+
     def test_missing_key_does_not_fetch(self):
         def fail(*args): raise AssertionError('No network call without key')
         self.assertEqual(collector.update({}, '', NOW, fail)['status'], 'not_configured')

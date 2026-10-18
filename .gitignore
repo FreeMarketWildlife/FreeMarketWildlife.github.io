@@ -5,3 +5,6 @@ __pycache__/
 
 .youtube-state/
 assets/data/youtube-live.json
+
+design/youtube-statistics-live.png
+design/youtube-api-enable.png

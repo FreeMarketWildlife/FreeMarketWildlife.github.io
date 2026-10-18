@@ -98,7 +98,7 @@ The workflow publishes only the HTML pages, assets, CNAME, and `.nojekyll`; deve
 
 GitHub's repository website is hosted on `github.io` or the configured custom domain; `github.com` is the repository interface. Root-relative routes target the custom-domain root or a user/organization Pages site, rather than a project subpath.
 
-For an Actions deployment, a CNAME file alone does not configure the domain. The site is now connected to FreeMarketWildlife/FreeMarketWildlife.github.io and published through GitHub Actions. HTTPS and the live Statistics page were verified. The YouTube collector is awaiting its API key.
+For an Actions deployment, a CNAME file alone does not configure the domain. The site is now connected to FreeMarketWildlife/FreeMarketWildlife.github.io and published through GitHub Actions. HTTPS and the live Statistics page were verified. The YouTube API is enabled and its restricted key is saved in GitHub Secrets. A live collection and website display were verified.
 
 Official references: [GitHub Pages workflows](https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages), [custom domains](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site).
 
