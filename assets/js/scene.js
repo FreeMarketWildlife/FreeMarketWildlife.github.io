@@ -12,9 +12,11 @@ if (stage) {
   const ctx = canvas.getContext('2d');
   const reduced = matchMedia('(prefers-reduced-motion: reduce)');
   let width = 240, height = 94, pixel = 2, time = 0, last = 0, frame;
-  let soldiers = [], shots = [], debris = [], nextSpawn = 0, nextShot = 2;
-  let castleHP=600, engineHP=120, nextArrow=0, nextDefender=5;
+  let soldiers = [], shots = [], debris = [], nextSpawn = 4, nextShot = 2;
+  let castleHP=600, engineHP=120, nextArrow=0, nextDefender=18;
   let hoverPoint = null, victory = false;
+  let construction = 0; // Completed only by living attackers at the build site.
+  const engineX = 48;
   const wallArchers=[{offset:3,flash:0},{offset:26,flash:0},{offset:47,flash:0}];
   const ground = () => height - 10;
   const castle = () => width - 64;
@@ -42,7 +44,11 @@ if (stage) {
     if(s.dead){line(x-3,y-1,x+4,y-1);rect(x+4,y-3,2,2);ctx.restore();return;}
     rect(x-1,y-10,3,3);rect(x-2,y-7,4,4);rect(x-3,y-10,5,1);
     line(x,y-3,x-2-step,y);line(x+1,y-3,x+2+step,y);
-    if(s.side===1){rect(x+3,y-7,2,5);line(x-2,y-5,x-5,y-12);}
+    if(s.building){
+      const hammer=Math.floor(time*4+s.seed)%2;
+      line(x+1,y-6,x+5,y-8-hammer*3);rect(x+4,y-10-hammer*3,4,2);
+    }
+    else if(s.side===1){rect(x+3,y-7,2,5);line(x-2,y-5,x-5,y-12);}
     else{rect(x-4,y-7,2,5);line(x+2,y-5,x+5,y-11);}
     ctx.restore();
   }
@@ -59,7 +65,7 @@ if (stage) {
     for(let row=0;row<3;row++)for(let col=0;col<4;col++)rect(c+15+col*6+(row%2)*2,g-29+row*7,3,1,'#000');
     line(c+46,g-50,c+46,g-65);rect(c+47,g-65,12,6);rect(c+55,g-62,4,3,'#000');
     for(let i=0;i<Math.floor((600-castleHP)/35);i++){const x=c+15+(i*11)%25,y=g-34+(i*7)%19;rect(x,y,3,2,'#000');rect(x+2,y+2,2,3,'#000');}
-    for(const archer of wallArchers){
+    if(time>=18)for(const archer of wallArchers){
       const x=c+archer.offset,y=g-(archer.offset===26?40:50);
       rect(x,y-9,3,3);rect(x,y-6,2,5);line(x,y-2,x-1,y);line(x+1,y-2,x+3,y);
       // A bow facing the approaching army, plus a visible release pose.
@@ -67,18 +73,31 @@ if (stage) {
       if(archer.flash>0)line(x-8,y-5,x-3,y-5);
     }
     }else{for(let i=0;i<22;i++)rect(c-4+(i*13)%62,g-1-(i*7)%8,3+(i%4),2+(i%3));}
-    // Trebuchet rolls in, then periodically winds and releases its throwing arm.
-    const tx=Math.min(37,-20+time*7),ty=g-2;
-    if(engineHP>0){
+    // Rock shoulders overlap the masonry, recessing the keep into the cliff.
+    for(let step=0;step<5;step++)rect(c+43+step*3,g-4-step*4,14-step*2,4+step*4);
+    rect(c+45,g-11,5,1,'#000');rect(c+48,g-6,6,2,'#000');rect(c+50,g-18,3,2,'#000');
+    // A stepped, two-edged approach leads directly into the gate.
+    for(let step=0;step<12;step++){
+      const px=c-117+step*12,py=g+3-Math.floor(step/3);
+      rect(px,py,12,1);rect(px+2,py+3,9,1);
+      if(step%3===0)rect(px,py,1,4);
+    }
+    // Attackers assemble the base, supports, then the throwing arm in place.
+    const tx=engineX,ty=g-2;
+    if(construction>0&&engineHP>0){
     rect(tx-13,ty-3,28,3);rect(tx-10,ty,5,3);rect(tx+7,ty,5,3);
+    if(construction>=.3){
     line(tx-9,ty-3,tx,ty-24);line(tx+10,ty-3,tx,ty-24);line(tx-5,ty-14,tx+5,ty-14);
-    const angle=time<7?-.9:Math.sin((time%4)/4*Math.PI*2)*.9-.6;
+    }
+    if(construction>=.7){
+    const angle=construction<1?-.9:Math.sin((time%12)/12*Math.PI*2)*.9-.6;
     const ax=tx+Math.cos(angle)*21,ay=ty-22+Math.sin(angle)*21;
     line(tx-Math.cos(angle)*9,ty-22-Math.sin(angle)*9,ax,ay);
     rect(tx-Math.cos(angle)*9-3,ty-22-Math.sin(angle)*9,6,6);line(ax,ay,ax+3,ay+7);
+    }
     if(engineHP<90)rect(tx-6,ty-9,3,2,'#000');
     if(engineHP<45)rect(tx+2,ty-16,3,3,'#000');
-    }else{line(22,g,48,g-3);line(25,g-5,42,g);rect(28,g-2,5,2);}
+    }else if(construction>0){line(engineX-15,g,engineX+11,g-3);line(engineX-12,g-5,engineX+5,g);rect(engineX-9,g-2,5,2);}
     soldiers.forEach(soldier);
     for(const shot of shots){const p=shot.age/shot.duration;const x=shot.start+(shot.end-shot.start)*p,y=shot.y+(shot.targetY-shot.y)*p-Math.sin(p*Math.PI)*shot.arc;if(shot.arrow)line(x,y,x+4,y+1);else rect(x,y,3,3);}
     for(const d of debris)rect(d.x,d.y,1,1);
@@ -90,8 +109,8 @@ if (stage) {
     const unit=soldiers.filter(s=>!s.dead&&Math.abs(s.x-x)<(s.kind==='giant'?16:10)&&Math.abs(g-s.lane-5-y)<16).sort((a,b)=>Math.abs(a.x-x)-Math.abs(b.x-x))[0];
     if(unit)return {x:unit.x,y:g-unit.lane-(unit.kind==='giant'?34:22),hp:unit.hp,max:unit.kind==='foot'?25:180};
     if(x>castle()-8&&x<castle()+60&&y>g-65)return {x:castle()+26,y:g-75,hp:castleHP,max:600};
-    const tx=engineHP>0?Math.min(37,-20+time*7):37;
-    if(x>tx-25&&x<tx+28&&y>g-47)return {x:tx,y:g-55,hp:engineHP,max:120};
+    const tx=engineX;
+    if(construction>0&&x>tx-25&&x<tx+28&&y>g-47)return {x:tx,y:g-55,hp:engineHP,max:120};
     return null;
   }
   function drawHealthBar() {
@@ -116,6 +135,12 @@ if (stage) {
     for(const s of soldiers){
       if(s.dead){s.dead-=dt;continue;}
       if(s.celebrating)continue;
+      if(s.side===1&&!victory&&engineHP>0&&construction<1&&s.x>=engineX-12&&s.x<=engineX+10){
+        s.building=true;construction=Math.min(1,construction+dt/12);
+        if(construction===1)s.building=false;
+        continue;
+      }
+      s.building=false;
       if(victory&&s.side===-1){s.x-=dt*8;continue;}
       if(s.side===1&&castleHP===0&&s.x>=castle()-8){
         victory=true;s.x=castle()+Math.min(45,soldiers.filter(unit=>unit.celebrating).length*9);s.celebrating=true;continue;
@@ -128,8 +153,8 @@ if (stage) {
       else s.x+=s.side*dt*(s.kind==='horse'?18:4);
     }
     soldiers=soldiers.filter(s=>s.dead>=0&&s.x>-20&&s.x<width+20);
-    if(time>nextShot&&time>7&&engineHP>0&&castleHP>0){nextShot=time+12;shots.push({age:0,start:43,end:castle()+26,y:ground()-27,targetY:ground()-27,duration:3.5,arc:48});}
-    if(time>nextArrow&&castleHP>0){
+    if(time>nextShot&&construction===1&&engineHP>0&&castleHP>0){nextShot=time+12;shots.push({age:0,start:engineX+6,end:castle()+26,y:ground()-27,targetY:ground()-27,duration:3.5,arc:48});}
+    if(time>=18&&time>nextArrow&&castleHP>0){
       nextArrow=time+2.5;
       const targets=soldiers.filter(s=>s.side===1&&!s.dead&&s.x>castle()-240).sort((a,b)=>b.x-a.x);
       if(targets.length)wallArchers.forEach((archer,index)=>{
@@ -151,11 +176,11 @@ if (stage) {
     const target=soldiers.filter(s=>!s.dead&&Math.abs(s.x-x)<(s.kind==='giant'?16:10)&&Math.abs(ground()-s.lane-5-y)<16).sort((a,b)=>Math.abs(a.x-x)-Math.abs(b.x-x))[0];
     if(target){target.dead=2;burst(target.x,ground()-5);}
     else if(x>castle()-8&&x<castle()+60&&y>ground()-65){hurtCastle(35);burst(x,y);}
-    else if(x>12&&x<65&&y>ground()-47){engineHP=Math.max(0,engineHP-25);burst(x,y);}
+    else if(construction>0&&x>engineX-25&&x<engineX+28&&y>ground()-47){engineHP=Math.max(0,engineHP-25);burst(x,y);}
     draw();
   });
   document.addEventListener('visibilitychange',resume);reduced.addEventListener('change',resume);new ResizeObserver(resize).observe(document.body);
-  spawn(1);spawn(-1);resize();resume();
+  resize();resume();
 }
 
 const nature=document.querySelector('[data-nature-scene]');
@@ -170,25 +195,41 @@ if(nature){
     const layout=battleLayout();
     const fortX=Math.round((16+(layout.width-64)*layout.pixel)/p);
     const fortY=Math.round((innerHeight-layout.bottom-10*layout.pixel)/p);
-    // Cut a level shelf into the existing cliff. The original tree stays intact.
-    ctx.clearRect(fortX-5,fortY-22,22,22);
+    // Extend the cliff around a small dark recess for the fortress.
     ctx.fillStyle='#fff';
-    for(let column=-13;column<45;column++){
-      const top=column<-4?Math.floor((-column-4)/2):column<17?0:-Math.floor((column-17)*.65);
-      const depth=column<17?Math.max(2,Math.round(8-Math.abs(column-5)*.35)):3+(column%4);
+    for(let column=-14;column<44;column++){
+      const top=column<-5?Math.floor((-column-5)/2):column<16?-2:-Math.floor((column-12)*.8);
+      const depth=column<16?Math.max(3,Math.round(9-Math.abs(column-5)*.3)):4+(column%4);
       ctx.fillRect(fortX+column,fortY+top,1,depth);
     }
-    // Broken rock seams and a stepped approach beneath the tiny keep.
+    // Rock behind the right tower merges into the original hillside; leave a
+    // jagged negative-space pocket around the exposed facade and battlements.
+    for(let row=0;row<23;row++){
+      const inset=Math.floor(row/5);
+      ctx.fillRect(fortX+15-inset,fortY-23+row,12+inset,1);
+    }
+    ctx.clearRect(fortX-3,fortY-20,17,18);
+    ctx.clearRect(fortX-1,fortY-23,12,3);
     ctx.fillStyle='#000';
-    for(let row=2;row<8;row+=3)for(let column=-2;column<16;column+=7){
+    for(let row=2;row<9;row+=3)for(let column=-2;column<23;column+=7){
       ctx.fillRect(fortX+column+(row%3),fortY+row,3,1);
       ctx.fillRect(fortX+column+1,fortY+row+1,1,1);
     }
-    for(let step=0;step<5;step++)ctx.clearRect(fortX-14+step*2,fortY+2+step,2,1);
-    const cycle=t%28,fly=cycle>6&&cycle<23;
-    const bx=fly?x+75-(cycle-6)*18:x+75,by=fly?y+94-Math.sin((cycle-6)/17*Math.PI)*60:y+94;
-    ctx.drawImage(sprites.bird,Math.round(bx),Math.round(by));
-    if(fly){ctx.fillStyle='#000';ctx.fillRect(Math.round(bx+6),Math.round(by+4),8,6);ctx.fillStyle='#fff';const flap=Math.floor(t*7)%2;ctx.fillRect(Math.round(bx+7),Math.round(by+(flap?-3:6)),3,7);}
+    ctx.fillRect(fortX+18,fortY-13,4,1);ctx.fillRect(fortX+19,fortY-8,2,2);
+    // Coarse-grid stone steps connect the battlefield approach to the recess.
+    ctx.fillStyle='#fff';
+    for(let step=0;step<8;step++){
+      const px=fortX-32+step*4,py=fortY+4-Math.floor(step/2);
+      ctx.fillRect(px,py,4,1);
+    }
+    // Body and feet never leave their perch. Only the head turns/bobs.
+    const bx=x+75,by=y+94;
+    // Copy the body separately so a transparent head mask cannot erase scenery.
+    ctx.drawImage(sprites.bird,0,4,18,12,bx,by+4,18,12);
+    const headTurn=!reduced.matches&&Math.floor(t/3)%3===1;
+    const headBob=!reduced.matches&&Math.floor(t*2)%12===1?1:0;
+    if(headTurn){ctx.save();ctx.translate(bx+7,by+headBob);ctx.scale(-1,1);ctx.drawImage(sprites.bird,0,0,7,4,0,0,7,4);ctx.restore();}
+    else ctx.drawImage(sprites.bird,0,0,7,4,bx,by+headBob,7,4);
   }
   function tick(now){if(document.hidden||reduced.matches)return;t+=last?Math.min((now-last)/1000,.05):0;last=now;render();frame=requestAnimationFrame(tick);}
   function resume(){cancelAnimationFrame(frame);last=0;render();if(!document.hidden&&!reduced.matches)frame=requestAnimationFrame(tick);}
