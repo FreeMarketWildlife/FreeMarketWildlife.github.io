@@ -10,4 +10,6 @@ Removed the previous proposed upload trial and New Year target. Migration replac
 
 Release direction confirmed October 19: one long-form every week; aim for 3–7 Shorts per week, with a minimum of three. Derive Shorts from the long-form first and create original Shorts to cover any shortfall below three. The channel is in audience discovery. No posting days, times, subscriber forecasts or long-form metric thresholds are assumed. Strategy and starting content ideas use only the constructive supplied notes; personal criticism and guaranteed-growth claims are excluded. Music credits remain outside strategy.
 
+Release calendar refined: Saturday long-form; one Short each Sunday through Friday (six per week). Each Short points to the Saturday video through Related Video where advanced features are enabled. Keep the prior minimum-three fallback using original Shorts. No audience conversion or best-day/time claim. Strategy is a compact read-only calendar, with no notes editor; existing browser-local notes are untouched.
+
 Validate with `node tests/test_planner.mjs`, `python3 scripts/check_site.py`, and desktop/mobile browser review.
