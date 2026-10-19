@@ -8,7 +8,7 @@
   "assets": {"directory": "./public", "binding": "ASSETS", "run_worker_first": true},
   "vars": {
     "SITE_ORIGIN": "https://freemarketwildlife.com",
-    "GOOGLE_CLIENT_ID": "",
+    "GOOGLE_CLIENT_ID": "499695335272-qtmalu78mmughqkgslpe6dsh3b8563ef.apps.googleusercontent.com",
     "OWNER_EMAIL": "freemarketwildlife@gmail.com"
   },
   "d1_databases": [{"binding":"DB", "database_name":"fmw-workspaces", "database_id":"37f92822-702f-42ba-904d-9b36235e6a07", "migrations_dir":"migrations"}]

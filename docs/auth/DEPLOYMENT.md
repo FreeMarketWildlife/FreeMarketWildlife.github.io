@@ -4,7 +4,7 @@ Implementation: `services/workspace-auth`. Separate from the private YouTube Ana
 
 ## Current state
 
-Implemented and tested locally, not activated. Cloudflare CLI authorization is complete and remote D1 database `fmw-workspaces` has its initial schema applied. Google OAuth credentials and the protected hosting switch are still pending. The GitHub Pages preview continues its existing access mode. Its `workspace-auth.json` is disabled. Only the Worker asset pack enables the new account UI; do not enable it in public Pages manually. No existing notes or browser storage are changed.
+Implemented and tested locally, not activated. Cloudflare CLI authorization is complete and remote D1 database `fmw-workspaces` has its initial schema applied. The Google web client is configured, and its secret is stored in Cloudflare. The protected hosting switch and real Google round-trip verification are still pending. Domain DNS remains at the registrar; no Cloudflare zone existed when checked. The GitHub Pages preview continues its existing access mode. Its `workspace-auth.json` is disabled. Only the Worker asset pack enables the new account UI; do not enable it in public Pages manually. No existing notes or browser storage are changed.
 
 ## Activate
 
