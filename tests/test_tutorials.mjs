@@ -21,3 +21,8 @@ assert(!/practice|demo-email.*<input/i.test(page));
 assert.match(script,/demo.inert=true/);
 assert(!script.includes("demo.addEventListener('click'"));
 assert.match(script,/prefers-reduced-motion/);
+
+assert.equal(steps[4][0],'Click Access');
+assert.equal(steps[5][0],'Choose Viewer (limited)');
+assert.equal(steps[6][0],'Review and send');
+assert.match(page,/All done\./);

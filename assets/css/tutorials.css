@@ -69,3 +69,8 @@
 @keyframes target-orbit { to { --target-angle:360deg; } }
 @media(prefers-reduced-motion:reduce) { .studio-demo .hotspot::after { animation:none!important; background:#39d980; } }
 .compact-guide-page .studio-settings { overflow:visible; }
+#completion-dialog { background:#141414; color:#fff; border:1px solid #444; border-radius:18px; padding:36px; width:min(380px,calc(100% - 40px)); text-align:center; }
+#completion-dialog::backdrop { background:#000b; backdrop-filter:blur(4px); }
+#completion-dialog h2 { font-size:38px; margin:16px 0 8px; }#completion-dialog p { color:#aaa; font-size:14px; }
+.completion-check { border:2px solid #39d980; border-radius:50%; width:64px; height:64px; display:grid; place-items:center; margin:auto; color:#39d980; font-size:34px; }
+#close-completion { min-height:48px; margin-top:12px; border:0; border-radius:7px; background:#fff; color:#111; font-weight:bold; padding:10px 32px; }
