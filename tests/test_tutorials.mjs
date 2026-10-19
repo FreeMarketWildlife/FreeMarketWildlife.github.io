@@ -9,7 +9,7 @@ assert(matchesTutorial('','YouTube stats access'));
 const {inviteEmail,steps}=await load('assets/js/youtube-access-tutorial.js');
 assert.equal(inviteEmail,'freemarketwildlife@gmail.com');assert.equal(steps.length,7);
 const page=readFileSync('tutorials/youtube-stats-access/index.html','utf8');
-assert.match(page,/Viewer \(limited\)/);assert.match(page,/<noscript>/);assert.match(page,/Show all steps/);assert.match(page,/Remove access/);
+assert.match(page,/Viewer \(limited\)/);assert.match(page,/<noscript>/);assert.match(page,/COPY EMAIL/);assert(!page.includes('Open YouTube Studio'));assert(!page.includes('Click here'));
 assert(!page.includes('therealdragex'));assert(!page.includes('type="password"'));assert(!page.includes('<form'));
 const script=readFileSync('assets/js/youtube-access-tutorial.js','utf8');assert(!/fetch\(|localStorage|sessionStorage/.test(script),'Walkthrough must not submit or store client data');
 assert.match(readFileSync('.github/workflows/pages.yml','utf8'),/privacy tutorials _site/);

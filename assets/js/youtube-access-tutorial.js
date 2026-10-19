@@ -14,7 +14,7 @@ if(typeof document!=='undefined'){
  const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
  demo.inert=true;
  function button(label,action,cls=''){const b=document.createElement('button');b.type='button';b.textContent=label;b.className=cls;b.tabIndex=-1;return b;}
- function next(){if(index<steps.length-1){index++;render();$('#step-title').focus();}}
+ function next(){if(index<steps.length-1){index++;render();$('#step-title').focus({preventScroll:true});}}
  function render(){
   clearTimeout(typingTimer);
   $('#step-title').textContent=steps[index][0];$('#step-description').textContent=steps[index][1];$('#step-count').textContent=`Step ${index+1} of ${steps.length}`;$('#step-progress').value=index+1;$('#previous-step').disabled=index===0;$('#next-step').hidden=index===steps.length-1;status.textContent='';
@@ -36,15 +36,17 @@ if(typeof document!=='undefined'){
      if(index===4){const menu=document.createElement('div');menu.className='roles-menu';menu.setAttribute('aria-label','Access roles');for(const [name,description] of [['Manager','Can edit and manage permissions.'],['Editor','Can edit channel content.'],['Editor (limited)','Can edit; cannot see revenue.'],['Subtitle editor','Can edit subtitles.'],['Viewer','Can view, including revenue.'],['Viewer (limited)','Can view, except revenue. Cannot edit.']]){const option=button('',name==='Viewer (limited)'?'advance':'wrong-role',name==='Viewer (limited)'?'role-option hotspot':'role-option');const title=document.createElement('strong');title.textContent=name;const detail=document.createElement('span');detail.textContent=description;option.append(title,detail);menu.append(option);}invite.append(menu);}
      const done=button('Done',null,'studio-pill '+(index===5?'hotspot':''));invite.querySelector('.done-target').append(done);
     }
-    if(index===6){panel.querySelector('.permission-table').innerHTML='<div>Name <span>Role</span></div><div>Your account <span>Owner</span></div><div class="pending-example"><strong>freemarketwildlife@gmail.com</strong><span>Viewer (limited)</span><small>Pending invitation · example</small></div>';status.textContent='Once you see the invitation in YouTube Studio, you’re finished. This guide does not send invitations.';}
+    if(index===6){panel.querySelector('.permission-table').innerHTML='<div>Name <span>Role</span></div><div>Your account <span>Owner</span></div><div class="pending-example"><strong>freemarketwildlife@gmail.com</strong><span>Viewer (limited)</span><small>Pending invitation · example</small></div>';status.textContent='Once you see the invitation in YouTube Studio, you’re finished. No invitation is sent by this guide.';}
    }
   }
   demo.dataset.step=String(index);
-  demo.querySelectorAll('.hotspot').forEach(target=>{target.dataset.cue=index===3?'Type here':'Click here';});
   if(index===6)demo.querySelector('.pending-example').classList.add('confirmation-highlight');
-  if(!reducedMotion.matches){demo.animate([{opacity:.25,transform:'translateY(10px)'},{opacity:1,transform:'translateY(0)'}],{duration:350,easing:'ease-out'});$('.step-copy').animate([{opacity:0},{opacity:1}],{duration:250});}
+  if(!reducedMotion.matches){demo.animate([{opacity:.25},{opacity:1}],{duration:350,easing:'ease-out'});$('.step-copy').animate([{opacity:0},{opacity:1}],{duration:250});}
  }
- $('#next-step').addEventListener('click',next);$('#previous-step').addEventListener('click',()=>{index=Math.max(0,index-1);render();$('#step-title').focus();});$('#restart').addEventListener('click',()=>{index=0;render();$('#step-title').focus();});
+ $('#next-step').addEventListener('click',next);$('#previous-step').addEventListener('click',()=>{index=Math.max(0,index-1);render();$('#step-title').focus({preventScroll:true});});$('#restart').addEventListener('click',()=>{index=0;render();$('#step-title').focus({preventScroll:true});});
  $('#copy-email').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(inviteEmail);$('#copy-status').textContent='Email copied. Paste it into YouTube Studio’s Email field.';}catch{$('#copy-status').textContent='Select and copy freemarketwildlife@gmail.com above.';}});
- render();
+ const viewport=demo.parentElement;
+ function fitDemo(){const width=viewport.clientWidth,height=viewport.clientHeight,baseWidth=Math.max(600,width),scale=Math.min(width/baseWidth,height/500);demo.style.width=baseWidth+'px';demo.style.height='500px';demo.style.transform=`translate(-50%, -50%) scale(${scale})`;}
+ new ResizeObserver(fitDemo).observe(viewport);
+ render();fitDemo();
 }
