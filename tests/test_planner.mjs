@@ -25,7 +25,7 @@ assert.throws(()=>validatePlan({...defaultPlan(),goals:[defaultPlan().goals[0],d
 const config=JSON.parse(readFileSync('config/social-accounts.json','utf8'));
 assert.equal(config.accounts.find(a=>a.client==='philip-tanoshi').account,'TanoshiSan');
 const gatesEnabled=readFileSync('assets/js/app.js','utf8').includes('const passwordGatesEnabled = true;');
-for(const folder of ['troykearns','kat-kai'])for(const view of ['strategy','roadmap']){const page=readFileSync(`${folder}/${view}/index.html`,'utf8');if(gatesEnabled){assert.match(page,/id="workspace-content" hidden inert/);assert.match(page,/<dialog[^>]*id="workspace-gate"[^>]* open/);}else{assert.match(page,/id="workspace-content">/);assert.match(page,/<dialog[^>]*id="workspace-gate"[^>]* hidden/);}for(const link of ['Statistics','Links','Strategy','Roadmap'])assert(page.includes(`>${link}</a>`));}
+for(const folder of ['troykearns','kat-kai'])for(const view of ['strategy','roadmap']){const page=readFileSync(`${folder}/${view}/index.html`,'utf8');if(gatesEnabled){assert.match(page,/id="workspace-content" hidden inert/);assert.match(page,/<dialog[^>]*id="workspace-gate"[^>]* open/);}else{assert.match(page,/id="workspace-content">/);assert.match(page,/<dialog[^>]*id="workspace-gate"[^>]* hidden/);}for(const link of (folder==='kat-kai'?['Statistics','Strategy','Roadmap']:['Statistics','Links','Strategy','Roadmap']))assert(page.includes(`>${link}</a>`));}
 console.log('PASS: live goal math, Pacific month rollover, missing/hidden/stale/decreasing counts, partial-period labeling, plan validation, channel registration and configured workspace access.');
 const {personalizePlan}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
 const kat=defaultPlan('kat-kai');
