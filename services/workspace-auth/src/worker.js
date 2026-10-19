@@ -37,8 +37,8 @@ async function owner(user,env) {
 export async function permitted(user,env) {
   if(!user)return [];
   if(await owner(user,env))return WORKSPACES;
-  const {results}=await env.DB.prepare('SELECT workspace FROM memberships WHERE google_sub=?').bind(user.google_sub).all();
-  return WORKSPACES.filter(w=>results.some(r=>r.workspace===w.id));
+  const {results}=await env.DB.prepare('SELECT workspace FROM memberships WHERE google_sub=? ORDER BY rowid').bind(user.google_sub).all();
+  return results.map(r=>WORKSPACES.find(w=>w.id===r.workspace)).filter(Boolean);
 }
 export function validClaims(claims,nonce) {
   return !!(claims.sub && claims.nonce===nonce && claims.email_verified===true && typeof claims.email==='string' && (claims.email.toLowerCase().endsWith('@gmail.com') || claims.hd));
@@ -78,7 +78,7 @@ async function callback(req,env,url) {
   const session=random();
   await env.DB.prepare('INSERT INTO sessions VALUES (?,?,?)').bind(await hash(session),payload.sub,now()+86400).run();
   const list=await permitted({google_sub:payload.sub,email},env);
-  return redirect(list.length?'/?workspaces=1':'/build-a-business/',[cleared,setCookie('__Host-fmw-session',session,86400)]);
+  return redirect(list[0]?.path || '/build-a-business/',[cleared,setCookie('__Host-fmw-session',session,86400)]);
 }
 async function handle(req,env) {
   const url=new URL(req.url);
@@ -96,7 +96,10 @@ async function handle(req,env) {
   if(path==='/auth/start' && req.method==='GET')return start(env);
   if(path==='/auth/callback' && req.method==='GET')return callback(req,env,url);
   const user=(auth || workspace || isAccount)?await identity(req,env):null;
-  if(path==='/api/account' && req.method==='GET')return json({user:user?{email:user.email}:null,owner:await owner(user,env),workspaces:await permitted(user,env)});
+  if(path==='/api/account' && req.method==='GET') {
+    const workspaces=await permitted(user,env);
+    return json({user:user?{email:user.email}:null,owner:await owner(user,env),workspaces,primaryWorkspace:workspaces[0] || null});
+  }
   if(path==='/auth/logout' && req.method==='POST') {
     if(req.headers.get('origin')!==env.SITE_ORIGIN)return response('Forbidden.',403);
     await env.DB.prepare('DELETE FROM sessions WHERE token_hash=?').bind(await hash(cookie(req,'__Host-fmw-session'))).run();

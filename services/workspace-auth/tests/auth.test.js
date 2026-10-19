@@ -75,7 +75,7 @@ test('Google round trip verifies signed ID token, binds membership, prevents rep
   const start=await call(env,'/auth/start');const google=new URL(start.headers.get('location'));nonce=google.searchParams.get('nonce');const state=google.searchParams.get('state');const headers={cookie:`__Host-fmw-state=${state}`};
   assert.equal(google.searchParams.get('scope'),'openid email');assert.equal(google.searchParams.get('code_challenge_method'),'S256');
   assert.equal((await call(env,`/auth/callback?state=${state}&code=example`)).status,400);
-  const result=await call(env,`/auth/callback?state=${state}&code=example`,{headers});assert.equal(result.headers.get('location'),'/?workspaces=1');
+  const result=await call(env,`/auth/callback?state=${state}&code=example`,{headers});assert.equal(result.headers.get('location'),'/kat-kai/');
   assert.equal(env.db.prepare('SELECT google_sub FROM memberships').get().google_sub,'new-user');
   assert.match(result.headers.get('set-cookie'),/HttpOnly; Secure; SameSite=Lax/);
   assert.equal((await call(env,`/auth/callback?state=${state}&code=example`,{headers})).status,400);
@@ -117,4 +117,24 @@ test('only public metrics use origin passthrough and cookies are stripped',async
 test('ambiguous duplicate-slash routes cannot bypass workspace authorization',async()=>{
  const env=environment();
  for(const path of ['//philip-aram/','/%2fphilip-aram/','/foo/%2e%2e/%2fphilip-aram/'])assert.notEqual((await call(env,path)).status,200);
+});
+
+test('first assigned workspace is primary even when catalog order differs; new grants preserve it',async()=>{
+ const env=environment(),headers=await session(env,'client','client@gmail.com');
+ const grant=env.db.prepare('INSERT INTO memberships VALUES (?,?,?)');
+ grant.run('client@gmail.com','kat-kai','client');
+ grant.run('client@gmail.com','philip-aram','client');
+ let account=await (await call(env,'/api/account',{headers})).json();
+ assert.equal(account.primaryWorkspace.id,'kat-kai');
+ assert.deepEqual(account.workspaces.map(w=>w.id),['kat-kai','philip-aram']);
+ grant.run('client@gmail.com','troy-kearns','client');
+ account=await (await call(env,'/api/account',{headers})).json();
+ assert.equal(account.primaryWorkspace.id,'kat-kai');
+ // Browsing another workspace never changes the default.
+ await call(env,'/troykearns/',{headers});
+ assert.equal((await (await call(env,'/api/account',{headers})).json()).primaryWorkspace.id,'kat-kai');
+ env.db.exec("DELETE FROM memberships WHERE workspace='kat-kai'");
+ assert.equal((await (await call(env,'/api/account',{headers})).json()).primaryWorkspace.id,'philip-aram');
+ env.db.exec('DELETE FROM memberships');
+ assert.equal((await (await call(env,'/api/account',{headers})).json()).primaryWorkspace,null);
 });

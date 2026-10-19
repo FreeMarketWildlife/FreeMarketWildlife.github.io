@@ -40,3 +40,11 @@ Official references: https://developers.google.com/identity/openid-connect/openi
 ## Future source deployment
 
 `npm run deploy --prefix services/workspace-auth` publishes application HTML, scripts, styles and backend changes to the protected Worker. GitHub push updates the public-only Pages origin and scheduled metrics; it does not redeploy the Worker. Keep both deployment responsibilities explicit.
+
+## Primary workspace and account interface
+
+Google sign-in now redirects directly to the client's first assigned, still-authorized workspace. Membership insertion order determines the primary workspace; adding or visiting another workspace does not change it. Revoking the primary falls back to the earliest remaining membership. The owner defaults to Philip Aram, followed by the other configured workspaces. Accounts without memberships continue to Build a Business.
+
+Every protected workspace has a top-right account dropdown with authorized workspace links, the primary label, account switching, and sign-out. Account dialogs and access management use regular white Arial text like the workspaces. The public site's pixel typography remains intact.
+
+Validation: `npm test --prefix services/workspace-auth`, `npm run check --prefix services/workspace-auth`, and `python3 scripts/check_site.py`. Browser regression: prepare Worker assets, serve `services/workspace-auth/public` on port 4173, and run `node tests/test_account.cjs` with Playwright available. Browser account fixtures test interface behavior; the backend suite tests signed Google callback routing and authorization.
