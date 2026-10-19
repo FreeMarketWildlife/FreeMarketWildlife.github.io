@@ -1,0 +1,35 @@
+{
+  "original_public_dns": {
+    "NS": [
+      "dns2.registrar-servers.com.",
+      "dns1.registrar-servers.com."
+    ],
+    "A": [
+      "185.199.110.153",
+      "185.199.109.153",
+      "185.199.108.153",
+      "185.199.111.153"
+    ],
+    "AAAA": [],
+    "MX": [
+      "20 eforward5.registrar-servers.com.",
+      "10 eforward1.registrar-servers.com.",
+      "10 eforward2.registrar-servers.com.",
+      "10 eforward3.registrar-servers.com.",
+      "15 eforward4.registrar-servers.com."
+    ],
+    "TXT": [
+      "\"v=spf1 include:spf.efwd.registrar-servers.com ~all\""
+    ],
+    "CAA": [],
+    "DS": [],
+    "www_CNAME": [
+      "freemarketwildlife.github.io."
+    ]
+  },
+  "cloudflare_nameservers": [
+    "dane.ns.cloudflare.com",
+    "gail.ns.cloudflare.com"
+  ],
+  "cloudflare_zone_id": "f676247ffd5c08516d90651c43e4a379"
+}

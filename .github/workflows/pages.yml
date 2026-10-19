@@ -78,7 +78,7 @@ jobs:
         run: |
           mkdir _site
           cp index.html 404.html CNAME .nojekyll _site/
-          cp -R assets portfolio tanoshi contact blog build-a-business troy-kearns troykearns kat-kai philip-aram _site/
+          cp -R assets portfolio tanoshi contact blog build-a-business _site/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

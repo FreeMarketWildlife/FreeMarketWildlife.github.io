@@ -97,3 +97,19 @@ test('expired sessions and unexpected hosts are rejected',async()=>{
  assert.equal((await call(env,'/philip-aram/',{headers})).status,303);
  assert.equal((await worker.fetch(new Request('https://other.example/philip-aram/'),env)).status,421);
 });
+test('canonical redirects preserve path and only allow expected hosts',async()=>{
+ const env=environment();
+ for(const address of ['http://freemarketwildlife.com/kat-kai/','https://www.freemarketwildlife.com/kat-kai/']){
+  const r=await worker.fetch(new Request(address),env);assert.equal(r.status,308);assert.equal(r.headers.get('location'),origin+'/kat-kai/');
+ }
+});
+test('only public metrics use origin passthrough and cookies are stripped',async()=>{
+ const env=environment();env.PUBLIC_DATA_PASSTHROUGH='github-pages';const saved=globalThis.fetch;let forwarded;
+ globalThis.fetch=async req=>{forwarded=req;return new Response('{"status":"ok"}',{headers:{'Set-Cookie':'unwanted=1'}});};
+ try {
+  const r=await call(env,'/assets/data/youtube.json',{headers:{cookie:'__Host-fmw-session=secret'}});
+  assert.equal(r.status,200);assert.equal(forwarded.headers.get('cookie'),null);assert.equal(r.headers.get('set-cookie'),null);
+  forwarded=null;await call(env,'/assets/data/workspace-auth.json');assert.equal(forwarded,null);
+  await call(env,'/assets/data/private.json');assert.equal(forwarded,null);
+ }finally{globalThis.fetch=saved;}
+});

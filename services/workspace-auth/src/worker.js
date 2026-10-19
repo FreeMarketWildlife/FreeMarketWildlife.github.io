@@ -7,6 +7,10 @@ export const WORKSPACES = Object.freeze([
 const keys = createRemoteJWKSet(new URL('https://www.googleapis.com/oauth2/v3/certs'));
 const now = () => Math.floor(Date.now()/1000);
 const random = () => Array.from(crypto.getRandomValues(new Uint8Array(32)), b => b.toString(16).padStart(2,'0')).join('');
+export function isPublicData(path) {
+  return /^\/assets\/data\/(?:youtube|kat-kai-youtube|tanoshi-youtube)(?:-videos|-history)?\.json$/.test(path)
+    || /^\/assets\/data\/history\/(?:youtube|kat-kai-youtube|tanoshi-youtube)\/[A-Za-z0-9_-]+\.json$/.test(path);
+}
 export async function hash(value) {
   return Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(value))), b=>b.toString(16).padStart(2,'0')).join('');
 }
@@ -78,6 +82,9 @@ async function callback(req,env,url) {
 }
 async function handle(req,env) {
   const url=new URL(req.url);
+  const canonical=new URL(env.SITE_ORIGIN);
+  if(url.hostname===canonical.hostname && url.protocol==='http:' || canonical.hostname==='freemarketwildlife.com' && url.hostname==='www.freemarketwildlife.com')
+    return response(null,308,{Location:canonical.origin+url.pathname+url.search});
   if(url.origin!==env.SITE_ORIGIN)return response('Unknown host.',421);
   let path;
   try {path=decodeURIComponent(url.pathname);}catch{return response('Invalid path.',400);}
@@ -116,6 +123,14 @@ async function handle(req,env) {
   if(workspace || isAccount) {
     if(!user)return redirect('/?signin=required');
     if(isAccount ? !await owner(user,env) : !(await permitted(user,env)).some(w=>w.id===workspace))return response('You do not have access to this workspace.',403);
+  }
+  // Only the existing PUBLIC YouTube datasets pass through to the GitHub Pages origin.
+  // Same-zone route subrequests reach the origin, not this Worker again. Strip cookies.
+  if(env.PUBLIC_DATA_PASSTHROUGH==='github-pages' && isPublicData(path)) {
+    if(!['GET','HEAD'].includes(req.method))return response('Method not allowed.',405);
+    const upstream=await fetch(new Request(url.href,{method:req.method,headers:{Accept:'application/json'}}),{cf:{cacheTtl:0}});
+    const headers=new Headers(upstream.headers);headers.set('Cache-Control','no-store');headers.delete('Set-Cookie');
+    return new Response(upstream.body,{status:upstream.status,headers});
   }
   const asset=await env.ASSETS.fetch(req);
   const headers=new Headers(asset.headers);
