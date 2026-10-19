@@ -13,3 +13,10 @@ design/youtube-videos-live.png
 # Generated rolling social metrics are published and retained in CI, never Git.
 assets/data/history/
 assets/data/*-history.json
+
+# Authentication backend: local credentials and generated assets
+node_modules/
+.wrangler/
+.dev.vars
+.env
+services/workspace-auth/public/

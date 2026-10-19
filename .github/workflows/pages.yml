@@ -56,6 +56,14 @@ jobs:
           name: youtube-history
           path: assets/data/*.json
           retention-days: 2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - name: Test workspace authentication
+        working-directory: services/workspace-auth
+        run: |
+          npm ci --ignore-scripts --no-audit --no-fund
+          npm test
       - name: Test collector
         run: python3 -m unittest discover -s tests -v
       - name: Validate static source
@@ -70,7 +78,7 @@ jobs:
         run: |
           mkdir _site
           cp index.html 404.html CNAME .nojekyll _site/
-          cp -R assets portfolio tanoshi contact blog troy-kearns troykearns kat-kai philip-aram _site/
+          cp -R assets portfolio tanoshi contact blog build-a-business troy-kearns troykearns kat-kai philip-aram _site/
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site

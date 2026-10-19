@@ -120,3 +120,10 @@ dialog { background: var(--black); color: var(--white); border: 1px solid var(--
 .siege-scene canvas { position: relative; pointer-events: auto; cursor: crosshair; touch-action: manipulation; }
 
 .nature-scene { position: fixed; inset: 0; pointer-events: none; }
+
+.google-sign-in { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 20px; border: 1px solid #000; border-radius: 4px; background: #fff; color: #000; font: 500 14px Arial, sans-serif; text-decoration: none; }
+[data-access-manager] form { display: grid; gap: 12px; max-width: 440px; }
+[data-access-manager] li { margin: 12px 0; }
+#access-dialog .dialog-panel > div > a { display: block; margin: 12px 0; }
+
+#access-dialog .dialog-panel > div > a.google-sign-in { display: flex; }
