@@ -63,3 +63,9 @@
 /* The red oval follows the target's actual width and height. */
 .studio-demo .hotspot::after,.studio-demo .role-option.hotspot::after { width:calc(100% + 12px); height:calc(100% + 10px); border-radius:50%; }
 @keyframes click-ring { 0%,100% { transform:translate(-50%,-50%) scale(1); opacity:1; } 50% { transform:translate(-50%,-50%) scale(1.035); opacity:.85; } }
+/* A roomy frame with a red stroke travelling around the whole control. */
+@property --target-angle { syntax:'<angle>'; initial-value:0deg; inherits:false; }
+.studio-demo .hotspot::after,.studio-demo .role-option.hotspot::after { width:calc(100% + 28px); height:calc(100% + 24px); border:0; border-radius:14px; padding:5px; background:conic-gradient(from var(--target-angle),#ff303b22 0deg,#ff303b66 210deg,#ff303b 290deg,#ffb0b5 340deg,#ff303b22 360deg); mask:linear-gradient(#fff 0 0) content-box exclude,linear-gradient(#fff 0 0); -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0); -webkit-mask-composite:xor; mask-composite:exclude; transform:translate(-50%,-50%); animation:target-orbit 3.5s linear infinite; box-shadow:none; }
+@keyframes target-orbit { to { --target-angle:360deg; } }
+@media(prefers-reduced-motion:reduce) { .studio-demo .hotspot::after { animation:none!important; background:#ff303b; } }
+.compact-guide-page .studio-settings { overflow:visible; }
