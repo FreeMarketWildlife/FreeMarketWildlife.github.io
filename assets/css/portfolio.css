@@ -17,3 +17,10 @@ a.portfolio-card:hover .portfolio-card-heading, a.portfolio-card:focus-visible .
 
 .portfolio-back { display: inline-block; margin-bottom: 24px; }
 .portfolio-breadcrumbs { display: flex; gap: 12px; margin-bottom: 24px; }
+
+.portfolio-section { max-width: 880px; margin: 40px 0; }
+.portfolio-section h2 { margin-bottom: 16px; }
+.portfolio-inline-link { text-decoration: underline; text-underline-offset: 4px; }
+.portfolio-growth-table { width: 100%; min-width: 0; font: 16px/1.5 Arial, Helvetica, sans-serif; }
+.portfolio-growth-table th, .portfolio-growth-table td { padding: 12px; min-width: 0; }
+.portfolio-growth-note { font: 14px/1.6 Arial, Helvetica, sans-serif; margin: 16px 0; }

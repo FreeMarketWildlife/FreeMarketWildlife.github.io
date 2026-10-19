@@ -4,9 +4,9 @@ const assert=require('node:assert/strict');
 (async()=>{
  const browser=await chromium.launch({channel:'chrome',headless:true});
  const page=await browser.newPage({viewport:{width:1440,height:1000}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
- await page.goto('http://127.0.0.1:4173/portfolio/');await page.locator('.portfolio-card').nth(3).waitFor();
- assert.deepEqual(await page.locator('.portfolio-card h2').allTextContents(),['Critz','Equip','Tanoshi (Music)','Tanoshi (YouTube)']);
- assert.deepEqual(await page.locator('a.portfolio-card').evaluateAll(es=>es.map(e=>e.getAttribute('href'))),['/portfolio/critz/','/portfolio/equip/','/tanoshi/music/','/tanoshi/youtube/']);
+ await page.goto('http://127.0.0.1:4173/portfolio/');await page.locator('.portfolio-card').nth(2).waitFor();
+ assert.deepEqual(await page.locator('.portfolio-card h2').allTextContents(),['Tanoshi','Critz','EQUIP']);
+ assert.deepEqual(await page.locator('a.portfolio-card').evaluateAll(es=>es.map(e=>e.getAttribute('href'))),['/tanoshi/','/portfolio/critz/','/portfolio/equip/']);
  assert.equal(await page.locator('.creator-row, blockquote').count(),0);
  assert.ok(!/Troy Kearns|Kat & Kai|Philip Aram/.test(await page.locator('main').innerText()));
  let boxes=await page.locator('.portfolio-card').evaluateAll(es=>es.map(e=>{const b=e.getBoundingClientRect(),h=e.firstElementChild.getBoundingClientRect(),t=e.lastElementChild.getBoundingClientRect();return {x:b.x,y:b.y,w:b.width,h:b.height,header:h.height,thumb:t.height};}));
@@ -17,12 +17,20 @@ const assert=require('node:assert/strict');
  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
  boxes=await page.locator('.portfolio-card').evaluateAll(es=>es.map(e=>e.getBoundingClientRect().y));assert.equal(new Set(boxes).size,2);
  assert.equal(await page.locator('[data-portfolio-more]').isVisible(),false);
- for(const [path,title] of [['/portfolio/critz/','Critz'],['/portfolio/equip/','Equip'],['/tanoshi/music/','Tanoshi (Music)'],['/tanoshi/youtube/','Tanoshi (YouTube)']]) {
+ for(const [path,title] of [['/portfolio/critz/','Critz'],['/portfolio/equip/','EQUIP'],['/tanoshi/music/','Music'],['/tanoshi/youtube/','YouTube'],['/portfolio/critz/games/','Game Universe'],['/portfolio/critz/dragex/','Dragex']]) {
   await page.goto('http://127.0.0.1:4173'+path);
   assert.equal(await page.locator('h1').innerText(),title);
-  assert.equal(await page.locator('main p, main article').count(),0);
  }
- await page.goto('http://127.0.0.1:4173/tanoshi/');assert.equal(await page.locator('main .portfolio-card').count(),2);
+ await page.goto('http://127.0.0.1:4173/tanoshi/');assert.deepEqual(await page.locator('main .portfolio-card h2').allTextContents(),['YouTube','Music']);
+ // Public growth uses actual observations and preserves unavailable counts.
+ const now=Date.now();
+ await page.route('**/assets/data/tanoshi-youtube.json',r=>r.fulfill({json:{status:'ok',snapshots:[{observedAt:new Date(now).toISOString(),subscribers:120,views:null,videos:8},{observedAt:new Date(now-86400000).toISOString(),subscribers:100,views:800,videos:7}]}}));
+ await page.goto('http://127.0.0.1:4173/tanoshi/youtube/');await page.locator('.portfolio-growth-table').waitFor();
+ assert.match(await page.locator('.portfolio-growth-table').innerText(),/\+20/);
+ assert.match(await page.locator('.portfolio-growth-table').innerText(),/Unavailable/);
+ assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+ await page.route('**/assets/data/tanoshi-youtube.json',r=>r.fulfill({json:{status:'not_configured',snapshots:[]}}));
+ await page.reload();await page.getByText('Channel growth observations are not available yet.').waitFor();
  // Fixture catalog validates five desktop rows and subsequent 20-item batches.
  await page.setViewportSize({width:1440,height:1000});
  await page.route('**/assets/data/portfolio.json',r=>r.fulfill({json:Array.from({length:45},(_,i)=>({title:`Work ${i+1}`,href:'https://example.com',thumbnail:'/assets/images/portfolio/critz.svg'}))}));
