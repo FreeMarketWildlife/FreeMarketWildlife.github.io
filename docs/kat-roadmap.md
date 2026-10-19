@@ -8,4 +8,6 @@ Exact subscriber milestones: 1,000; 10,000; 50,000; 100,000; 250,000; 500,000; 7
 
 Removed the previous proposed upload trial and New Year target. Migration replaces untouched old defaults, clears the superseded New Year date, and preserves authored goals/notes. Notes and plans remain browser-local with export/import. Public channel data is not configured; missing totals remain unknown.
 
+Release direction confirmed October 19: one long-form every week; aim for 3–7 Shorts per week, with a minimum of three. Derive Shorts from the long-form first and create original Shorts to cover any shortfall below three. The channel is in audience discovery. No posting days, times, subscriber forecasts or long-form metric thresholds are assumed. Strategy and starting content ideas use only the constructive supplied notes; personal criticism and guaranteed-growth claims are excluded. Music credits remain outside strategy.
+
 Validate with `node tests/test_planner.mjs`, `python3 scripts/check_site.py`, and desktop/mobile browser review.
