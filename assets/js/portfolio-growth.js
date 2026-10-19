@@ -21,4 +21,4 @@ try {
   table.append(body);host.replaceChildren(table);
   const note=cell('p',`Public observations: ${label(first.observedAt)}–${label(last.observedAt)}. Subscriber counts may be rounded. Changes cover this observed period.`);note.className='portfolio-growth-note';host.append(note);
   if(data.status!=='ok' || now-Date.parse(last.observedAt)>36*3600000){const warning=cell('p','Latest refresh is delayed. Showing the most recent available observations.');warning.className='portfolio-growth-note';host.append(warning);}
-}catch {host.replaceChildren(cell('p','Channel growth observations are not available yet.'));}
+}catch {host.replaceChildren(cell('p','Coming Soon'));}

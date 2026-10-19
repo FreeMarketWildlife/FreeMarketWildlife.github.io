@@ -17,11 +17,23 @@ const assert=require('node:assert/strict');
  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
  boxes=await page.locator('.portfolio-card').evaluateAll(es=>es.map(e=>e.getBoundingClientRect().y));assert.equal(new Set(boxes).size,2);
  assert.equal(await page.locator('[data-portfolio-more]').isVisible(),false);
- for(const [path,title] of [['/portfolio/critz/','Critz'],['/portfolio/equip/','EQUIP'],['/tanoshi/music/','Music'],['/tanoshi/youtube/','YouTube'],['/portfolio/critz/games/','Game Universe'],['/portfolio/critz/dragex/','Dragex']]) {
+ for(const [path,title] of [['/portfolio/critz/','Critz'],['/portfolio/equip/','EQUIP'],['/tanoshi/music/','Music'],['/tanoshi/youtube/','YouTube'],['/portfolio/critz/games/','Games'],['/portfolio/critz/stories/','Stories']]) {
   await page.goto('http://127.0.0.1:4173'+path);
   assert.equal(await page.locator('h1').innerText(),title);
  }
  await page.goto('http://127.0.0.1:4173/tanoshi/');assert.deepEqual(await page.locator('main .portfolio-card h2').allTextContents(),['YouTube','Music']);
+ await page.goto('http://127.0.0.1:4173/portfolio/critz/');
+ assert.deepEqual(await page.locator('main .portfolio-card h2').allTextContents(),['Games','Stories']);
+ for(const [path,id] of [['/tanoshi/music/','6vHUuOIt6n6TjRfywPL6Tj'],['/portfolio/equip/','6CriqFwf0qX9bJhcNzCNZc']]) {
+  await page.goto('http://127.0.0.1:4173'+path);
+  assert.ok((await page.locator('iframe.spotify-player').getAttribute('src')).includes('/embed/artist/'+id));
+  assert.ok(await page.locator('main a[href="https://open.spotify.com/artist/'+id+'"]').count());
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+ }
+ for(const path of ['/portfolio/critz/games/','/portfolio/critz/stories/']) {
+  await page.goto('http://127.0.0.1:4173'+path);await page.locator('main').getByText('Coming Soon',{exact:true}).waitFor();
+ }
+ await page.goto('http://127.0.0.1:4173/portfolio/critz/dragex/');await page.waitForURL('**/portfolio/critz/stories/');
  // Public growth uses actual observations and preserves unavailable counts.
  const now=Date.now();
  await page.route('**/assets/data/tanoshi-youtube.json',r=>r.fulfill({json:{status:'ok',snapshots:[{observedAt:new Date(now).toISOString(),subscribers:120,views:null,videos:8},{observedAt:new Date(now-86400000).toISOString(),subscribers:100,views:800,videos:7}]}}));
@@ -30,7 +42,7 @@ const assert=require('node:assert/strict');
  assert.match(await page.locator('.portfolio-growth-table').innerText(),/Unavailable/);
  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
  await page.route('**/assets/data/tanoshi-youtube.json',r=>r.fulfill({json:{status:'not_configured',snapshots:[]}}));
- await page.reload();await page.getByText('Channel growth observations are not available yet.').waitFor();
+ await page.reload();await page.locator('[data-public-growth]').getByText('Coming Soon', {exact:true}).waitFor();
  // Fixture catalog validates five desktop rows and subsequent 20-item batches.
  await page.setViewportSize({width:1440,height:1000});
  await page.route('**/assets/data/portfolio.json',r=>r.fulfill({json:Array.from({length:45},(_,i)=>({title:`Work ${i+1}`,href:'https://example.com',thumbnail:'/assets/images/portfolio/critz.svg'}))}));
