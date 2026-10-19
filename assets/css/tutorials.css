@@ -60,3 +60,6 @@
 @media(max-height:550px) { .compact-guide-page .tutorial-header { flex-basis:32px; }.compact-guide-page .walkthrough { padding-top:5px; gap:5px; }.compact-intro { grid-template-columns:1fr auto; }.compact-intro p { font-size:11px; }.compact-intro #copy-email { min-height:36px; padding:6px 12px; }.compact-guide-page .guide-top { padding:3px 12px; }.compact-guide-page .step-copy { padding:4px 12px; }.compact-guide-page .step-copy h2 { font-size:17px; }.compact-guide-page .step-copy p { font-size:11px; }.compact-guide-page .guide-bottom #previous-step,.compact-guide-page .guide-bottom #next-step { height:48px; min-height:48px; }.compact-guide-page .guide-bottom { padding:5px 8px; } }
 @media(prefers-reduced-motion:reduce) { .studio-demo .hotspot::after { animation:none!important; } }
 .compact-guide-page .roles-menu { overflow:visible; }
+/* The red oval follows the target's actual width and height. */
+.studio-demo .hotspot::after,.studio-demo .role-option.hotspot::after { width:calc(100% + 12px); height:calc(100% + 10px); border-radius:50%; }
+@keyframes click-ring { 0%,100% { transform:translate(-50%,-50%) scale(1); opacity:1; } 50% { transform:translate(-50%,-50%) scale(1.035); opacity:.85; } }
