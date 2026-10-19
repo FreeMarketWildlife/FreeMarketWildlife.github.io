@@ -88,7 +88,7 @@ async function handle(req,env) {
   if(url.origin!==env.SITE_ORIGIN)return response('Unknown host.',421);
   let path;
   try {path=decodeURIComponent(url.pathname);}catch{return response('Invalid path.',400);}
-  if(path.includes('%') || path.includes('\\') || path.includes('\0'))return response('Invalid path.',400);
+  if(path.includes('%') || path.includes('//') || path.includes('\\') || path.includes('\0'))return response('Invalid path.',400);
   path=new URL(path,env.SITE_ORIGIN).pathname;
   const workspace=protectedWorkspace(path), isAccount=/^\/account(?:\/|$)/i.test(path);
   const auth=path.startsWith('/auth/') || path.startsWith('/api/account');
@@ -132,7 +132,8 @@ async function handle(req,env) {
     const headers=new Headers(upstream.headers);headers.set('Cache-Control','no-store');headers.delete('Set-Cookie');
     return new Response(upstream.body,{status:upstream.status,headers});
   }
-  const asset=await env.ASSETS.fetch(req);
+  const assetUrl=new URL(req.url);assetUrl.pathname=path;
+  const asset=await env.ASSETS.fetch(new Request(assetUrl,req));
   const headers=new Headers(asset.headers);
   headers.set('X-Content-Type-Options','nosniff');
   if(workspace || isAccount) {headers.set('Cache-Control','private, no-store');headers.set('Vary','Cookie');headers.set('X-Robots-Tag','noindex, nofollow');}

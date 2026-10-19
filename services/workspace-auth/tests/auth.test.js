@@ -113,3 +113,8 @@ test('only public metrics use origin passthrough and cookies are stripped',async
   await call(env,'/assets/data/private.json');assert.equal(forwarded,null);
  }finally{globalThis.fetch=saved;}
 });
+
+test('ambiguous duplicate-slash routes cannot bypass workspace authorization',async()=>{
+ const env=environment();
+ for(const path of ['//philip-aram/','/%2fphilip-aram/','/foo/%2e%2e/%2fphilip-aram/'])assert.notEqual((await call(env,path)).status,200);
+});
