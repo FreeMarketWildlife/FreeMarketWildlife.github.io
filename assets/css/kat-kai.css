@@ -114,3 +114,14 @@ body.kat-strategy-page[data-strategy-stage="nurture"] .long-release .release-wee
 @media(max-width:540px){.strategy-stages { gap:6px; }body.kat-strategy-page .strategy-stages button { font-size:16px;padding:10px 8px;min-height:70px; }.strategy-stages button span { font-size:8px;margin-bottom:5px; }}
 .release-purpose { display:none; }
 .release-day .extra-short { background:#e9eee2; border-left-color:#92a281; }
+/* Compact calendar; all days share the same surface. */
+body.kat-strategy-page .release-calendar { flex:0 0 auto; min-height:0; }
+body.kat-strategy-page .release-calendar ol { flex:none; }
+body.kat-strategy-page .release-day.long-release { background:#fffcf7; border-color:#ded4c9; box-shadow:none; }
+body.kat-strategy-page .long-release .release-weekday { background:#f1ebe3; }
+body.kat-strategy-page .release-day { padding-bottom:8px; }
+body.kat-strategy-page .release-day strong { padding:5px 6px; }
+body.kat-strategy-page .simple-strategy-note { margin-top:auto; }
+@media(max-width:540px){body.kat-strategy-page .release-day { padding-bottom:0; }body.kat-strategy-page .release-day strong { padding:3px 5px; }body.kat-strategy-page .targets-heading h2 { font-size:15px; }}
+body.kat-strategy-page[data-strategy-stage] .release-calendar .release-day.long-release { background:#fffcf7; }
+body.kat-strategy-page[data-strategy-stage] .release-calendar .long-release .release-weekday { background:#f1ebe3; }
