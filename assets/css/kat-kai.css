@@ -2,3 +2,10 @@
 body[data-client="kat-kai"] .tiny-flair { color: #edc7d9; font-size: 20px; margin-left: 6px; font-weight: normal; }
 body[data-client="kat-kai"] nav a[aria-current] { text-decoration-color: #edc7d9; }
 body[data-client="kat-kai"] h1 { letter-spacing: .01em; }
+
+.kat-plan { max-width: 850px; border-left: 2px solid #edc7d9; padding: 1px 0 1px 20px; margin: 28px 0 36px; }
+.kat-plan p { max-width: 75ch; }
+.smart-list { display: grid; grid-template-columns: 110px 1fr; gap: 12px 20px; }
+.smart-list dt { font-weight: bold; color: #edc7d9; }
+.smart-list dd { margin: 0; }
+@media (max-width: 540px) { .smart-list { grid-template-columns: 1fr; gap: 6px; } .smart-list dd { margin-bottom: 12px; } }

@@ -27,3 +27,28 @@ assert.equal(config.accounts.find(a=>a.client==='philip-tanoshi').account,'Tanos
 const gatesEnabled=readFileSync('assets/js/app.js','utf8').includes('const passwordGatesEnabled = true;');
 for(const folder of ['troykearns','kat-kai'])for(const view of ['strategy','roadmap']){const page=readFileSync(`${folder}/${view}/index.html`,'utf8');if(gatesEnabled){assert.match(page,/id="workspace-content" hidden inert/);assert.match(page,/<dialog[^>]*id="workspace-gate"[^>]* open/);}else{assert.match(page,/id="workspace-content">/);assert.match(page,/<dialog[^>]*id="workspace-gate"[^>]* hidden/);}for(const link of ['Statistics','Links','Strategy','Roadmap'])assert(page.includes(`>${link}</a>`));}
 console.log('PASS: live goal math, Pacific month rollover, missing/hidden/stale/decreasing counts, partial-period labeling, plan validation, channel registration and configured workspace access.');
+const {personalizePlan}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
+const kat=defaultPlan('kat-kai');
+assert.deepEqual(kat.goals.map(g=>g.target),Array.from({length:10},(_,i)=>(i+1)*1000));
+assert.equal(kat.goals.at(-1).due,'2027-01-01');
+assert.equal(kat.goals.filter(g=>g.due).length,1,'Do not invent deadlines for earlier milestones');
+assert.deepEqual(personalizePlan(defaultPlan(),'kat-kai').goals,kat.goals);
+const edited={...defaultPlan(),strategy:'Keep my strategy',goals:[{...defaultPlan().goals[0],title:'My own goal',notes:'Keep my notes'}]};
+const migrated=personalizePlan(edited,'kat-kai');
+assert.equal(migrated.strategy,'Keep my strategy');assert.equal(migrated.goals.find(g=>g.id==='monthly-views').notes,'Keep my notes');
+assert.deepEqual(personalizePlan(migrated,'kat-kai'),migrated,'Migration is repeat safe');
+assert.deepEqual(validatePlan({...kat,goals:kat.goals.map(g=>({...g,notes:'Her next step'}))}).goals[0].notes,'Her next step');
+assert.throws(()=>validatePlan({...kat,goals:[{...kat.goals[0],notes:'x'.repeat(3001)}]}));
+const paceSource=readFileSync('assets/js/kat-roadmap.js','utf8');
+const {requiredPace}=await import('data:text/javascript;base64,'+Buffer.from(paceSource).toString('base64'));
+assert.equal(requiredPace(127,Date.parse('2026-10-19T00:00:00-07:00')).daily,134);
+assert.equal(requiredPace(10000,Date.parse('2027-01-02T00:00:00Z')).daily,0);
+assert.equal(requiredPace(127,Date.parse('2027-01-02T00:00:00Z')).daily,null);
+assert.equal(requiredPace(null),null);
+console.log('PASS: Kat milestone sequence, safe starter migration, note limits, Pacific New Year deadline and required pace.');
+
+const {mergePlan}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
+const backup={...kat,goals:kat.goals.map(g=>({...g,notes:'Saved note'}))};
+const restored=mergePlan(kat,backup);assert.equal(restored.goals[0].notes,'Saved note','Restore notes onto a new device with seeded milestone IDs');
+assert.equal(mergePlan({...kat,goals:[{...kat.goals[0],notes:'Newer note'}]},backup).goals[0].notes,'Newer note','Import cannot overwrite an existing note');
+assert.deepEqual(mergePlan(restored,backup),restored,'Repeated note imports are safe');
