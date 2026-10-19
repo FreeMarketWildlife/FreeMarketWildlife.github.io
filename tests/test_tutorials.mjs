@@ -11,8 +11,13 @@ assert.equal(inviteEmail,'freemarketwildlife@gmail.com');assert.equal(steps.leng
 const page=readFileSync('tutorials/youtube-stats-access/index.html','utf8');
 assert.match(page,/Viewer \(limited\)/);assert.match(page,/<noscript>/);assert.match(page,/Show all steps/);assert.match(page,/Remove access/);
 assert(!page.includes('therealdragex'));assert(!page.includes('type="password"'));assert(!page.includes('<form'));
-const script=readFileSync('assets/js/youtube-access-tutorial.js','utf8');assert(!/fetch\(|localStorage|sessionStorage/.test(script),'Practice must not submit or store client data');
+const script=readFileSync('assets/js/youtube-access-tutorial.js','utf8');assert(!/fetch\(|localStorage|sessionStorage/.test(script),'Walkthrough must not submit or store client data');
 assert.match(readFileSync('.github/workflows/pages.yml','utf8'),/privacy tutorials _site/);
 assert.match(readFileSync('services/workspace-auth/prepare-assets.mjs','utf8'),/'tutorials'/);
 for(const path of ['index.html','kat-kai/roadmap/index.html','troykearns/index.html','philip-aram/index.html']) assert.match(readFileSync(path,'utf8'),/href="\/tutorials\/"/);
-console.log('PASS: tutorial search, exact recipient, client-only plain instructions, no practice transmission/storage, footer links and both deployment packages.');
+console.log('PASS: tutorial search, exact recipient, client-only plain instructions, passive demonstration without transmission/storage, footer links and both deployment packages.');
+
+assert(!/practice|demo-email.*<input/i.test(page));
+assert.match(script,/demo.inert=true/);
+assert(!script.includes("demo.addEventListener('click'"));
+assert.match(script,/prefers-reduced-motion/);
