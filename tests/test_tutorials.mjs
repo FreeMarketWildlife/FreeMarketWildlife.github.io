@@ -1,0 +1,18 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+const load=async path=>import('data:text/javascript;base64,'+Buffer.from(readFileSync(path,'utf8')).toString('base64'));
+const {matchesTutorial}=await load('assets/js/tutorial-search.js');
+assert(matchesTutorial(' YouTube   STATS ','YouTube stats access'));
+assert(matchesTutorial('viewer permissions','YouTube permissions Viewer limited'));
+assert(!matchesTutorial('youtube billing','YouTube stats access'));
+assert(matchesTutorial('','YouTube stats access'));
+const {inviteEmail,steps}=await load('assets/js/youtube-access-tutorial.js');
+assert.equal(inviteEmail,'freemarketwildlife@gmail.com');assert.equal(steps.length,7);
+const page=readFileSync('tutorials/youtube-stats-access/index.html','utf8');
+assert.match(page,/Viewer \(limited\)/);assert.match(page,/<noscript>/);assert.match(page,/Show all steps/);assert.match(page,/Remove access/);
+assert(!page.includes('therealdragex'));assert(!page.includes('type="password"'));assert(!page.includes('<form'));
+const script=readFileSync('assets/js/youtube-access-tutorial.js','utf8');assert(!/fetch\(|localStorage|sessionStorage/.test(script),'Practice must not submit or store client data');
+assert.match(readFileSync('.github/workflows/pages.yml','utf8'),/privacy tutorials _site/);
+assert.match(readFileSync('services/workspace-auth/prepare-assets.mjs','utf8'),/'tutorials'/);
+for(const path of ['index.html','kat-kai/roadmap/index.html','troykearns/index.html','philip-aram/index.html']) assert.match(readFileSync(path,'utf8'),/href="\/tutorials\/"/);
+console.log('PASS: tutorial search, exact recipient, client-only plain instructions, no practice transmission/storage, footer links and both deployment packages.');

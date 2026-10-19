@@ -78,7 +78,7 @@ jobs:
         run: |
           mkdir _site
           cp index.html 404.html CNAME .nojekyll _site/
-          cp -R assets portfolio tanoshi contact blog build-a-business privacy _site/
+          cp -R assets portfolio tanoshi contact blog build-a-business privacy tutorials _site/
           test ! -e _site/philip-aram
           test ! -e _site/troykearns
           test ! -e _site/troy-kearns
