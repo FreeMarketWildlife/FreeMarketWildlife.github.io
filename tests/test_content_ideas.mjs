@@ -15,3 +15,9 @@ assert.equal(mergeIdeas(current,{...current,ideas:[{...idea,title:'Older backup'
 for(const patch of [{format:'Invented'},{stage:'Published'},{title:''},{notes:'x'.repeat(5001)}])assert.throws(()=>validateIdeas({...current,ideas:[{...idea,...patch}]},'troy-kearns'));
 assert.throws(()=>validateIdeas({...current,ideas:[idea,idea]},'troy-kearns'));
 console.log('PASS: Content Ideas validation, separate workspace keys, cross-client import rejection, non-overwriting/repeat-safe merge and limits.');
+
+const kat = {version:1,workspace:'kat-kai',ideas:[{...idea,title:'Title only',topic:'',notes:'',format:'Long-form',thumbnail:''}]};
+assert.deepEqual(validateIdeas(kat,'kat-kai'),kat);
+for (const thumbnail of ['javascript:alert(1)','https://example.com/image.jpg','data:image/svg+xml;base64,PHN2Zz4=', 'x'.repeat(1000001)]) assert.throws(()=>validateIdeas({...kat,ideas:[{...kat.ideas[0],thumbnail}]},'kat-kai'));
+assert.equal(validateIdeas({...kat,ideas:[{...kat.ideas[0],thumbnail:'data:image/jpeg;base64,YQ=='}]},'kat-kai').ideas.length,1);
+console.log('PASS: title-only records, optional thumbnails, image-only validation and upload limits.');

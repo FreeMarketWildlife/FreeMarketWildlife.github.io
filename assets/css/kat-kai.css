@@ -133,3 +133,7 @@ body.kat-strategy-page[data-strategy-stage] .release-calendar .long-release .rel
 
 @media(max-width:850px) { body[data-client="kat-kai"] header { flex-wrap:wrap; } }
 @media(max-width:540px) { body[data-client="kat-kai"] header .kat-logo img { width:72px; height:72px; } }
+
+.idea-thumbnail { display:block; width:100%; max-width:480px; max-height:270px; object-fit:contain; border-radius:8px; margin:12px 0; }
+.idea-thumbnail[hidden] { display:none; }
+body[data-client="kat-kai"] .idea-form { max-width:640px; }
