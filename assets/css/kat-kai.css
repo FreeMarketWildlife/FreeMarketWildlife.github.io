@@ -100,3 +100,17 @@ body.kat-strategy-page .strategy-dashboard { gap:12px; }
 .focus-workflow { font-size:11px; margin-top:7px; line-height:1.4; }.backlog-goal { display:block; margin-top:8px; padding-top:8px; border-top:1px solid #d1d9c1; font-size:11px; line-height:1.4; }.backlog-goal > strong { color:#52623f; }
 @media(max-width:540px){.target-chart { padding:5px 7px; }.target-chart h3 { font-size:12px; }.chart-caption { display:none; }.target-bars { gap:3px; }.target-bar-row > div:first-child { font-size:8px; }.target-track { height:4px; }.simple-strategy-note { padding:8px 10px; font-size:11px; }.focus-workflow,.backlog-goal { font-size:9px; line-height:1.3; margin-top:5px; }.backlog-goal { padding-top:5px; }.targets-definition { font-size:7px; }}
 @media(max-width:540px) and (max-height:700px){.kat-strategy-page .kat-wordmark span { display:none!important; }.kat-strategy-page .strategy-heading .kat-eyebrow { display:none; }.release-calendar { min-height:150px; }.simple-strategy-note { font-size:10px; }}
+.strategy-sr { position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap; }
+.strategy-stages { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;flex-shrink:0;margin:0; }
+body.kat-strategy-page .strategy-stages button { text-align:left; font:normal 24px/1.2 Georgia,serif; border:1px solid #d8c9cb; padding:15px; border-radius:10px; background:#f5e5e9; color:#79505c; min-height:76px; }
+.strategy-stages button span { display:block;font:10px Arial,sans-serif;letter-spacing:1px;margin-bottom:7px;opacity:.7; }
+body.kat-strategy-page .strategy-stages button:nth-child(2) { background:#f2e9d8; color:#79613d; border-color:#ddceb3; }
+body.kat-strategy-page .strategy-stages button:nth-child(3) { background:#e7edde;color:#52673e;border-color:#c8d4ba; }
+body.kat-strategy-page .strategy-stages button[aria-pressed="true"] { box-shadow:inset 0 -4px 0 currentColor; border-color:currentColor; }
+body.kat-strategy-page[data-strategy-stage="improve"] .release-day.long-release { background:#f2e9d8; }
+body.kat-strategy-page[data-strategy-stage="improve"] .long-release .release-weekday { background:#e5d4b5; }
+body.kat-strategy-page[data-strategy-stage="nurture"] .release-day.long-release { background:#e7edde; }
+body.kat-strategy-page[data-strategy-stage="nurture"] .long-release .release-weekday { background:#cbd9bc; }
+@media(max-width:540px){.strategy-stages { gap:6px; }body.kat-strategy-page .strategy-stages button { font-size:16px;padding:10px 8px;min-height:70px; }.strategy-stages button span { font-size:8px;margin-bottom:5px; }}
+.release-purpose { display:none; }
+.release-day .extra-short { background:#e9eee2; border-left-color:#92a281; }
