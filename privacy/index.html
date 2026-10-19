@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#000000">
+  <meta name="description" content="Google sign-in and workspace data privacy at Free Market Wildlife.">
+  <title>Privacy — Free Market Wildlife</title>
+  <link rel="icon" href="/assets/images/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/css/styles.css">
+  <script type="module" src="/assets/js/app.js?v=4-open"></script>
+<script type="module" src="/assets/js/account.js?v=1"></script></head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <a class="brand" href="/" aria-label="Free Market Wildlife home"><img src="/assets/images/mark.svg" width="64" height="64" alt=""><span>FREE MARKET<br>WILDLIFE</span></a>
+  <nav aria-label="Primary"><a href="/portfolio/">Portfolio</a><a href="/tanoshi/">Tanoshi</a><a href="/build-a-business/">Build a Business</a></nav>
+  <button class="access-button" type="button" data-open-access aria-label="Workspaces"><span>Workspaces</span></button>
+</header>
+<main class="page-main" id="main" tabindex="-1"><h1>Privacy</h1>
+<p>Free Market Wildlife uses Google sign-in to identify your account and show the workspaces assigned to you. Questions or requests about your account can be sent to <a href="mailto:FreeMarketWildlife@gmail.com">FreeMarketWildlife@gmail.com</a>.</p>
+<h2>Google sign-in and account data</h2>
+<p>When you sign in, the website receives your Google account identifier and verified email address. It stores those details, workspace access assignments, and sign-in session records in Cloudflare D1. The owner can view and manage workspace assignments. Ordinary website sign-in requests only your identity and email address; it does not request access to your Google Drive files, Gmail, Calendar, or private YouTube statistics. Your Google password stays with Google.</p>
+<h2>Sessions and service providers</h2>
+<p>The website uses secure browser cookies to maintain your session and protect the sign-in process. Website sessions expire after 24 hours; signing out invalidates the current session. Expired session records are cleaned up during subsequent successful sign-ins. Google handles identity verification. Cloudflare hosts the website backend and account database, and GitHub Pages supplies public website and statistics assets. These providers process technical request information to operate and secure their services.</p>
+<h2>Notes stored in your browser</h2>
+<p>Existing journals, sermon notes, plans, and content ideas remain in the browser where you saved them. Signing in does not upload them or make them available to other workspace members. Browser backup imports are processed locally. Export a backup before clearing browser storage or moving devices.</p>
+<h2>Retention and removal</h2>
+<p>Account identifiers, email addresses, and workspace assignments remain until the owner removes them. Contact the email address above to request access to or removal of your stored account information. Signing out or disconnecting Google does not itself delete stored account information. Browser-local notes can be removed using the relevant workspace controls or by clearing this website’s browser storage; keep a backup first if you want to preserve them.</p>
+</main>
+
+<dialog class="access-dialog" id="access-dialog" aria-labelledby="access-title">
+  <div class="dialog-panel">
+    <button class="close-button" type="button" data-close-access aria-label="Close client access">×</button>
+    <span class="eyebrow">CLIENT WORKSPACE</span>
+    <div class="lock-emblem"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""></div>
+    <h2 id="access-title">Workspaces</h2>
+    <p class="muted">Choose a workspace to open.</p>
+    <form data-access-form hidden>
+      <label for="access-code">Password</label>
+      <input id="access-code" name="passcode" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" required aria-describedby="access-error" placeholder="Enter password">
+      <p class="form-error" id="access-error" aria-live="polite"></p>
+      <button class="button primary" type="submit">Continue <span aria-hidden="true">→</span></button>
+    </form><nav data-workspace-links aria-label="Workspaces"><ul><li><a href="/kat-kai/">Kat &amp; Kai</a></li><li><a href="/troykearns/">Troy Kearns</a></li><li><a href="/philip-aram/">Philip Aram</a></li></ul></nav>
+    <p class="micro">Temporary preview access. Public content only.</p>
+  </div>
+</dialog>
+</body>
+</html>

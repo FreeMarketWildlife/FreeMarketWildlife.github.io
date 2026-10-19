@@ -1,5 +1,11 @@
 # Free Market Wildlife
 
+## Current hosting and sign-in
+
+The live site now uses a Cloudflare Worker for Google sign-in and server-enforced workspace access. The owner is `freemarketwildlife@gmail.com`; Manage access assigns each client email to specific workspaces. Accounts without assigned access go to Build a Business. Existing notes remain browser-local; account syncing is a later step.
+
+GitHub Pages publishes public pages and public metrics only. The Worker passes through an explicit public-metrics allowlist so daily collection continues. Deploy application changes with `npm run deploy --prefix services/workspace-auth`; pushing GitHub alone does not update the Worker. See [authentication deployment notes](docs/auth/DEPLOYMENT.md). The older prototype documentation below describes the original static preview and may reference superseded gates and hosting behavior.
+
 Free Market Wildlife has one purpose: help people make a career out of their passion.
 
 A buildless, black-and-white consulting and creative website for `freemarketwildlife.com`. HTML, CSS, local bitmap fonts, and vanilla JavaScript. No runtime packages, framework, server backend, or database.

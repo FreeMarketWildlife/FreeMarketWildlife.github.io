@@ -8,7 +8,7 @@ Cloudflare is active on `dane.ns.cloudflare.com` and `gail.ns.cloudflare.com`; o
 
 A real Google sign-in by the owner succeeded on 2026-10-19. The owner chooser shows all three workspaces and Manage access opens. Anonymous workspace/alias/owner URLs redirect to sign-in. The GitHub Pages origin returns 404 for `/philip-aram/` after the successful public-only deployment (Actions run 39289334316). Cookie-free origin passthrough keeps the three existing public YouTube datasets fresh; all three reported successful collection after cutover. Worker assets alone enable the new sign-in UI.
 
-Google remains External / Testing with only `freemarketwildlife@gmail.com` added as a test user. Publish app is disabled pending branding completion. Additional-account real-world authorization/no-access checks and general client rollout are pending. Existing browser notes are untouched; account syncing is not implemented in step 1.
+Google is External / In production after publishing the factual privacy notice at `/privacy/` and registering its URL in Google Branding. The homepage links to it. Login requests only `openid email`; no sensitive or restricted service scopes are requested. Additional-account real-world authorization/no-access checks remain unverified; the automated suite covers these cases. The owner can assign client emails through Manage access. Existing browser notes are untouched; account syncing is not implemented in step 1.
 
 ## Activate
 
@@ -36,3 +36,7 @@ Step 1 does not read, move or delete localStorage. Keep the website origin uncha
 `npm test` covers direct routes and aliases, missing configuration, anonymous access, owner-only grants/revokes, CSRF, logout, signed Google callback using test keys, state replay, email authority/nonce, membership subject binding and no-access redirect. `npm run check` packages the complete existing site and runs Wrangler dry-run. A test signing key is generated in memory; it is never accepted by production. Real Google/Cloudflare activation must still be verified with real accounts.
 
 Official references: https://developers.google.com/identity/openid-connect/openid-connect and https://developers.cloudflare.com/workers/static-assets/binding/.
+
+## Future source deployment
+
+`npm run deploy --prefix services/workspace-auth` publishes application HTML, scripts, styles and backend changes to the protected Worker. GitHub push updates the public-only Pages origin and scheduled metrics; it does not redeploy the Worker. Keep both deployment responsibilities explicit.

@@ -127,3 +127,5 @@ dialog { background: var(--black); color: var(--white); border: 1px solid var(--
 #access-dialog .dialog-panel > div > a { display: block; margin: 12px 0; }
 
 #access-dialog .dialog-panel > div > a.google-sign-in { display: flex; }
+
+.home-privacy { position: fixed; left: 20px; bottom: 16px; z-index: 3; font: 12px Arial, sans-serif; }
