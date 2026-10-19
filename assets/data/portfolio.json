@@ -1,6 +1,22 @@
 [
-  {"title":"Critz","href":null,"thumbnail":"/assets/images/portfolio/critz.svg"},
-  {"title":"Equip","href":null,"thumbnail":"/assets/images/portfolio/equip.svg"},
-  {"title":"Tanoshi (Music)","href":null,"thumbnail":"/assets/images/portfolio/music.svg"},
-  {"title":"Tanoshi (YouTube)","href":"https://www.youtube.com/@TanoshiSan","thumbnail":"/assets/images/portfolio/youtube.svg"}
+  {
+    "title": "Critz",
+    "href": "/portfolio/critz/",
+    "thumbnail": "/assets/images/portfolio/critz.svg"
+  },
+  {
+    "title": "Equip",
+    "href": "/portfolio/equip/",
+    "thumbnail": "/assets/images/portfolio/equip.svg"
+  },
+  {
+    "title": "Tanoshi (Music)",
+    "href": "/tanoshi/music/",
+    "thumbnail": "/assets/images/portfolio/music.svg"
+  },
+  {
+    "title": "Tanoshi (YouTube)",
+    "href": "/tanoshi/youtube/",
+    "thumbnail": "/assets/images/portfolio/youtube.svg"
+  }
 ]

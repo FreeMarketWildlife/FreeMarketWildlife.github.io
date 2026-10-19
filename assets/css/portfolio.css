@@ -14,3 +14,6 @@ a.portfolio-card:hover .portfolio-card-heading, a.portfolio-card:focus-visible .
 [data-portfolio-sentinel] { height: 1px; }
 @media (max-width: 900px) { .portfolio-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; } .portfolio-card-heading h2 { font-size: 18px; } }
 @media (max-width: 420px) { .portfolio-card-heading h2 { font-size: 14px; } .portfolio-grid { gap: 12px; } }
+
+.portfolio-back { display: inline-block; margin-bottom: 24px; }
+.portfolio-breadcrumbs { display: flex; gap: 12px; margin-bottom: 24px; }

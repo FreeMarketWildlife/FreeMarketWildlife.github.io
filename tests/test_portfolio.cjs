@@ -6,7 +6,7 @@ const assert=require('node:assert/strict');
  const page=await browser.newPage({viewport:{width:1440,height:1000}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto('http://127.0.0.1:4173/portfolio/');await page.locator('.portfolio-card').nth(3).waitFor();
  assert.deepEqual(await page.locator('.portfolio-card h2').allTextContents(),['Critz','Equip','Tanoshi (Music)','Tanoshi (YouTube)']);
- assert.equal(await page.locator('a.portfolio-card').getAttribute('href'),'https://www.youtube.com/@TanoshiSan');
+ assert.deepEqual(await page.locator('a.portfolio-card').evaluateAll(es=>es.map(e=>e.getAttribute('href'))),['/portfolio/critz/','/portfolio/equip/','/tanoshi/music/','/tanoshi/youtube/']);
  assert.equal(await page.locator('.creator-row, blockquote').count(),0);
  assert.ok(!/Troy Kearns|Kat & Kai|Philip Aram/.test(await page.locator('main').innerText()));
  let boxes=await page.locator('.portfolio-card').evaluateAll(es=>es.map(e=>{const b=e.getBoundingClientRect(),h=e.firstElementChild.getBoundingClientRect(),t=e.lastElementChild.getBoundingClientRect();return {x:b.x,y:b.y,w:b.width,h:b.height,header:h.height,thumb:t.height};}));
@@ -17,6 +17,12 @@ const assert=require('node:assert/strict');
  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
  boxes=await page.locator('.portfolio-card').evaluateAll(es=>es.map(e=>e.getBoundingClientRect().y));assert.equal(new Set(boxes).size,2);
  assert.equal(await page.locator('[data-portfolio-more]').isVisible(),false);
+ for(const [path,title] of [['/portfolio/critz/','Critz'],['/portfolio/equip/','Equip'],['/tanoshi/music/','Tanoshi (Music)'],['/tanoshi/youtube/','Tanoshi (YouTube)']]) {
+  await page.goto('http://127.0.0.1:4173'+path);
+  assert.equal(await page.locator('h1').innerText(),title);
+  assert.equal(await page.locator('main p, main article').count(),0);
+ }
+ await page.goto('http://127.0.0.1:4173/tanoshi/');assert.equal(await page.locator('main .portfolio-card').count(),2);
  // Fixture catalog validates five desktop rows and subsequent 20-item batches.
  await page.setViewportSize({width:1440,height:1000});
  await page.route('**/assets/data/portfolio.json',r=>r.fulfill({json:Array.from({length:45},(_,i)=>({title:`Work ${i+1}`,href:'https://example.com',thumbnail:'/assets/images/portfolio/critz.svg'}))}));

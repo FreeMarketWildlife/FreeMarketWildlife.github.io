@@ -5,10 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="color-scheme" content="dark">
   <meta name="theme-color" content="#000000">
-  <meta name="description" content="A creative studio for moving images, original sound, and imagined worlds.">
+  <meta name="description" content="Tanoshi Music and YouTube portfolio.">
   <title>Tanoshi — Free Market Wildlife</title>
   <link rel="icon" href="/assets/images/mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/css/styles.css">
+  <link rel="stylesheet" href="/assets/css/portfolio.css?v=1">
+
   <script type="module" src="/assets/js/app.js?v=4-open"></script>
 <script type="module" src="/assets/js/account.js?v=2"></script></head>
 <body>
@@ -18,32 +20,15 @@
   <nav aria-label="Primary"><a href="/portfolio/">Portfolio</a><a href="/tanoshi/" aria-current="page">Tanoshi</a><a href="/contact/">Contact</a></nav>
   <button class="access-button" type="button" data-open-access aria-label="Workspaces"><span>Workspaces</span></button>
 </header>
-<main class="page-main" id="main" tabindex="-1">
-  <div class="page-heading"><div><span class="eyebrow">02 / THE CREATIVE PRACTICE</span><h1>Tanoshi<span class="accent">.</span><br><span class="muted">A little less ordinary.</span></h1></div><p>Moving images. Original sound. Imagined worlds. A home for work made with curiosity.</p></div>
-  <div class="section-rule"><h2>Inside the studio</h2><span class="badge">CATALOG IN PREPARATION</span></div>
-  <div class="studio-grid">
-    <section class="panel film-module"><div class="module-heading"><span class="eyebrow">01 / MOTION & STORY</span><span class="micro">VIDEO</span></div><div class="video-wrapper"><video preload="none" poster="/assets/images/studio-poster.svg" aria-label="Showreel placeholder; no video source has been added"></video><span class="media-note">SHOWREEL PLACEHOLDER · MEDIA COMING SOON</span></div><div class="module-copy"><h2>Stories in motion.</h2><p>A space for films, edits, and visual experiments. Add an approved showreel to bring this frame to life.</p><a class="text-button" href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">Explore YouTube <span aria-hidden="true">↗</span></a><span class="micro muted">Platform link · creator channel to be added</span></div></section>
-    <section class="panel audio-module"><div class="module-heading"><span class="eyebrow">02 / SOUND & MUSIC</span><span class="micro">AUDIO</span></div><div class="record-art" aria-hidden="true"><div><span>T<br>001</span></div></div><div class="module-copy"><span class="eyebrow">LISTENING ROOM</span><h2>Let it resonate.</h2><p>Original music and audio work. This player is ready for the first approved track.</p><div class="audio-placeholder" role="img" aria-label="Audio player placeholder; no track has been added"><span aria-hidden="true">▸</span> No audio uploaded</div><span class="micro muted">NO AUDIO UPLOADED</span><a class="text-button" href="https://soundcloud.com/" target="_blank" rel="noopener noreferrer">Explore SoundCloud <span aria-hidden="true">↗</span></a><span class="micro muted">Platform link · artist profile to be added</span></div></section>
-    <section class="panel worlds-module"><div><span class="eyebrow">03 / WORLDS & EXPERIMENTS</span><h2>Follow the curiosity.</h2><p>Room for original projects, interactive ideas, and the things that don’t fit neatly into a category.</p><span class="badge">PROJECT ASSETS COMING SOON</span></div><div class="world-art" aria-hidden="true">✳</div></section>
-    <a class="panel studio-contact" href="/contact/"><span class="eyebrow">HAVE SOMETHING IN MIND?</span><h2>Make something<br>that matters.</h2><span class="card-link">Start a conversation <span aria-hidden="true">↗</span></span></a>
+<main class="page-main portfolio-main" id="main" tabindex="-1">
+  <a class="portfolio-back" href="/portfolio/">← Portfolio</a>
+  <h1>Tanoshi</h1>
+  <div class="portfolio-grid" aria-label="Tanoshi portfolio">
+    <a class="portfolio-card" href="/tanoshi/music/"><div class="portfolio-card-heading"><h2>Tanoshi (Music)</h2></div><div class="portfolio-thumbnail"><img src="/assets/images/portfolio/music.svg" width="400" height="400" alt=""></div></a>
+    <a class="portfolio-card" href="/tanoshi/youtube/"><div class="portfolio-card-heading"><h2>Tanoshi (YouTube)</h2></div><div class="portfolio-thumbnail"><img src="/assets/images/portfolio/youtube.svg" width="400" height="400" alt=""></div></a>
   </div>
 </main>
-<footer class="site-footer"><span>INDEPENDENT THINKING. INTENTIONAL GROWTH.</span><span>© <span data-year>2026</span> FREE MARKET WILDLIFE</span><a href="/tutorials/">Tutorials</a></footer>
-<dialog class="access-dialog" id="access-dialog" aria-labelledby="access-title">
-  <div class="dialog-panel">
-    <button class="close-button" type="button" data-close-access aria-label="Close client access">×</button>
-    <span class="eyebrow">CLIENT WORKSPACE</span>
-    <div class="lock-emblem"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""></div>
-    <h2 id="access-title">Workspaces</h2>
-    <p class="muted">Choose a workspace to open.</p>
-    <form data-access-form hidden>
-      <label for="access-code">Password</label>
-      <input id="access-code" name="passcode" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" required aria-describedby="access-error" placeholder="Enter password">
-      <p class="form-error" id="access-error" aria-live="polite"></p>
-      <button class="button primary" type="submit">Continue <span aria-hidden="true">→</span></button>
-    </form><nav data-workspace-links aria-label="Workspaces"><ul><li><a href="/kat-kai/">Kat &amp; Kai</a></li><li><a href="/troykearns/">Troy Kearns</a></li><li><a href="/philip-aram/">Philip Aram</a></li></ul></nav>
-    <p class="micro">Temporary preview access. Public content only.</p>
-  </div>
-</dialog>
+<footer class="site-footer"><span></span><span>© <span data-year>2026</span> FREE MARKET WILDLIFE</span></footer>
+<dialog class="access-dialog" id="access-dialog" aria-labelledby="access-title"><div class="dialog-panel"><button class="close-button" type="button" data-close-access aria-label="Close sign in">×</button><h2 id="access-title">Sign in</h2><p role="status">Loading…</p></div></dialog>
 </body>
 </html>
