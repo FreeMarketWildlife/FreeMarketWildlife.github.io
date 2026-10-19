@@ -158,3 +158,9 @@ Quiet Time also supports importing JSON backups (versions 1 and 2). Imports merg
 `/blog/` is the final homepage menu destination. It starts empty, with Newest, Oldest and Most popular sorting. Popularity is unavailable until genuine sourced data exists. Blog text and controls use the selected self-hosted DotGothic16 font with its retained SIL OFL license; homepage type is preserved. Shared artwork and typography rules are in `design/production-art.md`.
 
 Content Ideas is available in Troy, Kat & Kai, Philip’s personal workspace, and his Tanoshi, Equip and Critz planning areas. Lists are browser-local with per-workspace backup validation, not authenticated shared storage. See `docs/content-ideas.md`. Philip’s Presentations section starts empty; no private family/property presentation is included in public assets.
+
+### Temporary open workspace preview
+
+Password gates are currently disabled at the owner's request. All static workspaces open directly; the homepage Workspaces menu links to Kat & Kai, Troy Kearns, and Philip Aram. Existing browser-local notes remain on their device. This switch does not create user accounts or alter the independent private analytics backend.
+
+To restore the old preview password interface, run `python3 scripts/set_password_gates.py on`, validate with `python3 scripts/check_site.py`, and deploy. Use `off` to disable it again. The helper updates HTML initial visibility, sign-out controls, the public workspace menu, the central JavaScript flag, and script cache versions together. The preserved preview passcodes remain a static interface barrier; proper accounts require server-side authentication.

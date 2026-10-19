@@ -5,6 +5,7 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 ROOT=Path(__file__).resolve().parents[1]
 errors=[]
+gates_enabled = 'const passwordGatesEnabled = true;' in (ROOT/'assets/js/app.js').read_text()
 def require(condition,message):
  if not condition: errors.append(message)
 class Document(HTMLParser):
@@ -38,7 +39,7 @@ for name in PAGES:
    require(target.is_file(),f'{name}: missing local reference {ref}')
   elif url.fragment:require(url.fragment in doc.ids,f'{name}: missing fragment {url.fragment}')
  if name.startswith(('philip-aram/','troy-kearns/','troykearns/','kat-kai/')):
-  require(doc.gate and doc.hidden,f'{name}: workspace must start gated, hidden, inert')
+  require(doc.gate and doc.hidden if gates_enabled else not doc.gate and not doc.hidden, f'{name}: workspace access does not match configured preview mode')
 home=(ROOT/'index.html').read_text()
 require('Build a Career</a>' in home,'Homepage career menu link missing')
 require('class="landing-tagline"' not in home,'Removed homepage tagline has returned')
@@ -77,4 +78,4 @@ for path in (ROOT/'assets/js').glob('*.js'):
 require((ROOT/'CNAME').read_text().strip()=='freemarketwildlife.com','Custom domain mismatch')
 if errors:
  print('\n'.join(errors));raise SystemExit(1)
-print(f'PASS: {len(PAGES)} pages, local references, workspace barriers, monochrome palette, binary sprites, fonts, and motion accessibility contract.')
+print(f'PASS: {len(PAGES)} pages, local references, configured workspace access, monochrome palette, binary sprites, fonts, and motion accessibility contract.')

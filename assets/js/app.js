@@ -1,5 +1,8 @@
 import { clients, clientForPasscode } from './clients.js?v=3';
 
+// Temporary public preview mode. Restore with scripts/set_password_gates.py on.
+const passwordGatesEnabled = false;
+
 const $ = (selector, parent = document) => parent.querySelector(selector);
 const $$ = (selector, parent = document) => [...parent.querySelectorAll(selector)];
 $$('[data-year]').forEach(element => { element.textContent = new Date().getFullYear(); });
@@ -34,7 +37,7 @@ const access = $('#access-dialog');
 const accessForm = $('[data-access-form]');
 const accessInput = $('#access-code');
 const accessError = $('#access-error');
-if (access && accessForm) {
+if (access && accessForm && passwordGatesEnabled) {
   $$('[data-open-access]').forEach(button => button.addEventListener('click', () => {
     accessForm.reset();
     accessError.textContent = '';
@@ -56,10 +59,22 @@ if (access && accessForm) {
   });
 }
 
-// Workspaces require the demo password once per tab session.
+if (access && !passwordGatesEnabled) {
+  $$('[data-open-access]').forEach(button => button.addEventListener('click', () => access.showModal()));
+  $('[data-close-access]')?.addEventListener('click', () => access.close());
+}
+
+// Workspaces require the demo password only while preview gates are enabled.
 const gate = $('#workspace-gate');
 const workspace = $('#workspace-content');
-if (gate && workspace) {
+if (gate && workspace && !passwordGatesEnabled) {
+  if (gate.open) gate.close();
+  gate.hidden = true;
+  workspace.hidden = false;
+  workspace.inert = false;
+  $$('[data-lock-workspace]').forEach(button => { button.hidden = true; });
+}
+if (gate && workspace && passwordGatesEnabled) {
   const form = $('[data-gate-form]');
   const input = $('#gate-code');
   const error = $('#gate-error');

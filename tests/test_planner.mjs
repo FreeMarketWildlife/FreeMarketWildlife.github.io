@@ -24,5 +24,6 @@ assert.throws(()=>validatePlan({...defaultPlan(),goals:[{...defaultPlan().goals[
 assert.throws(()=>validatePlan({...defaultPlan(),goals:[defaultPlan().goals[0],defaultPlan().goals[0]]}));
 const config=JSON.parse(readFileSync('config/social-accounts.json','utf8'));
 assert.equal(config.accounts.find(a=>a.client==='philip-tanoshi').account,'TanoshiSan');
-for(const folder of ['troykearns','kat-kai'])for(const view of ['strategy','roadmap']){const page=readFileSync(`${folder}/${view}/index.html`,'utf8');assert.match(page,/id="workspace-content" hidden inert/);assert.match(page,/id="workspace-gate" open/);for(const link of ['Statistics','Links','Strategy','Roadmap'])assert(page.includes(`>${link}</a>`));}
-console.log('PASS: live goal math, Pacific month rollover, missing/hidden/stale/decreasing counts, partial-period labeling, plan validation, channel registration and gated routes.');
+const gatesEnabled=readFileSync('assets/js/app.js','utf8').includes('const passwordGatesEnabled = true;');
+for(const folder of ['troykearns','kat-kai'])for(const view of ['strategy','roadmap']){const page=readFileSync(`${folder}/${view}/index.html`,'utf8');if(gatesEnabled){assert.match(page,/id="workspace-content" hidden inert/);assert.match(page,/<dialog[^>]*id="workspace-gate"[^>]* open/);}else{assert.match(page,/id="workspace-content">/);assert.match(page,/<dialog[^>]*id="workspace-gate"[^>]* hidden/);}for(const link of ['Statistics','Links','Strategy','Roadmap'])assert(page.includes(`>${link}</a>`));}
+console.log('PASS: live goal math, Pacific month rollover, missing/hidden/stale/decreasing counts, partial-period labeling, plan validation, channel registration and configured workspace access.');

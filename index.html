@@ -11,7 +11,7 @@
   <link rel="preload" href="/assets/fonts/fmw-clean-slab.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="/assets/fonts/fmw-pixel.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="stylesheet" href="/assets/css/styles.css">
-  <script type="module" src="/assets/js/app.js?v=2"></script>
+  <script type="module" src="/assets/js/app.js?v=4-open"></script>
   <script type="module" src="/assets/js/scene.js"></script>
 </head>
 <body class="home">
@@ -32,20 +32,20 @@
       </nav>
     </div>
   </main>
-  <button class="home-access" type="button" data-open-access aria-label="Sign in"><span>Sign in</span></button>
+  <button class="home-access" type="button" data-open-access aria-label="Workspaces"><span>Workspaces</span></button>
   <dialog class="access-dialog" id="access-dialog" aria-labelledby="access-title">
   <div class="dialog-panel">
     <button class="close-button" type="button" data-close-access aria-label="Close client access">×</button>
     <span class="eyebrow">CLIENT WORKSPACE</span>
     <div class="lock-emblem"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""></div>
-    <h2 id="access-title">Sign in.</h2>
-    <p class="muted">Enter your workspace password to continue.</p>
-    <form data-access-form>
+    <h2 id="access-title">Workspaces</h2>
+    <p class="muted">Choose a workspace to open.</p>
+    <form data-access-form hidden>
       <label for="access-code">Password</label>
       <input id="access-code" name="passcode" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" required aria-describedby="access-error" placeholder="Enter password">
       <p class="form-error" id="access-error" aria-live="polite"></p>
       <button class="button primary" type="submit">Continue <span aria-hidden="true">→</span></button>
-    </form>
+    </form><nav data-workspace-links aria-label="Workspaces"><ul><li><a href="/kat-kai/">Kat &amp; Kai</a></li><li><a href="/troykearns/">Troy Kearns</a></li><li><a href="/philip-aram/">Philip Aram</a></li></ul></nav>
     <p class="micro">Temporary preview access. Public content only.</p>
   </div>
 </dialog>

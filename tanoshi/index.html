@@ -9,14 +9,14 @@
   <title>Tanoshi — Free Market Wildlife</title>
   <link rel="icon" href="/assets/images/mark.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/css/styles.css">
-  <script type="module" src="/assets/js/app.js?v=2"></script>
+  <script type="module" src="/assets/js/app.js?v=4-open"></script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header">
   <a class="brand" href="/" aria-label="Free Market Wildlife home"><img src="/assets/images/mark.svg" width="64" height="64" alt=""><span>FREE MARKET<br>WILDLIFE</span></a>
   <nav aria-label="Primary"><a href="/portfolio/">Portfolio</a><a href="/tanoshi/" aria-current="page">Tanoshi</a><a href="/contact/">Contact</a></nav>
-  <button class="access-button" type="button" data-open-access aria-label="Sign in"><span>Sign in</span></button>
+  <button class="access-button" type="button" data-open-access aria-label="Workspaces"><span>Workspaces</span></button>
 </header>
 <main class="page-main" id="main" tabindex="-1">
   <div class="page-heading"><div><span class="eyebrow">02 / THE CREATIVE PRACTICE</span><h1>Tanoshi<span class="accent">.</span><br><span class="muted">A little less ordinary.</span></h1></div><p>Moving images. Original sound. Imagined worlds. A home for work made with curiosity.</p></div>
@@ -34,14 +34,14 @@
     <button class="close-button" type="button" data-close-access aria-label="Close client access">×</button>
     <span class="eyebrow">CLIENT WORKSPACE</span>
     <div class="lock-emblem"><img class="pixel-lock" src="/assets/images/lock.svg" width="24" height="28" alt=""></div>
-    <h2 id="access-title">Sign in.</h2>
-    <p class="muted">Enter your workspace password to continue.</p>
-    <form data-access-form>
+    <h2 id="access-title">Workspaces</h2>
+    <p class="muted">Choose a workspace to open.</p>
+    <form data-access-form hidden>
       <label for="access-code">Password</label>
       <input id="access-code" name="passcode" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" required aria-describedby="access-error" placeholder="Enter password">
       <p class="form-error" id="access-error" aria-live="polite"></p>
       <button class="button primary" type="submit">Continue <span aria-hidden="true">→</span></button>
-    </form>
+    </form><nav data-workspace-links aria-label="Workspaces"><ul><li><a href="/kat-kai/">Kat &amp; Kai</a></li><li><a href="/troykearns/">Troy Kearns</a></li><li><a href="/philip-aram/">Philip Aram</a></li></ul></nav>
     <p class="micro">Temporary preview access. Public content only.</p>
   </div>
 </dialog>
