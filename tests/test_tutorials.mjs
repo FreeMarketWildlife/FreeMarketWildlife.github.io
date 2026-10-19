@@ -14,7 +14,7 @@ assert(!page.includes('therealdragex'));assert(!page.includes('type="password"')
 const script=readFileSync('assets/js/youtube-access-tutorial.js','utf8');assert(!/fetch\(|localStorage|sessionStorage/.test(script),'Walkthrough must not submit or store client data');
 assert.match(readFileSync('.github/workflows/pages.yml','utf8'),/privacy tutorials _site/);
 assert.match(readFileSync('services/workspace-auth/prepare-assets.mjs','utf8'),/'tutorials'/);
-for(const path of ['index.html','kat-kai/roadmap/index.html','troykearns/index.html','philip-aram/index.html']) assert.match(readFileSync(path,'utf8'),/href="\/tutorials\/"/);
+for(const path of ['kat-kai/roadmap/index.html','troykearns/index.html','philip-aram/index.html']) assert.match(readFileSync(path,'utf8'),/href="\/tutorials\/"/);
 console.log('PASS: tutorial search, exact recipient, client-only plain instructions, passive demonstration without transmission/storage, footer links and both deployment packages.');
 
 assert(!/practice|demo-email.*<input/i.test(page));
@@ -26,3 +26,5 @@ assert.equal(steps[4][0],'Click Access');
 assert.equal(steps[5][0],'Choose Viewer (limited)');
 assert.equal(steps[6][0],'Review and send');
 assert.match(page,/All done\./);
+
+for(const path of ['index.html','account/index.html','blog/index.html','build-a-business/index.html','contact/index.html','privacy/index.html']) assert(!readFileSync(path,'utf8').includes('href="/tutorials/"'),'Tutorial entry is workspace-only');
