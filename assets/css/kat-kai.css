@@ -1,11 +1,59 @@
-/* Small accents for Kat & Kai; the shared workspace stays simple. */
-body[data-client="kat-kai"] .tiny-flair { color: #edc7d9; font-size: 20px; margin-left: 6px; font-weight: normal; }
-body[data-client="kat-kai"] nav a[aria-current] { text-decoration-color: #edc7d9; }
-body[data-client="kat-kai"] h1 { letter-spacing: .01em; }
-
-.kat-plan { max-width: 850px; border-left: 2px solid #edc7d9; padding: 1px 0 1px 20px; margin: 28px 0 36px; }
-.kat-plan p { max-width: 75ch; }
-.smart-list { display: grid; grid-template-columns: 110px 1fr; gap: 12px 20px; }
-.smart-list dt { font-weight: bold; color: #edc7d9; }
-.smart-list dd { margin: 0; }
-@media (max-width: 540px) { .smart-list { grid-template-columns: 1fr; gap: 6px; } .smart-list dd { margin-bottom: 12px; } }
+/* Kat & Kai: restrained scrapbook, flowers, crayon and finger-paint accents. */
+:root:has(body[data-client="kat-kai"]) { color-scheme:light; background:#fbf8f1; color:#443d39; }
+body[data-client="kat-kai"] { --ink:#443d39; --muted:#766b64; --line:#dfd6cb; --rose:#ae656e; --sage:#697f5d; background:#fbf8f1; color:var(--ink); font-family:Arial,Helvetica,sans-serif; }
+body[data-client="kat-kai"] a { color:inherit; }
+body[data-client="kat-kai"] header { max-width:1280px; margin:auto; padding:26px 40px; gap:22px; border-bottom:1px solid var(--line); }
+body[data-client="kat-kai"] header > a:first-child img { width:30px; height:30px; padding:5px; background:#595448; border-radius:7px; }
+body[data-client="kat-kai"] .kat-wordmark { text-decoration:none; font-family:Georgia,serif; font-size:25px; line-height:1.1; white-space:nowrap; }
+.kat-wordmark span { display:block; font:9px Arial,sans-serif; letter-spacing:2px; margin-top:7px; color:var(--muted); }
+body[data-client="kat-kai"] header nav { margin-left:auto; gap:24px; font-size:14px; }
+body[data-client="kat-kai"] nav a { text-decoration:none; padding:8px 0; }
+body[data-client="kat-kai"] nav a[aria-current] { color:#8f4c58; border-bottom:3px solid #d8a1a6; border-radius:0 0 30% 20%; }
+body[data-client="kat-kai"] main { max-width:1120px; margin:0 auto; padding:52px 40px 80px; position:relative; }
+body[data-client="kat-kai"] main::after { content:""; position:absolute; right:35px; top:33px; width:76px; height:82px; background:url('/assets/images/kat-flower-paint.svg') center/contain no-repeat; opacity:.65; pointer-events:none; }
+body[data-client="kat-kai"] h1 { font:normal clamp(32px,5vw,46px)/1.2 Georgia,serif; margin:0 0 30px; letter-spacing:-.03em; }
+body[data-client="kat-kai"] h2 { font:normal 25px/1.3 Georgia,serif; }
+body[data-client="kat-kai"] h3 { font-size:16px; }
+.kat-eyebrow { color:#886b64; font-size:10px; letter-spacing:2px; margin:0 0 12px; }
+body[data-client="kat-kai"] .tiny-flair { color:var(--rose); font-size:20px; }
+.growth-story { display:flex; align-items:center; gap:8px; padding:16px 0 28px; border-bottom:1px solid var(--line); }
+.growth-stage { flex:1; min-width:0; text-align:center; }
+.growth-stage img { width:100%; max-width:180px; height:150px; display:block; margin:auto; }
+body[data-client="kat-kai"] .growth-stage h2 { font:600 14px Arial,sans-serif; margin:12px 0 6px; }
+.growth-stage p { font-size:12px; color:var(--muted); margin:0; }
+.growth-stage.current p { color:#965863; }
+.growth-connector { width:28px; border-top:2px dashed #d8cebd; margin-top:-35px; }
+.kat-focus { margin:30px 0 42px; }
+.content-targets { display:grid; grid-template-columns:1fr 1fr; gap:28px; border-left:4px solid #d9abb0; border-radius:2px; padding:0 22px; }
+.content-targets h3 { margin:0 0 10px; }.content-targets p { margin:5px 0; font-size:14px; }.content-targets strong { color:#8d4c59; }
+body[data-client="kat-kai"] button, body[data-client="kat-kai"] input, body[data-client="kat-kai"] select, body[data-client="kat-kai"] textarea { color:var(--ink); background:#fffcf7; border:1px solid #cfc2b5; border-radius:6px; font:inherit; }
+body[data-client="kat-kai"] button { min-height:40px; padding:7px 13px; }
+body[data-client="kat-kai"] button:hover { background:#f4e8e3; }
+body[data-client="kat-kai"] :focus-visible { outline:2px solid #925e6b; outline-offset:4px; }
+body[data-client="kat-kai"] .planner-note,body[data-client="kat-kai"] .planner-status,body[data-client="kat-kai"] .goal-state,body[data-client="kat-kai"] .statistics-note { color:var(--muted); }
+body[data-client="kat-kai"] .planner-tabs:empty,body[data-client="kat-kai"] .planner-status:empty { display:none; }
+body[data-client="kat-kai"] .goal-grid { grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+body[data-client="kat-kai"] .goal-card { border:1px solid var(--line); background:#fffcf7; border-radius:8px 7px 10px 6px; padding:20px; }
+body[data-client="kat-kai"] .goal-card h3 { font-size:17px; margin-bottom:12px; }
+body[data-client="kat-kai"] .goal-state { font-size:10px; letter-spacing:.7px; }
+body[data-client="kat-kai"] .metric-total { font-size:21px; }
+body[data-client="kat-kai"] .goal-card summary { font-size:12px; color:#795a60; margin-top:12px; }
+body[data-client="kat-kai"] .goal-card progress { accent-color:var(--sage); background:#ede8de; border:0; border-radius:6px; overflow:hidden; }
+body[data-client="kat-kai"] .goal-card progress::-webkit-progress-bar { background:#ede8de; }
+body[data-client="kat-kai"] .goal-card progress::-webkit-progress-value { background:var(--sage); }
+body[data-client="kat-kai"] .goal-card progress::-moz-progress-bar { background:var(--sage); }
+body[data-client="kat-kai"] th,body[data-client="kat-kai"] td { border-color:var(--line); }
+body[data-client="kat-kai"] th { background:#f1ebe1; }
+body[data-client="kat-kai"] dialog { background:#fbf8f1; color:var(--ink); }
+body[data-client="kat-kai"] dialog::backdrop { background:#fbf8f1; }
+body[data-client="kat-kai"] .chart-grid { stroke:#dfd6cb; }
+body[data-client="kat-kai"] .chart-line { stroke:#925e6b; }
+body[data-client="kat-kai"] .history-panel circle { fill:#925e6b; stroke:#fbf8f1; }
+body[data-client="kat-kai"] .history-panel svg text { fill:var(--muted); }
+body[data-client="kat-kai"] .chart-controls button[aria-pressed="true"] { background:#efd9dc; color:var(--ink); }
+@media(max-width:850px) { body[data-client="kat-kai"] header { padding:20px 24px; } body[data-client="kat-kai"] header nav { width:100%; order:3; margin:0; gap:20px; } body[data-client="kat-kai"] main { padding:36px 24px 60px; } body[data-client="kat-kai"] .goal-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:540px) { .growth-story { display:grid; grid-template-columns:1fr 1fr; gap:22px 12px; } .growth-connector { display:none; } .growth-stage img { height:120px; } body[data-client="kat-kai"] .growth-stage h2 { font-size:12px; } .content-targets { grid-template-columns:1fr; gap:22px; } body[data-client="kat-kai"] .goal-grid { grid-template-columns:1fr; } body[data-client="kat-kai"] main::after { width:52px; right:15px; top:14px; } body[data-client="kat-kai"] header nav { gap:14px; font-size:12px; } }
+body[data-client="kat-kai"] .workspace-switcher { color:var(--ink); }
+body[data-client="kat-kai"] .workspace-switcher summary { border-color:var(--line); border-radius:6px; }
+body[data-client="kat-kai"] .workspace-switcher-menu { background:#fffcf7; border-color:var(--line); box-shadow:0 8px 24px #443d3912; }
+body[data-client="kat-kai"] .workspace-switcher-menu nav { margin:0; width:auto; }

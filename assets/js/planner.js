@@ -25,11 +25,12 @@ export function goalProgress(goal,data,now=Date.now()) {
   const result=measure(data,goal.metric,now);
   return {...result,percent:result.value===null?null:Math.min(100,result.value/goal.target*100),remaining:result.value===null?null:Math.max(0,goal.target-result.value),state:result.value===null?'Waiting for data':result.stale?'Update overdue':result.partial?'Observed progress':result.value>=goal.target?'Target observed':'In progress'};
 }
-export function defaultPlan(workspace=''){return {version:1,strategy:'',links:'',goals:workspace==='kat-kai'?Array.from({length:10},(_,i)=>({id:`kat-subs-${(i+1)*1000}`,title:`${((i+1)*1000).toLocaleString('en-US')} subscribers`,metric:'subscribers',target:(i+1)*1000,due:i===9?'2027-01-01':''})): [{id:'monthly-views',title:'100,000 views a month',metric:'monthlyViews',target:100000,due:''},{id:'subscribers',title:'1,000,000 subscribers',metric:'subscribers',target:1000000,due:''}]};}
+export function defaultPlan(workspace=''){return {version:1,strategy:'',links:'',goals:workspace==='kat-kai'?[1000,10000,50000,100000,250000,500000,750000,1000000,2000000].map(target=>({id:`kat-subs-${target}`,title:`${target.toLocaleString('en-US')} subscribers`,metric:'subscribers',target,due:''})): [{id:'monthly-views',title:'100,000 views a month',metric:'monthlyViews',target:100000,due:''},{id:'subscribers',title:'1,000,000 subscribers',metric:'subscribers',target:1000000,due:''}]};}
 export function personalizePlan(plan,workspace) {
   if(workspace!=='kat-kai')return plan;
-  const legacy=defaultPlan().goals;
-  const kept=plan.goals.filter(goal=>!legacy.some(old=>goal.id===old.id && goal.title===old.title && goal.metric===old.metric && goal.target===old.target && goal.due===old.due && !goal.notes));
+  const legacy=[...defaultPlan().goals,...Array.from({length:10},(_,i)=>({id:`kat-subs-${(i+1)*1000}`,title:`${((i+1)*1000).toLocaleString('en-US')} subscribers`,metric:'subscribers',target:(i+1)*1000,due:i===9?'2027-01-01':''}))];
+  const kept=plan.goals.filter(goal=>!legacy.some(old=>goal.id===old.id && goal.title===old.title && goal.metric===old.metric && goal.target===old.target && goal.due===old.due && !goal.notes)).map(goal=>({...goal}));
+  for(const goal of kept){if(goal.id==='kat-subs-10000' && goal.due==='2027-01-01')goal.due='';}
   const additions=defaultPlan(workspace).goals.filter(goal=>!kept.some(old=>old.id===goal.id || (old.metric===goal.metric && old.target===goal.target)));
   return {...plan,goals:[...kept,...additions].sort((a,b)=>a.metric==='subscribers' && b.metric==='subscribers'?a.target-b.target:0)};
 }
@@ -78,7 +79,7 @@ function mountPlanner(root) {
     if(active==='statistics'){
       const grid=el('div',undefined,'goal-grid');for(const metric of ['subscribers','views','videos','monthlyViews']){const result=measure(data,metric),card=el('article',undefined,'goal-card');card.append(el('h3',metricNames[metric]),el('p',result.value===null?'Awaiting data':result.value.toLocaleString(),'metric-total'),el('p',result.note,'planner-note'));grid.append(card);}content.append(grid);return;
     }
-    content.append(el('p',workspace==='kat-kai'?'Milestones: 1,000 through 10,000 subscribers. The New Year deadline is a stretch target, not a growth forecast. Notes save only in this browser.':'Starter targets are editable. Progress updates automatically when new channel observations are published.','planner-note'));
+    content.append(el('p',workspace==='kat-kai'?'Notes save only in this browser.':'Starter targets are editable. Progress updates automatically when new channel observations are published.','planner-note'));
     const grid=el('div',undefined,'goal-grid');
     for(const goal of plan.goals){const result=goalProgress(goal,data),card=el('article',undefined,'goal-card');card.append(el('p',result.state,'goal-state'),el('h3',goal.title));
       card.append(el('p',`${result.value===null?'—':result.value.toLocaleString()} / ${goal.target.toLocaleString()}`,'metric-total'));
@@ -89,7 +90,7 @@ function mountPlanner(root) {
         const label=el('label',`Notes for ${goal.title}`),notes=el('textarea');
         notes.rows=3;notes.maxLength=3000;notes.value=goal.notes || '';notes.placeholder='Ideas, questions, or the next step…';
         notes.addEventListener('input',()=>{const next={...plan,goals:plan.goals.map(g=>g.id===goal.id?{...g,notes:notes.value}:g)};save(next);});
-        label.append(notes);card.append(label);
+        label.append(notes);const notesDetails=el('details');notesDetails.append(el('summary','Notes'),label);card.append(notesDetails);
       }
       grid.append(card);
     }

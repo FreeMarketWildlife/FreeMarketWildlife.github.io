@@ -53,6 +53,7 @@ colors={c.lower() for c in re.findall(r'#[0-9a-fA-F]{3,8}\b',css)}
 require(colors<={'#000','#fff','#000000','#ffffff'},f'Non-binary CSS colors: {colors}')
 require(not re.search(r'@keyframes|\btransition\s*:|\banimation\s*:',css),'Animation found in static release')
 for path in (ROOT/'assets/images').rglob('*.svg'):
+ if path.name in {'kat-seed.svg','kat-sprout.svg','kat-young-plant.svg','kat-tree.svg','kat-flower-paint.svg'}:continue # Owner-approved pastel Kat & Kai workspace artwork.
  text=path.read_text()
  colors={c.lower() for c in re.findall(r'#[0-9a-fA-F]{3,8}\b',text)}
  require(colors<={'#000','#fff','#000000','#ffffff'},f'{path.name}: non-binary SVG color')
@@ -70,10 +71,10 @@ for name,expected in [('landscape',(263,168)),('bird',(18,16))]:
  require(len(zlib.decompress(compressed))==(1+(expected[0]+7)//8)*expected[1],f'{name}: invalid PNG scanlines')
 for path in (ROOT/'assets/css').glob('*.css'):
  for ref in re.findall(r'url\([\"\']?([^\)\"\']+)',path.read_text()):
-  require((path.parent/urlsplit(ref).path).is_file(),f'{path.name}: missing font/image {ref}')
+  require(((ROOT/urlsplit(ref).path.lstrip('/')) if ref.startswith('/') else (path.parent/urlsplit(ref).path)).is_file(),f'{path.name}: missing font/image {ref}')
 for path in (ROOT/'assets/js').glob('*.js'):
  text=path.read_text()
- for ref in re.findall(r"from\s+['\"]([^'\"]+)['\"]",text):require((path.parent/urlsplit(ref).path).is_file(),f'{path.name}: missing module {ref}')
+ for ref in re.findall(r"from\s+['\"]([^'\"]+)['\"]",text):require(((ROOT/urlsplit(ref).path.lstrip('/')) if ref.startswith('/') else (path.parent/urlsplit(ref).path)).is_file(),f'{path.name}: missing module {ref}')
  if path.name=='scene.js':require('reduced.matches' in text and 'document.hidden' in text,'Siege must respect reduced motion and hidden tabs')
 require((ROOT/'CNAME').read_text().strip()=='freemarketwildlife.com','Custom domain mismatch')
 if errors:

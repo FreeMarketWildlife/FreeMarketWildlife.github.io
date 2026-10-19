@@ -1,11 +1,11 @@
-# Kat and Kai subscriber roadmap
+# Kat & Kai workspace
 
-The owner requested subscriber milestones at every 1,000 from 1,000 through 10,000 and a New Year target. `/kat-kai/roadmap/` treats that deadline as January 1, 2027 at midnight America/Los_Angeles. Only the final milestone is given that deadline; earlier milestone dates are left editable rather than invented as forecasts.
+Design direction confirmed October 19, 2026: a restrained version of Mommy & Me Scrapbook. Warm cream, muted pink and sage; small floral, finger-paint and crayon accents. Information comes first. No photo collage or invented content.
 
-`defaultPlan('kat-kai')` seeds the ten milestones. `personalizePlan` replaces only the exact untouched generic starter goals and preserves user-edited goals and their notes. Repeated migration does not duplicate milestones. Each milestone has a 3,000-character browser-local notes field, included in the existing export/import backup. This is not shared account storage.
+Growing Together is a plant-to-tree journey. Current authored stage: seed, not yet sprouted. Monetization is the sprout, 10,000 subscribers is a little beyond the sprout, and 1,000,000 is a fully developed tree. Monetization is independent of the subscriber counter; no automatic monetization claim or inferred eligibility. Other botanical stage assignments remain undefined.
 
-The page calculates required future average net subscribers/day from the latest recent public subscriber snapshot and the remaining time to the Pacific deadline. It labels the number as a requirement, not a forecast. Stale observations are marked. No realistic growth forecast can be established from the two initial observations alone.
+Exact subscriber milestones: 1,000; 10,000; 50,000; 100,000; 250,000; 500,000; 750,000; 1,000,000; 2,000,000. Later milestones are not yet specified. No deadlines. Shorts targets: at least 70% stayed to watch and 70% retention. Long-form targets remain undefined. Targets are not measured results.
 
-The October 19–November 2 trial is an explicit proposal: two long-form releases, four Shorts, and reviews on October 26 and November 2. Kat must confirm or revise the sustainable workload. The first review establishes what the channel can produce and what the audience responds to; later reviews determine a credible date for the first 1,000 and reassess the New Year stretch target. The plan does not promise subscriber results from upload counts.
+Removed the previous proposed upload trial and New Year target. Migration replaces untouched old defaults, clears the superseded New Year date, and preserves authored goals/notes. Notes and plans remain browser-local with export/import. Public channel data is not configured; missing totals remain unknown.
 
-Validate with `node tests/test_planner.mjs`, `python3 scripts/check_site.py`, and a browser check of notes after reload. The required pace calculation covers missing data, completed targets and passed deadlines. Publishing advice is informed by https://support.google.com/youtube/answer/13616979 .
+Validate with `node tests/test_planner.mjs`, `python3 scripts/check_site.py`, and desktop/mobile browser review.
