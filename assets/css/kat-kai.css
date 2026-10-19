@@ -3,7 +3,8 @@
 body[data-client="kat-kai"] { --ink:#443d39; --muted:#766b64; --line:#dfd6cb; --rose:#ae656e; --sage:#697f5d; background:#fbf8f1; color:var(--ink); font-family:Arial,Helvetica,sans-serif; }
 body[data-client="kat-kai"] a { color:inherit; }
 body[data-client="kat-kai"] header { max-width:1280px; margin:auto; padding:26px 40px; gap:22px; border-bottom:1px solid var(--line); }
-body[data-client="kat-kai"] header > a:first-child img { width:30px; height:30px; padding:5px; background:#595448; border-radius:7px; }
+body[data-client="kat-kai"] .kat-logo { display:block; flex:0 0 auto; }
+body[data-client="kat-kai"] header .kat-logo img { display:block; width:88px; height:88px; padding:0; border-radius:0; image-rendering:auto; }
 body[data-client="kat-kai"] .kat-wordmark { text-decoration:none; font-family:Georgia,serif; font-size:25px; line-height:1.1; white-space:nowrap; }
 .kat-wordmark span { display:block; font:9px Arial,sans-serif; letter-spacing:2px; margin-top:7px; color:var(--muted); }
 body[data-client="kat-kai"] header nav { margin-left:auto; gap:24px; font-size:14px; }
@@ -129,3 +130,6 @@ body.kat-strategy-page[data-strategy-stage] .release-calendar .long-release .rel
 .compact-targets { flex-shrink:0; }body.kat-strategy-page .compact-targets h2 { font-size:18px;margin:0 0 7px; }.compact-target-columns { display:grid;grid-template-columns:1fr 1fr;gap:18px; }.compact-target-columns p { margin:0;padding-left:10px;border-left:2px solid #d9abb0;font-size:10px;line-height:1.6; }.compact-target-columns p > strong { display:block;font-size:12px; }.compact-target-columns span { display:block; }.compact-target-columns small { font-size:8px;color:#766b64;font-weight:normal; }
 @media(max-width:540px){.audience-goals { padding:8px 10px; }body.kat-strategy-page .audience-goals h2,body.kat-strategy-page .compact-targets h2 { font-size:15px;margin-bottom:5px; }.goal-line-heading { font-size:9px;margin-bottom:4px; }.goal-line-heading strong { font-size:8px; }.subscriber-ticks { font-size:7px;height:12px; }.watch-ticks { font-size:8px; }.watch-heading { margin-top:4px; }.compact-target-columns { gap:8px; }.compact-target-columns p { font-size:8px;line-height:1.5;padding-left:6px; }.compact-target-columns p > strong { font-size:10px; }.compact-target-columns small { font-size:7px; }.milestone-track,.milestone-track > i { height:7px; }.milestone-track > i { width:7px; }}
 @media(max-width:540px){body.kat-strategy-page .strategy-stages button { min-height:54px;padding:8px;font-size:15px; }.strategy-stages button span { display:none; }body.kat-strategy-page .release-weekday { padding:2px 4px;font-size:9px;line-height:1.3; }body.kat-strategy-page .release-day strong { padding:1px 5px;font-size:9px;line-height:1.3; }.compact-target-columns span { white-space:normal; }}
+
+@media(max-width:850px) { body[data-client="kat-kai"] header { flex-wrap:wrap; } }
+@media(max-width:540px) { body[data-client="kat-kai"] header .kat-logo img { width:72px; height:72px; } }
