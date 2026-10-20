@@ -42,7 +42,7 @@ if(config?.enabled) {
   if(panel) {
     panel.replaceChildren();
     const close=element('button','×');close.type='button';close.className='close-button';close.setAttribute('aria-label','Close sign in');close.onclick=()=>dialog.close();
-    const title=element('h2','Sign in');title.id='access-title';
+    const title=element('h2','Sign in or create an account');title.id='access-title';
     const body=element('div');panel.append(close,title,body,status);
     const showError=()=>{status.textContent='Unable to load your account. Please try again.';};
     async function load() {
@@ -59,9 +59,11 @@ if(config?.enabled) {
           button.setAttribute('aria-label',label);
           button.querySelector('span')?.replaceChildren(document.createTextNode(label));
         }
-        title.textContent=account.user?'Your workspaces':'Sign in';
+        title.textContent=account.user?'Your workspaces':'Sign in or create an account';
         if(!account.user) {
           const google=link('Continue with Google','/auth/start');google.className='google-sign-in';body.append(google);
+          body.append(element('p','Use your Gmail or Google Workspace account. Your first sign-in creates your account automatically.'));
+          body.append(link('Privacy','/privacy/'));
         } else {
           body.append(element('p',account.user.email));
           const nav=element('nav');nav.setAttribute('aria-label','Your workspaces');const list=element('ul');

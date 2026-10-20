@@ -48,3 +48,9 @@ Google sign-in now redirects directly to the client's first assigned, still-auth
 Every protected workspace has a top-right account dropdown with authorized workspace links, the primary label, account switching, and sign-out. Account dialogs and access management use regular white Arial text like the workspaces. The public site's pixel typography remains intact.
 
 Validation: `npm test --prefix services/workspace-auth`, `npm run check --prefix services/workspace-auth`, and `python3 scripts/check_site.py`. Browser regression: prepare Worker assets, serve `services/workspace-auth/public` on port 4173, and run `node tests/test_account.cjs` with Playwright available. Browser account fixtures test interface behavior; the backend suite tests signed Google callback routing and authorization.
+
+## Public account entry verification — 2026-10-19
+
+The production sign-in dialog explicitly supports account creation: first Google sign-in automatically inserts the verified identity into D1. Gmail and Google Workspace accounts are supported; no separate site password is needed. The deployed dialog explains this and links to Privacy. New users without grants still land on the intentionally empty Build a Business page; client tools require an owner-assigned workspace. This is not self-service workspace provisioning.
+
+Verified live: enabled Worker configuration, anonymous account API, GET /auth/start redirects to Google with secure browser-state cookie, and existing owner session opens Philip Aram. Backend suite: 15 passing tests, including signed first-login/no-membership callback. Static checks: 31 pages. Additional real-user first-login remains unverified.
