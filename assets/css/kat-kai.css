@@ -7,7 +7,7 @@ body[data-client="kat-kai"] .kat-logo { display:block; flex:0 0 auto; }
 body[data-client="kat-kai"] header .kat-logo img { display:block; width:88px; height:88px; padding:0; border-radius:0; image-rendering:auto; }
 body[data-client="kat-kai"] .kat-wordmark { text-decoration:none; font-family:Georgia,serif; font-size:25px; line-height:1.1; white-space:nowrap; }
 .kat-wordmark span { display:block; font:9px Arial,sans-serif; letter-spacing:2px; margin-top:7px; color:var(--muted); }
-body[data-client="kat-kai"] header nav { margin-left:auto; gap:24px; font-size:14px; }
+body[data-client="kat-kai"] header nav { margin-left:auto; gap:24px; font-size:14px; flex-wrap:wrap; }
 body[data-client="kat-kai"] nav a { text-decoration:none; padding:8px 0; }
 body[data-client="kat-kai"] nav a[aria-current] { color:#8f4c58; border-bottom:3px solid #d8a1a6; border-radius:0 0 30% 20%; }
 body[data-client="kat-kai"] main { max-width:1120px; margin:0 auto; padding:52px 40px 80px; position:relative; }
