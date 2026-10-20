@@ -16,10 +16,6 @@
 <script type="module" src="/assets/js/account.js?v=2"></script></head>
 <body class="home">
   <a class="skip-link" href="#main">Skip to content</a>
-  <canvas class="nature-scene" data-nature-scene aria-hidden="true"></canvas>
-  <div class="pixel-scene siege-scene" data-pixel-scene data-animation="siege">
-    <canvas data-scene-layer="siege" role="img" aria-label="A tiny looping castle siege. Tap a soldier to defeat them."></canvas>
-  </div>
   <main class="landing" id="main" tabindex="-1">
     <div class="landing-copy">
       <img class="landing-logo" src="/assets/images/mark.svg" width="96" height="96" alt="Free Market Wildlife emblem">
@@ -30,7 +26,13 @@
         <a href="/tanoshi/"><span class="menu-arrow" aria-hidden="true"></span>Tanoshi</a>
       </nav>
     </div>
+    <canvas class="nature-scene" data-nature-scene aria-hidden="true"></canvas>
   </main>
+  <footer class="home-battlefield" aria-label="Castle siege animation">
+  <div class="pixel-scene siege-scene" data-pixel-scene data-animation="siege">
+    <canvas data-scene-layer="siege" role="img" aria-label="A castle siege with enemy dragon attacks and defending cavalry charges. Tap a soldier to defeat them."></canvas>
+  </div>
+  </footer>
   <footer class="home-privacy"><a href="/privacy/">Privacy</a></footer>
   <button class="home-access" type="button" data-open-access aria-label="Workspaces"><span>Workspaces</span></button>
   <dialog class="access-dialog" id="access-dialog" aria-labelledby="access-title">

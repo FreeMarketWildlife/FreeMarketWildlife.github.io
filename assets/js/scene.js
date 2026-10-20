@@ -1,10 +1,10 @@
 import { loadSceneSprites } from './scene-sprites.js';
 /** One-bit siege on a quarter-size grid; nature retains the original page grid. */
-// Both layers use this layout so the fortress and the hillside share one anchor.
+// The independent battlefield spans the footer on every screen size.
 function battleLayout() {
   const pagePixel=parseInt(getComputedStyle(document.body).getPropertyValue('--pixel'),10)||2;
-  const pixel=pagePixel/4;
-  return {pagePixel,pixel,width:Math.floor(Math.min(innerWidth-32,innerWidth*(innerWidth<681?.9:.46))/pixel),bottom:24};
+  const pixel=Math.max(pagePixel/4,(innerWidth-32)/960);
+  return {pagePixel,pixel,width:Math.floor((innerWidth-32)/pixel)};
 }
 const stage = document.querySelector('[data-pixel-scene]');
 if (stage) {
@@ -19,6 +19,7 @@ if (stage) {
   const engineX = 48;
   let deliveredWood=0, attackerCount=0;
   let charges=[],craters=[],blasts=[];
+  let dragon=null,nextDragon=42,nextCavalry=48,dragonPasses=0,cavalryCharges=0;
   const roadEnd=()=>castle()+60;
   function craterDepth(x){return craters.reduce((depth,crater)=>Math.max(depth,Math.max(0,Math.floor((1-Math.abs(x-crater.x)/crater.radius)*7))),0);}
   const unitGround=s=>ground()+craterDepth(s.x)-s.lane;
@@ -32,8 +33,11 @@ if (stage) {
     for (;;) { rect(x,y,1,1); if(x===xx&&y===yy)break; const e=2*error;if(e>=dy){error+=dy;x+=sx;}if(e<=dx){error+=dx;y+=sy;} }
   }
   function resize() {
+    const oldCastle=castle();
     ({pixel,width}=battleLayout());
-    height=100;
+    height=140;
+    const shift=castle()-oldCastle;
+    for(const unit of soldiers)if(unit.side===-1)unit.x+=shift;
     canvas.width=width;canvas.height=height;canvas.style.width=`${width*pixel}px`;canvas.style.height=`${height*pixel}px`;
     ctx.imageSmoothingEnabled=false;stage.dataset.ready='true';stage.dataset.grid=`${width}x${height}`;draw();
   }
@@ -41,7 +45,13 @@ if (stage) {
   function soldier(s) {
     ctx.save();
     if(s.kind==='giant'){ctx.translate(Math.round(s.x),unitGround(s));ctx.scale(2,2);ctx.translate(-Math.round(s.x),-unitGround(s));}
-    if(s.kind==='horse'&&!s.dead){const y=unitGround(s);rect(s.x-7,y-8,13,5);rect(s.x-9,y-12,4,6);line(s.x-6,y-3,s.x-8,y+2);line(s.x+5,y-3,s.x+7,y+2);}
+    if(s.kind==='horse'&&!s.dead){
+      const x=Math.round(s.x),y=unitGround(s),stride=Math.sin(time*15+s.seed)*3;
+      rect(x-8,y-10,16,6);rect(x-10,y-16,5,9);rect(x-13,y-15,6,3);
+      line(x+8,y-9,x+12,y-5);line(x-6,y-4,x-8+stride,y+1);line(x+5,y-4,x+7-stride,y+1);
+      rect(x-1,y-20,3,3);rect(x-2,y-17,4,7);line(x-1,y-12,x-5,y-7);
+      line(x-2,y-15,x-18,y-20);line(x-18,y-20,x-15,y-21);ctx.restore();return;
+    }
 
     const jump=s.celebrating?Math.round(Math.abs(Math.sin(time*5+s.seed))*7):0;
     const x=Math.round(s.x),y=unitGround(s)-jump, step=Math.floor(time*7+s.seed)%2;
@@ -124,7 +134,49 @@ if (stage) {
       for(let ray=0;ray<8;ray++){const a=ray*Math.PI/4;line(blast.x+Math.cos(a)*radius*.6,g-3+Math.sin(a)*radius*.6,blast.x+Math.cos(a)*radius,g-3+Math.sin(a)*radius);}
     }
     for(const d of debris)rect(d.x,d.y,1,1);
+    drawDragon();
     drawHealthBar();
+  }
+  // One-bit silhouette: swept wings, long tail, horns, and a visible fire cone.
+  function drawDragon() {
+    if(!dragon)return;
+    const {x,y,age}=dragon,flap=Math.sin(age*7)*13;
+    rect(x-13,y-3,28,7);rect(x+10,y-8,7,9);rect(x+15,y-7,10,5);
+    rect(x+18,y-6,2,1,'#000');line(x+12,y-8,x+10,y-13);line(x+16,y-8,x+17,y-12);
+    line(x-13,y,x-29,y-7);line(x-29,y-7,x-39,y-5);
+    for(const sign of [-1,1]){
+      const tip=x-16,wy=y-25-flap;
+      line(x,y,tip,wy);line(tip,wy,x+sign*22,y-10);
+      line(x+sign*22,y-10,x-4,y+2);line(tip,wy,x-4,y-6);
+    }
+    line(x-5,y+4,x-9,y+10);line(x+8,y+4,x+4,y+10);
+    if(dragon.breathing)for(let ray=0;ray<7;ray++){
+      const reach=24+ray*5+Math.sin(time*24+ray)*4;
+      line(x+24,y-3,x+24+reach,ground()-38+ray*3);
+      rect(x+24+reach,ground()-38+ray*3,3,2);
+    }
+  }
+  function summonCavalry() {
+    if(castleHP<=0||victory)return;
+    cavalryCharges++;
+    for(let i=0;i<5;i++)soldiers.push({x:castle()+20+i*6,side:-1,kind:'horse',role:'cavalry',hp:180,power:45,lane:(i%3)*3,seed:i,dead:0});
+  }
+  function updateUltimates(dt) {
+    if(!victory&&castleHP>0&&time>=nextDragon&&!dragon){
+      dragon={x:-50,y:45,age:0,breathing:false,damageDone:false};dragonPasses++;nextDragon=time+90;
+    }
+    if(castleHP>0&&!victory&&time>=nextCavalry){summonCavalry();nextCavalry=time+90;}
+    if(!dragon)return;
+    dragon.age+=dt;
+    const target=castle()-60,approach=Math.min(1,dragon.age/7);
+    dragon.x=dragon.age<7?-50+(target+50)*approach:target+(dragon.age>11?(dragon.age-11)*100:0);
+    dragon.y=45+Math.sin(dragon.age*2)*3;
+    dragon.breathing=castleHP>0&&!victory&&dragon.age>=7&&dragon.age<11;
+    if(dragon.breathing&&!dragon.damageDone){
+      dragon.damageDone=true;hurtCastle(90);burst(castle()+15,ground()-35);
+      for(const unit of soldiers)if(unit.side===-1&&!unit.dead&&unit.x>castle()-130){unit.hp-=60;if(unit.hp<=0)unit.dead=2;}
+    }
+    if(dragon.age>=16)dragon=null;
   }
   function hoveredHealth() {
     if(!hoverPoint)return null;
@@ -152,6 +204,7 @@ if (stage) {
   canvas.addEventListener('pointerleave',()=>{hoverPoint=null;draw();});
   function update(dt) {
     time+=dt;
+    updateUltimates(dt);
     if(!victory&&time>nextSpawn){nextSpawn=time+8+Math.random()*7;spawn(1);}
     if(castleHP>0&&time>nextDefender){nextDefender=time+11+Math.random()*7;spawn(-1);}
     for(const archer of wallArchers)archer.flash=Math.max(0,archer.flash-dt);
@@ -237,7 +290,7 @@ if (stage) {
   function resume(){cancelAnimationFrame(frame);last=0;if(!document.hidden&&!reduced.matches)frame=requestAnimationFrame(tick);else draw();}
   function hurtCastle(amount){if(castleHP<=0)return;castleHP=Math.max(0,castleHP-amount);if(!castleHP)burst(castle()+26,ground()-22);}
   function spawn(side){
-    const rare=Math.random()<.01,kind=rare?(side===1?'giant':'horse'):'foot';
+    const rare=side===1&&Math.random()<.01,kind=rare?'giant':'foot';
     if(side===1)attackerCount++;
     const role=side===1&&!rare&&attackerCount%4===0?'sapper':'soldier';
     soldiers.push({x:side===1?-5:castle()+26,side,kind,role,carryingWood:side===1&&construction<1&&engineHP>0,
@@ -259,20 +312,12 @@ const nature=document.querySelector('[data-nature-scene]');
 if(nature){
   const ctx=nature.getContext('2d'), reduced=matchMedia('(prefers-reduced-motion: reduce)');let sprites,last=0,t=0,frame;
   function render(){
-    if(!sprites)return;const p=parseInt(getComputedStyle(document.body).getPropertyValue('--pixel'),10)||2;
-    const w=Math.ceil(innerWidth/p),h=Math.ceil(innerHeight/p);if(nature.width!==w||nature.height!==h){nature.width=w;nature.height=h;}
-    nature.style.width=`${w*p}px`;nature.style.height=`${h*p}px`;ctx.imageSmoothingEnabled=false;ctx.clearRect(0,0,w,h);
-    const x=w-263+(innerWidth<681?30:0),y=h-168;
+    if(!sprites)return;
+    const w=263,h=168;
+    if(nature.width!==w||nature.height!==h){nature.width=w;nature.height=h;}
+    ctx.imageSmoothingEnabled=false;ctx.clearRect(0,0,w,h);
+    const x=0,y=0;
     ctx.drawImage(sprites.landscape,x,y);
-    const layout=battleLayout();
-    const fortX=Math.round((16+(layout.width-64)*layout.pixel)/p);
-    const fortY=Math.round((innerHeight-layout.bottom-10*layout.pixel)/p);
-    // A clear courtyard gives the keep its own silhouette in front of the hill.
-    // The stepped cliff boundary stays behind the right tower, not across it.
-    for(let row=0;row<33;row++){
-      const right=fortX+17+Math.floor((32-row)*.4);
-      ctx.clearRect(fortX-12,fortY-28+row,right-(fortX-12),1);
-    }
     // Body and feet never leave their perch. Only the head turns/bobs.
     const bx=x+75,by=y+94;
     // Copy the body separately so a transparent head mask cannot erase scenery.

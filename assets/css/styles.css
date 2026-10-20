@@ -115,11 +115,11 @@ dialog { background: var(--black); color: var(--white); border: 1px solid var(--
 @media (max-width: 680px) { .home .landing h1 { font-family: "FMW Clean Slab Small", monospace; font-size: calc(var(--pixel) * 16); line-height: calc(var(--pixel) * 17); } }
 @media (max-height: 480px) and (orientation: landscape) { .home .landing h1 { font-family: "FMW Clean Slab Small", monospace; font-size: calc(var(--pixel) * 16); line-height: calc(var(--pixel) * 17); } }
 
-/* The tiny siege occupies only the lower-left corner and never covers links. */
-.siege-scene { inset: auto; left: 16px; bottom: 24px; z-index: 2; overflow: visible; }
+/* The battlefield forms the base of the page, below the elevated landscape. */
+.siege-scene { position: relative; inset: auto; margin: 0 16px; z-index: 2; overflow: hidden; }
 .siege-scene canvas { position: relative; pointer-events: auto; cursor: crosshair; touch-action: manipulation; }
 
-.nature-scene { position: fixed; inset: 0; pointer-events: none; }
+.nature-scene { display: block; width: 100%; aspect-ratio: 263 / 168; pointer-events: none; align-self: center; }
 
 .google-sign-in { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 20px; border: 1px solid #000; border-radius: 4px; background: #fff; color: #000; font: 500 14px Arial, sans-serif; text-decoration: none; }
 [data-access-manager] form { display: grid; gap: 12px; max-width: 440px; }
@@ -128,4 +128,22 @@ dialog { background: var(--black); color: var(--white); border: 1px solid var(--
 
 #access-dialog .dialog-panel > div > a.google-sign-in { display: flex; }
 
-.home-privacy { position: fixed; left: 20px; bottom: 16px; z-index: 3; font: 12px Arial, sans-serif; }
+/* Let compact screens scroll instead of clipping the art or navigation. */
+.home { height: auto; min-height: 100vh; min-height: 100dvh; overflow-x: hidden; overflow-y: auto; display: flex; flex-direction: column; }
+.home .landing { flex: 1; height: auto; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 48px; padding: 72px 48px 40px 72px; }
+.home .nature-scene { max-width: 789px; justify-self: end; }
+.home-battlefield { padding-top: 20px; }
+.home-privacy { padding: 8px 20px 16px; font: 12px Arial, sans-serif; }
+@media (max-width: 1000px) and (min-width: 681px) {
+  .home .landing { padding-left: 40px; gap: 24px; grid-template-columns: minmax(300px, 1fr) minmax(0, 1fr); }
+  .home .landing h1 { font-size: 48px; line-height: 50px; }
+}
+@media (max-width: 680px) {
+  .home .landing { grid-template-columns: minmax(0, 1fr); gap: 32px; padding: 72px 32px 0; }
+  .home .nature-scene { width: calc(100% + 64px); max-width: none; margin: 0 -32px; }
+  .home-battlefield { padding-top: 24px; }
+}
+@media (max-height: 480px) and (orientation: landscape) {
+  .home .landing { padding-top: 64px; }
+  .home .landing-logo { position: static; }
+}
