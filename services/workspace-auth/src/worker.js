@@ -1,3 +1,4 @@
+import { taskPhotos } from './task-photos.js';
 import { createRemoteJWKSet, jwtVerify } from 'jose';
 export const WORKSPACES = Object.freeze([
   {id:'philip-aram', name:'Philip Aram', path:'/philip-aram/'},
@@ -127,6 +128,7 @@ async function handle(req,env) {
     if(!user)return redirect('/?signin=required');
     if(isAccount ? !await owner(user,env) : !(await permitted(user,env)).some(w=>w.id===workspace))return response('You do not have access to this workspace.',403);
   }
+  if(path.startsWith('/kat-kai/api/task-photos/'))return taskPhotos(req,env,path);
   // Only the existing PUBLIC YouTube datasets pass through to the GitHub Pages origin.
   // Same-zone route subrequests reach the origin, not this Worker again. Strip cookies.
   if(env.PUBLIC_DATA_PASSTHROUGH==='github-pages' && isPublicData(path)) {

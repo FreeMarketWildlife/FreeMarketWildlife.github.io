@@ -138,3 +138,45 @@ test('first assigned workspace is primary even when catalog order differs; new g
  env.db.exec('DELETE FROM memberships');
  assert.equal((await (await call(env,'/api/account',{headers})).json()).primaryWorkspace,null);
 });
+
+test('task photos are shared within Kat & Kai, validate uploads, and revoke with membership',async()=>{
+ const env=environment(),objects=new Map();
+ env.TASK_PHOTOS={
+  async put(key,bytes,metadata){objects.set(key,{bytes,...metadata});},
+  async get(key){const o=objects.get(key);return o?{...o,body:o.bytes}:null;},
+  async list({prefix}){return {objects:[...objects].filter(([key])=>key.startsWith(prefix)).map(([key,o])=>({key,size:o.bytes.length,customMetadata:o.customMetadata})),truncated:false};}
+ };
+ const path='/kat-kai/api/task-photos/kat-photos';
+ assert.equal((await call(env,path)).status,303);
+ const headers={...await session(env,'kat','kat@gmail.com'),origin,'Content-Type':'image/png'};
+ assert.equal((await call(env,path,{headers})).status,403);
+ env.db.prepare('INSERT INTO memberships VALUES (?,?,?)').run('kat@gmail.com','kat-kai','kat');
+ const png=new Uint8Array([137,80,78,71,13,10,26,10,0]);
+ assert.equal((await call(env,path,{method:'POST',headers:{...headers,origin:'https://evil.example'},body:png})).status,403);
+ assert.equal((await call(env,path,{method:'POST',headers,body:'not an image'})).status,415);
+ assert.equal((await call(env,path,{method:'POST',headers:{...headers,'Content-Type':'image/svg+xml'},body:'<svg/>'})).status,415);
+ assert.equal((await call(env,path,{method:'POST',headers:{...headers,'Content-Length':String(21*1024*1024)},body:png})).status,413);
+ assert.equal((await call(env,'/kat-kai/api/task-photos/unknown',{headers})).status,404);
+ const uploaded=await call(env,path+'?name=Kat%20smile.png',{method:'POST',headers,body:png});
+ assert.equal(uploaded.status,201);const photo=await uploaded.json();
+ assert.equal(photo.name,'Kat smile.png');
+ assert.equal((await (await call(env,path,{headers})).json()).photos.length,1);
+ assert.equal((await (await call(env,'/kat-kai/api/task-photos/kai-photos',{headers})).json()).photos.length,0);
+ const download=await call(env,photo.url,{headers});
+ assert.equal(download.status,200);assert.equal(download.headers.get('content-type'),'image/png');
+ assert.equal(download.headers.get('cache-control'),'private, no-store');
+ assert.deepEqual(new Uint8Array(await download.arrayBuffer()),png);
+ assert.equal((await call(env,photo.url.replace('kat-photos','kai-photos'),{headers})).status,404);
+ const ownerHeaders=await session(env,'owner-photos','owner@gmail.com',true);
+ assert.equal((await (await call(env,path,{headers:ownerHeaders})).json()).photos.length,1);
+ // Reset the test token to Kat, then revoke her membership.
+ env.db.prepare('UPDATE sessions SET google_sub=?').run('kat');
+ env.db.exec('DELETE FROM memberships');
+ assert.equal((await call(env,photo.url,{headers})).status,403);
+ assert.equal(objects.size,1);
+});
+test('task photo storage fails clearly when not configured',async()=>{
+ const env=environment(),headers=await session(env,'photo-owner','owner@gmail.com',true);
+ const r=await call(env,'/kat-kai/api/task-photos/kat-photos',{headers});
+ assert.equal(r.status,503);assert.match((await r.json()).error,/Storage setup/);
+});
