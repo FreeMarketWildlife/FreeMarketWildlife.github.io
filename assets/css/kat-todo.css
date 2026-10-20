@@ -1,0 +1,13 @@
+body[data-client="kat-kai"] .kat-todo { max-width:860px; }
+.todo-card { border:1px solid var(--line); border-radius:14px; padding:28px; background:#fffcf7; }
+.todo-card h2 { margin:0 0 16px; }
+.todo-card p,.todo-check { line-height:1.65; }
+.todo-check { display:flex; align-items:flex-start; gap:12px; padding:18px 0; border-bottom:1px solid var(--line); }
+.todo-check input { flex:0 0 auto; width:20px; height:20px; margin:4px 0 0; accent-color:var(--rose); cursor:pointer; }
+.todo-check label { cursor:pointer; }
+.todo-check strong { display:block; }
+.todo-check:has(input:checked) label { color:var(--muted); }
+.todo-tip,.todo-storage { color:var(--muted); font-size:13px; }
+.todo-tip { margin:20px 0 0; }
+.todo-storage { line-height:1.5; }
+@media(max-width:540px) { .todo-card { padding:20px; } body[data-client="kat-kai"] .kat-todo { padding:32px 20px 50px; } }
