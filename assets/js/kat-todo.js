@@ -14,7 +14,7 @@ for (const checkbox of checkboxes) {
     saved[checkbox.dataset.todo] = checkbox.checked;
     try {
       localStorage.setItem(key, JSON.stringify(saved));
-      status.textContent = 'Checkmarks saved in this browser only. For each monthly refresh, uncheck the list and use it again.';
+      status.textContent = 'Checkmarks saved in this browser only.';
     } catch {
       status.textContent = 'Checkmarks could not be saved in this browser. Keep this tab open to use the checklist.';
     }
