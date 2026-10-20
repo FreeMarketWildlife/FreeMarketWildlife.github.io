@@ -53,7 +53,7 @@ colors={c.lower() for c in re.findall(r'#[0-9a-fA-F]{3,8}\b',css)}
 require(colors<={'#000','#fff','#000000','#ffffff'},f'Non-binary CSS colors: {colors}')
 require(not re.search(r'@keyframes|\btransition\s*:|\banimation\s*:',css),'Animation found in static release')
 for path in (ROOT/'assets/images').rglob('*.svg'):
- if path.name in {'kat-seed.svg','kat-sprout.svg','kat-young-plant.svg','kat-tree.svg','kat-flower-paint.svg'}:continue # Owner-approved pastel Kat & Kai workspace artwork.
+ if path.name in {'kat-seed.svg','kat-sprout.svg','kat-young-plant.svg','kat-tree.svg','kat-flower-paint.svg','troy-millionaire-mentorship.svg'}:continue # Owner-approved client brand artwork; public site artwork remains monochrome.
  text=path.read_text()
  colors={c.lower() for c in re.findall(r'#[0-9a-fA-F]{3,8}\b',text)}
  require(colors<={'#000','#fff','#000000','#ffffff'},f'{path.name}: non-binary SVG color')
