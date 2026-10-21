@@ -5,6 +5,7 @@ from pathlib import Path
 from urllib.parse import unquote, urlsplit
 ROOT=Path(__file__).resolve().parents[1]
 errors=[]
+SERVER_FILE_ROUTES={'/troykearns/spreadsheets/shorts-analysis.xlsx':'services/workspace-auth/src/troy-spreadsheets.js'}
 gates_enabled = 'const passwordGatesEnabled = true;' in (ROOT/'assets/js/app.js').read_text()
 def require(condition,message):
  if not condition: errors.append(message)
@@ -24,7 +25,7 @@ class Document(HTMLParser):
    if attrs.get(attr):self.refs.append(attrs[attr])
   if tag=='input':require(attrs.get('type')!='tel',f'{self.path}: unexpected contact field')
  def handle_startendtag(self,tag,attrs):self.handle_starttag(tag,attrs)
-PAGES=['troykearns/to-do/index.html','troykearns/links/index.html','kat-kai/to-do/index.html','portfolio/critz/stories/index.html','portfolio/critz/games/index.html','portfolio/critz/dragex/index.html','portfolio/critz/index.html','portfolio/equip/index.html','tanoshi/music/index.html','tanoshi/youtube/index.html','tutorials/index.html','tutorials/youtube-stats-access/index.html','privacy/index.html','build-a-business/index.html','troykearns/content-ideas/index.html','kat-kai/content-ideas/index.html','troykearns/strategy/index.html','troykearns/roadmap/index.html','kat-kai/strategy/index.html','kat-kai/roadmap/index.html','philip-aram/index.html','index.html','blog/index.html','portfolio/index.html','tanoshi/index.html','contact/index.html','troy-kearns/index.html','troykearns/index.html','troykearns/statistics/index.html','troykearns/connect/index.html','kat-kai/index.html','kat-kai/statistics/index.html','404.html']
+PAGES=['troykearns/spreadsheets/index.html','troykearns/to-do/index.html','troykearns/links/index.html','kat-kai/to-do/index.html','portfolio/critz/stories/index.html','portfolio/critz/games/index.html','portfolio/critz/dragex/index.html','portfolio/critz/index.html','portfolio/equip/index.html','tanoshi/music/index.html','tanoshi/youtube/index.html','tutorials/index.html','tutorials/youtube-stats-access/index.html','privacy/index.html','build-a-business/index.html','troykearns/content-ideas/index.html','kat-kai/content-ideas/index.html','troykearns/strategy/index.html','troykearns/roadmap/index.html','kat-kai/strategy/index.html','kat-kai/roadmap/index.html','philip-aram/index.html','index.html','blog/index.html','portfolio/index.html','tanoshi/index.html','contact/index.html','troy-kearns/index.html','troykearns/index.html','troykearns/statistics/index.html','troykearns/connect/index.html','kat-kai/index.html','kat-kai/statistics/index.html','404.html']
 for name in PAGES:
  path=ROOT/name;text=path.read_text();doc=Document(name);doc.feed(text)
  require(doc.h1==1,f'{name}: expected one h1');require(doc.main,f'{name}: missing main')
@@ -33,6 +34,10 @@ for name in PAGES:
  for ref in doc.refs:
   url=urlsplit(ref)
   if url.scheme or url.netloc:continue
+  if url.path in SERVER_FILE_ROUTES:
+   route_owner=ROOT/SERVER_FILE_ROUTES[url.path]
+   require(route_owner.is_file() and url.path in route_owner.read_text(),f'{name}: missing server file route {ref}')
+   continue
   if url.path:
    target=(ROOT/url.path.lstrip('/')) if url.path.startswith('/') else (path.parent/unquote(url.path))
    if target.is_dir():target/= 'index.html'

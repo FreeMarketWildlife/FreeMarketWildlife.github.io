@@ -72,6 +72,7 @@ jobs:
           node tests/test_blog.mjs
           node tests/test_planner.mjs
           node tests/test_content_ideas.mjs
+          node tests/test_troy_spreadsheets.mjs
           node tests/test_sermons.mjs
       - uses: actions/configure-pages@v5
       - name: Prepare public files

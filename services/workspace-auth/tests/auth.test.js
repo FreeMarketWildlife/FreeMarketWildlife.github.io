@@ -258,3 +258,28 @@ test('Troy opens Strategy by default and protects To-Do List and Links with the 
  env.db.exec('DELETE FROM memberships');
  for(const path of ['/troykearns/','/troykearns/to-do/','/troykearns/links/'])assert.equal((await call(env,path,{headers})).status,403);
 });
+
+test('Troy spreadsheet files require Troy membership and are private read-only downloads',async()=>{
+ const env=environment(),headers=await session(env,'reader','client@gmail.com');
+ env.db.prepare('INSERT INTO memberships VALUES (?,?,?)').run('client@gmail.com','kat-kai','reader');
+ const reads=[];
+ env.TASK_PHOTOS={async get(key){reads.push(key);return {body:key.endsWith('.json')?'{}':'xlsx',size:key.endsWith('.json')?2:4};}};
+ const jsonPath='/troykearns/spreadsheets/shorts-analysis.json',xlsxPath='/troykearns/spreadsheets/shorts-analysis.xlsx';
+ for(const path of [jsonPath,xlsxPath]){
+  assert.equal((await call(env,path)).status,303);
+  assert.equal((await call(env,path,{headers})).status,403);
+ }
+ assert.equal(reads.length,0);
+ env.db.prepare('INSERT INTO memberships VALUES (?,?,?)').run('client@gmail.com','troy-kearns','reader');
+ const data=await call(env,jsonPath,{headers});assert.equal(data.status,200);assert.deepEqual(await data.json(),{});
+ assert.equal(data.headers.get('cache-control'),'private, no-store');assert.equal(data.headers.get('vary'),'Cookie');
+ assert.equal(reads[0],'troy-kearns/spreadsheets/shorts-analysis.json');
+ const download=await call(env,xlsxPath,{headers});assert.equal(download.status,200);
+ assert.match(download.headers.get('content-disposition'),/attachment; filename="Troy Kearns - Shorts Analysis.xlsx"/);
+ const head=await call(env,xlsxPath,{headers,method:'HEAD'});assert.equal(head.status,200);assert.equal(await head.text(),'');
+ const count=reads.length;assert.equal((await call(env,jsonPath,{headers,method:'POST'})).status,405);assert.equal(reads.length,count);
+ env.TASK_PHOTOS={async get(){return null;}};assert.equal((await call(env,jsonPath,{headers})).status,404);
+ env.TASK_PHOTOS=undefined;assert.equal((await call(env,jsonPath,{headers})).status,503);
+ env.db.exec("DELETE FROM memberships WHERE workspace='troy-kearns'");
+ assert.equal((await call(env,xlsxPath,{headers})).status,403);
+});

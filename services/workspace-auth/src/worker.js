@@ -1,5 +1,6 @@
 import { emailAuth, emailReady, emailCookie } from './email-auth.js';
 import { taskPhotos } from './task-photos.js';
+import { troySpreadsheetFile } from './troy-spreadsheets.js';
 import { createRemoteJWKSet, jwtVerify } from 'jose';
 export const WORKSPACES = Object.freeze([
   {id:'philip-aram', name:'Philip Aram', path:'/philip-aram/'},
@@ -145,6 +146,8 @@ async function handle(req,env) {
     if(isAccount ? !await owner(user,env) : !(await permitted(user,env)).some(w=>w.id===workspace))return response('You do not have access to this workspace.',403);
   }
   if(['GET','HEAD'].includes(req.method) && /^\/(?:troykearns|troy-kearns)(?:\/(?:index\.html)?)?$/i.test(path))return redirect('/troykearns/strategy/');
+  const spreadsheet = await troySpreadsheetFile(req,env,path);
+  if(spreadsheet)return spreadsheet;
   if(path.startsWith('/kat-kai/api/task-photos/'))return taskPhotos(req,env,path);
   // Only the existing PUBLIC YouTube datasets pass through to the GitHub Pages origin.
   // Same-zone route subrequests reach the origin, not this Worker again. Strip cookies.
