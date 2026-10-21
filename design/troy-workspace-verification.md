@@ -14,4 +14,6 @@ Validation:
 
 Production publishing uses the existing Cloudflare Worker, with a clean snapshot of the scoped commit to exclude unrelated uncommitted work. Google sign-in and membership enforcement remain in the Worker; public metrics still use the existing allowlist.
 
-Bullet revision: static source checks pass; desktop and 390px phone review confirms the exact headings, 5/6/7 bullet counts, removed blocks absent, and no document-level horizontal overflow.
+Bullet revision: static source checks pass; desktop and 390px phone review confirms the exact headings, 6/5/7 bullet counts, removed blocks absent, and no document-level horizontal overflow.
+
+Authenticity revision: the opening is “Authenticity is King,” the editorial copy addresses Troy directly, and the author plans to review his long-form content later this week. The longer heading and message were visually checked on desktop and a 320px phone with no document-level horizontal overflow.
