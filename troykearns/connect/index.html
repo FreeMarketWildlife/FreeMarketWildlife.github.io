@@ -5,21 +5,33 @@
 <title>YouTube connection — Troy Kearns</title>
 
 <link rel="stylesheet" href="/assets/css/troy.css?v=3">
+<link rel="stylesheet" href="/assets/css/analytics-connection.css?v=1">
 <script type="module" src="/assets/js/app.js?v=4-open"></script>
 <script type="module" src="/assets/js/analytics-connection.js"></script>
 <link rel="stylesheet" href="/assets/css/planner.css?v=1"><script type="module" src="/assets/js/account.js?v=2"></script><link rel="stylesheet" href="/assets/css/tutorial-footer.css"><link rel="stylesheet" href="/assets/css/troy-workspace.css?v=1"></head><body data-client="troy-kearns">
 <a class="workspace-skip" href="#main">Skip to content</a>
 <div id="workspace-content">
 <header class="troy-header"><a class="troy-brand" href="/troykearns/" aria-label="Troy Kearns workspace links"><img src="/assets/images/troy-millionaire-mentorship.svg" width="126" height="82" alt="Millionaire Mentorship"><span>Troy Kearns<small>Content workspace</small></span></a><nav aria-label="Troy Kearns workspace"><a href="/troykearns/statistics/" aria-current="page">Statistics</a><a href="/troykearns/">Links</a><a href="/troykearns/strategy/">Strategy</a><a href="/troykearns/roadmap/">Roadmap</a><a href="/troykearns/content-ideas/">Content Ideas</a></nav><button type="button" data-lock-workspace hidden>Sign out</button></header>
-<main id="main" tabindex="-1"><p class="workspace-kicker">Troy Kearns / Statistics</p><h1>YouTube analytics connection</h1>
-<p>The public video catalog is already connected. Private audience and performance analytics need Troy’s read-only authorization.</p>
-<p id="private-analytics-status" role="status">Private backend setup is pending. No authorization invitation is active yet.</p>
+<main id="main" class="analytics-connection" tabindex="-1">
+<p class="workspace-kicker">Troy Kearns / Statistics</p><h1>YouTube analytics connection</h1>
+<div class="connection-layout">
+<section class="connection-summary" aria-labelledby="setup-title">
+<h2 id="setup-title">Share your stats</h2>
+<p>Follow the guide to invite us in YouTube Studio with <strong>Viewer (limited)</strong> access.</p>
+<p>We can review your stats without changing your videos or seeing revenue.</p>
+<a class="walkthrough-link" href="/tutorials/youtube-stats-access/" target="_blank" rel="noopener">Open setup walkthrough <span aria-hidden="true">↗</span><small>Full screen · new tab</small></a>
+<details class="connection-details"><summary>Automatic analytics connection</summary>
+<p id="private-analytics-status" role="status">Setup pending. No connection invitation is active yet.</p>
+<p>This separate connection needs Troy’s read-only Google approval when ready.</p>
 <p><a id="private-analytics-link" hidden>Open private analytics administration</a></p>
-<h2>What Troy will grant</h2><ul><li>Read-only channel information, including the available inventory of his own videos.</li><li>Read-only YouTube Analytics and Reporting data for the channel he authorizes.</li></ul>
-<p>No shared password, upload/edit/delete permission, revenue permission, or access to individual viewers’ identities.</p>
-<h2>What happens next</h2><p>After private hosting and Google OAuth are configured and tested, we generate a single-use invitation. Troy signs into Google, selects his channel, and grants the two read-only permissions. Collection then works in the background.</p>
-<p>Historical coverage depends on YouTube. Deleted videos cannot be restored; audience data can be privacy-suppressed, and some metrics have limited history.</p>
-<p><a href="/troykearns/statistics/">Back to Statistics</a></p></main>
+</details>
+<a class="connection-back" href="/troykearns/statistics/">← Back to Statistics</a>
+</section>
+<section class="connection-walkthrough" aria-label="Setup walkthrough">
+<iframe src="/tutorials/youtube-stats-access/" title="YouTube stats setup walkthrough" allow="clipboard-write"></iframe>
+</section>
+</div>
+</main>
 </div>
 <dialog class="gate-dialog tk-gate" id="workspace-gate" aria-labelledby="gate-title" hidden><div class="gate-shell"><div class="dialog-panel"><span class="eyebrow">TROY KEARNS / WORKSPACE</span><h2 id="gate-title">Sign in.</h2><p>Good to have you here.</p><form data-gate-form><label for="gate-code">Password</label><input id="gate-code" name="passcode" type="password" autocomplete="current-password" autocapitalize="off" spellcheck="false" required aria-describedby="gate-error" autofocus><p class="form-error" id="gate-error" aria-live="polite"></p><button class="button primary" type="submit">Continue <span aria-hidden="true">→</span></button></form><p class="micro">Temporary preview access. Public content only.</p><a class="text-button" href="/">← Back home</a><noscript><p>Enable JavaScript to use this preview.</p></noscript></div><span class="micro">FREE MARKET WILDLIFE</span></div></dialog>
 
