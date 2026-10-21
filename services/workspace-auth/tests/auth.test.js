@@ -7,6 +7,7 @@ import worker,{hash,protectedWorkspace,validClaims} from '../src/worker.js';
 const origin='https://freemarketwildlife.com';
 function environment(){
  const db=new DatabaseSync(':memory:');db.exec(readFileSync(new URL('../migrations/0001_auth.sql',import.meta.url),'utf8'));
+ db.exec(readFileSync(new URL('../migrations/0002_email_auth.sql',import.meta.url),'utf8'));
  const DB={prepare(sql){return {bind(...params){const s=db.prepare(sql);return {async first(){return s.get(...params)||null;},async all(){return {results:s.all(...params)};},async run(){return s.run(...params);}};}};}};
  return {db,DB,SITE_ORIGIN:origin,GOOGLE_CLIENT_ID:'test-client',GOOGLE_CLIENT_SECRET:'test-secret',OWNER_EMAIL:'owner@gmail.com',ASSETS:{fetch:async()=>new Response('protected page')}};
 }
@@ -180,3 +181,54 @@ test('task photo storage fails clearly when not configured',async()=>{
  const r=await call(env,'/kat-kai/api/task-photos/kat-photos',{headers});
  assert.equal(r.status,503);assert.match((await r.json()).error,/Storage setup/);
 });
+
+async function emailFixture(run){
+ const env=environment();env.RESEND_API_KEY='test-key';env.EMAIL_FROM='Free Market Wildlife <signin@auth.example.com>';
+ const previous=globalThis.fetch;const sent=[];
+ globalThis.fetch=async (url,options)=>{assert.equal(url,'https://api.resend.com/emails');sent.push(JSON.parse(options.body));return new Response('{"id":"test"}',{status:200});};
+ const post=(path,body,cookie='')=>call(env,'/auth/email/'+path,{method:'POST',headers:{origin,'Content-Type':'application/json','cf-connecting-ip':'192.0.2.1',cookie},body:JSON.stringify(body)});
+ try{await run({env,sent,post});}finally{globalThis.fetch=previous;}
+}
+test('email code requires inbox proof, binds Troy grant, restricts workspace and prevents replay',async()=>emailFixture(async({env,sent,post})=>{
+ env.db.prepare('INSERT INTO memberships VALUES (?,?,NULL)').run('tk@troykearns.com','troy-kearns');
+ const start=await post('start',{email:'TK@TroyKearns.com'});assert.equal(start.status,200);
+ const cookie=start.headers.get('set-cookie').split(';')[0];assert.match(cookie,/__Host-fmw-email=[a-f0-9]{64}/);
+ const code=sent[0].text.match(/code is (\d{8})/)[1];
+ assert.equal(sent[0].to[0],'tk@troykearns.com');
+ const stored=env.db.prepare('SELECT * FROM email_challenges').get();assert.ok(!Object.values(stored).includes(code));
+ assert.equal((await post('verify',{code})).status,400);
+ const wrong=code==='00000000'?'11111111':'00000000';assert.equal((await post('verify',{code:wrong},cookie)).status,400);
+ const verified=await post('verify',{code},cookie);assert.equal(verified.status,200);
+ assert.equal((await verified.json()).redirect,'/troykearns/');
+ const sessionCookie=verified.headers.getSetCookie().find(c=>c.startsWith('__Host-fmw-session=')).split(';')[0];
+ const headers={cookie:sessionCookie};assert.equal((await call(env,'/troykearns/',{headers})).status,200);
+ assert.equal((await call(env,'/philip-aram/',{headers})).status,403);
+ assert.equal((await post('verify',{code},cookie)).status,400);
+ env.db.exec('DELETE FROM memberships');assert.equal((await call(env,'/troykearns/',{headers})).status,403);
+}));
+test('email expiry and five wrong guesses invalidate codes; sending is throttled',async()=>emailFixture(async({env,sent,post})=>{
+ const start=await post('start',{email:'test@example.com'});const cookie=start.headers.get('set-cookie').split(';')[0];
+ const code=sent[0].text.match(/code is (\d{8})/)[1];const wrong=code==='00000000'?'11111111':'00000000';
+ for(let i=0;i<5;i++)assert.equal((await post('verify',{code:wrong},cookie)).status,400);
+ assert.equal((await post('verify',{code},cookie)).status,400);
+ assert.equal((await post('start',{email:'test@example.com'})).status,429);assert.equal(sent.length,1);
+ const another=await post('start',{email:'other@example.com'});const nextCookie=another.headers.get('set-cookie').split(';')[0];
+ env.db.exec('UPDATE email_challenges SET expires_at=1');
+ assert.equal((await post('verify',{code:sent[1].text.match(/code is (\d{8})/)[1]},nextCookie)).status,400);
+}));
+test('email sign-in fails closed, rejects CSRF and owner login, handles delivery failure',async()=>emailFixture(async({env,sent,post})=>{
+ assert.equal((await post('start',{email:'owner@gmail.com'})).status,400);assert.equal(sent.length,0);
+ assert.equal((await call(env,'/auth/email/start',{method:'POST',headers:{origin:'https://evil.example','Content-Type':'application/json'},body:'{"email":"a@example.com"}'})).status,403);
+ assert.equal((await post('start',null)).status,400);
+ globalThis.fetch=async()=>new Response('{}',{status:429});assert.equal((await post('start',{email:'fail@example.com'})).status,502);
+ assert.equal(env.db.prepare('SELECT COUNT(*) AS n FROM email_challenges').get().n,0);
+ delete env.RESEND_API_KEY;assert.equal((await post('start',{email:'a@example.com'})).status,503);
+}));
+test('email login preserves existing Google membership; unassigned accounts get no workspace',async()=>emailFixture(async({env,sent,post})=>{
+ await session(env,'google-client','client@example.com');env.db.prepare('INSERT INTO memberships VALUES (?,?,?)').run('client@example.com','kat-kai','google-client');
+ let start=await post('start',{email:'client@example.com'});let cookie=start.headers.get('set-cookie').split(';')[0];
+ let result=await post('verify',{code:sent[0].text.match(/code is (\d{8})/)[1]},cookie);
+ assert.equal((await result.json()).redirect,'/kat-kai/');assert.equal(env.db.prepare('SELECT google_sub FROM memberships').get().google_sub,'google-client');
+ start=await post('start',{email:'unassigned@example.com'});cookie=start.headers.get('set-cookie').split(';')[0];
+ result=await post('verify',{code:sent[1].text.match(/code is (\d{8})/)[1]},cookie);assert.equal((await result.json()).redirect,'/build-a-business/');
+}));

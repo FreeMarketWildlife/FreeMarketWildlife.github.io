@@ -14,7 +14,8 @@
     "SITE_ORIGIN": "https://freemarketwildlife.com",
     "GOOGLE_CLIENT_ID": "499695335272-qtmalu78mmughqkgslpe6dsh3b8563ef.apps.googleusercontent.com",
     "OWNER_EMAIL": "freemarketwildlife@gmail.com",
-    "PUBLIC_DATA_PASSTHROUGH": "github-pages"
+    "PUBLIC_DATA_PASSTHROUGH": "github-pages",
+    "EMAIL_FROM": "Free Market Wildlife <signin@auth.freemarketwildlife.com>"
   },
   "r2_buckets": [{"binding":"TASK_PHOTOS", "bucket_name":"fmw-workspace-photos"}],
   "d1_databases": [{"binding":"DB", "database_name":"fmw-workspaces", "database_id":"37f92822-702f-42ba-904d-9b36235e6a07", "migrations_dir":"migrations"}]

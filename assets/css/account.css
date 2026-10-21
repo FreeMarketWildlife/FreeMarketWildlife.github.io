@@ -53,3 +53,9 @@
 #access-dialog.signup-dialog [role=status] { margin: 18px 0 0; color: #ffc7b8; font-size: 13px; text-align: center; }
 #access-dialog.signup-dialog :focus-visible { outline: 2px solid #b7eb9c; outline-offset: 4px; }
 @media (max-width: 480px) { #access-dialog.signup-dialog .dialog-panel { padding: 64px 24px 24px; } .signup-brand { left: 24px; } #access-dialog.signup-dialog .dialog-panel h2 { font-size: 28px; } }
+#access-dialog.signup-dialog .signup-email-form { margin: 24px 0 0; }
+.signup-email-form label { display: block; margin-bottom: 8px; color: #c4cfc7; font: 13px Arial, sans-serif; }
+#access-dialog.signup-dialog .signup-email-form input { width: 100%; min-height: 50px; padding: 12px; box-sizing: border-box; border: 1px solid #65776b; border-radius: 10px; background: #19201b; color: #fff; font: 16px Arial, sans-serif; }
+#access-dialog.signup-dialog .email-submit { background: #d0f4bb; color: #12200e; border-color: #d0f4bb; cursor: pointer; }
+#access-dialog.signup-dialog .email-submit:disabled { opacity: .6; cursor: wait; }
+#access-dialog.signup-dialog .signup-back { display: block; margin: 20px auto 0; padding: 8px; background: transparent; border: 0; color: #c4cfc7; text-decoration: underline; text-underline-offset: 3px; font: 12px/1.5 Arial, sans-serif; cursor: pointer; }

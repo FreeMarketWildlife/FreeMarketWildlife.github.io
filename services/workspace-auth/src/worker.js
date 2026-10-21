@@ -1,3 +1,4 @@
+import { emailAuth, emailReady, emailCookie } from './email-auth.js';
 import { taskPhotos } from './task-photos.js';
 import { createRemoteJWKSet, jwtVerify } from 'jose';
 export const WORKSPACES = Object.freeze([
@@ -70,16 +71,24 @@ async function callback(req,env,url) {
   catch { return redirect('/?signin=failed',[cleared]); }
   if(!validClaims(payload,saved.nonce))return redirect('/?signin=failed',[cleared]);
   const email=payload.email.toLowerCase();
+  const emailIdentity=await env.DB.prepare('SELECT google_sub FROM users WHERE google_sub=?').bind('email:'+await hash(email)).first();
+  if(emailIdentity)payload.sub=emailIdentity.google_sub;
   await env.DB.prepare('INSERT INTO users VALUES (?,?,?) ON CONFLICT(google_sub) DO UPDATE SET email=excluded.email').bind(payload.sub,email,now()).run();
   if(email===env.OWNER_EMAIL.toLowerCase())await env.DB.prepare('INSERT OR IGNORE INTO owner_identity VALUES (1,?)').bind(payload.sub).run();
   await env.DB.prepare('UPDATE memberships SET google_sub=? WHERE email=? AND google_sub IS NULL').bind(payload.sub,email).run();
+  return finishSession(req,env,payload.sub,email);
+}
+async function finishSession(req,env,sub,email,asJson=false) {
   const old=cookie(req,'__Host-fmw-session');
   if(old)await env.DB.prepare('DELETE FROM sessions WHERE token_hash=?').bind(await hash(old)).run();
   await env.DB.prepare('DELETE FROM sessions WHERE expires_at<=?').bind(now()).run();
   const session=random();
-  await env.DB.prepare('INSERT INTO sessions VALUES (?,?,?)').bind(await hash(session),payload.sub,now()+86400).run();
-  const list=await permitted({google_sub:payload.sub,email},env);
-  return redirect(list[0]?.path || '/build-a-business/',[cleared,setCookie('__Host-fmw-session',session,86400)]);
+  await env.DB.prepare('INSERT INTO sessions VALUES (?,?,?)').bind(await hash(session),sub,now()+86400).run();
+  const list=await permitted({google_sub:sub,email},env);
+  const destination=list[0]?.path || '/build-a-business/';
+  const cookies=[asJson?emailCookie('',0):setCookie('__Host-fmw-state','',0),setCookie('__Host-fmw-session',session,86400)];
+  if(!asJson)return redirect(destination,cookies);
+  const result=json({ok:true,redirect:destination});for(const value of cookies)result.headers.append('Set-Cookie',value);return result;
 }
 async function handle(req,env) {
   const url=new URL(req.url);
@@ -96,10 +105,14 @@ async function handle(req,env) {
   if((auth || workspace || isAccount) && !ready(env))return response('Sign-in is not configured yet.',503);
   if(path==='/auth/start' && req.method==='GET')return start(env);
   if(path==='/auth/callback' && req.method==='GET')return callback(req,env,url);
+  if(path.startsWith('/auth/email/')) {
+    const result=await emailAuth(req,env,path);
+    return result instanceof Response?result:finishSession(req,env,result.sub,result.email,true);
+  }
   const user=(auth || workspace || isAccount)?await identity(req,env):null;
   if(path==='/api/account' && req.method==='GET') {
     const workspaces=await permitted(user,env);
-    return json({user:user?{email:user.email}:null,owner:await owner(user,env),workspaces,primaryWorkspace:workspaces[0] || null});
+    return json({user:user?{email:user.email}:null,owner:await owner(user,env),workspaces,primaryWorkspace:workspaces[0] || null,providers:{google:true,email:emailReady(env),apple:false}});
   }
   if(path==='/auth/logout' && req.method==='POST') {
     if(req.headers.get('origin')!==env.SITE_ORIGIN)return response('Forbidden.',403);

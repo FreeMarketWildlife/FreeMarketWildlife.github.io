@@ -35,5 +35,16 @@ const assert=require('node:assert/strict');
  }
  await page.keyboard.press('Escape');assert.equal(await signup.isVisible(),false);
  await page.locator('[data-open-access]').click();await signup.waitFor({state:'visible'});
+ await page.route('**/api/account',r=>r.fulfill({json:{user:null,owner:false,workspaces:[],primaryWorkspace:null,providers:{google:true,email:true,apple:false}}}));
+ await page.route('**/auth/email/start',r=>r.fulfill({json:{ok:true}}));
+ await page.route('**/auth/email/verify',r=>r.fulfill({json:{ok:true,redirect:'/build-a-business/'}}));
+ await page.goto('http://127.0.0.1:4173/?signin=1');await signup.waitFor({state:'visible'});
+ await signup.getByRole('button',{name:'Continue with email',exact:true}).click();
+ await signup.getByLabel('Email address',{exact:true}).fill('client@example.com');
+ await signup.getByRole('button',{name:'Send code',exact:true}).click();
+ await signup.getByRole('heading',{name:'Check your email',exact:true}).waitFor();
+ await page.screenshot({path:process.cwd()+'/design/email-code-mobile.png'});
+ await signup.getByLabel('8-digit code',{exact:true}).fill('12345678');
+ await signup.getByRole('button',{name:'Verify and continue',exact:true}).click();await page.waitForURL('**/build-a-business/');
  assert.deepEqual(errors,[]);console.log('PASS: desktop/mobile switcher, plain typography, current/primary labels, keyboard dismissal, navigation, primary routing, responsive sign-up, unavailable providers, no JS errors');await browser.close();
 })().catch(e=>{console.error(e);process.exit(1)});

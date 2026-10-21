@@ -1,7 +1,7 @@
 // Enabled only by the protected Worker asset build. Never authorizes browser access itself.
 const config = await fetch('/assets/data/workspace-auth.json').then(r=>r.ok?r.json():null).catch(()=>null);
 if(config?.enabled) {
-  const stylesheet=document.createElement('link');stylesheet.rel='stylesheet';stylesheet.href='/assets/css/account.css?v=3';document.head.append(stylesheet);
+  const stylesheet=document.createElement('link');stylesheet.rel='stylesheet';stylesheet.href='/assets/css/account.css?v=4';document.head.append(stylesheet);
   let dialog=document.querySelector('#access-dialog');
   if(!dialog && document.body.dataset.client) {
     dialog=document.createElement('dialog');dialog.id='access-dialog';dialog.className='access-dialog';
@@ -79,8 +79,36 @@ if(config?.enabled) {
           google.querySelector('.provider-icon').innerHTML='<svg viewBox="0 0 48 48" width="20" height="20" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5Z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6C44.4 38.03 46.98 31.89 46.98 24.55Z"/><path fill="#FBBC05" d="M10.53 28.59a14.41 14.41 0 0 1 0-9.18l-7.98-6.19A23.9 23.9 0 0 0 0 24c0 3.87.93 7.53 2.56 10.78Z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.91-5.8l-7.73-6c-2.15 1.45-4.92 2.3-8.18 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48Z"/></svg>';
           body.append(google,provider('Apple','\uF8FF',false));
           const divider=element('div','or');divider.className='signup-divider';body.append(divider);
-          body.append(provider('email','✉',false));
-          const note=element('p','Your first Google sign-in creates your account. Use Gmail or your Google Workspace email.');note.className='signup-note';body.append(note);
+          const emailButton=provider('email','✉',false);
+          if(account.providers?.email){
+            emailButton.disabled=false;emailButton.querySelector('.provider-badge').remove();
+            emailButton.onclick=()=>showEmail();
+          }
+          body.append(emailButton);
+          function showEmail(){
+            title.textContent='Continue with email';body.replaceChildren(brand);status.textContent='';
+            const help=element('p','We’ll send you a sign-in code.');help.className='signup-intro';body.append(help);
+            const form=element('form');form.className='signup-email-form';
+            const label=element('label','Email address');label.htmlFor='signin-email';
+            const input=element('input');input.id='signin-email';input.name='email';input.type='email';input.autocomplete='email';input.required=true;input.maxLength=254;
+            const submit=element('button','Send code');submit.type='submit';submit.className='signup-provider email-submit';
+            const back=element('button','Back');back.type='button';back.className='signup-back';back.onclick=()=>load();
+            form.append(label,input,submit);body.append(form,back);input.focus();
+            let verifying=false;
+            form.onsubmit=async event=>{
+              event.preventDefault();submit.disabled=true;status.textContent='';
+              const endpoint=verifying?'verify':'start';
+              try{
+                const response=await fetch('/auth/email/'+endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(verifying?{code:input.value}:{email:input.value})});
+                const result=await response.json();if(!response.ok)throw Error(result.error||'Unable to sign in. Please try again.');
+                if(verifying){location.assign(result.redirect);return;}
+                const email=input.value;verifying=true;title.textContent='Check your email';help.textContent='Enter the code sent to '+email+'. It expires in 10 minutes.';
+                label.textContent='8-digit code';input.type='text';input.name='code';input.inputMode='numeric';input.autocomplete='one-time-code';input.pattern='[0-9]{8}';input.minLength=8;input.maxLength=8;input.value='';submit.textContent='Verify and continue';
+                back.textContent='Use a different email or request a new code';back.onclick=showEmail;input.focus();
+              }catch(error){status.textContent=error.message;}finally{submit.disabled=false;}
+            };
+          }
+          const note=element('p',account.providers?.email?'Sign in or create an account. No password needed.':'Your first Google sign-in creates your account. Use Gmail or your Google Workspace email.');note.className='signup-note';body.append(note);
           const existing=element('p','Already have an account? ');existing.className='signup-existing';
           existing.append(link('Sign in','/auth/start'));body.append(existing);
           const footer=element('p');footer.className='signup-footer';footer.append(link('Privacy policy','/privacy/'));body.append(footer);

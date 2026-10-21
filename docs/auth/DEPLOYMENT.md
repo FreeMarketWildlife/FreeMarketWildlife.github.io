@@ -54,3 +54,14 @@ Validation: `npm test --prefix services/workspace-auth`, `npm run check --prefix
 The production sign-in dialog explicitly supports account creation: first Google sign-in automatically inserts the verified identity into D1. Gmail and Google Workspace accounts are supported; no separate site password is needed. The deployed dialog explains this and links to Privacy. New users without grants still land on the intentionally empty Build a Business page; client tools require an owner-assigned workspace. This is not self-service workspace provisioning.
 
 Verified live: enabled Worker configuration, anonymous account API, GET /auth/start redirects to Google with secure browser-state cookie, and existing owner session opens Philip Aram. Backend suite: 15 passing tests, including signed first-login/no-membership callback. Static checks: 31 pages. Additional real-user first-login remains unverified.
+
+
+## Email sign-in
+
+Email sign-in is enabled only when `RESEND_API_KEY` and `EMAIL_FROM` are configured. Apply migration `0002_email_auth.sql`, verify the `auth.freemarketwildlife.com` sending subdomain in Resend, and store a sending-only, domain-restricted Resend key as a Worker secret. Never commit or print the key. The owner continues to use Google exclusively.
+
+`/auth/email/start` sends an eight-digit code through Resend; `/auth/email/verify` consumes it and creates the existing 24-hour secure session. Codes are bound to an HttpOnly browser cookie, hashed with its random secret, expire after ten minutes, and allow five guesses. Atomic code consumption prevents replay. Database-backed limits allow one send per minute and five per hour per address, ten per hour per IP, eighty globally per UTC day, and fifty verification requests per IP per hour. Global quota reserves room within Resend's free daily allowance; provider limits can still reject delivery.
+
+Inbox verification can sign into an existing non-owner identity with the same email; it never changes a bound membership to another identity. A verified Google login also preserves an account first created through email. The legacy `google_sub` column now stores stable email principals as well as original Google subjects. Owner identity remains inaccessible through email codes. Unassigned accounts route to Build a Business; membership revocation still applies on the next request. Resend handles recipient addresses and code emails, as disclosed in Privacy.
+
+Tests cover Troy-only access, no-grant routing, existing Google membership, code expiry, five-guess lockout, browser binding, replay, CSRF, delivery failure, send cooldown, and unavailable configuration. Production activation still requires a real delivered-code round trip.
