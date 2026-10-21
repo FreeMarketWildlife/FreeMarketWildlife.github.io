@@ -17,3 +17,14 @@ Production publishing uses the existing Cloudflare Worker, with a clean snapshot
 Bullet revision: static source checks pass; desktop and 390px phone review confirms the exact headings, 6/5/7 bullet counts, removed blocks absent, and no document-level horizontal overflow.
 
 Authenticity revision: the opening is “Authenticity is King,” the editorial copy addresses Troy directly, and the author plans to review his long-form content later this week. The longer heading and message were visually checked on desktop and a 320px phone with no document-level horizontal overflow.
+
+
+## Community, To-Do List and Strategy default
+
+The To-Do List contains the exact “Change Profile Picture to Headshot” priority and the author’s finding about commenters not recognizing Troy personally across popular and less popular videos. Two additional actionable items cover personal pinned comments on every video and Related Video links from Shorts to relevant long-form videos. All completion state uses an isolated Troy browser-local key, with a visible storage note. No YouTube profile changes or comments were posted.
+
+Strategy now includes the community-building rationale, recognizable headshot, personal pinned-comment example, thoughtful replies, and Related Video publishing steps linked to YouTube’s official guide. The guide was checked on October 20, 2026; related videos require advanced feature access and a public or unlisted video from the same channel.
+
+Strategy is first in the navigation. The protected workspace catalog opens `/troykearns/strategy/`; authenticated canonical and alias root requests redirect there after authorization. Root HTML includes a static-preview redirect fallback. Links now live at `/troykearns/links/`. Membership order and other workspace defaults are preserved.
+
+Validation: 33-page source checks and planner checks pass. All 20 authentication tests pass, including default routing, direct new routes, anonymous denial and revocation. Browser QA verified root-to-Strategy navigation, all original resource links, task completion after reload (temporary completion restored to unchecked), To-Do-to-Strategy navigation, and 320px mobile layout with no document-level horizontal overflow. Prepared Worker assets used an explicit local account fixture for UI review.

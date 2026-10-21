@@ -90,8 +90,8 @@ test('Google round trip verifies signed ID token, binds membership, prevents rep
   linkedEnv.db.prepare('INSERT INTO memberships VALUES (?,?,?)').run('client@gmail.com','troy-kearns','email:stable');
   sub='linked-google';
   async function linkedLogin(){const r=await call(linkedEnv,'/auth/start');const u=new URL(r.headers.get('location'));nonce=u.searchParams.get('nonce');const state=u.searchParams.get('state');return call(linkedEnv,`/auth/callback?state=${state}&code=example`,{headers:{cookie:`__Host-fmw-state=${state}`}});}
-  assert.equal((await linkedLogin()).headers.get('location'),'/troykearns/');
-  email='renamed@gmail.com';assert.equal((await linkedLogin()).headers.get('location'),'/troykearns/');
+  assert.equal((await linkedLogin()).headers.get('location'),'/troykearns/strategy/');
+  email='renamed@gmail.com';assert.equal((await linkedLogin()).headers.get('location'),'/troykearns/strategy/');
   assert.equal(linkedEnv.db.prepare('SELECT user_sub FROM google_identity_links').get().user_sub,'email:stable');
   audience='wrong-client';const wrong=await call(env,'/auth/start');const wg=new URL(wrong.headers.get('location'));nonce=wg.searchParams.get('nonce');const ws=wg.searchParams.get('state');
   const invalid=await call(env,`/auth/callback?state=${ws}&code=example`,{headers:{cookie:`__Host-fmw-state=${ws}`}});
@@ -208,9 +208,9 @@ test('email code requires inbox proof, binds Troy grant, restricts workspace and
  assert.equal((await post('verify',{code})).status,400);
  const wrong=code==='00000000'?'11111111':'00000000';assert.equal((await post('verify',{code:wrong},cookie)).status,400);
  const verified=await post('verify',{code},cookie);assert.equal(verified.status,200);
- assert.equal((await verified.json()).redirect,'/troykearns/');
+ assert.equal((await verified.json()).redirect,'/troykearns/strategy/');
  const sessionCookie=verified.headers.getSetCookie().find(c=>c.startsWith('__Host-fmw-session=')).split(';')[0];
- const headers={cookie:sessionCookie};assert.equal((await call(env,'/troykearns/',{headers})).status,200);
+ const headers={cookie:sessionCookie};assert.equal((await call(env,'/troykearns/strategy/',{headers})).status,200);
  assert.equal((await call(env,'/philip-aram/',{headers})).status,403);
  assert.equal((await post('verify',{code},cookie)).status,400);
  env.db.exec('DELETE FROM memberships');assert.equal((await call(env,'/troykearns/',{headers})).status,403);
@@ -241,3 +241,20 @@ test('email login preserves existing Google membership; unassigned accounts get 
  start=await post('start',{email:'unassigned@example.com'});cookie=start.headers.get('set-cookie').split(';')[0];
  result=await post('verify',{code:sent[1].text.match(/code is (\d{8})/)[1]},cookie);assert.equal((await result.json()).redirect,'/build-a-business/');
 }));
+
+
+test('Troy opens Strategy by default and protects To-Do List and Links with the same membership',async()=>{
+ const env=environment(),headers=await session(env,'troy-client','client@gmail.com');
+ env.db.prepare('INSERT INTO memberships VALUES (?,?,?)').run('client@gmail.com','troy-kearns','troy-client');
+ const account=await (await call(env,'/api/account',{headers})).json();
+ assert.equal(account.primaryWorkspace.path,'/troykearns/strategy/');
+ for(const path of ['/troykearns','/troykearns/','/troykearns/index.html','/troy-kearns/','/TROY-KEARNS/index.html']){
+  const result=await call(env,path,{headers});assert.equal(result.status,303);assert.equal(result.headers.get('location'),'/troykearns/strategy/');
+ }
+ for(const path of ['/troykearns/strategy/','/troykearns/to-do/','/troykearns/links/']){
+  assert.equal((await call(env,path,{headers})).status,200);
+  assert.equal((await call(env,path)).status,303);
+ }
+ env.db.exec('DELETE FROM memberships');
+ for(const path of ['/troykearns/','/troykearns/to-do/','/troykearns/links/'])assert.equal((await call(env,path,{headers})).status,403);
+});
