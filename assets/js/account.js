@@ -1,7 +1,7 @@
 // Enabled only by the protected Worker asset build. Never authorizes browser access itself.
 const config = await fetch('/assets/data/workspace-auth.json').then(r=>r.ok?r.json():null).catch(()=>null);
 if(config?.enabled) {
-  const stylesheet=document.createElement('link');stylesheet.rel='stylesheet';stylesheet.href='/assets/css/account.css?v=2';document.head.append(stylesheet);
+  const stylesheet=document.createElement('link');stylesheet.rel='stylesheet';stylesheet.href='/assets/css/account.css?v=3';document.head.append(stylesheet);
   let dialog=document.querySelector('#access-dialog');
   if(!dialog && document.body.dataset.client) {
     dialog=document.createElement('dialog');dialog.id='access-dialog';dialog.className='access-dialog';
@@ -50,6 +50,7 @@ if(config?.enabled) {
         const result=await fetch('/api/account',{cache:'no-store'});if(!result.ok)throw Error();
         account=await result.json();body.replaceChildren();status.textContent='';
         dialog.classList.toggle('account-dialog',!!account.user);
+        dialog.classList.toggle('signup-dialog',!account.user);
         if(account.user) {
           if(document.querySelector('[data-access-manager]'))document.body.classList.add('account-page');
           renderSwitcher();
@@ -61,9 +62,28 @@ if(config?.enabled) {
         }
         title.textContent=account.user?'Your workspaces':'Sign in or create an account';
         if(!account.user) {
-          const google=link('Continue with Google','/auth/start');google.className='google-sign-in';body.append(google);
-          body.append(element('p','Use your Gmail or Google Workspace account. Your first sign-in creates your account automatically.'));
-          body.append(link('Privacy','/privacy/'));
+          title.textContent='Create your account';
+          const brand=element('p','FREE MARKET WILDLIFE');brand.className='signup-brand';
+          const intro=element('p','One account. Your workspaces.');intro.className='signup-intro';
+          body.append(brand,intro);
+          const provider=(name,icon,available)=>{
+            const control=available?link('', '/auth/start'):element('button');
+            control.className='signup-provider'+(available?' google-sign-in':'');
+            if(!available){control.type='button';control.disabled=true;}
+            const mark=element('span',icon);mark.className='provider-icon';mark.setAttribute('aria-hidden','true');
+            control.append(mark,element('span','Continue with '+name));
+            if(!available){const badge=element('span','Not connected');badge.className='provider-badge';control.append(badge);}
+            return control;
+          };
+          const google=provider('Google','G',true);
+          google.querySelector('.provider-icon').innerHTML='<svg viewBox="0 0 48 48" width="20" height="20" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5Z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6C44.4 38.03 46.98 31.89 46.98 24.55Z"/><path fill="#FBBC05" d="M10.53 28.59a14.41 14.41 0 0 1 0-9.18l-7.98-6.19A23.9 23.9 0 0 0 0 24c0 3.87.93 7.53 2.56 10.78Z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.91-5.8l-7.73-6c-2.15 1.45-4.92 2.3-8.18 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48Z"/></svg>';
+          body.append(google,provider('Apple','\uF8FF',false));
+          const divider=element('div','or');divider.className='signup-divider';body.append(divider);
+          body.append(provider('email','✉',false));
+          const note=element('p','Your first Google sign-in creates your account. Use Gmail or your Google Workspace email.');note.className='signup-note';body.append(note);
+          const existing=element('p','Already have an account? ');existing.className='signup-existing';
+          existing.append(link('Sign in','/auth/start'));body.append(existing);
+          const footer=element('p');footer.className='signup-footer';footer.append(link('Privacy policy','/privacy/'));body.append(footer);
         } else {
           body.append(element('p',account.user.email));
           const nav=element('nav');nav.setAttribute('aria-label','Your workspaces');const list=element('ul');

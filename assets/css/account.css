@@ -24,3 +24,32 @@
   header:has(> .workspace-switcher) { flex-wrap: wrap; gap: 16px; }
   header:has(> .workspace-switcher) > nav { order: 3; width: 100%; flex-wrap: wrap; }
 }
+
+/* Public sign-up card; workspace account controls retain their own typography. */
+#access-dialog.signup-dialog { width: min(440px, calc(100% - 32px)); max-width: none; border: 1px solid #353a37; border-radius: 24px; background: #111613; color: #f8faf9; box-shadow: 0 28px 100px #0009; font: 15px/1.5 Arial, Helvetica, sans-serif; text-transform: none; letter-spacing: normal; }
+#access-dialog.signup-dialog::backdrop { background: #030806b8; backdrop-filter: blur(12px); }
+#access-dialog.signup-dialog .dialog-panel { padding: 64px 36px 28px; }
+#access-dialog.signup-dialog .dialog-panel h2 { margin: 0 0 8px; font: 600 30px/1.2 Arial, Helvetica, sans-serif; letter-spacing: -1px; text-align: center; }
+.signup-brand { position: absolute; top: 25px; left: 36px; margin: 0; color: #aabbb0; font-size: 10px; font-weight: 700; letter-spacing: 1.6px; }
+.signup-brand::before { content: ''; display: inline-block; width: 7px; height: 7px; margin-right: 8px; border-radius: 50%; background: #b7eb9c; }
+#access-dialog.signup-dialog .close-button { right: 14px; top: 12px; width: 40px; height: 40px; padding: 0; border: 0; border-radius: 50%; color: #b2bdb6; background: transparent; font: 26px Arial, sans-serif; }
+#access-dialog.signup-dialog .close-button:hover { background: #ffffff0d; }
+.signup-intro { text-align: center; margin: 0 0 28px; color: #aab6ae; font-size: 14px; }
+#access-dialog.signup-dialog .signup-provider { display: flex; align-items: center; justify-content: center; position: relative; gap: 10px; width: 100%; min-height: 52px; margin: 12px 0; padding: 12px 16px; border: 1px solid #3a443e; border-radius: 10px; background: #19201b; color: #e1e7e3; text-decoration: none; font: 500 14px Arial, sans-serif; letter-spacing: normal; }
+#access-dialog.signup-dialog .signup-provider.google-sign-in { background: #fff; color: #202124; border-color: #dadce0; }
+#access-dialog.signup-dialog .google-sign-in:hover { background: #edf2ee; }
+.provider-icon { font-size: 21px; width: 22px; text-align: center; line-height: 1; }
+.google-icon { font-weight: 700; color: #4285f4; }
+#access-dialog.signup-dialog .signup-provider:disabled { cursor: not-allowed; color: #a3afa7; }
+.provider-badge { font-size: 9px; color: #a3afa7; padding: 3px 5px; border: 1px solid #465349; border-radius: 4px; }
+.signup-divider { display: flex; align-items: center; gap: 14px; margin: 22px 0; color: #89988e; font-size: 12px; }
+.signup-divider::before, .signup-divider::after { content: ''; height: 1px; flex: 1; background: #303b33; }
+.signup-note { margin: 18px 8px 24px; color: #a3afa7; font-size: 12px; line-height: 1.6; text-align: center; }
+.signup-existing { margin: 0; text-align: center; font-size: 13px; color: #b0bcb4; }
+#access-dialog.signup-dialog .signup-existing a { display: inline; margin: 0; color: #d0f4bb; font-weight: 600; text-underline-offset: 3px; }
+.signup-footer { margin: 22px 0 0; text-align: center; }
+#access-dialog.signup-dialog .signup-footer a { display: inline; color: #a3afa7; font-size: 11px; text-underline-offset: 3px; }
+#access-dialog.signup-dialog [role=status]:empty { display: none; }
+#access-dialog.signup-dialog [role=status] { margin: 18px 0 0; color: #ffc7b8; font-size: 13px; text-align: center; }
+#access-dialog.signup-dialog :focus-visible { outline: 2px solid #b7eb9c; outline-offset: 4px; }
+@media (max-width: 480px) { #access-dialog.signup-dialog .dialog-panel { padding: 64px 24px 24px; } .signup-brand { left: 24px; } #access-dialog.signup-dialog .dialog-panel h2 { font-size: 28px; } }

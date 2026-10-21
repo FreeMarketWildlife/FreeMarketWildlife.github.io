@@ -22,5 +22,18 @@ const assert=require('node:assert/strict');
  assert.match(await page.locator('h1').evaluate(e=>getComputedStyle(e).fontFamily),/Arial/);
  await page.locator('[data-open-access]').click();await page.waitForURL('**/kat-kai/');
  await page.goto('http://127.0.0.1:4173/?workspaces=1');await page.waitForURL('**/kat-kai/');
- assert.deepEqual(errors,[]);console.log('PASS: desktop/mobile switcher, plain typography, current/primary labels, keyboard dismissal, navigation, primary routing, no JS errors');await browser.close();
+ await page.route('**/api/account',r=>r.fulfill({json:{user:null,owner:false,workspaces:[],primaryWorkspace:null}}));
+ await page.goto('http://127.0.0.1:4173/?signin=1');
+ const signup=page.locator('#access-dialog');await signup.waitFor({state:'visible'});
+ assert.equal(await signup.locator('h2').textContent(),'Create your account');
+ assert.equal(await signup.locator('.google-sign-in').getAttribute('href'),'/auth/start');
+ assert.equal(await signup.locator('.signup-provider:disabled').count(),2);
+ for(const width of [1440,390]) {
+  await page.setViewportSize({width,height:844});
+  assert.ok(await signup.evaluate(el=>el.scrollWidth<=el.clientWidth));
+  await page.screenshot({path:process.cwd()+`/design/signup-${width===390?'mobile':'desktop'}.png`});
+ }
+ await page.keyboard.press('Escape');assert.equal(await signup.isVisible(),false);
+ await page.locator('[data-open-access]').click();await signup.waitFor({state:'visible'});
+ assert.deepEqual(errors,[]);console.log('PASS: desktop/mobile switcher, plain typography, current/primary labels, keyboard dismissal, navigation, primary routing, responsive sign-up, unavailable providers, no JS errors');await browser.close();
 })().catch(e=>{console.error(e);process.exit(1)});
