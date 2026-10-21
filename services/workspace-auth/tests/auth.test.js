@@ -8,6 +8,7 @@ const origin='https://freemarketwildlife.com';
 function environment(){
  const db=new DatabaseSync(':memory:');db.exec(readFileSync(new URL('../migrations/0001_auth.sql',import.meta.url),'utf8'));
  db.exec(readFileSync(new URL('../migrations/0002_email_auth.sql',import.meta.url),'utf8'));
+ db.exec(readFileSync(new URL('../migrations/0003_google_identity_links.sql',import.meta.url),'utf8'));
  const DB={prepare(sql){return {bind(...params){const s=db.prepare(sql);return {async first(){return s.get(...params)||null;},async all(){return {results:s.all(...params)};},async run(){return s.run(...params);}};}};}};
  return {db,DB,SITE_ORIGIN:origin,GOOGLE_CLIENT_ID:'test-client',GOOGLE_CLIENT_SECRET:'test-secret',OWNER_EMAIL:'owner@gmail.com',ASSETS:{fetch:async()=>new Response('protected page')}};
 }
@@ -65,10 +66,10 @@ test('token claims reject unverified email, wrong nonce, and non-authoritative t
 });
 test('Google round trip verifies signed ID token, binds membership, prevents replay and redirects empty accounts',async()=>{
  const {privateKey,publicKey}=await generateKeyPair('RS256');const jwk=await exportJWK(publicKey);jwk.kid='test';jwk.alg='RS256';
- const originalFetch=globalThis.fetch;let nonce,sub='new-user',audience='test-client';
+ const originalFetch=globalThis.fetch;let nonce,sub='new-user',audience='test-client',email='client@gmail.com';
  globalThis.fetch=async url=>{
   if(String(url).includes('/certs'))return new Response(JSON.stringify({keys:[jwk]}),{headers:{'Content-Type':'application/json'}});
-  const id_token=await new SignJWT({nonce,email:'client@gmail.com',email_verified:true}).setProtectedHeader({alg:'RS256',kid:'test'}).setIssuer('https://accounts.google.com').setAudience(audience).setSubject(sub).setIssuedAt().setExpirationTime('5m').sign(privateKey);
+  const id_token=await new SignJWT({nonce,email,email_verified:true}).setProtectedHeader({alg:'RS256',kid:'test'}).setIssuer('https://accounts.google.com').setAudience(audience).setSubject(sub).setIssuedAt().setExpirationTime('5m').sign(privateKey);
   return new Response(JSON.stringify({id_token}));
  };
  try{
@@ -84,6 +85,14 @@ test('Google round trip verifies signed ID token, binds membership, prevents rep
   sub='different-user';const next=await call(env,'/auth/start');const g=new URL(next.headers.get('location'));nonce=g.searchParams.get('nonce');const s=g.searchParams.get('state');
   const noAccess=await call(env,`/auth/callback?state=${s}&code=example`,{headers:{cookie:`__Host-fmw-state=${s}`}});
   assert.equal(noAccess.headers.get('location'),'/build-a-business/');
+  // Google subject stays linked when an email-created account changes its email.
+  const linkedEnv=environment();linkedEnv.db.prepare('INSERT INTO users VALUES (?,?,?)').run('email:stable','client@gmail.com',1);
+  linkedEnv.db.prepare('INSERT INTO memberships VALUES (?,?,?)').run('client@gmail.com','troy-kearns','email:stable');
+  sub='linked-google';
+  async function linkedLogin(){const r=await call(linkedEnv,'/auth/start');const u=new URL(r.headers.get('location'));nonce=u.searchParams.get('nonce');const state=u.searchParams.get('state');return call(linkedEnv,`/auth/callback?state=${state}&code=example`,{headers:{cookie:`__Host-fmw-state=${state}`}});}
+  assert.equal((await linkedLogin()).headers.get('location'),'/troykearns/');
+  email='renamed@gmail.com';assert.equal((await linkedLogin()).headers.get('location'),'/troykearns/');
+  assert.equal(linkedEnv.db.prepare('SELECT user_sub FROM google_identity_links').get().user_sub,'email:stable');
   audience='wrong-client';const wrong=await call(env,'/auth/start');const wg=new URL(wrong.headers.get('location'));nonce=wg.searchParams.get('nonce');const ws=wg.searchParams.get('state');
   const invalid=await call(env,`/auth/callback?state=${ws}&code=example`,{headers:{cookie:`__Host-fmw-state=${ws}`}});
   assert.equal(invalid.headers.get('location'),'/?signin=failed');

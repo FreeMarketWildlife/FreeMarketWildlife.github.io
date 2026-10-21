@@ -58,10 +58,17 @@ Verified live: enabled Worker configuration, anonymous account API, GET /auth/st
 
 ## Email sign-in
 
-Email sign-in is enabled only when `RESEND_API_KEY` and `EMAIL_FROM` are configured. Apply migration `0002_email_auth.sql`, verify the `auth.freemarketwildlife.com` sending subdomain in Resend, and store a sending-only, domain-restricted Resend key as a Worker secret. Never commit or print the key. The owner continues to use Google exclusively.
+Email sign-in is enabled only when `RESEND_API_KEY` and `EMAIL_FROM` are configured. Apply migrations `0002_email_auth.sql` and `0003_google_identity_links.sql`, verify the `auth.freemarketwildlife.com` sending subdomain in Resend, and store a sending-only, domain-restricted Resend key as a Worker secret. Never commit or print the key. The owner continues to use Google exclusively.
 
 `/auth/email/start` sends an eight-digit code through Resend; `/auth/email/verify` consumes it and creates the existing 24-hour secure session. Codes are bound to an HttpOnly browser cookie, hashed with its random secret, expire after ten minutes, and allow five guesses. Atomic code consumption prevents replay. Database-backed limits allow one send per minute and five per hour per address, ten per hour per IP, eighty globally per UTC day, and fifty verification requests per IP per hour. Global quota reserves room within Resend's free daily allowance; provider limits can still reject delivery.
 
-Inbox verification can sign into an existing non-owner identity with the same email; it never changes a bound membership to another identity. A verified Google login also preserves an account first created through email. The legacy `google_sub` column now stores stable email principals as well as original Google subjects. Owner identity remains inaccessible through email codes. Unassigned accounts route to Build a Business; membership revocation still applies on the next request. Resend handles recipient addresses and code emails, as disclosed in Privacy.
+Inbox verification can sign into an existing non-owner identity with the same email; it never changes a bound membership to another identity. A verified Google login also preserves an account first created through email. `google_identity_links` retains its stable Google subject association if its email later changes. The legacy `google_sub` column now stores stable email principals as well as original Google subjects. Owner identity remains inaccessible through email codes. Unassigned accounts route to Build a Business; membership revocation still applies on the next request. Resend handles recipient addresses and code emails, as disclosed in Privacy.
 
 Tests cover Troy-only access, no-grant routing, existing Google membership, code expiry, five-guess lockout, browser binding, replay, CSRF, delivery failure, send cooldown, and unavailable configuration. Production activation still requires a real delivered-code round trip.
+
+
+### Production activation - 2026-10-20
+
+Resend verified `auth.freemarketwildlife.com`; DKIM and the two required DNS-only CNAME records are published. The credential named Free Market Wildlife sign-in has sending-only access restricted to that subdomain and is encrypted in the Worker as `RESEND_API_KEY`. Migration 0003 preserves stable Google identity links. Production Worker version: `51c5170a-9137-4f88-abd5-060eb54232c4`.
+
+A live code sent to the owner's Gmail test alias was marked delivered by Resend, consumed successfully in the requesting browser, and routed the unassigned test account to Build a Business. Its direct Troy workspace request was denied. The test browser session was signed out and the temporary account removed. Troy's grant remains pending his first verified login; no code or invitation was sent to him. Apple remains disconnected. Backend suite: 19 passing tests; desktop/mobile account browser checks and Worker dry-run passed.

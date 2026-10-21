@@ -49,7 +49,7 @@ export async function emailAuth(req,env,path){
   if(!consumed)return json({error:'This code has already been used.'},400);
   if(consumed.email===env.OWNER_EMAIL.toLowerCase())return json({error:'Please use Google to sign in to the owner account.'},403);
   const existing=await env.DB.prepare('SELECT google_sub FROM users WHERE email=? ORDER BY created_at LIMIT 1').bind(consumed.email).first();
-  const sub=existing?.google_sub||'email:'+await hash(consumed.email);
+  const sub=existing?.google_sub||'email:'+random();
   // An existing owner identity can never be entered using an emailed code.
   if(await env.DB.prepare('SELECT google_sub FROM owner_identity WHERE singleton=1 AND google_sub=?').bind(sub).first())return json({error:'Please use Google to sign in to the owner account.'},403);
   await env.DB.prepare('INSERT INTO users VALUES (?,?,?) ON CONFLICT(google_sub) DO UPDATE SET email=excluded.email').bind(sub,consumed.email,now()).run();

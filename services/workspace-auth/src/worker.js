@@ -71,9 +71,12 @@ async function callback(req,env,url) {
   catch { return redirect('/?signin=failed',[cleared]); }
   if(!validClaims(payload,saved.nonce))return redirect('/?signin=failed',[cleared]);
   const email=payload.email.toLowerCase();
-  const emailIdentity=await env.DB.prepare('SELECT google_sub FROM users WHERE google_sub=?').bind('email:'+await hash(email)).first();
-  if(emailIdentity)payload.sub=emailIdentity.google_sub;
+  const googleSubject=payload.sub;
+  const linked=await env.DB.prepare('SELECT user_sub FROM google_identity_links WHERE google_sub=?').bind(googleSubject).first();
+  const emailIdentity=linked?null:await env.DB.prepare("SELECT google_sub FROM users WHERE email=? AND google_sub LIKE 'email:%' ORDER BY created_at LIMIT 1").bind(email).first();
+  payload.sub=linked?.user_sub || emailIdentity?.google_sub || googleSubject;
   await env.DB.prepare('INSERT INTO users VALUES (?,?,?) ON CONFLICT(google_sub) DO UPDATE SET email=excluded.email').bind(payload.sub,email,now()).run();
+  await env.DB.prepare('INSERT OR IGNORE INTO google_identity_links VALUES (?,?)').bind(googleSubject,payload.sub).run();
   if(email===env.OWNER_EMAIL.toLowerCase())await env.DB.prepare('INSERT OR IGNORE INTO owner_identity VALUES (1,?)').bind(payload.sub).run();
   await env.DB.prepare('UPDATE memberships SET google_sub=? WHERE email=? AND google_sub IS NULL').bind(payload.sub,email).run();
   return finishSession(req,env,payload.sub,email);
