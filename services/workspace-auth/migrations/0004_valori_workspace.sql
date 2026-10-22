@@ -5,7 +5,8 @@ CREATE TABLE memberships_next (
   google_sub TEXT,
   PRIMARY KEY(email, workspace)
 );
-INSERT INTO memberships_next (email, workspace, google_sub)
-  SELECT email, workspace, google_sub FROM memberships;
+-- Primary workspace is determined by rowid order. Retain the exact IDs, including gaps.
+INSERT INTO memberships_next (rowid, email, workspace, google_sub)
+  SELECT rowid, email, workspace, google_sub FROM memberships ORDER BY rowid;
 DROP TABLE memberships;
 ALTER TABLE memberships_next RENAME TO memberships;

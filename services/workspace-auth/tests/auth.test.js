@@ -5,11 +5,11 @@ import {readFileSync} from 'node:fs';
 import {generateKeyPair,exportJWK,SignJWT} from 'jose';
 import worker,{hash,protectedWorkspace,validClaims} from '../src/worker.js';
 const origin='https://freemarketwildlife.com';
-function environment(){
+function environment({valoriMigration=true}={}){
  const db=new DatabaseSync(':memory:');db.exec(readFileSync(new URL('../migrations/0001_auth.sql',import.meta.url),'utf8'));
  db.exec(readFileSync(new URL('../migrations/0002_email_auth.sql',import.meta.url),'utf8'));
  db.exec(readFileSync(new URL('../migrations/0003_google_identity_links.sql',import.meta.url),'utf8'));
- db.exec(readFileSync(new URL('../migrations/0004_valori_workspace.sql',import.meta.url),'utf8'));
+ if(valoriMigration)db.exec(readFileSync(new URL('../migrations/0004_valori_workspace.sql',import.meta.url),'utf8'));
  const DB={prepare(sql){return {bind(...params){const s=db.prepare(sql);return {async first(){return s.get(...params)||null;},async all(){return {results:s.all(...params)};},async run(){return s.run(...params);}};}};}};
  return {db,DB,SITE_ORIGIN:origin,GOOGLE_CLIENT_ID:'test-client',GOOGLE_CLIENT_SECRET:'test-secret',OWNER_EMAIL:'owner@gmail.com',ASSETS:{fetch:async()=>new Response('protected page')}};
 }
@@ -306,13 +306,30 @@ test('Valori routes use the existing membership boundary and fail closed', async
 });
 
 
-test('Valori catalog migration preserves existing grants and rejects unknown workspaces',()=>{
- const db=new DatabaseSync(':memory:');
- db.exec(readFileSync(new URL('../migrations/0001_auth.sql',import.meta.url),'utf8'));
- db.prepare('INSERT INTO memberships VALUES (?,?,?)').run('existing@example.com','kat-kai','existing-subject');
- const before=db.prepare('SELECT * FROM memberships').all();
+test('Valori catalog migration preserves exact rowids, primary workspace and grants with gaps',async()=>{
+ const env=environment({valoriMigration:false}),{db}=env;
+ const headers=await session(env,'existing-subject','existing@example.com');
+ const insert=db.prepare('INSERT INTO memberships (rowid,email,workspace,google_sub) VALUES (?,?,?,?)');
+ insert.run(3,'existing@example.com','kat-kai','existing-subject');
+ insert.run(6,'removed@example.com','philip-aram','removed-subject');
+ insert.run(11,'existing@example.com','troy-kearns','existing-subject');
+ insert.run(28,'existing@example.com','philip-aram','existing-subject');
+ insert.run(47,'pending@example.com','kat-kai',null);
+ db.exec('DELETE FROM memberships WHERE rowid=6');
+ const before=db.prepare('SELECT rowid,* FROM memberships ORDER BY rowid').all();
+ assert.deepEqual(before.map(row=>row.rowid),[3,11,28,47]);
+ const accountBefore=await (await call(env,'/api/account',{headers})).json();
+ assert.deepEqual(accountBefore.workspaces.map(workspace=>workspace.id),['kat-kai','troy-kearns','philip-aram']);
  db.exec(readFileSync(new URL('../migrations/0004_valori_workspace.sql',import.meta.url),'utf8'));
- assert.deepEqual(db.prepare('SELECT * FROM memberships').all(),before);
+ assert.deepEqual(db.prepare('SELECT rowid,* FROM memberships ORDER BY rowid').all(),before);
+ const accountAfter=await (await call(env,'/api/account',{headers})).json();
+ assert.deepEqual(accountAfter.workspaces,accountBefore.workspaces);
+ assert.deepEqual(accountAfter.primaryWorkspace,accountBefore.primaryWorkspace);
+ db.prepare('INSERT INTO memberships VALUES (?,?,?)').run('existing@example.com','valori-corson','existing-subject');
+ assert.equal(db.prepare("SELECT rowid FROM memberships WHERE workspace='valori-corson'").get().rowid,48);
+ const extended=await (await call(env,'/api/account',{headers})).json();
+ assert.deepEqual(extended.workspaces.map(workspace=>workspace.id),['kat-kai','troy-kearns','philip-aram','valori-corson']);
+ assert.deepEqual(extended.primaryWorkspace,accountBefore.primaryWorkspace);
  assert.throws(()=>db.prepare('INSERT INTO memberships VALUES (?,?,?)').run('other@example.com','unknown',null),/CHECK constraint failed/);
  db.close();
 });
