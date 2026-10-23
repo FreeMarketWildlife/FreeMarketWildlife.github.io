@@ -3,7 +3,7 @@ const player=document.querySelector('#player'),screen=document.querySelector('#s
 let iframe,timer,monitor;
 function load(){
  clearTimeout(timer);clearInterval(monitor);status.textContent='Loading game…';launch.disabled=true;
- iframe?.remove();iframe=document.createElement('iframe');iframe.title=game.title+' playable game';iframe.allow='fullscreen; autoplay; gamepad';iframe.allowFullscreen=true;iframe.src=game.src;
+ iframe?.remove();iframe=document.createElement('iframe');iframe.title=game.title+' playable game';iframe.allow='fullscreen; autoplay; gamepad';iframe.allowFullscreen=true;const url=new URL(game.src,location.href);url.searchParams.set('arcade-load',Date.now().toString());iframe.src=url.href;
  iframe.addEventListener('load',()=>{
   clearTimeout(timer);
   try{const doc=iframe.contentDocument;if(!doc||!doc.querySelector('canvas, #game, .game'))throw Error('Game document unavailable');monitor=setInterval(()=>{const loading=doc.querySelector('#loading');const failure=loading&&!loading.hidden&&/^Unable to load/i.test(loading.textContent)?loading.textContent:doc.querySelector('#panel-title')?.textContent==='Artwork could not load'?'Game artwork could not load.':null;if(failure){status.textContent=failure+' Try Reload game or Open game directly.';launch.disabled=false;clearInterval(monitor);}},500);doc.addEventListener('keydown',e=>{if(e.key==='Escape'&&player.classList.contains('is-expanded')&&!document.fullscreenElement)leave();});status.textContent='Game loaded. Click or tap inside to play. If it stalls, reload or open directly.';iframe.contentWindow.focus();}
