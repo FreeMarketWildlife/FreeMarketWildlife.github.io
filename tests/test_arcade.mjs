@@ -17,4 +17,4 @@ await audit(path.join(root,'builds'));
 assert(!(await readdir(path.join(root,'builds'))).some(n=>/powvista|aram-house/i.test(n)));
 console.log(`PASS: ${games.length} playable entries, public build targets, controls, expand/exit/direct fallback and ${count} sanitized runtime files.`);
 
-const kingdom=JSON.parse(await readFile(path.join(root,'builds/kingdom-conquest/build-manifest.json'),'utf8'));assert.equal(kingdom.species,18);assert.equal((await readdir(path.join(root,'builds/kingdom-conquest/assets/minions'))).filter(n=>n.endsWith('.glb')).length,18);
+const kingdom=JSON.parse(await readFile(path.join(root,'builds/kingdom-conquest/build-manifest.json'),'utf8'));assert.equal(kingdom.minionSpecies,18);assert.deepEqual(kingdom.conquerors,['lincoln','theodore']);assert((await stat(path.join(root,'builds/kingdom-conquest/classic.html'))).isFile());assert.equal((await readdir(path.join(root,'builds/kingdom-conquest/assets/minions'))).filter(n=>n.endsWith('.glb')).length,18);

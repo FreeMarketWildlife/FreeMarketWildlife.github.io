@@ -1,19 +1,33 @@
 {
   "format": 1,
   "entry": "index.html",
-  "gallery": "minions.html",
-  "species": 18,
+  "classic": "classic.html",
+  "conquerors": [
+    "lincoln",
+    "theodore"
+  ],
+  "minionSpecies": 18,
   "offlineRuntime": true,
   "files": [
     {
       "path": "index.html",
+      "bytes": 2334,
+      "sha256": "67502c4ddcf1826a0d52b330ef1644ea3eae12d04906e3465b2fb8403d4c2901"
+    },
+    {
+      "path": "conquerors.html",
+      "bytes": 2334,
+      "sha256": "67502c4ddcf1826a0d52b330ef1644ea3eae12d04906e3465b2fb8403d4c2901"
+    },
+    {
+      "path": "classic.html",
       "bytes": 2096,
       "sha256": "a703d7c10bd789c8051da41ca894a79d112f1f8339d6d725917c3f5ecf894ec1"
     },
     {
       "path": "style.css",
-      "bytes": 7512,
-      "sha256": "0a2f46062d8cb871f7a5766213ff2443e21093642e908b128b399872a1f978c5"
+      "bytes": 8510,
+      "sha256": "c6db37dab50433f030ddf59e9dbed163c03b0ee21be3b3051fb6fcbe230b8093"
     },
     {
       "path": "game.js",
@@ -22,8 +36,13 @@
     },
     {
       "path": "play.js",
-      "bytes": 51222,
-      "sha256": "d32985ba6e94f2c8924f7ac14b745315af9b5c924787d0482c280cce16277997"
+      "bytes": 51565,
+      "sha256": "539262bc0a758a6891aba448a1104cdfa93a86857a213f3395e576f62192a25e"
+    },
+    {
+      "path": "conqueror-demo.js",
+      "bytes": 7298,
+      "sha256": "8eec47d97c9a5319223ce2a5eb38efa9db7f167d45d29b3eb985d92a61c5a96f"
     },
     {
       "path": "minion-roster.js",
@@ -37,8 +56,8 @@
     },
     {
       "path": "minion-renderer.mjs",
-      "bytes": 7364,
-      "sha256": "d430082fcca595716ff49639fb4cdbc81b19c1c8257f6cdcd63ed35691438434"
+      "bytes": 8443,
+      "sha256": "286e7856dc8b5a424ff339992fabbe90fa788230f1a0a2499e83e49a31fce889"
     },
     {
       "path": "minions.html",
@@ -141,6 +160,16 @@
       "sha256": "6c17909d398cc220ffe4fd3ebbb5539447784942d8e7049ed2aa5b7452a2af07"
     },
     {
+      "path": "assets/conquerors/lincoln.glb",
+      "bytes": 741248,
+      "sha256": "0e2aca79579d9236644589801535b707462cb2e54e8c4af6fd05c1bfd2d6d34d"
+    },
+    {
+      "path": "assets/conquerors/theodore.glb",
+      "bytes": 1373940,
+      "sha256": "4b6ebfb9f496e77f1836590aa08db90723dd231205983c765d8b11b0b7f24f10"
+    },
+    {
       "path": "vendor/BufferGeometryUtils.js",
       "bytes": 37712,
       "sha256": "9fb63427ce6641fa14fd0baff9cc4d1b5f9c3d85fd084bf2e90e803c44ec1797"
@@ -176,5 +205,5 @@
       "sha256": "9052042d676cb0fdc1ddfefe193053f34b7ac0513a616fdac4535d49987812ea"
     }
   ],
-  "bytes": 6264665
+  "bytes": 8394239
 }

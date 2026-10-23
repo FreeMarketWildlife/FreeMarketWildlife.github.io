@@ -10,3 +10,9 @@ header{height:58px;background:#101c22f5;padding:0 20px;position:relative;z-index
 
 /* Minion 3D projection layer; existing controls remain above it. */
 .minion-layer{position:absolute;inset:0;pointer-events:none;z-index:1}.arena>.map-title,.arena>#status,.arena>#hint,.arena>#target,.arena>.bottom{z-index:2}.minion-link{color:#e5cc91;font-size:12px;align-self:center;text-decoration:none;padding:8px;border:1px solid #79897955;border-radius:6px}@media(max-width:600px){.minion-link{font-size:10px;padding:5px}}
+
+#duel-rival{position:absolute;z-index:2;top:110px;right:20px;background:#102228df;border:1px solid #c58c7355;border-radius:5px;padding:10px 14px;font-size:12px;color:#f0b39b}#duel-result{position:absolute;z-index:9;left:50%;top:35%;transform:translateX(-50%);width:min(440px,90%);padding:28px;text-align:center;background:#102323f5;border:1px solid #d0b478;border-radius:10px;box-shadow:0 10px 60px #0009}#duel-result[hidden]{display:none}#duel-result small{color:#d7bc79;letter-spacing:2px;font-size:10px}#duel-result h2{font-size:28px}#duel-result p{font-size:13px;color:#bacebd;line-height:1.6}#duel-result button{margin:8px 4px}@media(max-width:600px){#duel-rival{top:115px;right:8px;font-size:10px;padding:6px}}
+
+.conqueror-demo aside .minion-link{display:block;margin:8px 0}
+
+@media(max-width:600px){.conqueror-demo #status{top:8px;right:8px;font-size:10px;padding:6px}.conqueror-demo #hint{top:44px;font-size:10px}.conqueror-demo #duel-rival{top:91px}.conqueror-demo #target{display:none}}

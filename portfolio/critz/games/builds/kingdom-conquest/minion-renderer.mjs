@@ -4,7 +4,7 @@ import {clone} from './vendor/SkeletonUtils.js';
 
 // A transparent orthographic layer preserves the existing MOBA simulation and
 // canvas map. The camera projects the same ground coordinates as the canvas.
-const api=window.Minion3D={ready:0,total:18,errors:[],instances:0,triangles:0,drawCalls:0};
+const api=window.Minion3D={ready:0,total:18,heroReady:0,errors:[],instances:0,triangles:0,drawCalls:0};
 let renderer;
 try{renderer=new THREE.WebGLRenderer({alpha:true,antialias:true,powerPreference:'low-power'})}
 catch(e){api.errors.push('WebGL unavailable: '+e.message)}
@@ -40,35 +40,39 @@ if(renderer){
   // Clones of one species share textures, geometry and immutable materials.
   if(!materials.has(mat.uuid)){mat.roughness=.9;mat.metalness=0;materials.set(mat.uuid,mat)}return materials.get(mat.uuid)
  }
- for(const s of MINION_SPECIES){
+ for(const s of [...MINION_SPECIES,...(window.CONQUEROR_MODELS||[])]){
   loader.load(s.model,gltf=>{
    gltf.scene.traverse(o=>{if(o.isMesh){o.material=Array.isArray(o.material)?o.material.map(shareMaterial):shareMaterial(o.material);o.frustumCulled=false}});
-   templates.set(s.id,gltf);api.ready=templates.size;
+   const hero=s.id.startsWith('hero:');
+   if(hero){const bounds=new THREE.Box3().setFromObject(gltf.scene);gltf.scene.position.y-=bounds.min.y;gltf.worldScale=s.worldHeight/(bounds.max.y-bounds.min.y)}
+   templates.set(s.id,gltf);if(hero)api.heroReady++;else api.ready++;
   },undefined,e=>api.errors.push(s.id+': '+e.message));
  }
  function instantiate(u){
-  const template=templates.get(u.species);if(!template)return null;
-  const model=clone(template.scene),root=new THREE.Group();root.add(model);model.scale.setScalar(180);
-  const ring=new THREE.Mesh(ringGeometry,teamMaterials[u.team]);ring.rotation.x=-Math.PI/2;ring.position.y=.2;root.add(ring);
+  const key=u.conqueror?'hero:'+u.conqueror:u.species,template=templates.get(key);if(!template)return null;
+  const model=clone(template.scene),root=new THREE.Group();root.add(model);model.scale.setScalar(template.worldScale||180);
+  const ring=new THREE.Mesh(ringGeometry,teamMaterials[u.team]);ring.rotation.x=-Math.PI/2;ring.position.y=.2;if(u.conqueror)ring.scale.setScalar(u.radius/14);root.add(ring);
   const mixer=new THREE.AnimationMixer(model),actions={};
   for(const clip of template.animations){
-   const name=clip.name.toLowerCase().replace(/.*\|/,'');
+   let name=clip.name.toLowerCase().replace(/.*\|/,'');
+   if(u.conqueror){name=name.replace(/^(rodin|theo)_/,'');name=({heavypunch:'attack',groundslam:'slam',challenge:'rally',hitreact:'hit'})[name]||name}
    actions[name]=mixer.clipAction(clip);
-   if(name==='death'||name==='attack'||name==='hit'){actions[name].setLoop(THREE.LoopOnce,1);actions[name].clampWhenFinished=true}
+   if(['death','attack','hit','slam','rally'].includes(name)){actions[name].setLoop(THREE.LoopOnce,1);actions[name].clampWhenFinished=true}
   }
-  const entry={root,model,ring,mixer,actions,state:null,species:u.species};instances.set(u.id,entry);scene.add(root);return entry
+  const entry={root,model,ring,mixer,actions,state:null,species:key,hero:!!u.conqueror,deathTime:0};instances.set(u.id,entry);scene.add(root);return entry
  }
- function stateFor(u){return u.hp<=0?'death':u.attackAnim>0?'attack':u.flash>0?'hit':u.moving?'walk':'idle'}
+ function stateFor(u){return u.hp<=0?'death':u.dash?'walk':u.demoAnimation&&u.demoAnimLeft>0&&u.demoAnimation!=='rally'?u.demoAnimation:u.attackAnim>0?'attack':u.flash>0?'hit':u.moving?'walk':u.demoAnimation==='rally'?'rally':'idle'}
  function animate(entry,u,dt){
-  const state=stateFor(u),action=entry.actions[state];
+  const state=stateFor(u),action=entry.actions[state]||(state==='death'&&entry.hero?entry.actions.hit:null);
   // An attack can repeat while the high-level state remains 'attack'.
   if(state!==entry.state||(state==='attack'&&u.attackAnim>entry.lastAttack+.1)){
    const prev=entry.actions[entry.state];if(prev)prev.fadeOut(.08);
-   if(action){action.reset().fadeIn(.06).play();if(state==='attack')action.setDuration(.40);if(state==='hit')action.setDuration(.16);if(state==='death')action.setDuration(.85)}
+   if(action){action.reset().fadeIn(.06).play();if(state==='attack')action.setDuration(entry.hero?.65:.40);if(state==='hit')action.setDuration(entry.hero?.3:.16);if(state==='slam'||state==='rally')action.setDuration(.9);if(state==='death')action.setDuration(.85)}
    entry.state=state;
   }
   entry.lastAttack=u.attackAnim||0;entry.mixer.update(Math.min(dt,.1));
   entry.root.position.set(u.x,0,u.y);entry.model.rotation.y=Math.PI/2-(u.facing||0);
+  if(entry.hero){entry.deathTime=state==='death'?Math.min(.9,entry.deathTime+dt):0;entry.root.rotation.x=entry.deathTime/.9*1.42}
   entry.ring.visible=u.hp>0;
  }
  let lastWidth=0,lastHeight=0;
@@ -79,9 +83,9 @@ if(renderer){
   camera.near=.1;camera.far=12000;camera.position.set(view.x,4980,view.y+3346);camera.lookAt(view.x,0,view.y);camera.updateProjectionMatrix();
   const present=new Set();
   for(const u of units){
-   if(!u.species)continue;present.add(u.id);
+   if(!u.species&&!u.conqueror)continue;present.add(u.id);const key=u.conqueror?'hero:'+u.conqueror:u.species;
    let entry=instances.get(u.id);
-   if(entry&&entry.species!==u.species){entry.mixer.stopAllAction();entry.mixer.uncacheRoot(entry.model);scene.remove(entry.root);instances.delete(u.id);entry=null}
+   if(entry&&entry.species!==key){entry.mixer.stopAllAction();entry.mixer.uncacheRoot(entry.model);scene.remove(entry.root);instances.delete(u.id);entry=null}
    entry ||= instantiate(u);if(!entry)continue;
    entry.root.visible=Math.abs(u.x-view.x)<w/view.zoom/2+160&&Math.abs(u.y-view.y)<h/(view.zoom*.83)/2+160;
    if(entry.root.visible)animate(entry,u,dt);
@@ -101,6 +105,6 @@ if(renderer){
   renderer.render(scene,camera);api.instances=instances.size;api.triangles=renderer.info.render.triangles;api.drawCalls=renderer.info.render.calls;
  };
  api.has=id=>templates.has(id);
- api.snapshot=()=>[...instances.values()].map(e=>({species:e.species,state:e.state,visible:e.root.visible,clips:Object.keys(e.actions),arm:(e.model.getObjectByName('ArmR')||e.model.getObjectByName('Arm.R'))?.quaternion.toArray()}));
+ api.snapshot=()=>[...instances.values()].map(e=>({species:e.species,state:e.state,visible:e.root.visible,clips:Object.keys(e.actions),scale:e.model.scale.x,arm:(e.model.getObjectByName('ArmR')||e.model.getObjectByName('Arm.R')||e.model.getObjectByName('upperarm_r'))?.quaternion.toArray()}));
  api.dispose=()=>{for(const e of instances.values())e.mixer.stopAllAction();renderer.dispose();renderer.domElement.remove()};
 }
