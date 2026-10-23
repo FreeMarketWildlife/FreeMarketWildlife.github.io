@@ -1,0 +1,8 @@
+// Hidden currency retains the legacy gold save key; gold metal is a separate resource.
+RESOURCE_DEFS_V44.goldOre={name:'Gold ore',color:ButtonwoodArt.palette.gold,kind:'Raw'};
+RESOURCE_DEFS_V44.goldIngot={name:'Gold bar',color:ButtonwoodArt.palette.gold,kind:'Refined'};
+ORE_DEFS_V44.goldOre={materials:['stone','deepslate'],min:18,max:54,salt:4471,chance:.25,radius:2.1,amount:1};
+RECIPES_V44.goldIngot={name:'Gold bar',inputs:{goldOre:1,coal:1},outputs:{goldIngot:1},duration:4000};
+for(const kind of ['goldOre','goldIngot']){inv[kind]=Math.max(0,Math.floor(finite(initialSave?.inv?.[kind])));const row=document.createElement('div');row.className='resourceCard';row.innerHTML='<span>'+RESOURCE_DEFS_V44[kind].name+'</span><b id="resource-'+kind+'">0</b>';document.querySelector('.industryResources').append(row);}
+const goldRecipeV77=document.createElement('option');goldRecipeV77.value='goldIngot';goldRecipeV77.textContent='Gold bar';$('furnaceRecipe').append(goldRecipeV77);
+for(const z of bs)if(z.game.terrain&&!z.game.resourceType){const ore=oreAtV44(z.game.cx,z.game.cy,z.game.material);if(ore?.type==='goldOre'){z.game.resourceType=ore.type;z.game.resourceAmount=ore.amount}}

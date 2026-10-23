@@ -1,0 +1,66 @@
+// Compact inventory controls keep building art at its native 32-pixel size.
+function compactIconV64(kind){
+ if(['craft','info','wood','stone','dirt','deepslate'].includes(kind))return window.ButtonwoodArt.uiIcon(kind).toDataURL();
+ const canvas=document.createElement('canvas');canvas.width=canvas.height=32;const g=canvas.getContext('2d');
+ const r=(x,y,w,h,c)=>{g.fillStyle=c;g.fillRect(x,y,w,h)},ink='#272535',pale='#d2ded6',gold='#e3ba77';
+ if(kind==='ironIngot'||kind==='copperIngot'){
+  r(8,14,17,8,ink);r(11,11,12,4,ink);r(10,15,13,5,kind==='ironIngot'?'#9facb9':'#d29668');
+  r(12,12,9,3,kind==='ironIngot'?pale:'#f2c391');r(10,15,12,1,kind==='ironIngot'?pale:'#f2c391');
+ }else{
+  r(10,10,12,3,ink);r(7,13,18,8,ink);r(10,21,13,3,ink);
+  r(11,11,10,3,kind==='dirt'?'#bd8c58':'#a1a6ac');r(9,14,14,6,kind==='dirt'?'#98633a':'#777f89');
+  r(11,20,10,2,kind==='dirt'?'#81502e':'#626a74');r(11,14,4,2,kind==='dirt'?'#d1a66c':'#bbc2c4');
+ }
+ return canvas.toDataURL();
+}
+const compactArtV64={craft:compactIconV64('craft'),info:compactIconV64('info')};
+const structureDetailsV64={
+ storehouse:'Store up to 1,000 resources in one building inventory. Deposit resources, take them back, or pack the Storehouse to return its contents.',
+ home:'Two adult beds, one baby slot and one kid slot. Assigned Workers return here at night. Children grow into new Workers.',
+ workshop:'Craft buildings and ladders. A ladder batch uses five wood and makes ten ladders; a Worker buys a batch for one pocketed gold.',
+ forge:'Smelt copper and iron ore into ingots. Manual crafting uses your inventory; automatic Worker crafting uses building inventory.',
+ blacksmith:'Turn iron ingots into construction nails. Manual crafting uses your inventory; automatic Worker crafting uses building inventory.'
+};
+$('structuresTitle').textContent='Structures';
+panelV48.querySelector('header small').hidden=true;
+panelV48.querySelector('header + p').hidden=true;
+resourcesV48.hidden=true;
+panelV48.classList.add('compactStructuresV64');
+for(const [type,d] of Object.entries(STRUCTURES_V46)){
+ const card=$('structure-card-'+type),row=card.parentElement,craft=$('player-craft-'+type);
+ card.querySelector('span').hidden=true;
+ card.title=d.name+' · Drag to place';card.querySelector('img').alt='';
+ row.setAttribute('role','group');row.setAttribute('aria-label',d.name);
+ for(const cost of row.querySelectorAll('[data-material]'))cost.querySelector('img').src=compactIconV64(cost.dataset.material);
+ const info=document.createElement('button');info.type='button';info.className='structureInfoV64';info.setAttribute('aria-label','More info about '+d.name);info.title=d.name+' · More info';
+ const arrow=document.createElement('img');arrow.src=compactArtV64.info;arrow.alt='';info.append(arrow);
+ const details=document.createElement('section');details.className='structureDetailsV64';details.id='structure-details-'+type;details.hidden=true;
+ const heading=document.createElement('strong');heading.textContent=d.name;
+ const text=document.createElement('p');text.textContent=structureDetailsV64[type]||d.note;
+ const placement=document.createElement('p');placement.textContent='Drag the building icon onto a supported '+d.w+' × '+d.h+' foundation.';
+ const content=document.createElement('div');content.className='structureDetailsContentV67';content.append(heading,text,placement);details.append(content);info.setAttribute('aria-controls',details.id);info.setAttribute('aria-expanded','false');
+ row.append(info,details);
+ const disclosure=disclosureV67(info,details,{group:panelV48,scroll:panelV48});
+ info.onclick=()=>disclosure.set(!disclosure.open);
+
+ const hammer=document.createElement('img');hammer.src=compactArtV64.craft;hammer.alt='';craft._compactIconV64=hammer;
+}
+function refreshCompactStructuresV64(){
+ for(const [type,d] of Object.entries(STRUCTURES_V46)){
+  const button=$('player-craft-'+type),active=playerCraftV61?.type===type;
+  button.replaceChildren(button._compactIconV64);
+  button.setAttribute('aria-label',(active?'Crafting ':'Craft ')+d.name);
+  button.setAttribute('aria-busy',String(active));button.classList.toggle('crafting',active);
+ }
+}
+const compactRefreshBaseV64=refreshPlayerCraftV61;
+refreshPlayerCraftV61=function(){compactRefreshBaseV64();refreshCompactStructuresV64()};
+positionStructuresV48=function(){
+ const anchor=triggerV48.getBoundingClientRect(),bar=$('bar').getBoundingClientRect(),width=Math.min(280,innerWidth-16);
+ panelV48.style.left=Math.round(Math.max(8,Math.min(anchor.left,innerWidth-width-8)))+'px';
+ panelV48.style.bottom=Math.round(innerHeight-bar.top+8)+'px';
+ panelV48.style.maxHeight=Math.max(100,Math.floor(bar.top-16))+'px';
+};
+// Existing resize listeners hold the original function; finish with the compact anchor.
+addEventListener('resize',positionStructuresV48);$('bar').addEventListener('scroll',positionStructuresV48,{passive:true});
+refreshCompactStructuresV64();

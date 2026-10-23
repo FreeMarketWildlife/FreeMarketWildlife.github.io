@@ -1,0 +1,146 @@
+{
+  "assetId": "cad.mini.episode1.cruiser",
+  "revision": 1,
+  "name": "Janey’s cruiser • prototype",
+  "kind": "scenery",
+  "biome": "shared",
+  "family": "mini",
+  "approval": "prototype-review",
+  "source": {
+    "type": "new-native",
+    "file": "src/build-assets.cjs",
+    "recipe": "cruiser"
+  },
+  "native": {
+    "width": 72,
+    "height": 32,
+    "origin": [
+      36,
+      16
+    ],
+    "originName": "authored-anchor",
+    "selectionBounds": {
+      "x": 0,
+      "y": 0,
+      "width": 72,
+      "height": 32
+    },
+    "visibleBounds": [
+      {
+        "variant": 0,
+        "frame": 0,
+        "x": 0,
+        "y": 5,
+        "width": 71,
+        "height": 25
+      },
+      {
+        "variant": 0,
+        "frame": 1,
+        "x": 0,
+        "y": 5,
+        "width": 71,
+        "height": 25
+      }
+    ],
+    "animationEnvelope": {
+      "x": 0,
+      "y": 0,
+      "width": 72,
+      "height": 32
+    }
+  },
+  "sockets": [
+    {
+      "id": "left",
+      "type": "edge",
+      "x": -36,
+      "y": 0,
+      "facing": -1
+    },
+    {
+      "id": "right",
+      "type": "edge",
+      "x": 36,
+      "y": 0,
+      "facing": 1
+    }
+  ],
+  "render": {
+    "kind": "sprite-sheet",
+    "layer": "actors",
+    "parallax": {
+      "x": 1,
+      "y": 1
+    },
+    "variants": [
+      {
+        "id": "v0",
+        "uri": "assets/cruiser.png",
+        "width": 144,
+        "height": 32,
+        "sha256": "9a3cde6ef246056d00302ee9d34afe82b2f4cc7ad64193a091d2b6bb0f4d4634"
+      }
+    ],
+    "frameSize": [
+      72,
+      32
+    ],
+    "frameCount": 2,
+    "allowedFacing": [
+      1,
+      -1
+    ],
+    "scale": 1
+  },
+  "collision": {
+    "defaults": [],
+    "decorative": true,
+    "behavior": "Artwork does not activate gameplay; scene entity kind and properties do."
+  },
+  "properties": {
+    "variant": {
+      "type": "integer",
+      "default": 0
+    }
+  },
+  "animation": {
+    "states": {
+      "idle": {
+        "frames": [
+          0,
+          1
+        ],
+        "timingMs": [
+          120,
+          120
+        ],
+        "loop": true
+      }
+    },
+    "frameEvents": []
+  },
+  "tags": [
+    "flight",
+    "vehicle",
+    "cruiser",
+    "native-mini"
+  ],
+  "thumbnail": {
+    "uri": "assets/cruiser.png",
+    "frame": 0,
+    "variant": 0,
+    "nativeSize": [
+      72,
+      32
+    ],
+    "noResample": true
+  },
+  "placement": {
+    "snap": 1,
+    "suggestedGrid": 8,
+    "preview": "native-with-geometry",
+    "allowScale": false,
+    "allowRotation": false
+  }
+}

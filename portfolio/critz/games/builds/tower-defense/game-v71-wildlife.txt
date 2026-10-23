@@ -1,0 +1,306 @@
+// Buttonwood wildlife: finite saved habitats, reusable buckets, and crafted cages.
+// Art review: ART-BIBLE §§3–4, 7–11; native pixels, calm acting, honest occupancy.
+const WILDLIFE_SPECIES_V71=Object.freeze({
+ bird:{name:'Bird',motion:'fly',range:160,speed:.23},
+ butterfly:{name:'Butterfly',motion:'flutter',range:52,speed:.48},
+ worm:{name:'Worm',motion:'burrow',range:28,speed:.2},
+ mole:{name:'Mole',motion:'burrow',range:46,speed:.15},
+ rabbit:{name:'Rabbit',motion:'hop',range:64,speed:.2},
+ firefly:{name:'Firefly',motion:'flutter',range:40,speed:.34},
+ ...Object.fromEntries(ButtonwoodArt.critterIdles.roster.map(s=>[s.id,{name:s.name,motion:['european-mole','shrew','lesser-tenrec'].includes(s.id)?'burrow':'hop',range:36,speed:.16}]))
+});
+const CAGES_V71=Object.freeze({
+ cageSmall:{name:'Small cage',w:2,h:2,capacity:1,cost:{wood:5,ironIngot:2}},
+ cageMedium:{name:'Medium cage',w:3,h:2,capacity:3,cost:{wood:10,ironIngot:4}},
+ cageLarge:{name:'Large cage',w:4,h:3,capacity:6,cost:{wood:18,ironIngot:8}}
+});
+const WILDLIFE_LIMIT_V71=4096,HABITAT_LIMIT_V71=16384;
+const WILDLIFE_SPAWN_RATE_V71=.25;
+var wildlifeV71=[],wildlifeNextIdV71=0,wildlifeClockV71=0,wildlifeHabitatsV71=new Set();
+let wildlifeSeedReadyV71=false,wildlifeDirtyV71=false,wildlifeSaveClockV71=0,wildlifeHabitatClockV71=0,wildlifePressV71=null,cageSelectedV71=null;
+function isCageV71(type){return Object.hasOwn(CAGES_V71,type)}
+function animalKindV71(item){return typeof item==='string'&&item.startsWith('bucket:')&&Object.hasOwn(WILDLIFE_SPECIES_V71,item.slice(7))?item.slice(7):null}
+function wildlifeHashV71(a,b=0){return skyHashV62(skySeedV62^Math.imul(a+1,0x45d9f3b)^Math.imul(b+19,0x27d4eb2d))}
+function wildlifeFrameV71(a){return Math.floor(wildlifeClockV71/(ButtonwoodArt.wildlifeFrameMs[a.species]/1000)+a.phase*7)%4}
+function wildlifePopulationV71(){return wildlifeV71.length+structuresV46.reduce((n,b)=>n+(isCageV71(b.type)?cageAnimalsV71(b).length:0),0)+Object.keys(WILDLIFE_SPECIES_V71).reduce((n,s)=>n+(bucketBagV68['bucket:'+s]||0),0)}
+function wildlifeVisibleV71(a){return !a.nocturnal||bwSkyState().darkness>.08}
+function wildlifePositionV71(a){
+ const d=WILDLIFE_SPECIES_V71[a.species],t=wildlifeClockV71*d.speed+a.phase,travel=Math.sin(t);
+ let x=a.homeX+travel*d.range,y=a.homeY;
+ if(d.motion==='fly')y+=Math.sin(t*1.7)*17;
+ else if(d.motion==='flutter')y+=Math.sin(t*2.3)*14+Math.sin(t*5.1)*4;
+ else if(d.motion==='burrow'&&!a.grounded)y+=Math.sin(t*1.3)*4;
+ else if(d.motion==='hop'&&a.grounded)y-=Math.max(0,Math.sin(t*6))*5;
+ a.x=x;a.y=y;a.direction=Math.cos(t)<0?-1:1;return a;
+}
+function wildlifeNewV71(species,p,phase=0){
+ const d=WILDLIFE_SPECIES_V71[species];if(!d||!Number.isFinite(p?.x)||!Number.isFinite(p.y))return null;
+ const a={id:++wildlifeNextIdV71,species,homeX:p.x-Math.sin(wildlifeClockV71*d.speed+phase)*d.range,homeY:p.y,phase,x:p.x,y:p.y,direction:1};
+ // The release point is the actual initial anchor, including vertical motion.
+ const posed=wildlifePositionV71(a);a.homeY+=p.y-posed.y;wildlifePositionV71(a);return a;
+}
+let wildlifeObstacleCacheV71=[],wildlifeObstacleStampV71=-Infinity,wildlifeObstacleCountV71=-1;
+function wildlifeObstaclesV71(){const count=bs.size+structureBodiesV47.size;if(count!==wildlifeObstacleCountV71||wildlifeClockV71-wildlifeObstacleStampV71>=.1){wildlifeObstacleCountV71=count;wildlifeObstacleStampV71=wildlifeClockV71;wildlifeObstacleCacheV71=[...bs].filter(b=>!b.game?.terrain&&!b.game?.liquid&&!b.game?.reservoir&&!b.isSensor).concat([...structureBodiesV47.values()])}return wildlifeObstacleCacheV71}
+function settleWildlifeV71(a,elapsed,obstacles=wildlifeObstaclesV71()){
+ const motion=WILDLIFE_SPECIES_V71[a.species].motion;if((motion!=='hop'&&motion!=='burrow')||!(elapsed>0))return false;
+ const cx=Math.floor(a.x/B),burrow=motion==='burrow',soil=grid.get(key(cx,Math.floor(a.y/B)));
+ // Cutaway soil already supports a burrowing creature; its motion never mines.
+ if(burrow&&soil?.game.material==='dirt'){a.fallSpeed=0;a.grounded=false;return false}
+ const oldY=a.homeY,oldGrounded=!!a.grounded,dt=Math.min(elapsed,1500)/1000,speed=Math.min(420,(a.fallSpeed||0)+380*dt),drop=((a.fallSpeed||0)+speed)*dt/2;
+ let floor=Infinity,material=null;
+ const consider=(top,kind)=>{if(top<floor){floor=top;material=kind}};
+ let row=Math.floor(oldY/B);
+ if(grid.has(key(cx,row))){
+  // A block placed in an animal's path lifts it onto the actual exposed ledge.
+  while(row>0&&grid.has(key(cx,row-1)))row--;
+  consider(row*B,grid.get(key(cx,row))?.game.material);
+ }else for(let y=Math.max(0,row);y<DEPTH&&y*B<=oldY+drop+1;y++){
+  const terrain=grid.get(key(cx,y));if(terrain&&!terrain.game?.liquid&&!terrain.game?.reservoir){consider(y*B,terrain.game.material);break}
+ }
+ for(const body of obstacles){
+  const bounds=body.bounds;if(a.x<bounds.min.x||a.x>bounds.max.x||bounds.max.y<oldY-.5||bounds.min.y>oldY+drop+1)continue;
+  for(const part of body.parts?.length>1?body.parts.slice(1):[body]){
+   const r=part.bounds;if(a.x>=r.min.x&&a.x<=r.max.x&&r.max.y>=oldY-.5&&r.min.y<=oldY+drop+1)consider(r.min.y,body.game?.material);
+  }
+ }
+ if(floor!==Infinity){
+  a.homeY=floor+(burrow&&material==='dirt'?8:0);a.grounded=!(burrow&&material==='dirt');a.fallSpeed=0;
+ }else{a.homeY=oldY+drop;a.grounded=false;a.fallSpeed=speed}
+ wildlifePositionV71(a);return Math.abs(a.homeY-oldY)>.01||oldGrounded!==!!a.grounded;
+}
+function seedWildlifeV71(){
+ if(!wildlifeSeedReadyV71||wildlifeHabitatsV71.size>=HABITAT_LIMIT_V71)return false;
+ const center=Math.floor(cam.x/(24*B));let changed=false,populationCount=wildlifePopulationV71();
+ // Seed only visited nearby chunks. Returning never replaces captured inhabitants.
+ for(let ch=center-1;ch<=center+1;ch++){
+  if(!generated.has(ch)||wildlifeHabitatsV71.has(ch))continue;
+  if(populationCount>WILDLIFE_LIMIT_V71-9)continue;
+  wildlifeHabitatsV71.add(ch);changed=true;
+  // Keep a quarter of the former encounters, including all 31 animal forms.
+  // Empty habitats are saved too, so revisiting never rerolls their population.
+  const kinds=Object.keys(WILDLIFE_SPECIES_V71),count=wildlifeHashV71(ch,901)<.35?2:1;
+  const population=Array.from({length:count},(_,i)=>kinds[Math.floor(wildlifeHashV71(ch,902+i)*kinds.length)]);
+  for(let i=0;i<population.length;i++){
+   if(wildlifeHashV71(ch,910+i)>=WILDLIFE_SPAWN_RATE_V71)continue;
+   const species=population[i],d=WILDLIFE_SPECIES_V71[species],x=ch*24*B+64+wildlifeHashV71(ch,i)*(24*B-128);
+   const y=d.motion==='fly'?-95-wildlifeHashV71(ch,i+40)*160:d.motion==='flutter'?-18-wildlifeHashV71(ch,i+50)*65:d.motion==='burrow'?12+wildlifeHashV71(ch,i+60)*72:0;
+   const animal=wildlifeNewV71(species,{x,y},wildlifeHashV71(ch,i+80)*Math.PI*2);if(species==='firefly')animal.nocturnal=true;wildlifeV71.push(animal);populationCount++;
+  }
+ }
+ return changed;
+}
+function cageAnimalsV71(b){return b?.animalsV71||[]}
+function cageAtV71(p){return structuresV46.find(b=>isCageV71(b.type)&&p.x>=b.x&&p.x<b.x+STRUCTURES_V46[b.type].w*B&&p.y>=b.y&&p.y<b.y+STRUCTURES_V46[b.type].h*B)||null}
+function cagePositionV71(b,index){
+ const d=CAGES_V71[b.type],columns=d.capacity===1?1:3,rows=d.capacity===6?2:1;
+ const col=index%columns,row=Math.floor(index/columns),inner=d.w*B-20;
+ return {x:b.x+10+inner*(col+.5)/columns,y:b.y+d.h*B-12-(rows-1-row)*31};
+}
+function wildlifeAnimalAtV71(p){
+ const cage=cageAtV71(p);
+ if(cage){
+  for(let i=cageAnimalsV71(cage).length-1;i>=0;i--){const a=cage.animalsV71[i],q=cagePositionV71(cage,i),size=ButtonwoodArt.wildlifeSizes[a.species],w=size.width??size.w,h=size.height??size.h;
+   if(Math.abs(p.x-q.x)<=Math.max(w/2,9/cam.z)&&p.y>=q.y-Math.max(h,16/cam.z)&&p.y<=q.y+4/cam.z)return {animal:a,cage,index:i,p:q};
+  }
+  return null;
+ }
+ // A creature hidden behind a building is not an accidental tool target.
+ if(structuresV46.some(b=>{const d=STRUCTURES_V46[b.type];return p.x>=b.x&&p.x<b.x+d.w*B&&p.y>=b.y&&p.y<b.y+d.h*B}))return null;
+ for(let i=wildlifeV71.length-1;i>=0;i--){const a=wildlifeV71[i];if(!wildlifeVisibleV71(a))continue;const size=ButtonwoodArt.wildlifeSizes[a.species],w=size.width??size.w,h=size.height??size.h;
+  if(Math.abs(p.x-a.x)<=Math.max(w/2,9/cam.z)&&p.y>=a.y-Math.max(h,16/cam.z)&&p.y<=a.y+4/cam.z)return {animal:a,cage:null,index:i,p:{x:a.x,y:a.y}};
+ }
+ return null;
+}
+function animalSoundV71(a,p=a){
+ if(!a||!WILDLIFE_SPECIES_V71[a.species])return false;
+ const pan=clamp((p.x-cam.x)*cam.z/Math.max(1,W/2),-1,1);
+ window.SkyAudio?.animalSound?.(a.species,pan,1);a.noticeUntilV71=wildlifeClockV71+.6;return true;
+}
+function followBucketV71(item,result){
+ let index=hotbarItemsV68[hotbarIndexV68-3]===item?hotbarIndexV68-3:hotbarItemsV68.indexOf(item);
+ if(index<0)index=hotbarItemsV68.indexOf(null);
+ if(index>=0){hotbarItemsV68[index]=result;hotbarIndexV68=index+3;tool=result}
+ else if(tool===item)tool=result;
+ // A cage's keyboard controls can transfer a bucket while another tool is held.
+ // Use an existing bucket slot or free slot; preserve a full user-assigned bar.
+ seenItemsV68.add(result);ui();saveGame();
+}
+function captureWildlifeV71(target){
+ if(!target||!(bucketBagV68.bucket>0))return false;
+ const {animal:a,cage}=target,item='bucket:'+a.species,list=cage?cageAnimalsV71(cage):wildlifeV71,index=list.indexOf(a);
+ if(index<0||(bucketBagV68[item]||0)>=Number.MAX_SAFE_INTEGER)return false;
+ list.splice(index,1);bucketBagV68.bucket--;bucketBagV68[item]=(bucketBagV68[item]||0)+1;
+ animalSoundV71(a,target.p);followBucketV71('bucket',item);toast('Bucket of '+WILDLIFE_SPECIES_V71[a.species].name);return true;
+}
+function wildlifeReleasePointV71(species,p){
+ const d=WILDLIFE_SPECIES_V71[species];if(d.motion==='burrow')return {x:p.x,y:p.y};
+ // Tapping soil places a flying/surface creature at that column's exposed ledge.
+ let y=p.y;const cx=Math.floor(p.x/B),cy=Math.floor(y/B);
+ if(grid.has(key(cx,cy))){let row=cy;while(row>=0&&grid.has(key(cx,row)))row--;y=(row+1)*B-1}
+ const solid=Query.point([...bs].filter(q=>!q.game?.liquid&&!q.game?.reservoir),{x:p.x,y});
+ if(solid.length)y=Math.min(...solid.map(q=>q.bounds.min.y))-1;
+ return {x:p.x,y};
+}
+function releaseWildlifeV71(item,p,cage=cageAtV71(p)){
+ const species=animalKindV71(item);if(!species||!(bucketBagV68[item]>0)||!Number.isFinite(p?.x)||!Number.isFinite(p.y))return false;
+ if((bucketBagV68.bucket||0)>=Number.MAX_SAFE_INTEGER)return false;
+ if(cage&&cageAnimalsV71(cage).length>=CAGES_V71[cage.type].capacity){toast('Cage full');return false}
+ const a=wildlifeNewV71(species,cage?p:wildlifeReleasePointV71(species,p),wildlifeHashV71(wildlifeNextIdV71,103)*Math.PI*2);if(!a)return false;
+ if(cage){if(!cage.animalsV71)cage.animalsV71=[];cage.animalsV71.push(a)}else wildlifeV71.push(a);
+ bucketBagV68[item]--;bucketBagV68.bucket=(bucketBagV68.bucket||0)+1;
+ animalSoundV71(a,cage?cagePositionV71(cage,cage.animalsV71.length-1):a);followBucketV71(item,'bucket');return true;
+}
+const wildlifeBucketBeforeV71=bucketActionV68;
+bucketActionV68=function(item,p){
+ if(animalKindV71(item))return releaseWildlifeV71(item,p);
+ if(item==='bucket'){
+  const target=wildlifeAnimalAtV71(p);if(target)return captureWildlifeV71(target);
+  const cage=cageAtV71(p);if(cage){const a=cageAnimalsV71(cage)[0];if(!a){toast('Cage empty');return false}return captureWildlifeV71({animal:a,cage,p:cagePositionV71(cage,0)})}
+ }
+ return wildlifeBucketBeforeV71(item,p);
+};
+const wildlifeItemNameBeforeV71=itemNameV68;
+itemNameV68=function(item){const species=animalKindV71(item);if(species)return 'Bucket of '+WILDLIFE_SPECIES_V71[species].name;
+ if(typeof item==='string'&&item.startsWith('bucket:')){const kind=item.slice(7);return 'Bucket of '+(bucketLiquidsV68[kind]||kind)}return wildlifeItemNameBeforeV71(item)};
+const wildlifeItemImageBeforeV71=itemImageV68;
+itemImageV68=function(item){const species=animalKindV71(item);if(!species)return wildlifeItemImageBeforeV71(item);
+ if(!itemImagesV68.has(item))itemImagesV68.set(item,ButtonwoodArt.wildlifeBucketIcon(species).toDataURL());return itemImagesV68.get(item)};
+
+// Register cages with the existing timed player/Workshop crafting and building bag.
+for(const [type,d]of Object.entries(CAGES_V71)){
+ STRUCTURES_V46[type]={...d,note:d.capacity+' animals. Use a filled bucket to add; an empty bucket to take one back.'};
+ JOBS_V46[type]={};JOBS_V46.workshop[type]={name:d.name,inputs:d.cost,outputs:{[type]:1},duration:5000,structure:true};
+ structureBagV46[type]=0;settlementItemsV56.add(type);
+ // Cage frames are physical; their empty interior remains open. Fixed envelopes
+ // never derive their collision from a moving occupant or a decorative pixel.
+ structureShapesV47.set(type,[{x:4,y:d.h*B-8,w:d.w*B-8,h:8},{x:4,y:8,w:4,h:d.h*B-16},{x:d.w*B-8,y:8,w:4,h:d.h*B-16},{x:4,y:5,w:d.w*B-8,h:4}]);
+ if(typeof bwCollisionBaseline==='object')bwCollisionBaseline[type]=JSON.stringify(structureShapeV47(type));
+ const row=document.createElement('div');row.className='playerBuildingV61';row.setAttribute('role','group');row.setAttribute('aria-label',d.name);
+ const card=document.createElement('button');card.id='structure-card-'+type;card.className='structureCard';card.title=d.name+' · Drag to place';card.innerHTML='<img alt="" draggable="false"><span hidden></span><b>0</b>';card.querySelector('img').src=ButtonwoodArt.cageIcon(type).toDataURL();
+ card.addEventListener('pointerdown',e=>{if(!structureBagV46[type]||e.button!==0)return;e.preventDefault();stopPointerV52();structureDragV46={type,start:{x:e.clientX,y:e.clientY},screen:{x:e.clientX,y:e.clientY},moved:false};panelV48.close();try{card.setPointerCapture(e.pointerId)}catch{}$('structureDragHint').hidden=false;$('structureDragHint').textContent='Drag '+d.name+' into the world'});
+ const costs=document.createElement('div');costs.className='playerCostsV61';for(const [material,n]of Object.entries(d.cost)){const cost=document.createElement('span');cost.dataset.material=material;cost.innerHTML='<img alt=""><span>'+n+'</span>';cost.querySelector('img').src=compactIconV64(material);cost.querySelector('img').alt=labelV46(material);costs.append(cost)}
+ const craft=document.createElement('button');craft.type='button';craft.id='player-craft-'+type;craft.className='btn playerCraftV61';craft.onclick=()=>startPlayerCraftV61(type);craft._compactIconV64=document.createElement('img');craft._compactIconV64.src=compactArtV64.craft;craft._compactIconV64.alt='';craft.append(craft._compactIconV64);
+ const progress=document.createElement('progress');progress.max=1;progress.value=0;progress.hidden=true;progress.setAttribute('aria-label',d.name+' crafting progress');
+ const info=document.createElement('button');info.type='button';info.className='structureInfoV64';info.title=d.name+' · More info';info.setAttribute('aria-label','More info about '+d.name);info.innerHTML='<img alt="">';info.querySelector('img').src=compactArtV64.info;
+ const details=document.createElement('section');details.className='structureDetailsV64';details.id='structure-details-'+type;details.hidden=true;const content=document.createElement('div');content.className='structureDetailsContentV67';content.innerHTML='<strong>'+d.name+'</strong><p>'+d.capacity+' animals of any species. Fill or empty with buckets.</p><p>Drag onto a supported '+d.w+' × '+d.h+' foundation.</p>';details.append(content);info.setAttribute('aria-controls',details.id);info.setAttribute('aria-expanded','false');
+ row.append(card,costs,craft,progress,info,details);$('structureCards').append(row);const disclosure=disclosureV67(info,details,{group:panelV48,scroll:panelV48});info.onclick=()=>disclosure.set(!disclosure.open);
+}
+function paintCageV71(g,b){
+ g.drawImage(ButtonwoodArt.cageSprite(b.type,{layer:'back'}),0,0);
+ for(const [i,a]of cageAnimalsV71(b).entries()){
+  const p=cagePositionV71(b,i),sprite=ButtonwoodArt.wildlifeSprite(a.species,{...(typeof wildlifeAnimationV73==='function'?wildlifeAnimationV73(a):{frame:wildlifeFrameV71(a)}),direction:a.direction||1});
+  g.drawImage(sprite,Math.round(p.x-b.x-sprite.width/2),Math.round(p.y-b.y-sprite.height));
+ }
+ g.drawImage(ButtonwoodArt.cageSprite(b.type,{layer:'front'}),0,0);
+}
+const wildlifeStructureSpriteBeforeV71=structureSpriteV46,wildlifePaintStructureBeforeV71=paintStructureV46,wildlifePixelBeforeV71=uiPixelV48;
+structureSpriteV46=function(type){return isCageV71(type)?ButtonwoodArt.cageSprite(type):wildlifeStructureSpriteBeforeV71(type)};
+paintStructureV46=function(g,b,now=0,active=false){if(isCageV71(b.type))paintCageV71(g,b);else wildlifePaintStructureBeforeV71(g,b,now,active)};
+uiPixelV48=function(type){return isCageV71(type)?ButtonwoodArt.cageIcon(type).toDataURL():wildlifePixelBeforeV71(type)};
+const wildlifePackBeforeV71=packStructureV46;
+packStructureV46=function(b){if(isCageV71(b.type)&&cageAnimalsV71(b).length){toast('Empty the cage before packing');return false}if(cageSelectedV71===b.id)cagePanelV71.close();return wildlifePackBeforeV71(b)};
+
+// Cage controls stay beside Structures and expose every occupant to keyboard use.
+const cagePanelV71=document.createElement('dialog');cagePanelV71.id='cagePanelV71';cagePanelV71.className='box';cagePanelV71.setAttribute('aria-labelledby','cageTitleV71');cagePanelV71.innerHTML='<header><h2 id="cageTitleV71"></h2><button class="btn" id="cageCloseV71" aria-label="Close cage">Close</button></header><canvas id="cagePortraitV71"></canvas><p id="cageCountV71" role="status"></p><div id="cageOccupantsV71"></div><div id="cageAddV71"></div><p class="cageHintV71">Tap an animal to listen. Fill or empty with a bucket.</p><button class="btn" id="cagePackV71">Pack away</button>';document.body.append(cagePanelV71);phoneDialogsV66.push(cagePanelV71.id);
+for(const token of ['outline','cream','creamLight','ink','woodShade','mintShade'])cagePanelV71.style.setProperty('--wildlife-'+token,ButtonwoodArt.palette[token]);
+function positionCageV71(){const bar=barV68.getBoundingClientRect(),anchor=triggerV48.getBoundingClientRect(),view=visualViewport,width=view?.width||innerWidth,left=view?.offsetLeft||0,top=view?.offsetTop||0;const floor=phoneActiveV66()?phoneRootV66.getBoundingClientRect().bottom+8:top+8;cagePanelV71.style.width=Math.min(344,width-16)+'px';cagePanelV71.style.left=Math.max(left+8,Math.min(anchor.left,left+width-Math.min(344,width-16)-8))+'px';cagePanelV71.style.bottom=(innerHeight-bar.top+8)+'px';cagePanelV71.style.maxHeight=Math.max(0,bar.top-floor-8)+'px'}
+function refreshCageV71(){
+ if(!cagePanelV71.open)return;const b=structuresV46.find(b=>b.id===cageSelectedV71);if(!b){cagePanelV71.close();return}
+ const d=CAGES_V71[b.type],animals=cageAnimalsV71(b);$('cageTitleV71').textContent=d.name;$('cageCountV71').textContent=animals.length+' / '+d.capacity+' animals';
+ const portrait=$('cagePortraitV71');if(portrait.width!==d.w*B||portrait.height!==d.h*B){portrait.width=d.w*B;portrait.height=d.h*B}const g=portrait.getContext('2d');g.clearRect(0,0,portrait.width,portrait.height);paintCageV71(g,b);
+ const signature=animals.map(a=>a.id+':'+a.species).join(',')+'|'+Number(bucketBagV68.bucket>0);
+ if($('cageOccupantsV71').dataset.signature!==signature){$('cageOccupantsV71').dataset.signature=signature;$('cageOccupantsV71').replaceChildren();for(const [i,a]of animals.entries()){
+  const row=document.createElement('div');row.className='cageAnimalV71';row.innerHTML='<img alt=""><span></span><button class="btn">Listen</button><button class="btn">Take</button>';row.querySelector('img').src=ButtonwoodArt.wildlifeIcon(a.species).toDataURL();row.querySelector('span').textContent=WILDLIFE_SPECIES_V71[a.species].name;const [listen,take]=row.querySelectorAll('button');listen.setAttribute('aria-label','Listen to '+WILDLIFE_SPECIES_V71[a.species].name);listen.onclick=()=>animalSoundV71(a,cagePositionV71(b,i));take.disabled=!(bucketBagV68.bucket>0);take.title='Take with an empty bucket';take.setAttribute('aria-label','Take '+WILDLIFE_SPECIES_V71[a.species].name+' with bucket');take.onclick=()=>{if(captureWildlifeV71({animal:a,cage:b,p:cagePositionV71(b,i)}))$('cageCloseV71').focus()};$('cageOccupantsV71').append(row);
+ }}
+ for(const button of $('cageAddV71').children){const n=bucketBagV68['bucket:'+button.dataset.species]||0;button.hidden=!n;button.disabled=animals.length>=d.capacity;button.querySelector('b').textContent=n}
+ $('cagePackV71').disabled=animals.length>0;$('cagePackV71').title=animals.length?'Empty the cage before packing':'Return cage to inventory';positionCageV71();
+}
+for(const [species,d]of Object.entries(WILDLIFE_SPECIES_V71)){const button=document.createElement('button');button.className='btn';button.dataset.species=species;button.innerHTML='<img alt=""><span>Add '+d.name+'</span><b></b>';button.querySelector('img').src=ButtonwoodArt.wildlifeBucketIcon(species).toDataURL();button.onclick=()=>{const cage=structuresV46.find(b=>b.id===cageSelectedV71);if(cage)releaseWildlifeV71('bucket:'+species,{x:cage.x+16,y:cage.y+16},cage)};$('cageAddV71').append(button)}
+$('cageCloseV71').onclick=()=>{cagePanelV71.close();triggerV48.focus()};$('cagePackV71').onclick=()=>{const b=structuresV46.find(b=>b.id===cageSelectedV71);if(b)packStructureV46(b)};
+const wildlifeOpenBuildingBeforeV71=openBuildingV46;
+openBuildingV46=function(b){if(!isCageV71(b.type)){cagePanelV71.close();return wildlifeOpenBuildingBeforeV71(b)}stopPointerV52();closePhonePanelsV66();selectedBuildingV46=null;cageSelectedV71=b.id;cagePanelV71.show();refreshCageV71();$('cageCloseV71').focus()};
+const wildlifeRefreshBeforeV71=refreshStructuresV46;
+refreshStructuresV46=function(){wildlifeRefreshBeforeV71();refreshCageV71()};
+addEventListener('resize',positionCageV71);visualViewport?.addEventListener('resize',positionCageV71);visualViewport?.addEventListener('scroll',positionCageV71);
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&cagePanelV71.open){cagePanelV71.close();triggerV48.focus()}},{capture:true});
+cagePanelV71.addEventListener('close',()=>{if(!document.querySelector('dialog[open]')&&(document.activeElement===document.body||cagePanelV71.contains(document.activeElement)))triggerV48.focus()});
+
+// Capture taps before pickaxe holds or structure hit testing can consume them.
+document.addEventListener('pointerdown',e=>{
+ if(e.target!==c||e.button!==0||structureDragV46||temporaryGrabV52)return;
+ if(wildlifePressV71&&wildlifePressV71.id!==e.pointerId){wildlifePressV71=null;return}
+ if(pinchStateV26||pinchTouchesV26.size||tool.startsWith('bucket:'))return;
+ const s=pos(e),p=s2w(s.x,s.y),target=wildlifeAnimalAtV71(p),cage=tool==='bucket'?cageAtV71(p):null;
+ if(!target&&!cage)return;
+ wildlifePressV71={id:e.pointerId,start:s,last:s,item:tool,target,cage,moved:false};gesture=null;pickPendingV49=null;
+ if(e.pointerType==='touch')pinchTouchesV26.set(e.pointerId,pinchPosV26(e));
+ try{c.setPointerCapture(e.pointerId)}catch{}e.preventDefault();e.stopImmediatePropagation();
+},{capture:true,passive:false});
+document.addEventListener('pointermove',e=>{
+ const press=wildlifePressV71;if(!press||press.id!==e.pointerId)return;const s=pos(e);press.moved||=Math.hypot(s.x-press.start.x,s.y-press.start.y)>8;
+ if(press.moved&&(press.item==='move'||press.item==='pick')){cam.x-=(s.x-press.last.x)/cam.z;cam.y-=(s.y-press.last.y)/cam.z;cam.anim=false;cameraSpringActiveV24=false;const bounds=cameraVerticalLimitsV24();cam.y=clamp(cam.y,bounds.min,bounds.max)}press.last=s;
+ e.preventDefault();e.stopImmediatePropagation();
+},{capture:true,passive:false});
+function endWildlifePressV71(e){
+ const press=wildlifePressV71;if(!press||press.id!==e.pointerId)return;wildlifePressV71=null;pinchTouchesV26.delete(e.pointerId);pointers.delete(e.pointerId);gesture=null;pickPendingV49=null;
+ try{if(c.hasPointerCapture(e.pointerId))c.releasePointerCapture(e.pointerId)}catch{}
+ if(e.type==='pointerup'&&!press.moved&&Math.hypot(pos(e).x-press.start.x,pos(e).y-press.start.y)<=8){
+  if(press.item==='bucket'){if(press.target)captureWildlifeV71(press.target);else bucketActionV68('bucket',s2w(press.start.x,press.start.y))}
+  else if(press.target){animalSoundV71(press.target.animal,press.target.p);if(typeof openCritterV73==='function')openCritterV73({animal:press.target.animal,p:press.target.p});}
+ }
+ e.preventDefault();e.stopImmediatePropagation();
+}
+document.addEventListener('pointerup',endWildlifePressV71,{capture:true,passive:false});document.addEventListener('pointercancel',endWildlifePressV71,{capture:true,passive:false});
+document.addEventListener('visibilitychange',()=>{wildlifePressV71=null});
+
+const wildlifeStepBeforeV71=stepStructuresV46;
+stepStructuresV46=function(elapsed){
+ if(document.hidden)return false;const changed=wildlifeStepBeforeV71(elapsed);if(!(elapsed>0)||elapsed>1500)return changed;
+ wildlifeClockV71+=elapsed/1000;wildlifeSaveClockV71+=elapsed;wildlifeHabitatClockV71+=elapsed;
+ if(wildlifeHabitatClockV71>=350){wildlifeHabitatClockV71=0;wildlifeDirtyV71=seedWildlifeV71()||wildlifeDirtyV71}
+ let obstacles=null;
+ for(const a of wildlifeV71)if(Math.abs(a.homeX-cam.x)<W/cam.z+512){
+  wildlifePositionV71(a);const motion=WILDLIFE_SPECIES_V71[a.species].motion;
+  if(!a.feyV75&&(motion==='hop'||motion==='burrow')){obstacles??=wildlifeObstaclesV71();wildlifeDirtyV71=settleWildlifeV71(a,elapsed,obstacles)||wildlifeDirtyV71}
+ }
+ if(wildlifeDirtyV71&&wildlifeSaveClockV71>=1200){wildlifeDirtyV71=false;wildlifeSaveClockV71=0;return true}return changed;
+};
+const wildlifeSaveBeforeV71=saveStructuresV46;
+function savedAnimalV71(a){return {id:a.id,species:a.species,homeX:a.homeX,homeY:a.homeY,phase:a.phase,...(a.nocturnal?{nocturnal:true}:{}),...(a.grounded?{grounded:true}:{}),...(a.fallSpeed>0?{fallSpeed:a.fallSpeed}:{})}}
+saveStructuresV46=function(){const data=wildlifeSaveBeforeV71();for(const b of data.buildings||[])delete b.animalsV71;return {...data,wildlife:{version:1,nextId:wildlifeNextIdV71,clock:wildlifeClockV71,habitats:[...wildlifeHabitatsV71],animals:wildlifeV71.map(savedAnimalV71),cages:structuresV46.filter(b=>isCageV71(b.type)).map(b=>({id:b.id,animals:cageAnimalsV71(b).map(savedAnimalV71)}))}}};
+const wildlifeRestoreBeforeV71=restoreDynamicState;
+restoreDynamicState=function(s){
+ wildlifeSeedReadyV71=false;wildlifeRestoreBeforeV71(s);const data=s?.structuresV46?.wildlife;
+ wildlifeV71=[];wildlifeHabitatsV71=new Set();wildlifeNextIdV71=Number.isSafeInteger(data?.nextId)&&data.nextId>=0?data.nextId:0;wildlifeClockV71=Number.isFinite(data?.clock)&&data.clock>=0?data.clock:0;
+ const ids=new Set(),read=a=>{
+  if(!a||!Object.hasOwn(WILDLIFE_SPECIES_V71,a.species)||!Number.isSafeInteger(a.id)||a.id<=0||ids.has(a.id)||![a.homeX,a.homeY,a.phase].every(Number.isFinite)||Math.abs(a.homeX)>32000000||Math.abs(a.homeY)>32000000)return null;
+  ids.add(a.id);wildlifeNextIdV71=Math.max(wildlifeNextIdV71,a.id);const restored={...savedAnimalV71(a),grounded:a.grounded===true,fallSpeed:Number.isFinite(a.fallSpeed)?clamp(a.fallSpeed,0,420):0};return wildlifePositionV71(restored);
+ };
+ for(const ch of (Array.isArray(data?.habitats)?data.habitats:[]).slice(0,HABITAT_LIMIT_V71))if(Number.isSafeInteger(ch)&&Math.abs(ch)<1000000)wildlifeHabitatsV71.add(ch);
+ for(const a of (Array.isArray(data?.animals)?data.animals:[])){const restored=read(a);if(restored)wildlifeV71.push(restored)}
+ const cages=new Map((Array.isArray(data?.cages)?data.cages:[]).filter(x=>Number.isSafeInteger(x?.id)).map(x=>[x.id,x]));
+ for(const b of structuresV46){if(!isCageV71(b.type))continue;b.animalsV71=[];for(const a of (Array.isArray(cages.get(b.id)?.animals)?cages.get(b.id).animals:[]).slice(0,CAGES_V71[b.type].capacity)){const restored=read(a);if(restored)b.animalsV71.push(restored)}}
+ wildlifeSeedReadyV71=true;wildlifeDirtyV71=seedWildlifeV71();wildlifeSaveClockV71=0;wildlifeHabitatClockV71=0;wildlifePressV71=null;
+};
+const wildlifeDrawBeforeV71=drawGoldBursts;
+drawGoldBursts=function(now){
+ for(const a of wildlifeV71){
+  const s=w2s(Math.round(a.x),Math.round(a.y));if(s.x<-40||s.x>W+40||s.y<-40||s.y>HH+40)continue;
+  if(!wildlifeVisibleV71(a)||structuresV46.some(b=>{const d=STRUCTURES_V46[b.type];return a.x>=b.x&&a.x<b.x+d.w*B&&a.y>=b.y&&a.y<b.y+d.h*B}))continue;
+  const burrowing=WILDLIFE_SPECIES_V71[a.species].motion==='burrow'&&grid.get(key(Math.floor(a.x/B),Math.floor(a.y/B)))?.game.material==='dirt';
+  const sprite=ButtonwoodArt.wildlifeSprite(a.species,{...(typeof wildlifeAnimationV73==='function'?wildlifeAnimationV73(a):{frame:wildlifeFrameV71(a)}),direction:a.direction,burrowing});ctx.save();ctx.translate(s.x,s.y);ctx.scale(cam.z,cam.z);ctx.imageSmoothingEnabled=false;if(a.nocturnal)ctx.globalAlpha=clamp((bwSkyState().darkness-.08)/.45,0,1);ctx.drawImage(sprite,-sprite.width/2,-sprite.height);
+  if(a.noticeUntilV71>wildlifeClockV71){ctx.fillStyle=ButtonwoodArt.palette.cream;ctx.fillRect(-1,-sprite.height-5,2,2)}ctx.restore();
+ }
+ wildlifeDrawBeforeV71(now);
+};
+window.skyStackWildlife=Object.freeze({
+ species:WILDLIFE_SPECIES_V71,cages:CAGES_V71,
+ get state(){return {clock:wildlifeClockV71,nextId:wildlifeNextIdV71,habitats:[...wildlifeHabitatsV71],animals:wildlifeV71.map(a=>({...savedAnimalV71(a),x:a.x,y:a.y,visible:wildlifeVisibleV71(a)})),cages:structuresV46.filter(b=>isCageV71(b.type)).map(b=>({id:b.id,type:b.type,x:b.x,y:b.y,capacity:CAGES_V71[b.type].capacity,animals:cageAnimalsV71(b).map((a,i)=>({...savedAnimalV71(a),...cagePositionV71(b,i)}))})),buckets:{...bucketBagV68}}},
+ at:p=>{const t=wildlifeAnimalAtV71(p);return t?{id:t.animal.id,species:t.animal.species,cageId:t.cage?.id??null}:null},
+ tap:p=>{const t=wildlifeAnimalAtV71(p);return t?animalSoundV71(t.animal,t.p):false},
+ bucket:bucketActionV68,seed:seedWildlifeV71,step:elapsed=>stepStructuresV46(elapsed),
+ craft:type=>isCageV71(type)&&startPlayerCraftV61(type),
+ place:plan=>isCageV71(plan?.type)&&placeStructureV46(plan),
+ open:id=>{const b=structuresV46.find(b=>b.id===id&&isCageV71(b.type));if(b)openBuildingV46(b);return !!b},
+ pack:id=>{const b=structuresV46.find(b=>b.id===id&&isCageV71(b.type));return b?packStructureV46(b):false}
+});

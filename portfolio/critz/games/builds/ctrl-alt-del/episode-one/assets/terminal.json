@@ -1,0 +1,146 @@
+{
+  "assetId": "cad.mini.episode1.terminal",
+  "revision": 1,
+  "name": "Interactive control console",
+  "kind": "interactive",
+  "biome": "shared",
+  "family": "mini",
+  "approval": "prototype-review",
+  "source": {
+    "type": "new-native",
+    "file": "src/build-assets.cjs",
+    "recipe": "terminal"
+  },
+  "native": {
+    "width": 24,
+    "height": 36,
+    "origin": [
+      12,
+      36
+    ],
+    "originName": "authored-anchor",
+    "selectionBounds": {
+      "x": 0,
+      "y": 0,
+      "width": 24,
+      "height": 36
+    },
+    "visibleBounds": [
+      {
+        "variant": 0,
+        "frame": 0,
+        "x": 0,
+        "y": 0,
+        "width": 24,
+        "height": 36
+      },
+      {
+        "variant": 0,
+        "frame": 1,
+        "x": 0,
+        "y": 0,
+        "width": 24,
+        "height": 36
+      }
+    ],
+    "animationEnvelope": {
+      "x": 0,
+      "y": 0,
+      "width": 24,
+      "height": 36
+    }
+  },
+  "sockets": [
+    {
+      "id": "left",
+      "type": "edge",
+      "x": -12,
+      "y": 0,
+      "facing": -1
+    },
+    {
+      "id": "right",
+      "type": "edge",
+      "x": 12,
+      "y": 0,
+      "facing": 1
+    }
+  ],
+  "render": {
+    "kind": "sprite-sheet",
+    "layer": "scenery",
+    "parallax": {
+      "x": 1,
+      "y": 1
+    },
+    "variants": [
+      {
+        "id": "v0",
+        "uri": "assets/terminal.png",
+        "width": 48,
+        "height": 36,
+        "sha256": "5878d9f39c71ed24de30744e1a9711843961467beab82dc8292a26540fac2400"
+      }
+    ],
+    "frameSize": [
+      24,
+      36
+    ],
+    "frameCount": 2,
+    "allowedFacing": [
+      1,
+      -1
+    ],
+    "scale": 1
+  },
+  "collision": {
+    "defaults": [],
+    "decorative": true,
+    "behavior": "Artwork does not activate gameplay; scene entity kind and properties do."
+  },
+  "properties": {
+    "variant": {
+      "type": "integer",
+      "default": 0
+    }
+  },
+  "animation": {
+    "states": {
+      "idle": {
+        "frames": [
+          0,
+          1
+        ],
+        "timingMs": [
+          500,
+          500
+        ],
+        "loop": true
+      }
+    },
+    "frameEvents": []
+  },
+  "tags": [
+    "terminal",
+    "hack",
+    "switch",
+    "objective"
+  ],
+  "thumbnail": {
+    "uri": "assets/terminal.png",
+    "frame": 0,
+    "variant": 0,
+    "nativeSize": [
+      24,
+      36
+    ],
+    "noResample": true
+  },
+  "placement": {
+    "snap": 1,
+    "suggestedGrid": 8,
+    "preview": "native-with-geometry",
+    "allowScale": false,
+    "allowRotation": false
+  }
+}

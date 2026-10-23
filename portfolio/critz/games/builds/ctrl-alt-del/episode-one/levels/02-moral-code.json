@@ -1,0 +1,1027 @@
+{
+  "schemaVersion": 1,
+  "assetPack": "cad.episode1.prototype@1",
+  "id": "02-moral-code",
+  "chapter": 2,
+  "title": "The Moral Code",
+  "sourceTitle": "The Moral Code",
+  "status": "playable-prototype",
+  "dialogueStatus": "Supplied oath exact; other dialogue provisional.",
+  "family": "mini",
+  "mode": "ground",
+  "theme": "hideout",
+  "bounds": {
+    "width": 1296,
+    "height": 270
+  },
+  "viewport": [
+    480,
+    270
+  ],
+  "spawn": {
+    "x": 48,
+    "y": 222,
+    "hero": "jane"
+  },
+  "physicsProfile": "cad.mini.ground.approved-v1",
+  "layers": [
+    {
+      "id": "distant",
+      "order": 0
+    },
+    {
+      "id": "architecture",
+      "order": 10
+    },
+    {
+      "id": "scenery",
+      "order": 20
+    },
+    {
+      "id": "playable",
+      "order": 30
+    },
+    {
+      "id": "actors",
+      "order": 40
+    },
+    {
+      "id": "foreground",
+      "order": 50
+    }
+  ],
+  "terrainOrigin": {
+    "x": 0,
+    "y": 6
+  },
+  "terrain": [],
+  "entities": [
+    {
+      "id": "floor",
+      "name": "floor",
+      "kind": "solid",
+      "x": 0,
+      "y": 222,
+      "layer": "playable",
+      "assetId": "cad.mini.episode1.steel-floor",
+      "assetRevision": 1,
+      "w": 1296,
+      "h": 48
+    },
+    {
+      "id": "decor-8",
+      "name": "decor",
+      "kind": "decor",
+      "x": 0,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.hideout-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-9",
+      "name": "decor",
+      "kind": "decor",
+      "x": 0,
+      "y": 110,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.roof",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-10",
+      "name": "decor",
+      "kind": "decor",
+      "x": 64,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.hideout-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-11",
+      "name": "decor",
+      "kind": "decor",
+      "x": 128,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.hideout-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-12",
+      "name": "decor",
+      "kind": "decor",
+      "x": 192,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.hideout-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-13",
+      "name": "decor",
+      "kind": "decor",
+      "x": 192,
+      "y": 110,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.roof",
+      "assetRevision": 1,
+      "variant": 1
+    },
+    {
+      "id": "decor-14",
+      "name": "decor",
+      "kind": "decor",
+      "x": 256,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.hideout-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-15",
+      "name": "decor",
+      "kind": "decor",
+      "x": 320,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.hideout-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-16",
+      "name": "decor",
+      "kind": "decor",
+      "x": 384,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.hideout-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-17",
+      "name": "decor",
+      "kind": "decor",
+      "x": 384,
+      "y": 110,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.roof",
+      "assetRevision": 1,
+      "variant": 2
+    },
+    {
+      "id": "decor-18",
+      "name": "decor",
+      "kind": "decor",
+      "x": 448,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.hideout-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-19",
+      "name": "decor",
+      "kind": "decor",
+      "x": 512,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.hideout-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-20",
+      "name": "decor",
+      "kind": "decor",
+      "x": 576,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.hideout-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-21",
+      "name": "decor",
+      "kind": "decor",
+      "x": 576,
+      "y": 110,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.roof",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-22",
+      "name": "decor",
+      "kind": "decor",
+      "x": 640,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.hideout-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-23",
+      "name": "decor",
+      "kind": "decor",
+      "x": 704,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.hideout-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-24",
+      "name": "decor",
+      "kind": "decor",
+      "x": 768,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.hideout-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-25",
+      "name": "decor",
+      "kind": "decor",
+      "x": 768,
+      "y": 110,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.roof",
+      "assetRevision": 1,
+      "variant": 1
+    },
+    {
+      "id": "decor-26",
+      "name": "decor",
+      "kind": "decor",
+      "x": 832,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.hideout-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-27",
+      "name": "decor",
+      "kind": "decor",
+      "x": 896,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.hideout-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-28",
+      "name": "decor",
+      "kind": "decor",
+      "x": 960,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.hideout-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-29",
+      "name": "decor",
+      "kind": "decor",
+      "x": 960,
+      "y": 110,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.roof",
+      "assetRevision": 1,
+      "variant": 2
+    },
+    {
+      "id": "decor-30",
+      "name": "decor",
+      "kind": "decor",
+      "x": 1024,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.hideout-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-31",
+      "name": "decor",
+      "kind": "decor",
+      "x": 1088,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.hideout-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-32",
+      "name": "decor",
+      "kind": "decor",
+      "x": 1152,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.hideout-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-33",
+      "name": "decor",
+      "kind": "decor",
+      "x": 1152,
+      "y": 110,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.roof",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-34",
+      "name": "decor",
+      "kind": "decor",
+      "x": 1216,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.hideout-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-35",
+      "name": "decor",
+      "kind": "decor",
+      "x": 1280,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.hideout-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "elevator",
+      "name": "elevator",
+      "kind": "decor",
+      "x": 8,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.elevator",
+      "assetRevision": 1
+    },
+    {
+      "id": "jessie",
+      "name": "jessie",
+      "kind": "npc",
+      "x": 100,
+      "y": 222,
+      "layer": "actors",
+      "hero": "jessie"
+    },
+    {
+      "id": "leader",
+      "name": "leader",
+      "kind": "npc",
+      "x": 232,
+      "y": 222,
+      "layer": "actors",
+      "assetId": "cad.mini.episode1.hooded-leader",
+      "assetRevision": 1
+    },
+    {
+      "id": "npc-36",
+      "name": "npc",
+      "kind": "npc",
+      "x": 300,
+      "y": 222,
+      "layer": "actors",
+      "assetId": "cad.mini.episode1.operative",
+      "assetRevision": 1
+    },
+    {
+      "id": "npc-37",
+      "name": "npc",
+      "kind": "npc",
+      "x": 360,
+      "y": 222,
+      "layer": "actors",
+      "assetId": "cad.mini.episode1.operative",
+      "assetRevision": 1
+    },
+    {
+      "id": "npc-38",
+      "name": "npc",
+      "kind": "npc",
+      "x": 430,
+      "y": 222,
+      "layer": "actors",
+      "assetId": "cad.mini.episode1.operative",
+      "assetRevision": 1
+    },
+    {
+      "id": "decor-39",
+      "name": "decor",
+      "kind": "decor",
+      "x": 350,
+      "y": 222,
+      "layer": "scenery",
+      "assetId": "cad.mini.episode1.desk",
+      "assetRevision": 1
+    },
+    {
+      "id": "decor-40",
+      "name": "decor",
+      "kind": "decor",
+      "x": 650,
+      "y": 222,
+      "layer": "scenery",
+      "assetId": "cad.mini.episode1.desk",
+      "assetRevision": 1
+    },
+    {
+      "id": "decor-41",
+      "name": "decor",
+      "kind": "decor",
+      "x": 1030,
+      "y": 222,
+      "layer": "scenery",
+      "assetId": "cad.mini.episode1.desk",
+      "assetRevision": 1
+    },
+    {
+      "id": "decor-42",
+      "name": "decor",
+      "kind": "decor",
+      "x": 470,
+      "y": 154,
+      "layer": "scenery",
+      "assetId": "cad.mini.episode1.broadcast",
+      "assetRevision": 1
+    },
+    {
+      "id": "decor-43",
+      "name": "decor",
+      "kind": "decor",
+      "x": 535,
+      "y": 222,
+      "layer": "scenery",
+      "assetId": "cad.mini.recyke.puddle",
+      "assetRevision": 1
+    },
+    {
+      "id": "decor-44",
+      "name": "decor",
+      "kind": "decor",
+      "x": 630,
+      "y": 100,
+      "layer": "scenery",
+      "assetId": "cad.mini.recyke.pipe-horizontal",
+      "assetRevision": 1
+    },
+    {
+      "id": "approach",
+      "name": "approach",
+      "kind": "terminal",
+      "x": 210,
+      "y": 222,
+      "layer": "scenery",
+      "assetId": "cad.mini.episode1.terminal",
+      "assetRevision": 1,
+      "label": "Approach the leader",
+      "flag": "approach",
+      "requires": [],
+      "sequence": "oath"
+    },
+    {
+      "id": "asset-45",
+      "name": "asset",
+      "kind": "asset",
+      "x": 500,
+      "y": 222,
+      "layer": "playable",
+      "assetId": "cad.mini.recyke.crate-low",
+      "assetRevision": 1
+    },
+    {
+      "id": "asset-46",
+      "name": "asset",
+      "kind": "asset",
+      "x": 550,
+      "y": 222,
+      "layer": "playable",
+      "assetId": "cad.mini.recyke.crate-tall",
+      "assetRevision": 1
+    },
+    {
+      "id": "platform-47",
+      "name": "platform",
+      "kind": "platform",
+      "x": 590,
+      "y": 178,
+      "layer": "playable",
+      "assetId": "cad.mini.recyke.catwalk-left",
+      "assetRevision": 1,
+      "w": 24,
+      "h": 6
+    },
+    {
+      "id": "platform-48",
+      "name": "platform",
+      "kind": "platform",
+      "x": 614,
+      "y": 178,
+      "layer": "playable",
+      "assetId": "cad.mini.recyke.catwalk-middle",
+      "assetRevision": 1,
+      "w": 24,
+      "h": 6
+    },
+    {
+      "id": "platform-49",
+      "name": "platform",
+      "kind": "platform",
+      "x": 638,
+      "y": 178,
+      "layer": "playable",
+      "assetId": "cad.mini.recyke.catwalk-middle",
+      "assetRevision": 1,
+      "w": 24,
+      "h": 6
+    },
+    {
+      "id": "platform-50",
+      "name": "platform",
+      "kind": "platform",
+      "x": 662,
+      "y": 178,
+      "layer": "playable",
+      "assetId": "cad.mini.recyke.catwalk-middle",
+      "assetRevision": 1,
+      "w": 24,
+      "h": 6
+    },
+    {
+      "id": "platform-51",
+      "name": "platform",
+      "kind": "platform",
+      "x": 686,
+      "y": 178,
+      "layer": "playable",
+      "assetId": "cad.mini.recyke.catwalk-right",
+      "assetRevision": 1,
+      "w": 24,
+      "h": 6
+    },
+    {
+      "id": "decor-52",
+      "name": "decor",
+      "kind": "decor",
+      "x": 602,
+      "y": 218,
+      "layer": "scenery",
+      "assetId": "cad.mini.recyke.support",
+      "assetRevision": 1
+    },
+    {
+      "id": "pickup-53",
+      "name": "pickup",
+      "kind": "pickup",
+      "x": 650,
+      "y": 164,
+      "layer": "scenery",
+      "assetId": "cad.mini.episode1.shield",
+      "assetRevision": 1,
+      "pickup": "shield"
+    },
+    {
+      "id": "training-console",
+      "name": "training console",
+      "kind": "terminal",
+      "x": 760,
+      "y": 222,
+      "layer": "scenery",
+      "assetId": "cad.mini.episode1.terminal",
+      "assetRevision": 1,
+      "label": "Activate training lane",
+      "flag": "training-console",
+      "requires": [
+        "oath"
+      ],
+      "sequence": null
+    },
+    {
+      "id": "training-unit",
+      "name": "training unit",
+      "kind": "enemy",
+      "x": 930,
+      "y": 222,
+      "layer": "actors",
+      "archetype": "sentinel",
+      "hp": 3,
+      "left": 906,
+      "right": 954,
+      "facing": -1,
+      "activationX": 550,
+      "passive": true
+    },
+    {
+      "id": "checkpoint-1050",
+      "name": "checkpoint 1050",
+      "kind": "checkpoint",
+      "x": 1050,
+      "y": 222,
+      "layer": "scenery",
+      "assetId": "cad.mini.episode1.checkpoint",
+      "assetRevision": 1,
+      "label": "Repair & checkpoint"
+    },
+    {
+      "id": "exit",
+      "name": "exit",
+      "kind": "exit",
+      "x": 1200,
+      "y": 222,
+      "layer": "scenery",
+      "assetId": "cad.mini.episode1.blast-door",
+      "assetRevision": 1,
+      "label": "Continue",
+      "requires": [
+        "oath",
+        "training-console",
+        "dead:training-unit"
+      ],
+      "sequence": "welcome"
+    },
+    {
+      "id": "overhead-0",
+      "name": "overhead 0",
+      "kind": "decor",
+      "x": 0,
+      "y": 105,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.pipe-horizontal",
+      "assetRevision": 1
+    },
+    {
+      "id": "vent-0",
+      "name": "vent 0",
+      "kind": "decor",
+      "x": 100,
+      "y": 115,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.vent-fan",
+      "assetRevision": 1
+    },
+    {
+      "id": "wall-notice-0",
+      "name": "wall notice 0",
+      "kind": "decor",
+      "x": 148,
+      "y": 212,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.poster",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "overhead-192",
+      "name": "overhead 192",
+      "kind": "decor",
+      "x": 192,
+      "y": 105,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.pipe-horizontal",
+      "assetRevision": 1
+    },
+    {
+      "id": "vent-192",
+      "name": "vent 192",
+      "kind": "decor",
+      "x": 292,
+      "y": 115,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.vent-fan",
+      "assetRevision": 1
+    },
+    {
+      "id": "wall-notice-192",
+      "name": "wall notice 192",
+      "kind": "decor",
+      "x": 340,
+      "y": 212,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.poster",
+      "assetRevision": 1,
+      "variant": 1
+    },
+    {
+      "id": "overhead-384",
+      "name": "overhead 384",
+      "kind": "decor",
+      "x": 384,
+      "y": 105,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.pipe-horizontal",
+      "assetRevision": 1
+    },
+    {
+      "id": "vent-384",
+      "name": "vent 384",
+      "kind": "decor",
+      "x": 484,
+      "y": 115,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.vent-fan",
+      "assetRevision": 1
+    },
+    {
+      "id": "wall-notice-384",
+      "name": "wall notice 384",
+      "kind": "decor",
+      "x": 532,
+      "y": 212,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.poster",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "overhead-576",
+      "name": "overhead 576",
+      "kind": "decor",
+      "x": 576,
+      "y": 105,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.pipe-horizontal",
+      "assetRevision": 1
+    },
+    {
+      "id": "vent-576",
+      "name": "vent 576",
+      "kind": "decor",
+      "x": 676,
+      "y": 115,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.vent-fan",
+      "assetRevision": 1
+    },
+    {
+      "id": "wall-notice-576",
+      "name": "wall notice 576",
+      "kind": "decor",
+      "x": 724,
+      "y": 212,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.poster",
+      "assetRevision": 1,
+      "variant": 1
+    },
+    {
+      "id": "overhead-768",
+      "name": "overhead 768",
+      "kind": "decor",
+      "x": 768,
+      "y": 105,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.pipe-horizontal",
+      "assetRevision": 1
+    },
+    {
+      "id": "vent-768",
+      "name": "vent 768",
+      "kind": "decor",
+      "x": 868,
+      "y": 115,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.vent-fan",
+      "assetRevision": 1
+    },
+    {
+      "id": "wall-notice-768",
+      "name": "wall notice 768",
+      "kind": "decor",
+      "x": 916,
+      "y": 212,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.poster",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "overhead-960",
+      "name": "overhead 960",
+      "kind": "decor",
+      "x": 960,
+      "y": 105,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.pipe-horizontal",
+      "assetRevision": 1
+    },
+    {
+      "id": "vent-960",
+      "name": "vent 960",
+      "kind": "decor",
+      "x": 1060,
+      "y": 115,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.vent-fan",
+      "assetRevision": 1
+    },
+    {
+      "id": "wall-notice-960",
+      "name": "wall notice 960",
+      "kind": "decor",
+      "x": 1108,
+      "y": 212,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.poster",
+      "assetRevision": 1,
+      "variant": 1
+    },
+    {
+      "id": "overhead-1152",
+      "name": "overhead 1152",
+      "kind": "decor",
+      "x": 1152,
+      "y": 105,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.pipe-horizontal",
+      "assetRevision": 1
+    },
+    {
+      "id": "vent-1152",
+      "name": "vent 1152",
+      "kind": "decor",
+      "x": 1252,
+      "y": 115,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.vent-fan",
+      "assetRevision": 1
+    },
+    {
+      "id": "wall-notice-1152",
+      "name": "wall notice 1152",
+      "kind": "decor",
+      "x": 1300,
+      "y": 212,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.poster",
+      "assetRevision": 1,
+      "variant": 0
+    }
+  ],
+  "objectives": [
+    {
+      "id": "join",
+      "label": "Take the oath",
+      "requires": [
+        "oath"
+      ]
+    },
+    {
+      "id": "learn",
+      "label": "Activate the practice console and disable the training unit",
+      "requires": [
+        "training-console",
+        "dead:training-unit"
+      ]
+    }
+  ],
+  "sequences": {
+    "opening": {
+      "id": "opening",
+      "name": "opening",
+      "cards": [
+        {
+          "type": "camera",
+          "x": 0,
+          "y": -35,
+          "duration": 1
+        },
+        {
+          "type": "dialogue",
+          "speaker": "Janey",
+          "text": "Does this lift always sound like it’s negotiating with gravity?",
+          "source": "prototype",
+          "duration": 2646
+        },
+        {
+          "type": "camera",
+          "x": 0,
+          "y": 0,
+          "duration": 2200
+        },
+        {
+          "type": "dialogue",
+          "speaker": "Jessie",
+          "text": "Every time. It hasn’t lost an argument yet.",
+          "source": "prototype",
+          "duration": 2400
+        },
+        {
+          "type": "dialogue",
+          "speaker": "Leader",
+          "text": "Recruit! Step forward.",
+          "source": "source",
+          "duration": 2400
+        }
+      ]
+    },
+    "oath": {
+      "id": "oath",
+      "name": "oath",
+      "cards": [
+        {
+          "type": "dialogue",
+          "speaker": "Leader",
+          "text": "Do swear to do no harm unless absolutely necessary?",
+          "source": "source",
+          "duration": 2400
+        },
+        {
+          "type": "dialogue",
+          "speaker": "Janey",
+          "text": "I Do",
+          "source": "source",
+          "duration": 2400
+        },
+        {
+          "type": "dialogue",
+          "speaker": "Leader",
+          "text": "Do you promise to uphold the code, and understand it may be hard to carry?",
+          "source": "source",
+          "duration": 3108
+        },
+        {
+          "type": "dialogue",
+          "speaker": "Janey",
+          "text": "I Do!",
+          "source": "source",
+          "duration": 2400
+        },
+        {
+          "type": "dialogue",
+          "speaker": "Leader",
+          "text": "Do you swear to upload the code if given access, and by doing so, destroy the Nexis?",
+          "source": "source",
+          "duration": 3528
+        },
+        {
+          "type": "title",
+          "text": "The music swells. Acceptance is implied.\n[Album recording / lyrics pending.]",
+          "duration": 3500
+        },
+        {
+          "type": "flag",
+          "flag": "oath",
+          "value": true,
+          "duration": 1
+        },
+        {
+          "type": "dialogue",
+          "speaker": "Jessie",
+          "text": "The practice lane is clear. Jump the crates, use the console, then hit the training unit. E to interact; Space to fire; F to strike.",
+          "source": "prototype",
+          "duration": 5544
+        }
+      ]
+    },
+    "welcome": {
+      "id": "welcome",
+      "name": "welcome",
+      "cards": [
+        {
+          "type": "dialogue",
+          "speaker": "Leader",
+          "text": "Welcome Recruit, to The Moral Code!",
+          "source": "source",
+          "duration": 2400
+        }
+      ]
+    }
+  },
+  "onStart": "opening",
+  "onComplete": null,
+  "timer": null,
+  "notes": [
+    "Training is the optional suggestion from the outline. Symbol omitted pending design."
+  ],
+  "next": "03a-secondary"
+}

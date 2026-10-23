@@ -1,0 +1,36 @@
+/* Browser selection must not expose clipped/hidden text during a game hold.
+   Editable controls retain selection, the software keyboard and native scrolling. */
+html,body,body *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+body input,body textarea,body select,body [contenteditable=true],body [contenteditable=true] *{-webkit-user-select:text;user-select:text;-webkit-touch-callout:default}
+#legacyInventoryV68{display:none!important}
+body #bar.hotbarV68{display:grid;grid-template-columns:1fr 1fr;gap:12px;position:fixed;left:50%;right:auto;bottom:max(8px,env(safe-area-inset-bottom));transform:translateX(-50%);width:min(480px,calc(100% - 8px));height:auto;padding:0;border:0;background:transparent;box-shadow:none;overflow:visible;touch-action:manipulation}
+body #bar.hotbarV68 .hotbarGroupV68{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;padding:4px;border:2px solid #704939;background:#f7e8c4;box-shadow:0 3px 0 #49313f;border-radius:6px;min-width:0}
+body #bar.hotbarV68 .slot{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;min-width:0;max-width:none;width:100%;height:68px;min-height:44px;flex:none;padding:12px 1px 14px;transform:none;font-size:9px;line-height:12px;border:1px solid #c28d60;background:#fff3d6;color:#49313f;touch-action:manipulation;border-radius:3px}
+body #bar.hotbarV68 .slot.sel,body #bar.hotbarV68 .slot[aria-expanded=true]{background:#b9d1ab;border-color:#597d70;box-shadow:inset 0 -3px #8fb69a}
+body #bar.hotbarV68 .slot:active{background:#d8c397;box-shadow:inset 0 2px #9c684d}
+body #bar.hotbarV68 .slot.empty{opacity:1;background:#f7e8c4}
+body #bar.hotbarV68 .slot.empty.sel{background:#b9d1ab}
+body #bar.hotbarV68 .slot>img,body #bar.hotbarV68 .slot>.icon,body #bar.hotbarV68 .slot>.houseIcon{width:32px;height:32px;min-height:32px;flex:none;image-rendering:pixelated;object-fit:contain;margin:0;background-size:32px 32px}
+body #bar.hotbarV68 .slot>img[hidden]{display:none}
+body #bar.hotbarV68 .slot>.icon+span,body #bar.hotbarV68 .slot>.houseIcon+span{position:absolute;bottom:2px;font-size:8px;line-height:10px;white-space:nowrap}
+body #bar.hotbarV68 .hotbarNumberV68{position:absolute;top:2px;left:4px;font:700 10px/10px ui-monospace,monospace;color:#704939}
+body #bar.hotbarV68 .itemCountV68{position:absolute;bottom:2px;right:4px;max-width:calc(100% - 4px);overflow:hidden;font:700 11px/12px ui-monospace,monospace}
+body #bar.hotbarV68 .itemSlotV68:has(img[hidden]):after{content:'';width:22px;height:22px;border:1px dashed #c28d60;border-radius:2px}
+body #bar.hotbarV68 .slot:focus-visible{outline:3px solid #597d70;outline-offset:2px}
+#itemPickerV68{position:fixed;inset:auto;margin:0;padding:10px;box-sizing:border-box;overflow:auto;overscroll-behavior:contain;touch-action:pan-y;z-index:30;border:2px solid #704939;border-radius:6px;background:#f7e8c4;color:#49313f;box-shadow:0 4px 0 #49313f;font:13px/1.4 ui-monospace,monospace}
+#itemPickerV68 header{display:flex;align-items:center;justify-content:space-between;gap:8px;position:sticky;top:-10px;background:#f7e8c4;z-index:1;padding:4px 0 8px}
+#itemPickerV68 h2{font-size:15px;margin:0}
+#itemPickerV68 .btn{min-height:44px;font-size:11px;background:#fff3d6;color:#49313f;border:1px solid #c28d60}
+#itemChoicesV68{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+#itemPickerV68 .itemChoiceV68{display:grid;grid-template-columns:32px minmax(0,1fr);align-items:center;gap:0 6px;padding:6px;min-height:54px;background:#fff3d6;color:#49313f;border:1px solid #c28d60;border-radius:3px;text-align:left;font:11px/1.3 ui-monospace,monospace;touch-action:pan-y}
+#itemPickerV68 .itemChoiceV68[aria-pressed=true]{background:#b9d1ab;border-color:#597d70}
+#itemPickerV68 img{width:32px;height:32px;flex:none;image-rendering:pixelated;grid-row:1/3}
+#itemPickerV68 .itemChoiceV68 b{grid-column:2}
+#itemPickerV68 .itemChoiceV68 span{overflow-wrap:anywhere}
+#itemPickerV68 footer{display:flex;gap:8px;justify-content:space-between;margin-top:10px}
+#craftBucketV68{display:flex;align-items:center;gap:6px;text-align:left}
+#craftBucketV68 small{display:block;font-size:10px}
+#itemPickerV68 button:disabled{opacity:.5}
+#itemPickerV68 :focus-visible{outline:3px solid #597d70;outline-offset:1px}
+body.phone-ui #bar.hotbarV68{left:max(4px,env(safe-area-inset-left));right:max(4px,env(safe-area-inset-right));transform:none;width:auto;max-width:480px;margin:auto;gap:8px;bottom:calc(var(--phone-bottom,0px) + max(8px,env(safe-area-inset-bottom)))}
+body.phone-ui #bar.hotbarV68 .slot{height:62px}

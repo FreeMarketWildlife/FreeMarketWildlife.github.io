@@ -1,0 +1,72 @@
+/* Shared Buttonwood theme and opt-in art review controls. */
+.buttonwood-art #questSub{color:#704939}
+.buttonwood-art #quest small,.buttonwood-art #mode,.buttonwood-art #stabilityText{color:#704939}
+.buttonwood-art #quest{border-left-color:#9c684d}
+.buttonwood-art #gridToggle{background:#fff3d6;color:#49313f;border-color:#9c684d}
+.buttonwood-art #gridToggle.gridOff{background:#dce5cd;color:#597d70}
+.buttonwood-art .structurePanel p,.buttonwood-art .structurePanel small,.buttonwood-art .structureDetailsV64,.buttonwood-art #structuresPanel .structureDetailsV64 p{color:#704939}
+.buttonwood-art #stockCountV60{color:#597d70}
+.buttonwood-art #tips,.buttonwood-art .tipBody,.buttonwood-art .tipsFooter{background:#f7e8c4;color:#49313f;border-color:#9c684d}
+.buttonwood-art .tipsGroups summary,.buttonwood-art .tipsGroups summary:after,.buttonwood-art .tipsActions .devLink{color:#49313f}
+.buttonwood-art .tipsGroups summary span,.buttonwood-art .tipsTitle small,.buttonwood-art .tipsFooter .saveNote{color:#704939}
+.buttonwood-art .tipsGroups details,.buttonwood-art .tipsTitle{border-color:#c28d60}
+.buttonwood-art #tips b,.buttonwood-art #devToggle{color:#704939}
+.buttonwood-art .modalCard>b,.buttonwood-art .modalCard .warningText{color:#704939}
+.buttonwood-art #pickaxeShop{background:#f7e8c4;color:#49313f;border-color:#9c684d}
+.buttonwood-art #pickaxeShop h2,.buttonwood-art #pickaxeCurrent,.buttonwood-art #pickaxeBuy,.buttonwood-art #pickaxeFunds,.buttonwood-art .pickaxeNote,.buttonwood-art .pickaxeTier small{color:#704939}
+.buttonwood-art .pickaxeTier.equipped{background:#dce5cd;border-color:#597d70}
+.buttonwood-sample #bw-controls{position:fixed;inset:0 0 auto;z-index:80;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 18px;background:#f7e8c4;color:#49313f;border-bottom:3px solid #9c684d;font:13px ui-monospace,monospace;box-shadow:0 3px 0 #49313f22}
+#bw-controls .bw-title{color:#49313f;font-size:19px;font-weight:bold;text-decoration:none;white-space:nowrap}
+#bw-controls small{display:block;font-size:9px;letter-spacing:2px;margin-top:2px;color:#704939}
+#bw-controls .bw-actions{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+#bw-controls button,#bw-controls select,#bw-controls .bw-actions a{font:inherit;color:#49313f;background:#fff3d6;border:1px solid #c28d60;padding:7px 9px;text-decoration:none;cursor:pointer;border-radius:3px}
+#bw-controls button:hover,#bw-controls .bw-actions a:hover{background:#dce5cd}
+#bw-controls button[aria-pressed=true]{background:#8fb69a}
+#bw-controls label{white-space:nowrap}
+.buttonwood-sample #hud{top:85px}
+.buttonwood-sample #quest,.buttonwood-sample #mode,.buttonwood-sample #stability,.buttonwood-sample #hud .cams{display:none}
+.buttonwood-sample #gridToggle{top:85px}
+.buttonwood-sample #tipBtn{top:130px}
+.buttonwood-sample #bw-note{position:fixed;left:16px;bottom:117px;z-index:30;padding:7px 10px;color:#49313f;background:#f7e8c4e8;border:1px solid #c28d60;font:11px ui-monospace,monospace;pointer-events:none}
+.buttonwood-art .box,.buttonwood-art .modalCard,.buttonwood-art dialog{background:#f7e8c4;color:#49313f;border-color:#9c684d;box-shadow:3px 3px 0 #49313f38}
+.buttonwood-art #bar{background:#f7e8c4;border-color:#9c684d;box-shadow:0 -3px 0 #49313f22}
+.buttonwood-art .slot{background:#fff3d6;color:#49313f;border-color:#c28d60;box-shadow:0 2px 0 #9c684d}
+.buttonwood-art .slot.sel{background:#b9d1ab;border-color:#597d70}
+.buttonwood-art .btn{background:#fff3d6;color:#49313f;border-color:#9c684d;text-shadow:none;box-shadow:0 2px 0 #9c684d}
+.buttonwood-art .primary{background:#8fb69a;border-color:#597d70}
+.buttonwood-art .box small,.buttonwood-art .box p,.buttonwood-art .box label,.buttonwood-art .box h2,.buttonwood-art .box h3{color:#704939}
+.buttonwood-art .height b,.buttonwood-art #goldHud b,.buttonwood-art #questTitle{color:#49313f;text-shadow:none}
+.buttonwood-art #hud small{color:#704939}
+.buttonwood-art .rasterControl{background-color:#fff3d6;color:#49313f;border-color:#9c684d}
+.buttonwood-art #workerClock{background:#f7e8c4e8!important;color:#67434a!important;border-color:#c28d60!important;font-size:10px!important}
+#bw-home-portrait{position:static;inset:auto;display:block;flex:none;width:128px;height:128px;margin:8px auto;image-rendering:pixelated}
+.buttonwood-art #nailToggle{bottom:151px}
+.buttonwood-sample #bw-note{bottom:113px}
+.buttonwood-art .structureCraftRow,.buttonwood-art .workshopRecipe,.buttonwood-art .structureCard{background:#fff3d6;color:#49313f;border-color:#c28d60}
+.buttonwood-art canvas,.buttonwood-art img{image-rendering:pixelated}
+/* These controls share the cream theme on desktop as well as on phones. */
+.buttonwood-art #structuresPanel.compactStructuresV64,.buttonwood-art #structuresPanel .playerBuildingV61{background:#f7e8c4;color:#49313f;border-color:#c28d60}
+.buttonwood-art #structuresPanel .playerBuildingV61{background:#fff3d6}
+.buttonwood-art #structuresPanel .playerCostsV61>span{color:#49313f}
+.buttonwood-art #structuresPanel .playerCostsV61>.missing{color:#ad5955}
+.buttonwood-art #structuresPanel .structureCard b{background:#49313f;color:#fff3d6}
+.buttonwood-art #structuresPanel .structureInfoV64{opacity:1}
+.buttonwood-art #structuresPanel .playerCraftV61{background:#597d70;border-color:#597d70}
+.buttonwood-art #structuresPanel .playerCraftV61:disabled{opacity:.65}
+.buttonwood-art #structuresPanel .playerCraftV61.crafting{background:#b58250;border-color:#704939;opacity:1;filter:none}
+.buttonwood-art .pickaxeOwnedRow{background:#fff3d6;color:#49313f;border-color:#c28d60}
+.buttonwood-art .pickaxeOwnedRow b{color:#597d70}
+.buttonwood-art .pickaxeOwnedRow.equipped{background:#b9d1ab;border-color:#597d70}
+/* Keep toolbar inventories below the optional review header as their catalog grows. */
+.buttonwood-sample #structuresPanel,.buttonwood-sample #pickaxeShop{max-height:var(--bw-panel-height,calc(100dvh - 180px))!important}
+.buttonwood-sample #hud,.buttonwood-sample #gridToggle{top:calc(var(--bw-header-height,64px) + 18px)!important}
+.buttonwood-sample #tipBtn{top:calc(var(--bw-header-height,64px) + 63px)!important}
+.buttonwood-sample #workerClock{top:calc(var(--bw-header-height,64px) + 92px)!important}
+@media(max-width:700px){
+ #bw-controls{flex-direction:column;align-items:flex-start!important;padding:8px!important;gap:6px!important}
+ #bw-controls .bw-title{font-size:15px}#bw-controls small{display:inline;margin-left:8px}
+ #bw-controls button,#bw-controls select,#bw-controls .bw-actions a{padding:6px;font-size:11px}
+ .buttonwood-sample #hud{top:111px}.buttonwood-sample #quest{display:none}
+ .buttonwood-sample #gridToggle{top:111px}.buttonwood-sample #tipBtn{top:156px}
+ .buttonwood-sample #bw-note{bottom:110px;font-size:10px;left:8px}
+}

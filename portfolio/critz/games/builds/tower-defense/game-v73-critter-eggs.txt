@@ -1,0 +1,107 @@
+// Critz: native wildlife Workers, active-play eggs and the full-moon fairy.
+// ART-BIBLE §§3–4, 6, 8–10. Stable Worker physics/IDs and original wildlife saves.
+const critterArtV73=ButtonwoodArt.animalAnimations,critterKindsV73=new Map(critterArtV73.roster.map(s=>[s.id,s]));
+var critterWorkersV73=new Map(),critterEggsV73=[],critterClockV73=0,critterNextEggV73=0;
+const CRITTER_EGG_PRICE_V73=5,CRITTER_HATCH_MS_V73=30000,CRITTER_EGG_LIMIT_V73=64;
+let critterSelectionV73=null,critterLastUiV73=-Infinity,critterPressV73=null;
+const critterMarksV73=[];
+function lunarPhaseV73(){return ButtonwoodArt.lunar.phaseForNight(settlementV55.day)}
+function fairyPresentV73(){return workerNightV55()&&lunarPhaseV73()===4}
+function fairyPositionV73(){const h=homesV55()[0];return{x:h?h.x-40:0,y:h?h.y+128:0}}
+function workerSpeciesV73(q){return critterWorkersV73.get(q.game.id)?.species||null}
+function critterOriginV73(target){if(target?.worker)return{x:target.worker.position.x,y:target.worker.position.y+B*.4};if(target?.animal)return target.p||{x:target.animal.x,y:target.animal.y};return null}
+function critterKeyV73(t){return t?.worker?workerSpeciesV73(t.worker):t?.animal?.species}
+function validCritterTargetV73(t){return t?.worker?miners.has(t.worker)&&!!workerSpeciesV73(t.worker):!!t?.animal&&(wildlifeV71.includes(t.animal)||structuresV46.some(b=>isCageV71(b.type)&&cageAnimalsV71(b).includes(t.animal)))}
+function critterRecordV73(t){return t?.worker?critterWorkersV73.get(t.worker.game.id):t?.animal}
+function critterActionV73(t,state){if(!validCritterTargetV73(t))return false;if(!critterArtV73.motions[state]||!critterKindsV73.has(critterKeyV73(t)))return false;const record=critterRecordV73(t);if(!record)return false;record.action=state;record.actionStart=critterClockV73;record.actionUntil=critterClockV73+critterArtV73.motions[state].frames*critterArtV73.motions[state].ms;return true}
+function wildlifeAnimationV73(a){const motion=WILDLIFE_SPECIES_V71[a.species].motion,state=a.actionUntil>critterClockV73?a.action:motion==='fly'||motion==='flutter'?'walk':Math.abs(Math.cos(wildlifeClockV71*WILDLIFE_SPECIES_V71[a.species].speed+a.phase))>.85?'sprint':'walk';return{state,frame:critterArtV73.frameAt(state,a.actionUntil>critterClockV73?critterClockV73-a.actionStart:critterClockV73+a.phase*1000)}}
+const critterWildSpriteBeforeV73=ButtonwoodArt.wildlifeSprite;
+ButtonwoodArt.wildlifeSprite=function(species,options={}){return options.state?critterArtV73.sprite(species,options.state,options.frame,options.direction):critterWildSpriteBeforeV73(species,options)};
+const critterDrawWorkerBeforeV73=spiritBaseMinerDrawV42;
+spiritBaseMinerDrawV42=function(q,now){const species=workerSpeciesV73(q);if(!species)return critterDrawWorkerBeforeV73(q,now);const record=critterWorkersV73.get(q.game.id),manual=record.actionUntil>critterClockV73,job=workplaceV56(q.game.id),state=manual?record.action:now<q.game.pickUntil?'mine':job?.job&&!job.paused?'use':Math.abs(q.velocity.x)>.8?'sprint':Math.abs(q.velocity.x)>.1?'walk':'idle';const time=manual?critterClockV73-record.actionStart:state==='mine'?Math.max(0,critterClockV73-(record.mineStart||critterClockV73))+330:critterClockV73+q.game.id*170,frame=critterArtV73.frameAt(state,time),foot=w2s(Math.round(q.position.x),Math.round(q.position.y+B*.4));ctx.save();ctx.translate(foot.x,foot.y);ctx.scale(cam.z,cam.z);ctx.imageSmoothingEnabled=false;ctx.drawImage(critterArtV73.sprite(species,state,frame,q.game.dir),-20,-31);ctx.restore()};
+function buyCritterEggV73(species){
+ if(!fairyPresentV73()||!critterKindsV73.has(species)||critterEggsV73.length>=CRITTER_EGG_LIMIT_V73||(inv.gold||0)<CRITTER_EGG_PRICE_V73)return false;
+ const p=fairyPositionV73();inv.gold-=CRITTER_EGG_PRICE_V73;critterEggsV73.push({id:++critterNextEggV73,species,remaining:CRITTER_HATCH_MS_V73,x:p.x-28-(critterEggsV73.length%6)*18,y:p.y});ui();saveGame();refreshCrittersV73();return true;
+}
+function hatchCritterV73(egg){const p=minerDropPoint({x:egg.x,y:egg.y-16}),q=createMinerAt(p.x,p.y,{level:1});critterWorkersV73.set(q.game.id,{species:egg.species,cooldownUntil:0,action:'yay',actionStart:critterClockV73,actionUntil:critterClockV73+880});assignHomesV55();refreshWorkersV55();toast(critterKindsV73.get(egg.species).name+' hatched');return q}
+function critterAbilityV73(target){
+ const species=critterKeyV73(target),ability=critterArtV73.abilities[species],record=critterRecordV73(target),p=critterOriginV73(target);if(!validCritterTargetV73(target)||!ability||!record||!p||(record.cooldownUntil||0)>critterClockV73)return false;
+ let success=false;
+ if(ability.kind==='sprint'){record.sprintUntil=critterClockV73+4000;critterActionV73(target,'sprint');record.actionUntil=record.sprintUntil;success=true}
+ if(ability.kind==='dig'){
+  const block=[...grid.values()].filter(z=>z.game.material==='dirt'&&terrainExposed(z)&&Math.hypot(z.position.x-p.x,z.position.y-p.y)<B*1.8).sort((a,b)=>Math.hypot(a.position.x-p.x,a.position.y-p.y)-Math.hypot(b.position.x-p.x,b.position.y-p.y))[0];
+  if(block){if(target.worker){if(!minerHit(target.worker,block))return false}else{block.game.hits++;block.game.flash=5;terrainDamage.set(key(block.game.cx,block.game.cy),block.game.hits);if(block.game.hits>=block.game.max)harvest(block,'player');else saveSoon()}critterActionV73(target,'mine');success=true}
+ }
+ if(ability.kind==='craft'){const b=structuresV46.find(b=>b.job&&!b.paused&&(!b.job.automatic||employeeReadyV56(b))&&Math.hypot(b.x+STRUCTURES_V46[b.type].w*B/2-p.x,b.y+STRUCTURES_V46[b.type].h*B-p.y)<B*4);if(b){b.job.remaining=Math.max(1,b.job.remaining-2000);critterActionV73(target,'use');success=true}}
+ if(ability.kind==='scout'){const ore=[...grid.values()].filter(z=>z.game.resourceType&&terrainExposed(z)&&Math.hypot(z.position.x-p.x,z.position.y-p.y)<=B*6).sort((a,b)=>Math.hypot(a.position.x-p.x,a.position.y-p.y)-Math.hypot(b.position.x-p.x,b.position.y-p.y))[0];if(ore){critterMarksV73.push({x:ore.position.x,y:ore.position.y,until:critterClockV73+6000});critterActionV73(target,'use');success=true}}
+ if(success){record.cooldownUntil=critterClockV73+ability.cooldown;saveGame();refreshCrittersV73()}else toast(ability.kind==='dig'?'No exposed dirt nearby':ability.kind==='craft'?'No active building job nearby':'No exposed ore nearby');return success;
+}
+const critterHitBeforeV73=minerHit;
+minerHit=function(q,target,beatIndex=0){const result=critterHitBeforeV73(q,target,beatIndex);const record=critterWorkersV73.get(q.game.id);if(record&&result)record.mineStart=critterClockV73;return result};
+const critterUpdateBeforeV73=updateMiners;
+updateMiners=function(now){critterUpdateBeforeV73(now);for(const q of miners){const record=critterWorkersV73.get(q.game.id);if(record?.action==='walk'&&record.actionUntil>critterClockV73&&!workerControlledV56(q))Body.setVelocity(q,{x:q.game.dir*.55,y:q.velocity.y});if(record?.sprintUntil>critterClockV73&&!workerControlledV56(q))Body.setVelocity(q,{x:q.game.dir*Math.min(1.8,Math.max(.7,Math.abs(q.velocity.x)*1.25)),y:q.velocity.y})}};
+const critterPositionBeforeV73=wildlifePositionV71;
+wildlifePositionV71=function(a){const p=critterPositionBeforeV73(a);if(a.sprintUntil>critterClockV73){const d=WILDLIFE_SPECIES_V71[a.species];const duration=Math.max(1,a.actionUntil-a.actionStart),progress=clamp((critterClockV73-a.actionStart)/duration,0,1);p.x+=Math.sin(progress*Math.PI*2)*Math.min(12,d.range*.2)}return p};
+const critterStepBeforeV73=stepWorkersV55;
+stepWorkersV55=function(ms,random=Math.random){critterStepBeforeV73(ms,random);if(!(ms>0)||!Number.isFinite(ms)||document.hidden)return;critterClockV73+=ms;let hatched=false;for(const egg of [...critterEggsV73]){egg.remaining-=ms;if(egg.remaining<=0){hatchCritterV73(egg);critterEggsV73=critterEggsV73.filter(e=>e!==egg);hatched=true}}if(hatched)saveGame();if(critterClockV73-critterLastUiV73>=250){critterLastUiV73=critterClockV73;refreshCrittersV73()}};
+const critterSaveBeforeV73=saveStructuresV46;
+saveStructuresV46=function(){return{...critterSaveBeforeV73(),crittersV73:{version:1,clock:critterClockV73,nextEgg:critterNextEggV73,eggs:critterEggsV73.map(e=>({...e})),workers:[...critterWorkersV73].map(([id,r])=>[id,{species:r.species,cooldownUntil:r.cooldownUntil||0}]),wildlife:[...wildlifeV71,...structuresV46.flatMap(b=>isCageV71(b.type)?cageAnimalsV71(b):[])].filter(a=>a.cooldownUntil>critterClockV73).map(a=>({id:a.id,cooldownUntil:a.cooldownUntil}))}}};
+const critterRestoreBeforeV73=restoreDynamicState;
+restoreDynamicState=function(s){critterRestoreBeforeV73(s);const data=s?.structuresV46?.crittersV73;critterClockV73=Number.isFinite(data?.clock)&&data.clock>=0?data.clock:0;critterNextEggV73=Number.isSafeInteger(data?.nextEgg)&&data.nextEgg>=0?data.nextEgg:0;const ids=new Set();critterEggsV73=(Array.isArray(data?.eggs)?data.eggs:[]).slice(0,CRITTER_EGG_LIMIT_V73).filter(e=>{if(!Number.isSafeInteger(e?.id)||e.id<=0||ids.has(e.id)||!critterKindsV73.has(e.species)||![e.x,e.y,e.remaining].every(Number.isFinite)||Math.abs(e.x)>32000000||Math.abs(e.y)>32000000||e.remaining<=0)return false;ids.add(e.id);critterNextEggV73=Math.max(critterNextEggV73,e.id);return true}).map(e=>({id:e.id,species:e.species,x:e.x,y:e.y,remaining:clamp(e.remaining,1,CRITTER_HATCH_MS_V73)}));critterWorkersV73=new Map((Array.isArray(data?.workers)?data.workers:[]).slice(0,4096).filter(e=>Array.isArray(e)&&Number.isSafeInteger(e[0])&&e[0]>0&&critterKindsV73.has(e[1]?.species)).map(([id,r])=>[id,{species:r.species,cooldownUntil:Number.isFinite(r.cooldownUntil)?clamp(r.cooldownUntil,0,critterClockV73+20000):0}]));const wildCooldowns=new Map((Array.isArray(data?.wildlife)?data.wildlife:[]).filter(r=>Number.isSafeInteger(r?.id)&&Number.isFinite(r.cooldownUntil)).map(r=>[r.id,clamp(r.cooldownUntil,0,critterClockV73+20000)]));for(const a of [...wildlifeV71,...structuresV46.flatMap(b=>isCageV71(b.type)?cageAnimalsV71(b):[])])a.cooldownUntil=wildCooldowns.get(a.id)||0;refreshCrittersV73()};
+// Critter Workers hatch from eggs; preserve the original human family rules.
+const critterBedPairBeforeV73=sleepingAdultsV56;
+sleepingAdultsV56=function(home){return critterBedPairBeforeV73(home).filter(a=>!critterWorkersV73.has(a.id))};
+// Compact panels stay beside their toolbar trigger; never use a centered modal.
+const critterStyleV73=document.createElement('style');critterStyleV73.textContent=`#critterTriggerV73{position:fixed;right:12px;top:178px;z-index:60;display:flex;align-items:center;gap:5px;background:${ButtonwoodArt.palette.cream};color:${ButtonwoodArt.palette.ink};border:2px solid ${ButtonwoodArt.palette.outline};font:12px system-ui}#critterTriggerV73 img{width:32px;height:32px;image-rendering:pixelated}.critterPanelV73{position:fixed;inset:auto 12px auto auto;top:220px;margin:0;width:min(330px,calc(100vw - 32px));max-height:calc(100dvh - 320px);overflow:auto;background:${ButtonwoodArt.palette.creamLight};color:${ButtonwoodArt.palette.ink};border:2px solid ${ButtonwoodArt.palette.outline};z-index:90;padding:12px;font:14px system-ui}.critterPanelV73 header{display:flex;align-items:center;justify-content:space-between}.critterPanelV73 button{font:inherit;margin:3px;padding:6px;background:${ButtonwoodArt.palette.cream};color:${ButtonwoodArt.palette.ink};border:1px solid ${ButtonwoodArt.palette.outline}}.critterPanelV73 img{width:32px;height:32px;image-rendering:pixelated}.critterPanelV73 .eggRow{display:flex;align-items:center;justify-content:space-between;gap:6px}.critterPanelV73 select{font:inherit;max-width:100%;padding:6px}.critterPanelV73 p{margin:8px 0}@media(max-height:600px){#critterTriggerV73{top:100px}.critterPanelV73{top:142px;max-height:calc(100dvh - 220px)}}`;document.head.append(critterStyleV73);
+const critterTriggerV73=document.createElement('button');critterTriggerV73.id='critterTriggerV73';critterTriggerV73.setAttribute('aria-label','Moon cycle, fairy merchant and eggs');critterTriggerV73.innerHTML='<img alt=""><span></span>';document.body.append(critterTriggerV73);
+const fairyPanelV73=document.createElement('dialog');fairyPanelV73.id='fairyPanelV73';fairyPanelV73.className='critterPanelV73';fairyPanelV73.setAttribute('aria-label','Fairy merchant and eggs');fairyPanelV73.innerHTML='<header><strong>Moon fairy</strong><button aria-label="Close fairy shop">Close</button></header><p id="fairyStatusV73"></p><div id="fairyShopV73"><label>Egg <select id="fairySpeciesV73"></select></label><button id="fairyBuyV73">Buy · 5 gold</button><p>Hatches in 30 seconds of play.</p></div><div id="critterEggListV73" aria-live="polite"></div>';document.body.append(fairyPanelV73);
+for(const s of critterArtV73.roster){const o=document.createElement('option');o.value=s.id;o.textContent=s.name;$('fairySpeciesV73').append(o)}
+const critterPanelV73=document.createElement('dialog');critterPanelV73.id='critterPanelV73';critterPanelV73.className='critterPanelV73';critterPanelV73.setAttribute('aria-label','Animal interactions');critterPanelV73.innerHTML='<header><strong id="critterNameV73"></strong><button aria-label="Close animal interactions">Close</button></header><p id="critterAbilityNoteV73"></p><div id="critterActionsV73"></div><button id="critterAbilityV73">Ability</button>';document.body.append(critterPanelV73);
+function commandCritterV73(target,state){
+ if(!validCritterTargetV73(target)||!critterKindsV73.has(critterKeyV73(target)))return false;
+ if(state==='sprint'){const r=critterRecordV73(target);r.sprintUntil=critterClockV73+1200;}
+ if(state==='mine'){
+  const p=critterOriginV73(target),q=target.worker;
+  const block=q?mineableNear(q)[0]:[...grid.values()].find(z=>z.game.material==='dirt'&&terrainExposed(z)&&Math.hypot(z.position.x-p.x,z.position.y-p.y)<B*1.8);
+  if(block){if(q){if(!minerHit(q,block))return false}else mine(block.position)}
+  else{toast('No reachable block to mine');return false}
+ }
+ if(state==='use')return critterActionV73(target,'use');
+ return critterActionV73(target,state);
+}
+for(const state of ['pet','yay','walk','sprint','mine','use']){const b=document.createElement('button');b.textContent=state[0].toUpperCase()+state.slice(1);b.dataset.action=state;b.onclick=()=>commandCritterV73(critterSelectionV73,state);$('critterActionsV73').append(b)}
+function openFairyV73(){critterPanelV73.close();fairyPanelV73.show();positionCritterPanelsV73();refreshCrittersV73()}
+critterTriggerV73.onclick=openFairyV73;fairyPanelV73.querySelector('header button').onclick=()=>fairyPanelV73.close();critterPanelV73.querySelector('header button').onclick=()=>critterPanelV73.close();$('fairyBuyV73').onclick=()=>{if(!buyCritterEggV73($('fairySpeciesV73').value))toast(fairyPresentV73()?'Need 5 gold or room for an egg':'The fairy returns at the next full moon')};$('critterAbilityV73').onclick=()=>critterAbilityV73(critterSelectionV73);
+function openCritterV73(target){critterSelectionV73=target;fairyPanelV73.close();critterActionV73(target,'pet');critterPanelV73.show();positionCritterPanelsV73();refreshCrittersV73()}
+function positionCritterPanelsV73(){
+ const clock=clockHudV55.getBoundingClientRect(),bar=barV68.getBoundingClientRect();
+ critterTriggerV73.style.top=Math.min(clock.bottom+8,innerHeight-100)+'px';
+ const anchor=critterTriggerV73.getBoundingClientRect(),top=anchor.bottom+6,bottom=bar.top>top+80?bar.top-8:innerHeight-8;
+ for(const panel of [fairyPanelV73,critterPanelV73]){panel.style.top=top+'px';panel.style.maxHeight=Math.max(0,bottom-top)+'px'}
+}
+addEventListener('resize',positionCritterPanelsV73);visualViewport?.addEventListener('resize',positionCritterPanelsV73);
+const critterImageUrlsV73=new Map();
+function critterImageV73(key,make){if(!critterImageUrlsV73.has(key))critterImageUrlsV73.set(key,make().toDataURL());return critterImageUrlsV73.get(key)}
+let critterHudKeyV73='',critterEggUiKeyV73='';
+function refreshCrittersV73(){if(!critterTriggerV73)return;const phase=lunarPhaseV73(),name=ButtonwoodArt.lunar.names[phase],present=fairyPresentV73();const hudKey=phase+':'+present+':'+critterEggsV73.length;if(hudKey!==critterHudKeyV73){critterHudKeyV73=hudKey;critterTriggerV73.querySelector('img').src=critterImageV73('moon:'+phase,()=>ButtonwoodArt.lunar.icon(phase));critterTriggerV73.querySelector('span').textContent=present?'Fairy · '+critterEggsV73.length+' eggs':name;critterTriggerV73.title=name+' · Fairy visits on full-moon nights';positionCritterPanelsV73()}if(fairyPanelV73.open){const nights=(4-phase+8)%8;$('fairyStatusV73').textContent=present?'Full moon · '+(inv.gold||0)+' gold':name+' · Fairy returns '+(nights? 'in '+nights+' nights':'tonight');$('fairyShopV73').hidden=!present;$('fairyBuyV73').disabled=!present||(inv.gold||0)<5||critterEggsV73.length>=64;const list=$('critterEggListV73');const eggKey=critterEggsV73.map(e=>e.id+':'+Math.ceil(e.remaining/1000)).join(',');if(eggKey!==critterEggUiKeyV73||!list.childNodes.length){critterEggUiKeyV73=eggKey;list.replaceChildren();for(const e of critterEggsV73){const row=document.createElement('div');row.className='eggRow';const im=document.createElement('img'),text=document.createElement('span');im.alt='Egg';im.src=critterImageV73('egg:'+(e.remaining<10000?1:0),()=>ButtonwoodArt.eggSprite(e.remaining<10000?1:0,true));text.textContent=critterKindsV73.get(e.species).name+' · '+Math.ceil(e.remaining/1000)+'s';row.append(im,text);list.append(row)}if(!critterEggsV73.length)list.textContent='No eggs incubating.'}}
+ if(critterPanelV73.open){const species=critterKeyV73(critterSelectionV73),ability=critterArtV73.abilities[species],record=critterRecordV73(critterSelectionV73);if(!validCritterTargetV73(critterSelectionV73)||!ability||!record){critterPanelV73.close();return}$('critterNameV73').textContent=critterKindsV73.get(species).name;$('critterAbilityNoteV73').textContent=ability.description;const remaining=Math.ceil(((record.cooldownUntil||0)-critterClockV73)/1000);$('critterAbilityV73').textContent=ability.name+(remaining>0?' · '+remaining+'s':'');$('critterAbilityV73').disabled=remaining>0}
+}
+phoneDialogsV66.push(fairyPanelV73.id,critterPanelV73.id);
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){fairyPanelV73.close();critterPanelV73.close()}});
+const critterOpenWorkerBeforeV73=openMinerMenu;
+openMinerMenu=function(q){if(workerSpeciesV73(q))return openCritterV73({worker:q});return critterOpenWorkerBeforeV73(q)};
+const critterSoundBeforeV73=animalSoundV71;
+animalSoundV71=function(a,p=a){const result=critterSoundBeforeV73(a,p);critterActionV73({animal:a,p},'pet');return result};
+// Fairy taps use the same short-tap threshold as animal taps; dragging stays a pan.
+document.addEventListener('pointerdown',e=>{if(e.target!==c||e.button!==0||!fairyPresentV73()||isBucketV68(tool)||pinchStateV26||pinchTouchesV26.size)return;const s=pos(e),p=s2w(s.x,s.y),f=fairyPositionV73();if(Math.abs(p.x-f.x)>18||p.y<f.y-42||p.y>f.y+4)return;critterPressV73={id:e.pointerId,start:s,last:s,moved:false};gesture=null;pickPendingV49=null;try{c.setPointerCapture(e.pointerId)}catch{}e.preventDefault();e.stopImmediatePropagation()},{capture:true,passive:false});
+document.addEventListener('pointermove',e=>{const p=critterPressV73;if(!p||p.id!==e.pointerId)return;const s=pos(e);p.moved||=Math.hypot(s.x-p.start.x,s.y-p.start.y)>8;if(p.moved){cam.x-=(s.x-p.last.x)/cam.z;cam.y-=(s.y-p.last.y)/cam.z;cam.anim=false}p.last=s;e.preventDefault();e.stopImmediatePropagation()},{capture:true,passive:false});
+function endFairyPressV73(e){const p=critterPressV73;if(!p||p.id!==e.pointerId)return;critterPressV73=null;try{if(c.hasPointerCapture(e.pointerId))c.releasePointerCapture(e.pointerId)}catch{}if(e.type==='pointerup'&&!p.moved&&Math.hypot(pos(e).x-p.start.x,pos(e).y-p.start.y)<=8)openFairyV73();gesture=null;pickPendingV49=null;e.preventDefault();e.stopImmediatePropagation()}
+document.addEventListener('pointerup',endFairyPressV73,{capture:true,passive:false});document.addEventListener('pointercancel',endFairyPressV73,{capture:true,passive:false});
+const critterDrawBeforeV73=drawGoldBursts;
+drawGoldBursts=function(now){critterDrawBeforeV73(now);function paint(sprite,p,anchorX,anchorY){const s=w2s(Math.round(p.x),Math.round(p.y));ctx.save();ctx.translate(s.x,s.y);ctx.scale(cam.z,cam.z);ctx.imageSmoothingEnabled=false;ctx.drawImage(sprite,-anchorX,-anchorY);ctx.restore()}
+ if(fairyPresentV73())paint(ButtonwoodArt.fairySprite(Math.floor(critterClockV73/150)),fairyPositionV73(),16,39);
+ for(const e of critterEggsV73)paint(ButtonwoodArt.eggSprite(e.remaining<10000?1:0),e,8,16);
+ for(let i=critterMarksV73.length-1;i>=0;i--){const p=critterMarksV73[i];if(p.until<=critterClockV73){critterMarksV73.splice(i,1);continue}paint(ButtonwoodArt.scoutMark(),p,16,16)}
+};
+window.skyStackCritters=Object.freeze({get state(){return{phase:lunarPhaseV73(),phaseName:ButtonwoodArt.lunar.names[lunarPhaseV73()],fairy:fairyPresentV73(),fairyPosition:fairyPositionV73(),price:5,clock:critterClockV73,eggs:critterEggsV73.map(e=>({...e})),workers:[...critterWorkersV73].map(([id,r])=>({id,...r,alive:[...miners].some(q=>q.game.id===id)}))}},buy:buyCritterEggV73,openShop:openFairyV73,ability:id=>{const q=[...miners].find(q=>q.game.id===id);return q?critterAbilityV73({worker:q}):false},action:(id,state)=>{const q=[...miners].find(q=>q.game.id===id);return q?commandCritterV73({worker:q},state):false},pet:id=>{const q=[...miners].find(q=>q.game.id===id);if(!q)return false;openCritterV73({worker:q});return true}});
+refreshCrittersV73();

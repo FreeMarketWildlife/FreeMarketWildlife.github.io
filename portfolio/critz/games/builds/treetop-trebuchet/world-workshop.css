@@ -1,0 +1,10 @@
+/* Local author controls are created only in explicit developer mode. */
+#worldModeSwitch[hidden]{display:none!important}
+/* Edit and Play operate the same world and the same running game. */
+#worldModeSwitch{position:fixed;right:18px;bottom:max(14px,env(safe-area-inset-bottom));z-index:60;display:flex;align-items:center;gap:4px;padding:5px;background:#f6efd9ed;border:1.5px solid #7d926c;border-radius:12px;box-shadow:0 3px 0 #29433533;color:#36513b;font:12px 'Trebuchet MS',sans-serif}
+#worldModeSwitch button{font:inherit;min-height:34px;padding:6px 13px;border:1px solid transparent;border-radius:7px;background:transparent;color:inherit;cursor:pointer}
+#worldModeSwitch button[aria-pressed=true]{background:#d8e4b8;border-color:#91a771;font-weight:bold}
+#worldModeSwitch button:focus-visible{outline:3px solid #d8ad61;outline-offset:2px}
+#worldMapStatus{font-size:10px;max-width:160px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:0 7px}
+#worldEditor[hidden]{display:none!important}body[data-world-mode=edit]>.game{visibility:hidden;pointer-events:none}body[data-world-mode=edit] .weapon-tray{visibility:hidden;pointer-events:none}
+@media(max-width:600px){#worldModeSwitch{right:8px;bottom:max(9px,env(safe-area-inset-bottom));padding:3px}#worldModeSwitch button{padding:5px 10px;min-height:32px}#worldMapStatus{display:none}}

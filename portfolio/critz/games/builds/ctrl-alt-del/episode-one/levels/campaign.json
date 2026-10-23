@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "id": "episode-i",
+  "title": "Ctrl Alt Del · Episode I",
+  "status": "prototype",
+  "entry": "01-intro",
+  "levels": [
+    {
+      "id": "01-intro",
+      "chapter": 1,
+      "title": "Intro",
+      "mode": "ground",
+      "file": "levels/01-intro.json"
+    },
+    {
+      "id": "02-moral-code",
+      "chapter": 2,
+      "title": "The Moral Code",
+      "mode": "ground",
+      "file": "levels/02-moral-code.json"
+    },
+    {
+      "id": "03a-secondary",
+      "chapter": 3,
+      "title": "First Strike · Jessie",
+      "mode": "ground",
+      "file": "levels/03a-secondary.json"
+    },
+    {
+      "id": "03b-module",
+      "chapter": 3,
+      "title": "First Strike · Janey",
+      "mode": "ground",
+      "file": "levels/03b-module.json"
+    },
+    {
+      "id": "03c-wrecking-yard",
+      "chapter": 3,
+      "title": "First Strike · Wrecking yard",
+      "mode": "ground",
+      "file": "levels/03c-wrecking-yard.json"
+    },
+    {
+      "id": "04-skyview",
+      "chapter": 4,
+      "title": "Breaking news in sky view",
+      "mode": "ground",
+      "file": "levels/04-skyview.json"
+    },
+    {
+      "id": "05-reaching-out",
+      "chapter": 5,
+      "title": "Reaching Out",
+      "mode": "flight",
+      "file": "levels/05-reaching-out.json"
+    },
+    {
+      "id": "06-untitled",
+      "chapter": 6,
+      "title": "Chapter 6 · Untitled",
+      "mode": "ground",
+      "file": "levels/06-untitled.json"
+    },
+    {
+      "id": "07-ctrl-alt-del",
+      "chapter": 7,
+      "title": "Ctrl Alt Del",
+      "mode": "flight",
+      "file": "levels/07-ctrl-alt-del.json"
+    },
+    {
+      "id": "08-acquire",
+      "chapter": 8,
+      "title": "Aquire this!",
+      "mode": "ground",
+      "file": "levels/08-acquire.json"
+    },
+    {
+      "id": "09-server-escape",
+      "chapter": 9,
+      "title": "Chapter 9 · Server escape",
+      "mode": "ground",
+      "file": "levels/09-server-escape.json"
+    },
+    {
+      "id": "10-never-say-die",
+      "chapter": 10,
+      "title": "Never say Die",
+      "mode": "ground",
+      "file": "levels/10-never-say-die.json"
+    }
+  ],
+  "storySource": "../docs/story/lead-designer-original.txt",
+  "decisions": {
+    "family": "mini-only",
+    "firstStrike": "sequential Jessie → Janey → shared yard escape",
+    "flight": "side-view",
+    "dialogue": "prototype writing except exact supplied source lines"
+  },
+  "unresolved": [
+    "Album audio and cue sheet",
+    "Final password",
+    "Moral Code emblem",
+    "Titles for chapters 6 and 9",
+    "Final supporting cast and cruiser art",
+    "Exact album dialogue and credits"
+  ]
+}

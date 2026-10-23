@@ -1,0 +1,46 @@
+// Player crafting uses a shared default, with optional per-building overrides.
+document.body.append(panelV48);
+const PLAYER_CRAFT_TIME_V61=1500;
+var playerCraftV61=null;
+function playerCraftTimeV61(type){return STRUCTURES_V46[type].playerCraftTime??PLAYER_CRAFT_TIME_V61}
+function startPlayerCraftV61(type){
+ const d=STRUCTURES_V46[type];if(!d||playerCraftV61||!payIndustryV44(d.cost))return false;
+ playerCraftV61={type,remaining:playerCraftTimeV61(type)};ui();saveGame();return true;
+}
+function stepPlayerCraftV61(elapsed){
+ if(!playerCraftV61)return false;
+ playerCraftV61.remaining=Math.max(0,playerCraftV61.remaining-Math.max(0,finite(elapsed)));
+ if(playerCraftV61.remaining>0)return false;
+ const type=playerCraftV61.type;structureBagV46[type]++;playerCraftV61=null;toast(STRUCTURES_V46[type].name.toUpperCase()+' READY');return true;
+}
+const stepBeforeV61=stepStructuresV46;
+stepStructuresV46=function(elapsed){const buildingsChanged=stepBeforeV61(elapsed),playerChanged=stepPlayerCraftV61(elapsed);return buildingsChanged||playerChanged};
+const saveBeforeV61=saveStructuresV46;
+saveStructuresV46=function(){return {...saveBeforeV61(),playerCraft:playerCraftV61?{...playerCraftV61}:null}};
+const restoreBeforeV61=restoreDynamicState;
+restoreDynamicState=function(s){const job=s?.structuresV46?.playerCraft;playerCraftV61=job&&Object.hasOwn(STRUCTURES_V46,job.type)&&Number.isFinite(job.remaining)?{type:job.type,remaining:clamp(job.remaining,0,playerCraftTimeV61(job.type))}:null;restoreBeforeV61(s)};
+// Keep the legacy entry point on the same timed crafting path.
+craftWorkshopV46=function(){return startPlayerCraftV61('workshop')};
+$('craftWorkshop').closest('.workshopStarter').remove();
+panelV48.querySelector('header + p').textContent='Craft here. Drag finished buildings into the world.';
+for(const [type,d] of Object.entries(STRUCTURES_V46)){
+ const card=$('structure-card-'+type),row=document.createElement('div');row.className='playerBuildingV61';card.before(row);row.append(card);
+ const costs=document.createElement('div');costs.className='playerCostsV61';
+ for(const [k,n] of Object.entries(d.cost)){const cost=document.createElement('span');cost.dataset.material=k;const icon=document.createElement('img');icon.src=M[k]?artIconV32(k):uiPixelV48(k);icon.alt=labelV46(k);const number=document.createElement('span');number.textContent=n;cost.append(icon,number);costs.append(cost)}
+ const craft=document.createElement('button');craft.type='button';craft.id='player-craft-'+type;craft.className='btn playerCraftV61';craft.setAttribute('aria-label','Craft '+d.name);craft.onclick=()=>startPlayerCraftV61(type);
+ const progress=document.createElement('progress');progress.max=1;progress.value=0;progress.setAttribute('aria-label',d.name+' crafting progress');progress.hidden=true;
+ row.append(costs,craft,progress);
+}
+function refreshPlayerCraftV61(){
+ for(const [type,d] of Object.entries(STRUCTURES_V46)){
+  const button=$('player-craft-'+type),active=playerCraftV61?.type===type,affordable=canPayIndustryV44(d.cost),row=button.parentElement,progress=row.querySelector('progress');
+  button.disabled=!!playerCraftV61||!affordable;
+  button.textContent=active?(playerCraftV61.remaining/1000).toFixed(1)+'s':playerCraftV61?'BUSY':'CRAFT · '+playerCraftTimeV61(type)/1000+'s';
+  button.title=active?'Crafting '+d.name:!affordable?'Need '+Object.entries(d.cost).filter(([k,n])=>(inv[k]||0)<n).map(([k])=>labelV46(k)).join(', '):'Craft '+d.name;
+  progress.hidden=!active;progress.value=active?1-playerCraftV61.remaining/playerCraftTimeV61(type):0;
+  for(const cost of row.querySelectorAll('[data-material]')){const k=cost.dataset.material;cost.classList.toggle('missing',(inv[k]||0)<d.cost[k]);cost.title=d.cost[k]+' '+labelV46(k)+' · '+(inv[k]||0)+' available'}
+  const card=$('structure-card-'+type);card.querySelector('b').textContent=structureBagV46[type];card.setAttribute('aria-label','Place '+d.name+' · '+structureBagV46[type]+' available');
+ }
+}
+const refreshBeforeV61=refreshStructuresV46;
+refreshStructuresV46=function(){refreshBeforeV61();refreshPlayerCraftV61()};

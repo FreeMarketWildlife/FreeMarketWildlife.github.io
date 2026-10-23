@@ -1,0 +1,135 @@
+{
+  "assetId": "cad.mini.episode1.grenade",
+  "revision": 1,
+  "name": "Pulse grenade",
+  "kind": "pickup",
+  "biome": "shared",
+  "family": "mini",
+  "approval": "prototype-review",
+  "source": {
+    "type": "new-native",
+    "file": "src/build-assets.cjs",
+    "recipe": "grenade"
+  },
+  "native": {
+    "width": 16,
+    "height": 16,
+    "origin": [
+      8,
+      8
+    ],
+    "originName": "authored-anchor",
+    "selectionBounds": {
+      "x": 0,
+      "y": 0,
+      "width": 16,
+      "height": 16
+    },
+    "visibleBounds": [
+      {
+        "variant": 0,
+        "frame": 0,
+        "x": 1,
+        "y": 2,
+        "width": 14,
+        "height": 11
+      }
+    ],
+    "animationEnvelope": {
+      "x": 0,
+      "y": 0,
+      "width": 16,
+      "height": 16
+    }
+  },
+  "sockets": [
+    {
+      "id": "left",
+      "type": "edge",
+      "x": -8,
+      "y": 0,
+      "facing": -1
+    },
+    {
+      "id": "right",
+      "type": "edge",
+      "x": 8,
+      "y": 0,
+      "facing": 1
+    }
+  ],
+  "render": {
+    "kind": "sprite-sheet",
+    "layer": "scenery",
+    "parallax": {
+      "x": 1,
+      "y": 1
+    },
+    "variants": [
+      {
+        "id": "v0",
+        "uri": "assets/grenade.png",
+        "width": 16,
+        "height": 16,
+        "sha256": "ab7befe679d10e325ebf16aa3ce3ca41d7a93db1a094d41472e172ccdd8207ba"
+      }
+    ],
+    "frameSize": [
+      16,
+      16
+    ],
+    "frameCount": 1,
+    "allowedFacing": [
+      1,
+      -1
+    ],
+    "scale": 1
+  },
+  "collision": {
+    "defaults": [],
+    "decorative": true,
+    "behavior": "Artwork does not activate gameplay; scene entity kind and properties do."
+  },
+  "properties": {
+    "variant": {
+      "type": "integer",
+      "default": 0
+    }
+  },
+  "animation": {
+    "states": {
+      "idle": {
+        "frames": [
+          0
+        ],
+        "timingMs": [
+          300
+        ],
+        "loop": true
+      }
+    },
+    "frameEvents": []
+  },
+  "tags": [
+    "grenade",
+    "powerup",
+    "ground"
+  ],
+  "thumbnail": {
+    "uri": "assets/grenade.png",
+    "frame": 0,
+    "variant": 0,
+    "nativeSize": [
+      16,
+      16
+    ],
+    "noResample": true
+  },
+  "placement": {
+    "snap": 1,
+    "suggestedGrid": 8,
+    "preview": "native-with-geometry",
+    "allowScale": false,
+    "allowRotation": false
+  }
+}

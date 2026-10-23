@@ -1,0 +1,58 @@
+// Settlement time uses active play time; legacy worker IDs remain save-compatible.
+const DAY_V55=360000,NIGHT_V55=120000;
+var settlementV55={day:1,phase:'day',elapsed:0},familiesV55=new Map(),childrenV55=[],lastWorkerTickV55=null;
+function workerNightV55(){return settlementV55.phase==='night'}
+function familyV55(id){if(!familiesV55.has(id))familiesV55.set(id,{home:null,pregnant:false});return familiesV55.get(id)}
+function homesV55(){return structuresV46.filter(b=>b.type==='home')}
+function adultsV55(){return [...miners].map(q=>({id:q.game.id,q})).concat(restingMiners.map(r=>({id:r.id,q:null})))}
+function assignHomesV55(){
+ const homes=homesV55(),adults=adultsV55(),used=new Map(homes.map(h=>[h.id,0]));
+ for(const a of adults){const f=familyV55(a.id);if(!used.has(f.home)||used.get(f.home)>=2)f.home=null;else used.set(f.home,used.get(f.home)+1)}
+ for(const a of adults){const f=familyV55(a.id);if(f.home===null){const h=homes.filter(h=>used.get(h.id)<2).sort((aHome,bHome)=>a.q?Math.abs(aHome.x-a.q.position.x)-Math.abs(bHome.x-a.q.position.x):aHome.id-bHome.id)[0];if(h){f.home=h.id;used.set(h.id,used.get(h.id)+1)}}}
+ for(const child of childrenV55)if(!used.has(child.home))child.home=homes[0]?.id??null;
+}
+function wakeWorkerV55(q){if(!q.game.sleepingV55)return;q.game.sleepingV55=false;Body.setStatic(q,false);q.collisionFilter.mask=0xFFFFFFFF;const p=q.game.sleepReturnV55;if(p)Body.setPosition(q,p);q.game.sleepReturnV55=null;Body.setVelocity(q,{x:0,y:0});q.game.workTarget=null;q.game.route=[]}
+function shelterWorkersV55(){
+ assignHomesV55();
+ for(const q of miners){const h=homesV55().find(h=>h.id===familyV55(q.game.id).home);
+  if(!workerNightV55()||!h){wakeWorkerV55(q);continue}
+  if(!q.game.sleepingV55){q.game.sleepReturnV55={...q.position};q.game.sleepingV55=true;Body.setStatic(q,true);q.collisionFilter.mask=0;Body.setPosition(q,{x:h.x+64,y:h.y+96})}
+ }
+}
+function duskV55(random=Math.random){
+ // Children age only after a full daytime phase. New adults need their own bed.
+ for(const child of [...childrenV55]){child.days++;if(child.days>=2){const h=homesV55().find(h=>h.id===child.home);if(h)createMinerAt(h.x-16,h.y+STRUCTURES_V46.home.h*B-26,{id:child.id});else restingMiners.push({id:child.id,level:1,gold:0});childrenV55=childrenV55.filter(c=>c!==child)}}
+ assignHomesV55();
+ for(const h of homesV55()){const pair=adultsV55().filter(a=>familyV55(a.id).home===h.id);if(pair.length===2&&!pair.some(a=>familyV55(a.id).pregnant)&&random()<.25){const f=familyV55(pair[0].id);f.pregnant=true;f.dueDay=settlementV55.day+1}}
+ shelterWorkersV55();
+}
+function dawnV55(){
+ for(const a of adultsV55()){const f=familyV55(a.id);if(f.pregnant&&f.dueDay<=settlementV55.day){childrenV55.push({id:++minerId,home:f.home,days:0});f.pregnant=false;delete f.dueDay}}
+ shelterWorkersV55();
+}
+function stepWorkersV55(ms,random=Math.random){
+ if(!Number.isFinite(ms)||ms<=0)return;
+ while(ms>0){const duration=workerNightV55()?NIGHT_V55:DAY_V55,step=Math.min(ms,duration-settlementV55.elapsed);settlementV55.elapsed+=step;ms-=step;
+  if(settlementV55.elapsed>=duration){settlementV55.elapsed=0;if(workerNightV55()){settlementV55.phase='day';settlementV55.day++;dawnV55()}else{settlementV55.phase='night';duskV55(random)}}
+ }
+ shelterWorkersV55();refreshWorkersV55();
+}
+function saveWorkersV55(){return {clock:{...settlementV55},families:[...familiesV55],children:childrenV55.map(c=>({...c})),sleeping:[...miners].filter(q=>q.game.sleepingV55).map(q=>({id:q.game.id,returnTo:q.game.sleepReturnV55})),ladders:[...laddersV56.entries()],ladderBag:ladderBagV56}}
+const restoreWorkersBaseV55=restoreDynamicState;
+restoreDynamicState=function(s){restoreWorkersBaseV55(s);const data=s?.workersV55;if(data){const t=data.clock||{};settlementV55={day:Math.max(1,Math.floor(finite(t.day)||1)),phase:t.phase==='night'?'night':'day',elapsed:clamp(finite(t.elapsed),0,(t.phase==='night'?NIGHT_V55:DAY_V55)-1)};familiesV55=new Map((data.families||[]).filter(e=>Array.isArray(e)&&e[1]));childrenV55=(data.children||[]).filter(c=>Number.isSafeInteger(c.id)&&c.id>0).map(c=>({...c,days:clamp(Math.floor(finite(c.days)),0,1)}));laddersV56=new Map(data.ladders||[]);ladderBagV56=amountV56(data.ladderBag);for(const c of childrenV55)minerId=Math.max(minerId,c.id);for(const sleep of data.sleeping||[]){const q=[...miners].find(q=>q.game.id===sleep.id);if(q&&sleep.returnTo){q.game.sleepReturnV55={x:finite(sleep.returnTo.x),y:finite(sleep.returnTo.y)};q.game.sleepingV55=true;Body.setStatic(q,true);q.collisionFilter.mask=0}}}shelterWorkersV55();refreshWorkersV55()};
+const workersUpdateBaseV55=updateMiners;
+updateMiners=function(now){const dt=lastWorkerTickV55===null?0:now-lastWorkerTickV55;lastWorkerTickV55=now;if(!document.hidden&&dt>0&&dt<=1500)stepWorkersV55(dt);workersUpdateBaseV55(now)};
+document.addEventListener('visibilitychange',()=>{lastWorkerTickV55=null});
+const workerDrawBaseV55=drawMiner;drawMiner=function(q,now){if(!q.game.sleepingV55)workerDrawBaseV55(q,now)};
+const workerBackgroundV55=bg;bg=function(){workerBackgroundV55();if(workerNightV55()){ctx.save();ctx.fillStyle='rgba(16,21,49,.72)';ctx.fillRect(0,0,W,HH);ctx.restore()}};
+const clockHudV55=document.createElement('div');clockHudV55.id='workerClock';clockHudV55.style.cssText='position:fixed;top:160px;left:12px;z-index:5;padding:8px 10px;background:#272535e8;color:#d2ded6;border:2px solid #638a79;font:11px monospace;pointer-events:none;max-width:calc(100vw - 48px)';document.body.append(clockHudV55);
+function refreshWorkersV55(){const remaining=Math.ceil(((workerNightV55()?NIGHT_V55:DAY_V55)-settlementV55.elapsed)/1000),adults=adultsV55(),unhoused=adults.filter(a=>!familyV55(a.id).home).length;clockHudV55.textContent='DAY '+settlementV55.day+' · '+(workerNightV55()?'NIGHT':'DAYTIME')+' '+Math.floor(remaining/60)+':'+String(remaining%60).padStart(2,'0')+' | '+adults.length+' workers · '+childrenV55.filter(c=>!c.days).length+' babies · '+childrenV55.filter(c=>c.days).length+' kids'+(unhoused?' | '+unhoused+' need a home':'');if(homePanelV55.open)refreshHomeV55()}
+const homePanelV55=document.createElement('dialog');homePanelV55.className='box structurePanel';homePanelV55.id='homePanel';homePanelV55.style.cssText='position:fixed;margin:0;width:min(368px,calc(100vw - 24px));max-height:60vh;overflow:auto';homePanelV55.innerHTML='<header><h2>HOME</h2><button class="btn" id="homeClose">CLOSE</button></header><p id="homeResidents"></p><p>Two adult beds. Each shared night has a 25% chance of pregnancy; birth is at dawn. Baby → kid after one daytime, kid → worker after the next.</p><button class="btn" id="homePack">PACK HOME</button>';document.body.append(homePanelV55);var selectedHomeV55=null;
+function refreshHomeV55(){const adults=adultsV55().filter(a=>familyV55(a.id).home===selectedHomeV55),children=childrenV55.filter(c=>c.home===selectedHomeV55);$('homeResidents').textContent=adults.length+'/2 beds assigned. '+adults.map(a=>'Worker '+a.id+(familyV55(a.id).pregnant?' (pregnant)':'')+(workerNightV55()?' — sleeping':'')).join(', ')+'. '+children.filter(c=>!c.days).length+' babies, '+children.filter(c=>c.days).length+' kids.'}
+$('homeClose').onclick=()=>homePanelV55.close();$('homePack').onclick=()=>{const h=homesV55().find(h=>h.id===selectedHomeV55);if(h){packStructureV46(h);shelterWorkersV55();saveGame();refreshWorkersV55()}homePanelV55.close()};
+const workersOpenBuildingV55=openBuildingV46;openBuildingV46=function(b){if(b.type!=='home'){homePanelV55.close();return workersOpenBuildingV55(b)}assignHomesV55();selectedHomeV55=b.id;panelV48.close();homePanelV55.style.left='12px';homePanelV55.style.bottom=Math.max(90,innerHeight-$('bar').getBoundingClientRect().top+8)+'px';refreshHomeV55();if(!homePanelV55.open)homePanelV55.show()};
+const workerMenuV55=refreshMinerMenu;refreshMinerMenu=function(){workerMenuV55();if(selectedMiner){const f=familyV55(selectedMiner.game.id);$('minerDesc').textContent+=' '+(f.home?'Home '+f.home+'.':'Needs a Home to sleep at night.')+(f.pregnant?' Pregnant — baby due at dawn.':'')}};
+// Rename displayed copy while preserving identifiers used by old worlds and tools.
+function workerCopyV55(text){return text.replace(/\bMINERS\b/g,'WORKERS').replace(/\bMINER\b/g,'WORKER').replace(/\bMiners\b/g,'Workers').replace(/\bMiner\b/g,'Worker').replace(/\bminers\b/g,'workers').replace(/\bminer\b/g,'worker')}
+function renameWorkerCopyV55(root){const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT);while(walker.nextNode()){const n=walker.currentNode;if(['SCRIPT','STYLE'].includes(n.parentElement?.tagName))continue;const text=workerCopyV55(n.textContent);if(text!==n.textContent)n.textContent=text}for(const el of root.querySelectorAll?.('[aria-label],[title]')||[])for(const attr of ['aria-label','title'])if(el.hasAttribute(attr)){const old=el.getAttribute(attr),text=workerCopyV55(old);if(old!==text)el.setAttribute(attr,text)}}
+renameWorkerCopyV55(document.body);new MutationObserver(records=>{for(const r of records){const root=r.target.nodeType===3?r.target.parentElement:r.target;if(root)renameWorkerCopyV55(root)}}).observe(document.body,{subtree:true,childList:true,characterData:true});

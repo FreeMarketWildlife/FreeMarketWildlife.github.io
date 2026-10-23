@@ -1,0 +1,50 @@
+// Buttonwood buried layers: exposed faces stay readable, ten layers approach ink-black.
+// ART-BIBLE §§3–5, 8, 10: native pixels, honest exposure, shared animal/world lighting.
+const fogArtV72=ButtonwoodArt.burialFog;
+const fogCanvasV72=document.createElement('canvas'),fogContextV72=fogCanvasV72.getContext('2d');
+let fogFieldV72=null,fogSeedsV72=null;
+function fogOpenV72(cx,cy){
+ if(cy<0)return true;
+ const k=key(cx,cy);if(grid.has(k))return false;
+ if(removedTerrain.has(k))return true;
+ const pocket=pocketForCell(cx,cy);
+ return !!pocket&&(pocket.surface||revealedPockets.has(pocket.id));
+}
+function fogPrepareV72(){
+ if(!bwEnabled){fogFieldV72=null;fogSeedsV72=null;return}
+ const pad=fogArtV72.maxLayer+1;
+ const left=cell(cam.x-W/(2*cam.z))-pad,right=cell(cam.x+W/(2*cam.z))+pad;
+ const top=Math.max(-1,cell(cam.y-HH/(2*cam.z))-pad),bottom=cell(cam.y+HH/(2*cam.z))+pad;
+ if(bottom<top){fogFieldV72=null;fogSeedsV72=null;return}
+ const width=right-left+1,height=bottom-top+1,seeds=new Uint8Array(width*height);
+ let changed=!fogFieldV72||fogFieldV72.left!==left||fogFieldV72.top!==top||fogFieldV72.width!==width||fogFieldV72.height!==height;
+ for(let y=0;y<height;y++)for(let x=0;x<width;x++){
+  const cx=left+x,cy=top+y,z=grid.get(key(cx,cy)),i=y*width+x;
+  // Use the mining rule, not raw empty cells: concealed pockets never emit light.
+  seeds[i]=z?.game.terrain?Number(terrainExposed(z)):Number(fogOpenV72(cx,cy));
+  if(!changed&&seeds[i]!==fogSeedsV72[i])changed=true;
+ }
+ if(!changed)return;
+ fogSeedsV72=seeds;
+ fogFieldV72=fogArtV72.build({left,top,width,height,isExposed:(x,y)=>!!seeds[(y-top)*width+x-left]});
+}
+function fogLayerV72(cx,cy){return cy<0?0:fogFieldV72?.at(cx,cy)??fogArtV72.maxLayer}
+function fogPaintV72(){
+ if(!bwEnabled||!fogFieldV72)return;
+ const left=Math.floor(cam.x-W/(2*cam.z)),top=Math.floor(cam.y-HH/(2*cam.z));
+ const width=Math.ceil(W/cam.z)+2,height=Math.ceil(HH/cam.z)+2;
+ if(fogCanvasV72.width!==width)fogCanvasV72.width=width;
+ if(fogCanvasV72.height!==height)fogCanvasV72.height=height;
+ const g=fogContextV72;g.clearRect(0,0,width,height);g.fillStyle=bwP.buriedShade;
+ for(let cy=Math.max(0,cell(top));cy<=cell(top+height);cy++)for(let cx=cell(left);cx<=cell(left+width);cx++){
+  const layer=fogLayerV72(cx,cy);if(!layer)continue;
+  g.globalAlpha=fogArtV72.opacity(layer);g.fillRect(cx*B-left,cy*B-top,B,B);
+ }
+ g.globalAlpha=1;
+ const screen=w2s(left,top);ctx.save();ctx.globalAlpha=1;ctx.imageSmoothingEnabled=false;
+ ctx.drawImage(fogCanvasV72,screen.x,screen.y,width*cam.z,height*cam.z);ctx.restore();
+}
+const fogBackgroundV72=bg;
+bg=function(){fogBackgroundV72();fogPrepareV72()};
+const fogDetailsV72=drawGoldBursts;
+drawGoldBursts=function(now){fogDetailsV72(now);fogPaintV72()};

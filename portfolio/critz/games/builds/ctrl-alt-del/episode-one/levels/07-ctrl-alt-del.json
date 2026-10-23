@@ -1,0 +1,795 @@
+{
+  "schemaVersion": 1,
+  "assetPack": "cad.episode1.prototype@1",
+  "id": "07-ctrl-alt-del",
+  "chapter": 7,
+  "title": "Ctrl Alt Del",
+  "sourceTitle": "Ctrl Alt Del",
+  "status": "playable-prototype",
+  "dialogueStatus": "Supplied oath exact; other dialogue provisional.",
+  "family": "mini",
+  "mode": "flight",
+  "theme": "server",
+  "bounds": {
+    "width": 4500,
+    "height": 270
+  },
+  "viewport": [
+    480,
+    270
+  ],
+  "spawn": {
+    "x": 85,
+    "y": 135,
+    "hero": "jane"
+  },
+  "physicsProfile": "cad.mini.flight.prototype-v1",
+  "layers": [
+    {
+      "id": "distant",
+      "order": 0
+    },
+    {
+      "id": "architecture",
+      "order": 10
+    },
+    {
+      "id": "scenery",
+      "order": 20
+    },
+    {
+      "id": "playable",
+      "order": 30
+    },
+    {
+      "id": "actors",
+      "order": 40
+    },
+    {
+      "id": "foreground",
+      "order": 50
+    }
+  ],
+  "terrainOrigin": {
+    "x": 0,
+    "y": 6
+  },
+  "terrain": [],
+  "entities": [
+    {
+      "id": "decor-1",
+      "name": "decor",
+      "kind": "decor",
+      "x": 0,
+      "y": 264,
+      "layer": "distant",
+      "assetId": "cad.mini.recyke.skyline",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-2",
+      "name": "decor",
+      "kind": "decor",
+      "x": 192,
+      "y": 264,
+      "layer": "distant",
+      "assetId": "cad.mini.recyke.skyline",
+      "assetRevision": 1,
+      "variant": 1
+    },
+    {
+      "id": "decor-3",
+      "name": "decor",
+      "kind": "decor",
+      "x": 384,
+      "y": 264,
+      "layer": "distant",
+      "assetId": "cad.mini.recyke.skyline",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-4",
+      "name": "decor",
+      "kind": "decor",
+      "x": 576,
+      "y": 264,
+      "layer": "distant",
+      "assetId": "cad.mini.recyke.skyline",
+      "assetRevision": 1,
+      "variant": 1
+    },
+    {
+      "id": "decor-5",
+      "name": "decor",
+      "kind": "decor",
+      "x": 768,
+      "y": 264,
+      "layer": "distant",
+      "assetId": "cad.mini.recyke.skyline",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-6",
+      "name": "decor",
+      "kind": "decor",
+      "x": 960,
+      "y": 264,
+      "layer": "distant",
+      "assetId": "cad.mini.recyke.skyline",
+      "assetRevision": 1,
+      "variant": 1
+    },
+    {
+      "id": "decor-7",
+      "name": "decor",
+      "kind": "decor",
+      "x": 1152,
+      "y": 264,
+      "layer": "distant",
+      "assetId": "cad.mini.recyke.skyline",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-8",
+      "name": "decor",
+      "kind": "decor",
+      "x": 1344,
+      "y": 264,
+      "layer": "distant",
+      "assetId": "cad.mini.recyke.skyline",
+      "assetRevision": 1,
+      "variant": 1
+    },
+    {
+      "id": "decor-9",
+      "name": "decor",
+      "kind": "decor",
+      "x": 1536,
+      "y": 264,
+      "layer": "distant",
+      "assetId": "cad.mini.recyke.skyline",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-10",
+      "name": "decor",
+      "kind": "decor",
+      "x": 1728,
+      "y": 264,
+      "layer": "distant",
+      "assetId": "cad.mini.recyke.skyline",
+      "assetRevision": 1,
+      "variant": 1
+    },
+    {
+      "id": "decor-11",
+      "name": "decor",
+      "kind": "decor",
+      "x": 1920,
+      "y": 264,
+      "layer": "distant",
+      "assetId": "cad.mini.recyke.skyline",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-12",
+      "name": "decor",
+      "kind": "decor",
+      "x": 2112,
+      "y": 264,
+      "layer": "distant",
+      "assetId": "cad.mini.recyke.skyline",
+      "assetRevision": 1,
+      "variant": 1
+    },
+    {
+      "id": "decor-13",
+      "name": "decor",
+      "kind": "decor",
+      "x": 2304,
+      "y": 264,
+      "layer": "distant",
+      "assetId": "cad.mini.recyke.skyline",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-14",
+      "name": "decor",
+      "kind": "decor",
+      "x": 2496,
+      "y": 264,
+      "layer": "distant",
+      "assetId": "cad.mini.recyke.skyline",
+      "assetRevision": 1,
+      "variant": 1
+    },
+    {
+      "id": "decor-15",
+      "name": "decor",
+      "kind": "decor",
+      "x": 2688,
+      "y": 264,
+      "layer": "distant",
+      "assetId": "cad.mini.recyke.skyline",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-16",
+      "name": "decor",
+      "kind": "decor",
+      "x": 2880,
+      "y": 264,
+      "layer": "distant",
+      "assetId": "cad.mini.recyke.skyline",
+      "assetRevision": 1,
+      "variant": 1
+    },
+    {
+      "id": "decor-17",
+      "name": "decor",
+      "kind": "decor",
+      "x": 3072,
+      "y": 264,
+      "layer": "distant",
+      "assetId": "cad.mini.recyke.skyline",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-18",
+      "name": "decor",
+      "kind": "decor",
+      "x": 3264,
+      "y": 264,
+      "layer": "distant",
+      "assetId": "cad.mini.recyke.skyline",
+      "assetRevision": 1,
+      "variant": 1
+    },
+    {
+      "id": "decor-19",
+      "name": "decor",
+      "kind": "decor",
+      "x": 3456,
+      "y": 264,
+      "layer": "distant",
+      "assetId": "cad.mini.recyke.skyline",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-20",
+      "name": "decor",
+      "kind": "decor",
+      "x": 3648,
+      "y": 264,
+      "layer": "distant",
+      "assetId": "cad.mini.recyke.skyline",
+      "assetRevision": 1,
+      "variant": 1
+    },
+    {
+      "id": "decor-21",
+      "name": "decor",
+      "kind": "decor",
+      "x": 3840,
+      "y": 264,
+      "layer": "distant",
+      "assetId": "cad.mini.recyke.skyline",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-22",
+      "name": "decor",
+      "kind": "decor",
+      "x": 4032,
+      "y": 264,
+      "layer": "distant",
+      "assetId": "cad.mini.recyke.skyline",
+      "assetRevision": 1,
+      "variant": 1
+    },
+    {
+      "id": "decor-23",
+      "name": "decor",
+      "kind": "decor",
+      "x": 4224,
+      "y": 264,
+      "layer": "distant",
+      "assetId": "cad.mini.recyke.skyline",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-24",
+      "name": "decor",
+      "kind": "decor",
+      "x": 4416,
+      "y": 264,
+      "layer": "distant",
+      "assetId": "cad.mini.recyke.skyline",
+      "assetRevision": 1,
+      "variant": 1
+    },
+    {
+      "id": "wave-600",
+      "name": "wave 600",
+      "kind": "enemy",
+      "x": 600,
+      "y": 130,
+      "layer": "actors",
+      "archetype": "manta",
+      "hp": 4,
+      "left": 590,
+      "right": 610,
+      "facing": -1,
+      "activationX": 220
+    },
+    {
+      "id": "wave-1030",
+      "name": "wave 1030",
+      "kind": "enemy",
+      "x": 1030,
+      "y": 195,
+      "layer": "actors",
+      "archetype": "watcher",
+      "hp": 4,
+      "left": 1020,
+      "right": 1040,
+      "facing": -1,
+      "activationX": 650
+    },
+    {
+      "id": "escort-1030",
+      "name": "escort 1030",
+      "kind": "enemy",
+      "x": 1150,
+      "y": 220,
+      "layer": "actors",
+      "archetype": "collector",
+      "hp": 3,
+      "left": 1126,
+      "right": 1174,
+      "facing": -1,
+      "activationX": 770
+    },
+    {
+      "id": "wave-1460",
+      "name": "wave 1460",
+      "kind": "enemy",
+      "x": 1460,
+      "y": 65,
+      "layer": "actors",
+      "archetype": "manta",
+      "hp": 4,
+      "left": 1450,
+      "right": 1470,
+      "facing": -1,
+      "activationX": 1080
+    },
+    {
+      "id": "wave-1890",
+      "name": "wave 1890",
+      "kind": "enemy",
+      "x": 1890,
+      "y": 130,
+      "layer": "actors",
+      "archetype": "watcher",
+      "hp": 4,
+      "left": 1880,
+      "right": 1900,
+      "facing": -1,
+      "activationX": 1510
+    },
+    {
+      "id": "escort-1890",
+      "name": "escort 1890",
+      "kind": "enemy",
+      "x": 2010,
+      "y": 220,
+      "layer": "actors",
+      "archetype": "collector",
+      "hp": 3,
+      "left": 1986,
+      "right": 2034,
+      "facing": -1,
+      "activationX": 1630
+    },
+    {
+      "id": "wave-2320",
+      "name": "wave 2320",
+      "kind": "enemy",
+      "x": 2320,
+      "y": 195,
+      "layer": "actors",
+      "archetype": "manta",
+      "hp": 4,
+      "left": 2310,
+      "right": 2330,
+      "facing": -1,
+      "activationX": 1940
+    },
+    {
+      "id": "wave-2750",
+      "name": "wave 2750",
+      "kind": "enemy",
+      "x": 2750,
+      "y": 65,
+      "layer": "actors",
+      "archetype": "watcher",
+      "hp": 4,
+      "left": 2740,
+      "right": 2760,
+      "facing": -1,
+      "activationX": 2370
+    },
+    {
+      "id": "escort-2750",
+      "name": "escort 2750",
+      "kind": "enemy",
+      "x": 2870,
+      "y": 220,
+      "layer": "actors",
+      "archetype": "collector",
+      "hp": 3,
+      "left": 2846,
+      "right": 2894,
+      "facing": -1,
+      "activationX": 2490
+    },
+    {
+      "id": "wave-3180",
+      "name": "wave 3180",
+      "kind": "enemy",
+      "x": 3180,
+      "y": 130,
+      "layer": "actors",
+      "archetype": "manta",
+      "hp": 4,
+      "left": 3170,
+      "right": 3190,
+      "facing": -1,
+      "activationX": 2800
+    },
+    {
+      "id": "wave-3610",
+      "name": "wave 3610",
+      "kind": "enemy",
+      "x": 3610,
+      "y": 195,
+      "layer": "actors",
+      "archetype": "watcher",
+      "hp": 4,
+      "left": 3600,
+      "right": 3620,
+      "facing": -1,
+      "activationX": 3230
+    },
+    {
+      "id": "escort-3610",
+      "name": "escort 3610",
+      "kind": "enemy",
+      "x": 3730,
+      "y": 220,
+      "layer": "actors",
+      "archetype": "collector",
+      "hp": 3,
+      "left": 3706,
+      "right": 3754,
+      "facing": -1,
+      "activationX": 3350
+    },
+    {
+      "id": "wave-4040",
+      "name": "wave 4040",
+      "kind": "enemy",
+      "x": 4040,
+      "y": 65,
+      "layer": "actors",
+      "archetype": "manta",
+      "hp": 4,
+      "left": 4030,
+      "right": 4050,
+      "facing": -1,
+      "activationX": 3660
+    },
+    {
+      "id": "boost-0",
+      "name": "boost 0",
+      "kind": "boost",
+      "x": 480,
+      "y": 75,
+      "layer": "scenery",
+      "assetId": "cad.mini.episode1.boost",
+      "assetRevision": 1,
+      "w": 56,
+      "h": 40,
+      "duration": 2
+    },
+    {
+      "id": "weapon-0",
+      "name": "weapon 0",
+      "kind": "pickup",
+      "x": 600,
+      "y": 75,
+      "layer": "scenery",
+      "assetId": "cad.mini.episode1.weapon",
+      "assetRevision": 1,
+      "pickup": "weapon"
+    },
+    {
+      "id": "boost-1",
+      "name": "boost 1",
+      "kind": "boost",
+      "x": 1250,
+      "y": 140,
+      "layer": "scenery",
+      "assetId": "cad.mini.episode1.boost",
+      "assetRevision": 1,
+      "w": 56,
+      "h": 40,
+      "duration": 2
+    },
+    {
+      "id": "weapon-1",
+      "name": "weapon 1",
+      "kind": "pickup",
+      "x": 1370,
+      "y": 140,
+      "layer": "scenery",
+      "assetId": "cad.mini.episode1.weapon",
+      "assetRevision": 1,
+      "pickup": "weapon"
+    },
+    {
+      "id": "boost-2",
+      "name": "boost 2",
+      "kind": "boost",
+      "x": 2100,
+      "y": 205,
+      "layer": "scenery",
+      "assetId": "cad.mini.episode1.boost",
+      "assetRevision": 1,
+      "w": 56,
+      "h": 40,
+      "duration": 2
+    },
+    {
+      "id": "weapon-2",
+      "name": "weapon 2",
+      "kind": "pickup",
+      "x": 2220,
+      "y": 205,
+      "layer": "scenery",
+      "assetId": "cad.mini.episode1.weapon",
+      "assetRevision": 1,
+      "pickup": "weapon"
+    },
+    {
+      "id": "boost-3",
+      "name": "boost 3",
+      "kind": "boost",
+      "x": 3050,
+      "y": 75,
+      "layer": "scenery",
+      "assetId": "cad.mini.episode1.boost",
+      "assetRevision": 1,
+      "w": 56,
+      "h": 40,
+      "duration": 2
+    },
+    {
+      "id": "weapon-3",
+      "name": "weapon 3",
+      "kind": "pickup",
+      "x": 3170,
+      "y": 75,
+      "layer": "scenery",
+      "assetId": "cad.mini.episode1.weapon",
+      "assetRevision": 1,
+      "pickup": "weapon"
+    },
+    {
+      "id": "pickup-25",
+      "name": "pickup",
+      "kind": "pickup",
+      "x": 900,
+      "y": 135,
+      "layer": "scenery",
+      "assetId": "cad.mini.episode1.health",
+      "assetRevision": 1,
+      "pickup": "health"
+    },
+    {
+      "id": "pickup-26",
+      "name": "pickup",
+      "kind": "pickup",
+      "x": 1800,
+      "y": 135,
+      "layer": "scenery",
+      "assetId": "cad.mini.episode1.health",
+      "assetRevision": 1,
+      "pickup": "health"
+    },
+    {
+      "id": "pickup-27",
+      "name": "pickup",
+      "kind": "pickup",
+      "x": 2900,
+      "y": 135,
+      "layer": "scenery",
+      "assetId": "cad.mini.episode1.health",
+      "assetRevision": 1,
+      "pickup": "health"
+    },
+    {
+      "id": "regional-mast-320",
+      "name": "regional mast 320",
+      "kind": "decor",
+      "x": 320,
+      "y": 244,
+      "layer": "distant",
+      "assetId": "cad.mini.episode1.antenna",
+      "assetRevision": 1
+    },
+    {
+      "id": "regional-mast-704",
+      "name": "regional mast 704",
+      "kind": "decor",
+      "x": 704,
+      "y": 244,
+      "layer": "distant",
+      "assetId": "cad.mini.episode1.antenna",
+      "assetRevision": 1
+    },
+    {
+      "id": "regional-mast-1088",
+      "name": "regional mast 1088",
+      "kind": "decor",
+      "x": 1088,
+      "y": 244,
+      "layer": "distant",
+      "assetId": "cad.mini.episode1.antenna",
+      "assetRevision": 1
+    },
+    {
+      "id": "regional-mast-1472",
+      "name": "regional mast 1472",
+      "kind": "decor",
+      "x": 1472,
+      "y": 244,
+      "layer": "distant",
+      "assetId": "cad.mini.episode1.antenna",
+      "assetRevision": 1
+    },
+    {
+      "id": "regional-mast-1856",
+      "name": "regional mast 1856",
+      "kind": "decor",
+      "x": 1856,
+      "y": 244,
+      "layer": "distant",
+      "assetId": "cad.mini.episode1.antenna",
+      "assetRevision": 1
+    },
+    {
+      "id": "regional-mast-2240",
+      "name": "regional mast 2240",
+      "kind": "decor",
+      "x": 2240,
+      "y": 244,
+      "layer": "distant",
+      "assetId": "cad.mini.episode1.antenna",
+      "assetRevision": 1
+    },
+    {
+      "id": "regional-mast-2624",
+      "name": "regional mast 2624",
+      "kind": "decor",
+      "x": 2624,
+      "y": 244,
+      "layer": "distant",
+      "assetId": "cad.mini.episode1.antenna",
+      "assetRevision": 1
+    },
+    {
+      "id": "regional-mast-3008",
+      "name": "regional mast 3008",
+      "kind": "decor",
+      "x": 3008,
+      "y": 244,
+      "layer": "distant",
+      "assetId": "cad.mini.episode1.antenna",
+      "assetRevision": 1
+    },
+    {
+      "id": "regional-mast-3392",
+      "name": "regional mast 3392",
+      "kind": "decor",
+      "x": 3392,
+      "y": 244,
+      "layer": "distant",
+      "assetId": "cad.mini.episode1.antenna",
+      "assetRevision": 1
+    },
+    {
+      "id": "regional-mast-3776",
+      "name": "regional mast 3776",
+      "kind": "decor",
+      "x": 3776,
+      "y": 244,
+      "layer": "distant",
+      "assetId": "cad.mini.episode1.antenna",
+      "assetRevision": 1
+    },
+    {
+      "id": "regional-mast-4160",
+      "name": "regional mast 4160",
+      "kind": "decor",
+      "x": 4160,
+      "y": 244,
+      "layer": "distant",
+      "assetId": "cad.mini.episode1.antenna",
+      "assetRevision": 1
+    }
+  ],
+  "objectives": [
+    {
+      "id": "arrive",
+      "label": "Reach the regional server",
+      "requires": []
+    }
+  ],
+  "sequences": {
+    "opening": {
+      "id": "opening",
+      "name": "opening",
+      "cards": [
+        {
+          "type": "dialogue",
+          "speaker": "Janey",
+          "text": "Regional server. If the code can reach their system, I can finish this.",
+          "source": "prototype",
+          "duration": 2982
+        },
+        {
+          "type": "title",
+          "text": "WASD / arrows to steer • Space to fire\nFly THROUGH holograms to boost • Collect gun icons",
+          "duration": 2600
+        }
+      ]
+    },
+    "arrival": {
+      "id": "arrival",
+      "name": "arrival",
+      "cards": [
+        {
+          "type": "dialogue",
+          "speaker": "Janey",
+          "text": "There. The perimeter fence.",
+          "source": "prototype",
+          "duration": 2400
+        }
+      ]
+    }
+  },
+  "onStart": "opening",
+  "onComplete": "arrival",
+  "timer": null,
+  "notes": [],
+  "flight": {
+    "speed": 112,
+    "steerSpeed": 145,
+    "finishX": 4280
+  },
+  "next": "08-acquire"
+}

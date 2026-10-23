@@ -1,0 +1,40 @@
+// Frozen native remains wait for the score; simulation death stays immediate.
+const departuresV88=[];let departureBeatsV88=1;
+function departureV88(sprite,x,y,kind='creature',cue=null){
+ cue=cue||SkyAudio.deathCue?.(kind,1,clamp((w2s(x,y).x-W/2)/(W/2),-1,1),departureBeatsV88);
+ if(departuresV88.length>=32)departuresV88.shift();departuresV88.push({sprite,x,y,cue,elapsed:0});
+}
+const dieBeforeV88=minerDieV42;
+minerDieV42=function(q,cause){if(!miners.has(q)||minerGhostsV42.has(q.game.id))return false;const species=workerSpeciesV73(q),sprite=species?ButtonwoodArt.wildlifeSprite(species,{state:'idle',frame:0,direction:q.game.dir}):ButtonwoodArt.worker({state:'idle',frame:0,variant:(q.game.id-1)%3,dir:q.game.dir}),x=q.position.x,y=q.position.y+B*.4;
+ const cue=SkyAudio.deathCue?.('worker',1,0,departureBeatsV88),spirit=SkyAudio.spiritCue;let result;SkyAudio.spiritCue=(kind,...args)=>kind==='death'?cue:spirit(kind,...args);try{result=dieBeforeV88(q,cause)}finally{SkyAudio.spiritCue=spirit}if(result)departureV88(sprite,x,y,'worker',cue);return result};
+// Replace the old fixed-millisecond ashes with the musical departure layer.
+brimstoneAshV83Add=function(){};
+const animalDeathBeforeV88=brimstoneAnimalDeathV83;
+brimstoneAnimalDeathV83=function(a,p,cage=null){const sprite=ButtonwoodArt.wildlifeSprite(a.species,{state:'idle',frame:0,direction:a.direction||1}),result=animalDeathBeforeV88(a,p,cage);if(result)departureV88(sprite,p.x,p.y,a.feyV75?'fey':'creature');return result};
+const defeatBeforeV88=fairyDefeatV75;
+fairyDefeatV75=function(q,method){if(!miners.has(q))return false;const sprite=ButtonwoodArt.worker({state:'idle',frame:0,variant:(q.game.id-1)%3,dir:q.game.dir}),x=q.position.x,y=q.position.y+B*.4,result=defeatBeforeV88(q,method);if(result)departureV88(sprite,x,y,'fairy');return result};
+// Keep the existing contact and blood art; the musical departure is an extra renderer layer.
+let departureFrameV88=null;const departureReducedV88=matchMedia('(prefers-reduced-motion: reduce)');
+const departureDrawBeforeV88=drawGoldBursts;
+drawGoldBursts=function(now){departureDrawBeforeV88(now);const r=SkyAudio.rhythm?.(),pos=r?.ready?r.beatIndex+r.phase:null,dt=departureFrameV88===null?0:Math.min(100,Math.max(0,now-departureFrameV88));departureFrameV88=now;
+ for(let i=departuresV88.length-1;i>=0;i--){const d=departuresV88[i];if(!gameClockV76.paused&&!document.hidden)d.elapsed+=dt;const age=d.cue?(pos!==null?pos-d.cue.beatIndex:(d.age??-1)):d.elapsed/(60000/72),length=d.cue?.beats??departureBeatsV88;d.age=age;
+ if(age>=length){departuresV88.splice(i,1);continue}const progress=age<0?0:age/Math.max(1,length),p=w2s(d.x,d.y-(departureReducedV88.matches?0:Math.floor(progress*12)));ctx.save();ctx.imageSmoothingEnabled=false;ctx.translate(Math.round(p.x),Math.round(p.y));ctx.scale(cam.z,cam.z);ctx.globalAlpha=1-progress;ctx.drawImage(d.sprite,-Math.floor(d.sprite.width/2),-d.sprite.height);ctx.restore()}
+};
+const demoV88=new URLSearchParams(location.search).get('demo')==='sound';
+if(demoV88){
+ const bootBeforeV88=buttonwoodBoot;buttonwoodBoot=function(){bootBeforeV88();document.title='Buttonwood · Sound playground';stone=false;tool='pick';pickaxeTier=0;pickaxeOwnedTier=0;
+ const panel=document.createElement('section');panel.id='soundDemoV88';panel.setAttribute('aria-label','Sound playground');const P=ButtonwoodArt.palette;
+ Object.assign(panel.style,{position:'fixed',left:'8px',top:'112px',maxWidth:'min(360px, calc(100vw - 16px))',maxHeight:'calc(100dvh - 220px)',overflow:'auto',padding:'12px',background:P.cream,color:P.ink,border:'2px solid '+P.outline,zIndex:50,font:'14px monospace'});
+ panel.innerHTML='<b>Sound playground</b><p>Deaths wait for the next 1. Tap earth to mine. Stone is locked; buried blocks stay blocked.</p><label>Departure <select aria-label="Departure duration"><option value="0">Instant</option><option value="1" selected>Quarter note</option><option value="2">Half note</option><option value="4">Whole note</option></select></label><p id="soundBeatV88" aria-live="off">Tap a test to start audio.</p>';
+ panel.querySelector('select').onchange=e=>departureBeatsV88=Number(e.target.value);
+ const button=(label,action)=>{const b=document.createElement('button');b.className='btn';b.textContent=label;b.style.minHeight='44px';b.style.font='14px monospace';b.style.margin='4px';b.onclick=async()=>{if(gameClockV76.paused)resumeGameV76();await SkyAudio.ensure();action()};panel.append(b)};
+ button('Creature',()=>{const p={x:cam.x,y:-4},a=wildlifeNewV71('wood-mouse',p);a.x=p.x;a.y=p.y;wildlifeV71.push(a);brimstoneAnimalDeathV83(a,p)});
+ button('Fey',()=>{const p={x:cam.x+48,y:-28},a=wildlifeNewV71('bird',p);a.x=p.x;a.y=p.y;wildlifeV71.push(a);becomeFeyV75(a);brimstoneAnimalDeathV83(a,p)});
+ button('Day / night',()=>{settlementV55.phase=settlementV55.phase==='night'?'day':'night';settlementV55.elapsed=0});
+ button('Worker',()=>{const q=createMinerAt(cam.x-48,-24,{level:1,gold:0});if(q)minerDieV42(q,'demo');else{const q=[...miners].at(-1);if(q)minerDieV42(q,'demo')}});
+ // Real terrain fixtures use exactly the ordinary mining rejection paths.
+ function fixture(material,buried){const cx=cell(cam.x),cy=buried?8:2;ensureChunkAtX(ctr(cx));let z=grid.get(key(cx,cy));if(!z)z=mk(ctr(cx),ctr(cy),material,{terrain:true,cx,cy,static:true});z.game.material=material;stone=false;if(buried){for(const [dx,dy]of [[1,0],[-1,0],[0,1],[0,-1]]){if(!grid.has(key(cx+dx,cy+dy)))mk(ctr(cx+dx),ctr(cy+dy),'dirt',{terrain:true,cx:cx+dx,cy:cy+dy,static:true})}strikePickV49({b:z.position,pickBrush:{x:cx,y:cy,size:1}})}else{const expose=terrainExposed;terrainExposed=()=>true;try{mine(z.position)}finally{terrainExposed=expose}}}
+ button('Locked stone',()=>fixture('stone',false));button('Buried earth',()=>fixture('dirt',true));
+ document.body.append(panel);setInterval(()=>{const r=SkyAudio.rhythm();$('soundBeatV88').textContent=r.ready?'Beat '+(r.barBeat+1)+' / 4'+(r.barBeat===0?' · 1':''):'Tap a test to start audio.'},50);
+ };
+}

@@ -1,0 +1,212 @@
+// Local stores, recipe priorities, residential capacity and pixel-native citizens.
+JOBS_V46.workshop.home={name:'Home',inputs:{wood:15,stone:5},outputs:{home:1},duration:5000};
+JOBS_V46.workshop.ladder={name:'Ladders',inputs:{wood:5},outputs:{ladder:10},duration:5000};
+STRUCTURES_V46.home.note='2 workers · 1 baby · 1 kid';
+if(!$('structure-card-home')){const d=STRUCTURES_V46.home,button=document.createElement('button');button.id='structure-card-home';button.className='structureCard';button.innerHTML='<img src="'+uiPixelV48('home')+'" alt=""><span>Home<small>'+d.w+' × '+d.h+'</small></span><b>0</b>';$('structureCards').append(button);button.onclick=()=>{if(structureBagV46.home)openStructuresV48()}}
+const settlementItemsV56=new Set([...Object.keys(inv),...Object.keys(STRUCTURES_V46),'ladder']);
+const settlementPanelV56={close(){}};
+var laddersV56=new Map(),ladderBagV56=0,settlementLastV56=null,settlementUiLastV56=0,solidCacheV57=null,routeFrameV57=-1,routeBudgetV57=0;
+function refreshSettlementV56(){if(typeof refreshWorkersV55==='function')refreshWorkersV55()}
+const buildingControlsV56=document.createElement('div');buildingControlsV56.id='buildingControlsV56';buildingControlsV56.innerHTML='<div><span>W</span><select id="buildingWorkerV56"><option value="">—</option></select></div><div><span>I</span><button class="btn" id="depositWoodV56">+W</button><button class="btn" id="depositOreV56">+O</button></div><div><span>1</span><select id="buildingPrimaryV56"></select><select id="buildingSecondaryV56"><option value="">—</option></select></div>';$('buildingPanel').append(buildingControlsV56);
+function refreshBuildingControlsV56(b){if(!b||!buildingControlsV56)return;const worker=$('buildingWorkerV56');worker.innerHTML='<option value="">—</option>'+adultsV55().map(a=>'<option value="'+a.id+'">'+a.id+'</option>').join('');worker.value=b.workerId??'';const recipes=Object.keys(JOBS_V46[b.type]||{});$('buildingPrimaryV56').innerHTML=recipes.map(k=>'<option value="'+k+'">'+k+'</option>').join('');$('buildingPrimaryV56').value=b.selected||recipes[0]||'';$('buildingSecondaryV56').innerHTML='<option value="">—</option>'+recipes.map(k=>'<option value="'+k+'">'+k+'</option>').join('');$('buildingSecondaryV56').value=b.secondary||'';buildingControlsV56.querySelector('div:nth-child(2)').firstChild.textContent=Object.entries(stockV56(b)).map(([k,v])=>k+':'+v).join(' · ')||'I 0';}
+$('depositWoodV56').onclick=()=>{const b=structuresV46.find(x=>x.id===selectedBuildingV46);if(b){transferStockV56(b,'wood',5,true);refreshBuildingControlsV56(b)}};$('depositOreV56').onclick=()=>{const b=structuresV46.find(x=>x.id===selectedBuildingV46);if(b){transferStockV56(b,'ironOre',5,true);refreshBuildingControlsV56(b)}};
+$('buildingWorkerV56').onchange=e=>{const b=structuresV46.find(x=>x.id===selectedBuildingV46);if(b){assignEmployeeV56(b,e.target.value?Number(e.target.value):null);refreshBuildingControlsV56(b)}};$('buildingPrimaryV56').onchange=e=>{const b=structuresV46.find(x=>x.id===selectedBuildingV46);if(b){b.selected=e.target.value;ui();saveGame()}};$('buildingSecondaryV56').onchange=e=>{const b=structuresV46.find(x=>x.id===selectedBuildingV46);if(b){b.secondary=e.target.value;ui();saveGame()}};
+const controlsOpenV56=openBuildingV46;openBuildingV46=function(b){controlsOpenV56(b);buildingControlsV56.hidden=b.type==='home';refreshBuildingControlsV56(b)};
+function stockV56(b){return b.stock||(b.stock={})}
+function amountV56(value){return Math.max(0,Math.floor(finite(value)))}
+function availableStockV56(b,r){return !!r&&Object.entries(r.inputs).every(([k,n])=>(stockV56(b)[k]||0)>=n)}
+function workplaceV56(id){return structuresV46.find(b=>b.workerId===id)}
+function employeeReadyV56(b){const q=[...miners].find(q=>q.game.id===b.workerId);return !!q&&!workerNightV55()&&!q.game.sleepingV55&&q.game.atWorkV56===b.id}
+function assignEmployeeV56(b,id){
+ if(id!==null&&!adultsV55().some(a=>a.id===id))return false;
+ const previous=b.workerId;b.workerId=id;b.auto=id!==null;
+ for(const other of structuresV46)if(other!==b&&other.workerId===id&&id!==null){other.workerId=null;other.auto=false}
+ for(const q of miners)if(q.game.id===previous)q.game.atWorkV56=null;
+ const r=restingMiners.find(r=>r.id===id);if(r){restingMiners.splice(restingMiners.indexOf(r),1);const p=buildingDoorV56(b);createMinerAt(p.x,p.y,r)}
+ ui();saveGame();return true;
+}
+startStructureV46=function(b,recipe=b.selected,automatic=false){
+ const r=JOBS_V46[b.type]?.[recipe];if(b.job||b.paused||!r)return false;
+ if(automatic){if(!employeeReadyV56(b)||!availableStockV56(b,r))return false;for(const [k,n] of Object.entries(r.inputs))stockV56(b)[k]-=n}
+ else if(!payIndustryV44(r.inputs))return false;
+ b.job={recipe,remaining:r.duration,automatic};return true;
+};
+stepStructuresV46=function(elapsed){
+ let changed=false;
+ for(const b of structuresV46){if(b.paused)continue;let budget=Math.max(0,finite(elapsed));
+  for(let n=0;n<128;n++){
+   if(!b.job){if(!b.auto||!employeeReadyV56(b))break;const recipe=[b.selected,b.secondary].find(k=>availableStockV56(b,JOBS_V46[b.type]?.[k]));if(!recipe||!startStructureV46(b,recipe,true))break;changed=true}
+   const r=JOBS_V46[b.type]?.[b.job.recipe];if(!r){b.job=null;break}
+   if(b.job.automatic&&!employeeReadyV56(b))break;
+   const step=Math.min(budget,b.job.remaining);b.job.remaining-=step;budget-=step;
+   if(b.job.remaining>1e-7)break;
+   for(const [k,n] of Object.entries(r.outputs))stockV56(b)[k]=(stockV56(b)[k]||0)+n;
+   b.job=null;changed=true;if(budget<=0)break;
+  }
+ }
+ return changed;
+};
+function playerAmountV56(k){return k==='ladder'?ladderBagV56:STRUCTURES_V46[k]?structureBagV46[k]||0:inv[k]||0}
+function addPlayerV56(k,n){if(k==='ladder')ladderBagV56+=n;else if(STRUCTURES_V46[k])structureBagV46[k]=(structureBagV46[k]||0)+n;else inv[k]=(inv[k]||0)+n}
+function transferStockV56(b,k,n,deposit){if(!settlementItemsV56.has(k))return false;const available=deposit?playerAmountV56(k):stockV56(b)[k]||0,amount=Math.min(available,amountV56(n),deposit?Math.max(0,(STRUCTURES_V46[b.type].capacity??Infinity)-Object.values(stockV56(b)).reduce((a,v)=>a+amountV56(v),0)):Infinity);if(!amount)return false;stockV56(b)[k]=(stockV56(b)[k]||0)+(deposit?amount:-amount);addPlayerV56(k,deposit?-amount:amount);ui();saveGame();return true}
+packStructureV46=function(b){
+ if(b.job){const r=JOBS_V46[b.type]?.[b.job.recipe];if(r)for(const [k,n] of Object.entries(r.inputs))stockV56(b)[k]=(stockV56(b)[k]||0)+n}
+ for(const [k,n] of Object.entries(stockV56(b)))if(settlementItemsV56.has(k))addPlayerV56(k,n);
+ removeStructureBodyV47(b);structuresV46=structuresV46.filter(x=>x!==b);SkyMachines.remove('structure-'+b.id);structureBagV46[b.type]++;selectedBuildingV46=null;
+ for(const q of miners)if(q.game.atWorkV56===b.id)q.game.atWorkV56=null;
+ $('buildingPanel').close();homePanelV55.close();settlementPanelV56.close();shelterWorkersV55();ui();saveGame();
+};
+// One baby and one kid slot per home, independent of the two adult beds.
+const adultAssignmentV56=assignHomesV55;
+assignHomesV55=function(){
+ const previous=new Map(childrenV55.map(c=>[c.id,c.home]));adultAssignmentV56();const homes=homesV55(),used=new Set();
+ for(const child of childrenV55){const home=previous.get(child.id),slot=home+':'+child.days;if(homes.some(h=>h.id===home)&&!used.has(slot)){child.home=home;used.add(slot)}else child.home=null}
+ for(const child of childrenV55)if(child.home===null){const h=homes.find(h=>!used.has(h.id+':'+child.days));if(h){child.home=h.id;used.add(h.id+':'+child.days)}}
+};
+function childSlotV56(home,stage){return !childrenV55.some(c=>c.home===home&&c.days===stage)}
+function reserveBabyV56(home){return childSlotV56(home,0)&&!adultsV55().some(a=>{const f=familyV55(a.id);return f.home===home&&f.pregnant})}
+function buildingDoorV56(b){return {x:b.x-B*.5,y:b.y+STRUCTURES_V46[b.type].h*B-B*.4-.5}}
+function sleepWorkerV56(q,h){if(q.game.sleepingV55)return;q.game.sleepingV55=true;q.game.sleepReturnV55=buildingDoorV56(h);q.game.atWorkV56=null;Body.setStatic(q,true);q.collisionFilter.mask=0;Body.setPosition(q,{x:h.x+64,y:h.y+96})}
+function workerAtDoorV56(q,h){const p=buildingDoorV56(h);return Math.hypot(q.position.x-p.x,q.position.y-p.y)<B*2.5}
+// No teleport from a mine to a bed. Return travel uses the same collision-aware paths.
+shelterWorkersV55=function(){assignHomesV55();for(const q of miners){const h=homesV55().find(h=>h.id===familyV55(q.game.id).home);if(!workerNightV55()||!h){wakeWorkerV55(q);continue}if(!q.game.sleepingV55&&workerAtDoorV56(q,h))sleepWorkerV56(q,h)}};
+duskV55=function(){
+ for(const child of [...childrenV55]){child.days++;if(child.days>=2){const h=homesV55().find(h=>h.id===child.home),p=Number.isFinite(child.x)?{x:child.x,y:child.y-8}:h?buildingDoorV56(h):null;if(p)createMinerAt(p.x,p.y,{id:child.id});else restingMiners.push({id:child.id,level:1,gold:0});childrenV55=childrenV55.filter(c=>c!==child)}}
+ assignHomesV55();for(const c of childrenV55)c.sleeping=false;shelterWorkersV55();
+};
+function sleepingAdultsV56(h){return adultsV55().filter(a=>familyV55(a.id).home===h.id&&(!a.q||a.q.game.sleepingV55))}
+function pregnancyV56(random=Math.random){
+ if(!workerNightV55())return;
+ for(const h of homesV55()){
+  if(h.familyRollDay===settlementV55.day)continue;
+  const pair=sleepingAdultsV56(h);if(pair.length!==2||!reserveBabyV56(h.id))continue;
+  h.familyRollDay=settlementV55.day;
+  if(random()<.25){const f=familyV55(pair[0].id);f.pregnant=true;f.dueDay=settlementV55.day+1}
+ }
+}
+dawnV55=function(){
+ for(const a of adultsV55()){const f=familyV55(a.id);if(f.pregnant&&f.dueDay<=settlementV55.day){let h=homesV55().find(h=>h.id===f.home&&childSlotV56(h.id,0));if(!h)h=homesV55().find(h=>childSlotV56(h.id,0));const p=h?buildingDoorV56(h):a.q?.position||{x:0,y:-16};childrenV55.push({id:++minerId,home:h?.id??null,days:0,x:p.x,y:p.y+8,dir:1,vy:0,age:0,sleeping:false});f.pregnant=false;delete f.dueDay}}
+ for(const c of childrenV55){if(c.sleeping){const h=homesV55().find(h=>h.id===c.home);if(h){const p=buildingDoorV56(h);c.x=p.x;c.y=p.y+8}}c.sleeping=false}
+ shelterWorkersV55();
+};
+// Check the once-per-night roll only after both adults have reached their beds.
+const timeStepV56=stepWorkersV55;
+stepWorkersV55=function(ms,random=Math.random){timeStepV56(ms,random);pregnancyV56(random)};
+// Each ladder segment occupies one 32px world cell, with no solid collision body.
+function ladderKeyV56(x,y){return key(Math.floor(x/B),Math.floor(y/B))}
+function hasLadderV56(x,y){return laddersV56.has(ladderKeyV56(x,y))}
+function worldSolidsV56(){const stamp=eng.timing.timestamp;if(solidCacheV57?.stamp===stamp)return solidCacheV57.bodies;const bodies=[...bs].filter(z=>!z.isSensor&&!z.game?.liquid&&!z.game?.reservoir).concat([...structureBodiesV47.values()].flatMap(b=>b.parts.length>1?b.parts.slice(1):[b]));solidCacheV57={stamp,bodies};return bodies}
+function clearLadderV56(cx,cy){const x=ctr(cx),y=ctr(cy);return !Query.region(worldSolidsV56(),{min:{x:x-8,y:y-14},max:{x:x+8,y:y+14}}).length}
+function putLadderV56(cx,cy){const k=key(cx,cy);if(laddersV56.has(k)||!clearLadderV56(cx,cy))return false;laddersV56.set(k,{cx,cy});return true}
+function buyLaddersV56(q){
+ const shop=structuresV46.filter(b=>b.type==='workshop'&&(stockV56(b).ladder||0)>=10).sort((a,b)=>Math.abs(a.x-q.position.x)-Math.abs(b.x-q.position.x))[0];
+ if(!shop||q.game.gold<1)return false;q.game.gold--;stockV56(shop).gold=(stockV56(shop).gold||0)+1;stockV56(shop).ladder-=10;const f=familyV55(q.game.id);f.ladders=(f.ladders||0)+10;saveSoon();return true;
+}
+function climbLadderV56(q,goal){
+ const cx=Math.floor(q.position.x/B),cy=Math.floor((q.position.y+B*.35)/B),center=ctr(cx);
+ if(!laddersV56.has(key(cx,cy))&&!laddersV56.has(key(cx,cy-1)))return false;
+ // Route heights describe the Worker centre; its feet must clear the landing.
+ if(goal.y>=q.position.y-.5)return false;
+ const solids=Query.region(worldSolidsV56(),{min:{x:center-B,y:q.position.y-B*2},max:{x:center+B,y:q.position.y+B}});
+ if(!minerClearPoseV38(center,q.position.y-3,solids))return false;
+ Body.setVelocity(q,{x:clamp((center-q.position.x)*.2,-1.4,1.4),y:-1.9});q.game.aiState='ladder';return true;
+}
+function extendLadderV56(q,goal){
+ if(goal.y>q.position.y-B)return false;
+ const f=familyV55(q.game.id);if(!(f.ladders>0)&&!buyLaddersV56(q))return false;
+ const cx=Math.floor(q.position.x/B),cy=Math.floor((q.position.y+B*.35)/B);
+ for(const y of [cy,cy-1])if(!laddersV56.has(key(cx,y))&&putLadderV56(cx,y)){f.ladders--;saveSoon();return true}
+ return false;
+}
+function routeCitizenV56(q,goal,kid=false){
+ const sx=Math.floor(q.position.x/B),sy=Math.floor((q.position.y+B*.4)/B),gx=Math.floor(goal.x/B),gy=Math.floor((goal.y+B*.4)/B);
+ const x0=Math.min(sx,gx)-5,x1=Math.max(sx,gx)+5,y0=Math.min(sy,gy)-5,y1=Math.max(sy,gy)+6;
+ const solids=Query.region(worldSolidsV56(),{min:{x:x0*B,y:y0*B},max:{x:(x1+1)*B,y:(y1+1)*B}}),cache=new Map();
+ const pose=(x,y)=>({x:ctr(x),y:(y+1)*B-B*.4-.5});
+ const node=(x,y)=>{const k=key(x,y);if(cache.has(k))return cache.get(k);const p=pose(x,y),clear=minerClearPoseV38(p.x,p.y,solids),floor=Query.region(solids,{min:{x:p.x-7,y:p.y+B*.4},max:{x:p.x+7,y:p.y+B*.4+3}}).length>0,ladder=laddersV56.has(k);const n={x,y,p,clear,floor,ladder};cache.set(k,n);return n};
+ const start=node(sx,sy),queue=[start],parents=new Map([[key(sx,sy),null]]);let end=null;
+ for(let i=0;i<queue.length&&i<6000;i++){
+  const a=queue[i];if(a.x===gx&&Math.abs(a.y-gy)<=0){end=a;break}
+  const next=[];
+  for(const dx of [-1,1]){
+   const same=node(a.x+dx,a.y);if(same.clear&&(same.floor||same.ladder))next.push(same);
+   if(a.floor||a.ladder){for(let rise=1;rise<=(kid?3:1);rise++){const up=node(a.x+dx,a.y-rise);if(up.clear&&(up.floor||up.ladder)&&minerClearTravelV38(a.p,{x:a.p.x,y:up.p.y},solids)&&minerClearTravelV38({x:a.p.x,y:up.p.y},up.p,solids))next.push(up)}}
+   if(same.clear&&!same.floor){for(let drop=1;drop<=5;drop++){const down=node(a.x+dx,a.y+drop);if(!down.clear)break;if(down.floor||down.ladder){next.push(down);break}}}
+  }
+  if(a.ladder)for(const dy of [-1,1]){const n=node(a.x,a.y+dy);if(n.clear&&(n.ladder||n.floor))next.push(n)}
+  for(const n of next){const k=key(n.x,n.y);if(n.x<x0||n.x>x1||n.y<y0||n.y>y1||parents.has(k))continue;parents.set(k,a);queue.push(n)}
+ }
+ if(!end)return null;const route=[];for(let n=end;parents.get(key(n.x,n.y));n=parents.get(key(n.x,n.y)))route.unshift(n.p);return route;
+}
+function moveWorkerV56(q,goal,now){
+ const g=q.game;Sleeping.set(q,false);g.nearbySolids=Query.region(worldSolidsV56(),{min:{x:q.position.x-B*3,y:q.position.y-B*4},max:{x:q.position.x+B*3,y:q.position.y+B*3}});
+ const routeId=Math.round(goal.x)+','+Math.round(goal.y);
+ if(routeFrameV57!==eng.timing.timestamp){routeFrameV57=eng.timing.timestamp;routeBudgetV57=miners.size>48?1:miners.size>16?2:4}
+ if((g.travelGoalV56!==routeId||now>(g.travelCheckV56||0))&&routeBudgetV57>0){routeBudgetV57--;g.travelGoalV56=routeId;g.travelCheckV56=now+900+(g.id%11)*37;g.travelRouteV56=routeCitizenV56(q,goal)}
+ let waypoint=g.travelRouteV56?.[0];while(waypoint&&Math.hypot(q.position.x-waypoint.x,q.position.y-waypoint.y)<9){g.travelRouteV56.shift();waypoint=g.travelRouteV56[0]}
+ if(!g.travelRouteV56&&goal.y<q.position.y-B){extendLadderV56(q,goal);if(climbLadderV56(q,goal)){g.travelCheckV56=0;return}}
+ const dest=waypoint||goal;if(climbLadderV56(q,dest))return;
+ const dx=dest.x-q.position.x,grounded=minerGroundedV27(q),wall=minerWallAheadV27(q,Math.sign(dx));
+ let vx=Math.abs(dx)<3?0:Math.sign(dx)*1.5,vy=q.velocity.y;
+ if(grounded&&dest.y<q.position.y-10&&now>(g.travelJumpV56||0)){vy=-5.8;g.travelJumpV56=now+650}
+ if(wall&&!waypoint){vx=0;g.aiState='needs ladder'}else g.aiState=workerNightV55()?'home':'commuting';
+ if(!grounded&&Math.abs(dx)<3)vx=0;g.dir=Math.sign(dx)||g.dir;Body.setVelocity(q,{x:vx,y:vy});
+}
+function workerControlledV56(q){return q.game.sleepingV55||!!workplaceV56(q.game.id)||workerNightV55()||(settlementV55.elapsed>DAY_V55-15000&&familyV55(q.game.id).home!==null)}
+function travelWorkersV56(now){
+ for(const q of miners){if(q.game.sleepingV55)continue;
+  const home=homesV55().find(h=>h.id===familyV55(q.game.id).home),evening=!workerNightV55()&&settlementV55.elapsed>DAY_V55-15000;
+  const destination=(workerNightV55()||evening)?home:workplaceV56(q.game.id);
+  if(!destination){q.game.atWorkV56=null;if(workerNightV55())Body.setVelocity(q,{x:0,y:q.velocity.y});continue}
+  if(workerAtDoorV56(q,destination)){Body.setVelocity(q,{x:0,y:q.velocity.y});if(workerNightV55())sleepWorkerV56(q,destination);else q.game.atWorkV56=destination.type==='home'?null:destination.id;continue}
+  q.game.atWorkV56=null;moveWorkerV56(q,buildingDoorV56(destination),now);
+ }
+ pregnancyV56();
+}
+// Daytime mining can use installed ladders too, but never grips sheer walls.
+const navigateWorkerV56=minerNavigateV27;
+minerNavigateV27=function(q,target,now){const goal=q.game.route?.[0]||target?.position;if(goal&&climbLadderV56(q,goal))return;navigateWorkerV56(q,target,now)};
+function childRectV56(child,x=child.x,y=child.y){const w=child.days?5:4,h=child.days?17:7;return{min:{x:x-w,y:y-h},max:{x:x+w,y:y}}}
+function initChildV56(child){if(Number.isFinite(child.x)&&Number.isFinite(child.y))return;const h=homesV55().find(h=>h.id===child.home),p=h?buildingDoorV56(h):{x:0,y:-16};Object.assign(child,{x:p.x,y:p.y+8,vy:0,dir:child.id%2?1:-1,age:0})}
+function moveChildrenV56(elapsed){
+ if(elapsed<=0)return;const all=worldSolidsV56();
+ for(const child of childrenV55){initChildV56(child);const home=homesV55().find(h=>h.id===child.home);if(child.sleeping&&home&&workerNightV55())continue;child.sleeping=false;
+  const solids=Query.region(all,{min:{x:child.x-B*4,y:child.y-B*5},max:{x:child.x+B*4,y:child.y+B*5}}),returning=workerNightV55()||settlementV55.elapsed>DAY_V55-15000;
+  const door=home?buildingDoorV56(home):null;
+  if(returning&&door&&Math.abs(child.x-door.x)<14&&Math.abs(child.y-(door.y+B*.4))<B){child.sleeping=workerNightV55();child.state=child.sleeping?'sleeping':'home';child.vy=0;continue}
+  let budget=Math.min(elapsed,1500)/1000;
+  while(budget>0){const dt=Math.min(budget,1/60);budget-=dt;child.age=(child.age||0)+dt;const bounds=childRectV56(child),floor=Query.region(solids,{min:{x:bounds.min.x+1,y:child.y},max:{x:bounds.max.x-1,y:child.y+3}}).length>0;
+   if(floor){child.climbY=child.y;child.vy=0}
+   let dir=child.dir||1;const center=door?.x??(child.originX??=child.x),range=child.days?B*6:B*1.4;
+   if(returning&&door)dir=Math.sign(door.x-child.x)||dir;
+   else if(child.x>center+range)dir=-1;else if(child.x<center-range)dir=1;else if(child.age>(child.turnAt||0)){child.turnAt=child.age+(child.days?3:6)+(child.id%3);dir=-dir}
+   if(workerNightV55()&&!home)dir=0;
+   const speed=child.days?44:9,nextX=child.x+dir*speed*dt,wall=Query.region(solids,childRectV56(child,nextX,child.y-.2)).length>0;
+   if(wall){if(child.days&&child.y>(child.climbY??child.y)-B*3){child.vy=-50;child.state='climbing'}else{dir=-dir;child.state='turning'}}else{child.x=nextX;child.state=child.days?'running':'crawling'}
+   if(!returning&&floor&&!Query.region(solids,{min:{x:child.x+dir*10-2,y:child.y},max:{x:child.x+dir*10+2,y:child.y+(child.days?B*2:8)}}).length){child.x-=dir*speed*dt;dir=-dir}
+   child.dir=dir;child.vy=Math.min(160,(child.vy||0)+220*dt);const nextY=child.y+child.vy*dt,collisions=Query.region(solids,childRectV56(child,child.x,nextY));
+   if(collisions.length){if(child.vy>=0){const tops=collisions.filter(z=>z.bounds.min.y>=child.y-1);if(tops.length)child.y=Math.min(...tops.map(z=>z.bounds.min.y))-.1}else{const ceilings=collisions.filter(z=>z.bounds.max.y<=childRectV56(child).min.y+2);if(ceilings.length)child.y=Math.max(...ceilings.map(z=>z.bounds.max.y))+(child.days?17:7)+.1}child.vy=0}else child.y=nextY;
+  }
+ }
+}
+function paintChildV56(g,child){
+ const t=child.age||0,phase=Math.floor(t*(child.days?9:4))%4,dir=child.dir<0?-1:1;
+ g.save();g.scale(dir,1);const r=(x,y,w,h,c)=>{g.fillStyle=c;g.fillRect(x,y,w,h)},ink='#272535',skin='#e3ba77',pale='#d2ded6';
+ if(!child.days){
+  // Eight pixels long: bobbing cheeks, a diaper, and alternating little knees.
+  const bob=phase===1||phase===3?1:0;r(-4,-5+bob,8,4,ink);r(-3,-4+bob,4,3,pale);r(1,-7+bob,5,5,ink);r(2,-6+bob,4,3,skin);r(5,-5+bob,1,1,ink);r(4,-4+bob,2,1,'#c1877d');r(-3+(phase%2),-1,2,1,skin);r(2-(phase%2),-1,2,1,skin);r(2,-7+bob,2,1,'#80543e');
+ }else{
+  const bob=phase%2;r(-3,-17+bob,7,7,ink);r(-2,-16+bob,5,5,skin);r(-3,-17+bob,6,2,'#80543e');r(2,-14+bob,1,1,ink);r(-3,-10+bob,6,7,'#8eae95');r(-4,-9+bob,1,4,skin);r(3,-9+bob,1,child.state==='climbing'?2:4,skin);r(-3,-3,2,phase%2?2:3,ink);r(1,-3,2,phase%2?3:2,ink);
+ }g.restore();
+}
+const settlementDrawV56=drawGoldBursts;
+drawGoldBursts=function(now){
+ for(const l of laddersV56.values()){const s=w2s(l.cx*B,l.cy*B);if(s.x<-B*cam.z||s.x>W||s.y<-B*cam.z||s.y>HH)continue;ctx.save();ctx.translate(s.x,s.y);ctx.scale(cam.z,cam.z);paintLadderV56(ctx);ctx.restore()}
+ settlementDrawV56(now);
+ for(const child of childrenV55){initChildV56(child);if(child.sleeping)continue;const s=w2s(child.x,child.y);ctx.save();ctx.translate(Math.round(s.x),Math.round(s.y));ctx.scale(cam.z,cam.z);paintChildV56(ctx,child);ctx.restore()}
+};
+function paintLadderV56(g){g.fillStyle='#272535';g.fillRect(7,0,4,32);g.fillRect(21,0,4,32);g.fillStyle='#c7aa7c';g.fillRect(8,0,2,32);g.fillRect(22,0,2,32);for(let y=4;y<32;y+=8){g.fillStyle='#80543e';g.fillRect(9,y,14,4);g.fillStyle='#e3ba77';g.fillRect(9,y,14,1)}}
+// Readiness and animation advance with active frame time, independently of the beat.
+const updateSettlementBaseV56=updateMiners;
+updateMiners=function(now){const dt=settlementLastV56===null?0:now-settlementLastV56;settlementLastV56=now;updateSettlementBaseV56(now);if(!document.hidden&&dt>=0&&dt<=1500){travelWorkersV56(now);moveChildrenV56(dt)}if(now-settlementUiLastV56>250){refreshSettlementV56();settlementUiLastV56=now}};
+document.addEventListener('visibilitychange',()=>{settlementLastV56=null});

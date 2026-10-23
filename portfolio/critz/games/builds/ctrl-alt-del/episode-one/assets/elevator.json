@@ -1,0 +1,145 @@
+{
+  "assetId": "cad.mini.episode1.elevator",
+  "revision": 1,
+  "name": "Rust elevator cabin",
+  "kind": "scenery",
+  "biome": "hideout",
+  "family": "mini",
+  "approval": "prototype-review",
+  "source": {
+    "type": "new-native",
+    "file": "src/build-assets.cjs",
+    "recipe": "elevator"
+  },
+  "native": {
+    "width": 88,
+    "height": 96,
+    "origin": [
+      0,
+      96
+    ],
+    "originName": "authored-anchor",
+    "selectionBounds": {
+      "x": 0,
+      "y": 0,
+      "width": 88,
+      "height": 96
+    },
+    "visibleBounds": [
+      {
+        "variant": 0,
+        "frame": 0,
+        "x": 0,
+        "y": 0,
+        "width": 88,
+        "height": 96
+      },
+      {
+        "variant": 0,
+        "frame": 1,
+        "x": 0,
+        "y": 0,
+        "width": 88,
+        "height": 96
+      }
+    ],
+    "animationEnvelope": {
+      "x": 0,
+      "y": 0,
+      "width": 88,
+      "height": 96
+    }
+  },
+  "sockets": [
+    {
+      "id": "left",
+      "type": "edge",
+      "x": 0,
+      "y": 0,
+      "facing": -1
+    },
+    {
+      "id": "right",
+      "type": "edge",
+      "x": 88,
+      "y": 0,
+      "facing": 1
+    }
+  ],
+  "render": {
+    "kind": "sprite-sheet",
+    "layer": "architecture",
+    "parallax": {
+      "x": 1,
+      "y": 1
+    },
+    "variants": [
+      {
+        "id": "v0",
+        "uri": "assets/elevator.png",
+        "width": 176,
+        "height": 96,
+        "sha256": "8248247db038b6df0107ba77713c475a6d9ebab99137befb688e76cc805cb389"
+      }
+    ],
+    "frameSize": [
+      88,
+      96
+    ],
+    "frameCount": 2,
+    "allowedFacing": [
+      1,
+      -1
+    ],
+    "scale": 1
+  },
+  "collision": {
+    "defaults": [],
+    "decorative": true,
+    "behavior": "Artwork does not activate gameplay; scene entity kind and properties do."
+  },
+  "properties": {
+    "variant": {
+      "type": "integer",
+      "default": 0
+    }
+  },
+  "animation": {
+    "states": {
+      "idle": {
+        "frames": [
+          0,
+          1
+        ],
+        "timingMs": [
+          700,
+          700
+        ],
+        "loop": true
+      }
+    },
+    "frameEvents": []
+  },
+  "tags": [
+    "hideout",
+    "elevator",
+    "door"
+  ],
+  "thumbnail": {
+    "uri": "assets/elevator.png",
+    "frame": 0,
+    "variant": 0,
+    "nativeSize": [
+      88,
+      96
+    ],
+    "noResample": true
+  },
+  "placement": {
+    "snap": 1,
+    "suggestedGrid": 8,
+    "preview": "native-with-geometry",
+    "allowScale": false,
+    "allowRotation": false
+  }
+}

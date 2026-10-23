@@ -1,0 +1,135 @@
+{
+  "assetId": "cad.mini.episode1.glass-roof",
+  "revision": 1,
+  "name": "Skyview • terrace rail",
+  "kind": "scenery",
+  "biome": "skyview",
+  "family": "mini",
+  "approval": "prototype-review",
+  "source": {
+    "type": "new-native",
+    "file": "src/build-assets.cjs",
+    "recipe": "glass-roof"
+  },
+  "native": {
+    "width": 64,
+    "height": 24,
+    "origin": [
+      0,
+      24
+    ],
+    "originName": "authored-anchor",
+    "selectionBounds": {
+      "x": 0,
+      "y": 0,
+      "width": 64,
+      "height": 24
+    },
+    "visibleBounds": [
+      {
+        "variant": 0,
+        "frame": 0,
+        "x": 0,
+        "y": 1,
+        "width": 64,
+        "height": 23
+      }
+    ],
+    "animationEnvelope": {
+      "x": 0,
+      "y": 0,
+      "width": 64,
+      "height": 24
+    }
+  },
+  "sockets": [
+    {
+      "id": "left",
+      "type": "edge",
+      "x": 0,
+      "y": 0,
+      "facing": -1
+    },
+    {
+      "id": "right",
+      "type": "edge",
+      "x": 64,
+      "y": 0,
+      "facing": 1
+    }
+  ],
+  "render": {
+    "kind": "sprite-sheet",
+    "layer": "scenery",
+    "parallax": {
+      "x": 1,
+      "y": 1
+    },
+    "variants": [
+      {
+        "id": "v0",
+        "uri": "assets/glass-roof.png",
+        "width": 64,
+        "height": 24,
+        "sha256": "ac3919baea342cb75b626dfd521977dda0cbb8e35626a608a069342d5f19f16c"
+      }
+    ],
+    "frameSize": [
+      64,
+      24
+    ],
+    "frameCount": 1,
+    "allowedFacing": [
+      1,
+      -1
+    ],
+    "scale": 1
+  },
+  "collision": {
+    "defaults": [],
+    "decorative": true,
+    "behavior": "Artwork does not activate gameplay; scene entity kind and properties do."
+  },
+  "properties": {
+    "variant": {
+      "type": "integer",
+      "default": 0
+    }
+  },
+  "animation": {
+    "states": {
+      "idle": {
+        "frames": [
+          0
+        ],
+        "timingMs": [
+          180
+        ],
+        "loop": true
+      }
+    },
+    "frameEvents": []
+  },
+  "tags": [
+    "skyview",
+    "railing",
+    "decorative"
+  ],
+  "thumbnail": {
+    "uri": "assets/glass-roof.png",
+    "frame": 0,
+    "variant": 0,
+    "nativeSize": [
+      64,
+      24
+    ],
+    "noResample": true
+  },
+  "placement": {
+    "snap": 1,
+    "suggestedGrid": 8,
+    "preview": "native-with-geometry",
+    "allowScale": false,
+    "allowRotation": false
+  }
+}

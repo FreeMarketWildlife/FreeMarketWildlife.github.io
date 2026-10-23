@@ -1,0 +1,28 @@
+// Isolated, finite survival fixture. Ordinary saves and event odds stay unchanged.
+const moonfireDemoV82=new URLSearchParams(location.search).get('demo')==='moonfire';
+function seedMoonfireDemoV82(){
+ for(const q of feyBodiesV75.values())World.remove(eng.world,q);feyBodiesV75.clear();for(const q of miners)World.remove(eng.world,q);miners.clear();restingMiners.length=0;childrenV55=[];familiesV55.clear();wildlifeV71=[];
+ for(const q of [...bs])if(q.game.placed||q.game.naturalTree){World.remove(eng.world,q);bs.delete(q);treeBlocksV41.delete(q)}for(const ch of generated)treeChunksV41.add(ch);
+ for(const q of structureBodiesV47.values())World.remove(eng.world,q);structureBodiesV47.clear();structuresV46=[];nailPinsV78.clear();nailQueueV78.clear();laddersV56.clear();
+ if(creativeV78)creativeModeV78(false);creativeV78=false;devToolsV30.infiniteResources=false;devToolsV30.infiniteMiners=false;for(const id of ['devCreativeV78','devResources','devInfinite'])$(id).checked=false;
+ best=109;shape=stone=deepslate=true;pickaxeTier=1;pickaxeOwnedTier=2;Object.assign(inv,{dirt:120,wood:180,stone:240,deepslate:120,obsidian:24,nails:100,gold:240});ladderBagV56=80;bucketBagV68.bucket=2;
+ const width=24,height=108;ensureChunkAtX(0);ensureChunkAtX(width*B+240);
+ for(let y=-4;y>=-height;y-=4)for(let x=0;x<width;x+=4){const material=x===0||x===width-4||y>-12?'obsidian':y<-96?'stone':'deepslate';mk((x+2)*B,(y+2)*B,material,{placed:true,nailed:true,static:true,w:B*4-1,h:B*4-1,cost:16})}
+ // A stepped stone parapet leaves the next full row for the animals to complete.
+ for(let x=0;x<5;x++)mk(ctr(x),ctr(-height-1),'stone',{placed:true,static:true,nailed:true});
+ const store={id:++structureIdV46,type:'storehouse',x:(width+2)*B,y:-128,selected:'',secondary:'',auto:false,paused:false,job:null,stock:{stone:2000,deepslate:1000,wood:400,nails:1000,ladder:100}};structuresV46.push(store);addStructureBodyV47(store);
+ for(const [i,species]of ['bird','butterfly','bird','firefly','butterfly'].entries()){const a=wildlifeNewV71(species,{x:B*(4+i*.7),y:-height*B-65-i*12});a.x=B*(4+i*.7);a.y=-height*B-65-i*12;wildlifeV71.push(a);becomeFeyV75(a);Object.assign(a.feyV75,{task:'Tower',nails:100,blocks:{stone:50},nextAction:0});store.stock.stone-=50;store.stock.nails-=100;feyBodyV75(a)}
+ for(const [i,species]of ['wood-mouse','mole'].entries()){const a=wildlifeNewV71(species,{x:B*(6.5+i*2),y:-height*B});a.x=B*(6.5+i*2);a.y=-height*B;wildlifeV71.push(a);becomeFeyV75(a);Object.assign(a.feyV75,{task:'Tower',nails:100,blocks:{stone:50},ladders:10,nextAction:0});store.stock.stone-=50;store.stock.nails-=100;store.stock.ladder-=10;feyBodyV75(a)}
+ for(let i=0;i<3;i++)createMinerAt(B*(18+i*2),-height*B-16,{level:3,gold:2});
+ for(const q of bs)importNailBodyV78(q);solidCacheV57=null;feyTowerCacheV75=null;feyTowerStampV75=-Infinity;
+ Object.assign(settlementV55,{day:5,phase:'night',elapsed:30000});for(let seed=1;seed<10000;seed++)if(skyHashV62((seed^Math.imul(5,0x51ed270b))>>>0)<1/6){skySeedV62=seed;break}
+ moonfireV81=moonfireEmptyV81();moonfireCheckV81=0;moonfireSkyV81();const z=innerWidth<700?.72:.9;Object.assign(cam,{x:innerWidth<700?B*5:B*12,y:-height*B+(HH/2-Math.min(380,HH*.46))/z,z,anim:false});cameraDragRawYV24=cam.y;cameraSpringActiveV24=false;
+ hotbarItemsV68.splice(0,3,'stone','nails','ladder');hotbarIndexV68=0;tool='pick';setInspectV79(false);ui();$('height').textContent=String(height+1);saveGame();
+}
+// Existing Use sprites signal actual successful construction, not decorative work.
+const towerBeforeV82=feyTowerV75;
+feyTowerV75=function(a,now){if(moonfireDemoV82){const builders=wildlifeV71.filter(b=>b.feyV75?.task==='Tower'),t=feyTallestTowerV75(),site=feyTowerCellV75(t),leader=builders[((site.x-5)%builders.length+builders.length)%builders.length];if(a!==leader){const fly=feyBodyV75(a).game.flyer,rank=builders.indexOf(a),goal={x:ctr(site.x)+(fly?(3+rank*.65)*B:1.6*B),y:fly?site.y*B-65-rank*7:(site.y+1)*B-B*.4};feyMoveV75(a,goal,now);return}}const before=Object.values(a.feyV75.blocks).reduce((n,v)=>n+v,0);towerBeforeV82(a,now);if(Object.values(a.feyV75.blocks).reduce((n,v)=>n+v,0)<before&&!(a.actionUntil>critterClockV73&&['pet','yay'].includes(a.action))){a.action='use';a.actionStart=critterClockV73;a.actionUntil=critterClockV73+650}};
+const animalAnimationBeforeV82=wildlifeAnimationV73;
+wildlifeAnimationV73=function(a){if(a.feyV75&&a.action==='use'&&a.actionUntil>critterClockV73)return{state:'use',frame:critterArtV73.frameAt('use',critterClockV73-a.actionStart)};return animalAnimationBeforeV82(a)};
+const bootBeforeV82=buttonwoodBoot;
+buttonwoodBoot=function(){bootBeforeV82();if(!moonfireDemoV82)return;if(!initialSave)seedMoonfireDemoV82();document.title='Critz Tower Defense · Survival demo';const height=feyTallestTowerV75().height;$('height').textContent=String(height);heightCardV77.setAttribute('aria-label','Tower height: '+height+' metres');__buttonwood.render(performance.now());pauseGameV76();saveGame()};

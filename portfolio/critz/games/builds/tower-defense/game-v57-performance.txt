@@ -1,0 +1,8 @@
+// Worker-count diagnostics for automated stress checks.
+window.__towerPerfV57=()=>({workers:miners.size,children:childrenV55.length,worldBodies:bs.size,routeBudget:routeBudgetV57});
+window.__towerPerfStressV57=(count=120,frames=240)=>{
+ for(const q of [...miners]){World.remove(eng.world,q);miners.delete(q)}
+ for(let i=0;i<count;i++)createMinerAt((i%24)*18-200,-20-Math.floor(i/24)*3,{id:9000+i,level:3});
+ const start=performance.now();for(let i=0;i<frames;i++){Engine.update(eng,16.67);updateMiners(i*16.67)}
+ return{ms:performance.now()-start,...__towerPerfV57()}
+};

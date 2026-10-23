@@ -1,0 +1,136 @@
+{
+  "assetId": "cad.mini.episode1.hub-wall",
+  "revision": 1,
+  "name": "Hub • cooling wall bay",
+  "kind": "scenery",
+  "biome": "hub",
+  "family": "mini",
+  "approval": "prototype-review",
+  "source": {
+    "type": "new-native",
+    "file": "src/build-assets.cjs",
+    "recipe": "hub-wall"
+  },
+  "native": {
+    "width": 64,
+    "height": 112,
+    "origin": [
+      0,
+      112
+    ],
+    "originName": "authored-anchor",
+    "selectionBounds": {
+      "x": 0,
+      "y": 0,
+      "width": 64,
+      "height": 112
+    },
+    "visibleBounds": [
+      {
+        "variant": 0,
+        "frame": 0,
+        "x": 0,
+        "y": 0,
+        "width": 64,
+        "height": 112
+      }
+    ],
+    "animationEnvelope": {
+      "x": 0,
+      "y": 0,
+      "width": 64,
+      "height": 112
+    }
+  },
+  "sockets": [
+    {
+      "id": "left",
+      "type": "edge",
+      "x": 0,
+      "y": 0,
+      "facing": -1
+    },
+    {
+      "id": "right",
+      "type": "edge",
+      "x": 64,
+      "y": 0,
+      "facing": 1
+    }
+  ],
+  "render": {
+    "kind": "sprite-sheet",
+    "layer": "architecture",
+    "parallax": {
+      "x": 1,
+      "y": 1
+    },
+    "variants": [
+      {
+        "id": "v0",
+        "uri": "assets/hub-wall.png",
+        "width": 64,
+        "height": 112,
+        "sha256": "2e3168533e9df4c094fdc039574230f996273a562c0bba1028bf7001d473aad3"
+      }
+    ],
+    "frameSize": [
+      64,
+      112
+    ],
+    "frameCount": 1,
+    "allowedFacing": [
+      1,
+      -1
+    ],
+    "scale": 1
+  },
+  "collision": {
+    "defaults": [],
+    "decorative": true,
+    "behavior": "Artwork does not activate gameplay; scene entity kind and properties do."
+  },
+  "properties": {
+    "variant": {
+      "type": "integer",
+      "default": 0
+    }
+  },
+  "animation": {
+    "states": {
+      "idle": {
+        "frames": [
+          0
+        ],
+        "timingMs": [
+          180
+        ],
+        "loop": true
+      }
+    },
+    "frameEvents": []
+  },
+  "tags": [
+    "nexus",
+    "hub",
+    "interior",
+    "modular"
+  ],
+  "thumbnail": {
+    "uri": "assets/hub-wall.png",
+    "frame": 0,
+    "variant": 0,
+    "nativeSize": [
+      64,
+      112
+    ],
+    "noResample": true
+  },
+  "placement": {
+    "snap": 1,
+    "suggestedGrid": 8,
+    "preview": "native-with-geometry",
+    "allowScale": false,
+    "allowRotation": false
+  }
+}

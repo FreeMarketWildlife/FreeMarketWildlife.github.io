@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Critz: Battlefront Minimalist</title>
+    <style>
+        body { margin: 0; overflow: hidden; font-family: 'Courier New', Courier, monospace; user-select: none; }
+        #ui-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; }
+        #crosshair { 
+            position: absolute; top: 50%; left: 50%; width: 20px; height: 20px; 
+            border: 2px solid white; border-radius: 50%; transform: translate(-50%, -50%);
+        }
+        #score-board {
+            position: absolute; top: 20px; width: 100%; display: flex; justify-content: space-between; padding: 0 50px; box-sizing: border-box; font-weight: bold; font-size: 24px;
+        }
+        .team-score { padding: 10px 20px; background: rgba(0,0,0,0.5); color: white; border-radius: 8px; }
+        #blue-score { border-bottom: 4px solid #4cc9f0; }
+        #red-score { border-bottom: 4px solid #f72585; }
+        #start-screen {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8);
+            display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; pointer-events: auto;
+        }
+        h1 { font-size: 60px; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 5px;}
+        p { font-size: 18px; color: #ccc; }
+        #msg { margin-top: 20px; font-size: 24px; color: yellow; display: none; }
+    </style>
+</head>
+<body>
+
+
+    <div id="ui-layer">
+        <div id="score-board">
+            <div id="blue-score">BLUE: 100</div>
+            <div id="red-score">RED: 100</div>
+        </div>
+        <div id="crosshair"></div>
+        <div id="start-screen">
+            <h1>Critz</h1>
+            <p>Battlefront Style - Minimalist Shooter</p>
+            <p>WASD to Move | Click to Shoot | Space to Jump</p>
+            <p style="margin-top:40px; border: 1px solid white; padding: 10px 20px; cursor: pointer;">CLICK TO START</p>
+            <div id="msg"></div>
+        </div>
+    </div>
+
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "./three.module.js"
+            }
+        }
+    </script>
+
+
+    <script type="module">
+        import * as THREE from 'three';
+
+
+        // --- CONFIG ---
+        const TEAM_BLUE = 0;
+        const TEAM_RED = 1;
+        const NEUTRAL = -1;
+        const COLORS = { [TEAM_BLUE]: 0x4cc9f0, [TEAM_RED]: 0xf72585, [NEUTRAL]: 0xdddddd };
+        const MAP_SIZE = 100;
+        
+        // --- STATE ---
+        let gameActive = false;
+        let tickets = { [TEAM_BLUE]: 100, [TEAM_RED]: 100 };
+        const entities = [];
+        const projectiles = [];
+        const commandPosts = [];
+        
+        // --- THREE JS SETUP ---
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color(0x87ceeb);
+        scene.fog = new THREE.Fog(0x87ceeb, 20, 100);
+
+
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.shadowMap.enabled = true;
+        document.body.appendChild(renderer.domElement);
+
+
+        // --- LIGHTS & WORLD ---
+        const hemiLight = new THREE.HemisphereLight(0xffffff, 0x444444, 0.6);
+        scene.add(hemiLight);
+        const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+        dirLight.position.set(50, 100, 50);
+        dirLight.castShadow = true;
+        scene.add(dirLight);
+
+
+        // Floor
+        const floorGeo = new THREE.PlaneGeometry(MAP_SIZE * 2, MAP_SIZE * 2);
+        const floorMat = new THREE.MeshStandardMaterial({ color: 0x3a5a40 });
+        const floor = new THREE.Mesh(floorGeo, floorMat);
+        floor.rotation.x = -Math.PI / 2;
+        floor.receiveShadow = true;
+        scene.add(floor);
+
+
+        // Trees/Rocks (Decor)
+        for(let i=0; i<20; i++) {
+            const geo = new THREE.ConeGeometry(2, 8, 8);
+            const mat = new THREE.MeshStandardMaterial({ color: 0x1b4332 });
+            const tree = new THREE.Mesh(geo, mat);
+            tree.position.set((Math.random()-0.5)*150, 4, (Math.random()-0.5)*150);
+            tree.castShadow = true;
+            scene.add(tree);
+        }
+
+
+        // --- CLASSES ---
+
+
+        class CommandPost {
+            constructor(x, z, initialTeam) {
+                this.position = new THREE.Vector3(x, 0, z);
+                this.team = initialTeam;
+                this.captureProgress = 0; // -100 (Blue) to 100 (Red)
+                
+                // Visuals
+                const geo = new THREE.CylinderGeometry(8, 8, 0.5, 32);
+                this.mat = new THREE.MeshStandardMaterial({ color: COLORS[this.team], transparent: true, opacity: 0.5 });
+                this.mesh = new THREE.Mesh(geo, this.mat);
+                this.mesh.position.copy(this.position);
+                scene.add(this.mesh);
+
+
+                // Flag Pole
+                const poleGeo = new THREE.BoxGeometry(0.5, 15, 0.5);
+                const pole = new THREE.Mesh(poleGeo, new THREE.MeshStandardMaterial({color:0x333333}));
+                pole.position.y = 7.5;
+                this.mesh.add(pole);
+            }
+
+
+            update(dt) {
+                // Determine dominance
+                let blueCount = 0;
+                let redCount = 0;
+                entities.forEach(e => {
+                    if(e.active && e.mesh.position.distanceTo(this.position) < 10) {
+                        if(e.team === TEAM_BLUE) blueCount++;
+                        else redCount++;
+                    }
+                });
+
+
+                // Capture Logic
+                const speed = 20 * dt;
+                if(blueCount > redCount) this.captureProgress -= speed;
+                else if(redCount > blueCount) this.captureProgress += speed;
+
+
+                // Clamp & Switch Owner
+                this.captureProgress = Math.max(-100, Math.min(100, this.captureProgress));
+                
+                if(this.captureProgress <= -100) this.team = TEAM_BLUE;
+                else if(this.captureProgress >= 100) this.team = TEAM_RED;
+                else if(Math.abs(this.captureProgress) < 20) this.team = NEUTRAL;
+
+
+                // Update Color
+                this.mat.color.setHex(COLORS[this.team]);
+            }
+        }
+
+
+        class Critter {
+            constructor(team, isPlayer = false) {
+                this.team = team;
+                this.isPlayer = isPlayer;
+                this.active = false;
+                this.health = 100;
+                this.speed = 10;
+                this.velocity = new THREE.Vector3();
+                this.shootCooldown = 0;
+
+
+                // Mesh Group
+                this.mesh = new THREE.Group();
+                
+                // Body
+                const bodyGeo = new THREE.BoxGeometry(1.5, 2, 1);
+                const bodyMat = new THREE.MeshStandardMaterial({ color: COLORS[team] });
+                this.body = new THREE.Mesh(bodyGeo, bodyMat);
+                this.body.position.y = 1;
+                this.body.castShadow = true;
+                this.mesh.add(this.body);
+
+
+                // Ears (Bunny vs Bear)
+                const earGeo = team === TEAM_BLUE ? new THREE.BoxGeometry(0.3, 1.5, 0.3) : new THREE.SphereGeometry(0.5);
+                const earL = new THREE.Mesh(earGeo, bodyMat);
+                const earR = new THREE.Mesh(earGeo, bodyMat);
+                if(team === TEAM_BLUE) {
+                    earL.position.set(-0.5, 2, 0); earR.position.set(0.5, 2, 0);
+                } else {
+                    earL.position.set(-0.8, 2, 0); earR.position.set(0.8, 2, 0);
+                }
+                this.mesh.add(earL);
+                this.mesh.add(earR);
+
+
+                scene.add(this.mesh);
+            }
+
+
+            spawn() {
+                // Find owned CP
+                const ownedCPs = commandPosts.filter(cp => cp.team === this.team);
+                const targetCP = ownedCPs.length > 0 ? ownedCPs[Math.floor(Math.random()*ownedCPs.length)] : commandPosts[1]; // Fallback to mid
+                
+                // Random offset spawn
+                const offsetX = (Math.random() - 0.5) * 10;
+                const offsetZ = (Math.random() - 0.5) * 10;
+                this.mesh.position.set(targetCP.position.x + offsetX, 0, targetCP.position.z + offsetZ);
+                this.health = 100;
+                this.active = true;
+                this.mesh.visible = true;
+            }
+
+
+            takeDamage(amt) {
+                if(!this.active) return;
+                this.health -= amt;
+                if(this.health <= 0) {
+                    this.die();
+                }
+            }
+
+
+            die() {
+                this.active = false;
+                this.mesh.visible = false;
+                tickets[this.team]--; // Ticket Bleed
+                updateScore();
+                
+                if(tickets[this.team] <= 0) endGame(this.team === TEAM_BLUE ? "RED WINS" : "BLUE WINS");
+
+
+                setTimeout(() => { if(gameActive) this.spawn(); }, 3000);
+            }
+
+
+            shoot(direction) {
+                if(this.shootCooldown > 0) return;
+                
+                const p = new Projectile(
+                    this.mesh.position.clone().add(new THREE.Vector3(0, 1.5, 0)),
+                    direction,
+                    this.team
+                );
+                projectiles.push(p);
+                this.shootCooldown = 0.5; // Fire rate
+            }
+        }
+
+
+        class Player extends Critter {
+            constructor(team) {
+                super(team, true);
+                // Attach camera
+                this.cameraHead = new THREE.Object3D();
+                this.cameraHead.position.set(0, 1.8, 0);
+                this.mesh.add(this.cameraHead);
+            }
+
+
+            update(dt, input) {
+                if(!this.active) return;
+                
+                // Rotation
+                this.mesh.rotation.y -= input.mouseX * 0.002;
+                this.cameraHead.rotation.x -= input.mouseY * 0.002;
+                this.cameraHead.rotation.x = Math.max(-1.5, Math.min(1.5, this.cameraHead.rotation.x));
+
+
+                // Movement
+                const forward = new THREE.Vector3(0, 0, -1).applyAxisAngle(new THREE.Vector3(0, 1, 0), this.mesh.rotation.y);
+                const right = new THREE.Vector3(1, 0, 0).applyAxisAngle(new THREE.Vector3(0, 1, 0), this.mesh.rotation.y);
+                
+                this.velocity.x = 0; 
+                this.velocity.z = 0;
+
+
+                if(input.keys['w']) this.velocity.add(forward.multiplyScalar(this.speed));
+                if(input.keys['s']) this.velocity.add(forward.multiplyScalar(-this.speed));
+                if(input.keys['a']) this.velocity.add(right.multiplyScalar(-this.speed));
+                if(input.keys['d']) this.velocity.add(right.multiplyScalar(this.speed));
+
+
+                this.mesh.position.add(this.velocity.clone().multiplyScalar(dt));
+
+
+                // Simple floor clamp
+                this.mesh.position.y = 0; 
+
+
+                // Shooting
+                this.shootCooldown -= dt;
+                if(input.mouseLeft) {
+                    const aimDir = new THREE.Vector3(0, 0, -1).applyQuaternion(this.cameraHead.getWorldQuaternion(new THREE.Quaternion()));
+                    this.shoot(aimDir);
+                }
+            }
+        }
+
+
+        class Bot extends Critter {
+            update(dt) {
+                if(!this.active) return;
+                this.shootCooldown -= dt;
+
+
+                // 1. Find Target (Enemy)
+                let closestEnemy = null;
+                let minDist = 50; // Sight range
+
+
+                entities.forEach(e => {
+                    if(e.active && e.team !== this.team) {
+                        const d = this.mesh.position.distanceTo(e.mesh.position);
+                        if(d < minDist) {
+                            minDist = d;
+                            closestEnemy = e;
+                        }
+                    }
+                });
+
+
+                if(closestEnemy) {
+                    // Combat Mode
+                    this.mesh.lookAt(closestEnemy.mesh.position);
+                    this.mesh.rotation.x = 0; // Lock upright
+                    this.shoot(this.mesh.getWorldDirection(new THREE.Vector3()));
+                } else {
+                    // Objective Mode: Find enemy CP
+                    const targetCP = commandPosts.find(cp => cp.team !== this.team) || commandPosts[1];
+                    this.mesh.lookAt(targetCP.position);
+                    const fwd = new THREE.Vector3(0,0,1).applyQuaternion(this.mesh.quaternion);
+                    this.mesh.position.add(fwd.multiplyScalar(this.speed * 0.6 * dt));
+                }
+            }
+        }
+
+
+        class Projectile {
+            constructor(pos, dir, ownerTeam) {
+                this.mesh = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.2), 
+                    new THREE.MeshBasicMaterial({color: 0xffff00})
+                );
+                this.mesh.position.copy(pos);
+                this.velocity = dir.normalize().multiplyScalar(40); // Fast speed
+                this.ownerTeam = ownerTeam;
+                this.life = 2; // seconds
+                scene.add(this.mesh);
+            }
+
+
+            update(dt) {
+                this.life -= dt;
+                this.mesh.position.add(this.velocity.clone().multiplyScalar(dt));
+
+
+                // Hit Detection
+                if(this.life > 0) {
+                    for(let e of entities) {
+                        if(e.active && e.team !== this.ownerTeam) {
+                            if(this.mesh.position.distanceTo(e.mesh.position.clone().add(new THREE.Vector3(0,1,0))) < 1.5) {
+                                e.takeDamage(25);
+                                this.life = 0;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+
+                if(this.life <= 0) {
+                    scene.remove(this.mesh);
+                    return false; // remove from array
+                }
+                return true;
+            }
+        }
+
+
+        // --- INIT GAME ---
+        
+        // CPs: Alpha, Neutral Mid, Omega
+        commandPosts.push(new CommandPost(-40, -40, TEAM_BLUE));
+        commandPosts.push(new CommandPost(0, 0, NEUTRAL));
+        commandPosts.push(new CommandPost(40, 40, TEAM_RED));
+
+
+        // Player
+        const player = new Player(TEAM_BLUE);
+        entities.push(player);
+
+
+        // Bots
+        for(let i=0; i<5; i++) entities.push(new Bot(TEAM_BLUE));
+        for(let i=0; i<6; i++) entities.push(new Bot(TEAM_RED));
+
+
+        entities.forEach(e => e.spawn());
+
+
+        // --- INPUT ---
+        const input = { keys: {}, mouseX: 0, mouseY: 0, mouseLeft: false };
+        document.addEventListener('keydown', (e) => input.keys[e.key] = true);
+        document.addEventListener('keyup', (e) => input.keys[e.key] = false);
+        document.addEventListener('mousedown', () => input.mouseLeft = true);
+        document.addEventListener('mouseup', () => input.mouseLeft = false);
+        document.addEventListener('mousemove', (e) => {
+            if(document.pointerLockElement === document.body) {
+                input.mouseX = e.movementX;
+                input.mouseY = e.movementY;
+            }
+        });
+
+
+        document.getElementById('start-screen').addEventListener('click', () => {
+            document.body.requestPointerLock();
+            if(!gameActive) {
+                gameActive = true;
+                document.getElementById('start-screen').style.display = 'none';
+            }
+        });
+
+
+        // --- LOOP ---
+        const clock = new THREE.Clock();
+        
+        function updateScore() {
+            document.getElementById('blue-score').innerText = `BLUE: ${tickets[TEAM_BLUE]}`;
+            document.getElementById('red-score').innerText = `RED: ${tickets[TEAM_RED]}`;
+        }
+
+
+        function endGame(msg) {
+            gameActive = false;
+            document.exitPointerLock();
+            const screen = document.getElementById('start-screen');
+            screen.style.display = 'flex';
+            const msgEl = document.getElementById('msg');
+            msgEl.innerText = msg;
+            msgEl.style.display = 'block';
+        }
+
+
+        function animate() {
+            requestAnimationFrame(animate);
+            const dt = clock.getDelta();
+
+
+            if(gameActive) {
+                // Attach camera to player head
+                const camPos = new THREE.Vector3();
+                const camQuat = new THREE.Quaternion();
+                player.cameraHead.getWorldPosition(camPos);
+                player.cameraHead.getWorldQuaternion(camQuat);
+                camera.position.copy(camPos);
+                camera.quaternion.copy(camQuat);
+
+
+                // Update Ents
+                entities.forEach(e => e.update(dt, input));
+                
+                // Update Projectiles
+                for(let i = projectiles.length - 1; i >= 0; i--) {
+                    if(!projectiles[i].update(dt)) projectiles.splice(i, 1);
+                }
+
+
+                // Update CPs
+                commandPosts.forEach(cp => cp.update(dt));
+
+
+                // Reset mouse delta
+                input.mouseX = 0; 
+                input.mouseY = 0;
+            }
+
+
+            renderer.render(scene, camera);
+        }
+        
+        animate();
+
+
+    </script>
+</body>
+</html>
