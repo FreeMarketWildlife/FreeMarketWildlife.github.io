@@ -5,7 +5,7 @@ import path from 'node:path';
 const root=fileURLToPath(new URL('../portfolio/critz/games/',import.meta.url));
 const games=JSON.parse(await readFile(path.join(root,'catalog.json'),'utf8'));
 assert.equal(new Set(games.map(g=>g.id)).size,games.length);
-assert.equal(games.length,11);
+assert.equal(games.length,12);
 for(const g of games){
  assert.equal(g.status,'Prototype');assert(g.controls.length>30);assert(g.src.startsWith('/portfolio/critz/games/builds/'));
  const file=path.join(root,g.src.split('/games/')[1]);assert((await stat(file)).isFile()||(await stat(path.join(file,'index.html'))).isFile());
@@ -16,3 +16,5 @@ async function audit(dir){for(const e of await readdir(dir,{withFileTypes:true})
 await audit(path.join(root,'builds'));
 assert(!(await readdir(path.join(root,'builds'))).some(n=>/powvista|aram-house/i.test(n)));
 console.log(`PASS: ${games.length} playable entries, public build targets, controls, expand/exit/direct fallback and ${count} sanitized runtime files.`);
+
+const kingdom=JSON.parse(await readFile(path.join(root,'builds/kingdom-conquest/build-manifest.json'),'utf8'));assert.equal(kingdom.species,18);assert.equal((await readdir(path.join(root,'builds/kingdom-conquest/assets/minions'))).filter(n=>n.endsWith('.glb')).length,18);

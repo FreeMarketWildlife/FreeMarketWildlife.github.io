@@ -40,6 +40,16 @@
     "status": "Prototype"
   },
   {
+    "id": "kingdom-conquest",
+    "title": "Critz Kingdom Conquest",
+    "genre": "Lane battle strategy",
+    "description": "Command a Conqueror alongside eighteen animated animal minions in the existing single-player battlefield prototype.",
+    "controls": "Right-click to move or attack. Q/W/E/R cast toward the cursor; Space centers the camera; A then click performs attack-move; S stops; B recalls; F flashes. Scroll zooms. Mouse and keyboard are required for movement; touch can use menus and ability buttons.",
+    "support": "Desktop mouse and keyboard",
+    "src": "/portfolio/critz/games/builds/kingdom-conquest/",
+    "status": "Prototype"
+  },
+  {
     "id": "ctrl-alt-del",
     "title": "Ctrl Alt Del — Episode I",
     "genre": "Action campaign",
