@@ -5,7 +5,8 @@ import { createRemoteJWKSet, jwtVerify } from 'jose';
 export const WORKSPACES = Object.freeze([
   {id:'philip-aram', name:'Philip Aram', path:'/philip-aram/'},
   {id:'troy-kearns', name:'Troy Kearns', path:'/troykearns/strategy/'},
-  {id:'kat-kai', name:'Kat & Kai', path:'/kat-kai/'}
+  {id:'kat-kai', name:'Kat & Kai', path:'/kat-kai/'},
+  {id:'valori-corson', name:'Valori Corson', path:'/valori-corson/'}
 ]);
 const keys = createRemoteJWKSet(new URL('https://www.googleapis.com/oauth2/v3/certs'));
 const now = () => Math.floor(Date.now()/1000);
@@ -27,6 +28,7 @@ export function protectedWorkspace(path) {
   if (/^\/philip-aram(?:\/|$)/i.test(path)) return 'philip-aram';
   if (/^\/(?:troykearns|troy-kearns)(?:\/|$)/i.test(path)) return 'troy-kearns';
   if (/^\/kat-kai(?:\/|$)/i.test(path)) return 'kat-kai';
+  if (/^\/valori-corson(?:\/|$)/i.test(path)) return 'valori-corson';
   return null;
 }
 export async function identity(req,env) {

@@ -74,6 +74,7 @@ jobs:
           node tests/test_content_ideas.mjs
           node tests/test_troy_spreadsheets.mjs
           node tests/test_sermons.mjs
+          node tests/test_valori_calendar.mjs
       - uses: actions/configure-pages@v5
       - name: Prepare public files
         run: |
@@ -84,6 +85,7 @@ jobs:
           test ! -e _site/troykearns
           test ! -e _site/troy-kearns
           test ! -e _site/kat-kai
+          test ! -e _site/valori-corson
           test ! -e _site/account
       - uses: actions/upload-pages-artifact@v3
         with:

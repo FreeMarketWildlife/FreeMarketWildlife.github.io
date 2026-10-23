@@ -1,0 +1,53 @@
+/* Valori's professional workspace; all rules load only on her three pages. */
+:root { color-scheme: light; background: #f4f5f1; color: #25352f; }
+body { background: #f4f5f1; color: #25352f; font-family: Arial, Helvetica, sans-serif; }
+header { background: #173b32; border-bottom: 1px solid #244c41; flex-wrap: wrap; gap: 28px; padding: 20px 32px; }
+.workspace-brand { color: #fff; font-size: 12px; font-weight: 600; letter-spacing: .04em; text-decoration: none; white-space: nowrap; }
+header > nav { flex-wrap: wrap; gap: 8px 24px; }
+header > nav a { color: #e1e9e4; padding: 10px 0; text-decoration: none; border-bottom: 2px solid transparent; font-size: 14px; }
+header > nav a:hover { color: #fff; }
+header > nav a[aria-current] { color: #fff; border-bottom-color: #cfddc7; font-weight: 600; }
+main { max-width: 1120px; margin: 0 auto; padding: 52px 32px 64px; }
+.workspace-label { color: #55685d; margin: 0 0 10px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .16em; }
+h1 { color: #173b32; font-family: Georgia, 'Times New Roman', serif; font-size: clamp(32px, 4vw, 44px); font-weight: 400; margin: 0 0 32px; line-height: 1.2; letter-spacing: -.025em; }
+.workspace-panel { border: 1px solid #dce3d9; border-radius: 12px; background: #fff; padding: 28px; box-shadow: 0 3px 14px #173b3205; }
+h2 { color: #25352f; font-size: 21px; margin: 0; font-weight: 600; line-height: 1.4; }
+.empty-state { color: #5b695f; background: #f8f9f6; border: 1px dashed #ccd6c8; border-radius: 8px; padding: 56px 24px; margin: 24px 0 0; text-align: center; font-size: 15px; }
+.calendar-heading { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+.calendar-controls { display: flex; gap: 8px; }
+.calendar-controls button { min-height: 44px; min-width: 44px; color: #254f3f; background: #fff; border: 1px solid #ccd6c8; border-radius: 6px; font-size: 14px; }
+.calendar-controls button:hover { background: #edf2ea; border-color: #7f9a89; }
+.calendar-description { color: #5b695f; font-size: 14px; margin: 10px 0 16px; }
+.calendar-legend { display: flex; flex-wrap: wrap; gap: 8px 20px; color: #47614f; font-size: 12px; }
+.calendar-legend span { background: #f1f5ee; border: 1px solid #e0e7da; border-radius: 4px; padding: 3px 8px; }
+h3 { color: #25352f; font-size: 17px; font-weight: 600; margin: 28px 0 14px; }
+.calendar-grid { overflow: hidden; border-top: 1px solid #dce3d9; border-left: 1px solid #dce3d9; border-radius: 7px; }
+.calendar-row { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); }
+.calendar-day, .calendar-weekday { min-width: 0; border-right: 1px solid #dce3d9; border-bottom: 1px solid #dce3d9; padding: 10px; }
+.calendar-day { min-height: 98px; font-size: 14px; font-variant-numeric: tabular-nums; background: #fff; }
+.calendar-day:empty { background: #f8f9f6; }
+.calendar-day time { display: inline-block; min-width: 28px; line-height: 28px; text-align: center; }
+.calendar-day [aria-current="date"] { background: #254f3f; color: #fff; border-radius: 50%; font-weight: 600; }
+.calendar-weekday { color: #5b695f; background: #f3f6ef; font-size: 11px; font-weight: 600; text-align: center; }
+.calendar-day ul { list-style: none; padding: 0; font-size: 12px; }
+.calendar-day li { margin: 8px 0 0; }
+#calendar-status { margin-top: 20px; padding: 20px 16px; font-size: 13px; }
+:focus-visible { outline: 2px solid #38715a; outline-offset: 4px; }
+header :focus-visible { outline-color: #d9e8d0; }
+.skip-link { position: absolute; top: -100px; left: 16px; background: #173b32; color: #fff; padding: 12px; z-index: 200; }
+.skip-link:focus { top: 8px; }
+@media (max-width: 600px) {
+ header { padding: 16px 20px; gap: 12px; }
+ header > nav { width: 100%; gap: 4px 16px; }
+ header > nav a { font-size: 13px; padding: 8px 0; }
+ main { padding: 32px 16px 40px; }
+ h1 { margin-bottom: 24px; }
+ .workspace-panel { padding: 20px 14px; border-radius: 10px; }
+ h2 { font-size: 19px; }
+ .calendar-day { padding: 4px; min-height: 58px; font-size: 12px; }
+ .calendar-day time { min-width: 24px; line-height: 24px; }
+ .calendar-weekday { padding: 8px 0; font-size: 10px; }
+ .calendar-controls { gap: 6px; }
+ .calendar-controls button { padding: 6px 10px; }
+ .empty-state { padding: 44px 16px; }
+}

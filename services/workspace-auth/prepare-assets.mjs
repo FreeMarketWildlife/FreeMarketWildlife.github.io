@@ -4,7 +4,7 @@ const root = fileURLToPath(new URL('../../', import.meta.url));
 const target = fileURLToPath(new URL('./public/', import.meta.url));
 await rm(target, {recursive:true, force:true});
 await mkdir(target, {recursive:true});
-for (const name of ['tutorials','privacy','account','index.html','404.html','assets','portfolio','tanoshi','contact','blog','build-a-business','troy-kearns','troykearns','kat-kai','philip-aram']) {
+for (const name of ['tutorials','privacy','account','index.html','404.html','assets','portfolio','tanoshi','contact','blog','build-a-business','troy-kearns','troykearns','kat-kai','philip-aram','valori-corson']) {
   await cp(root + name, target + name, {recursive:true});
 }
 // This config is generated only for the protected Worker build. The Pages preview stays unchanged.
