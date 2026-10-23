@@ -1,0 +1,112 @@
+[
+  {
+    "id": "treetop-trebuchet",
+    "title": "Critz: Treetop Trebuchet",
+    "genre": "Physics launcher",
+    "description": "Load a critter, wind a gravity-powered trebuchet, and earn Bells for upgrades.",
+    "controls": "Drag the critter into the sling, hold the clearing or launcher button to wind, then release. Keyboard: Enter loads; hold and release Space to launch. Pause opens options.",
+    "support": "Touch and keyboard",
+    "src": "/portfolio/critz/games/builds/treetop-trebuchet/",
+    "status": "Prototype"
+  },
+  {
+    "id": "tycoon",
+    "title": "Critz: Tycoon",
+    "genre": "Ecosystem RPG",
+    "description": "Explore Rootport and care for a small living world. Existing story and ecosystem prototype.",
+    "controls": "Use the on-screen movement and action controls, or WASD / arrow keys to move. Follow the game’s dialogue and action prompts.",
+    "support": "Touch and keyboard",
+    "src": "/portfolio/critz/games/builds/tycoon/",
+    "status": "Prototype"
+  },
+  {
+    "id": "baad-math",
+    "title": "Critz: Baa’d Math",
+    "genre": "Counting survival",
+    "description": "Keep count as unusual sheep cross the sky. Try not to wake the wolf.",
+    "controls": "Tap the left half to subtract and right half to add. A/D or arrow keys also work. Hold to repeat. Space or Escape pauses. Multiplication buttons unlock during play.",
+    "support": "Touch and keyboard",
+    "src": "/portfolio/critz/games/builds/baad-math/",
+    "status": "Prototype"
+  },
+  {
+    "id": "tower-defense",
+    "title": "Critz Tower Defense",
+    "genre": "Building sandbox",
+    "description": "The Buttonwood / Tower of Babel prototype: mine, craft, build and defend a growing tower.",
+    "controls": "Use the game’s toolbar to select tools and structures, then click or tap the world. Drag to pan; use the on-screen camera controls. Open the in-game help for advanced controls.",
+    "support": "Touch and mouse",
+    "src": "/portfolio/critz/games/builds/tower-defense/",
+    "status": "Prototype"
+  },
+  {
+    "id": "ctrl-alt-del",
+    "title": "Ctrl Alt Del — Episode I",
+    "genre": "Action campaign",
+    "description": "An existing campaign prototype with combat, scenes and editable levels. Supporting art and dialogue remain provisional.",
+    "controls": "A/D or arrows move; W/up jumps; S/down crouches; Space fires; F strikes; E interacts; Q throws; C uses watch; Escape pauses. Enter continues dialogue, Tab skips a scene. Keyboard required.",
+    "support": "Desktop keyboard",
+    "src": "/portfolio/critz/games/builds/ctrl-alt-del/episode-one/",
+    "status": "Prototype"
+  },
+  {
+    "id": "serpent-siege",
+    "title": "Serpent Siege",
+    "genre": "Arcade survival",
+    "description": "The current Snake Game Test: evade the serpent’s head and sever its tail for points.",
+    "controls": "WASD or arrows move; Shift sprints; Space slashes; P pauses. Enter a local name and choose Start. Keyboard required.",
+    "support": "Desktop keyboard",
+    "src": "/portfolio/critz/games/builds/serpent-siege/",
+    "status": "Prototype"
+  },
+  {
+    "id": "battlefront",
+    "title": "Critz: Battlefront Minimalist",
+    "genre": "Shooter experiment",
+    "description": "An early team-battle shooter slice with simple geometric graphics.",
+    "controls": "Click to start and capture the mouse. WASD moves; mouse aims; click fires; Space jumps. Escape releases the mouse. Desktop mouse and keyboard required.",
+    "support": "Desktop mouse and keyboard",
+    "src": "/portfolio/critz/games/builds/battlefront/",
+    "status": "Prototype"
+  },
+  {
+    "id": "runner",
+    "title": "Critz Runner",
+    "genre": "Endless runner",
+    "description": "Jump and duck through this small existing runner experiment. Scores stay on this device.",
+    "controls": "Space or up jumps; down ducks; P pauses; R restarts. On touch screens, use the arcade buttons below the game.",
+    "support": "Touch buttons and keyboard",
+    "src": "/portfolio/critz/games/builds/minigames/runner.html",
+    "status": "Prototype"
+  },
+  {
+    "id": "katana-mouse",
+    "title": "Katana Mouse",
+    "genre": "Combat survival",
+    "description": "Move, slash and survive in the existing arena minigame.",
+    "controls": "WASD or arrows move; Space slashes; Shift dashes; F uses a special attack; Q uses the arcane gun when unlocked; R restarts. Keyboard required.",
+    "support": "Desktop keyboard",
+    "src": "/portfolio/critz/games/builds/minigames/katana-mouse.html",
+    "status": "Prototype"
+  },
+  {
+    "id": "critter-quest",
+    "title": "Critter Quest",
+    "genre": "Small adventure",
+    "description": "Choose a critter hero and explore an existing choice-based adventure.",
+    "controls": "Choose a hero, then click or tap the actions and choices.",
+    "support": "Touch and mouse",
+    "src": "/portfolio/critz/games/builds/minigames/critter-quest.html",
+    "status": "Prototype"
+  },
+  {
+    "id": "card-game",
+    "title": "Critz Card Game",
+    "genre": "Turn-based strategy",
+    "description": "Play the existing critter card and board prototype.",
+    "controls": "Use the on-screen cards, board spaces and action buttons. Click or tap the available choices; the game shows turn and resource information.",
+    "support": "Touch and mouse",
+    "src": "/portfolio/critz/games/builds/minigames/card-game.html",
+    "status": "Prototype"
+  }
+]

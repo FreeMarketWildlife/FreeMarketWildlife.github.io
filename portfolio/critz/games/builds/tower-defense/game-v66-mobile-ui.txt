@@ -1,0 +1,117 @@
+// Root-level guards also cover hybrid devices, desktop-site mode and hidden UI.
+// Do not cancel touch events: mining, camera gestures and native panel scroll need them.
+function editableUiV66(node){const el=node instanceof Element?node:node?.parentElement;return !!el&&(el.matches('input,textarea,select')||el.isContentEditable)}
+for(const type of ['contextmenu','selectstart','dragstart'])document.addEventListener(type,event=>{
+ if(!editableUiV66(event.target))event.preventDefault();
+},{capture:true});
+document.addEventListener('selectionchange',()=>{
+ const selection=getSelection();if(selection&&selection.rangeCount&&!editableUiV66(selection.anchorNode)&&(!editableUiV66(document.activeElement)||!selection.isCollapsed))selection.removeAllRanges();
+});
+// Phone UI shares one bounded panel area; gameplay and saved progression are unchanged.
+const phoneMediaV66=matchMedia('(max-width: 600px), (max-height: 500px) and (pointer: coarse)');
+const phoneRootV66=document.createElement('div');phoneRootV66.id='phoneHud';phoneRootV66.hidden=true;
+phoneRootV66.innerHTML='<div class="phoneStats"></div><nav class="phoneTabs" aria-label="Game panels"></nav>';
+document.body.append(phoneRootV66);
+document.body.style.setProperty('--phone-chevron','url('+compactArtV64.info+')');
+const phoneHomesV66=new Map(),phoneSectionsV66=[];
+function phoneMoveV66(el,parent){if(el.closest('#pauseMenuV76,#minimalHudV77'))return;if(!phoneHomesV66.has(el)){const marker=document.createComment('phone UI return');el.before(marker);phoneHomesV66.set(el,marker)}parent.append(el)}
+function phoneSectionV66(id,label){const el=document.createElement('details');el.id=id;el.className='phoneSection';el.innerHTML='<summary>'+label+'</summary><div class="phoneContent box"></div>';phoneRootV66.querySelector('nav').append(el);phoneSectionsV66.push(el);el.querySelector('summary').addEventListener('click',()=>{if(!el.open&&phoneActiveV66()){closePhonePanelsV66(el);phoneBoundsV66()}});el.addEventListener('toggle',()=>{if(el.open&&phoneActiveV66()){closePhonePanelsV66(el);phoneBoundsV66()}});return el}
+const phoneGoalV66=phoneSectionV66('phoneGoal','Goal'),phoneVillageV66=phoneSectionV66('phoneVillage','Village'),phoneSettingsV66=phoneSectionV66('phoneSettings','Settings');
+const phoneTimeV66=document.createElement('span');phoneTimeV66.id='phoneTime';
+const phoneGuideV66=document.createElement('button');phoneGuideV66.className='btn';phoneGuideV66.id='phoneGuide';phoneGuideV66.textContent='Guide';phoneGuideV66.setAttribute('aria-controls','tips');phoneGuideV66.setAttribute('aria-expanded','false');phoneRootV66.querySelector('nav').append(phoneGuideV66);
+phoneGuideV66.onclick=()=>{const open=!$('tips').classList.contains('show');closePhonePanelsV66();$('tips').classList.toggle('show',open);phoneGuideV66.setAttribute('aria-expanded',String(open))};
+const phoneDialogsV66=['structuresPanel','pickaxeShop','buildingPanel','homePanel','devPanel'];
+function phoneActiveV66(){return phoneMediaV66.matches&&!bwSampleMode}
+function closePhonePanelsV66(except){
+ for(const section of phoneSectionsV66)if(section!==except)section.open=false;
+ for(const id of phoneDialogsV66){const panel=$(id);if(panel!==except&&panel?.open)panel.close()}
+ if(except!==$('tips')){$('tips').classList.remove('show');phoneGuideV66.setAttribute('aria-expanded','false')}
+}
+function phoneBoundsV66(){
+ if(!phoneActiveV66())return;
+ const view=window.visualViewport,top=view?.offsetTop||0,height=view?.height||innerHeight;
+ document.body.style.setProperty('--phone-top',Math.ceil(top)+'px');
+ document.body.style.setProperty('--phone-bottom',Math.max(0,Math.ceil(innerHeight-top-height))+'px');
+ const minimal=$('minimalHudV77'),header={bottom:minimal?Math.max($('hudLeftV77').getBoundingClientRect().bottom,$('hudNavigationV77').getBoundingClientRect().bottom):phoneRootV66.getBoundingClientRect().bottom},bar=$('bar').getBoundingClientRect();
+ document.body.style.setProperty('--phone-panel-top',Math.ceil(header.bottom+8)+'px');
+ document.body.style.setProperty('--phone-panel-bottom',Math.ceil(innerHeight-bar.top+8)+'px');
+ document.body.style.setProperty('--phone-panel-height',Math.max(0,Math.floor(bar.top-header.bottom-16))+'px');
+}
+// Native details keep long building forms readable without changing their actions.
+function phoneFoldV66(id,label,node){const fold=document.createElement('details');fold.id=id;fold.className='phoneFold';fold.open=true;const summary=document.createElement('summary');summary.textContent=label;node.before(fold);fold.append(summary,node);return fold}
+const phoneStockV66=phoneFoldV66('phoneStock','Building inventory',buildingInventoryV60);
+const phoneAutoV66=phoneFoldV66('phoneAutomation','Workers & recipes',buildingControlsV56);
+for(const [id,text] of [['buildingWorkerV56','Worker'],['buildingPrimaryV56','Primary recipe'],['buildingSecondaryV56','Secondary recipe']]){
+ const select=$(id),label=document.createElement('label');label.className='phoneFieldLabel';label.htmlFor=id;label.textContent=text;select.before(label);select.setAttribute('aria-label',text);
+}
+const phoneHomeInfoV66=phoneFoldV66('phoneHomeInfo','About Homes',homePanelV55.querySelector('#homeResidents + p'));
+function phoneProgressV66(){
+ if(!phoneActiveV66())return;
+ const workers=unlockedMiners()>0||adultsV55().length>0,industry=stone||structuresV46.length>0;
+ phoneVillageV66.hidden=!workers;
+ if(!workers)phoneVillageV66.open=false;
+ phoneAutoV66.hidden=!workers||buildingControlsV56.hidden;
+ $('nailToggle').hidden=!(inv.nails>0||nailModeV46||structuresV46.some(b=>b.type==='blacksmith'));
+ // Keep the next goal discoverable; only hide mechanics that are still locked.
+ const guides=$('tips').querySelectorAll('.tipsGroups details');
+ if(guides[3])guides[3].hidden=!workers;
+ if(guides[4])guides[4].hidden=!industry;
+ if(guides[6])guides[6].hidden=!deepslate;
+ for(const row of $('pickaxeTiers').children)row.hidden=Number(row.id.replace('equip-pick-',''))>pickaxeOwnedTier+1;
+}
+const phoneUiBaseV66=ui;ui=function(){phoneUiBaseV66();phoneProgressV66()};
+const phoneRefreshPickV66=refreshPickaxeV39;refreshPickaxeV39=function(){phoneRefreshPickV66();phoneProgressV66()};
+const phoneClockBaseV66=refreshWorkersV55;
+refreshWorkersV55=function(){phoneClockBaseV66();if(phoneActiveV66()){
+ const text=clockHudV55.textContent.split(' | ');phoneTimeV66.textContent=text[0].replace('DAYTIME','DAY');
+ clockHudV55.textContent=text.slice(1).join(' · ').replace(/ · 0 babies| · 0 kids/g,'');phoneProgressV66();
+}};
+const phoneOpenBuildingV66=openBuildingV46;
+openBuildingV46=function(b){if(phoneActiveV66())closePhonePanelsV66();phoneOpenBuildingV66(b);if(phoneActiveV66()){
+ setNativeDisclosureV67(phoneStockV66,b.type==='storehouse');setNativeDisclosureV67(phoneAutoV66,false);setNativeDisclosureV67(phoneHomeInfoV66,false);
+ // Attached building panels leave the world, toolbar and header usable.
+ const panel=b.type==='home'?homePanelV55:$('buildingPanel');if(panel.matches(':modal')){panel.close();panel.show()}
+ phoneProgressV66();
+}};
+function phoneLayoutV66(){
+ const active=phoneActiveV66();document.body.classList.toggle('phone-ui',active);phoneRootV66.hidden=!active;
+ if(active){
+  const stats=phoneRootV66.querySelector('.phoneStats');phoneMoveV66(document.querySelector('.hudLeft'),stats);
+  const cams=document.querySelector('.cams');phoneMoveV66(cams,stats);phoneMoveV66(document.querySelector('.audioToggles'),phoneSettingsV66.lastChild);
+  for(const id of ['quest','mode','stability'])phoneMoveV66($(id),phoneGoalV66.lastChild);
+  phoneMoveV66(clockHudV55,phoneVillageV66.lastChild);
+  for(const id of ['gridToggle','nailToggle'])phoneMoveV66($(id),phoneSettingsV66.lastChild);
+  phoneSettingsV66.lastChild.prepend(phoneTimeV66);
+  for(const fold of [phoneStockV66,phoneAutoV66,phoneHomeInfoV66])setNativeDisclosureV67(fold,false);
+  for(const el of $('tips').querySelectorAll('details'))setNativeDisclosureV67(el,false);
+  refreshWorkersV55();phoneProgressV66();phoneBoundsV66();
+ }else{
+  for(const [el,marker] of phoneHomesV66)marker.after(el);
+  for(const fold of [phoneStockV66,phoneAutoV66,phoneHomeInfoV66]){setNativeDisclosureV67(fold,true);fold.hidden=false}
+  $('nailToggle').hidden=false;
+  for(const el of $('tips').querySelectorAll('details'))el.hidden=false;
+  for(const row of $('pickaxeTiers').children)row.hidden=false;
+  refreshWorkersV55();
+ }
+}
+phoneMediaV66.addEventListener('change',phoneLayoutV66);
+new ResizeObserver(phoneBoundsV66).observe(phoneRootV66);
+new ResizeObserver(phoneBoundsV66).observe($('bar'));
+window.visualViewport?.addEventListener('resize',phoneBoundsV66);window.visualViewport?.addEventListener('scroll',phoneBoundsV66);
+addEventListener('resize',phoneBoundsV66);
+document.addEventListener('pointerdown',e=>{if(phoneActiveV66()&&(e.target===c||(e.target.closest('#bar')&&!e.target.closest('#structuresOpen,[data-tool=pick],[data-hotbar-slot]'))))closePhonePanelsV66()},{capture:true});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&phoneActiveV66()){const open=phoneSectionsV66.find(s=>s.open);closePhonePanelsV66();open?.querySelector('summary').focus()}});
+for(const id of phoneDialogsV66){const panel=$(id);if(panel)new MutationObserver(()=>{
+ if(panel.open&&phoneActiveV66())closePhonePanelsV66(panel);
+ raiseNoticesV66();
+}).observe(panel,{attributes:true,attributeFilter:['open']})}
+for(const panel of document.querySelectorAll('.modal'))new MutationObserver(()=>{if(panel.classList.contains('show')&&phoneActiveV66())closePhonePanelsV66();raiseNoticesV66()}).observe(panel,{attributes:true,attributeFilter:['class']});
+// Popovers enter the browser's top layer, including above native modal dialogs.
+const noticesV66=[$('toast'),$('structureDragHint')];
+for(const el of noticesV66){el.setAttribute('popover','manual');el.setAttribute('role','status');el.setAttribute('aria-live','polite');el.setAttribute('aria-atomic','true');document.body.append(el)}
+function raiseNoticesV66(){for(const el of noticesV66){const visible=el.id==='toast'?!el.classList.contains('hide'):!el.hidden;if(el.hidePopover&&el.matches(':popover-open'))el.hidePopover();if(visible&&el.showPopover)el.showPopover()}}
+for(const el of noticesV66)new MutationObserver(raiseNoticesV66).observe(el,{attributes:true,attributeFilter:['class','hidden'],childList:true});
+phoneLayoutV66();
+
+// Only inline disclosures animate; top-level HUD tabs and dialogs retain their behavior.
+for(const fold of document.querySelectorAll('.phoneFold,.tipsGroups details'))enhanceNativeDisclosureV67(fold);

@@ -1,0 +1,100 @@
+/* Holds belong to game gestures; only editable controls retain text selection. */
+@media (any-pointer: coarse){
+ body,body *{-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+ body input,body textarea,body select,body [contenteditable=true],body [contenteditable=true] *{-webkit-user-select:text;user-select:text;-webkit-touch-callout:default}
+}
+/* Notifications must clear both ordinary stacking contexts and native dialogs. */
+#toast,#structureDragHint{position:fixed;inset:auto;top:max(12px,env(safe-area-inset-top));left:50%;margin:0;transform:translateX(-50%);width:max-content;min-width:0;max-width:min(420px,calc(100vw - 24px));max-height:calc(100dvh - 24px);overflow:auto;overflow-wrap:anywhere;z-index:1000;pointer-events:none}
+#toast.hide{transform:translateX(-50%)}
+#toast:before{content:none}
+#toast::backdrop,#structureDragHint::backdrop{background:transparent;pointer-events:none}
+.phoneFold>summary{display:none}
+#phoneHud{display:none}
+.phone-ui{--phone-panel-top:112px;--phone-panel-bottom:96px;--phone-panel-height:calc(100dvh - 208px)}
+.phone-ui #phoneHud{position:fixed;display:block;top:calc(var(--phone-top,0px) + max(8px,env(safe-area-inset-top)));left:max(8px,env(safe-area-inset-left));right:max(8px,env(safe-area-inset-right));z-index:20}
+.phone-ui #hud,.phone-ui #tipBtn{display:none}
+.phone-ui .phoneStats{display:flex;align-items:center;justify-content:space-between;gap:6px}
+.phone-ui .hudLeft{gap:4px;min-width:0;flex-wrap:wrap}
+.phone-ui .hudLeft>.box{padding:4px 6px;min-width:0}
+.phone-ui .hudLeft small{font-size:9px;letter-spacing:0!important}
+.phone-ui .hudLeft b{font-size:14px;line-height:20px}
+.phone-ui .cams{gap:4px;flex-shrink:0}
+.phone-ui .cams #top,.phone-ui .cams #down{width:44px;height:44px;font-size:0}
+.phone-ui .phoneTabs{display:flex;gap:4px;margin-top:6px}
+.phone-ui .phoneTabs>.btn,.phone-ui .phoneSection{flex:1;min-width:0}
+.phone-ui .phoneTabs>.btn,.phone-ui .phoneSection>summary{min-height:40px;padding:10px 3px;text-align:center;font:700 12px/16px ui-monospace,monospace;cursor:pointer;color:#49313f;background:#f7e8c4;border:2px solid #9c684d;border-radius:2px;box-shadow:0 2px #49313f33;list-style:none}
+.phone-ui summary::-webkit-details-marker{display:none}
+.phone-ui .phoneSection[open]>summary,.phone-ui #phoneGuide[aria-expanded=true]{background:#b9d1ab;border-color:#597d70}
+.phone-ui .phoneContent{position:fixed;top:var(--phone-panel-top);left:max(8px,env(safe-area-inset-left));right:max(8px,env(safe-area-inset-right));max-height:var(--phone-panel-height);padding:12px;overflow:auto;overscroll-behavior:contain;touch-action:pan-y;font-size:13px;line-height:1.5}
+.phone-ui #phoneGoal #quest,.phone-ui #phoneGoal #mode,.phone-ui #phoneGoal #stability,.phone-ui #phoneVillage #workerClock,.phone-ui #phoneSettings #gridToggle,.phone-ui #phoneSettings #nailToggle{position:static!important;inset:auto!important;max-width:none!important;width:auto;margin:0;box-shadow:none;transform:none;z-index:auto}
+.phone-ui #phoneGoal #quest{border:0;background:transparent;padding:0 0 8px}
+.phone-ui #questTitle{font-size:15px}
+.phone-ui #questSub,.phone-ui #quest small{font-size:12px}
+.phone-ui #phoneGoal #mode{display:inline-block;font-size:12px;padding:4px 8px}
+.phone-ui #phoneGoal #stability{display:none}
+.phone-ui #phoneGoal #stability.show{display:block;margin-top:8px;font-size:12px}
+.phone-ui #phoneVillage #workerClock{font:13px/1.8 ui-monospace,monospace!important;padding:0!important;border:0!important;background:transparent!important;color:inherit!important;overflow-wrap:anywhere}
+.phone-ui #phoneSettings .phoneContent{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.phone-ui #phoneTime{flex-basis:100%;font-size:12px}
+.phone-ui .audioToggles{margin:0;gap:8px;flex-wrap:wrap}
+.phone-ui #phoneSettings .btn{min-height:44px;font-size:11px}
+.phone-ui #bar{height:80px;bottom:calc(var(--phone-bottom,0px) + max(8px,env(safe-area-inset-bottom)));left:max(8px,env(safe-area-inset-left));right:max(8px,env(safe-area-inset-right));padding:6px;gap:4px;justify-content:flex-start;overflow-x:auto;overflow-y:hidden;touch-action:pan-x;z-index:20}
+.phone-ui #bar .slot{height:62px;grid-template-rows:36px 18px;flex:0 0 60px;min-width:60px;max-width:60px;padding:3px 1px;font-size:9px}
+.phone-ui #bar .slot.sel{transform:none}
+.phone-ui #bar .slot.locked{display:none}
+.phone-ui #structuresOpen[aria-expanded=true]:after{display:none}
+.phone-ui #structuresPanel,.phone-ui #pickaxeShop,.phone-ui #buildingPanel,.phone-ui #homePanel{position:fixed!important;inset:auto!important;bottom:var(--phone-panel-bottom)!important;left:max(8px,env(safe-area-inset-left))!important;margin:0!important;max-width:calc(100vw - max(8px,env(safe-area-inset-left)) - max(8px,env(safe-area-inset-right)));max-height:var(--phone-panel-height)!important;overflow:auto;overscroll-behavior:contain;touch-action:pan-y;z-index:25}
+.phone-ui #buildingPanel,.phone-ui #homePanel{width:min(420px,calc(100vw - 16px))!important;padding:12px}
+.phone-ui #structuresPanel header,.phone-ui #pickaxeShop header,.phone-ui #buildingPanel header,.phone-ui #homePanel header{position:sticky;top:-12px;background:#f7e8c4;z-index:2;padding:6px 0;margin:0 0 8px;min-height:44px}
+.phone-ui #structuresPanel.compactStructuresV64 header{top:-8px}
+.phone-ui #structuresClose,.phone-ui #buildingClose,.phone-ui #pickaxeClose{width:44px!important;height:44px!important;min-height:44px!important;flex-shrink:0}
+.phone-ui #homeClose{min-height:44px}
+.phone-ui #buildingHero,.phone-ui #bw-home-portrait,.phone-ui #buildingEyebrow,.phone-ui #buildingNote{display:none}
+.phone-ui .phoneFold{border-top:1px solid #c28d60;margin-top:12px}
+.phone-ui .phoneFold>summary{display:block;min-height:44px;padding:12px 4px;font-size:12px;font-weight:700;cursor:pointer;list-style:none}
+.phone-ui .phoneFold>summary[aria-expanded=true]{color:#597d70;border-bottom:1px solid #d8c397}
+.phone-ui #buildingInventoryV60{border:0;padding-top:0;margin-top:4px}
+.phone-ui #buildingControlsV56 select,.phone-ui #stockResourceV60,.phone-ui #stockAmountV60{font-size:16px;min-height:44px}
+.phone-ui #buildingControlsV56>div{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.phone-ui #buildingControlsV56>div>span{display:none}
+.phone-ui #tips{position:fixed;inset:auto;top:var(--phone-panel-top);left:max(8px,env(safe-area-inset-left));width:calc(100vw - max(8px,env(safe-area-inset-left)) - max(8px,env(safe-area-inset-right)));max-height:var(--phone-panel-height);z-index:25;overflow:auto}
+.phone-ui #tips.show{display:flex;flex-direction:column}
+.phone-ui .tipsTitle{flex-shrink:0}
+.phone-ui .tipsTitle small{display:none}
+.phone-ui .tipsGroups{max-height:none;min-height:0;flex:1;overflow:auto}
+.phone-ui .tipsFooter{position:static;flex-shrink:0}
+.phone-ui .tipsGroups summary{font-size:12px;min-height:44px}
+.phone-ui .tipsGroups summary span{font-size:10px}
+.phone-ui .tipBody p,.phone-ui .tipBody p b{font-size:12px}
+.phone-ui .tipsActions .btn,.phone-ui .tipsActions .resetLink{font-size:10px;min-height:44px}
+.phone-ui .modal{padding:12px;z-index:40;overflow:auto}
+.phone-ui .modalCard{max-height:calc(100dvh - 24px);overflow:auto;touch-action:pan-y;padding:14px}
+.phone-ui .modalCard p,.phone-ui .modalCard .warningText{font-size:12px}
+.phone-ui .modalCard .btn{min-height:44px}
+.phone-ui #toast,.phone-ui #structureDragHint{top:calc(var(--phone-top,0px) + max(8px,env(safe-area-inset-top)));font-size:12px}
+.phone-ui :focus-visible{outline:3px solid #597d70;outline-offset:2px}
+/* Keep the compact inventory legible in the Buttonwood cream palette. */
+.phone-ui #structuresPanel.compactStructuresV64,.phone-ui #structuresPanel .playerBuildingV61{background:#f7e8c4;color:#49313f;border-color:#c28d60}
+.phone-ui #structuresPanel .playerBuildingV61{background:#fff3d6}
+.phone-ui #structuresPanel .playerCostsV61>span{color:#49313f;font-size:12px}
+.phone-ui #structuresPanel .playerCostsV61>.missing,.phone-ui .recipeCost.missing{color:#ad5955}
+.phone-ui #structuresPanel .structureCard b{background:#49313f;color:#fff3d6}
+.phone-ui #structuresPanel .structureDetailsV64{border-color:#c28d60}
+.phone-ui #structuresPanel .structureInfoV64{opacity:1}
+.phone-ui #structuresPanel .playerCraftV61{background:#597d70;border-color:#597d70}
+.phone-ui #structuresPanel .playerCraftV61:disabled{opacity:.65}
+.phone-ui #bar .unlocked .lock{display:none!important}
+.phone-ui .phoneFold>summary{display:flex;align-items:center;justify-content:space-between;padding:6px 4px;gap:8px}
+.phone-ui .phoneFold>summary:after{content:'';width:32px;height:32px;flex:none;background:var(--phone-chevron) center/32px 32px no-repeat;image-rendering:pixelated}
+.phone-ui .phoneFold>summary[aria-expanded=true]:after{transform:rotate(180deg)}
+.phone-ui #workshopGrid{grid-template-columns:1fr;gap:6px;margin-bottom:10px}
+.phone-ui .workshopRecipe{display:grid;grid-template-columns:32px minmax(0,1fr) auto;gap:4px 6px;padding:6px;text-align:left;font-size:12px}
+.phone-ui .workshopRecipe>small{display:none}
+.phone-ui .workshopRecipe .recipeCosts{width:auto;margin:0;gap:2px;flex-wrap:nowrap;justify-content:flex-end;grid-column:3;grid-row:1/3}
+.phone-ui .workshopRecipe .recipeCost{flex-direction:column;min-width:32px;font-size:12px;line-height:14px;gap:0}
+.phone-ui .workshopRecipe .recipeAction{grid-column:1/3;width:auto;margin:0;padding:0;border:0;background:transparent;color:#704939;font-size:10px;letter-spacing:0}
+.phone-ui .workshopRecipe.crafting .recipeAction{color:#597d70}
+.phone-ui .structureNote{color:#704939!important}
+.phoneFieldLabel{display:none}
+.phone-ui .phoneFieldLabel{display:block;flex-basis:100%;margin-top:10px;font-size:12px}
+.phone-ui #buildingControlsV56 select{margin-top:0}

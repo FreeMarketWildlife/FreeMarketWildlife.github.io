@@ -1,0 +1,135 @@
+{
+  "assetId": "cad.mini.episode1.bat",
+  "revision": 1,
+  "name": "Equipment • native practice bat",
+  "kind": "scenery",
+  "biome": "shared",
+  "family": "mini",
+  "approval": "prototype-review",
+  "source": {
+    "type": "new-native",
+    "file": "src/build-assets.cjs",
+    "recipe": "bat"
+  },
+  "native": {
+    "width": 24,
+    "height": 24,
+    "origin": [
+      12,
+      12
+    ],
+    "originName": "authored-anchor",
+    "selectionBounds": {
+      "x": 0,
+      "y": 0,
+      "width": 24,
+      "height": 24
+    },
+    "visibleBounds": [
+      {
+        "variant": 0,
+        "frame": 0,
+        "x": 3,
+        "y": 3,
+        "width": 17,
+        "height": 17
+      }
+    ],
+    "animationEnvelope": {
+      "x": 0,
+      "y": 0,
+      "width": 24,
+      "height": 24
+    }
+  },
+  "sockets": [
+    {
+      "id": "left",
+      "type": "edge",
+      "x": -12,
+      "y": 0,
+      "facing": -1
+    },
+    {
+      "id": "right",
+      "type": "edge",
+      "x": 12,
+      "y": 0,
+      "facing": 1
+    }
+  ],
+  "render": {
+    "kind": "sprite-sheet",
+    "layer": "actors",
+    "parallax": {
+      "x": 1,
+      "y": 1
+    },
+    "variants": [
+      {
+        "id": "v0",
+        "uri": "assets/bat.png",
+        "width": 24,
+        "height": 24,
+        "sha256": "45f87ed2db947f69c1b93ee7fa86bad4c5add204fb90b376a311724df5d40122"
+      }
+    ],
+    "frameSize": [
+      24,
+      24
+    ],
+    "frameCount": 1,
+    "allowedFacing": [
+      1,
+      -1
+    ],
+    "scale": 1
+  },
+  "collision": {
+    "defaults": [],
+    "decorative": true,
+    "behavior": "Artwork does not activate gameplay; scene entity kind and properties do."
+  },
+  "properties": {
+    "variant": {
+      "type": "integer",
+      "default": 0
+    }
+  },
+  "animation": {
+    "states": {
+      "idle": {
+        "frames": [
+          0
+        ],
+        "timingMs": [
+          180
+        ],
+        "loop": true
+      }
+    },
+    "frameEvents": []
+  },
+  "tags": [
+    "equipment",
+    "bat",
+    "prototype"
+  ],
+  "thumbnail": {
+    "uri": "assets/bat.png",
+    "frame": 0,
+    "variant": 0,
+    "nativeSize": [
+      24,
+      24
+    ],
+    "noResample": true
+  },
+  "placement": {
+    "snap": 1,
+    "suggestedGrid": 8,
+    "preview": "native-with-geometry",
+    "allowScale": false,
+    "allowRotation": false
+  }
+}

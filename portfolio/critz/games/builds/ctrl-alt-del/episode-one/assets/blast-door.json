@@ -1,0 +1,156 @@
+{
+  "assetId": "cad.mini.episode1.blast-door",
+  "revision": 1,
+  "name": "Security door • three states",
+  "kind": "interactive",
+  "biome": "shared",
+  "family": "mini",
+  "approval": "prototype-review",
+  "source": {
+    "type": "new-native",
+    "file": "src/build-assets.cjs",
+    "recipe": "blast-door"
+  },
+  "native": {
+    "width": 24,
+    "height": 64,
+    "origin": [
+      12,
+      64
+    ],
+    "originName": "authored-anchor",
+    "selectionBounds": {
+      "x": 0,
+      "y": 0,
+      "width": 24,
+      "height": 64
+    },
+    "visibleBounds": [
+      {
+        "variant": 0,
+        "frame": 0,
+        "x": 0,
+        "y": 0,
+        "width": 24,
+        "height": 64
+      },
+      {
+        "variant": 0,
+        "frame": 1,
+        "x": 0,
+        "y": 0,
+        "width": 24,
+        "height": 64
+      },
+      {
+        "variant": 0,
+        "frame": 2,
+        "x": 0,
+        "y": 0,
+        "width": 24,
+        "height": 64
+      }
+    ],
+    "animationEnvelope": {
+      "x": 0,
+      "y": 0,
+      "width": 24,
+      "height": 64
+    }
+  },
+  "sockets": [
+    {
+      "id": "left",
+      "type": "edge",
+      "x": -12,
+      "y": 0,
+      "facing": -1
+    },
+    {
+      "id": "right",
+      "type": "edge",
+      "x": 12,
+      "y": 0,
+      "facing": 1
+    }
+  ],
+  "render": {
+    "kind": "sprite-sheet",
+    "layer": "scenery",
+    "parallax": {
+      "x": 1,
+      "y": 1
+    },
+    "variants": [
+      {
+        "id": "v0",
+        "uri": "assets/blast-door.png",
+        "width": 72,
+        "height": 64,
+        "sha256": "10576faebe678efdf4acfe51a326c7673fd59796e73527b190c732f272bd0932"
+      }
+    ],
+    "frameSize": [
+      24,
+      64
+    ],
+    "frameCount": 3,
+    "allowedFacing": [
+      1,
+      -1
+    ],
+    "scale": 1
+  },
+  "collision": {
+    "defaults": [],
+    "decorative": true,
+    "behavior": "Artwork does not activate gameplay; scene entity kind and properties do."
+  },
+  "properties": {
+    "variant": {
+      "type": "integer",
+      "default": 0
+    }
+  },
+  "animation": {
+    "states": {
+      "idle": {
+        "frames": [
+          0,
+          1,
+          2
+        ],
+        "timingMs": [
+          500,
+          500,
+          500
+        ],
+        "loop": true
+      }
+    },
+    "frameEvents": []
+  },
+  "tags": [
+    "nexus",
+    "door",
+    "locked",
+    "open"
+  ],
+  "thumbnail": {
+    "uri": "assets/blast-door.png",
+    "frame": 0,
+    "variant": 0,
+    "nativeSize": [
+      24,
+      64
+    ],
+    "noResample": true
+  },
+  "placement": {
+    "snap": 1,
+    "suggestedGrid": 8,
+    "preview": "native-with-geometry",
+    "allowScale": false,
+    "allowRotation": false
+  }
+}

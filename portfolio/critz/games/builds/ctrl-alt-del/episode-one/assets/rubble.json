@@ -1,0 +1,135 @@
+{
+  "assetId": "cad.mini.episode1.rubble",
+  "revision": 1,
+  "name": "Impact rubble",
+  "kind": "scenery",
+  "biome": "shared",
+  "family": "mini",
+  "approval": "prototype-review",
+  "source": {
+    "type": "new-native",
+    "file": "src/build-assets.cjs",
+    "recipe": "rubble"
+  },
+  "native": {
+    "width": 48,
+    "height": 18,
+    "origin": [
+      0,
+      18
+    ],
+    "originName": "authored-anchor",
+    "selectionBounds": {
+      "x": 0,
+      "y": 0,
+      "width": 48,
+      "height": 18
+    },
+    "visibleBounds": [
+      {
+        "variant": 0,
+        "frame": 0,
+        "x": 0,
+        "y": 6,
+        "width": 48,
+        "height": 12
+      }
+    ],
+    "animationEnvelope": {
+      "x": 0,
+      "y": 0,
+      "width": 48,
+      "height": 18
+    }
+  },
+  "sockets": [
+    {
+      "id": "left",
+      "type": "edge",
+      "x": 0,
+      "y": 0,
+      "facing": -1
+    },
+    {
+      "id": "right",
+      "type": "edge",
+      "x": 48,
+      "y": 0,
+      "facing": 1
+    }
+  ],
+  "render": {
+    "kind": "sprite-sheet",
+    "layer": "foreground",
+    "parallax": {
+      "x": 1,
+      "y": 1
+    },
+    "variants": [
+      {
+        "id": "v0",
+        "uri": "assets/rubble.png",
+        "width": 48,
+        "height": 18,
+        "sha256": "08bf9513bbcdac808089f003d24f56dc81a369c8b36457725519ba252ee1fb6b"
+      }
+    ],
+    "frameSize": [
+      48,
+      18
+    ],
+    "frameCount": 1,
+    "allowedFacing": [
+      1,
+      -1
+    ],
+    "scale": 1
+  },
+  "collision": {
+    "defaults": [],
+    "decorative": true,
+    "behavior": "Artwork does not activate gameplay; scene entity kind and properties do."
+  },
+  "properties": {
+    "variant": {
+      "type": "integer",
+      "default": 0
+    }
+  },
+  "animation": {
+    "states": {
+      "idle": {
+        "frames": [
+          0
+        ],
+        "timingMs": [
+          180
+        ],
+        "loop": true
+      }
+    },
+    "frameEvents": []
+  },
+  "tags": [
+    "ruin",
+    "scrap",
+    "foreground"
+  ],
+  "thumbnail": {
+    "uri": "assets/rubble.png",
+    "frame": 0,
+    "variant": 0,
+    "nativeSize": [
+      48,
+      18
+    ],
+    "noResample": true
+  },
+  "placement": {
+    "snap": 1,
+    "suggestedGrid": 8,
+    "preview": "native-with-geometry",
+    "allowScale": false,
+    "allowRotation": false
+  }
+}

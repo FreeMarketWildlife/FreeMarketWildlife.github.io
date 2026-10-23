@@ -1,0 +1,51 @@
+// Pause freezes active-play deadlines, physics, rendering and the audio transport.
+const pauseBeforeV76=loop;
+loop=function(){if(gameClockV76.paused){requestAnimationFrame(loop);return}pauseBeforeV76(performance.now())};
+const pausePaletteV76=ButtonwoodArt.palette;
+const pauseStyleV76=document.createElement('style');
+pauseStyleV76.textContent=`
+#pauseMenuV76{color:${pausePaletteV76.ink};background:${pausePaletteV76.cream};border:3px solid ${pausePaletteV76.outline};box-shadow:4px 4px 0 ${pausePaletteV76.woodShade};padding:24px;width:min(360px,calc(100vw - 48px));max-height:calc(100dvh - 48px);overflow:auto;font:14px/1.5 ui-monospace,monospace}
+#pauseMenuV76::backdrop{background:${pausePaletteV76.ink}99}
+#pauseMenuV76 h2{font-size:22px;margin:0 0 20px}#pauseMenuV76 button{min-height:44px;font:inherit;border:2px solid ${pausePaletteV76.outline};background:${pausePaletteV76.creamLight};color:${pausePaletteV76.ink};padding:8px 12px;cursor:pointer}
+#pauseMenuV76 button:hover{background:${pausePaletteV76.mintLight}}#pauseMenuV76 :focus-visible{outline:3px solid ${pausePaletteV76.ink};outline-offset:3px}
+#pauseMenuV76 section[hidden]{display:none}#pauseMenuV76 .pauseActionsV76{display:grid;gap:12px}#pauseMenuV76 label{display:grid;grid-template-columns:1fr auto;gap:8px;margin:16px 0}#pauseMenuV76 input[type=range]{grid-column:1/-1;width:100%;height:32px;accent-color:${pausePaletteV76.mintShade}}#pauseMenuV76 output{font-variant-numeric:tabular-nums}
+#pauseMenuV76 .audioToggles{position:static;display:flex;flex-wrap:wrap;margin:16px 0}#pauseMenuV76 p{margin:0 0 20px}#pauseOpenV76{position:fixed;right:16px;top:64px;z-index:30;min-width:64px;min-height:44px}
+.buttonwood-sample #pauseOpenV76{right:112px;top:calc(var(--bw-header-height,64px) + 16px)}.phone-ui #pauseOpenV76{top:auto;bottom:var(--phone-panel-bottom,96px);right:12px}
+`;
+document.head.append(pauseStyleV76);
+const pauseMenuV76=document.createElement('dialog');pauseMenuV76.id='pauseMenuV76';pauseMenuV76.setAttribute('aria-labelledby','pauseTitleV76');
+pauseMenuV76.innerHTML=`<h2 id="pauseTitleV76">Paused</h2>
+<section id="pauseMainV76"><div class="pauseActionsV76"><button id="pauseResumeV76">Resume</button><button id="pauseOptionsV76">Options</button><button id="pauseQuitV76">Quit</button></div></section>
+<section id="pauseOptionsPageV76" hidden><div id="pauseVolumesV76"></div><div class="pauseActionsV76" id="pauseToolsV76"></div><div class="pauseActionsV76" style="margin-top:20px"><button id="pauseBackV76">Back</button></div></section>
+<section id="pauseTitlePageV76" hidden><p>Your world is saved.</p><div class="pauseActionsV76"><button id="pausePlayV76">Play</button><button id="pauseTitleOptionsV76">Options</button></div></section>`;
+document.body.append(pauseMenuV76);
+let pausePageV76='main',pauseQuitV76=false;
+function pauseViewV76(page){pausePageV76=page;for(const [id,name] of [['pauseMainV76','main'],['pauseOptionsPageV76','options'],['pauseTitlePageV76','title']])$(id).hidden=page!==name;$('pauseTitleV76').textContent=page==='options'?'Options':page==='title'?'Critz Tower Defense':'Paused';$(page==='options'?'pauseVolume-master':page==='title'?'pausePlayV76':'pauseResumeV76').focus()}
+function pauseGameV76(page='main'){
+ if(!gameClockV76.paused){gameClockV76.started=window.performance.now();gameClockV76.paused=true;resetSimulationV24();resetKeyboardV52();stopPointerV52();cam.anim=false;cameraSpringActiveV24=false;SkyAudio.endPickStroke();SkyAudio.setPaused(true);saveGame();
+ for(const panel of document.querySelectorAll('dialog[open]'))panel.close();for(const el of document.querySelectorAll('.modal.show')){el.classList.remove('show');el.setAttribute('aria-hidden','true')}$('tips').classList.remove('show');$('toast').classList.add('hide');}
+ if(!pauseMenuV76.open)pauseMenuV76.showModal();pauseViewV76(page);
+}
+function resumeGameV76(){if(!gameClockV76.paused)return;gameClockV76.offset+=window.performance.now()-gameClockV76.started;gameClockV76.paused=false;pauseQuitV76=false;pauseMenuV76.close();resetKeyboardV52();SkyAudio.setPaused(false);c.setAttribute('tabindex','-1');c.focus({preventScroll:true})}
+const pauseOpenV76=document.createElement('button');pauseOpenV76.id='pauseOpenV76';pauseOpenV76.className='btn';pauseOpenV76.textContent='Pause';pauseOpenV76.title='Pause (Escape)';pauseOpenV76.setAttribute('aria-haspopup','dialog');pauseOpenV76.setAttribute('aria-controls',pauseMenuV76.id);document.body.append(pauseOpenV76);pauseOpenV76.onclick=()=>pauseGameV76();
+$('pauseResumeV76').onclick=resumeGameV76;$('pausePlayV76').onclick=resumeGameV76;
+$('pauseOptionsV76').onclick=$('pauseTitleOptionsV76').onclick=()=>pauseViewV76('options');$('pauseBackV76').onclick=()=>pauseViewV76(pauseQuitV76?'title':'main');
+$('pauseQuitV76').onclick=()=>{saveGame();pauseQuitV76=true;pauseViewV76('title')};
+for(const [key,label] of [['master','Master'],['music','Music'],['sfx','Effects']]){
+ const row=document.createElement('label');row.htmlFor='pauseVolume-'+key;const value=Math.round(SkyAudio.getVolumes()[key]*100);row.innerHTML=`<span>${label}</span><output id="pauseVolumeValue-${key}" for="pauseVolume-${key}">${value}%</output><input type="range" id="pauseVolume-${key}" min="0" max="100" step="1" value="${value}" aria-label="${label} volume">`;$('pauseVolumesV76').append(row);row.querySelector('input').oninput=e=>{SkyAudio.setVolume(key,Number(e.target.value)/100);$('pauseVolumeValue-'+key).value=e.target.value+'%'};
+}
+const oldAudioV76=document.querySelector('.audioToggles');if(oldAudioV76){phoneHomesV66.delete(oldAudioV76);$('pauseVolumesV76').append(oldAudioV76);}
+const devOpenBeforeV76=$('devToggle').onclick;$('pauseToolsV76').append($('devToggle'),$('restartWorld'));$('devToggle').textContent='Dev Tools';$('restartWorld').textContent='Restart World';
+$('devToggle').onclick=()=>{pauseGameV76('options');devOpenBeforeV76()};
+$('devPlace').addEventListener('click',()=>resumeGameV76());
+$('restartWorld').addEventListener('click',()=>{pauseMenuV76.close();$('restartCancel').focus()});
+$('restartCancel').addEventListener('click',()=>pauseGameV76('options'));
+pauseMenuV76.addEventListener('cancel',e=>e.preventDefault());
+// Capture Escape before inventory shortcuts, and keep gameplay keys out of menus.
+window.addEventListener('keydown',e=>{
+ if(e.key==='Escape'){e.preventDefault();e.stopImmediatePropagation();if(e.repeat)return;if(!gameClockV76.paused){pauseGameV76();return}if($('restartModal').classList.contains('show')){$('restartCancel').click();return}if($('devPanel').open){$('devPanel').close();return}if(pausePageV76==='tips'){pauseViewV76('options');return}if(pausePageV76==='options'){pauseViewV76(pauseQuitV76?'title':'main');return}if(!pauseQuitV76)resumeGameV76();return}
+ if(e.key==='F2'){e.preventDefault();e.stopImmediatePropagation();pauseGameV76('options');devOpenBeforeV76();return}
+ if(gameClockV76.paused&&(directionCodesV52.has(e.code)||e.code.startsWith('Shift')||/^Digit/.test(e.code))&&!e.target.matches('input,select,textarea')){e.preventDefault();e.stopImmediatePropagation()}
+},{capture:true});
+for(const type of ['pointerdown','pointermove','pointerup','wheel','touchstart','touchmove'])c.addEventListener(type,e=>{if(gameClockV76.paused){e.preventDefault();e.stopImmediatePropagation()}},{capture:true,passive:false});
+window.skyStackPause={pause:pauseGameV76,resume:resumeGameV76,get state(){return{paused:gameClockV76.paused,page:pausePageV76,quit:pauseQuitV76,time:performance.now(),physicsTime:eng.timing.timestamp}}};

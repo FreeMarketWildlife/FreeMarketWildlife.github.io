@@ -1,0 +1,1100 @@
+{
+  "schemaVersion": 1,
+  "assetPack": "cad.episode1.prototype@1",
+  "id": "08-acquire",
+  "chapter": 8,
+  "title": "Aquire this!",
+  "sourceTitle": "Aquire this!",
+  "status": "playable-prototype",
+  "dialogueStatus": "Supplied oath exact; other dialogue provisional.",
+  "family": "mini",
+  "mode": "ground",
+  "theme": "server",
+  "bounds": {
+    "width": 1776,
+    "height": 270
+  },
+  "viewport": [
+    480,
+    270
+  ],
+  "spawn": {
+    "x": 48,
+    "y": 222,
+    "hero": "jane"
+  },
+  "physicsProfile": "cad.mini.ground.approved-v1",
+  "layers": [
+    {
+      "id": "distant",
+      "order": 0
+    },
+    {
+      "id": "architecture",
+      "order": 10
+    },
+    {
+      "id": "scenery",
+      "order": 20
+    },
+    {
+      "id": "playable",
+      "order": 30
+    },
+    {
+      "id": "actors",
+      "order": 40
+    },
+    {
+      "id": "foreground",
+      "order": 50
+    }
+  ],
+  "terrainOrigin": {
+    "x": 0,
+    "y": 6
+  },
+  "terrain": [],
+  "entities": [
+    {
+      "id": "floor",
+      "name": "floor",
+      "kind": "solid",
+      "x": 0,
+      "y": 222,
+      "layer": "playable",
+      "assetId": "cad.mini.episode1.steel-floor",
+      "assetRevision": 1,
+      "w": 1776,
+      "h": 48
+    },
+    {
+      "id": "decor-11",
+      "name": "decor",
+      "kind": "decor",
+      "x": 0,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.server-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-12",
+      "name": "decor",
+      "kind": "decor",
+      "x": 0,
+      "y": 110,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.roof",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-13",
+      "name": "decor",
+      "kind": "decor",
+      "x": 64,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.server-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-14",
+      "name": "decor",
+      "kind": "decor",
+      "x": 128,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.server-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-15",
+      "name": "decor",
+      "kind": "decor",
+      "x": 192,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.server-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-16",
+      "name": "decor",
+      "kind": "decor",
+      "x": 192,
+      "y": 110,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.roof",
+      "assetRevision": 1,
+      "variant": 1
+    },
+    {
+      "id": "decor-17",
+      "name": "decor",
+      "kind": "decor",
+      "x": 256,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.server-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-18",
+      "name": "decor",
+      "kind": "decor",
+      "x": 320,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.server-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-19",
+      "name": "decor",
+      "kind": "decor",
+      "x": 384,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.server-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-20",
+      "name": "decor",
+      "kind": "decor",
+      "x": 384,
+      "y": 110,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.roof",
+      "assetRevision": 1,
+      "variant": 2
+    },
+    {
+      "id": "decor-21",
+      "name": "decor",
+      "kind": "decor",
+      "x": 448,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.server-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-22",
+      "name": "decor",
+      "kind": "decor",
+      "x": 512,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.server-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-23",
+      "name": "decor",
+      "kind": "decor",
+      "x": 576,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.server-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-24",
+      "name": "decor",
+      "kind": "decor",
+      "x": 576,
+      "y": 110,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.roof",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-25",
+      "name": "decor",
+      "kind": "decor",
+      "x": 640,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.server-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-26",
+      "name": "decor",
+      "kind": "decor",
+      "x": 704,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.server-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-27",
+      "name": "decor",
+      "kind": "decor",
+      "x": 768,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.server-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-28",
+      "name": "decor",
+      "kind": "decor",
+      "x": 768,
+      "y": 110,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.roof",
+      "assetRevision": 1,
+      "variant": 1
+    },
+    {
+      "id": "decor-29",
+      "name": "decor",
+      "kind": "decor",
+      "x": 832,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.server-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-30",
+      "name": "decor",
+      "kind": "decor",
+      "x": 896,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.server-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-31",
+      "name": "decor",
+      "kind": "decor",
+      "x": 960,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.server-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-32",
+      "name": "decor",
+      "kind": "decor",
+      "x": 960,
+      "y": 110,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.roof",
+      "assetRevision": 1,
+      "variant": 2
+    },
+    {
+      "id": "decor-33",
+      "name": "decor",
+      "kind": "decor",
+      "x": 1024,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.server-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-34",
+      "name": "decor",
+      "kind": "decor",
+      "x": 1088,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.server-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-35",
+      "name": "decor",
+      "kind": "decor",
+      "x": 1152,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.server-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-36",
+      "name": "decor",
+      "kind": "decor",
+      "x": 1152,
+      "y": 110,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.roof",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-37",
+      "name": "decor",
+      "kind": "decor",
+      "x": 1216,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.server-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-38",
+      "name": "decor",
+      "kind": "decor",
+      "x": 1280,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.server-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-39",
+      "name": "decor",
+      "kind": "decor",
+      "x": 1344,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.server-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-40",
+      "name": "decor",
+      "kind": "decor",
+      "x": 1344,
+      "y": 110,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.roof",
+      "assetRevision": 1,
+      "variant": 1
+    },
+    {
+      "id": "decor-41",
+      "name": "decor",
+      "kind": "decor",
+      "x": 1408,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.server-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-42",
+      "name": "decor",
+      "kind": "decor",
+      "x": 1472,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.server-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-43",
+      "name": "decor",
+      "kind": "decor",
+      "x": 1536,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.server-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-44",
+      "name": "decor",
+      "kind": "decor",
+      "x": 1536,
+      "y": 110,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.roof",
+      "assetRevision": 1,
+      "variant": 2
+    },
+    {
+      "id": "decor-45",
+      "name": "decor",
+      "kind": "decor",
+      "x": 1600,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.server-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-46",
+      "name": "decor",
+      "kind": "decor",
+      "x": 1664,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.server-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-47",
+      "name": "decor",
+      "kind": "decor",
+      "x": 1728,
+      "y": 222,
+      "layer": "architecture",
+      "assetId": "cad.mini.episode1.server-wall",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "decor-48",
+      "name": "decor",
+      "kind": "decor",
+      "x": 1728,
+      "y": 110,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.roof",
+      "assetRevision": 1,
+      "variant": 0
+    },
+    {
+      "id": "perimeter-fence",
+      "name": "perimeter fence",
+      "kind": "ladder",
+      "x": 175,
+      "y": 222,
+      "layer": "scenery",
+      "assetId": "cad.mini.episode1.fence",
+      "assetRevision": 1,
+      "w": 24,
+      "h": 64,
+      "top": 158,
+      "flag": "climbed"
+    },
+    {
+      "id": "perimeter-barrier",
+      "name": "perimeter barrier",
+      "kind": "solid",
+      "x": 175,
+      "y": 166,
+      "layer": "playable",
+      "assetId": "cad.mini.episode1.steel-floor",
+      "assetRevision": 1,
+      "w": 24,
+      "h": 56
+    },
+    {
+      "id": "platform-49",
+      "name": "platform",
+      "kind": "platform",
+      "x": 199,
+      "y": 158,
+      "layer": "playable",
+      "assetId": "cad.mini.recyke.catwalk-left",
+      "assetRevision": 1,
+      "w": 24,
+      "h": 6
+    },
+    {
+      "id": "platform-50",
+      "name": "platform",
+      "kind": "platform",
+      "x": 223,
+      "y": 158,
+      "layer": "playable",
+      "assetId": "cad.mini.recyke.catwalk-middle",
+      "assetRevision": 1,
+      "w": 24,
+      "h": 6
+    },
+    {
+      "id": "platform-51",
+      "name": "platform",
+      "kind": "platform",
+      "x": 247,
+      "y": 158,
+      "layer": "playable",
+      "assetId": "cad.mini.recyke.catwalk-right",
+      "assetRevision": 1,
+      "w": 24,
+      "h": 6
+    },
+    {
+      "id": "decor-52",
+      "name": "decor",
+      "kind": "decor",
+      "x": 211,
+      "y": 198,
+      "layer": "scenery",
+      "assetId": "cad.mini.recyke.support",
+      "assetRevision": 1
+    },
+    {
+      "id": "rear-guard",
+      "name": "rear guard",
+      "kind": "enemy",
+      "x": 325,
+      "y": 222,
+      "layer": "actors",
+      "archetype": "sentinel",
+      "hp": 3,
+      "left": 325,
+      "right": 325,
+      "facing": 1,
+      "activationX": 0,
+      "passive": true,
+      "backstab": true
+    },
+    {
+      "id": "inside-trigger",
+      "name": "inside trigger",
+      "kind": "trigger",
+      "x": 365,
+      "y": 160,
+      "layer": "scenery",
+      "w": 40,
+      "h": 70,
+      "sequence": "inside",
+      "requires": [
+        "climbed",
+        "dead:rear-guard"
+      ],
+      "once": true
+    },
+    {
+      "id": "enemy-53",
+      "name": "enemy",
+      "kind": "enemy",
+      "x": 530,
+      "y": 222,
+      "layer": "actors",
+      "archetype": "sentinel",
+      "hp": 3,
+      "left": 506,
+      "right": 554,
+      "facing": -1,
+      "activationX": 150
+    },
+    {
+      "id": "enemy-54",
+      "name": "enemy",
+      "kind": "enemy",
+      "x": 760,
+      "y": 222,
+      "layer": "actors",
+      "archetype": "collector",
+      "hp": 3,
+      "left": 736,
+      "right": 784,
+      "facing": -1,
+      "activationX": 380
+    },
+    {
+      "id": "enemy-55",
+      "name": "enemy",
+      "kind": "enemy",
+      "x": 990,
+      "y": 222,
+      "layer": "actors",
+      "archetype": "scrapper",
+      "hp": 3,
+      "left": 966,
+      "right": 1014,
+      "facing": -1,
+      "activationX": 610
+    },
+    {
+      "id": "enemy-56",
+      "name": "enemy",
+      "kind": "enemy",
+      "x": 1230,
+      "y": 222,
+      "layer": "actors",
+      "archetype": "manta",
+      "hp": 3,
+      "left": 1206,
+      "right": 1254,
+      "facing": -1,
+      "activationX": 850
+    },
+    {
+      "id": "enemy-57",
+      "name": "enemy",
+      "kind": "enemy",
+      "x": 1530,
+      "y": 222,
+      "layer": "actors",
+      "archetype": "bastion",
+      "hp": 7,
+      "left": 1506,
+      "right": 1554,
+      "facing": -1,
+      "activationX": 1150
+    },
+    {
+      "id": "asset-58",
+      "name": "asset",
+      "kind": "asset",
+      "x": 650,
+      "y": 222,
+      "layer": "playable",
+      "assetId": "cad.mini.recyke.crate-low",
+      "assetRevision": 1
+    },
+    {
+      "id": "platform-59",
+      "name": "platform",
+      "kind": "platform",
+      "x": 800,
+      "y": 172,
+      "layer": "playable",
+      "assetId": "cad.mini.recyke.catwalk-left",
+      "assetRevision": 1,
+      "w": 24,
+      "h": 6
+    },
+    {
+      "id": "platform-60",
+      "name": "platform",
+      "kind": "platform",
+      "x": 824,
+      "y": 172,
+      "layer": "playable",
+      "assetId": "cad.mini.recyke.catwalk-middle",
+      "assetRevision": 1,
+      "w": 24,
+      "h": 6
+    },
+    {
+      "id": "platform-61",
+      "name": "platform",
+      "kind": "platform",
+      "x": 848,
+      "y": 172,
+      "layer": "playable",
+      "assetId": "cad.mini.recyke.catwalk-middle",
+      "assetRevision": 1,
+      "w": 24,
+      "h": 6
+    },
+    {
+      "id": "platform-62",
+      "name": "platform",
+      "kind": "platform",
+      "x": 872,
+      "y": 172,
+      "layer": "playable",
+      "assetId": "cad.mini.recyke.catwalk-middle",
+      "assetRevision": 1,
+      "w": 24,
+      "h": 6
+    },
+    {
+      "id": "platform-63",
+      "name": "platform",
+      "kind": "platform",
+      "x": 896,
+      "y": 172,
+      "layer": "playable",
+      "assetId": "cad.mini.recyke.catwalk-right",
+      "assetRevision": 1,
+      "w": 24,
+      "h": 6
+    },
+    {
+      "id": "decor-64",
+      "name": "decor",
+      "kind": "decor",
+      "x": 812,
+      "y": 212,
+      "layer": "scenery",
+      "assetId": "cad.mini.recyke.support",
+      "assetRevision": 1
+    },
+    {
+      "id": "pickup-65",
+      "name": "pickup",
+      "kind": "pickup",
+      "x": 850,
+      "y": 157,
+      "layer": "scenery",
+      "assetId": "cad.mini.episode1.grenade",
+      "assetRevision": 1,
+      "pickup": "grenade"
+    },
+    {
+      "id": "checkpoint-1110",
+      "name": "checkpoint 1110",
+      "kind": "checkpoint",
+      "x": 1110,
+      "y": 222,
+      "layer": "scenery",
+      "assetId": "cad.mini.episode1.checkpoint",
+      "assetRevision": 1,
+      "label": "Repair & checkpoint"
+    },
+    {
+      "id": "server-access",
+      "name": "server access",
+      "kind": "terminal",
+      "x": 1390,
+      "y": 222,
+      "layer": "scenery",
+      "assetId": "cad.mini.episode1.terminal",
+      "assetRevision": 1,
+      "label": "Unlock server hub",
+      "flag": "server-access",
+      "requires": [],
+      "sequence": null
+    },
+    {
+      "id": "hazard-66",
+      "name": "hazard",
+      "kind": "hazard",
+      "x": 1460,
+      "y": 222,
+      "layer": "playable",
+      "assetId": "cad.mini.episode1.hazard",
+      "assetRevision": 1,
+      "w": 48,
+      "h": 12,
+      "period": 3,
+      "onDuration": 1.35,
+      "damage": 1
+    },
+    {
+      "id": "pickup-67",
+      "name": "pickup",
+      "kind": "pickup",
+      "x": 1650,
+      "y": 204,
+      "layer": "scenery",
+      "assetId": "cad.mini.episode1.health",
+      "assetRevision": 1,
+      "pickup": "health"
+    },
+    {
+      "id": "exit",
+      "name": "exit",
+      "kind": "exit",
+      "x": 1710,
+      "y": 222,
+      "layer": "scenery",
+      "assetId": "cad.mini.episode1.blast-door",
+      "assetRevision": 1,
+      "label": "Continue",
+      "requires": [
+        "climbed",
+        "dead:rear-guard",
+        "server-access"
+      ],
+      "sequence": "hub-arrival"
+    },
+    {
+      "id": "overhead-0",
+      "name": "overhead 0",
+      "kind": "decor",
+      "x": 0,
+      "y": 105,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.pipe-horizontal",
+      "assetRevision": 1
+    },
+    {
+      "id": "vent-0",
+      "name": "vent 0",
+      "kind": "decor",
+      "x": 100,
+      "y": 115,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.vent-fan",
+      "assetRevision": 1
+    },
+    {
+      "id": "overhead-192",
+      "name": "overhead 192",
+      "kind": "decor",
+      "x": 192,
+      "y": 105,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.pipe-horizontal",
+      "assetRevision": 1
+    },
+    {
+      "id": "vent-192",
+      "name": "vent 192",
+      "kind": "decor",
+      "x": 292,
+      "y": 115,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.vent-fan",
+      "assetRevision": 1
+    },
+    {
+      "id": "overhead-384",
+      "name": "overhead 384",
+      "kind": "decor",
+      "x": 384,
+      "y": 105,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.pipe-horizontal",
+      "assetRevision": 1
+    },
+    {
+      "id": "vent-384",
+      "name": "vent 384",
+      "kind": "decor",
+      "x": 484,
+      "y": 115,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.vent-fan",
+      "assetRevision": 1
+    },
+    {
+      "id": "overhead-576",
+      "name": "overhead 576",
+      "kind": "decor",
+      "x": 576,
+      "y": 105,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.pipe-horizontal",
+      "assetRevision": 1
+    },
+    {
+      "id": "vent-576",
+      "name": "vent 576",
+      "kind": "decor",
+      "x": 676,
+      "y": 115,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.vent-fan",
+      "assetRevision": 1
+    },
+    {
+      "id": "overhead-768",
+      "name": "overhead 768",
+      "kind": "decor",
+      "x": 768,
+      "y": 105,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.pipe-horizontal",
+      "assetRevision": 1
+    },
+    {
+      "id": "vent-768",
+      "name": "vent 768",
+      "kind": "decor",
+      "x": 868,
+      "y": 115,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.vent-fan",
+      "assetRevision": 1
+    },
+    {
+      "id": "overhead-960",
+      "name": "overhead 960",
+      "kind": "decor",
+      "x": 960,
+      "y": 105,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.pipe-horizontal",
+      "assetRevision": 1
+    },
+    {
+      "id": "vent-960",
+      "name": "vent 960",
+      "kind": "decor",
+      "x": 1060,
+      "y": 115,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.vent-fan",
+      "assetRevision": 1
+    },
+    {
+      "id": "overhead-1152",
+      "name": "overhead 1152",
+      "kind": "decor",
+      "x": 1152,
+      "y": 105,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.pipe-horizontal",
+      "assetRevision": 1
+    },
+    {
+      "id": "vent-1152",
+      "name": "vent 1152",
+      "kind": "decor",
+      "x": 1252,
+      "y": 115,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.vent-fan",
+      "assetRevision": 1
+    },
+    {
+      "id": "overhead-1344",
+      "name": "overhead 1344",
+      "kind": "decor",
+      "x": 1344,
+      "y": 105,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.pipe-horizontal",
+      "assetRevision": 1
+    },
+    {
+      "id": "vent-1344",
+      "name": "vent 1344",
+      "kind": "decor",
+      "x": 1444,
+      "y": 115,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.vent-fan",
+      "assetRevision": 1
+    },
+    {
+      "id": "overhead-1536",
+      "name": "overhead 1536",
+      "kind": "decor",
+      "x": 1536,
+      "y": 105,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.pipe-horizontal",
+      "assetRevision": 1
+    },
+    {
+      "id": "vent-1536",
+      "name": "vent 1536",
+      "kind": "decor",
+      "x": 1636,
+      "y": 115,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.vent-fan",
+      "assetRevision": 1
+    },
+    {
+      "id": "overhead-1728",
+      "name": "overhead 1728",
+      "kind": "decor",
+      "x": 1728,
+      "y": 105,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.pipe-horizontal",
+      "assetRevision": 1
+    },
+    {
+      "id": "vent-1728",
+      "name": "vent 1728",
+      "kind": "decor",
+      "x": 1828,
+      "y": 115,
+      "layer": "architecture",
+      "assetId": "cad.mini.recyke.vent-fan",
+      "assetRevision": 1
+    }
+  ],
+  "objectives": [
+    {
+      "id": "breach",
+      "label": "Climb the fence and strike the rear guard",
+      "requires": [
+        "climbed",
+        "dead:rear-guard"
+      ]
+    },
+    {
+      "id": "hub",
+      "label": "Unlock the regional hub",
+      "requires": [
+        "server-access"
+      ]
+    }
+  ],
+  "sequences": {
+    "opening": {
+      "id": "opening",
+      "name": "opening",
+      "cards": [
+        {
+          "type": "dialogue",
+          "speaker": "Janey",
+          "text": "Fence first. The guard’s looking away.",
+          "source": "prototype",
+          "duration": 2400
+        },
+        {
+          "type": "title",
+          "text": "Hold W / Up at the fence to climb.\nLand behind the guard and press F for a bat strike.",
+          "duration": 2800
+        }
+      ]
+    },
+    "inside": {
+      "id": "inside",
+      "name": "inside",
+      "cards": [
+        {
+          "type": "dialogue",
+          "speaker": "Janey",
+          "text": "The hub is deeper inside. Keep moving.",
+          "source": "prototype",
+          "duration": 2400
+        },
+        {
+          "type": "flag",
+          "flag": "entered-server",
+          "value": true,
+          "duration": 1
+        }
+      ]
+    },
+    "hub-arrival": {
+      "id": "hub-arrival",
+      "name": "hub arrival",
+      "cards": [
+        {
+          "type": "dialogue",
+          "speaker": "Janey",
+          "text": "There’s the interface. Time to upload the code.",
+          "source": "prototype",
+          "duration": 2400
+        }
+      ]
+    }
+  },
+  "onStart": "opening",
+  "onComplete": null,
+  "timer": null,
+  "notes": [],
+  "equipment": {
+    "bat": true
+  },
+  "next": "09-server-escape"
+}

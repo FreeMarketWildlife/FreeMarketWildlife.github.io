@@ -1,0 +1,200 @@
+// Six slots share inventory counts; assignments never reserve or spend items.
+const blockItemsV68=Object.keys(M).filter(k=>k!=='bedrock'&&Object.hasOwn(inv,k)).concat('flowers');
+// Add future bucket liquids here alongside their simulation support. Contents use type IDs.
+const bucketLiquidsV68={water:'Water',lava:'Lava'};
+const bucketBagV68=Object.create(null),hotbarSaveV68=initialSave?.hotbarV68;
+function isBucketV68(item){return typeof item==='string'&&(item==='bucket'||item.startsWith('bucket:'))}
+function validItemV68(item){return typeof item==='string'&&(item==='bucket:taintedWater'||['nails','ladder','pipeV70'].includes(item)||(Object.hasOwn(inv,item)&&!['gold','diamond'].includes(item))||(item?.startsWith('building:')&&(Object.hasOwn(STRUCTURES_V46,item.slice(9))||['cageSmall','cageMedium','cageLarge'].includes(item.slice(9))))||blockItemsV68.includes(item)||item==='miner'||item==='bucket'||(isBucketV68(item)&&/^[a-z][a-z0-9_-]{0,39}$/.test(item.slice(7))))}
+function countItemV68(item,real=false){
+ if(isBucketV68(item))return bucketBagV68[item]||0;
+ if(item==='miner')return unlockedMiners()>0?availableMiners():0;
+ return Math.max(0,real?(devResourceBalanceV54[item]||0):(inv[item]||0));
+}
+for(const [item,n] of Object.entries(hotbarSaveV68?.buckets||{}))if(isBucketV68(item)&&validItemV68(item)&&Number.isSafeInteger(n)&&n>=0)bucketBagV68[item]=n;
+const hotbarItemsV68=Array.from({length:3},(_,i)=>validItemV68(hotbarSaveV68?.slots?.[i])?hotbarSaveV68.slots[i]:null);
+const seenItemsV68=new Set((Array.isArray(hotbarSaveV68?.seen)?hotbarSaveV68.seen:[]).filter(validItemV68));
+let hotbarTipSeenV68=hotbarSaveV68?.tipSeen===true,hotbarIndexV68=0,pickerSlotV68=0,lastTapV68=null,hotbarTipTimerV68=null;
+var hotbarReadyV68=false;
+function saveHotbarV68(){return {slots:[...hotbarItemsV68],seen:[...seenItemsV68],buckets:{...bucketBagV68},tipSeen:hotbarTipSeenV68}}
+function itemNameV68(item){
+ if(item==='miner')return 'Worker';if(item==='bucket')return 'Empty bucket';
+ if(isBucketV68(item)){const kind=item.slice(7);return (Object.hasOwn(bucketLiquidsV68,kind)?bucketLiquidsV68[kind]:kind)+' bucket'}
+ return item==='leaves'?'Leaves':item?item[0].toUpperCase()+item.slice(1):'Empty';
+}
+const itemImagesV68=new Map();
+function itemImageV68(item){
+ if(!itemImagesV68.has(item))itemImagesV68.set(item,(item==='flowers'?ButtonwoodArt.flowerIcon():item==='miner'?ButtonwoodArt.workerIcon():ButtonwoodArt.uiIcon(isBucketV68(item)?'bucket':item,isBucketV68(item)?item.slice(7):0)).toDataURL());
+ return itemImagesV68.get(item);
+}
+const barV68=$('bar'),fixedV68=document.createElement('div'),itemsV68=document.createElement('div'),legacyV68=document.createElement('div');
+legacyV68.id='legacyInventoryV68';legacyV68.hidden=true;legacyV68.inert=true;
+for(const button of [...barV68.querySelectorAll('.slot')])if(button!==pickButtonV49&&button.dataset.tool!=='move'&&button!==triggerV48){button.classList.remove('slot');legacyV68.append(button)}
+barV68.after(legacyV68);fixedV68.className=itemsV68.className='hotbarGroupV68';
+fixedV68.setAttribute('role','group');fixedV68.setAttribute('aria-label','Tools');itemsV68.setAttribute('role','group');itemsV68.setAttribute('aria-label','Assigned inventory');
+fixedV68.append(pickButtonV49,document.querySelector('[data-tool=move]'),triggerV48);barV68.replaceChildren(fixedV68,itemsV68);
+barV68.classList.add('hotbarV68');barV68.setAttribute('aria-label','Toolbar');
+const itemButtonsV68=hotbarItemsV68.map((_,i)=>{
+ const b=document.createElement('button');b.className='slot itemSlotV68';b.dataset.hotbarSlot=String(i+4);
+ b.innerHTML='<img alt="" draggable="false"><b class="itemCountV68"></b>';
+ b.setAttribute('aria-haspopup','dialog');b.setAttribute('aria-controls','itemPickerV68');b.setAttribute('aria-expanded','false');itemsV68.append(b);return b;
+});
+for(const [i,b]of [...barV68.querySelectorAll('.slot')].entries()){
+ const number=document.createElement('small');number.className='hotbarNumberV68';number.textContent=String(i+1);number.setAttribute('aria-hidden','true');b.append(number);b.setAttribute('aria-keyshortcuts',String(i+1));
+ if(i<3){b.title=['Pickaxe · 1','Move · 2','Structures · 3'][i];if(i>0)b.setAttribute('aria-label',i===1?'Move':'Structures')}
+}
+const pickerV68=document.createElement('dialog');pickerV68.id='itemPickerV68';pickerV68.className='box';pickerV68.setAttribute('aria-labelledby','itemPickerTitleV68');
+pickerV68.innerHTML='<header><h2 id="itemPickerTitleV68">INVENTORY</h2><button class="btn" id="itemPickerCloseV68" aria-label="Close inventory">Close</button></header><div id="itemChoicesV68"></div><p id="itemEmptyV68">Mine blocks to fill your inventory.</p><footer><button class="btn" id="clearSlotV68">Clear slot</button><button class="btn" id="craftBucketV68"><img alt="" draggable="false"><span>Craft bucket<small>5 iron ingots</small></span></button></footer>';
+document.body.append(pickerV68);$('craftBucketV68').querySelector('img').src=itemImageV68('bucket');
+phoneDialogsV66.push(pickerV68.id);
+function closePickerV68(focus=false){if(!pickerV68.open)return;pickerV68.close();lastTapV68=null;if(focus)itemButtonsV68[pickerSlotV68].focus()}
+pickerV68.addEventListener('close',()=>{for(const b of itemButtonsV68)b.setAttribute('aria-expanded','false')});
+$('itemPickerCloseV68').onclick=()=>closePickerV68(true);
+function positionPickerV68(){
+ if(!pickerV68.open)return;
+ const view=visualViewport,left=view?.offsetLeft||0,top=view?.offsetTop||0,width=view?.width||innerWidth;
+ const anchor=itemButtonsV68[pickerSlotV68].getBoundingClientRect(),bar=barV68.getBoundingClientRect();
+ const floor=phoneActiveV66()?phoneRootV66.getBoundingClientRect().bottom+8:top+8;
+ pickerV68.style.width=Math.min(344,width-16)+'px';
+ pickerV68.style.left=Math.max(left+8,Math.min(anchor.left,left+width-Math.min(344,width-16)-8))+'px';
+ pickerV68.style.bottom=(innerHeight-bar.top+8)+'px';pickerV68.style.maxHeight=Math.max(0,bar.top-floor-8)+'px';
+}
+function openPickerV68(index){
+ stopPointerV52();pickerSlotV68=index;lastTapV68=null;closePhonePanelsV66(pickerV68);
+ $('itemPickerTitleV68').textContent='SLOT '+(index+4);refreshPickerV68();
+ if(!pickerV68.open)pickerV68.show();for(const [i,b]of itemButtonsV68.entries())b.setAttribute('aria-expanded',String(i===index));
+ positionPickerV68();$('itemPickerCloseV68').focus();
+}
+function chooseItemV68(index,item){
+ if(!Number.isInteger(index)||index<0||index>2)return false;
+ if(item!==null&&(!validItemV68(item)||countItemV68(item)<=0))return false;
+ hotbarItemsV68[index]=item;hotbarIndexV68=index+3;tool=item||'none';stopPointerV52();
+ closePickerV68(true);ui();saveGame();return true;
+}
+$('clearSlotV68').onclick=()=>chooseItemV68(pickerSlotV68,null);
+function refreshPickerV68(){
+ const owned=[...blockItemsV68,'miner','bucket',...Object.keys(bucketBagV68).filter(k=>k!=='bucket')].filter(k=>countItemV68(k)>0);
+ const choices=$('itemChoicesV68');
+ for(const b of [...choices.children])if(!owned.includes(b.dataset.item))b.remove();
+ for(const item of owned){
+  let b=[...choices.children].find(b=>b.dataset.item===item);
+  if(!b){b=document.createElement('button');b.className='itemChoiceV68';b.dataset.item=item;b.innerHTML='<img alt="" draggable="false"><span></span><b></b>';b.querySelector('img').src=itemImageV68(item);b.querySelector('span').textContent=itemNameV68(item);b.onclick=()=>chooseItemV68(pickerSlotV68,item);choices.append(b)}
+  b.querySelector('b').textContent=displayCountV68(item);b.setAttribute('aria-pressed',String(hotbarItemsV68[pickerSlotV68]===item));
+ }
+ $('itemEmptyV68').hidden=owned.length>0;
+ $('craftBucketV68').disabled=!canPayIndustryV44({ironIngot:5});
+ $('craftBucketV68').title='Craft a reusable bucket · 5 iron ingots · '+displayCountV68('ironIngot')+' available';
+}
+function craftBucketV68(){
+ if((bucketBagV68.bucket||0)>=Number.MAX_SAFE_INTEGER||!payIndustryV44({ironIngot:5}))return false;
+ bucketBagV68.bucket=(bucketBagV68.bucket||0)+1;ui();saveGame();toast('Bucket ready');return true;
+}
+$('craftBucketV68').onclick=craftBucketV68;
+function displayCountV68(item){const n=countItemV68(item);return !isBucketV68(item)&&item!=='miner'&&devToolsV30.infiniteResources?'∞':String(n)}
+function markHotbarV68(){
+ if(tool==='pick')hotbarIndexV68=0;else if(tool==='move')hotbarIndexV68=1;
+ else if(hotbarItemsV68[hotbarIndexV68-3]!==tool){const i=hotbarItemsV68.indexOf(tool);if(i>=0)hotbarIndexV68=i+3}
+ for(const [i,b] of [...barV68.querySelectorAll('.slot')].entries()){
+  const selected=i===2?panelV48.open:!panelV48.open&&i===hotbarIndexV68;
+  b.classList.toggle('sel',selected);if(i!==2)b.setAttribute('aria-pressed',String(selected));
+ }
+}
+function refreshHotbarV68(){
+ const candidates=[...blockItemsV68,'miner',...Object.keys(bucketBagV68)];
+ for(const item of candidates)if(countItemV68(item,true)>0&&!seenItemsV68.has(item)){
+  seenItemsV68.add(item);if(!hotbarItemsV68.includes(item)){const i=hotbarItemsV68.indexOf(null);if(i>=0){hotbarItemsV68[i]=item;if(tool==='none'&&hotbarIndexV68===i+3)tool=item}}
+ }
+ for(const [i,b] of itemButtonsV68.entries()){
+  const item=hotbarItemsV68[i],count=countItemV68(item),label='Slot '+(i+4)+': '+itemNameV68(item)+(item?', '+displayCountV68(item):'')+'. Double tap or double click to change; Enter or Space to choose.';
+  b.setAttribute('aria-label',label);b.title=label;b.classList.toggle('empty',!count);b.dataset.item=item||'';
+  const img=b.querySelector('img');img.hidden=!item;if(item&&img.dataset.iconItem!==item){img.src=itemImageV68(item);img.dataset.iconItem=item}
+  b.querySelector('.itemCountV68').textContent=item?displayCountV68(item):'';
+ }
+ markHotbarV68();if(pickerV68.open)refreshPickerV68();
+ if(!hotbarTipSeenV68&&!hotbarTipTimerV68&&blockItemsV68.filter(k=>countItemV68(k,true)>0).length>3){
+  // Let startup/harvest notices finish so a restored world's first tip is visible.
+  hotbarTipTimerV68=setTimeout(()=>{hotbarTipTimerV68=null;if(hotbarTipSeenV68)return;
+   hotbarTipSeenV68=true;toast((lastPointerV68==='touch'||matchMedia('(pointer: coarse)').matches?'Double tap':'Double click')+' a slot to change its item',true);saveGame();
+  },1500);
+ }
+}
+let lastPointerV68='mouse';
+document.addEventListener('pointerdown',e=>{
+ lastPointerV68=e.pointerType;if(!e.target.closest('[data-hotbar-slot]'))lastTapV68=null;
+ if(pickerV68.open&&!pickerV68.contains(e.target)&&!e.target.closest('[data-hotbar-slot]'))closePickerV68();
+},{capture:true});
+for(const [i,b]of itemButtonsV68.entries()){
+ let press=null;
+ b.addEventListener('pointerdown',e=>{press={x:e.clientX,y:e.clientY};});
+ b.addEventListener('pointercancel',()=>{press=null;lastTapV68=null});
+ b.addEventListener('click',e=>{
+  e.stopPropagation();
+  if(press&&Math.hypot(e.clientX-press.x,e.clientY-press.y)>8){press=null;lastTapV68=null;return}press=null;
+  const now=performance.now(),double=e.detail>=2||(e.detail>0&&lastTapV68?.index===i&&now-lastTapV68.time<450);
+  if(double||!hotbarItemsV68[i]){openPickerV68(i);return}
+  lastTapV68=e.detail>0?{index:i,time:now}:null;closePickerV68();$('structuresPanel').close();$('pickaxeShop').close();stopPointerV52();
+  tool=hotbarItemsV68[i];hotbarIndexV68=i+3;ui();
+ });
+ b.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();openPickerV68(i)}});
+}
+document.addEventListener('keydown',e=>{
+ if(e.key==='Escape'&&pickerV68.open){e.preventDefault();closePickerV68(true)}
+ if(e.key==='Tab'&&pickerV68.open){const focusable=[...pickerV68.querySelectorAll('button:not(:disabled),input:not(:disabled)')],first=focusable[0],last=focusable.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}
+},{capture:true});
+new MutationObserver(()=>{if(panelV48.open||pickPanelV49.open)closePickerV68();markHotbarV68()}).observe(panelV48,{attributes:true,attributeFilter:['open']});
+new MutationObserver(()=>{if(pickPanelV49.open)closePickerV68();markHotbarV68()}).observe(pickPanelV49,{attributes:true,attributeFilter:['open']});
+addEventListener('resize',positionPickerV68);visualViewport?.addEventListener('resize',positionPickerV68);visualViewport?.addEventListener('scroll',positionPickerV68);
+const markBeforeV68=markToolV52;markToolV52=function(){markBeforeV68();markHotbarV68()};
+// Temporary Grab returns to the same slot even when two slots share an item.
+let grabSlotV68=null;
+const grabBeforeV68=startGrabV52,releaseBeforeV68=endGrabV52;
+startGrabV52=function(){if(!temporaryGrabV52)grabSlotV68=hotbarIndexV68;grabBeforeV68()};
+endGrabV52=function(){const wasGrab=temporaryGrabV52;releaseBeforeV68();if(wasGrab&&grabSlotV68!==null){hotbarIndexV68=grabSlotV68;grabSlotV68=null;markHotbarV68()}};
+const uiBeforeV68=ui;ui=function(){uiBeforeV68();refreshHotbarV68()};
+hotbarReadyV68=true;
+
+// A bucket holds one B × B grid cell: four full 16px solver cells, never one subcell.
+// Plan every transfer before touching either inventory or the live liquid map.
+function bucketActionV68(item,p){
+ const fail=message=>{toast(message);return false};
+ if(!isBucketV68(item)||!countItemV68(item))return fail('No bucket available');
+ liquidV22Init();const sc=liquidSubScaleV22,volume=sc*sc,sb=liquidSBV22();
+ let result,plan=[];
+ if(item==='bucket'){
+  const sx=Math.floor(p.x/sb),sy=Math.floor(p.y/sb),source=liquidSubRecV22(sx,sy);
+  if(!source||!Object.hasOwn(bucketLiquidsV68,source.kind)||source.a<=0||!liquidSubOpenV22(sx,sy))return fail('Tap liquid to fill');
+  const surface=liquidGeometryV29(source,performance.now());
+  if(p.x<surface.left||p.x>surface.left+surface.width||p.y<surface.top||p.y>surface.bottom||Query.point([...bs,...structureBodiesV47.values()],p).length)return fail('Tap the liquid surface');
+  // Connected partial cells may contribute, but disconnected pools and other liquids cannot.
+  const queue=[source],visited=new Set([liquidSubKeyV22(sx,sy)]);let remaining=volume;
+  for(let i=0;i<queue.length&&remaining>0;i++){
+   const r=queue[i],amount=Math.min(r.a,remaining);plan.push({r,amount});remaining-=amount;
+   for(const [dx,dy]of [[0,1],[-1,0],[1,0],[0,-1]]){
+    const x=r.x+dx,y=r.y+dy,k=liquidSubKeyV22(x,y);if(visited.has(k))continue;visited.add(k);
+    const next=liquidSubV22.get(k);if(next?.kind===source.kind&&next.a>0&&liquidSubOpenV22(x,y))queue.push(next);
+   }
+  }
+  if(remaining>0)return fail('Needs one full block of liquid');result='bucket:'+source.kind;
+ }else{
+  const kind=item.slice(7),cx=Math.floor(p.x/B),cy=Math.floor(p.y/B);
+  if(!Object.hasOwn(bucketLiquidsV68,kind))return fail('This liquid cannot be poured yet');
+  const bounds={min:{x:cx*B+.01,y:cy*B+.01},max:{x:(cx+1)*B-.01,y:(cy+1)*B-.01}};
+  const solids=[...bs].filter(b=>!b.game?.liquid&&!b.game?.reservoir).concat([...structureBodiesV47.values()]);
+  if(Query.region(solids,bounds).length)return fail('Choose an empty grid space');
+  for(let y=0;y<sc;y++)for(let x=0;x<sc;x++){
+   const sx=cx*sc+x,sy=cy*sc+y;
+   if(!liquidSubOpenV22(sx,sy)||liquidSubRecV22(sx,sy)?.a>0)return fail('Choose an empty grid space');
+   plan.push({x:sx,y:sy,kind});
+  }
+  result='bucket';
+ }
+ if((bucketBagV68[result]||0)>=Number.MAX_SAFE_INTEGER)return fail('Bucket inventory full');
+ for(const step of plan){
+  if(step.r){step.r.a-=step.amount;if(step.r.a<=0)liquidSubV22.delete(liquidSubKeyV22(step.r.x,step.r.y))}
+  else liquidSubPutV22(step.x,step.y,step.kind,1);
+ }
+ liquidSubVisualV22.clear();liquidSubFlowV22.clear();liquidSubImpactV22.clear();
+ bucketBagV68[item]--;bucketBagV68[result]=(bucketBagV68[result]||0)+1;
+ // The used slot follows this bucket's contents, ready for the next pour or refill.
+ if(hotbarItemsV68[hotbarIndexV68-3]===item)hotbarItemsV68[hotbarIndexV68-3]=result;
+ seenItemsV68.add(result);tool=result;wake();ui();saveGame();return true;
+}

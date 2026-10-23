@@ -1,0 +1,38 @@
+#structuresPanel.compactStructuresV64{box-sizing:border-box;width:min(280px,calc(100vw - 16px));padding:8px}
+#structuresPanel.compactStructuresV64 header{margin:0 0 6px;gap:8px;min-height:32px}
+#structuresPanel.compactStructuresV64 h2{margin:0;font-size:14px;letter-spacing:0;text-transform:none}
+#structuresPanel.compactStructuresV64 #structuresClose{width:32px;height:32px;min-height:32px;border:0;background:transparent;box-shadow:none}
+#structuresPanel.compactStructuresV64 #structureCards{gap:4px}
+#structuresPanel.compactStructuresV64 .playerBuildingV61{grid-template-columns:44px minmax(0,1fr) 34px 44px;align-items:center;gap:4px;padding:5px;min-height:56px;box-sizing:border-box;position:relative}
+#structuresPanel.compactStructuresV64 .structureCard{display:flex;justify-content:center;align-items:center;grid-column:auto;position:relative;box-sizing:border-box;width:44px;height:46px;min-height:0;padding:0;border:0;gap:0;overflow:visible}
+#structuresPanel.compactStructuresV64 .structureCard img{display:block;width:32px;height:32px;max-width:none;flex:none}
+#structuresPanel.compactStructuresV64 .structureCard b{position:absolute;bottom:-1px;right:0;padding:0 3px;min-width:10px;font-size:11px;line-height:14px;background:#292936;color:#e3ba77;text-align:center}
+#structuresPanel.compactStructuresV64 .structureCard:disabled{opacity:.6}
+#structuresPanel.compactStructuresV64 .structureCard:not(:disabled):hover{background:#444b47;outline:1px solid #8eae95}
+#structuresPanel.compactStructuresV64 .playerCostsV61{display:flex;justify-content:flex-end;align-items:center;flex-wrap:nowrap;gap:0}
+#structuresPanel.compactStructuresV64 .playerCostsV61>span{display:flex;flex-direction:column;gap:0;min-width:0;width:32px;line-height:14px;font-size:12px}
+#structuresPanel.compactStructuresV64 .playerCostsV61 img{display:block;width:32px;height:32px;flex:none}
+#structuresPanel.compactStructuresV64 .playerCostsV61>span>span{margin-top:-3px}
+#structuresPanel.compactStructuresV64 .playerCraftV61{display:flex;justify-content:center;align-items:center;box-sizing:border-box;width:34px;min-width:34px;height:34px;min-height:34px;padding:0;border:1px solid #8a947e;border-radius:0;background:#414c42;box-shadow:none}
+#structuresPanel.compactStructuresV64 .playerCraftV61 img,.structureInfoV64 img{display:block;width:32px;height:32px;image-rendering:pixelated;pointer-events:none}
+#structuresPanel.compactStructuresV64 .playerCraftV61:disabled{opacity:.45}
+#structuresPanel.compactStructuresV64 .playerCraftV61.crafting{opacity:1;background:#5a5140;border-color:#e3ba77}
+#structuresPanel.compactStructuresV64 .playerBuildingV61>progress{position:absolute;left:5px;right:5px;bottom:0;width:calc(100% - 10px);height:3px;grid-column:auto;pointer-events:none}
+.structureInfoV64{display:flex;align-self:start;justify-content:center;align-items:center;padding:0;width:44px;height:44px;border:0;background:transparent;cursor:pointer;opacity:.7}
+.structureInfoV64:hover,.structureInfoV64[aria-expanded=true]{opacity:1;background:#d8c397}
+#structuresPanel.compactStructuresV64 button:focus-visible{outline:2px solid #e3ba77;outline-offset:1px}
+.structureDetailsV64{grid-column:1/-1}
+.structureDetailsContentV67{border-top:1px solid #5d5860;margin-top:4px;padding:10px 4px 4px;color:inherit}
+.structureDetailsV64 strong{font-size:13px}
+#structuresPanel .structureDetailsV64 p{font:12px/1.5 monospace;margin:6px 0;color:#c7c7be}
+
+.structureInfoV64[aria-expanded=true] img{transform:rotate(180deg)}
+.structureInfoV64:active{background:#c28d60}
+
+.disclosureBodyV67,.disclosureContentV67,.structureDetailsContentV67{display:flow-root}
+.disclosureBodyV67[hidden],.structureDetailsV64[hidden]{display:none}
+.tipsGroups summary:after{content:'';width:32px;height:32px;top:50%;right:8px;margin-top:-16px;background:var(--inline-chevron) center/32px 32px no-repeat;image-rendering:pixelated}
+.tipsGroups details[open] summary:after{content:''}
+.tipsGroups summary[aria-expanded=true]:after{transform:rotate(180deg)}
+
+.buttonwood-art .structureDetailsContentV67{border-color:#c28d60}

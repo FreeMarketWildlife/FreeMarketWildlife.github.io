@@ -1,0 +1,135 @@
+{
+  "assetId": "cad.mini.episode1.sofa",
+  "revision": 1,
+  "name": "Skyview low sofa",
+  "kind": "scenery",
+  "biome": "skyview",
+  "family": "mini",
+  "approval": "prototype-review",
+  "source": {
+    "type": "new-native",
+    "file": "src/build-assets.cjs",
+    "recipe": "sofa"
+  },
+  "native": {
+    "width": 52,
+    "height": 24,
+    "origin": [
+      0,
+      24
+    ],
+    "originName": "authored-anchor",
+    "selectionBounds": {
+      "x": 0,
+      "y": 0,
+      "width": 52,
+      "height": 24
+    },
+    "visibleBounds": [
+      {
+        "variant": 0,
+        "frame": 0,
+        "x": 0,
+        "y": 0,
+        "width": 52,
+        "height": 24
+      }
+    ],
+    "animationEnvelope": {
+      "x": 0,
+      "y": 0,
+      "width": 52,
+      "height": 24
+    }
+  },
+  "sockets": [
+    {
+      "id": "left",
+      "type": "edge",
+      "x": 0,
+      "y": 0,
+      "facing": -1
+    },
+    {
+      "id": "right",
+      "type": "edge",
+      "x": 52,
+      "y": 0,
+      "facing": 1
+    }
+  ],
+  "render": {
+    "kind": "sprite-sheet",
+    "layer": "scenery",
+    "parallax": {
+      "x": 1,
+      "y": 1
+    },
+    "variants": [
+      {
+        "id": "v0",
+        "uri": "assets/sofa.png",
+        "width": 52,
+        "height": 24,
+        "sha256": "4e5a8eba3b024f3abb29f7e2d3455f93b578ee07bc0b620168f0ba1f3a214bc1"
+      }
+    ],
+    "frameSize": [
+      52,
+      24
+    ],
+    "frameCount": 1,
+    "allowedFacing": [
+      1,
+      -1
+    ],
+    "scale": 1
+  },
+  "collision": {
+    "defaults": [],
+    "decorative": true,
+    "behavior": "Artwork does not activate gameplay; scene entity kind and properties do."
+  },
+  "properties": {
+    "variant": {
+      "type": "integer",
+      "default": 0
+    }
+  },
+  "animation": {
+    "states": {
+      "idle": {
+        "frames": [
+          0
+        ],
+        "timingMs": [
+          180
+        ],
+        "loop": true
+      }
+    },
+    "frameEvents": []
+  },
+  "tags": [
+    "skyview",
+    "interior",
+    "furniture"
+  ],
+  "thumbnail": {
+    "uri": "assets/sofa.png",
+    "frame": 0,
+    "variant": 0,
+    "nativeSize": [
+      52,
+      24
+    ],
+    "noResample": true
+  },
+  "placement": {
+    "snap": 1,
+    "suggestedGrid": 8,
+    "preview": "native-with-geometry",
+    "allowScale": false,
+    "allowRotation": false
+  }
+}

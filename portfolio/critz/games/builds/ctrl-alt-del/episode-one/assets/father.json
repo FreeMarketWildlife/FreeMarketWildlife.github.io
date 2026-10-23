@@ -1,0 +1,135 @@
+{
+  "assetId": "cad.mini.episode1.father",
+  "revision": 1,
+  "name": "Father • prototype",
+  "kind": "scenery",
+  "biome": "skyview",
+  "family": "mini",
+  "approval": "prototype-review",
+  "source": {
+    "type": "new-native",
+    "file": "src/build-assets.cjs",
+    "recipe": "father"
+  },
+  "native": {
+    "width": 48,
+    "height": 48,
+    "origin": [
+      20,
+      40
+    ],
+    "originName": "authored-anchor",
+    "selectionBounds": {
+      "x": 0,
+      "y": 0,
+      "width": 48,
+      "height": 48
+    },
+    "visibleBounds": [
+      {
+        "variant": 0,
+        "frame": 0,
+        "x": 12,
+        "y": 8,
+        "width": 17,
+        "height": 32
+      }
+    ],
+    "animationEnvelope": {
+      "x": 0,
+      "y": 0,
+      "width": 48,
+      "height": 48
+    }
+  },
+  "sockets": [
+    {
+      "id": "left",
+      "type": "edge",
+      "x": -20,
+      "y": 0,
+      "facing": -1
+    },
+    {
+      "id": "right",
+      "type": "edge",
+      "x": 28,
+      "y": 0,
+      "facing": 1
+    }
+  ],
+  "render": {
+    "kind": "sprite-sheet",
+    "layer": "actors",
+    "parallax": {
+      "x": 1,
+      "y": 1
+    },
+    "variants": [
+      {
+        "id": "v0",
+        "uri": "assets/father.png",
+        "width": 48,
+        "height": 48,
+        "sha256": "98889f28665a6f9cd2b17684b684c7e290758c12e2543e5c6f77c010392794fe"
+      }
+    ],
+    "frameSize": [
+      48,
+      48
+    ],
+    "frameCount": 1,
+    "allowedFacing": [
+      1,
+      -1
+    ],
+    "scale": 1
+  },
+  "collision": {
+    "defaults": [],
+    "decorative": true,
+    "behavior": "Artwork does not activate gameplay; scene entity kind and properties do."
+  },
+  "properties": {
+    "variant": {
+      "type": "integer",
+      "default": 0
+    }
+  },
+  "animation": {
+    "states": {
+      "idle": {
+        "frames": [
+          0
+        ],
+        "timingMs": [
+          180
+        ],
+        "loop": true
+      }
+    },
+    "frameEvents": []
+  },
+  "tags": [
+    "npc",
+    "unapproved",
+    "skyview"
+  ],
+  "thumbnail": {
+    "uri": "assets/father.png",
+    "frame": 0,
+    "variant": 0,
+    "nativeSize": [
+      48,
+      48
+    ],
+    "noResample": true
+  },
+  "placement": {
+    "snap": 1,
+    "suggestedGrid": 8,
+    "preview": "native-with-geometry",
+    "allowScale": false,
+    "allowRotation": false
+  }
+}

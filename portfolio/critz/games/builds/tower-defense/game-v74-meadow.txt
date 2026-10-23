@@ -1,0 +1,30 @@
+// Meadow gathering. ART-BIBLE §§3–4, 8–9: real soil anchors, native flower art.
+const FLOWER_HABITAT_LIMIT_V74=16384;
+let flowersV74=new Map(),flowerHabitatsV74=new Set(),flowerTickV74=0,flowerPressV74=null;
+function seedFlowersV74(){const center=Math.floor(cam.x/(24*B));let changed=false;for(let ch=center-1;ch<=center+1;ch++){
+ if(!generated.has(ch)||flowerHabitatsV74.has(ch)||flowerHabitatsV74.size>=FLOWER_HABITAT_LIMIT_V74)continue;
+ flowerHabitatsV74.add(ch);changed=true;
+ for(let i=0;i<24;i++){const x=ch*24+i,z=grid.get(key(x,0));if(z?.game.material!=='dirt'||wildlifeHashV71(x,740)>.19)continue;flowersV74.set(x,{x,type:Math.floor(wildlifeHashV71(x,741)*3)})}
+ }return changed}
+function collectFlowerV74(x){if(!flowersV74.delete(x))return false;inv.flowers++;ui();saveSoon();return true}
+const flowerHarvestBeforeV74=harvest;
+harvest=function(z,collector='player',worker=null){const x=z?.game.terrain&&z.game.cy===0?z.game.cx:null,result=flowerHarvestBeforeV74(z,collector,worker);if(x!==null&&!bs.has(z))collectFlowerV74(x);return result};
+const flowerStepBeforeV74=stepStructuresV46;
+stepStructuresV46=function(ms){let changed=flowerStepBeforeV74(ms);if(document.hidden||!(ms>0)||ms>1500)return changed;flowerTickV74+=ms;if(flowerTickV74>=350){flowerTickV74=0;changed=seedFlowersV74()||changed;for(const x of flowersV74.keys())if(!grid.has(key(x,0))){collectFlowerV74(x);changed=true}}return changed};
+const flowerSaveBeforeV74=saveStructuresV46;
+saveStructuresV46=function(){return{...flowerSaveBeforeV74(),flowersV74:{habitats:[...flowerHabitatsV74],plants:[...flowersV74.values()]}}};
+const flowerRestoreBeforeV74=restoreDynamicState;
+restoreDynamicState=function(s){flowerRestoreBeforeV74(s);flowersV74=new Map();const data=s?.structuresV46?.flowersV74;flowerHabitatsV74=new Set((Array.isArray(data?.habitats)?data.habitats:[]).slice(0,FLOWER_HABITAT_LIMIT_V74).filter(x=>Number.isSafeInteger(x)&&Math.abs(x)<42000));for(const f of (Array.isArray(data?.plants)?data.plants:[]).slice(0,FLOWER_HABITAT_LIMIT_V74*24))if(Number.isSafeInteger(f?.x)&&Math.abs(f.x)<1000000&&Number.isInteger(f.type)&&f.type>=0&&f.type<3&&grid.has(key(f.x,0)))flowersV74.set(f.x,{x:f.x,type:f.type});seedFlowersV74()};
+const flowerDrawBeforeV74=drawGoldBursts;
+drawGoldBursts=function(now){flowerDrawBeforeV74(now);if(!bwEnabled)return;for(const f of flowersV74.values()){const p=w2s(f.x*B+B/2,0);if(p.x<-12*cam.z||p.x>W+12*cam.z||p.y<0||p.y>HH+12*cam.z)continue;ctx.drawImage(ButtonwoodArt.flowerSprite(f.type),Math.round(p.x-6*cam.z),Math.round(p.y-12*cam.z),12*cam.z,12*cam.z)}};
+function flowerAtV74(p){const x=Math.floor(p.x/B);return flowersV74.has(x)&&Math.abs(p.x-(x*B+B/2))<=Math.max(7,7/cam.z)&&p.y<=2&&p.y>=-Math.max(12,12/cam.z)?x:null}
+document.addEventListener('pointerdown',e=>{if(flowerPressV74&&flowerPressV74.id!==e.pointerId){flowerPressV74=null;return}if(e.target!==c||e.button!==0||structureDragV46||temporaryGrabV52||pinchStateV26||pinchTouchesV26.size||!['pick','move'].includes(tool))return;const start=pos(e),x=flowerAtV74(s2w(start.x,start.y));if(x===null)return;flowerPressV74={id:e.pointerId,x,start,last:start,moved:false};gesture=null;pickPendingV49=null;if(e.pointerType==='touch')pinchTouchesV26.set(e.pointerId,pinchPosV26(e));try{c.setPointerCapture(e.pointerId)}catch{}e.preventDefault();e.stopImmediatePropagation()},{capture:true,passive:false});
+document.addEventListener('pointermove',e=>{const p=flowerPressV74;if(!p||p.id!==e.pointerId)return;const s=pos(e);p.moved||=Math.hypot(s.x-p.start.x,s.y-p.start.y)>8;if(p.moved){cam.x-=(s.x-p.last.x)/cam.z;cam.y-=(s.y-p.last.y)/cam.z;cam.anim=false;cameraSpringActiveV24=false;const limits=cameraVerticalLimitsV24();cam.y=clamp(cam.y,limits.min,limits.max)}p.last=s;e.preventDefault();e.stopImmediatePropagation()},{capture:true,passive:false});
+function flowerEndV74(e){const p=flowerPressV74;if(!p||p.id!==e.pointerId)return;flowerPressV74=null;pinchTouchesV26.delete(e.pointerId);pointers.delete(e.pointerId);gesture=null;pickPendingV49=null;try{c.releasePointerCapture(e.pointerId)}catch{}if(e.type==='pointerup'&&!p.moved&&Math.hypot(pos(e).x-p.start.x,pos(e).y-p.start.y)<=8)collectFlowerV74(p.x);e.preventDefault();e.stopImmediatePropagation()}
+document.addEventListener('pointerup',flowerEndV74,{capture:true,passive:false});document.addEventListener('pointercancel',flowerEndV74,{capture:true,passive:false});document.addEventListener('visibilitychange',()=>flowerPressV74=null);
+// Flowers are gathered inventory, not a terrain material or a placeable block.
+const flowerOneBeforeV74=one,flowerSolidBeforeV74=solid;
+one=function(m,...args){if(m==='flowers')return false;return flowerOneBeforeV74(m,...args)};
+solid=function(m,...args){if(m==='flowers')return false;return flowerSolidBeforeV74(m,...args)};
+$('resource-flowers')?.closest('.resourceCard')?.querySelector('img')?.setAttribute('src',ButtonwoodArt.flowerIcon().toDataURL());
+window.skyStackMeadow={get state(){return{flowers:[...flowersV74.values()].map(f=>({...f})),count:devResourceBalanceV54.flowers,habitats:flowerHabitatsV74.size}},collect:collectFlowerV74,seed:seedFlowersV74};

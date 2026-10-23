@@ -1,0 +1,145 @@
+{
+  "assetId": "cad.mini.episode1.antenna",
+  "revision": 1,
+  "name": "Regional signal mast",
+  "kind": "scenery",
+  "biome": "server",
+  "family": "mini",
+  "approval": "prototype-review",
+  "source": {
+    "type": "new-native",
+    "file": "src/build-assets.cjs",
+    "recipe": "antenna"
+  },
+  "native": {
+    "width": 32,
+    "height": 88,
+    "origin": [
+      16,
+      88
+    ],
+    "originName": "authored-anchor",
+    "selectionBounds": {
+      "x": 0,
+      "y": 0,
+      "width": 32,
+      "height": 88
+    },
+    "visibleBounds": [
+      {
+        "variant": 0,
+        "frame": 0,
+        "x": 2,
+        "y": 0,
+        "width": 28,
+        "height": 88
+      },
+      {
+        "variant": 0,
+        "frame": 1,
+        "x": 2,
+        "y": 0,
+        "width": 28,
+        "height": 88
+      }
+    ],
+    "animationEnvelope": {
+      "x": 0,
+      "y": 0,
+      "width": 32,
+      "height": 88
+    }
+  },
+  "sockets": [
+    {
+      "id": "left",
+      "type": "edge",
+      "x": -16,
+      "y": 0,
+      "facing": -1
+    },
+    {
+      "id": "right",
+      "type": "edge",
+      "x": 16,
+      "y": 0,
+      "facing": 1
+    }
+  ],
+  "render": {
+    "kind": "sprite-sheet",
+    "layer": "scenery",
+    "parallax": {
+      "x": 1,
+      "y": 1
+    },
+    "variants": [
+      {
+        "id": "v0",
+        "uri": "assets/antenna.png",
+        "width": 64,
+        "height": 88,
+        "sha256": "a4501066da10bbd878899e630136b6702275f7647605c3bbb52b51577d6d50ca"
+      }
+    ],
+    "frameSize": [
+      32,
+      88
+    ],
+    "frameCount": 2,
+    "allowedFacing": [
+      1,
+      -1
+    ],
+    "scale": 1
+  },
+  "collision": {
+    "defaults": [],
+    "decorative": true,
+    "behavior": "Artwork does not activate gameplay; scene entity kind and properties do."
+  },
+  "properties": {
+    "variant": {
+      "type": "integer",
+      "default": 0
+    }
+  },
+  "animation": {
+    "states": {
+      "idle": {
+        "frames": [
+          0,
+          1
+        ],
+        "timingMs": [
+          700,
+          700
+        ],
+        "loop": true
+      }
+    },
+    "frameEvents": []
+  },
+  "tags": [
+    "server",
+    "roof",
+    "antenna"
+  ],
+  "thumbnail": {
+    "uri": "assets/antenna.png",
+    "frame": 0,
+    "variant": 0,
+    "nativeSize": [
+      32,
+      88
+    ],
+    "noResample": true
+  },
+  "placement": {
+    "snap": 1,
+    "suggestedGrid": 8,
+    "preview": "native-with-geometry",
+    "allowScale": false,
+    "allowRotation": false
+  }
+}

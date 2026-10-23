@@ -1,0 +1,229 @@
+// --- v27 SMART RHYTHMIC MINERS ----------------------------------------------------
+// Miners lock onto unfinished work, navigate toward it, jump/climb by level, and only
+// land mining hits on the soundtrack beat. Their percussion is spatially attenuated.
+SKY_BUILD='v27';
+
+function minerSearchRangeV27(q){return B*(6+q.game.level)}
+function minerTargetValidV27(q,z){
+  return !!z&&bs.has(z)&&z.game?.terrain&&minerCanMineMaterial(q,z.game.material)&&z.game.material!=='bedrock'&&terrainExposed(z)
+}
+function minerDistanceV27(q,z){return Math.hypot(z.position.x-q.position.x,z.position.y-q.position.y)}
+function minerPoseV38(q,x,y){
+  return{game:q.game,position:{x,y},bounds:{min:{x:x-B*.33,y:y-B*.4},max:{x:x+B*.33,y:y+B*.4}}}
+}
+function minerClearPoseV38(x,y,solids){
+  return !Query.region(solids,{min:{x:x-B*.33+.6,y:y-B*.4+.6},max:{x:x+B*.33-.6,y:y+B*.4-.6}}).length
+}
+function minerClearTravelV38(a,b,solids){
+  const steps=Math.max(1,Math.ceil(Math.hypot(b.x-a.x,b.y-a.y)/(B*.2)));
+  for(let i=1;i<=steps;i++)if(!minerClearPoseV38(a.x+(b.x-a.x)*i/steps,a.y+(b.y-a.y)*i/steps,solids))return false;
+  return true
+}
+function minerPlanRouteV38(q,candidates,solids){
+  // Plan over places where a miner can stand, rather than steering through walls.
+  // Edges represent short walks, drops, jumps, or level-limited wall climbs.
+  const nodes=[{x:q.position.x,y:q.position.y}],seen=new Set();
+  for(const z of solids){
+    const b=z.bounds,y=b.min.y-B*.4-.2;
+    for(let x=Math.ceil((b.min.x-B*.1)/B)*B+B*.5;x<b.max.x+B*.1;x+=B){
+      const id=Math.round(x)+','+Math.round(y);
+      if(!seen.has(id)&&minerClearPoseV38(x,y,solids)){seen.add(id);nodes.push({x,y})}
+    }
+  }
+  const cost=nodes.map(()=>Infinity),parent=nodes.map(()=>-1),visited=new Set();cost[0]=0;
+  const riseLimit=B*1.2;
+  for(let count=0;count<nodes.length;count++){
+    let u=-1;for(let i=0;i<nodes.length;i++)if(!visited.has(i)&&Number.isFinite(cost[i])&&(u<0||cost[i]<cost[u]))u=i;
+    if(u<0)break;visited.add(u);const a=nodes[u];
+    if(u>0){
+      const pose=minerPoseV38(q,a.x,a.y),work=candidates.filter(z=>minerCanHitV27(pose,z,solids));
+      work.sort((a,b)=>(a.game.hits>0?-1:0)-(b.game.hits>0?-1:0)||minerDistanceV27(pose,a)-minerDistanceV27(pose,b));
+      if(work.length){const route=[];for(let i=u;i>0;i=parent[i])route.unshift(nodes[i]);return{target:work[0],route}}
+    }
+    for(let v=1;v<nodes.length;v++){
+      if(visited.has(v))continue;const b=nodes[v],dx=Math.abs(b.x-a.x),rise=a.y-b.y;
+      if(dx>B*2.1||rise>riseLimit||rise<-B*4||dx<B*.1&&Math.abs(rise)<B*.1)continue;
+      // Going up requires headroom at takeoff; going down requires a clear edge.
+      const corner=rise>0?{x:a.x,y:b.y}:{x:b.x,y:a.y};
+      if(!minerClearTravelV38(a,corner,solids)||!minerClearTravelV38(corner,b,solids))continue;
+      const next=cost[u]+dx+Math.abs(rise)*1.25+B*.1;
+      if(next<cost[v]){cost[v]=next;parent[v]=u}
+    }
+  }
+  return null
+}
+function minerAcquireTargetV27(q,now=performance.now(),rhythm=minerRhythmV27(now)){
+  const g=q.game,range=minerSearchRangeV27(q);
+  if(!g.avoidedTargets||g.aiLevel!==g.level){g.avoidedTargets=new Map();g.route=[];g.routeCheckAt=0;g.aiLevel=g.level}
+  for(const [z,until] of g.avoidedTargets)if(now>=until||!bs.has(z))g.avoidedTargets.delete(z);
+  const solids=g.nearbySolids||Query.region([...bs],{min:{x:q.position.x-range,y:q.position.y-range},max:{x:q.position.x+range,y:q.position.y+range}}).filter(z=>z.game&&!z.isSensor&&!z.game.liquid&&!z.game.reservoir);
+  const candidates=solids.filter(z=>minerTargetValidV27(q,z));
+  const reachable=candidates.filter(z=>minerCanHitV27(q,z,solids));
+  if(reachable.length){
+    if(reachable.includes(g.finishTarget)&&g.finishTarget.game.hits>0&&minerMaterialBeatV27(g.finishTarget.game.material,rhythm)){g.workTarget=g.finishTarget;g.route=[];return g.workTarget}
+    // A hard-material work target must never monopolize dirt's beats after upgrade.
+    const due=reachable.filter(z=>minerMaterialBeatV27(z.game.material,rhythm));
+    const pool=due.length?due:reachable;
+    pool.sort((a,b)=>(a.game.hits>0?-1:0)-(b.game.hits>0?-1:0)||(a===g.workTarget?-1:0)-(b===g.workTarget?-1:0)||minerDistanceV27(q,a)-minerDistanceV27(q,b));
+    g.workTarget=pool[0];g.route=[];g.routeCheckAt=0;return g.workTarget
+  }
+  if(now<g.routeCheckAt&&minerTargetValidV27(q,g.workTarget)&&g.route?.length)return g.workTarget;
+  if(now<g.routeCheckAt&&!g.workTarget)return null;
+  const available=candidates.filter(z=>!g.avoidedTargets.has(z));
+  if(now<(g.exploreUntilV43||0)){g.workTarget=null;g.route=[];return null}
+  const plan=available.length?minerPlanRouteV38(q,available,solids):null;
+  g.routeCheckAt=now+700;
+  if(!plan){for(const z of available)g.avoidedTargets.set(z,now+3000);g.workTarget=null;g.route=[];return null}
+  if(plan.target!==g.workTarget){g.progressAt=now;g.bestTargetDistance=Infinity;g.stuckAttempts=0}
+  g.workTarget=plan.target;g.route=plan.route;return g.workTarget
+}
+function minerBodyRegionV27(q,x0,y0,x1,y1){
+  return Query.region(q.game.nearbySolids||[...bs],{min:{x:x0,y:y0},max:{x:x1,y:y1}}).filter(z=>z.game&&!z.isSensor&&!z.game.liquid&&!z.game.reservoir)
+}
+function minerGroundedV27(q){
+  const b=q.bounds;return minerBodyRegionV27(q,b.min.x+3,b.max.y-1,b.max.x-3,b.max.y+6).length>0
+}
+function minerWallAheadV27(q,dir){
+  if(!dir)return false;const b=q.bounds,x=dir>0?b.max.x:b.min.x;
+  const x0=dir>0?x-1:x-7,x1=dir>0?x+7:x+1;
+  return minerBodyRegionV27(q,x0,b.min.y+4,x1,b.max.y-3).length>0
+}
+function minerCanHitV27(q,z,solids=q.game.nearbySolids||[...bs]){
+  if(!minerTargetValidV27(q,z))return false;
+  const a=q.bounds,b=z.bounds;
+  const dx=Math.max(0,b.min.x-a.max.x,a.min.x-b.max.x);
+  const dy=Math.max(0,b.min.y-a.max.y,a.min.y-b.max.y);
+  if(Math.hypot(dx,dy)>B*.4)return false;
+  // A close block on the other side of a wall is not reachable with the pick.
+  const end={x:clamp(q.position.x,b.min.x+.5,b.max.x-.5),y:clamp(q.position.y,b.min.y+.5,b.max.y-.5)};
+  return !Query.ray(solids.filter(body=>bs.has(body)&&body!==z&&body.game&&!body.isSensor&&!body.game.liquid&&!body.game.reservoir),q.position,end,1).length
+}
+function minerRhythmV27(now){
+  const r=window.SkyAudio?.rhythm?.();
+  if(r?.ready&&r.beatIndex>=0)return r;
+  const bpm=window.SkyAudio?.bpm||72,beatMs=60000/bpm,pos=now/beatMs,idx=Math.floor(pos);
+  return{ready:false,bpm,beatMs,beatIndex:idx,barBeat:((idx%4)+4)%4,phase:pos-idx}
+}
+// barBeat is zero-based; deepslate answers the stone hits an eighth note later.
+function minerMaterialBeatV27(material,rhythm){
+  const beat=((rhythm.beatIndex%4)+4)%4,phase=rhythm.phase;
+  if(material==='dirt')return beat%2===0&&phase>=0&&phase<.14;
+  if(material==='stone')return beat%2===1&&phase>=0&&phase<.14;
+  if(material==='deepslate')return beat%2===1&&phase>=.5&&phase<.64;
+  return false
+}
+function worldAudioSpatialV44(x,y){
+  const z=Math.max(.25,cam.z),halfW=W/(2*z),halfH=HH/(2*z);
+  const dx=x-cam.x,dy=y-cam.y,ax=Math.abs(dx),ay=Math.abs(dy);
+  const ox=Math.max(0,ax-halfW),oy=Math.max(0,ay-halfH);
+  if(ox===0&&oy===0)return{gain:1,pan:clamp(dx/(halfW*.95),-1,1)};
+  const off=Math.hypot(ox,oy),fadeDist=Math.max(halfW,halfH)*1.05+B*5;
+  const linear=clamp(1-off/fadeDist,0,1),gain=linear*linear;
+  return{gain,pan:clamp(dx/(halfW*1.45),-1,1)}
+}
+function minerSpatialV27(q){return worldAudioSpatialV44(q.position.x,q.position.y)}
+
+minerHit=function(q,target,beatIndex=0){
+  if(!minerTargetValidV27(q,target))return false;
+  target.game.hits++;target.game.flash=5;
+  q.game.finishTarget=target;q.game.lastWorkAtV43=performance.now();
+  terrainDamage.set(key(target.game.cx,target.game.cy),target.game.hits);
+  const broken=target.game.hits>=target.game.max,sp=minerSpatialV27(q);
+  if(window.SkyAudio?.minerHit)SkyAudio.minerHit(target.game.material,sp.gain,sp.pan,broken,beatIndex);
+  else if(sp.gain>.55&&window.SkyAudio?.hit)SkyAudio.hit(target.game.material,broken,target.game.hits);
+  if(broken){
+    q.game.workTarget=null;q.game.finishTarget=null;harvest(target,'miner',q)
+  }else saveSoon();
+  return true
+};
+
+function minerNavigateV27(q,target,now){
+  const g=q.game,level=g.level,grounded=minerGroundedV27(q);
+  if(grounded){g.climbStartY=q.position.y;g.climbUntil=now+1800}
+  if(target&&minerCanHitV27(q,target)&&grounded){
+    g.aiState='digging';g.progressAt=now;g.bestTargetDistance=minerDistanceV27(q,target);g.stuckAttempts=0;
+    if(Math.abs(target.position.x-q.position.x)>4)g.dir=Math.sign(target.position.x-q.position.x);
+    Body.setVelocity(q,{x:q.velocity.x*.35,y:q.velocity.y});return
+  }
+  let waypoint=g.route?.[0];
+  while(waypoint&&Math.abs(q.position.x-waypoint.x)<B*.1&&Math.abs(q.position.y-waypoint.y)<B*.45){
+    g.route.shift();g.progressAt=now;g.bestTargetDistance=Infinity;waypoint=g.route[0]
+  }
+  const destination=waypoint||target?.position;
+  let dir=g.dir||1;
+  if(now<g.recoverUntil){
+    g.aiState='backing up';dir=g.recoverDir;
+  }else if(target){
+    const dx=destination.x-q.position.x;if(Math.abs(dx)>B*.15)dir=Math.sign(dx);
+    const distance=Math.hypot(destination.x-q.position.x,destination.y-q.position.y);
+    if(!Number.isFinite(g.progressAt)||distance<g.bestTargetDistance-B*.15){g.progressAt=now;g.bestTargetDistance=distance;g.stuckAttempts=0}
+    if(now-g.progressAt>1600){
+      g.progressAt=now;g.stuckAttempts=(g.stuckAttempts||0)+1;
+      if(g.stuckAttempts>=2){
+        g.avoidedTargets.set(target,now+12000);g.workTarget=null;g.finishTarget=null;g.route=[];g.exploreUntilV43=now+4500;g.recoverDir=-dir;g.recoverUntil=now+1800;
+        g.aiState='backing up';dir=-dir;target=null
+      }else{g.nextJump=0}
+    }
+  }else{
+    if(!g.exploreOrigin){g.exploreOrigin={...q.position};g.exploreAt=now}
+    if(now-g.exploreAt>2000){
+      if(Math.hypot(q.position.x-g.exploreOrigin.x,q.position.y-g.exploreOrigin.y)<B*.5){dir=-dir;g.recoverDir=dir;g.recoverUntil=now+800}
+      g.exploreOrigin={...q.position};g.exploreAt=now
+    }
+  }
+  g.dir=dir;
+  const wall=minerWallAheadV27(q,dir),targetAbove=!!destination&&destination.y<q.position.y-B*.5;
+  const ceiling=minerBodyRegionV27(q,q.bounds.min.x+3,q.bounds.min.y-6,q.bounds.max.x-3,q.bounds.min.y-1).length>0;
+  if(!Number.isFinite(g.nextJump))g.nextJump=0;
+  let vx=dir*(1.05+level*.2),vy=q.velocity.y;
+  g.aiState=now<g.recoverUntil?'backing up':target?'seeking':'exploring';
+  if(grounded&&!ceiling&&now>=g.nextJump&&(wall||targetAbove&&Math.abs(destination.x-q.position.x)<B*2.2)){
+    vy=-(5.5+level*.3);g.nextJump=now+650;g.aiState='jumping';
+  }else if(g.isChildV56&&wall&&!ceiling&&!grounded&&now<g.climbUntil&&g.climbStartY-q.position.y<B*(level===1?1.2:level===2?2.4:3.5)){
+    // A short wall grip carries the jump up ledges, with a level-based height cap.
+    vy=Math.min(vy,-(1.5+level*.35));g.aiState='climbing';
+    Body.setAngularVelocity(q,q.angularVelocity*.5)
+  }else if(wall&&grounded&&ceiling&&!target&&now>=g.nextTurn-2000){
+    g.dir=-dir;vx=-vx;g.nextTurn=now+3000
+  }
+  if(destination&&!wall&&Math.abs(destination.x-q.position.x)<B*.05)vx=0;
+  Body.setVelocity(q,{x:q.velocity.x*.35+vx*.65,y:vy})
+}
+
+updateMiners=function(now){
+  const rhythm=minerRhythmV27(now);
+  const bodies=typeof blockSolidsV87==='function'?blockSolidsV87():[...bs].filter(z=>z.game&&!z.isSensor&&!z.game.liquid&&!z.game.reservoir);
+  const workerCount=Math.max(1,miners.size),thinkDelay=Math.min(480,90+workerCount*3);
+  for(const q of miners){
+    if(typeof workerControlledV56==='function'&&workerControlledV56(q))continue;
+    if(typeof workerNightV55==='function'&&workerNightV55())continue;
+    const g=q.game,range=minerSearchRangeV27(q);
+    if(!Number.isFinite(g.aiThinkAtV57))g.aiThinkAtV57=now+((g.id||0)%20)*Math.max(5,thinkDelay/20);
+    const mustThink=now>=g.aiThinkAtV57||!!g.workTarget&&!minerTargetValidV27(q,g.workTarget);
+    if(mustThink){g.aiThinkAtV57=now+thinkDelay+((g.id||0)%7)*9;g.nearbySolids=Query.region(bodies,{min:{x:q.position.x-range,y:q.position.y-range},max:{x:q.position.x+range,y:q.position.y+range}}).filter(z=>bs.has(z))}
+    Sleeping.set(q,false);selfRightMiner(q,now);
+    if(!Number.isFinite(g.lastMineBeat))g.lastMineBeat=-999999;
+    if(!Number.isFinite(g.nextTurn))g.nextTurn=now+800+Math.random()*1200;
+    if(!g.workWatchV43)g.workWatchV43={at:now,hits:g.lastWorkAtV43,x:q.position.x,y:q.position.y};
+    if(now-g.workWatchV43.at>9000){
+      const watch=g.workWatchV43;
+      if(watch.hits===g.lastWorkAtV43&&Math.hypot(q.position.x-watch.x,q.position.y-watch.y)<B*2){
+        if(g.workTarget&&g.avoidedTargets)g.avoidedTargets.set(g.workTarget,now+14000);
+        g.workTarget=null;g.finishTarget=null;g.route=[];g.routeCheckAt=0;g.exploreUntilV43=now+5000;
+        g.dir=-(g.dir||1);g.recoverDir=g.dir;g.recoverUntil=now+2200;g.nextJump=0;
+      }
+      g.workWatchV43={at:now,hits:g.lastWorkAtV43,x:q.position.x,y:q.position.y};
+    }
+    const target=mustThink?minerAcquireTargetV27(q,now,rhythm):g.workTarget;
+    minerNavigateV27(q,target,now);
+    if(target&&minerCanHitV27(q,target)&&minerMaterialBeatV27(target.game.material,rhythm)&&g.lastMineTick!==rhythm.beatIndex*2+Math.floor(rhythm.phase*2)){
+      g.lastMineTick=rhythm.beatIndex*2+Math.floor(rhythm.phase*2);g.lastMineBeat=rhythm.beatIndex;g.pickUntil=now+Math.min(300,rhythm.beatMs*.42);
+      minerHit(q,target,rhythm.beatIndex)
+    }
+  }
+};
+
+window.__skyStackMinerDebug=()=>({
+  build:'v27',bpm:window.SkyAudio?.bpm||72,
+  miners:[...miners].map(q=>({id:q.game.id,level:q.game.level,target:q.game.workTarget?.game?.material||null,targetHits:q.game.workTarget?.game?.hits||0,state:q.game.aiState||'seeking',x:q.position.x,y:q.position.y}))
+});

@@ -1,0 +1,56 @@
+// ART-BIBLE §§3–4, 9–10: native pixel masks, quiet attached labels, musical rewards.
+// Discoveries belong to kinds/species/materials, never to individual object IDs.
+const discoveriesV90=new Set();let discoveryV90=null,discoveryRewardsV90=0;
+function discoveryKeyV90(entry){if(!entry)return null;const family=entry.kind||entry.key.split(':')[0];return family+':'+(family==='worker'?'Fairy Worker':entry.title).trim().toLowerCase()}
+function readDiscoveriesV90(s){discoveriesV90.clear();for(const key of (Array.isArray(s?.structuresV46?.discoveriesV90)?s.structuresV46.discoveriesV90:[]).slice(0,2048))if(typeof key==='string'&&key.length<=200)discoveriesV90.add(key)}
+readDiscoveriesV90(initialSave);
+const discoverySaveBeforeV90=saveStructuresV46;
+saveStructuresV46=function(){return {...discoverySaveBeforeV90(),discoveriesV90:[...discoveriesV90]}};
+const discoveryRestoreBeforeV90=restoreDynamicState;
+restoreDynamicState=function(s){discoveryRestoreBeforeV90(s);readDiscoveriesV90(s);cancelDiscoveryV90()};
+const discoveryBodyV90=document.createElement('div'),discoveryMaskV90=document.createElement('canvas'),discoveryLabelV90=document.createElement('small'),discoveryFireV90=document.createElement('canvas');
+for(const child of [...bubbleV79.children])discoveryBodyV90.append(child);bubbleV79.append(discoveryBodyV90,discoveryMaskV90,discoveryLabelV90,discoveryFireV90);
+discoveryMaskV90.setAttribute('aria-hidden','true');discoveryFireV90.setAttribute('aria-hidden','true');discoveryFireV90.width=96;discoveryFireV90.height=40;
+const discoveryStyleV90=document.createElement('style');discoveryStyleV90.textContent=`#inspectBubbleV79{font-size:14px;overflow:visible;width:min(230px,calc(100vw - 16px))}#inspectBubbleV79>div{position:relative}#inspectBubbleV79 canvas{position:absolute;inset:auto;width:auto;height:auto;pointer-events:none;image-rendering:pixelated}#inspectBubbleV79>canvas:nth-of-type(1){left:10px;top:8px}#inspectBubbleV79>canvas:nth-of-type(2){width:96px;height:40px;right:0;top:-40px}#inspectBubbleV79 small{display:block;color:${hudP77.mintShade};font:inherit;margin-top:4px}#inspectBubbleV79 small:empty{display:none}#inspectBubbleV79 canvas[hidden]{display:none}`;document.head.append(discoveryStyleV90);
+function cancelDiscoveryV90(){if(discoveryV90?.audio&&!discoveryV90.rewarded)SkyAudio.cancelDiscoveryCue?.(discoveryV90.audio);discoveryV90=null;discoveryMaskV90.hidden=discoveryFireV90.hidden=true;discoveryLabelV90.textContent='';discoveryBodyV90.removeAttribute('aria-hidden');bubbleV79.removeAttribute('aria-label')}
+function beginDiscoveryV90(entry,beat,now,r){
+ cancelDiscoveryV90();const key=discoveryKeyV90(entry),known=discoveriesV90.has(key);discoveryV90={entry,key,known,beat:r.ready?beat:null,epoch:r.ready?r.epoch:null,start:now,last:now,elapsed:0,step:-1,rewarded:false};
+ discoveryBodyV90.querySelector('strong').textContent=known?entry.title:'???';discoveryBodyV90.querySelector('span').textContent=known?entry.text:'';
+ if(!known)bubbleV79.setAttribute('aria-label','Unidentified');
+ // Familiar subjects need no new unlock fanfare.
+}
+function paintDiscoveryMaskV90(progress,seed){
+ const width=Math.ceil(discoveryBodyV90.getBoundingClientRect().width),height=Math.ceil(discoveryBodyV90.getBoundingClientRect().height);if(discoveryMaskV90.width!==width)discoveryMaskV90.width=width;if(discoveryMaskV90.height!==height)discoveryMaskV90.height=height;
+ discoveryMaskV90.style.width=width+'px';discoveryMaskV90.style.height=height+'px';const g=discoveryMaskV90.getContext('2d');g.clearRect(0,0,width,height);
+ for(let y=0;y<height;y+=4)for(let x=0;x<width;x+=4){const rank=((x/4*17+y/4*31+seed*7)%97)/97;if(rank<progress)continue;g.fillStyle=hudP77.creamLight;g.fillRect(x,y,4,4);if(rank<progress+.12){g.fillStyle=(x+y)%8?hudP77.mint: hudP77.gold;g.fillRect(x,y,2,2)}}
+}
+function paintDiscoveryFireV90(age,seed){const g=discoveryFireV90.getContext('2d');g.clearRect(0,0,96,40);if(age<0||age>1||matchMedia('(prefers-reduced-motion:reduce)').matches){discoveryFireV90.hidden=true;return}discoveryFireV90.hidden=false;
+ const step=Math.floor(age*8),colors=[hudP77.gold,hudP77.mint,hudP77.coral];for(let burst=0;burst<3;burst++)for(const [dx,dy]of [[0,-1],[1,-1],[1,0],[1,1],[0,1],[-1,1],[-1,0],[-1,-1]]){const radius=2+step*2,x=16+burst*30+dx*radius,y=20+dy*radius+Math.floor(step*step/10);g.fillStyle=colors[(burst+seed)%3];g.fillRect(x,y,2,2);if(step<5){g.fillStyle=hudP77.cream;g.fillRect(x-dx*2,y-dy*2,2,2)}}}
+function pulseDiscoveryV90(now){
+ const d=discoveryV90;if(!d)return;
+ if(!inspectEnabledV79||!inspectShownV79||inspectShownV79.key!==d.entry.key||!inspectPointerV79.inside||!d.entry.point()){cancelDiscoveryV90();return}
+ if(gameClockV76.paused||document.hidden){d.last=now;return}if(d.known)return;
+ const r=SkyAudio.rhythm();d.elapsed+=Math.max(0,Math.min(100,now-d.last));d.last=now;
+ // Rebase a silent reveal when audio starts; completed knowledge never depends on volume.
+ if(r.ready&&(d.beat===null||d.epoch!==r.epoch)){d.beat=Math.ceil((r.beatIndex+r.phase)/2)*2;d.epoch=r.epoch}
+ const elapsed=r.ready?r.beatIndex+r.phase-d.beat:d.elapsed/(60000/SkyAudio.bpm);
+ if(elapsed<2)return;
+ if(!d.revealing){d.revealing=true;discoveryBodyV90.querySelector('strong').textContent=d.entry.title;discoveryBodyV90.querySelector('span').textContent=d.entry.text;discoveryBodyV90.setAttribute('aria-hidden','true');discoveryMaskV90.hidden=false}
+ const progress=clamp((elapsed-2)/2,0,1),step=Math.floor(progress*12),seed=[...d.key].reduce((n,c)=>n+c.charCodeAt(0),0);
+ if(r.ready&&!d.audioAttempted){d.audioAttempted=true;d.audio=SkyAudio.discoveryCue?.(d.beat+4,seed)}
+ if(step!==d.step){d.step=step;paintDiscoveryMaskV90(matchMedia('(prefers-reduced-motion:reduce)').matches?0:step/12,seed)}
+ if(elapsed>=4&&!d.rewarded){d.rewarded=true;discoveriesV90.add(d.key);discoveryRewardsV90++;discoveryMaskV90.hidden=true;discoveryBodyV90.removeAttribute('aria-hidden');bubbleV79.removeAttribute('aria-label');discoveryLabelV90.textContent='New discovery';saveGame()}
+ if(d.rewarded){paintDiscoveryFireV90(elapsed-4,seed);if(elapsed>=6)discoveryLabelV90.textContent=''}
+}
+const discoveryPulseBeforeV90=pulseInspectV79;
+pulseInspectV79=function(now){discoveryPulseBeforeV90(now);pulseDiscoveryV90(now);positionLensV79()};
+const discoveryEnableBeforeV90=setInspectV79;
+setInspectV79=function(on){cancelDiscoveryV90();return discoveryEnableBeforeV90(on)};
+const discoveryPauseBeforeV90=pauseGameV76;
+pauseGameV76=function(...args){cancelDiscoveryV90();return discoveryPauseBeforeV90(...args)};
+const discoveryPediaBeforeV90=openPediaV79;
+openPediaV79=function(entry){if(!entry||!discoveriesV90.has(discoveryKeyV90(entry)))return;return discoveryPediaBeforeV90(entry)};
+window.skyStackDiscoveries={get state(){return{count:discoveriesV90.size,keys:[...discoveriesV90],rewards:discoveryRewardsV90,current:discoveryV90?{key:discoveryV90.key,known:discoveryV90.known,beat:discoveryV90.beat,phase:discoveryV90.rewarded?'discovered':discoveryV90.revealing?'revealing':'unknown'}:null}}};
+// Scheduled audio must cancel before a hidden tab stops rendering.
+addEventListener('blur',()=>{cancelDiscoveryV90();inspectShownV79=null;bubbleV79.hidden=true});
+document.addEventListener('visibilitychange',()=>{if(document.hidden){cancelDiscoveryV90();inspectShownV79=null;bubbleV79.hidden=true}});

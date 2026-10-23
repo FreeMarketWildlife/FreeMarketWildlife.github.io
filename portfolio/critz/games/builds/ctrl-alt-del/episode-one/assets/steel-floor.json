@@ -1,0 +1,149 @@
+{
+  "assetId": "cad.mini.episode1.steel-floor",
+  "revision": 1,
+  "name": "Steel deck",
+  "kind": "terrain",
+  "biome": "shared",
+  "family": "mini",
+  "approval": "prototype-review",
+  "source": {
+    "type": "new-native",
+    "file": "src/build-assets.cjs",
+    "recipe": "steel-floor"
+  },
+  "native": {
+    "width": 24,
+    "height": 24,
+    "origin": [
+      0,
+      0
+    ],
+    "originName": "authored-anchor",
+    "selectionBounds": {
+      "x": 0,
+      "y": 0,
+      "width": 24,
+      "height": 24
+    },
+    "visibleBounds": [
+      {
+        "variant": 0,
+        "frame": 0,
+        "x": 0,
+        "y": 0,
+        "width": 24,
+        "height": 24
+      }
+    ],
+    "animationEnvelope": {
+      "x": 0,
+      "y": 0,
+      "width": 24,
+      "height": 24
+    }
+  },
+  "sockets": [
+    {
+      "id": "left",
+      "type": "edge",
+      "x": 0,
+      "y": 0,
+      "facing": -1
+    },
+    {
+      "id": "right",
+      "type": "edge",
+      "x": 24,
+      "y": 0,
+      "facing": 1
+    }
+  ],
+  "render": {
+    "kind": "sprite-sheet",
+    "layer": "playable",
+    "parallax": {
+      "x": 1,
+      "y": 1
+    },
+    "variants": [
+      {
+        "id": "v0",
+        "uri": "assets/steel-floor.png",
+        "width": 24,
+        "height": 24,
+        "sha256": "bc4e44bfd7f55098d1ba896924738066cf40e6c493e43ffe20df2020067689ec"
+      }
+    ],
+    "frameSize": [
+      24,
+      24
+    ],
+    "frameCount": 1,
+    "allowedFacing": [
+      1,
+      -1
+    ],
+    "scale": 1
+  },
+  "collision": {
+    "defaults": [
+      {
+        "kind": "solid",
+        "x": 0,
+        "y": 0,
+        "width": 24,
+        "height": 24,
+        "channel": "world",
+        "mask": [
+          "player",
+          "enemy",
+          "projectile"
+        ]
+      }
+    ],
+    "decorative": false,
+    "behavior": "Artwork does not activate gameplay; scene entity kind and properties do."
+  },
+  "properties": {
+    "variant": {
+      "type": "integer",
+      "default": 0
+    }
+  },
+  "animation": {
+    "states": {
+      "idle": {
+        "frames": [
+          0
+        ],
+        "timingMs": [
+          180
+        ],
+        "loop": true
+      }
+    },
+    "frameEvents": []
+  },
+  "tags": [
+    "floor",
+    "terrain",
+    "repeat"
+  ],
+  "thumbnail": {
+    "uri": "assets/steel-floor.png",
+    "frame": 0,
+    "variant": 0,
+    "nativeSize": [
+      24,
+      24
+    ],
+    "noResample": true
+  },
+  "placement": {
+    "snap": 1,
+    "suggestedGrid": 8,
+    "preview": "native-with-geometry",
+    "allowScale": false,
+    "allowRotation": false
+  }
+}

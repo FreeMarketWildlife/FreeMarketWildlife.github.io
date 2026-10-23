@@ -1,0 +1,45 @@
+// Storehouses share the building inventory transfer path and its total capacity limit.
+document.body.append($('buildingPanel'));
+const buildingInventoryV60=document.createElement('section');
+buildingInventoryV60.id='buildingInventoryV60';
+buildingInventoryV60.innerHTML='<h3>BUILDING INVENTORY <span id="stockCountV60"></span></h3><div id="stockItemsV60"></div><div class="stockTransferV60"><select id="stockResourceV60" aria-label="Resource"></select><input id="stockAmountV60" aria-label="Transfer amount" type="number" min="1" step="1" value="100"><button class="btn" id="stockDepositV60">STORE</button><button class="btn" id="stockWithdrawV60">TAKE</button></div>';
+$('buildingPanel').insertBefore(buildingInventoryV60,$('buildingPack'));
+const stockResourceV60=$('stockResourceV60');
+for(const k of settlementItemsV56){const option=document.createElement('option');option.value=k;option.textContent=labelV46(k);stockResourceV60.append(option)}
+stockResourceV60.value='wood';
+function refreshInventoryV60(){
+ const b=structuresV46.find(b=>b.id===selectedBuildingV46);if(!b||!$('buildingPanel').open)return;
+ const stock=stockV56(b),capacity=STRUCTURES_V46[b.type].capacity,total=Object.values(stock).reduce((n,v)=>n+amountV56(v),0);
+ $('stockCountV60').textContent=capacity?total+' / '+capacity:String(total);
+ const items=$('stockItemsV60');items.replaceChildren();
+ for(const [k,n] of Object.entries(stock)){if(!n)continue;const item=document.createElement('span'),icon=document.createElement('img'),count=document.createElement('b');icon.src=M[k]?artIconV32(k):uiPixelV48(k);icon.alt=labelV46(k);item.title=labelV46(k);count.textContent=n;item.append(icon,count);items.append(item)}
+ for(const option of stockResourceV60.options){const k=option.value;option.textContent=labelV46(k)+' · '+(stock[k]||0)+' / '+playerAmountV56(k);option.title='Building inventory / your inventory'}
+ const k=stockResourceV60.value,amount=amountV56(Number($('stockAmountV60').value));
+ $('stockDepositV60').disabled=!amount||!playerAmountV56(k)||(capacity!==undefined&&total>=capacity);
+ $('stockWithdrawV60').disabled=!amount||!stock[k];
+}
+for(const [id,deposit] of [['stockDepositV60',true],['stockWithdrawV60',false]])$(id).onclick=()=>{const b=structuresV46.find(b=>b.id===selectedBuildingV46);if(b)transferStockV56(b,stockResourceV60.value,Number($('stockAmountV60').value),deposit)};
+stockResourceV60.onchange=refreshInventoryV60;$('stockAmountV60').oninput=refreshInventoryV60;
+const refreshBeforeV60=refreshStructuresV46;
+refreshStructuresV46=function(){refreshBeforeV60();refreshInventoryV60()};
+const openBeforeV60=openBuildingV46;
+openBuildingV46=function(b){
+ $('buildingPanel').close();openBeforeV60(b);if(b.type==='home')return;
+ const storage=b.type==='storehouse',panel=$('buildingPanel');panel.classList.toggle('storehousePanel',storage);
+ buildingControlsV56.hidden=storage;
+ // Resource transfers replace the early wood/ore-only controls.
+ buildingControlsV56.querySelector('div:nth-child(2)').hidden=true;
+ for(const el of [workshopGridV50,$('buildingRecipe'),document.querySelector('label[for="buildingRecipe"]'),$('buildingIngredients'),$('buildingProgress'),$('buildingStatus'),panel.querySelector('.buildingActions')])if(storage)el.hidden=true;
+ if(!storage)panel.querySelector('.buildingActions').hidden=false;
+ for(const note of panel.querySelectorAll('.structureNote'))note.hidden=true;
+ panel.querySelector('.buildingActions + .structureNote').textContent='Finished items stay in building inventory.';
+ const notes=panel.querySelectorAll('.structureNote');notes[notes.length-1].textContent='Packing returns building inventory.';notes[notes.length-1].hidden=false;
+ if(storage){panel.close();const anchor=$('structuresOpen').getBoundingClientRect(),bar=$('bar').getBoundingClientRect();panel.style.left=Math.round(Math.max(8,Math.min(anchor.left,innerWidth-368-8)))+'px';panel.style.bottom=Math.round(innerHeight-bar.top+8)+'px';panel.style.maxHeight=Math.max(160,Math.floor(bar.top-24))+'px';panel.show()}
+ else{panel.style.left='';panel.style.bottom='';panel.style.maxHeight=''}
+ refreshInventoryV60();
+};
+
+// Resolve the current packing implementation so stored resources are returned.
+$('buildingPack').onclick=()=>{const b=structuresV46.find(b=>b.id===selectedBuildingV46);if(b)packStructureV46(b)};
+
+addEventListener('resize',()=>{const b=structuresV46.find(b=>b.id===selectedBuildingV46);if(b?.type==='storehouse'&&$('buildingPanel').open)openBuildingV46(b)});

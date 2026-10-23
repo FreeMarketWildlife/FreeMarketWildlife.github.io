@@ -1,0 +1,165 @@
+{
+  "assetId": "cad.mini.episode1.hazard",
+  "revision": 1,
+  "name": "Live cooling leak",
+  "kind": "hazard",
+  "biome": "hub",
+  "family": "mini",
+  "approval": "prototype-review",
+  "source": {
+    "type": "new-native",
+    "file": "src/build-assets.cjs",
+    "recipe": "hazard"
+  },
+  "native": {
+    "width": 48,
+    "height": 16,
+    "origin": [
+      0,
+      16
+    ],
+    "originName": "authored-anchor",
+    "selectionBounds": {
+      "x": 0,
+      "y": 0,
+      "width": 48,
+      "height": 16
+    },
+    "visibleBounds": [
+      {
+        "variant": 0,
+        "frame": 0,
+        "x": 0,
+        "y": 6,
+        "width": 48,
+        "height": 10
+      },
+      {
+        "variant": 0,
+        "frame": 1,
+        "x": 0,
+        "y": 5,
+        "width": 48,
+        "height": 11
+      },
+      {
+        "variant": 0,
+        "frame": 2,
+        "x": 0,
+        "y": 6,
+        "width": 48,
+        "height": 10
+      },
+      {
+        "variant": 0,
+        "frame": 3,
+        "x": 0,
+        "y": 5,
+        "width": 48,
+        "height": 11
+      }
+    ],
+    "animationEnvelope": {
+      "x": 0,
+      "y": 0,
+      "width": 48,
+      "height": 16
+    }
+  },
+  "sockets": [
+    {
+      "id": "left",
+      "type": "edge",
+      "x": 0,
+      "y": 0,
+      "facing": -1
+    },
+    {
+      "id": "right",
+      "type": "edge",
+      "x": 48,
+      "y": 0,
+      "facing": 1
+    }
+  ],
+  "render": {
+    "kind": "sprite-sheet",
+    "layer": "playable",
+    "parallax": {
+      "x": 1,
+      "y": 1
+    },
+    "variants": [
+      {
+        "id": "v0",
+        "uri": "assets/hazard.png",
+        "width": 192,
+        "height": 16,
+        "sha256": "4691e9a0d0e5551d44e2e60d8ba3fe78b8a02192a46321fef9f6d830aeaf4244"
+      }
+    ],
+    "frameSize": [
+      48,
+      16
+    ],
+    "frameCount": 4,
+    "allowedFacing": [
+      1,
+      -1
+    ],
+    "scale": 1
+  },
+  "collision": {
+    "defaults": [],
+    "decorative": true,
+    "behavior": "Artwork does not activate gameplay; scene entity kind and properties do."
+  },
+  "properties": {
+    "variant": {
+      "type": "integer",
+      "default": 0
+    }
+  },
+  "animation": {
+    "states": {
+      "idle": {
+        "frames": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "timingMs": [
+          150,
+          150,
+          150,
+          150
+        ],
+        "loop": true
+      }
+    },
+    "frameEvents": []
+  },
+  "tags": [
+    "hub",
+    "hazard",
+    "animated"
+  ],
+  "thumbnail": {
+    "uri": "assets/hazard.png",
+    "frame": 0,
+    "variant": 0,
+    "nativeSize": [
+      48,
+      16
+    ],
+    "noResample": true
+  },
+  "placement": {
+    "snap": 1,
+    "suggestedGrid": 8,
+    "preview": "native-with-geometry",
+    "allowScale": false,
+    "allowRotation": false
+  }
+}

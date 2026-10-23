@@ -1,0 +1,135 @@
+{
+  "assetId": "cad.mini.episode1.planter",
+  "revision": 1,
+  "name": "Skyview terrace planter",
+  "kind": "scenery",
+  "biome": "skyview",
+  "family": "mini",
+  "approval": "prototype-review",
+  "source": {
+    "type": "new-native",
+    "file": "src/build-assets.cjs",
+    "recipe": "planter"
+  },
+  "native": {
+    "width": 24,
+    "height": 38,
+    "origin": [
+      0,
+      38
+    ],
+    "originName": "authored-anchor",
+    "selectionBounds": {
+      "x": 0,
+      "y": 0,
+      "width": 24,
+      "height": 38
+    },
+    "visibleBounds": [
+      {
+        "variant": 0,
+        "frame": 0,
+        "x": 1,
+        "y": 0,
+        "width": 22,
+        "height": 38
+      }
+    ],
+    "animationEnvelope": {
+      "x": 0,
+      "y": 0,
+      "width": 24,
+      "height": 38
+    }
+  },
+  "sockets": [
+    {
+      "id": "left",
+      "type": "edge",
+      "x": 0,
+      "y": 0,
+      "facing": -1
+    },
+    {
+      "id": "right",
+      "type": "edge",
+      "x": 24,
+      "y": 0,
+      "facing": 1
+    }
+  ],
+  "render": {
+    "kind": "sprite-sheet",
+    "layer": "scenery",
+    "parallax": {
+      "x": 1,
+      "y": 1
+    },
+    "variants": [
+      {
+        "id": "v0",
+        "uri": "assets/planter.png",
+        "width": 24,
+        "height": 38,
+        "sha256": "991fc73841aa7e98883280f1e826fbabd91e2be933f86466a5159cb26c0e3bef"
+      }
+    ],
+    "frameSize": [
+      24,
+      38
+    ],
+    "frameCount": 1,
+    "allowedFacing": [
+      1,
+      -1
+    ],
+    "scale": 1
+  },
+  "collision": {
+    "defaults": [],
+    "decorative": true,
+    "behavior": "Artwork does not activate gameplay; scene entity kind and properties do."
+  },
+  "properties": {
+    "variant": {
+      "type": "integer",
+      "default": 0
+    }
+  },
+  "animation": {
+    "states": {
+      "idle": {
+        "frames": [
+          0
+        ],
+        "timingMs": [
+          180
+        ],
+        "loop": true
+      }
+    },
+    "frameEvents": []
+  },
+  "tags": [
+    "skyview",
+    "plant",
+    "prop"
+  ],
+  "thumbnail": {
+    "uri": "assets/planter.png",
+    "frame": 0,
+    "variant": 0,
+    "nativeSize": [
+      24,
+      38
+    ],
+    "noResample": true
+  },
+  "placement": {
+    "snap": 1,
+    "suggestedGrid": 8,
+    "preview": "native-with-geometry",
+    "allowScale": false,
+    "allowRotation": false
+  }
+}

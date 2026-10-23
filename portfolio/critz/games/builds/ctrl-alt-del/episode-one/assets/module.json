@@ -1,0 +1,145 @@
+{
+  "assetId": "cad.mini.episode1.module",
+  "revision": 1,
+  "name": "Unrecovered module",
+  "kind": "scenery",
+  "biome": "hub",
+  "family": "mini",
+  "approval": "prototype-review",
+  "source": {
+    "type": "new-native",
+    "file": "src/build-assets.cjs",
+    "recipe": "module"
+  },
+  "native": {
+    "width": 20,
+    "height": 22,
+    "origin": [
+      10,
+      22
+    ],
+    "originName": "authored-anchor",
+    "selectionBounds": {
+      "x": 0,
+      "y": 0,
+      "width": 20,
+      "height": 22
+    },
+    "visibleBounds": [
+      {
+        "variant": 0,
+        "frame": 0,
+        "x": 0,
+        "y": 2,
+        "width": 20,
+        "height": 20
+      },
+      {
+        "variant": 0,
+        "frame": 1,
+        "x": 0,
+        "y": 2,
+        "width": 20,
+        "height": 20
+      }
+    ],
+    "animationEnvelope": {
+      "x": 0,
+      "y": 0,
+      "width": 20,
+      "height": 22
+    }
+  },
+  "sockets": [
+    {
+      "id": "left",
+      "type": "edge",
+      "x": -10,
+      "y": 0,
+      "facing": -1
+    },
+    {
+      "id": "right",
+      "type": "edge",
+      "x": 10,
+      "y": 0,
+      "facing": 1
+    }
+  ],
+  "render": {
+    "kind": "sprite-sheet",
+    "layer": "scenery",
+    "parallax": {
+      "x": 1,
+      "y": 1
+    },
+    "variants": [
+      {
+        "id": "v0",
+        "uri": "assets/module.png",
+        "width": 40,
+        "height": 22,
+        "sha256": "079c7e964da30c314856b419fa91cca2f73dd97440d42b717f8ab03b0f0524a2"
+      }
+    ],
+    "frameSize": [
+      20,
+      22
+    ],
+    "frameCount": 2,
+    "allowedFacing": [
+      1,
+      -1
+    ],
+    "scale": 1
+  },
+  "collision": {
+    "defaults": [],
+    "decorative": true,
+    "behavior": "Artwork does not activate gameplay; scene entity kind and properties do."
+  },
+  "properties": {
+    "variant": {
+      "type": "integer",
+      "default": 0
+    }
+  },
+  "animation": {
+    "states": {
+      "idle": {
+        "frames": [
+          0,
+          1
+        ],
+        "timingMs": [
+          400,
+          400
+        ],
+        "loop": true
+      }
+    },
+    "frameEvents": []
+  },
+  "tags": [
+    "hub",
+    "module",
+    "story"
+  ],
+  "thumbnail": {
+    "uri": "assets/module.png",
+    "frame": 0,
+    "variant": 0,
+    "nativeSize": [
+      20,
+      22
+    ],
+    "noResample": true
+  },
+  "placement": {
+    "snap": 1,
+    "suggestedGrid": 8,
+    "preview": "native-with-geometry",
+    "allowScale": false,
+    "allowRotation": false
+  }
+}

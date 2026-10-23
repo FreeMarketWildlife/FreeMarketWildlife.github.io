@@ -1,0 +1,71 @@
+// ART-BIBLE §§3–5, 9–10: native grid control and a brief, text-free lens hint.
+SKY_BUILD='v91';
+const gridWorldKeyV91=SAVE_KEY+'.grid.v91';
+gridSnapV25=false;try{gridSnapV25=best>=25&&localStorage.getItem(gridWorldKeyV91)==='1'}catch{}
+const gridControlV91=$('gridToggle');
+let gridIconStateV91=null;
+$('hudNavigationV77').append(gridControlV91);
+updateGridToggleV25=function(){
+ const unlocked=best>=25,b=gridControlV91;if(!unlocked)gridSnapV25=false;
+ b.hidden=!unlocked;b.disabled=!unlocked;
+ if(gridIconStateV91!==gridSnapV25){const icon=document.createElement('canvas');icon.width=icon.height=32;icon.setAttribute('aria-hidden','true');icon.getContext('2d').drawImage(ButtonwoodArt.hudIcon('grid',gridSnapV25),0,0);b.replaceChildren(icon);gridIconStateV91=gridSnapV25}
+ b.classList.toggle('gridOff',!gridSnapV25);b.setAttribute('aria-pressed',String(gridSnapV25));
+ b.title=gridSnapV25?'Grid on':'Grid off';b.setAttribute('aria-label',b.title);
+};
+setGridSnapV25=function(on,notify=true){gridSnapV25=best>=25&&!!on;try{localStorage.setItem(gridWorldKeyV91,gridSnapV25?'1':'0')}catch{}updateGridToggleV25();};
+const gridUiBeforeV91=ui;ui=function(){gridUiBeforeV91();updateGridToggleV25()};
+// Replace the 25m size increase; subsequent size increases keep their milestones.
+const sizeBeforeV91=buildLimitAt;
+buildLimitAt=function(h){return h>=25?Math.max(1,sizeBeforeV91(h)-1):sizeBeforeV91(h)};
+const questsBeforeV91=questsV77;questsV77=function(){return questsBeforeV91().map(q=>q.height===25?{...q,reward:'Grid placement'}:q)};
+const awardBeforeV91=awardHigh;awardHigh=function(m){const old=best;awardBeforeV91(m);if(old<25&&best>=25){toast('Grid unlocked');SkyAudio.unlock();updateGridToggleV25()}};
+// Loose blocks may overlap and resolve through real Matter contacts immediately.
+warnOverlap=function(commit){commit()};
+let playerPlacementV91=0;
+for(const name of ['one','solid']){
+ const before=name==='one'?one:solid;
+ const place=function(...args){playerPlacementV91++;try{return before(...args)}finally{playerPlacementV91--}};
+ if(name==='one')one=place;else solid=place;
+}
+function touchingLooseV91(a,b){
+ if(Query.collides(a,[b]).length)return true;
+ // A 3px contact margin covers the intentional 1px gaps between cells without
+ // treating empty corners of rotated body bounds as supporting contacts.
+ function distance(p,u,v){const dx=v.x-u.x,dy=v.y-u.y,t=clamp(((p.x-u.x)*dx+(p.y-u.y)*dy)/(dx*dx+dy*dy||1),0,1);return Math.hypot(p.x-u.x-t*dx,p.y-u.y-t*dy)}
+ for(const [p,q]of [[a,b],[b,a]])for(const v of p.vertices)for(let i=0;i<q.vertices.length;i++)if(distance(v,q.vertices[i],q.vertices[(i+1)%q.vertices.length])<=3)return true;
+ return false;
+}
+function pushPileV91(z){
+ const loose=q=>q.game?.placed&&!q.isStatic&&!q.game.naturalTree;
+ for(const q of placedBodiesV87)if(loose(q))Sleeping.set(q,false);
+ const seen=new Set([z]),queue=[{body:z,depth:0}],contacts=[];
+ for(let i=0;i<queue.length;i++){
+  const {body:a,depth}=queue[i],b=a.bounds,near=blocksInRegionV87({min:{x:b.min.x-3,y:b.min.y-3},max:{x:b.max.x+3,y:b.max.y+3}});
+  for(const q of near)if(loose(q)&&!seen.has(q)&&touchingLooseV91(a,q)){seen.add(q);queue.push({body:q,depth:depth+1});contacts.push({body:q,depth:depth+1})}
+ }
+ Body.setVelocity(z,{x:z.velocity.x+.35,y:z.velocity.y+2.4});
+ for(const {body:q,depth}of contacts){const strength=1/Math.sqrt(depth),side=clamp((q.position.x-z.position.x)/B,-1,1);
+  Body.setVelocity(q,{x:clamp(q.velocity.x+side*1.6*strength,-10,10),y:clamp(q.velocity.y+1.2*strength,-10,10)});
+  Body.setAngularVelocity(q,clamp(q.angularVelocity+(side||.25)*.018*strength,-.15,.15));
+ }
+ solidCacheV57=null;feyTowerCacheV75=null;feyTowerStampV75=-Infinity;
+}
+const makeBeforeV91=mk;mk=function(x,y,m,o={}){const z=makeBeforeV91(x,y,m,o);if(playerPlacementV91&&z.game.placed&&!z.isStatic&&!restoring)pushPileV91(z);return z};
+const hintV91=document.createElement('canvas');hintV91.id='inspectHintV91';hintV91.width=hintV91.height=32;hintV91.hidden=true;hintV91.setAttribute('role','status');hintV91.setAttribute('aria-label','Use the magnifying glass to inspect animals');hintV91.getContext('2d').drawImage(ButtonwoodArt.hudIcon('pointRight'),0,0);document.body.append(hintV91);
+const cssV91=document.createElement('style');cssV91.textContent=`
+#minimalHudV77 #gridToggle[hidden],#inspectHintV91[hidden]{display:none!important}
+#minimalHudV77 #gridToggle{position:static!important;inset:auto!important;opacity:1;grid-column:2;width:44px;height:44px;font-size:0;background-image:none}
+#gridToggle canvas{position:static;inset:auto;display:block}
+#gridToggle canvas,#inspectHintV91{width:32px;height:32px;image-rendering:pixelated}
+#minimalHudV77 #gridToggle[aria-pressed=true]{background:${hudP77.mintLight};box-shadow:inset 0 -3px ${hudP77.mintShade}}
+#inspectHintV91{position:fixed;pointer-events:none;z-index:24;animation:lensPointV91 .6s steps(2,end) infinite}
+@keyframes lensPointV91{50%{transform:translateX(4px)}}
+@media(prefers-reduced-motion:reduce){#inspectHintV91{animation:none}}`;document.head.append(cssV91);
+let hintTimerV91;
+function positionHintV91(){const r=inspectOpenV79.getBoundingClientRect();hintV91.style.left=Math.round(r.left-38)+'px';hintV91.style.top=Math.round(r.top+6)+'px'}
+function showHintV91(){positionHintV91();hintV91.hidden=false;clearTimeout(hintTimerV91);hintTimerV91=setTimeout(()=>hintV91.hidden=true,2400)}
+addEventListener('resize',positionHintV91);
+inspectOpenV79.addEventListener('click',()=>{clearTimeout(hintTimerV91);hintV91.hidden=true});
+const animalOpenBeforeV91=openCritterV73;
+openCritterV73=function(target){if(target?.animal&&!target.animal.feyV75){if(!(target.animal.noticeUntilV71>wildlifeClockV71))animalSoundV71(target.animal,target.p||target.animal);showHintV91();return}return animalOpenBeforeV91(target)};
+updateGridToggleV25();

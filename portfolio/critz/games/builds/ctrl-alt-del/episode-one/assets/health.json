@@ -1,0 +1,135 @@
+{
+  "assetId": "cad.mini.episode1.health",
+  "revision": 1,
+  "name": "Repair kit",
+  "kind": "pickup",
+  "biome": "shared",
+  "family": "mini",
+  "approval": "prototype-review",
+  "source": {
+    "type": "new-native",
+    "file": "src/build-assets.cjs",
+    "recipe": "health"
+  },
+  "native": {
+    "width": 16,
+    "height": 16,
+    "origin": [
+      8,
+      8
+    ],
+    "originName": "authored-anchor",
+    "selectionBounds": {
+      "x": 0,
+      "y": 0,
+      "width": 16,
+      "height": 16
+    },
+    "visibleBounds": [
+      {
+        "variant": 0,
+        "frame": 0,
+        "x": 1,
+        "y": 3,
+        "width": 14,
+        "height": 10
+      }
+    ],
+    "animationEnvelope": {
+      "x": 0,
+      "y": 0,
+      "width": 16,
+      "height": 16
+    }
+  },
+  "sockets": [
+    {
+      "id": "left",
+      "type": "edge",
+      "x": -8,
+      "y": 0,
+      "facing": -1
+    },
+    {
+      "id": "right",
+      "type": "edge",
+      "x": 8,
+      "y": 0,
+      "facing": 1
+    }
+  ],
+  "render": {
+    "kind": "sprite-sheet",
+    "layer": "scenery",
+    "parallax": {
+      "x": 1,
+      "y": 1
+    },
+    "variants": [
+      {
+        "id": "v0",
+        "uri": "assets/health.png",
+        "width": 16,
+        "height": 16,
+        "sha256": "48c0ab9ed51a1fbd774a7f87cbfa6f173916718f59b58e90e59674a5df1464d2"
+      }
+    ],
+    "frameSize": [
+      16,
+      16
+    ],
+    "frameCount": 1,
+    "allowedFacing": [
+      1,
+      -1
+    ],
+    "scale": 1
+  },
+  "collision": {
+    "defaults": [],
+    "decorative": true,
+    "behavior": "Artwork does not activate gameplay; scene entity kind and properties do."
+  },
+  "properties": {
+    "variant": {
+      "type": "integer",
+      "default": 0
+    }
+  },
+  "animation": {
+    "states": {
+      "idle": {
+        "frames": [
+          0
+        ],
+        "timingMs": [
+          300
+        ],
+        "loop": true
+      }
+    },
+    "frameEvents": []
+  },
+  "tags": [
+    "health",
+    "powerup",
+    "ground"
+  ],
+  "thumbnail": {
+    "uri": "assets/health.png",
+    "frame": 0,
+    "variant": 0,
+    "nativeSize": [
+      16,
+      16
+    ],
+    "noResample": true
+  },
+  "placement": {
+    "snap": 1,
+    "suggestedGrid": 8,
+    "preview": "native-with-geometry",
+    "allowScale": false,
+    "allowRotation": false
+  }
+}

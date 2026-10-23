@@ -1,0 +1,101 @@
+// Buttonwood bible §§3–4, 9–10: native inventory miniatures and grid contact effects.
+// Catalog categories remain the same in survival and Creative; only ownership changes.
+let creativeV78=false,creativeNormalV78=null,inventoryCategoryV78='all';
+const inventoryCategoriesV78=['all','blocks','nature','materials','tools','buildings','animals'];
+const inventoryCatalogV78=[
+ ...['wood','stone','deepslate','obsidian'].map(id=>({id,category:'blocks'})),
+ ...['dirt','leaves','flowers'].map(id=>({id,category:'nature'})),
+ ...['coal','ironOre','copperOre','goldOre','ironIngot','copperIngot','goldIngot'].map(id=>({id,category:'materials'})),
+ ...[0,1,2,3].map(t=>({id:'pick:'+t,category:'tools'})),
+ ...['nails','bucket',...Object.keys(bucketLiquidsV68).map(k=>'bucket:'+k)].map(id=>({id,category:'tools'})),
+ ...['ladder','pipeV70',...Object.keys(STRUCTURES_V46).map(k=>'building:'+k)].map(id=>({id,category:'buildings'})),
+ ...['miner',...Object.keys(WILDLIFE_SPECIES_V71).map(k=>'bucket:'+k)].map(id=>({id,category:'animals'}))
+];
+const realBuildingsV78={};
+for(const k of Object.keys(structureBagV46)){realBuildingsV78[k]=structureBagV46[k];Object.defineProperty(structureBagV46,k,{enumerable:true,configurable:true,get:()=>creativeV78?DEV_SUPPLY_V54:realBuildingsV78[k],set(n){if(!Number.isFinite(n))return;if(!creativeV78)realBuildingsV78[k]=Math.max(0,n);else if(n>DEV_SUPPLY_V54)realBuildingsV78[k]+=n-DEV_SUPPLY_V54}})}
+const countBeforeV78=countItemV68;countItemV68=function(id,real=false){
+ if(!real&&creativeV78&&inventoryCatalogV78.some(x=>x.id===id))return DEV_SUPPLY_V54;
+ if(id==='miner'&&real)return devBaseUnlockedV30()>0?devBaseAvailableV30():0;
+ if(id==='ladder')return ladderBagV56;if(id==='pipeV70')return pipeBagV70;
+ if(id?.startsWith('building:'))return real?realBuildingsV78[id.slice(9)]||0:structureBagV46[id.slice(9)]||0;
+ if(id?.startsWith('pick:'))return Number(id.slice(5))<=pickaxeOwnedTier?1:0;
+ return countBeforeV78(id,real);
+};
+const displayBeforeV78=displayCountV68;displayCountV68=function(id){return creativeV78&&inventoryCatalogV78.some(x=>x.id===id)?'∞':displayBeforeV78(id)};
+const namesBeforeV78=itemNameV68;itemNameV68=function(id){if(id?.startsWith('building:'))return STRUCTURES_V46[id.slice(9)]?.name||'Building';if(id?.startsWith('pick:'))return pickaxeTiersV39[Number(id.slice(5))]?.name+' pickaxe';return id==='pipeV70'?'Pipe':id==='ladder'?'Ladder':RESOURCE_DEFS_V44[id]?.name||namesBeforeV78(id)};
+const imagesBeforeV78=itemImageV68;itemImageV68=function(id){if(id?.startsWith('building:'))return uiPixelV48(id.slice(9));if(id?.startsWith('pick:'))return pickIconsV49[Number(id.slice(5))];if(id==='pipeV70')return ButtonwoodArt.extractionIcon('pipe').toDataURL();if(['nails','ladder','coal','ironOre','copperOre','goldOre','ironIngot','copperIngot','goldIngot'].includes(id))return ButtonwoodArt.inventoryIcon(id).toDataURL();return imagesBeforeV78(id)};
+const limitBeforeV78=buildLimit;buildLimit=function(){return creativeV78?10:limitBeforeV78()};
+function creativeModeV78(enabled,normal=null){
+ if(enabled===creativeV78)return;
+ if(enabled){creativeNormalV78=normal||{deepslate,pickaxeOwnedTier,pickaxeTier,resources:devToolsV30.infiniteResources,workers:devToolsV30.infiniteMiners};creativeV78=true;shape=stone=deepslate=true;pickaxeOwnedTier=3;devToolsV30.infiniteResources=devToolsV30.infiniteMiners=true;}
+ else{creativeV78=false;shape=best>=5;stone=best>=10;deepslate=!!creativeNormalV78.deepslate||(devResourceBalanceV54.deepslate||0)>0;pickaxeOwnedTier=clamp(creativeNormalV78.pickaxeOwnedTier,0,3);pickaxeTier=Math.min(pickaxeTier,pickaxeOwnedTier);devToolsV30.infiniteResources=!!creativeNormalV78.resources;devToolsV30.infiniteMiners=!!creativeNormalV78.workers;creativeNormalV78=null;}
+ $('devCreativeV78').checked=creativeV78;
+ for(const [id,on]of [['devResources',devToolsV30.infiniteResources],['devInfinite',devToolsV30.infiniteMiners]]){$(id).checked=on;$(id).disabled=creativeV78}
+ ui();refreshMinerMenu();
+}
+$('devResources').closest('label').insertAdjacentHTML('beforebegin','<label class="devCheck"><input id="devCreativeV78" type="checkbox"><span>Creative mode<small>All items and unlocks. Unlimited supplies. Your normal inventory is preserved.</small></span></label>');
+$('devCreativeV78').onchange=e=>{creativeModeV78(e.target.checked);saveGame();$('devFeedback').textContent=creativeV78?'Creative mode enabled.':'Normal inventory restored.'};
+// Filled animal buckets retain real indices for Fey records; virtual stock is never saved.
+function creativeBucketV78(id,action){if(!creativeV78)return action();const before=bucketBagV68[id]||0;bucketBagV68[id]=Math.min(Number.MAX_SAFE_INTEGER,before+1);try{return action()}finally{bucketBagV68[id]=before;ui();saveGame()}}
+const bucketBeforeV78=bucketActionV68;bucketActionV68=function(id,p){return creativeBucketV78(id,()=>bucketBeforeV78(id,p))};
+const captureBeforeV78=captureWildlifeV71;captureWildlifeV71=function(target){return creativeBucketV78('bucket',()=>captureBeforeV78(target))};
+const releaseBeforeV78=releaseWildlifeV71;releaseWildlifeV71=function(id,p,cage){return creativeBucketV78(id,()=>releaseBeforeV78(id,p,cage))};
+const pipeBeforeV78=pipeActionV70;let pipeRealDuringV78=null;
+pipeActionV70=function(a,b,remove=false){if(!creativeV78||remove)return pipeBeforeV78(a,b,remove);const stock=pipeBagV70;pipeRealDuringV78=stock;pipeBagV70=DEV_SUPPLY_V54;try{return pipeBeforeV78(a,b,remove)}finally{pipeBagV70=stock;pipeRealDuringV78=null;ui();saveGame()}};
+// Native category tabs, search and item grid stay beside their toolbar trigger.
+const inventoryStyleV78=document.createElement('style');inventoryStyleV78.textContent=`
+#itemPickerV68{padding:12px;color:${hudP77.ink};background:${hudP77.cream};border:3px solid ${hudP77.outline};box-sizing:border-box;overflow:auto}
+#itemPickerV68 header{position:sticky;top:-12px;z-index:2;background:${hudP77.cream};padding:4px 0 8px;display:flex;justify-content:space-between;align-items:center;gap:8px}#itemPickerV68 h2{font-size:16px;margin:0}
+#inventorySearchRowV78{display:flex;gap:4px;align-items:center;margin:4px 0 8px}#inventorySearchRowV78 img{width:32px;height:32px;image-rendering:pixelated}#inventorySearchV78{min-width:0;width:100%;min-height:44px;box-sizing:border-box;border:2px solid ${hudP77.outline};background:${hudP77.creamLight};color:${hudP77.ink};padding:8px;font:14px ui-monospace,monospace;user-select:text}
+#inventoryTabsV78{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px}#inventoryTabsV78 button,#itemChoicesV68 .itemChoiceV68{display:flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;border:2px solid ${hudP77.woodShade};background:${hudP77.creamLight};padding:4px;cursor:pointer;color:${hudP77.ink}}
+#inventoryTabsV78 button[aria-pressed=true],#itemChoicesV68 .itemChoiceV68[aria-pressed=true]{border-color:${hudP77.ink};background:${hudP77.mintLight};box-shadow:inset 0 -3px ${hudP77.mintShade}}
+#inventoryTabsV78 img,#itemChoicesV68 img{width:32px;height:32px;min-width:32px;image-rendering:pixelated}#itemChoicesV68{display:grid!important;grid-template-columns:repeat(auto-fill,minmax(52px,1fr));gap:6px!important}#itemChoicesV68 .itemChoiceV68{position:relative;height:52px;overflow:hidden}#itemChoicesV68 .itemChoiceV68 b{position:absolute;right:2px;bottom:0;font:12px/14px ui-monospace,monospace;background:${hudP77.creamLight};padding:0 2px;max-width:100%;overflow:hidden}
+#itemPickerV68 footer{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}#itemPickerV68 button{min-height:44px}#itemPickerV68 :focus-visible{outline:3px solid ${hudP77.ink};outline-offset:1px}#itemPickerV68 #itemEmptyV68{font-size:13px}
+`;
+document.head.append(inventoryStyleV78);
+const searchRowV78=document.createElement('div');searchRowV78.id='inventorySearchRowV78';searchRowV78.innerHTML='<img alt="" src="'+ButtonwoodArt.inventoryIcon('search').toDataURL()+'"><input id="inventorySearchV78" type="search" placeholder="Search items" aria-label="Search inventory" autocomplete="off">';
+const tabsV78=document.createElement('div');tabsV78.id='inventoryTabsV78';tabsV78.setAttribute('role','group');tabsV78.setAttribute('aria-label','Inventory categories');
+$('itemChoicesV68').before(searchRowV78,tabsV78);
+for(const category of inventoryCategoriesV78){const b=document.createElement('button');b.dataset.category=category;b.title=category==='all'?'All items':category[0].toUpperCase()+category.slice(1);b.setAttribute('aria-label',b.title);b.innerHTML='<img alt="" src="'+ButtonwoodArt.inventoryCategoryIcon(category).toDataURL()+'">';b.onclick=()=>{inventoryCategoryV78=category;refreshPickerV68()};tabsV78.append(b)}
+function inventoryEntriesV78(){return [...inventoryCatalogV78,...Object.keys(bucketBagV68).filter(id=>!inventoryCatalogV78.some(x=>x.id===id)).sort().map(id=>({id,category:'tools'}))]}
+let pickerStampV78='';
+refreshPickerV68=function(){
+ const search=$('inventorySearchV78').value.trim().toLowerCase(),owned=inventoryEntriesV78().filter(x=>countItemV68(x.id)>0),visible=owned.filter(x=>(inventoryCategoryV78==='all'||x.category===inventoryCategoryV78)&&(!search||(itemNameV68(x.id)+' '+x.category).toLowerCase().includes(search))),stamp=JSON.stringify([creativeV78,pickerSlotV68,visible.map(x=>[x.id,displayCountV68(x.id),hotbarItemsV68[pickerSlotV68]===x.id])]);
+ for(const b of tabsV78.children)b.setAttribute('aria-pressed',String(b.dataset.category===inventoryCategoryV78));
+ if(stamp!==pickerStampV78){pickerStampV78=stamp;const choices=$('itemChoicesV68');const current=document.activeElement?.dataset.item;choices.replaceChildren();for(const {id}of visible){const b=document.createElement('button');b.className='itemChoiceV68';b.dataset.item=id;b.title=itemNameV68(id);b.setAttribute('aria-label',itemNameV68(id)+', '+displayCountV68(id));b.setAttribute('aria-pressed',String(hotbarItemsV68[pickerSlotV68]===id));const img=document.createElement('img');img.alt='';img.draggable=false;img.src=itemImageV68(id);const n=document.createElement('b');n.textContent=displayCountV68(id);b.append(img,n);b.onclick=()=>{if(id.startsWith('pick:')){equipPickV49(Number(id.slice(5)));closePickerV68(true)}else chooseItemV68(pickerSlotV68,id)};choices.append(b);if(current===id)b.focus()}}
+ $('itemEmptyV68').hidden=visible.length>0;$('itemEmptyV68').textContent=owned.length?'No matching items.':'Mine blocks to fill your inventory.';$('craftBucketV68').disabled=!canPayIndustryV44({ironIngot:5});
+};
+$('inventorySearchV78').addEventListener('input',refreshPickerV68);
+positionPickerV68=function(){if(!pickerV68.open)return;const view=visualViewport,left=view?.offsetLeft||0,top=view?.offsetTop||0,width=view?.width||innerWidth,bar=barV68.getBoundingClientRect(),anchor=itemButtonsV68[pickerSlotV68].getBoundingClientRect(),size=Math.min(480,width-16);pickerV68.style.width=size+'px';pickerV68.style.left=Math.max(left+8,Math.min(anchor.right-size,left+width-size-8))+'px';pickerV68.style.bottom=(innerHeight-bar.top+8)+'px';const hudBottom=Math.max($('hudLeftV77').getBoundingClientRect().bottom,$('hudNavigationV77').getBoundingClientRect().bottom);pickerV68.style.maxHeight=Math.max(0,bar.top-Math.max(top+8,hudBottom+8)-8)+'px'};
+const openBeforeV78=openPickerV68;openPickerV68=function(i){openBeforeV78(i);$('itemPickerTitleV68').textContent=creativeV78?'Creative inventory':'Inventory'};
+const structuresRefreshBeforeV78=refreshStructuresV46;refreshStructuresV46=function(){structuresRefreshBeforeV78();if(creativeV78){$('structuresCount').textContent='∞';for(const k of Object.keys(structureBagV46)){const c=$('structure-card-'+k);if(c)c.querySelector('b').textContent='∞'}}};
+const hotbarBeforeV78=refreshHotbarV68;refreshHotbarV68=function(){hotbarBeforeV78();let assigned=false;for(const {id}of inventoryCatalogV78)if(!id.startsWith('pick:')&&countItemV68(id,true)>0&&!seenItemsV68.has(id)){seenItemsV68.add(id);if(!hotbarItemsV68.includes(id)){const i=hotbarItemsV68.indexOf(null);if(i>=0){hotbarItemsV68[i]=id;assigned=true}}}if(assigned)hotbarBeforeV78()};
+// One contact per grid cell; queued taps do not reserve or consume resources.
+const nailPinsV78=new Map(),nailQueueV78=new Map(),nailStrikesV78=[];
+function nailBodyV78(cx,cy){return at({x:ctr(cx),y:ctr(cy)})}
+function importNailBodyV78(body){if(!body.game?.nailed||body.game.terrain)return;for(let cy=cell(body.bounds.min.y);cy<=cell(body.bounds.max.y);cy++)for(let cx=cell(body.bounds.min.x);cx<=cell(body.bounds.max.x);cx++){const k=key(cx,cy);if(!nailPinsV78.has(k)&&Query.point([body],{x:ctr(cx),y:ctr(cy)}).length)nailPinsV78.set(k,{cx,cy,body})}}
+const makeBeforeV78=mk;mk=function(...args){const body=makeBeforeV78(...args);importNailBodyV78(body);return body};
+function cleanNailsV78(){for(const [k,p]of nailPinsV78)if(!bs.has(p.body)||!p.body.game?.nailed)nailPinsV78.delete(k)}
+function nailRequestV78(p){
+ if(!Number.isFinite(p?.x)||!Number.isFinite(p.y))return false;cleanNailsV78();const cx=cell(p.x),cy=cell(p.y),k=key(cx,cy),body=nailBodyV78(cx,cy);
+ if(nailPinsV78.has(k)||nailQueueV78.has(k))return false;
+ if(!body||(body.game?.terrain&&!terrainExposed(body))||body.game?.liquid||body.game?.reservoir||body.game?.material==='bedrock'){toast('Tap a block');return false}
+ if(countItemV68('nails')<1){toast('No nails');return false}
+ const rhythm=SkyAudio.rhythm(),now=performance.now(),wait=rhythm.ready?(1-rhythm.phase)*rhythm.beatMs:((now%(60000/SkyAudio.bpm))===0?0:60000/SkyAudio.bpm-now%(60000/SkyAudio.bpm));
+ nailQueueV78.set(k,{cx,cy,body,due:now+wait,beat:rhythm.ready?rhythm.beatIndex+1:null,epoch:rhythm.epoch});return true;
+}
+function pulseNailsV78(now){
+ if(gameClockV76.paused)return;cleanNailsV78();const rhythm=SkyAudio.rhythm();
+ for(const [k,p]of nailQueueV78){if(rhythm.ready&&(p.beat===null||p.epoch!==rhythm.epoch)){p.beat=rhythm.beatIndex+1;p.epoch=rhythm.epoch;p.due=now+(1-rhythm.phase)*rhythm.beatMs;continue}const audioDue=p.beat!==null&&rhythm.ready&&rhythm.epoch===p.epoch;if(audioDue&&rhythm.beatIndex+rhythm.phase>p.beat+.035/(rhythm.beatMs/1000)){p.beat=rhythm.beatIndex+1;p.due=now+(1-rhythm.phase)*rhythm.beatMs;continue}const due=audioDue?rhythm.beatIndex+rhythm.phase>=p.beat-.018/(rhythm.beatMs/1000):now>=p.due;if(!due)continue;nailQueueV78.delete(k);
+ if(nailPinsV78.has(k)||!bs.has(p.body)||nailBodyV78(p.cx,p.cy)!==p.body||countItemV68('nails')<1)continue;
+ inv.nails--;p.body.game.nailed=true;Body.setStatic(p.body,true);Body.setVelocity(p.body,{x:0,y:0});Body.setAngularVelocity(p.body,0);nailPinsV78.set(k,p);nailStrikesV78.push({cx:p.cx,cy:p.cy,born:now});SkyAudio.nailHammer?.(audioDue?p.beat:null);ui();saveGame();
+ }
+}
+function inventoryWorldItemV78(id){return typeof id==='string'&&(id==='nails'||id==='ladder'||id.startsWith('building:')||(!M[id]&&Object.hasOwn(inv,id)&&id!=='gold'&&id!=='diamond'))}
+function inventoryUseV78(id,p){if(id==='nails')return nailRequestV78(p);if(id==='ladder'){if(countItemV68(id)<1||!putLadderV56(cell(p.x),cell(p.y)))return false;if(!creativeV78)ladderBagV56--;ui();saveGame();return true}if(id.startsWith('building:'))return placeStructureV46(candidateV46(id.slice(9),p));toast('Crafting material');return false}
+const industryBeforeV78=updateIndustryV44;updateIndustryV44=function(now){industryBeforeV78(now);pulseNailsV78(now)};
+const effectsBeforeV78=drawGoldBursts;drawGoldBursts=function(now){effectsBeforeV78(now);for(const p of nailPinsV78.values()){const s=w2s(ctr(p.cx),ctr(p.cy));if(s.x<-32||s.y<-32||s.x>W+32||s.y>HH+32)continue;ctx.save();ctx.translate(Math.round(s.x),Math.round(s.y));ctx.scale(cam.z,cam.z);ctx.fillStyle=hudP77.outline;ctx.fillRect(-2,-2,4,4);ctx.fillStyle=hudP77.stoneLight;ctx.fillRect(-1,-1,2,1);ctx.restore()}for(let i=nailStrikesV78.length-1;i>=0;i--){const p=nailStrikesV78[i],age=now-p.born;if(age>280){nailStrikesV78.splice(i,1);continue}const s=w2s(ctr(p.cx),ctr(p.cy));ctx.save();ctx.translate(Math.round(s.x),Math.round(s.y));ctx.scale(cam.z,cam.z);ButtonwoodArt.paintNailStrike(ctx,Math.min(3,Math.floor(age/70)));ctx.restore()}};
+const saveStructuresBeforeV78=saveStructuresV46;saveStructuresV46=function(){cleanNailsV78();const s=saveStructuresBeforeV78();s.bag={...realBuildingsV78};if(pipeRealDuringV78!==null)s.extraction.pipeBag=pipeRealDuringV78;s.inventoryV78={creative:creativeV78,normal:creativeNormalV78,pins:[...nailPinsV78.values()].map(p=>({cx:p.cx,cy:p.cy}))};return s};
+const saveBeforeV78=saveGame;saveGame=function(){if(!creativeV78)return saveBeforeV78();const values={pickaxeOwnedTier,pickaxeTier,deepslate};pickaxeOwnedTier=creativeNormalV78.pickaxeOwnedTier;pickaxeTier=Math.min(pickaxeTier,pickaxeOwnedTier);deepslate=creativeNormalV78.deepslate;try{return saveBeforeV78()}finally{pickaxeOwnedTier=values.pickaxeOwnedTier;pickaxeTier=values.pickaxeTier;deepslate=values.deepslate}};
+const restoreBeforeV78=restoreDynamicState;restoreDynamicState=function(s){restoreBeforeV78(s);nailPinsV78.clear();nailQueueV78.clear();nailStrikesV78.length=0;const d=s?.structuresV46?.inventoryV78;for(const p of (Array.isArray(d?.pins)?d.pins:[]).slice(0,16000)){if(!Number.isSafeInteger(p?.cx)||!Number.isSafeInteger(p?.cy))continue;const body=nailBodyV78(p.cx,p.cy);if(body&&(body.game?.nailed||body.game?.terrain)){body.game.nailed=true;nailPinsV78.set(key(p.cx,p.cy),{...p,body})}}for(const body of bs)importNailBodyV78(body);if(d?.creative===true){const normal=d.normal;creativeModeV78(true,normal&&Number.isInteger(normal.pickaxeOwnedTier)&&normal.pickaxeOwnedTier>=0&&normal.pickaxeOwnedTier<=3?normal:null)}};
+window.skyStackInventory={setCreative:creativeModeV78,open:openPickerV68,requestNail:nailRequestV78,get state(){return{creative:creativeV78,items:inventoryEntriesV78().filter(x=>countItemV68(x.id)>0).map(x=>({...x,name:itemNameV68(x.id),count:countItemV68(x.id)})),pins:[...nailPinsV78.values()].map(p=>({cx:p.cx,cy:p.cy})),queued:nailQueueV78.size}}};

@@ -1,0 +1,136 @@
+{
+  "assetId": "cad.mini.episode1.skyview-window",
+  "revision": 1,
+  "name": "Skyview • glass and stone bay",
+  "kind": "scenery",
+  "biome": "skyview",
+  "family": "mini",
+  "approval": "prototype-review",
+  "source": {
+    "type": "new-native",
+    "file": "src/build-assets.cjs",
+    "recipe": "skyview-window"
+  },
+  "native": {
+    "width": 64,
+    "height": 112,
+    "origin": [
+      0,
+      112
+    ],
+    "originName": "authored-anchor",
+    "selectionBounds": {
+      "x": 0,
+      "y": 0,
+      "width": 64,
+      "height": 112
+    },
+    "visibleBounds": [
+      {
+        "variant": 0,
+        "frame": 0,
+        "x": 0,
+        "y": 0,
+        "width": 64,
+        "height": 112
+      }
+    ],
+    "animationEnvelope": {
+      "x": 0,
+      "y": 0,
+      "width": 64,
+      "height": 112
+    }
+  },
+  "sockets": [
+    {
+      "id": "left",
+      "type": "edge",
+      "x": 0,
+      "y": 0,
+      "facing": -1
+    },
+    {
+      "id": "right",
+      "type": "edge",
+      "x": 64,
+      "y": 0,
+      "facing": 1
+    }
+  ],
+  "render": {
+    "kind": "sprite-sheet",
+    "layer": "architecture",
+    "parallax": {
+      "x": 1,
+      "y": 1
+    },
+    "variants": [
+      {
+        "id": "v0",
+        "uri": "assets/skyview-window.png",
+        "width": 64,
+        "height": 112,
+        "sha256": "27af8a292724d2d3bc5c3d84bc9e33eb9fa898aec0556317c6dc31e2b7e86291"
+      }
+    ],
+    "frameSize": [
+      64,
+      112
+    ],
+    "frameCount": 1,
+    "allowedFacing": [
+      1,
+      -1
+    ],
+    "scale": 1
+  },
+  "collision": {
+    "defaults": [],
+    "decorative": true,
+    "behavior": "Artwork does not activate gameplay; scene entity kind and properties do."
+  },
+  "properties": {
+    "variant": {
+      "type": "integer",
+      "default": 0
+    }
+  },
+  "animation": {
+    "states": {
+      "idle": {
+        "frames": [
+          0
+        ],
+        "timingMs": [
+          180
+        ],
+        "loop": true
+      }
+    },
+    "frameEvents": []
+  },
+  "tags": [
+    "skyview",
+    "window",
+    "exterior",
+    "interior"
+  ],
+  "thumbnail": {
+    "uri": "assets/skyview-window.png",
+    "frame": 0,
+    "variant": 0,
+    "nativeSize": [
+      64,
+      112
+    ],
+    "noResample": true
+  },
+  "placement": {
+    "snap": 1,
+    "suggestedGrid": 8,
+    "preview": "native-with-geometry",
+    "allowScale": false,
+    "allowRotation": false
+  }
+}

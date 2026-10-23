@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "cad.episode1.level.v1",
+  "title": "Ctrl Alt Del Episode I level",
+  "description": "Structural contract; src/schema.js also checks asset references, conditions, native geometry and campaign links.",
+  "type": "object",
+  "required": ["schemaVersion","id","title","chapter","family","mode","bounds","spawn","layers","terrain","entities","objectives","sequences"],
+  "properties": {
+    "schemaVersion": {"const":1},
+    "id": {"type":"string","pattern":"^[a-zA-Z0-9_-]+$"},
+    "title": {"type":"string"},
+    "chapter": {"type":"integer","minimum":1},
+    "family": {"const":"mini"},
+    "mode": {"enum":["ground","flight"]},
+    "bounds": {"type":"object","required":["width","height"],"properties":{"width":{"type":"integer","minimum":480},"height":{"type":"integer","minimum":270}}},
+    "spawn": {"type":"object","required":["x","y","hero"],"properties":{"x":{"type":"integer"},"y":{"type":"integer"},"hero":{"enum":["jane","jessie"]}}},
+    "layers": {"type":"array","items":{"type":"object","required":["id","order"],"properties":{"id":{"type":"string"},"order":{"type":"number"}}}},
+    "terrain": {"type":"array","items":{"type":"object","required":["x","y","material"],"properties":{"x":{"type":"integer"},"y":{"type":"integer"},"material":{"enum":["recyke","steel","stone"]},"variant":{"type":"integer","minimum":0,"maximum":2}}}},
+    "entities": {"type":"array","items":{"type":"object","required":["id","kind","x","y","layer"],"properties":{"id":{"type":"string"},"kind":{"enum":["decor","asset","solid","platform","enemy","npc","pickup","terminal","exit","checkpoint","hazard","trigger","cover","ladder","boost"]},"x":{"type":"integer"},"y":{"type":"integer"},"layer":{"type":"string"},"assetId":{"type":"string"},"assetRevision":{"type":"integer","minimum":1},"requires":{"type":"array","items":{"type":"string"}},"sequence":{"type":["string","null"]}}}},
+    "objectives": {"type":"array","items":{"type":"object","required":["id","label","requires"],"properties":{"id":{"type":"string"},"label":{"type":"string"},"requires":{"type":"array","items":{"type":"string"}}}}},
+    "sequences": {"type":"object","additionalProperties":{"type":"object","required":["cards"],"properties":{"cards":{"type":"array","items":{"type":"object","required":["type","duration"],"properties":{"type":{"enum":["dialogue","move","camera","title","flag","object","visibility","spawn-visual","flash","complete"]},"duration":{"type":"integer","minimum":0,"maximum":120000},"source":{"enum":["source","prototype","missing-source"]}}}}}}},
+    "timer": {"type":["object","null"],"properties":{"seconds":{"type":"number","exclusiveMinimum":0,"maximum":3600},"startFlag":{"type":["string","null"]}}},
+    "next": {"type":["string","null"]}
+  }
+}
