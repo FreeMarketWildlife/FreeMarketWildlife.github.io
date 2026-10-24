@@ -103,3 +103,7 @@ body[data-client="troy-kearns"] .document-sources li { break-inside:avoid; margi
  body[data-client="troy-kearns"] .folio-track { display:block; overflow:visible; }
  body[data-client="troy-kearns"] .folio-page { break-after:page; break-inside:avoid; min-height:0; }
 }
+
+@media (min-width:1100px) {
+ body[data-client="troy-kearns"] .strategy-cards-three { grid-template-columns:repeat(3,minmax(0,1fr)); }
+}
