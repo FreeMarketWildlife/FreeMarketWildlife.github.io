@@ -1,0 +1,105 @@
+/* Scoped to the Strategy library and its documents. */
+body[data-client="troy-kearns"] .strategy-breadcrumb { display:flex; flex-wrap:wrap; gap:12px 24px; margin-bottom:28px; font-size:12px; color:var(--tk-muted); }
+body[data-client="troy-kearns"] .strategy-breadcrumb a { color:var(--tk-ink); }
+body[data-client="troy-kearns"] .summary-original-heading { grid-column:1; grid-row:4; margin:24px 0 0; font-family:Georgia,serif; font-size:24px; color:#d8b969; }
+body[data-client="troy-kearns"] .library-heading { display:flex; justify-content:space-between; align-items:end; gap:32px; padding:8px 0 52px; }
+body[data-client="troy-kearns"] .library-heading h1 { font-family:Georgia,'Times New Roman',serif; font-size:clamp(64px,8vw,104px); font-weight:400; line-height:1; letter-spacing:-5px; margin:0; }
+body[data-client="troy-kearns"] .gold-dot { color:var(--tk-gold); }
+body[data-client="troy-kearns"] .library-heading > p { font-size:15px; line-height:1.8; color:var(--tk-muted); margin:0 0 4px; }
+body[data-client="troy-kearns"] .library-label { display:flex; justify-content:space-between; padding:16px 0; border-top:1px solid var(--tk-line); font-size:10px; text-transform:uppercase; letter-spacing:1.5px; color:var(--tk-muted); }
+body[data-client="troy-kearns"] .strategy-cards { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+body[data-client="troy-kearns"] .strategy-card { display:flex; flex-direction:column; text-decoration:none; border:1px solid var(--tk-line); background:#fff; }
+body[data-client="troy-kearns"] .strategy-card:hover { border-color:var(--tk-gold); }
+body[data-client="troy-kearns"] .strategy-card:hover .card-action { text-decoration:underline; }
+body[data-client="troy-kearns"] .card-meta { display:flex; justify-content:space-between; gap:16px; padding:22px 28px; text-transform:uppercase; letter-spacing:1.3px; font-size:9px; }
+body[data-client="troy-kearns"] .card-art { min-height:240px; padding:28px 36px; display:flex; flex-direction:column; justify-content:center; font-family:Georgia,serif; font-size:clamp(32px,4vw,50px); line-height:1.14; letter-spacing:-1.7px; }
+body[data-client="troy-kearns"] .mindset-card .card-meta, body[data-client="troy-kearns"] .mindset-card .card-art { background:#262626; color:#f7f5ec; }
+body[data-client="troy-kearns"] .mindset-card .card-art span:last-child { color:#d8b969; font-style:italic; }
+body[data-client="troy-kearns"] .summary-card .card-meta, body[data-client="troy-kearns"] .summary-card .card-art { background:#eeece3; color:#39382f; }
+body[data-client="troy-kearns"] .summary-card .card-art { border-bottom:4px solid #b18b3c; }
+body[data-client="troy-kearns"] .card-copy { display:flex; flex-direction:column; flex:1; padding:30px; }
+body[data-client="troy-kearns"] .card-copy h2 { font-size:25px; letter-spacing:-.7px; margin:0 0 12px; }
+body[data-client="troy-kearns"] .card-copy p { font-size:14px; line-height:1.75; color:var(--tk-muted); margin:0 0 28px; }
+body[data-client="troy-kearns"] .card-action { display:flex; justify-content:space-between; margin-top:auto; font-size:12px; font-weight:700; }
+body[data-client="troy-kearns"] .card-action > span { font-size:22px; line-height:1; color:#806020; }
+body[data-client="troy-kearns"] .library-footnote { font-size:12px; color:var(--tk-muted); margin:28px 0 0; }
+body[data-client="troy-kearns"] .mindset-document { width:min(100%,1440px); padding:28px 48px 48px; }
+body[data-client="troy-kearns"] .document-toolbar { display:flex; align-items:center; gap:32px; min-height:44px; font-size:12px; }
+body[data-client="troy-kearns"] .document-toolbar > a { text-decoration:none; font-weight:700; }
+body[data-client="troy-kearns"] .document-toolbar > span { color:var(--tk-muted); padding-left:24px; border-left:1px solid var(--tk-line); }
+body[data-client="troy-kearns"] .folio-controls { display:flex; gap:16px; align-items:center; margin-left:auto; }
+body[data-client="troy-kearns"] .folio-controls button { min-width:44px; font-size:18px; padding:2px 10px; border-color:var(--tk-line); }
+body[data-client="troy-kearns"] .folio-controls output { font-size:11px; letter-spacing:1px; min-width:50px; text-align:center; }
+body[data-client="troy-kearns"] .folio-index { display:flex; gap:0; border-top:1px solid var(--tk-line); border-bottom:1px solid var(--tk-line); margin-top:20px; overflow-x:auto; }
+body[data-client="troy-kearns"] .folio-index a { display:flex; gap:7px; flex:1 0 auto; align-items:center; padding:16px 13px; border-bottom:2px solid transparent; font-size:9px; font-weight:700; color:#806020; text-decoration:none; white-space:nowrap; }
+body[data-client="troy-kearns"] .folio-index a span { font-size:10px; font-weight:400; color:var(--tk-muted); }
+body[data-client="troy-kearns"] .folio-index a[aria-current="location"] { border-bottom-color:var(--tk-gold); background:#eeece3; }
+body[data-client="troy-kearns"] .folio-instruction { margin:14px 0; font-size:10px; color:var(--tk-muted); letter-spacing:.2px; }
+body[data-client="troy-kearns"] .folio-instruction span { float:right; }
+body[data-client="troy-kearns"] .folio-track { display:flex; gap:24px; overflow-x:auto; scroll-snap-type:x mandatory; scroll-padding:0; scrollbar-color:#b6a16e #e9e7dd; scrollbar-width:thin; padding:0 0 16px; overscroll-behavior-x:contain; }
+body[data-client="troy-kearns"] .folio-page { display:flex; flex-direction:column; flex:0 0 100%; min-width:0; min-height:660px; padding:28px 44px 22px; background:#fff; border:1px solid var(--tk-line); scroll-snap-align:start; scroll-margin:0; }
+body[data-client="troy-kearns"] .folio-topline, body[data-client="troy-kearns"] .folio-bottomline { display:flex; justify-content:space-between; gap:20px; font-size:9px; text-transform:uppercase; letter-spacing:1.5px; color:var(--tk-muted); }
+body[data-client="troy-kearns"] .folio-topline { border-bottom:1px solid var(--tk-line); padding-bottom:16px; }
+body[data-client="troy-kearns"] .folio-layout { display:grid; grid-template-columns:1.25fr 1fr; align-items:start; gap:clamp(32px,5vw,80px); padding:44px 0; flex:1; }
+body[data-client="troy-kearns"] .folio-primary h1, body[data-client="troy-kearns"] .folio-primary h2 { font-family:Georgia,'Times New Roman',serif; font-size:clamp(38px,4.25vw,58px); font-weight:400; letter-spacing:-2px; line-height:1.07; margin:0 0 24px; }
+body[data-client="troy-kearns"] .folio-primary h1 { font-size:clamp(64px,7vw,100px); letter-spacing:-4px; }
+body[data-client="troy-kearns"] .folio-primary em { font-weight:400; color:#86651f; }
+body[data-client="troy-kearns"] .folio-primary p, body[data-client="troy-kearns"] .folio-aside p { font-size:14px; line-height:1.75; margin:0 0 16px; }
+body[data-client="troy-kearns"] .folio-primary .folio-deck { font-size:18px; line-height:1.6; margin-bottom:22px; }
+body[data-client="troy-kearns"] .folio-aside { border-top:3px solid var(--tk-gold); padding-top:22px; margin-top:8px; }
+body[data-client="troy-kearns"] .folio-aside .side-label { text-transform:uppercase; letter-spacing:1.5px; font-size:10px; color:#806020; font-weight:700; margin:0 0 20px; }
+body[data-client="troy-kearns"] .folio-aside blockquote { font-family:Georgia,serif; font-size:clamp(24px,2.5vw,34px); letter-spacing:-.8px; line-height:1.35; margin:0 0 28px; }
+body[data-client="troy-kearns"] .folio-aside :is(ul,ol) { margin:0; padding-left:20px; font-size:14px; line-height:1.65; }
+body[data-client="troy-kearns"] .folio-aside li { padding-left:4px; margin:0 0 15px; }
+body[data-client="troy-kearns"] .folio-aside li::marker { color:#806020; }
+body[data-client="troy-kearns"] .folio-primary .folio-note, body[data-client="troy-kearns"] .folio-aside .folio-note { font-size:11px; color:var(--tk-muted); line-height:1.65; margin:18px 0 0; }
+body[data-client="troy-kearns"] .folio-bottomline { padding-top:16px; border-top:1px solid var(--tk-line); }
+body[data-client="troy-kearns"] .folio-text-link { display:inline-block; margin-top:12px; font-weight:700; font-size:12px; }
+body[data-client="troy-kearns"] .folio-cover { color:#f8f6ee; background:#262626; border-color:#262626; border-top:4px solid #b18b3c; }
+body[data-client="troy-kearns"] .folio-cover :is(.folio-topline,.folio-bottomline) { color:#c3c1b8; border-color:#55544d; }
+body[data-client="troy-kearns"] .folio-cover em { color:#d8b969; }
+body[data-client="troy-kearns"] .folio-cover .folio-aside { border:0; padding-top:0; }
+body[data-client="troy-kearns"] .folio-cover .cover-note { color:#c3c1b8; font-size:13px; margin-top:30px; }
+body[data-client="troy-kearns"] .cover-mark { display:flex; align-items:center; justify-content:space-between; font-family:Georgia,serif; font-size:clamp(84px,10vw,150px); letter-spacing:-8px; border-bottom:1px solid #55544d; padding-bottom:12px; margin-bottom:24px; }
+body[data-client="troy-kearns"] .cover-mark span { font-size:60px; font-family:Arial,sans-serif; font-weight:100; color:#d8b969; letter-spacing:0; }
+body[data-client="troy-kearns"] .folio-cover .pull-quote { color:#d8b969; font-family:Georgia,serif; font-size:23px; line-height:1.5; }
+body[data-client="troy-kearns"] .document-sources { padding:20px 0 0; font-size:12px; color:var(--tk-muted); }
+body[data-client="troy-kearns"] .document-sources summary { cursor:pointer; width:fit-content; font-weight:700; }
+body[data-client="troy-kearns"] .document-sources ul { columns:2; padding:14px 18px; }
+body[data-client="troy-kearns"] .document-sources li { break-inside:avoid; margin:0 0 10px; }
+@media(min-width:1600px) { body[data-client="troy-kearns"] .folio-page { min-height:700px; } }
+@media(max-width:1050px) and (min-width:761px) { body[data-client="troy-kearns"] .mindset-document { padding:24px; } body[data-client="troy-kearns"] .folio-page { padding:24px 28px; } body[data-client="troy-kearns"] .folio-layout { gap:30px; } }
+@media(max-width:760px) {
+ body[data-client="troy-kearns"] .library-heading { display:block; padding-bottom:32px; }
+ body[data-client="troy-kearns"] .library-heading h1 { letter-spacing:-3px; }
+ body[data-client="troy-kearns"] .library-heading > p { margin-top:24px; }
+ body[data-client="troy-kearns"] .strategy-cards { grid-template-columns:1fr; }
+ body[data-client="troy-kearns"] .card-art { min-height:220px; font-size:44px; }
+ body[data-client="troy-kearns"] .card-copy { padding:24px; }
+ body[data-client="troy-kearns"] .mindset-document { padding:20px; }
+ body[data-client="troy-kearns"] .document-toolbar { flex-wrap:wrap; gap:12px; font-size:11px; }
+ body[data-client="troy-kearns"] .document-toolbar > span { margin-left:auto; padding-left:12px; }
+ body[data-client="troy-kearns"] .folio-controls { display:none; }
+ body[data-client="troy-kearns"] .folio-index { flex-wrap:wrap; margin:12px 0 22px; padding:6px 0; }
+ body[data-client="troy-kearns"] .folio-index a { flex:0 0 auto; padding:9px; }
+ body[data-client="troy-kearns"] .folio-instruction { display:none; }
+ body[data-client="troy-kearns"] .folio-track { display:block; overflow:visible; padding:0; }
+ body[data-client="troy-kearns"] .folio-page { min-height:0; padding:22px; margin-bottom:20px; scroll-margin-top:20px; }
+ body[data-client="troy-kearns"] .folio-layout { grid-template-columns:1fr; padding:30px 0; gap:24px; }
+ body[data-client="troy-kearns"] .folio-primary h2 { font-size:40px; }
+ body[data-client="troy-kearns"] .folio-primary h1 { font-size:66px; letter-spacing:-3px; }
+ body[data-client="troy-kearns"] .folio-topline { font-size:8px; letter-spacing:1px; }
+ body[data-client="troy-kearns"] .folio-topline > span:last-child { display:none; }
+ body[data-client="troy-kearns"] .folio-primary .folio-deck { font-size:17px; }
+ body[data-client="troy-kearns"] .folio-primary p, body[data-client="troy-kearns"] .folio-aside p, body[data-client="troy-kearns"] .folio-aside :is(ul,ol) { font-size:14px; }
+ body[data-client="troy-kearns"] .cover-mark { font-size:90px; max-width:280px; letter-spacing:-4px; }
+ body[data-client="troy-kearns"] .folio-cover .folio-aside { margin-top:0; }
+ body[data-client="troy-kearns"] .document-sources ul { columns:1; }
+ body[data-client="troy-kearns"] .summary-original-heading { grid-column:1; grid-row:auto; margin:0 0 24px; }
+}
+@media print {
+ body[data-client="troy-kearns"] :is(.troy-header,.document-toolbar,.folio-index,.folio-instruction,.client-tutorial-footer) { display:none; }
+ body[data-client="troy-kearns"] .mindset-document { width:100%; padding:0; }
+ body[data-client="troy-kearns"] .folio-track { display:block; overflow:visible; }
+ body[data-client="troy-kearns"] .folio-page { break-after:page; break-inside:avoid; min-height:0; }
+}
