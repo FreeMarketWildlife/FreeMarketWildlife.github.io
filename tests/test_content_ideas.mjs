@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 const source=readFileSync('assets/js/content-ideas.js','utf8');
-const {validateIdeas,mergeIdeas,storageKey}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
+const {validateIdeas,mergeIdeas,mergeAuthoredIdeas,storageKey}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
 const idea={id:'fixture-1',title:'QA fixture',topic:'Testing',format:'Short',stage:'Idea',notes:'Synthetic test data'};
 const current={version:1,workspace:'troy-kearns',ideas:[idea]};
 assert.notEqual(storageKey('troy-kearns'),storageKey('kat-kai'));
@@ -21,3 +21,14 @@ assert.deepEqual(validateIdeas(kat,'kat-kai'),kat);
 for (const thumbnail of ['javascript:alert(1)','https://example.com/image.jpg','data:image/svg+xml;base64,PHN2Zz4=', 'x'.repeat(1000001)]) assert.throws(()=>validateIdeas({...kat,ideas:[{...kat.ideas[0],thumbnail}]},'kat-kai'));
 assert.equal(validateIdeas({...kat,ideas:[{...kat.ideas[0],thumbnail:'data:image/jpeg;base64,YQ=='}]},'kat-kai').ideas.length,1);
 console.log('PASS: title-only records, optional thumbnails, image-only validation and upload limits.');
+
+const authored={version:1,workspace:'troy-kearns',ideas:[{...idea,id:'troy-my-testimony',title:'My Testimony',topic:'Personal story',format:'Long-form',notes:'Approved proposal'}]};
+const empty={version:1,workspace:'troy-kearns',ideas:[]};
+assert.equal(mergeAuthoredIdeas(empty,authored).ideas.length,1);
+assert.equal(mergeAuthoredIdeas(mergeAuthoredIdeas(empty,authored),authored).ideas.length,1,'reloading authored data does not duplicate');
+const edited={...authored,ideas:[{...authored.ideas[0],notes:'My later browser edit'}]};
+assert.equal(mergeAuthoredIdeas(edited,authored).ideas[0].notes,'My later browser edit','authored copy never overwrites browser edits');
+const existingTitle={...authored,ideas:[{...authored.ideas[0],id:'earlier-manual-entry',title:'  MY   TESTIMONY  ',notes:'Existing local notes'}]};
+assert.deepEqual(mergeAuthoredIdeas(existingTitle,authored),existingTitle,'matching title avoids duplicate earlier manual entries');
+assert.throws(()=>mergeAuthoredIdeas(empty,{...authored,workspace:'kat-kai'}));
+console.log('PASS: authored ideas use existing model, repeat-safe ID/title merging and preserved browser edits.');

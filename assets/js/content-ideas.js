@@ -19,6 +19,19 @@ export function mergeIdeas(current, backup) {
   const ids = new Set(current.ideas.map(idea => idea.id));
   return validateIdeas({...current, ideas: [...current.ideas, ...backup.ideas.filter(idea => !ids.has(idea.id))]}, current.workspace);
 }
+// Publisher-authored ideas use the same record model. Browser edits win; title matching avoids duplicates from earlier manual entries.
+export function mergeAuthoredIdeas(current, authored) {
+  validateIdeas(current, current.workspace); validateIdeas(authored, current.workspace);
+  const normalize = title => title.trim().replace(/\s+/g, ' ').toLocaleLowerCase('en-US');
+  const ids = new Set(current.ideas.map(idea => idea.id));
+  const titles = new Set(current.ideas.map(idea => normalize(idea.title)));
+  const additions = authored.ideas.filter(idea => {
+    const title = normalize(idea.title);
+    if (ids.has(idea.id) || titles.has(title)) return false;
+    ids.add(idea.id); titles.add(title); return true;
+  });
+  return validateIdeas({...current, ideas: [...current.ideas, ...additions]}, current.workspace);
+}
 const mounted = new WeakSet();
 const el = (tag, text, cls) => { const node = document.createElement(tag); if (text !== undefined) node.textContent = text; if (cls) node.className = cls; return node; };
 export function mountIdeas(root) {
@@ -30,7 +43,13 @@ export function mountIdeas(root) {
   const status = el('p', '', 'planner-status'); status.setAttribute('role', 'status');
   try { const saved = localStorage.getItem(key); if (saved) state = validateIdeas(JSON.parse(saved), workspace); }
   catch { blocked = true; status.textContent = 'Saved ideas could not be read. Changes are paused to protect them.'; }
-  root.append(el('p', 'Ideas save only in this browser on this device, separately for this workspace. Export a backup to keep a copy. Private account sync is not connected.', 'planner-note'), status);
+  let hasAuthored = false;
+  const authored = root.querySelector('script[type="application/json"][data-authored-ideas]');
+  if (authored && !blocked) {
+    try { const published = validateIdeas(JSON.parse(authored.textContent), workspace); state = mergeAuthoredIdeas(state, published); hasAuthored = published.ideas.length > 0; }
+    catch { status.textContent = 'Published ideas could not be loaded. Existing saved ideas are unchanged.'; }
+  }
+  root.append(el('p', hasAuthored ? 'The supplied idea is published with this page. Your edits and added ideas save only in this browser on this device. Export a backup to keep a copy. Private account sync is not connected.' : 'Ideas save only in this browser on this device, separately for this workspace. Export a backup to keep a copy. Private account sync is not connected.', 'planner-note'), status);
   const filters = el('div', undefined, 'idea-filters'), fields = {};
   for (const [name, title, options] of [['topic', 'Topic', null], ['format', 'Format', formats], ['stage', 'Stage', stages]]) {
     const label = el('label', title), input = el(options ? 'select' : 'input');
