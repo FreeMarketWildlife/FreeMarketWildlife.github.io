@@ -5,8 +5,8 @@ export const steps=[
  ['Click Invite','Look for Invite at the top right of the Permissions panel.'],
  ['Enter our email','Enter freemarketwildlife@gmail.com in the Email field.'],
  ['Click Access','After entering the email in YouTube Studio, click the Access drop-down.'],
- ['Choose Viewer (limited)','Select Viewer (limited) from the Access menu. This is different from Editor (limited).'],
- ['Review and send','Check the email and Viewer (limited) role, then click Done. If Settings shows an available Save button, click Save too.']
+ ['Choose Editor (Limited)','Select Editor (Limited). Phil can upload, publish, edit content, comment and view non-revenue analytics. He cannot delete the channel or published content, manage permissions or see revenue. He can delete drafts.'],
+ ['Review and send','Check the email and Editor (Limited) role, then click Done. If Settings shows an available Save button, click Save too.']
 ];
 if(typeof document!=='undefined'){
  const $=s=>document.querySelector(s);let index=0,typingTimer;
@@ -32,8 +32,8 @@ if(typeof document!=='undefined'){
      const invite=document.createElement('div');invite.className='invite-popover';invite.innerHTML=`<div class="studio-field ${index===3?'hotspot':''}"><span>Email</span><span id="demo-email" class="demo-email">${inviteEmail}</span></div><span class="studio-hint">Enter an email address</span><div class="access-target"></div><p class="invite-notice">You are responsible for the actions of people you give channel access to. Channel access includes private videos and playlists. Invitations expire after 30 days.</p><div class="done-target"></div>`;
      panel.append(invite);
      if(index===3 && !reducedMotion.matches){let letters=0;const email=invite.querySelector('#demo-email');email.textContent='';const type=()=>{email.textContent=inviteEmail.slice(0,++letters);if(letters<inviteEmail.length)typingTimer=setTimeout(type,45);};typingTimer=setTimeout(type,300);}
-     const access=button(index===6?'Viewer (limited)  ⌄':'Access  ⌄',index===4?'access':null,'access-button '+(index===4?'hotspot':''));access.setAttribute('aria-expanded',String(index===5));invite.querySelector('.access-target').append(access);
-     if(index===5){const menu=document.createElement('div');menu.className='roles-menu';menu.setAttribute('aria-label','Access roles');for(const [name,description] of [['Manager','Can edit and manage permissions.'],['Editor','Can edit channel content.'],['Editor (limited)','Can edit; cannot see revenue.'],['Subtitle editor','Can edit subtitles.'],['Viewer','Can view, including revenue.'],['Viewer (limited)','Can view, except revenue. Cannot edit.']]){const option=button('',name==='Viewer (limited)'?'advance':'wrong-role',name==='Viewer (limited)'?'role-option hotspot':'role-option');const title=document.createElement('strong');title.textContent=name;const detail=document.createElement('span');detail.textContent=description;option.append(title,detail);menu.append(option);}invite.append(menu);}
+     const access=button(index===6?'Editor (Limited)  ⌄':'Access  ⌄',index===4?'access':null,'access-button '+(index===4?'hotspot':''));access.setAttribute('aria-expanded',String(index===5));invite.querySelector('.access-target').append(access);
+     if(index===5){const menu=document.createElement('div');menu.className='roles-menu';menu.setAttribute('aria-label','Access roles');for(const [name,description] of [['Manager','Can edit and manage permissions.'],['Editor','Can edit channel content.'],['Editor (Limited)','Can upload, publish and edit; no revenue access.'],['Subtitle editor','Can edit subtitles.'],['Viewer','Can view, including revenue.'],['Viewer (limited)','Can view, except revenue. Cannot edit.']]){const option=button('',name==='Editor (Limited)'?'advance':'wrong-role',name==='Editor (Limited)'?'role-option hotspot':'role-option');const title=document.createElement('strong');title.textContent=name;const detail=document.createElement('span');detail.textContent=description;option.append(title,detail);menu.append(option);}invite.append(menu);}
      const done=button('Done',null,'studio-pill '+(index===6?'hotspot':''));invite.querySelector('.done-target').append(done);
     }
 
