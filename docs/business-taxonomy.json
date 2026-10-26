@@ -1,0 +1,1631 @@
+{
+  "selectionLimit": 10,
+  "skills": [
+    {
+      "label": "Writing",
+      "children": [
+        {
+          "label": "Storytelling",
+          "children": [
+            {
+              "label": "Video scripts",
+              "children": []
+            },
+            {
+              "label": "Brand stories",
+              "children": []
+            },
+            {
+              "label": "Personal essays",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Editing",
+          "children": [
+            {
+              "label": "Proofreading",
+              "children": []
+            },
+            {
+              "label": "Website copy",
+              "children": []
+            },
+            {
+              "label": "Email newsletters",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Research",
+          "children": [
+            {
+              "label": "Interviews",
+              "children": []
+            },
+            {
+              "label": "Fact checking",
+              "children": []
+            },
+            {
+              "label": "Explaining complex ideas",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Organizing",
+      "children": [
+        {
+          "label": "Planning",
+          "children": [
+            {
+              "label": "Project coordination",
+              "children": []
+            },
+            {
+              "label": "Event logistics",
+              "children": []
+            },
+            {
+              "label": "Content calendars",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Administration",
+          "children": [
+            {
+              "label": "Inbox management",
+              "children": []
+            },
+            {
+              "label": "Scheduling",
+              "children": []
+            },
+            {
+              "label": "Data entry",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Systems",
+          "children": [
+            {
+              "label": "Spreadsheets",
+              "children": []
+            },
+            {
+              "label": "Process documentation",
+              "children": []
+            },
+            {
+              "label": "Digital filing",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Making things",
+      "children": [
+        {
+          "label": "Crafting",
+          "children": [
+            {
+              "label": "Sewing",
+              "children": []
+            },
+            {
+              "label": "Jewelry",
+              "children": []
+            },
+            {
+              "label": "Paper crafts",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Building",
+          "children": [
+            {
+              "label": "Woodworking",
+              "children": []
+            },
+            {
+              "label": "Furniture assembly",
+              "children": []
+            },
+            {
+              "label": "Set building",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Designing",
+          "children": [
+            {
+              "label": "Graphic design",
+              "children": []
+            },
+            {
+              "label": "Illustration",
+              "children": []
+            },
+            {
+              "label": "Product photography",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Fixing things",
+      "children": [
+        {
+          "label": "Home repairs",
+          "children": [
+            {
+              "label": "Painting",
+              "children": []
+            },
+            {
+              "label": "Furniture repair",
+              "children": []
+            },
+            {
+              "label": "Basic maintenance",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Technology help",
+          "children": [
+            {
+              "label": "Computer setup",
+              "children": []
+            },
+            {
+              "label": "Phone setup",
+              "children": []
+            },
+            {
+              "label": "Troubleshooting",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Mending",
+          "children": [
+            {
+              "label": "Clothing repairs",
+              "children": []
+            },
+            {
+              "label": "Bicycle maintenance",
+              "children": []
+            },
+            {
+              "label": "Tool care",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Teaching",
+      "children": [
+        {
+          "label": "Tutoring",
+          "children": [
+            {
+              "label": "Math tutoring",
+              "children": []
+            },
+            {
+              "label": "Reading support",
+              "children": []
+            },
+            {
+              "label": "Study skills",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Coaching",
+          "children": [
+            {
+              "label": "Practice plans",
+              "children": []
+            },
+            {
+              "label": "Giving feedback",
+              "children": []
+            },
+            {
+              "label": "Building confidence",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Explaining",
+          "children": [
+            {
+              "label": "Step-by-step guides",
+              "children": []
+            },
+            {
+              "label": "Software lessons",
+              "children": []
+            },
+            {
+              "label": "Group workshops",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Talking to people",
+      "children": [
+        {
+          "label": "Listening",
+          "children": [
+            {
+              "label": "Customer support",
+              "children": []
+            },
+            {
+              "label": "Client interviews",
+              "children": []
+            },
+            {
+              "label": "Community moderation",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Selling",
+          "children": [
+            {
+              "label": "Outreach",
+              "children": []
+            },
+            {
+              "label": "Presentations",
+              "children": []
+            },
+            {
+              "label": "Following up",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Connecting",
+          "children": [
+            {
+              "label": "Networking",
+              "children": []
+            },
+            {
+              "label": "Hosting events",
+              "children": []
+            },
+            {
+              "label": "Building partnerships",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Computers",
+      "children": [
+        {
+          "label": "Websites",
+          "children": [
+            {
+              "label": "Website setup",
+              "children": []
+            },
+            {
+              "label": "Website maintenance",
+              "children": []
+            },
+            {
+              "label": "No-code tools",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Automation",
+          "children": [
+            {
+              "label": "Forms and workflows",
+              "children": []
+            },
+            {
+              "label": "Spreadsheet formulas",
+              "children": []
+            },
+            {
+              "label": "Simple scripts",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Technical support",
+          "children": [
+            {
+              "label": "Software setup",
+              "children": []
+            },
+            {
+              "label": "Digital organization",
+              "children": []
+            },
+            {
+              "label": "Remote tech help",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Visual art",
+      "children": [
+        {
+          "label": "Design",
+          "children": [
+            {
+              "label": "Logos",
+              "children": []
+            },
+            {
+              "label": "Social graphics",
+              "children": []
+            },
+            {
+              "label": "Print layouts",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Drawing",
+          "children": [
+            {
+              "label": "Portraits",
+              "children": []
+            },
+            {
+              "label": "Pixel art",
+              "children": []
+            },
+            {
+              "label": "Custom illustrations",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Photography",
+          "children": [
+            {
+              "label": "Product photos",
+              "children": []
+            },
+            {
+              "label": "Event photos",
+              "children": []
+            },
+            {
+              "label": "Photo editing",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Video",
+      "children": [
+        {
+          "label": "Video editing",
+          "children": [
+            {
+              "label": "Short-form editing",
+              "children": []
+            },
+            {
+              "label": "Subtitles",
+              "children": []
+            },
+            {
+              "label": "Podcast clips",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Filming",
+          "children": [
+            {
+              "label": "Phone filmmaking",
+              "children": []
+            },
+            {
+              "label": "Product videos",
+              "children": []
+            },
+            {
+              "label": "Event coverage",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Production",
+          "children": [
+            {
+              "label": "Storyboarding",
+              "children": []
+            },
+            {
+              "label": "Lighting",
+              "children": []
+            },
+            {
+              "label": "Audio cleanup",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Music",
+      "children": [
+        {
+          "label": "Performing",
+          "children": [
+            {
+              "label": "Singing",
+              "children": []
+            },
+            {
+              "label": "Playing an instrument",
+              "children": []
+            },
+            {
+              "label": "Live sound",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Recording",
+          "children": [
+            {
+              "label": "Audio editing",
+              "children": []
+            },
+            {
+              "label": "Podcast editing",
+              "children": []
+            },
+            {
+              "label": "Mixing",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Songwriting",
+          "children": [
+            {
+              "label": "Lyrics",
+              "children": []
+            },
+            {
+              "label": "Arranging",
+              "children": []
+            },
+            {
+              "label": "Music notation",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Working outdoors",
+      "children": [
+        {
+          "label": "Gardening",
+          "children": [
+            {
+              "label": "Plant care",
+              "children": []
+            },
+            {
+              "label": "Weeding",
+              "children": []
+            },
+            {
+              "label": "Container gardens",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Yard care",
+          "children": [
+            {
+              "label": "Lawn care",
+              "children": []
+            },
+            {
+              "label": "Seasonal cleanup",
+              "children": []
+            },
+            {
+              "label": "Leaf removal",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Outdoor work",
+          "children": [
+            {
+              "label": "Basic landscaping",
+              "children": []
+            },
+            {
+              "label": "Garden planning",
+              "children": []
+            },
+            {
+              "label": "Tool maintenance",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Caring for animals",
+      "children": [
+        {
+          "label": "Pet care",
+          "children": [
+            {
+              "label": "Dog walking",
+              "children": []
+            },
+            {
+              "label": "Pet sitting",
+              "children": []
+            },
+            {
+              "label": "Feeding routines",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Animal handling",
+          "children": [
+            {
+              "label": "Basic training practice",
+              "children": []
+            },
+            {
+              "label": "Enrichment activities",
+              "children": []
+            },
+            {
+              "label": "Pet photography",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Care planning",
+          "children": [
+            {
+              "label": "Care instructions",
+              "children": []
+            },
+            {
+              "label": "Appointment coordination",
+              "children": []
+            },
+            {
+              "label": "Pet supply organization",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Cooking",
+      "children": [
+        {
+          "label": "Baking",
+          "children": [
+            {
+              "label": "Bread baking",
+              "children": []
+            },
+            {
+              "label": "Custom cookies",
+              "children": []
+            },
+            {
+              "label": "Recipe testing",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Food preparation",
+          "children": [
+            {
+              "label": "Meal planning",
+              "children": []
+            },
+            {
+              "label": "Batch cooking",
+              "children": []
+            },
+            {
+              "label": "Food photography",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Kitchen skills",
+          "children": [
+            {
+              "label": "Recipe writing",
+              "children": []
+            },
+            {
+              "label": "Kitchen organization",
+              "children": []
+            },
+            {
+              "label": "Cooking lessons",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Working with numbers",
+      "children": [
+        {
+          "label": "Bookkeeping",
+          "children": [
+            {
+              "label": "Expense categorization",
+              "children": []
+            },
+            {
+              "label": "Invoice tracking",
+              "children": []
+            },
+            {
+              "label": "Bank reconciliation",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Spreadsheets",
+          "children": [
+            {
+              "label": "Data cleanup",
+              "children": []
+            },
+            {
+              "label": "Budget templates",
+              "children": []
+            },
+            {
+              "label": "Reporting",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Analysis",
+          "children": [
+            {
+              "label": "Comparing prices",
+              "children": []
+            },
+            {
+              "label": "Inventory tracking",
+              "children": []
+            },
+            {
+              "label": "Finding patterns",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Cleaning",
+      "children": [
+        {
+          "label": "Home care",
+          "children": [
+            {
+              "label": "Deep cleaning",
+              "children": []
+            },
+            {
+              "label": "Move-out cleaning",
+              "children": []
+            },
+            {
+              "label": "Laundry",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Organizing spaces",
+          "children": [
+            {
+              "label": "Decluttering",
+              "children": []
+            },
+            {
+              "label": "Closet organization",
+              "children": []
+            },
+            {
+              "label": "Home office setup",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Detail work",
+          "children": [
+            {
+              "label": "Window cleaning",
+              "children": []
+            },
+            {
+              "label": "Car detailing",
+              "children": []
+            },
+            {
+              "label": "Equipment cleaning",
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "interests": [
+    {
+      "label": "Music",
+      "children": [
+        {
+          "label": "Artists",
+          "children": [
+            {
+              "label": "Independent musicians",
+              "children": []
+            },
+            {
+              "label": "Local bands",
+              "children": []
+            },
+            {
+              "label": "Artist releases",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Making music",
+          "children": [
+            {
+              "label": "Songwriting",
+              "children": []
+            },
+            {
+              "label": "Recording",
+              "children": []
+            },
+            {
+              "label": "Performing",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Music culture",
+          "children": [
+            {
+              "label": "Live events",
+              "children": []
+            },
+            {
+              "label": "Discovering artists",
+              "children": []
+            },
+            {
+              "label": "Music education",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Animals",
+      "children": [
+        {
+          "label": "Pets",
+          "children": [
+            {
+              "label": "Dogs",
+              "children": []
+            },
+            {
+              "label": "Cats",
+              "children": []
+            },
+            {
+              "label": "Small pets",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Animal care",
+          "children": [
+            {
+              "label": "Pet enrichment",
+              "children": []
+            },
+            {
+              "label": "Walking dogs",
+              "children": []
+            },
+            {
+              "label": "Helping pet owners",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Wildlife",
+          "children": [
+            {
+              "label": "Birdwatching",
+              "children": []
+            },
+            {
+              "label": "Conservation",
+              "children": []
+            },
+            {
+              "label": "Nature photography",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Art & design",
+      "children": [
+        {
+          "label": "Visual art",
+          "children": [
+            {
+              "label": "Drawing",
+              "children": []
+            },
+            {
+              "label": "Illustration",
+              "children": []
+            },
+            {
+              "label": "Pixel art",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Design",
+          "children": [
+            {
+              "label": "Branding",
+              "children": []
+            },
+            {
+              "label": "Typography",
+              "children": []
+            },
+            {
+              "label": "Interior styling",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Creative work",
+          "children": [
+            {
+              "label": "Craft fairs",
+              "children": []
+            },
+            {
+              "label": "Handmade gifts",
+              "children": []
+            },
+            {
+              "label": "Photography",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Technology",
+      "children": [
+        {
+          "label": "Web",
+          "children": [
+            {
+              "label": "Small business websites",
+              "children": []
+            },
+            {
+              "label": "Online shops",
+              "children": []
+            },
+            {
+              "label": "No-code tools",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Practical tech",
+          "children": [
+            {
+              "label": "Automation",
+              "children": []
+            },
+            {
+              "label": "Helping people with computers",
+              "children": []
+            },
+            {
+              "label": "Digital organization",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Media tech",
+          "children": [
+            {
+              "label": "Video tools",
+              "children": []
+            },
+            {
+              "label": "Audio tools",
+              "children": []
+            },
+            {
+              "label": "Creative software",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Helping people",
+      "children": [
+        {
+          "label": "Learning",
+          "children": [
+            {
+              "label": "Tutoring",
+              "children": []
+            },
+            {
+              "label": "Teaching adults",
+              "children": []
+            },
+            {
+              "label": "Helping students",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Everyday support",
+          "children": [
+            {
+              "label": "Helping older adults",
+              "children": []
+            },
+            {
+              "label": "Busy families",
+              "children": []
+            },
+            {
+              "label": "Community groups",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Connection",
+          "children": [
+            {
+              "label": "Listening",
+              "children": []
+            },
+            {
+              "label": "Bringing people together",
+              "children": []
+            },
+            {
+              "label": "Customer service",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Food",
+      "children": [
+        {
+          "label": "Home cooking",
+          "children": [
+            {
+              "label": "Meal planning",
+              "children": []
+            },
+            {
+              "label": "Recipe development",
+              "children": []
+            },
+            {
+              "label": "Cooking lessons",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Baking",
+          "children": [
+            {
+              "label": "Bread",
+              "children": []
+            },
+            {
+              "label": "Cookies",
+              "children": []
+            },
+            {
+              "label": "Celebration treats",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Food culture",
+          "children": [
+            {
+              "label": "Local restaurants",
+              "children": []
+            },
+            {
+              "label": "Food photography",
+              "children": []
+            },
+            {
+              "label": "Food writing",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Outdoors",
+      "children": [
+        {
+          "label": "Gardens",
+          "children": [
+            {
+              "label": "Growing food",
+              "children": []
+            },
+            {
+              "label": "Houseplants",
+              "children": []
+            },
+            {
+              "label": "Native plants",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Outdoor spaces",
+          "children": [
+            {
+              "label": "Yard care",
+              "children": []
+            },
+            {
+              "label": "Garden design",
+              "children": []
+            },
+            {
+              "label": "Seasonal cleanup",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Nature",
+          "children": [
+            {
+              "label": "Hiking",
+              "children": []
+            },
+            {
+              "label": "Camping",
+              "children": []
+            },
+            {
+              "label": "Birdwatching",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Stories",
+      "children": [
+        {
+          "label": "Words",
+          "children": [
+            {
+              "label": "Writing",
+              "children": []
+            },
+            {
+              "label": "Reading",
+              "children": []
+            },
+            {
+              "label": "Newsletters",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Screen stories",
+          "children": [
+            {
+              "label": "Film",
+              "children": []
+            },
+            {
+              "label": "YouTube",
+              "children": []
+            },
+            {
+              "label": "Short videos",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "People",
+          "children": [
+            {
+              "label": "Interviews",
+              "children": []
+            },
+            {
+              "label": "Local history",
+              "children": []
+            },
+            {
+              "label": "Personal stories",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Business",
+      "children": [
+        {
+          "label": "Small businesses",
+          "children": [
+            {
+              "label": "Local shops",
+              "children": []
+            },
+            {
+              "label": "Independent professionals",
+              "children": []
+            },
+            {
+              "label": "Solo founders",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Operations",
+          "children": [
+            {
+              "label": "Organizing",
+              "children": []
+            },
+            {
+              "label": "Spreadsheets",
+              "children": []
+            },
+            {
+              "label": "Making systems",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Marketing",
+          "children": [
+            {
+              "label": "Social media",
+              "children": []
+            },
+            {
+              "label": "Email newsletters",
+              "children": []
+            },
+            {
+              "label": "Finding customers",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Games",
+      "children": [
+        {
+          "label": "Game worlds",
+          "children": [
+            {
+              "label": "Pixel art",
+              "children": []
+            },
+            {
+              "label": "Tabletop games",
+              "children": []
+            },
+            {
+              "label": "Worldbuilding",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Game communities",
+          "children": [
+            {
+              "label": "Community moderation",
+              "children": []
+            },
+            {
+              "label": "Gaming events",
+              "children": []
+            },
+            {
+              "label": "Video creators",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Making games",
+          "children": [
+            {
+              "label": "Game design",
+              "children": []
+            },
+            {
+              "label": "Writing for games",
+              "children": []
+            },
+            {
+              "label": "Game tutorials",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Homes",
+      "children": [
+        {
+          "label": "Living spaces",
+          "children": [
+            {
+              "label": "Decluttering",
+              "children": []
+            },
+            {
+              "label": "Interior styling",
+              "children": []
+            },
+            {
+              "label": "Home organization",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Home projects",
+          "children": [
+            {
+              "label": "Furniture",
+              "children": []
+            },
+            {
+              "label": "DIY",
+              "children": []
+            },
+            {
+              "label": "Repairs",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Home care",
+          "children": [
+            {
+              "label": "Cleaning",
+              "children": []
+            },
+            {
+              "label": "Moving",
+              "children": []
+            },
+            {
+              "label": "Houseplants",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Learning",
+      "children": [
+        {
+          "label": "Subjects",
+          "children": [
+            {
+              "label": "Math",
+              "children": []
+            },
+            {
+              "label": "Languages",
+              "children": []
+            },
+            {
+              "label": "Science",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "How people learn",
+          "children": [
+            {
+              "label": "Study skills",
+              "children": []
+            },
+            {
+              "label": "Workshops",
+              "children": []
+            },
+            {
+              "label": "Tutorials",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Sharing knowledge",
+          "children": [
+            {
+              "label": "Writing guides",
+              "children": []
+            },
+            {
+              "label": "Teaching children",
+              "children": []
+            },
+            {
+              "label": "Teaching adults",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Events",
+      "children": [
+        {
+          "label": "Gatherings",
+          "children": [
+            {
+              "label": "Community events",
+              "children": []
+            },
+            {
+              "label": "Weddings",
+              "children": []
+            },
+            {
+              "label": "Small celebrations",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Behind the scenes",
+          "children": [
+            {
+              "label": "Planning",
+              "children": []
+            },
+            {
+              "label": "Logistics",
+              "children": []
+            },
+            {
+              "label": "Decorating",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Capturing events",
+          "children": [
+            {
+              "label": "Photography",
+              "children": []
+            },
+            {
+              "label": "Videography",
+              "children": []
+            },
+            {
+              "label": "Live sound",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Fitness & movement",
+      "children": [
+        {
+          "label": "Activities",
+          "children": [
+            {
+              "label": "Walking",
+              "children": []
+            },
+            {
+              "label": "Cycling",
+              "children": []
+            },
+            {
+              "label": "Dance",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Creative movement",
+          "children": [
+            {
+              "label": "Sports photography",
+              "children": []
+            },
+            {
+              "label": "Fitness videos",
+              "children": []
+            },
+            {
+              "label": "Dance events",
+              "children": []
+            }
+          ]
+        },
+        {
+          "label": "Community",
+          "children": [
+            {
+              "label": "Local clubs",
+              "children": []
+            },
+            {
+              "label": "Outdoor groups",
+              "children": []
+            },
+            {
+              "label": "Team events",
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

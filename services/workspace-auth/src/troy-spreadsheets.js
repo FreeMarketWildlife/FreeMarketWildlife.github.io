@@ -3,7 +3,7 @@ const files = new Map([
   ['/troykearns/spreadsheets/shorts-analysis.xlsx', { key: 'troy-kearns/spreadsheets/shorts-analysis.xlsx', type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', filename: 'Troy Kearns - Shorts Analysis.xlsx' }]
 ]);
 
-// The Worker checks the Troy membership before calling this file reader.
+// Public read-only workspace downloads; only these explicit storage keys are exposed.
 export async function troySpreadsheetFile(req, env, path) {
   const file = files.get(path);
   if (!file) return null;

@@ -1,5 +1,13 @@
 # Workspace Google sign-in
 
+## Direct workspace welcome pages
+
+Anonymous workspace page URLs now render a public welcome page in that client's existing style, with Google and email sign-in on the page. Share `/troykearns/`, `/kat-kai/`, or `/philip-aram/`, or a workspace subpage. Only public names and branding are rendered; private page assets, API responses, and downloads still require membership. Download/API requests without a session redirect to their workspace entry page.
+
+Sign-in stores a validated local workspace destination in a ten-minute Secure/HttpOnly cookie. Google and email completion return to that destination only if the verified account has the matching membership; otherwise the existing primary-workspace/Build a Business fallback applies. Ordinary homepage sign-in keeps its primary-workspace behavior. Google cancellation/failure returns to the client's welcome page. No database migration is required.
+
+Validation: `npm test --prefix services/workspace-auth`, `python3 scripts/check_site.py`, and `npm run check --prefix services/workspace-auth`. With prepared assets served on port 4173, `node tests/test_workspace_welcome.cjs` checks generated welcome pages in desktop/mobile browser layouts and the inline email-code UI with mocked sends. Set `WELCOME_ORIGIN=https://freemarketwildlife.com` to check the deployed welcome responses. Backend tests cover signed Google completion, email-code completion, return-path validation, and membership enforcement.
+
 Implementation: `services/workspace-auth`. Separate from the private YouTube Analytics service. Owner: `freemarketwildlife@gmail.com`. Only basic `openid email` identity scopes; no Drive or YouTube permission.
 
 ## Current state
@@ -72,3 +80,10 @@ Tests cover Troy-only access, no-grant routing, existing Google membership, code
 Resend verified `auth.freemarketwildlife.com`; DKIM and the two required DNS-only CNAME records are published. The credential named Free Market Wildlife sign-in has sending-only access restricted to that subdomain and is encrypted in the Worker as `RESEND_API_KEY`. Migration 0003 preserves stable Google identity links. Production Worker version: `51c5170a-9137-4f88-abd5-060eb54232c4`.
 
 A live code sent to the owner's Gmail test alias was marked delivered by Resend, consumed successfully in the requesting browser, and routed the unassigned test account to Build a Business. Its direct Troy workspace request was denied. The test browser session was signed out and the temporary account removed. Troy's grant remains pending his first verified login; no code or invitation was sent to him. Apple remains disconnected. Backend suite: 19 passing tests; desktop/mobile account browser checks and Worker dry-run passed.
+
+
+## Troy public viewing — 2026-10-24
+
+Troy's workspace (`/troykearns/` and `/troy-kearns/`) allows anonymous GET/HEAD requests, including subpages and the explicitly listed Shorts analysis JSON/XLSX downloads. Entry URLs still redirect to Strategy. Viewing does not depend on sign-in configuration or membership, even with an expired or unrelated account cookie. Pages retain `noindex, nofollow`. Non-read requests keep the existing authorization checks; spreadsheet storage accepts GET/HEAD only. Philip, Kat & Kai, owner controls, and private Analytics service permissions retain their existing access requirements.
+
+Validation: the workspace-auth backend suite covers anonymous content access, unrelated/revoked memberships, encoded URLs, missing sign-in configuration, read-only downloads, and the remaining protected routes.

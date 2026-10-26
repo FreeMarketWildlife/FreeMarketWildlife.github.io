@@ -1,6 +1,8 @@
+import { businessAPI, retryBusinessNotifications, businessInboxWelcome } from './business.js';
 import { emailAuth, emailReady, emailCookie } from './email-auth.js';
 import { taskPhotos } from './task-photos.js';
 import { troySpreadsheetFile } from './troy-spreadsheets.js';
+import { workspaceWelcome } from './workspace-welcome.js';
 import { createRemoteJWKSet, jwtVerify } from 'jose';
 export const WORKSPACES = Object.freeze([
   {id:'philip-aram', name:'Philip Aram', path:'/philip-aram/'},
@@ -46,7 +48,18 @@ export async function permitted(user,env) {
 export function validClaims(claims,nonce) {
   return !!(claims.sub && claims.nonce===nonce && claims.email_verified===true && typeof claims.email==='string' && (claims.email.toLowerCase().endsWith('@gmail.com') || claims.hd));
 }
-async function start(env) {
+function returnPath(value) {
+  if(typeof value!=='string' || !value.startsWith('/') || value.startsWith('//') || /[%\\\x00-\x20]/.test(value))return '';
+  const url=new URL(value,'https://local.invalid');
+  if(url.origin!=='https://local.invalid' || !(url.pathname==='/build-a-business/' || url.pathname==='/account/business/' || protectedWorkspace(url.pathname)) || !workspacePage(url.pathname))return '';
+  return url.pathname+url.search+url.hash;
+}
+function workspacePage(path) {return !path.includes('/api/') && !/\.(?!html$)[^/]+$/i.test(path);}
+const returnCookie=value=>setCookie('__Host-fmw-return',encodeURIComponent(returnPath(value)),600);
+function savedReturn(req) {
+  try{return returnPath(decodeURIComponent(cookie(req,'__Host-fmw-return')));}catch{return '';}
+}
+async function start(env,inputUrl) {
   const state=random(), verifier=random(),nonce=random();
   const digest = new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(verifier)));
   const challenge=btoa(String.fromCharCode(...digest)).replaceAll('+','-').replaceAll('/','_').replaceAll('=','');
@@ -54,7 +67,7 @@ async function start(env) {
   await env.DB.prepare('INSERT INTO oauth_states VALUES (?,?,?,?)').bind(await hash(state),verifier,nonce,now()+600).run();
   const url=new URL('https://accounts.google.com/o/oauth2/v2/auth');
   url.search=new URLSearchParams({client_id:env.GOOGLE_CLIENT_ID,redirect_uri:env.SITE_ORIGIN+'/auth/callback',response_type:'code',scope:'openid email',state,nonce,code_challenge:challenge,code_challenge_method:'S256',prompt:'select_account'}).toString();
-  return redirect(url.href,[setCookie('__Host-fmw-state',state,600)]);
+  return redirect(url.href,[setCookie('__Host-fmw-state',state,600),returnCookie(inputUrl.searchParams.get('returnTo'))]);
 }
 async function callback(req,env,url) {
   const state=url.searchParams.get('state'), browserState=cookie(req,'__Host-fmw-state');
@@ -62,15 +75,17 @@ async function callback(req,env,url) {
   const saved=await env.DB.prepare('DELETE FROM oauth_states WHERE state_hash=? AND expires_at>? RETURNING verifier,nonce').bind(await hash(state),now()).first();
   if(!saved)return response('Sign-in expired. Please try again.',400);
   const cleared=setCookie('__Host-fmw-state','',0);
-  if(url.searchParams.has('error'))return redirect('/?signin=cancelled',[cleared]);
+  const returnTo=savedReturn(req);
+  const retry=reason=>redirect(returnTo ? returnTo.split('#')[0]+(returnTo.includes('?')?'&':'?')+'signin='+reason : '/?signin='+reason,[cleared]);
+  if(url.searchParams.has('error'))return retry('cancelled');
   const code=url.searchParams.get('code');if(!code)return response('Missing authorization code.',400);
   const exchange=await fetch('https://oauth2.googleapis.com/token',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams({code,client_id:env.GOOGLE_CLIENT_ID,client_secret:env.GOOGLE_CLIENT_SECRET,redirect_uri:env.SITE_ORIGIN+'/auth/callback',grant_type:'authorization_code',code_verifier:saved.verifier})});
-  if(!exchange.ok)return redirect('/?signin=failed',[cleared]);
+  if(!exchange.ok)return retry('failed');
   const tokens=await exchange.json();
   let payload;
   try { ({payload}=await jwtVerify(tokens.id_token,keys,{issuer:['https://accounts.google.com','accounts.google.com'],audience:env.GOOGLE_CLIENT_ID,algorithms:['RS256'],maxTokenAge:'10m'})); }
-  catch { return redirect('/?signin=failed',[cleared]); }
-  if(!validClaims(payload,saved.nonce))return redirect('/?signin=failed',[cleared]);
+  catch { return retry('failed'); }
+  if(!validClaims(payload,saved.nonce))return retry('failed');
   const email=payload.email.toLowerCase();
   const googleSubject=payload.sub;
   const linked=await env.DB.prepare('SELECT user_sub FROM google_identity_links WHERE google_sub=?').bind(googleSubject).first();
@@ -89,8 +104,9 @@ async function finishSession(req,env,sub,email,asJson=false) {
   const session=random();
   await env.DB.prepare('INSERT INTO sessions VALUES (?,?,?)').bind(await hash(session),sub,now()+86400).run();
   const list=await permitted({google_sub:sub,email},env);
-  const destination=list[0]?.path || '/build-a-business/';
-  const cookies=[asJson?emailCookie('',0):setCookie('__Host-fmw-state','',0),setCookie('__Host-fmw-session',session,86400)];
+  const requested=savedReturn(req);
+  const destination=requested && (requested==='/build-a-business/' || requested.startsWith('/account/business/') && await owner({google_sub:sub,email},env) || list.some(w=>w.id===protectedWorkspace(new URL(requested,env.SITE_ORIGIN).pathname))) ? requested : list[0]?.path || '/build-a-business/';
+  const cookies=[asJson?emailCookie('',0):setCookie('__Host-fmw-state','',0),setCookie('__Host-fmw-return','',0),setCookie('__Host-fmw-session',session,86400)];
   if(!asJson)return redirect(destination,cookies);
   const result=json({ok:true,redirect:destination});for(const value of cookies)result.headers.append('Set-Cookie',value);return result;
 }
@@ -105,15 +121,24 @@ async function handle(req,env) {
   if(path.includes('%') || path.includes('//') || path.includes('\\') || path.includes('\0'))return response('Invalid path.',400);
   path=new URL(path,env.SITE_ORIGIN).pathname;
   const workspace=protectedWorkspace(path), isAccount=/^\/account(?:\/|$)/i.test(path);
-  const auth=path.startsWith('/auth/') || path.startsWith('/api/account');
-  if((auth || workspace || isAccount) && !ready(env))return response('Sign-in is not configured yet.',503);
-  if(path==='/auth/start' && req.method==='GET')return start(env);
+  // Troy's workspace is publicly viewable; writes and other workspaces keep their access checks.
+  const publicView=workspace==='troy-kearns' && ['GET','HEAD'].includes(req.method);
+  const requiresAccess=(workspace && !publicView) || isAccount;
+  const business=path.startsWith('/api/business/');
+  const auth=path.startsWith('/auth/') || path.startsWith('/api/account') || business;
+  if((auth || requiresAccess) && !ready(env))return response('Sign-in is not configured yet.',503);
+  if(path==='/auth/start' && req.method==='GET')return start(env,url);
   if(path==='/auth/callback' && req.method==='GET')return callback(req,env,url);
   if(path.startsWith('/auth/email/')) {
     const result=await emailAuth(req,env,path);
-    return result instanceof Response?result:finishSession(req,env,result.sub,result.email,true);
+    if(result instanceof Response) {
+      if(path==='/auth/email/start' && result.ok)result.headers.append('Set-Cookie',returnCookie(url.searchParams.get('returnTo')));
+      return result;
+    }
+    return finishSession(req,env,result.sub,result.email,true);
   }
-  const user=(auth || workspace || isAccount)?await identity(req,env):null;
+  const user=(auth || requiresAccess)?await identity(req,env):null;
+  if(business)return businessAPI(req,env,path,user,await owner(user,env));
   if(path==='/api/account' && req.method==='GET') {
     const workspaces=await permitted(user,env);
     return json({user:user?{email:user.email}:null,owner:await owner(user,env),workspaces,primaryWorkspace:workspaces[0] || null,providers:{google:true,email:emailReady(env),apple:false}});
@@ -141,8 +166,21 @@ async function handle(req,env) {
     return json({ok:true});
   }
   if(auth)return response('Not found.',404);
-  if(workspace || isAccount) {
-    if(!user)return redirect('/?signin=required');
+  if(requiresAccess) {
+    if(!user) {
+      if(path==='/account/business/' && ['GET','HEAD'].includes(req.method)) {
+        const target=new URL(url);target.searchParams.delete('signin');
+        const notice=url.searchParams.has('signin')?'Sign-in did not complete. Please try again.':'';
+        return response(req.method==='HEAD'?null:businessInboxWelcome(target.pathname+target.search,notice),200,{'Content-Type':'text/html; charset=utf-8','Vary':'Cookie','X-Robots-Tag':'noindex, nofollow'});
+      }
+      if(workspace && ['GET','HEAD'].includes(req.method) && workspacePage(path)) {
+        const client=WORKSPACES.find(w=>w.id===workspace);
+        const notice=url.searchParams.get('signin')==='cancelled'?'Sign-in cancelled. Please try again.':url.searchParams.get('signin')==='failed'?'Sign-in failed. Please try again.':'';
+        const target=new URL(url);target.searchParams.delete('signin');
+        return response(req.method==='HEAD'?null:workspaceWelcome(client,target.pathname+target.search,emailReady(env),notice),200,{'Content-Type':'text/html; charset=utf-8','Vary':'Cookie','X-Robots-Tag':'noindex, nofollow'});
+      }
+      return redirect(workspace?WORKSPACES.find(w=>w.id===workspace).path:'/?signin=required');
+    }
     if(isAccount ? !await owner(user,env) : !(await permitted(user,env)).some(w=>w.id===workspace))return response('You do not have access to this workspace.',403);
   }
   if(['GET','HEAD'].includes(req.method) && /^\/(?:troykearns|troy-kearns)(?:\/(?:index\.html)?)?$/i.test(path))return redirect('/troykearns/strategy/');
@@ -164,4 +202,4 @@ async function handle(req,env) {
   if(workspace || isAccount) {headers.set('Cache-Control','private, no-store');headers.set('Vary','Cookie');headers.set('X-Robots-Tag','noindex, nofollow');}
   return new Response(asset.body,{status:asset.status,headers});
 }
-export default { async fetch(req,env) {try{return await handle(req,env);}catch{return response('Unable to complete this request. Please try again.',500);}} };
+export default { async scheduled(event,env,ctx) {ctx.waitUntil(retryBusinessNotifications(env));}, async fetch(req,env) {try{return await handle(req,env);}catch{return response('Unable to complete this request. Please try again.',500);}} };

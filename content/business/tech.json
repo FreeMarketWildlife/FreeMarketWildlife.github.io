@@ -1,0 +1,2199 @@
+[
+  {
+    "id": "tech-service-site",
+    "title": "Contact-ready service websites",
+    "service": "Build a small site with clear services, contact details, and a working inquiry form.",
+    "customer": "Independent local service providers",
+    "skills": [
+      "Website setup",
+      "Websites"
+    ],
+    "interests": [
+      "Small business websites",
+      "Independent professionals"
+    ],
+    "family": "web-services",
+    "needs": "A site builder you know and a tested sample contact form.",
+    "first": "Show one provider a three-page mockup and quote a fixed build.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-web-upkeep",
+    "title": "Website upkeep plans",
+    "service": "Check links, update opening hours, and apply approved page changes each month.",
+    "customer": "Local shops with neglected websites",
+    "skills": [
+      "Website maintenance",
+      "Websites"
+    ],
+    "interests": [
+      "Small business websites",
+      "Local shops"
+    ],
+    "family": "web-services",
+    "needs": "A backup process and a precise monthly change allowance.",
+    "first": "Offer one shop a paid one-month upkeep trial.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-shop-catalog",
+    "title": "Online shop catalog setup",
+    "service": "Organize product categories, variations, photos, and shipping information in an existing store tool.",
+    "customer": "Makers opening their first online shop",
+    "skills": [
+      "Website setup",
+      "No-code tools"
+    ],
+    "interests": [
+      "Online shops",
+      "Craft fairs"
+    ],
+    "family": "web-services",
+    "needs": "A store sandbox and a product-import checklist.",
+    "first": "Set up five sample listings from a maker's approved product sheet.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-booking-pages",
+    "title": "Appointment booking pages",
+    "service": "Connect a booking calendar to a simple page with service durations and preparation notes.",
+    "customer": "Appointment-based independent professionals",
+    "skills": [
+      "Website setup",
+      "Forms and workflows"
+    ],
+    "interests": [
+      "Small business websites",
+      "Independent professionals"
+    ],
+    "family": "web-services",
+    "needs": "Experience with a booking tool and a test calendar.",
+    "first": "Offer to configure one service and verify its booking journey.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-event-registration",
+    "title": "Small-event registration sites",
+    "service": "Build an accessible event information page, registration form, and confirmation flow.",
+    "customer": "Community event organizers",
+    "skills": [
+      "Website setup",
+      "Forms and workflows"
+    ],
+    "interests": [
+      "Community events",
+      "Gaming events"
+    ],
+    "family": "web-services",
+    "needs": "A form tool, event checklist, and test registrations.",
+    "first": "Prototype a registration flow for one upcoming gathering.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-restaurant-menu",
+    "title": "Readable restaurant menus online",
+    "service": "Turn an image-only menu into an editable mobile web menu with clear prices and sections.",
+    "customer": "Independent restaurants",
+    "skills": [
+      "Website setup",
+      "Website maintenance"
+    ],
+    "interests": [
+      "Local restaurants"
+    ],
+    "family": "web-services",
+    "needs": "A responsive menu template and owner-approved menu text.",
+    "first": "Rebuild one menu section and demonstrate it on a phone.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-artist-epk",
+    "title": "Musician press-kit websites",
+    "service": "Assemble music links, performance videos, biography, and booking details into a press-kit site.",
+    "customer": "Independent musicians seeking bookings",
+    "skills": [
+      "Website setup",
+      "Websites"
+    ],
+    "interests": [
+      "Independent musicians",
+      "Local bands"
+    ],
+    "family": "web-services",
+    "needs": "A media permissions checklist and a compact site template.",
+    "first": "Offer one band a fixed-scope press kit using approved assets.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-portfolio-migration",
+    "title": "Portfolio site migrations",
+    "service": "Move an existing portfolio into a maintainable site while preserving project links and image descriptions.",
+    "customer": "Independent visual creators",
+    "skills": [
+      "Website setup",
+      "Website maintenance"
+    ],
+    "interests": [
+      "Art & design",
+      "Photography"
+    ],
+    "family": "web-services",
+    "needs": "Export experience, a redirect map, and a backup of the old site.",
+    "first": "Audit ten project links before quoting a small migration.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-course-pages",
+    "title": "Workshop enrollment pages",
+    "service": "Create lesson descriptions, schedules, prerequisites, and enrollment forms for a workshop.",
+    "customer": "Independent workshop teachers",
+    "skills": [
+      "Website setup",
+      "No-code tools"
+    ],
+    "interests": [
+      "Workshops",
+      "Teaching adults"
+    ],
+    "family": "web-services",
+    "needs": "A registration tool and a teacher-approved session outline.",
+    "first": "Build one workshop page and test the confirmation message.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-directory-sites",
+    "title": "Community resource directories",
+    "service": "Build a searchable directory of approved local services with a simple update process.",
+    "customer": "Neighborhood associations",
+    "skills": [
+      "No-code tools",
+      "Website setup"
+    ],
+    "interests": [
+      "Community groups",
+      "Helping people"
+    ],
+    "family": "web-services",
+    "needs": "A verified sample directory and submission rules.",
+    "first": "Organize twenty approved resources into a small paid pilot.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-web-move-check",
+    "title": "Website move quality checks",
+    "service": "Test forms, images, redirects, and key pages after a website migration.",
+    "customer": "Small businesses changing website platforms",
+    "skills": [
+      "Website maintenance",
+      "Troubleshooting"
+    ],
+    "interests": [
+      "Small business websites",
+      "Practical tech"
+    ],
+    "family": "web-services",
+    "needs": "A repeatable test checklist and device/browser access.",
+    "first": "Offer a bounded check of ten pages and one contact form.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "tech-accessibility-fixes",
+    "title": "Practical website accessibility repairs",
+    "service": "Improve keyboard access, form labels, contrast, and image text in a small site.",
+    "customer": "Small organizations with difficult-to-use sites",
+    "skills": [
+      "Website maintenance",
+      "Website setup"
+    ],
+    "interests": [
+      "Helping people",
+      "Small business websites"
+    ],
+    "family": "web-services",
+    "needs": "Accessibility testing skills and a documented sample; no compliance guarantee.",
+    "first": "Demonstrate three repairable issues and quote that exact scope.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-speed-cleanup",
+    "title": "Small website speed cleanup",
+    "service": "Resize oversized images and remove unused page widgets while checking the site still works.",
+    "customer": "Small businesses with slow mobile pages",
+    "skills": [
+      "Website maintenance",
+      "Troubleshooting"
+    ],
+    "interests": [
+      "Small business websites",
+      "Web"
+    ],
+    "family": "web-services",
+    "needs": "Performance measurement tools and backups before edits.",
+    "first": "Measure one slow page and offer a fixed cleanup with before-and-after results.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-form-repair",
+    "title": "Broken website form repairs",
+    "service": "Diagnose missing form notifications and fix validation, delivery settings, or confirmation messages.",
+    "customer": "Businesses losing website inquiries",
+    "skills": [
+      "Website maintenance",
+      "Forms and workflows"
+    ],
+    "interests": [
+      "Small business websites",
+      "Finding customers"
+    ],
+    "family": "web-services",
+    "needs": "Test email accounts and knowledge of the chosen form platform.",
+    "first": "Trace one reported missing inquiry and quote a bounded repair.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-site-search",
+    "title": "Small-site search setup",
+    "service": "Add searchable pages or resource listings with useful labels and empty-result messages.",
+    "customer": "Community groups with growing resource sites",
+    "skills": [
+      "Website setup",
+      "No-code tools"
+    ],
+    "interests": [
+      "Community groups",
+      "Digital organization"
+    ],
+    "family": "web-services",
+    "needs": "A search tool and a small sample content index.",
+    "first": "Index twenty public pages and test common visitor questions.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-multilingual-pages",
+    "title": "Translation-ready website structure",
+    "service": "Set up language navigation and duplicate page templates for client-supplied translations.",
+    "customer": "Independent businesses serving several language groups",
+    "skills": [
+      "Website setup",
+      "Website maintenance"
+    ],
+    "interests": [
+      "Languages",
+      "Small business websites"
+    ],
+    "family": "web-services",
+    "needs": "A multilingual site tool and client-approved translations.",
+    "first": "Build two language versions of one page and test switching.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-website-handover",
+    "title": "Website owner handover kits",
+    "service": "Document routine website edits and record short walkthroughs so owners can maintain their site.",
+    "customer": "Solo founders inheriting a website",
+    "skills": [
+      "Website maintenance",
+      "Step-by-step guides",
+      "Software lessons"
+    ],
+    "interests": [
+      "Small business websites",
+      "Teaching adults"
+    ],
+    "family": "web-services",
+    "needs": "Access to a test copy and a concise handover checklist.",
+    "first": "Offer a paid guide covering the owner's three most frequent edits.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "tech-rsvp-tools",
+    "title": "Reusable RSVP page templates",
+    "service": "Sell editable RSVP templates with guest-count limits, dietary questions, and confirmation text.",
+    "customer": "Hosts of small celebrations",
+    "skills": [
+      "No-code tools",
+      "Website setup"
+    ],
+    "interests": [
+      "Small celebrations",
+      "Planning"
+    ],
+    "family": "web-services",
+    "needs": "A template platform and tested form examples.",
+    "first": "Publish one demonstration template and invite five hosts to test it.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "tech-site-content-import",
+    "title": "Website content import service",
+    "service": "Move approved text and images from a document into an existing site's page templates.",
+    "customer": "Professionals who have content but lack publishing time",
+    "skills": [
+      "Website maintenance",
+      "Data entry"
+    ],
+    "interests": [
+      "Small business websites",
+      "Independent professionals"
+    ],
+    "family": "web-services",
+    "needs": "A page checklist and image sizing rules.",
+    "first": "Quote entry of five approved pages with one review round.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Short",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-shop-navigation",
+    "title": "Online shop navigation repairs",
+    "service": "Reorganize collections and filters so shoppers can locate products without changing the store's brand.",
+    "customer": "Small online shops with confusing catalogs",
+    "skills": [
+      "Website maintenance",
+      "No-code tools"
+    ],
+    "interests": [
+      "Online shops",
+      "Digital organization"
+    ],
+    "family": "web-services",
+    "needs": "A product-category map and a store test environment.",
+    "first": "Map one shop's fifty products and propose a paid navigation revision.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-inquiry-routing",
+    "title": "Inquiry routing workflows",
+    "service": "Send form inquiries to the correct owner and record status in a shared tracker.",
+    "customer": "Small service teams",
+    "skills": [
+      "Forms and workflows",
+      "Automation"
+    ],
+    "interests": [
+      "Making systems",
+      "Small businesses"
+    ],
+    "family": "automation",
+    "needs": "A form tool, a test tracker, and clear routing rules.",
+    "first": "Automate one inquiry type and verify it with dummy submissions.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-client-onboarding",
+    "title": "Client onboarding checklists",
+    "service": "Connect an intake form, welcome message, and task checklist for a repeatable new-client process.",
+    "customer": "Independent professionals",
+    "skills": [
+      "Forms and workflows",
+      "Automation"
+    ],
+    "interests": [
+      "Independent professionals",
+      "Making systems"
+    ],
+    "family": "automation",
+    "needs": "A client's approved onboarding steps and a sandbox workflow.",
+    "first": "Build a pilot for one service package using fictional clients.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-quote-followup",
+    "title": "Quote follow-up reminders",
+    "service": "Create reminders for staff to follow up on open quotes without sending messages automatically.",
+    "customer": "Local service businesses",
+    "skills": [
+      "Automation",
+      "Forms and workflows"
+    ],
+    "interests": [
+      "Finding customers",
+      "Local shops"
+    ],
+    "family": "automation",
+    "needs": "A quote status sheet and agreed reminder timing.",
+    "first": "Track ten sample quotes and demonstrate one reminder cycle.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-volunteer-shifts",
+    "title": "Volunteer shift signup systems",
+    "service": "Build a self-service signup form, capacity tracker, and organizer reminder view.",
+    "customer": "Community groups running volunteer shifts",
+    "skills": [
+      "Forms and workflows",
+      "No-code tools"
+    ],
+    "interests": [
+      "Community groups",
+      "Community events"
+    ],
+    "family": "automation",
+    "needs": "A schedule model and a privacy-conscious signup form.",
+    "first": "Pilot one afternoon's shifts before expanding the system.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-inventory-alerts",
+    "title": "Low-stock alert workflows",
+    "service": "Connect stock updates to clear reorder alerts using the client's existing tools.",
+    "customer": "Small shops tracking inventory manually",
+    "skills": [
+      "Automation",
+      "Forms and workflows"
+    ],
+    "interests": [
+      "Local shops",
+      "Online shops"
+    ],
+    "family": "automation",
+    "needs": "A clean product sheet and agreed reorder thresholds.",
+    "first": "Test alerts for five noncritical items using sample quantities.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-content-approval",
+    "title": "Content approval pipelines",
+    "service": "Create a board that moves drafts through review, approval, and publication reminders.",
+    "customer": "Small creator teams",
+    "skills": [
+      "Forms and workflows",
+      "Automation"
+    ],
+    "interests": [
+      "Social media",
+      "Video creators"
+    ],
+    "family": "automation",
+    "needs": "A task platform and an agreed approval sequence.",
+    "first": "Configure one week's posts and test review notifications.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-receipt-intake",
+    "title": "Receipt collection workflows",
+    "service": "Route submitted receipt images into labeled folders and a review queue.",
+    "customer": "Solo businesses organizing expenses",
+    "skills": [
+      "Forms and workflows",
+      "Automation"
+    ],
+    "interests": [
+      "Solo founders",
+      "Organizing"
+    ],
+    "family": "automation",
+    "needs": "A secure upload process and clear access boundaries.",
+    "first": "Set up a sample month with synthetic receipts for review.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-meeting-actions",
+    "title": "Meeting action trackers",
+    "service": "Turn a structured meeting form into assigned tasks with deadlines and completion views.",
+    "customer": "Small project teams",
+    "skills": [
+      "Forms and workflows",
+      "Automation"
+    ],
+    "interests": [
+      "Making systems",
+      "Community groups"
+    ],
+    "family": "automation",
+    "needs": "A task database and a simple meeting-note form.",
+    "first": "Pilot one meeting's action list with the team's approval.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-rental-checklist",
+    "title": "Equipment checkout systems",
+    "service": "Create booking, checkout, return, and missing-item records for shared equipment.",
+    "customer": "Community studios and local clubs",
+    "skills": [
+      "Forms and workflows",
+      "No-code tools"
+    ],
+    "interests": [
+      "Local clubs",
+      "Creative software"
+    ],
+    "family": "automation",
+    "needs": "An equipment list and clear lending rules.",
+    "first": "Track five items through a simulated checkout and return.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-lesson-reminders",
+    "title": "Lesson attendance workflows",
+    "service": "Connect lesson bookings to attendance records and staff reminder tasks.",
+    "customer": "Independent teachers managing regular lessons",
+    "skills": [
+      "Forms and workflows",
+      "Automation"
+    ],
+    "interests": [
+      "Music education",
+      "Tutoring"
+    ],
+    "family": "automation",
+    "needs": "A schedule tool, consented contact handling, and a test roster.",
+    "first": "Demonstrate one week's attendance flow with fictional students.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-order-status",
+    "title": "Custom-order status boards",
+    "service": "Give makers a board for deposits, materials, production, and pickup milestones.",
+    "customer": "Makers taking custom orders",
+    "skills": [
+      "No-code tools",
+      "Forms and workflows"
+    ],
+    "interests": [
+      "Handmade gifts",
+      "Craft fairs"
+    ],
+    "family": "automation",
+    "needs": "A sample order process and explicit staff permissions.",
+    "first": "Model five fictional orders and ask one maker to trial it.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-feedback-intake",
+    "title": "Customer feedback triage",
+    "service": "Collect feedback, tag themes, and route issues into an owner-reviewed task queue.",
+    "customer": "Small service businesses",
+    "skills": [
+      "Forms and workflows",
+      "Automation"
+    ],
+    "interests": [
+      "Customer service",
+      "Making systems"
+    ],
+    "family": "automation",
+    "needs": "A form tool and agreed categories and escalation rules.",
+    "first": "Pilot twenty sample comments and check each routing decision.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-recurring-maintenance",
+    "title": "Recurring maintenance reminders",
+    "service": "Build calendars and checklists for routine equipment checks without diagnosing safety faults.",
+    "customer": "Small studios and workshops",
+    "skills": [
+      "Automation",
+      "Forms and workflows"
+    ],
+    "interests": [
+      "Making systems",
+      "Creative work"
+    ],
+    "family": "automation",
+    "needs": "Client-provided maintenance intervals and a task tool.",
+    "first": "Set reminders for three items and test overdue visibility.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-file-renaming",
+    "title": "Bulk file organization scripts",
+    "service": "Rename and sort client-owned files using agreed rules with a preview before changes.",
+    "customer": "Creators with disorganized project archives",
+    "skills": [
+      "Simple scripts"
+    ],
+    "interests": [
+      "Digital organization",
+      "Video creators"
+    ],
+    "family": "automation",
+    "needs": "Scripting competence, backups, and a reversible dry-run report.",
+    "first": "Offer to organize one copied folder after the client approves the preview.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-csv-converters",
+    "title": "Custom CSV conversion tools",
+    "service": "Build a small converter between two documented file formats to eliminate repeated manual edits.",
+    "customer": "Independent businesses moving data between tools",
+    "skills": [
+      "Simple scripts"
+    ],
+    "interests": [
+      "Automation",
+      "Making systems"
+    ],
+    "family": "automation",
+    "needs": "Sample files without sensitive data and a written field map.",
+    "first": "Convert one sample file and reconcile every output column.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Deep",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "tech-folder-provisioning",
+    "title": "Project folder setup automation",
+    "service": "Generate consistent project folders, starter documents, and access checklists from a request form.",
+    "customer": "Small creative agencies",
+    "skills": [
+      "Automation",
+      "Forms and workflows"
+    ],
+    "interests": [
+      "Digital organization",
+      "Making systems"
+    ],
+    "family": "automation",
+    "needs": "A folder template, access rules, and a test workspace.",
+    "first": "Set up one fictional project and review every generated file.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-waitlist-tools",
+    "title": "Workshop waitlist workflows",
+    "service": "Track enrollment capacity, waitlist order, and organizer-approved seat offers.",
+    "customer": "Teachers with limited workshop places",
+    "skills": [
+      "Forms and workflows",
+      "No-code tools"
+    ],
+    "interests": [
+      "Workshops",
+      "Teaching adults"
+    ],
+    "family": "automation",
+    "needs": "A capacity model and clear customer communication rules.",
+    "first": "Test a five-seat class with seven fictional registrations.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-simple-calculators",
+    "title": "Website estimate calculators",
+    "service": "Build transparent rule-based calculators for preliminary quantities or service estimates.",
+    "customer": "Local businesses repeatedly answering sizing questions",
+    "skills": [
+      "Simple scripts"
+    ],
+    "interests": [
+      "Small business websites",
+      "Helping people"
+    ],
+    "family": "automation",
+    "needs": "Client-approved formulas, examples, and clear estimate limits.",
+    "first": "Build one calculator and verify ten known inputs together.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Deep",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "tech-workflow-audits",
+    "title": "Manual workflow mapping",
+    "service": "Interview a small team, diagram one repetitive process, and identify a modest automation pilot.",
+    "customer": "Solo founders and small teams",
+    "skills": [
+      "Process documentation",
+      "Client interviews",
+      "Automation"
+    ],
+    "interests": [
+      "Making systems",
+      "Solo founders"
+    ],
+    "family": "automation",
+    "needs": "Interview prompts and a clear process-map format.",
+    "first": "Offer a paid review of one weekly task with a written pilot proposal.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "tech-automation-repair",
+    "title": "Existing automation troubleshooting",
+    "service": "Find failing steps in a no-code workflow and document a tested repair.",
+    "customer": "Small businesses with broken integrations",
+    "skills": [
+      "Automation",
+      "Troubleshooting"
+    ],
+    "interests": [
+      "Automation",
+      "Making systems"
+    ],
+    "family": "automation",
+    "needs": "Experience with the specific platform and a safe test environment.",
+    "first": "Diagnose one failing workflow from sanitized run logs.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-computer-setup",
+    "title": "First-day computer orientation",
+    "service": "Help owners learn desktop navigation, useful display preferences, and where their own documents are stored.",
+    "customer": "Adults getting comfortable with a personal computer",
+    "skills": [
+      "Computer setup",
+      "Technology help",
+      "Computers"
+    ],
+    "interests": [
+      "Helping people with computers",
+      "Helping older adults",
+      "Technology"
+    ],
+    "family": "tech-support",
+    "needs": "Familiarity with the supported computer and a patient three-task lesson plan.",
+    "first": "Offer a short session practicing opening an app, saving a file, and finding it again.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Short",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "tech-phone-lessons",
+    "title": "Personal phone setup lessons",
+    "service": "Help owners configure text size, contacts, notifications, and everyday phone features.",
+    "customer": "Older adults learning a smartphone",
+    "skills": [
+      "Phone setup",
+      "Technology help"
+    ],
+    "interests": [
+      "Helping older adults",
+      "Helping people with computers"
+    ],
+    "family": "tech-support",
+    "needs": "A patient lesson plan and supported-device boundaries.",
+    "first": "Offer one hour covering the owner's three chosen phone tasks.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "tech-file-declutter",
+    "title": "Personal digital filing setup",
+    "service": "Set up a reusable folder template and teach owners how to file and retrieve everyday documents.",
+    "customer": "Households needing a simple digital filing routine",
+    "skills": [
+      "Digital organization",
+      "Digital filing",
+      "Computers"
+    ],
+    "interests": [
+      "Digital organization",
+      "Busy families",
+      "Technology"
+    ],
+    "family": "tech-support",
+    "needs": "A client-controlled device, a folder template, and a sample retrieval exercise.",
+    "first": "Set up a trial filing system with five harmless sample documents.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Short",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "tech-photo-archive",
+    "title": "Family photo viewing libraries",
+    "service": "Set up a photo library application and teach families to create albums and share selected pictures.",
+    "customer": "Families who want to view and share their own digital photographs",
+    "skills": [
+      "Software setup",
+      "Computer setup"
+    ],
+    "interests": [
+      "Busy families",
+      "Personal stories"
+    ],
+    "family": "tech-support",
+    "needs": "A supported photo application, client-owned images, and owner-controlled sharing settings.",
+    "first": "Configure a small test library and demonstrate a private album before importing real photos.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-backup-setup",
+    "title": "Personal backup setup",
+    "service": "Configure an owner's chosen backup tool and teach them to verify and restore a sample file.",
+    "customer": "Home computer users without a backup routine",
+    "skills": [
+      "Computer setup",
+      "Technical support"
+    ],
+    "interests": [
+      "Helping people with computers",
+      "Practical tech"
+    ],
+    "family": "tech-support",
+    "needs": "Backup-tool knowledge and a test restore checklist.",
+    "first": "Demonstrate a successful restore of one harmless file before handover.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-printer-help",
+    "title": "Home printer troubleshooting",
+    "service": "Diagnose ordinary connection and queue problems and teach a basic recovery routine.",
+    "customer": "Households with unreliable home printing",
+    "skills": [
+      "Troubleshooting",
+      "Technology help"
+    ],
+    "interests": [
+      "Helping people with computers",
+      "Everyday support"
+    ],
+    "family": "tech-support",
+    "needs": "Supported printer models and clear hardware-repair limits.",
+    "first": "Offer a bounded diagnostic visit for one printer and computer.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "tech-software-onboarding",
+    "title": "Everyday software onboarding",
+    "service": "Teach the core tasks in an application using the client's own example project.",
+    "customer": "Adults adopting unfamiliar software",
+    "skills": [
+      "Software setup",
+      "Software lessons"
+    ],
+    "interests": [
+      "Teaching adults",
+      "Creative software"
+    ],
+    "family": "tech-support",
+    "needs": "Fluency in one named application and three practice exercises.",
+    "first": "Sell a short session focused on one useful completed task.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "tech-remote-help",
+    "title": "Scheduled remote computer help",
+    "service": "Guide clients through common software problems in booked screen-sharing sessions.",
+    "customer": "Independent professionals working from home",
+    "skills": [
+      "Remote tech help",
+      "Troubleshooting"
+    ],
+    "interests": [
+      "Helping people with computers",
+      "Independent professionals"
+    ],
+    "family": "tech-support",
+    "needs": "A trusted remote tool, consent process, and clear support limits.",
+    "first": "Offer a thirty-minute diagnostic for one supported application.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-password-tool-lessons",
+    "title": "Password manager lessons",
+    "service": "Help clients learn their chosen password manager without receiving or retaining their passwords.",
+    "customer": "Adults wanting a manageable login routine",
+    "skills": [
+      "Software lessons",
+      "Technical support"
+    ],
+    "interests": [
+      "Helping people with computers",
+      "Teaching adults"
+    ],
+    "family": "tech-support",
+    "needs": "Password-manager familiarity and a strict client-controlled setup process.",
+    "first": "Demonstrate saving and retrieving a test login with the client.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Deep",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "tech-accessibility-device",
+    "title": "Everyday device accessibility setup",
+    "service": "Configure built-in magnification, captions, voice input, or reading features according to the owner's preferences.",
+    "customer": "Adults finding standard device settings difficult",
+    "skills": [
+      "Computer setup",
+      "Phone setup",
+      "Software lessons"
+    ],
+    "interests": [
+      "Helping older adults",
+      "Helping people"
+    ],
+    "family": "tech-support",
+    "needs": "Familiarity with built-in features; no medical assessment claims.",
+    "first": "Offer a session trying three features on the owner's device.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "tech-video-call-kit",
+    "title": "Video call setup sessions",
+    "service": "Configure camera, microphone, lighting placement, and a repeatable pre-call checklist.",
+    "customer": "Independent professionals holding online meetings",
+    "skills": [
+      "Software setup",
+      "Troubleshooting"
+    ],
+    "interests": [
+      "Independent professionals",
+      "Video tools"
+    ],
+    "family": "tech-support",
+    "needs": "A supported meeting app and a test-call partner.",
+    "first": "Run a paid practice call and leave a one-page setup guide.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-streaming-setup",
+    "title": "Creator streaming setup",
+    "service": "Connect a camera, microphone, scenes, and local recording in a basic streaming tool.",
+    "customer": "Small video creators starting live sessions",
+    "skills": [
+      "Software setup",
+      "Technical support"
+    ],
+    "interests": [
+      "Video creators",
+      "Video tools"
+    ],
+    "family": "tech-support",
+    "needs": "Streaming software knowledge and an offline test routine.",
+    "first": "Build two scenes and test a private recording before any live session.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-audio-software",
+    "title": "Home recording software setup",
+    "service": "Configure audio inputs, track templates, and export settings for a simple recording workflow.",
+    "customer": "Musicians beginning home recording",
+    "skills": [
+      "Software setup",
+      "Technical support"
+    ],
+    "interests": [
+      "Recording",
+      "Audio tools"
+    ],
+    "family": "tech-support",
+    "needs": "Knowledge of a supported recording application and interface.",
+    "first": "Set up a test recording and teach the owner how to export it.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-family-calendar",
+    "title": "Personal device storage review",
+    "service": "Prepare a recurring storage-use report and checklist so owners can decide what to archive; make no deletions.",
+    "customer": "Home computer users running short of storage",
+    "skills": [
+      "Computer setup",
+      "Technical support",
+      "Computers"
+    ],
+    "interests": [
+      "Helping people with computers",
+      "Digital organization",
+      "Technology"
+    ],
+    "family": "tech-support",
+    "needs": "Familiarity with built-in storage reports and an owner-reviewed checklist; no automatic cleanup tools.",
+    "first": "Review one device and deliver a short report listing storage categories and owner-controlled next steps.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Short",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "tech-creator-archive",
+    "title": "Video project archive setup",
+    "service": "Create a folder, naming, and storage workflow that keeps original footage separate from project exports.",
+    "customer": "Independent video creators",
+    "skills": [
+      "Digital organization",
+      "Technical support"
+    ],
+    "interests": [
+      "Video creators",
+      "Video tools"
+    ],
+    "family": "tech-support",
+    "needs": "Editing workflow knowledge and sufficient client-owned storage.",
+    "first": "Organize one copied project and verify it reopens correctly.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-shop-device-check",
+    "title": "Small shop device checklists",
+    "service": "Document routine startup, printer checks, and vendor escalation steps for existing shop devices.",
+    "customer": "Local shops training new staff",
+    "skills": [
+      "Technical support",
+      "Process documentation"
+    ],
+    "interests": [
+      "Local shops",
+      "Customer service"
+    ],
+    "family": "tech-support",
+    "needs": "Device familiarity and boundaries excluding payment or security changes.",
+    "first": "Write and test a start-of-day checklist for one device station.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-community-tech-desk",
+    "title": "Booked community tech clinics",
+    "service": "Run short appointment slots for supported everyday computer and phone questions.",
+    "customer": "Community groups serving local residents",
+    "skills": [
+      "Technology help",
+      "Remote tech help"
+    ],
+    "interests": [
+      "Community groups",
+      "Helping older adults"
+    ],
+    "family": "tech-support",
+    "needs": "A venue partner, supported-task list, and private appointment process.",
+    "first": "Arrange a small paid pilot with four pre-screened questions.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-move-digital",
+    "title": "Digital moving checklists",
+    "service": "Help households plan device packing, account address updates, and technology reconnection steps.",
+    "customer": "Families preparing to move home",
+    "skills": [
+      "Digital organization",
+      "Technical support"
+    ],
+    "interests": [
+      "Moving",
+      "Busy families"
+    ],
+    "family": "tech-support",
+    "needs": "A practical checklist and a clear exclusion of account impersonation.",
+    "first": "Offer a planning session and label one household's device cables.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Short",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "tech-software-comparison",
+    "title": "Practical software comparison sessions",
+    "service": "Compare three tools against a client's stated workflow and demonstrate a small test task.",
+    "customer": "Solo founders choosing everyday software",
+    "skills": [
+      "Research",
+      "Software setup"
+    ],
+    "interests": [
+      "Solo founders",
+      "Practical tech"
+    ],
+    "family": "tech-support",
+    "needs": "A neutral comparison worksheet and trial-access boundaries.",
+    "first": "Charge for a short decision report based on one recurring task.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "tech-tech-instruction-cards",
+    "title": "Printable everyday tech instruction cards",
+    "service": "Create large-print step cards for familiar tasks on a client's supported device.",
+    "customer": "Community centers teaching basic technology",
+    "skills": [
+      "Step-by-step guides",
+      "Software lessons"
+    ],
+    "interests": [
+      "Helping older adults",
+      "Teaching adults"
+    ],
+    "family": "tech-support",
+    "needs": "Tested instructions, readable layouts, and version labels.",
+    "first": "Create and user-test a card for joining a video call.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "tech-spreadsheet-cleanup",
+    "title": "Spreadsheet cleanup projects",
+    "service": "Standardize dates, labels, and blank fields while preserving an untouched original.",
+    "customer": "Small businesses with inconsistent spreadsheets",
+    "skills": [
+      "Data cleanup",
+      "Spreadsheets"
+    ],
+    "interests": [
+      "Spreadsheets",
+      "Operations"
+    ],
+    "family": "data-tools",
+    "needs": "Spreadsheet competence and a documented change log.",
+    "first": "Clean a fifty-row sample and reconcile row counts before quoting.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-duplicate-review",
+    "title": "Duplicate contact review",
+    "service": "Identify likely duplicate records and prepare a merge worksheet for owner approval.",
+    "customer": "Independent businesses with messy contact exports",
+    "skills": [
+      "Data cleanup",
+      "Finding patterns"
+    ],
+    "interests": [
+      "Digital organization",
+      "Small businesses"
+    ],
+    "family": "data-tools",
+    "needs": "A copied export and explicit matching and review rules.",
+    "first": "Flag duplicates in one sanitized sample without merging records.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-sales-dashboard",
+    "title": "Simple sales reporting dashboards",
+    "service": "Turn approved sales exports into a clear monthly trend and product summary.",
+    "customer": "Local shops managing sales in spreadsheets",
+    "skills": [
+      "Reporting",
+      "Spreadsheet formulas"
+    ],
+    "interests": [
+      "Local shops",
+      "Spreadsheets"
+    ],
+    "family": "data-tools",
+    "needs": "An agreed metric dictionary and reconciled source totals.",
+    "first": "Build one month's report and verify totals with the owner.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "tech-stock-sheet",
+    "title": "Inventory count workbooks",
+    "service": "Build a stock-count sheet with item identifiers, count differences, and reorder views.",
+    "customer": "Small retailers with manual stock counts",
+    "skills": [
+      "Spreadsheets",
+      "Spreadsheet formulas"
+    ],
+    "interests": [
+      "Local shops",
+      "Online shops"
+    ],
+    "family": "data-tools",
+    "needs": "A product list and protected formula cells.",
+    "first": "Pilot the workbook on one shelf before a full count.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "tech-job-cost-sheet",
+    "title": "Project cost tracking sheets",
+    "service": "Create a sheet that compares quoted materials and time with actual project usage.",
+    "customer": "Independent makers and repair businesses",
+    "skills": [
+      "Spreadsheet formulas",
+      "Budget templates"
+    ],
+    "interests": [
+      "Making systems",
+      "Independent professionals"
+    ],
+    "family": "data-tools",
+    "needs": "Client-approved categories and clear non-accounting scope.",
+    "first": "Model one completed project and check the calculations together.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "tech-price-comparison",
+    "title": "Spreadsheet change comparison tools",
+    "service": "Build a reusable workbook that flags added, removed, and changed records between two exports.",
+    "customer": "Small teams repeatedly checking updates in exported lists",
+    "skills": [
+      "Spreadsheet formulas"
+    ],
+    "interests": [
+      "Spreadsheets",
+      "Making systems"
+    ],
+    "family": "data-tools",
+    "needs": "Formula competence, a stable record identifier, and sample exports with known differences.",
+    "first": "Compare two synthetic twenty-row exports and verify every flagged change before handover.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "tech-cash-calendar",
+    "title": "Invoice due-date calendars",
+    "service": "Organize invoice due dates and payment status into a simple owner-reviewed cash calendar.",
+    "customer": "Solo service providers",
+    "skills": [
+      "Spreadsheets",
+      "Spreadsheet formulas"
+    ],
+    "interests": [
+      "Solo founders",
+      "Organizing"
+    ],
+    "family": "data-tools",
+    "needs": "A sample invoice export and clear bookkeeping-only boundaries.",
+    "first": "Set up a tracker for ten invoices and reconcile their statuses.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "tech-survey-summary",
+    "title": "Survey branching setup and tests",
+    "service": "Configure survey paths so respondents see the relevant questions and organizers receive consistent fields.",
+    "customer": "Community groups designing multi-path feedback forms",
+    "skills": [
+      "Forms and workflows"
+    ],
+    "interests": [
+      "Community groups",
+      "Making systems"
+    ],
+    "family": "data-tools",
+    "needs": "A form tool with branching, an approved question map, and a test for each route.",
+    "first": "Set up a five-question pilot and test every branch using fictional responses.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-mailing-list-clean",
+    "title": "Mailing list data cleanup",
+    "service": "Standardize contact fields and flag missing consent or malformed addresses for client review.",
+    "customer": "Small newsletter publishers",
+    "skills": [
+      "Data cleanup",
+      "Spreadsheets"
+    ],
+    "interests": [
+      "Email newsletters",
+      "Newsletters"
+    ],
+    "family": "data-tools",
+    "needs": "A copied export and a rule against guessing consent or sending messages.",
+    "first": "Return a reviewed sample and an explicit exclusions report.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-membership-tracker",
+    "title": "Club membership trackers",
+    "service": "Build a roster with renewal dates, volunteer roles, and restricted organizer views.",
+    "customer": "Local clubs moving beyond scattered lists",
+    "skills": [
+      "Spreadsheets",
+      "Forms and workflows"
+    ],
+    "interests": [
+      "Local clubs",
+      "Community groups"
+    ],
+    "family": "data-tools",
+    "needs": "A data-minimization plan and agreed access permissions.",
+    "first": "Pilot a fictional ten-member roster with the club organizer.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "tech-attendance-reports",
+    "title": "Class attendance workbooks",
+    "service": "Create simple attendance entry, absence summaries, and session totals.",
+    "customer": "Independent workshop teachers",
+    "skills": [
+      "Spreadsheets",
+      "Reporting"
+    ],
+    "interests": [
+      "Workshops",
+      "Teaching adults"
+    ],
+    "family": "data-tools",
+    "needs": "A sample roster and learner privacy boundaries.",
+    "first": "Test one class's fictional attendance across four sessions.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "tech-recipe-scaling",
+    "title": "Recipe scaling spreadsheets",
+    "service": "Build ingredient scaling and batch-yield worksheets using the client's tested recipes.",
+    "customer": "Small bakers planning production",
+    "skills": [
+      "Spreadsheet formulas"
+    ],
+    "interests": [
+      "Baking",
+      "Recipe development"
+    ],
+    "family": "data-tools",
+    "needs": "Accurate unit conversion skills and client-verified recipe inputs.",
+    "first": "Scale one recipe to three batch sizes and check every quantity.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "tech-craft-pricing-tools",
+    "title": "Craft materials pricing calculators",
+    "service": "Create transparent calculators for materials, packaging, time, and chosen markup assumptions.",
+    "customer": "Makers preparing products for craft fairs",
+    "skills": [
+      "Spreadsheet formulas",
+      "Budget templates"
+    ],
+    "interests": [
+      "Craft fairs",
+      "Handmade gifts"
+    ],
+    "family": "data-tools",
+    "needs": "An editable cost model with no profit promises.",
+    "first": "Calculate one real item's inputs with the maker and sell the template.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "tech-music-release-metrics",
+    "title": "Music release tracking sheets",
+    "service": "Combine artist-provided release dates and platform exports into a consistent progress report.",
+    "customer": "Independent musicians managing their releases",
+    "skills": [
+      "Reporting",
+      "Data cleanup"
+    ],
+    "interests": [
+      "Independent musicians",
+      "Artist releases"
+    ],
+    "family": "data-tools",
+    "needs": "A metric glossary and permission to use supplied exports.",
+    "first": "Reconcile one release's data and create a short reporting template.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "tech-content-inventory",
+    "title": "Website content inventory sheets",
+    "service": "List page URLs, owners, update dates, and review needs in a maintainable workbook.",
+    "customer": "Small organizations with stale website content",
+    "skills": [
+      "Spreadsheets",
+      "Data entry",
+      "Website maintenance"
+    ],
+    "interests": [
+      "Small business websites",
+      "Digital organization"
+    ],
+    "family": "data-tools",
+    "needs": "A page inventory template and clear review categories.",
+    "first": "Inventory twenty public pages and quote a broader audit.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Short",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-spreadsheet-repair",
+    "title": "Broken spreadsheet formula repair",
+    "service": "Trace incorrect references and formula errors, then document and test a bounded repair.",
+    "customer": "Small businesses relying on a fragile workbook",
+    "skills": [
+      "Spreadsheet formulas"
+    ],
+    "interests": [
+      "Spreadsheets",
+      "Making systems"
+    ],
+    "family": "data-tools",
+    "needs": "Formula debugging competence and an original file backup.",
+    "first": "Fix a copied problem sheet against known expected results.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-data-entry-forms",
+    "title": "Controlled spreadsheet entry forms",
+    "service": "Replace inconsistent direct sheet edits with forms, dropdowns, and validation messages.",
+    "customer": "Small teams sharing operational spreadsheets",
+    "skills": [
+      "Forms and workflows",
+      "Spreadsheet formulas"
+    ],
+    "interests": [
+      "Spreadsheets",
+      "Making systems"
+    ],
+    "family": "data-tools",
+    "needs": "A field dictionary and a test copy of the workbook.",
+    "first": "Prototype validated entry for five recurring fields.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-research-datasets",
+    "title": "Structured public-data research",
+    "service": "Compile a narrow, source-linked dataset from permitted public sources with dates and definitions.",
+    "customer": "Writers and community organizations",
+    "skills": [
+      "Research",
+      "Fact checking"
+    ],
+    "interests": [
+      "Local history",
+      "Writing guides"
+    ],
+    "family": "data-tools",
+    "needs": "Source-verification skills and a documented collection method.",
+    "first": "Create a ten-record sample with source links before quoting.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-garden-records",
+    "title": "Garden record spreadsheet kits",
+    "service": "Sell editable seed, planting-date, harvest, and garden-task tracking workbooks.",
+    "customer": "Home food growers",
+    "skills": [
+      "Spreadsheets",
+      "Spreadsheet formulas"
+    ],
+    "interests": [
+      "Growing food",
+      "Gardens"
+    ],
+    "family": "data-tools",
+    "needs": "A tested workbook and clear user instructions.",
+    "first": "Ask three gardeners to test one season-planning sheet.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "tech-workbook-lessons",
+    "title": "Spreadsheet handover lessons",
+    "service": "Teach owners how to safely use and update a workbook they already depend on.",
+    "customer": "Independent professionals inheriting complex spreadsheets",
+    "skills": [
+      "Software lessons",
+      "Spreadsheets",
+      "Explaining"
+    ],
+    "interests": [
+      "Teaching adults",
+      "Spreadsheets"
+    ],
+    "family": "data-tools",
+    "needs": "Workbook fluency and client-approved practice data.",
+    "first": "Offer a session covering three routine tasks and a recovery exercise.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "tech-game-test-reports",
+    "title": "Small game usability tests",
+    "service": "Play a developer's build through agreed scenarios and report reproducible usability problems.",
+    "customer": "Independent game developers",
+    "skills": [
+      "Troubleshooting",
+      "Giving feedback"
+    ],
+    "interests": [
+      "Game design",
+      "Making games"
+    ],
+    "family": "game-tools",
+    "needs": "Clear bug-report writing and a supported test device.",
+    "first": "Offer a paid one-hour test with five documented findings.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-controller-guides",
+    "title": "Controller setup guides",
+    "service": "Create tested setup instructions and troubleshooting steps for a game's supported controllers.",
+    "customer": "Small game studios",
+    "skills": [
+      "Step-by-step guides",
+      "Troubleshooting"
+    ],
+    "interests": [
+      "Games",
+      "Game tutorials"
+    ],
+    "family": "game-tools",
+    "needs": "Access to supported controllers and a repeatable test checklist.",
+    "first": "Document one controller on one platform as a paid sample.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "tech-prototype-no-code",
+    "title": "No-code game prototypes",
+    "service": "Build a small playable loop from a client's written design using a familiar no-code game tool.",
+    "customer": "Tabletop designers testing digital concepts",
+    "skills": [
+      "No-code tools",
+      "Simple scripts"
+    ],
+    "interests": [
+      "Game design",
+      "Making games"
+    ],
+    "family": "game-tools",
+    "needs": "A game tool you know and strict limits on prototype scope.",
+    "first": "Offer one mechanic with placeholder art and a written acceptance test.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-game-save-tools",
+    "title": "Playtest feedback collection tools",
+    "service": "Create a playtest signup form, consent text supplied by the client, and structured feedback dashboard.",
+    "customer": "Independent game teams",
+    "skills": [
+      "Forms and workflows",
+      "No-code tools"
+    ],
+    "interests": [
+      "Making games",
+      "Game design"
+    ],
+    "family": "game-tools",
+    "needs": "A form platform, minimal data collection, and clear organizer access.",
+    "first": "Run a fictional five-player test of the entire feedback flow.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-tabletop-tools",
+    "title": "Tabletop session scheduling tools",
+    "service": "Build availability polls, session calendars, and reminders chosen by the group organizer.",
+    "customer": "Tabletop game groups and clubs",
+    "skills": [
+      "Forms and workflows",
+      "Automation"
+    ],
+    "interests": [
+      "Tabletop games",
+      "Local clubs"
+    ],
+    "family": "game-tools",
+    "needs": "A calendar tool and clearly agreed contact permissions.",
+    "first": "Set up the next four sessions for one consenting group.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "tech-campaign-wikis",
+    "title": "Private tabletop campaign wikis",
+    "service": "Set up an organized, editable wiki for places, characters, session notes, and player-approved lore.",
+    "customer": "Tabletop campaign organizers",
+    "skills": [
+      "No-code tools"
+    ],
+    "interests": [
+      "Tabletop games",
+      "Worldbuilding"
+    ],
+    "family": "game-tools",
+    "needs": "A wiki tool and a clear permission structure.",
+    "first": "Build a sample with three locations and one session log.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-rule-reference",
+    "title": "Interactive rules reference tools",
+    "service": "Turn a designer's approved rules into searchable references and linked examples.",
+    "customer": "Independent tabletop publishers",
+    "skills": [
+      "Website setup",
+      "No-code tools"
+    ],
+    "interests": [
+      "Tabletop games",
+      "Game design"
+    ],
+    "family": "game-tools",
+    "needs": "Permission to use the rules and careful content verification.",
+    "first": "Prototype one chapter and test five common rules questions.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "tech-dice-tools",
+    "title": "Custom virtual dice tools",
+    "service": "Build accessible dice rollers for a designer's specified probability rules.",
+    "customer": "Independent tabletop designers",
+    "skills": [
+      "Simple scripts"
+    ],
+    "interests": [
+      "Tabletop games",
+      "Game design"
+    ],
+    "family": "game-tools",
+    "needs": "Coding and probability-testing competence with a written rules spec.",
+    "first": "Build one roller and verify its outcomes against known cases.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Deep",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "tech-encounter-trackers",
+    "title": "Tabletop encounter trackers",
+    "service": "Create editable turn-order and resource trackers without using unlicensed game content.",
+    "customer": "Tabletop facilitators",
+    "skills": [
+      "Spreadsheet formulas",
+      "No-code tools"
+    ],
+    "interests": [
+      "Tabletop games",
+      "Worldbuilding"
+    ],
+    "family": "game-tools",
+    "needs": "An original tracker layout and clear reset instructions.",
+    "first": "Sell a tested starter tracker to a small playtest group.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "tech-tournament-brackets",
+    "title": "Community tournament bracket tools",
+    "service": "Configure match entry, standings, and organizer-reviewed bracket updates.",
+    "customer": "Local gaming event hosts",
+    "skills": [
+      "Spreadsheets",
+      "No-code tools"
+    ],
+    "interests": [
+      "Gaming events",
+      "Game communities"
+    ],
+    "family": "game-tools",
+    "needs": "A supported bracket tool and explicit tournament rules.",
+    "first": "Simulate an eight-player event before offering a live setup.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-game-community-onboarding",
+    "title": "Game community onboarding systems",
+    "service": "Build welcome channels, role instructions, and an organizer-approved help directory.",
+    "customer": "Independent game communities",
+    "skills": [
+      "Software setup"
+    ],
+    "interests": [
+      "Game communities",
+      "Community moderation"
+    ],
+    "family": "game-tools",
+    "needs": "Platform knowledge and client-approved moderation boundaries.",
+    "first": "Prototype onboarding in a test community before configuring the real one.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-game-site-patches",
+    "title": "Indie game update websites",
+    "service": "Set up a maintainable update archive with version labels, known issues, and release notes.",
+    "customer": "Independent game developers",
+    "skills": [
+      "Website setup",
+      "Website maintenance"
+    ],
+    "interests": [
+      "Making games",
+      "Video creators"
+    ],
+    "family": "game-tools",
+    "needs": "A small site template and approved release information.",
+    "first": "Publish one sample update from a developer's supplied notes.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-game-demo-pages",
+    "title": "Playable game demo pages",
+    "service": "Package a browser-compatible demo with controls, loading feedback, and a feedback link.",
+    "customer": "Independent browser-game creators",
+    "skills": [
+      "Website setup",
+      "Simple scripts"
+    ],
+    "interests": [
+      "Making games",
+      "Game design"
+    ],
+    "family": "game-tools",
+    "needs": "Browser build knowledge and the developer's approved demo files.",
+    "first": "Host a local test and check loading on phone and desktop.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-game-localization-check",
+    "title": "Game text integration checks",
+    "service": "Check supplied translations for clipping, missing strings, and broken layout in a game build.",
+    "customer": "Small game studios localizing a release",
+    "skills": [
+      "Troubleshooting"
+    ],
+    "interests": [
+      "Languages",
+      "Making games"
+    ],
+    "family": "game-tools",
+    "needs": "A test build, string identifiers, and supplied translations; no fluency claims.",
+    "first": "Test one language's menus and return screenshot-backed defects.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-game-bug-database",
+    "title": "Game bug tracking setup",
+    "service": "Configure reproducible bug templates, severity definitions, and triage views.",
+    "customer": "Small independent game teams",
+    "skills": [
+      "No-code tools"
+    ],
+    "interests": [
+      "Making games",
+      "Game design"
+    ],
+    "family": "game-tools",
+    "needs": "A task tool and agreed report fields.",
+    "first": "Import five fictional bugs and walk through a triage session.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-game-tutorial-widget",
+    "title": "Interactive game control tutorials",
+    "service": "Build a compact browser practice screen for a developer's specified controls.",
+    "customer": "Browser-game developers",
+    "skills": [
+      "Simple scripts"
+    ],
+    "interests": [
+      "Game tutorials",
+      "Making games"
+    ],
+    "family": "game-tools",
+    "needs": "Frontend coding skills and a supplied control specification.",
+    "first": "Prototype one input action with keyboard and touch support.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Deep",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "tech-stream-overlays-tools",
+    "title": "Creator stream control panels",
+    "service": "Configure scene shortcuts and simple status widgets in a creator's existing streaming setup.",
+    "customer": "Gaming video creators",
+    "skills": [
+      "Software setup",
+      "Simple scripts"
+    ],
+    "interests": [
+      "Video creators",
+      "Gaming events"
+    ],
+    "family": "game-tools",
+    "needs": "Streaming-tool expertise and a private test recording process.",
+    "first": "Set up three tested shortcuts and document how to reset them.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-game-asset-index",
+    "title": "Game asset library catalogs",
+    "service": "Organize a team's owned assets by file type, license source, version, and usage notes.",
+    "customer": "Independent game development teams",
+    "skills": [
+      "Digital organization",
+      "Data entry"
+    ],
+    "interests": [
+      "Making games",
+      "Digital organization"
+    ],
+    "family": "game-tools",
+    "needs": "A catalog template and supplied asset licenses; no legal certification.",
+    "first": "Catalog twenty assets and flag missing license evidence for review.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "tech-boardgame-companion",
+    "title": "Board-game companion calculators",
+    "service": "Build original score, round, or resource calculators from a designer's documented rules.",
+    "customer": "Independent board-game designers",
+    "skills": [
+      "Simple scripts",
+      "Spreadsheet formulas"
+    ],
+    "interests": [
+      "Tabletop games",
+      "Game design"
+    ],
+    "family": "game-tools",
+    "needs": "A clear rule specification and exhaustive example scores.",
+    "first": "Implement one scoring phase and verify all supplied test examples.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Deep",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "tech-game-performance-tests",
+    "title": "Browser game performance reports",
+    "service": "Measure loading time and frame consistency on agreed devices and document reproducible slow scenes.",
+    "customer": "Independent browser-game developers",
+    "skills": [
+      "Troubleshooting",
+      "Simple scripts"
+    ],
+    "interests": [
+      "Making games",
+      "Technology"
+    ],
+    "family": "game-tools",
+    "needs": "Browser profiling knowledge and a fixed test protocol.",
+    "first": "Benchmark one demo scene and deliver a short evidence-based report.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  }
+]

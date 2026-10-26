@@ -5,6 +5,7 @@
   "compatibility_date": "2026-10-19",
   "workers_dev": false,
   "preview_urls": false,
+  "triggers": {"crons":["*/15 * * * *"]},
   "routes": [
     {"pattern":"freemarketwildlife.com/*", "zone_id":"f676247ffd5c08516d90651c43e4a379"},
     {"pattern":"www.freemarketwildlife.com/*", "zone_id":"f676247ffd5c08516d90651c43e4a379"}

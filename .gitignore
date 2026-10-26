@@ -20,3 +20,8 @@ node_modules/
 .dev.vars
 .env
 services/workspace-auth/public/
+
+# Local authoring guides and generated release/QA evidence are not repository source.
+/AGENTS.md
+/blog.md
+/outputs/

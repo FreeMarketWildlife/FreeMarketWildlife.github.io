@@ -1,0 +1,2341 @@
+[
+  {
+    "id": "people-math-practice-sessions",
+    "title": "Math practice sessions",
+    "service": "Teach one math topic through worked examples and short practice exercises.",
+    "customer": "Students needing help with a specific school math topic",
+    "skills": [
+      "Math tutoring"
+    ],
+    "interests": [
+      "Math",
+      "Tutoring",
+      "Helping students",
+      "Helping people"
+    ],
+    "family": "tutoring",
+    "needs": "Subject mastery and an age-appropriate lesson with guardian arrangements for minors.",
+    "first": "Prepare a fractions lesson and offer one paid session to a family.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-reading-fluency-practice",
+    "title": "Reading fluency practice",
+    "service": "Guide reading aloud, vocabulary practice, and discussion using suitable books.",
+    "customer": "Families seeking extra reading practice for children",
+    "skills": [
+      "Reading support"
+    ],
+    "interests": [
+      "Reading",
+      "Teaching children",
+      "Helping students",
+      "Helping people"
+    ],
+    "family": "tutoring",
+    "needs": "Strong reading instruction skills and guardian-approved books and sessions.",
+    "first": "Create a 30-minute practice lesson and invite one family to try it.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-study-routine-coaching",
+    "title": "Study routine coaching",
+    "service": "Help learners turn assignments into a realistic weekly practice routine.",
+    "customer": "Students struggling to organize independent study",
+    "skills": [
+      "Study skills",
+      "Practice plans"
+    ],
+    "interests": [
+      "Study skills",
+      "Helping students",
+      "Helping people"
+    ],
+    "family": "study-coaching",
+    "needs": "A planning worksheet and a clear boundary excluding diagnosis or therapy.",
+    "first": "Offer a one-week planning trial with one student and guardian.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-exam-revision-workshops",
+    "title": "Revision planning workshops",
+    "service": "Guide learners to make revision schedules and self-check routines using their own course materials; provide no subject instruction.",
+    "customer": "Learners who want a workable revision routine",
+    "skills": [
+      "Study skills",
+      "Practice plans",
+      "Group workshops"
+    ],
+    "interests": [
+      "Study skills",
+      "Math",
+      "Science",
+      "Helping people"
+    ],
+    "family": "tutoring",
+    "needs": "Workshop facilitation skills and a simple revision planning template.",
+    "first": "Make a one-week revision plan and offer a small group planning session.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-adult-reading-club-facilitation",
+    "title": "Adult reading club facilitation",
+    "service": "Guide a paid small-group discussion with accessible reading prompts.",
+    "customer": "Adults who want a regular, welcoming reading habit",
+    "skills": [
+      "Group workshops",
+      "Hosting events",
+      "Teaching"
+    ],
+    "interests": [
+      "Reading",
+      "Teaching adults",
+      "Bringing people together",
+      "Helping people"
+    ],
+    "family": "learning-groups",
+    "needs": "A short reading selection with appropriate permissions and discussion prompts.",
+    "first": "Invite six local readers to one clearly priced trial meeting.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-language-study-accountability",
+    "title": "Language study accountability",
+    "service": "Help adult language learners schedule practice and track their own course assignments; provide no language instruction.",
+    "customer": "Adults independently studying a language",
+    "skills": [
+      "Coaching",
+      "Practice plans"
+    ],
+    "interests": [
+      "Languages",
+      "Study skills"
+    ],
+    "family": "study-coaching",
+    "needs": "A planning worksheet and learner-chosen course materials; this is accountability, not language teaching.",
+    "first": "Offer three check-ins around one week of a learner’s existing course assignments.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-expert-led-workshop-logistics",
+    "title": "Expert-led workshop logistics",
+    "service": "Prepare materials, manage registration, and cue an expert’s checked demonstration while the expert teaches.",
+    "customer": "Community groups hosting an expert-led educational workshop",
+    "skills": [
+      "Event logistics",
+      "Planning",
+      "Organizing"
+    ],
+    "interests": [
+      "Science",
+      "Workshops",
+      "Community groups"
+    ],
+    "family": "event-operations",
+    "needs": "An expert-approved material list and safety plan; the expert provides all subject instruction and supervision.",
+    "first": "Offer logistics support for one workshop using the expert’s existing demonstration plan.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-presentation-rehearsal-coaching",
+    "title": "Presentation rehearsal coaching",
+    "service": "Help speakers rehearse a short talk and improve structure, pacing, and clarity.",
+    "customer": "Independent professionals preparing a presentation",
+    "skills": [
+      "Presentations",
+      "Giving feedback"
+    ],
+    "interests": [
+      "Teaching adults",
+      "Independent professionals",
+      "Helping people"
+    ],
+    "family": "practical-coaching",
+    "needs": "A feedback rubric and demonstrated public-speaking experience.",
+    "first": "Offer a paid rehearsal of one five-minute talk.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-interview-practice-sessions",
+    "title": "Interview practice sessions",
+    "service": "Run realistic interview rehearsals with specific feedback and a practice plan.",
+    "customer": "Adults preparing for employment interviews",
+    "skills": [
+      "Client interviews",
+      "Giving feedback",
+      "Coaching"
+    ],
+    "interests": [
+      "Teaching adults",
+      "Helping people"
+    ],
+    "family": "practical-coaching",
+    "needs": "A question bank and experience evaluating clear, relevant interview answers.",
+    "first": "Offer one mock interview with written feedback to someone in your network.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-customer-conversation-training",
+    "title": "Customer conversation training",
+    "service": "Teach staff how to clarify requests, explain next steps, and hand off problems.",
+    "customer": "Small shops onboarding customer-facing staff",
+    "skills": [
+      "Customer support",
+      "Group workshops",
+      "Teaching"
+    ],
+    "interests": [
+      "Customer service",
+      "Local shops",
+      "Business",
+      "Helping people"
+    ],
+    "family": "staff-training",
+    "needs": "Service experience and realistic role-play scenarios without scripted false claims.",
+    "first": "Offer a shop a one-hour workshop using three common customer situations.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-volunteer-induction-sessions",
+    "title": "Volunteer induction sessions",
+    "service": "Turn an organization’s approved routines into a clear welcome lesson.",
+    "customer": "Community groups onboarding new volunteers",
+    "skills": [
+      "Group workshops",
+      "Process documentation",
+      "Teaching"
+    ],
+    "interests": [
+      "Community groups",
+      "Teaching adults",
+      "Business",
+      "Helping people"
+    ],
+    "family": "staff-training",
+    "needs": "An approved handbook and a short rehearsal with the volunteer coordinator.",
+    "first": "Pilot one induction session with a group that already has volunteers.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-workshop-workbook-kits",
+    "title": "Workshop workbook kits",
+    "service": "Make reusable exercises and facilitator notes for a topic you can teach.",
+    "customer": "Independent workshop leaders",
+    "skills": [
+      "Step-by-step guides",
+      "Group workshops",
+      "Writing"
+    ],
+    "interests": [
+      "Workshops",
+      "Writing guides",
+      "Helping people"
+    ],
+    "family": "learning-products",
+    "needs": "Topic expertise, tested exercises, and clear licensing terms.",
+    "first": "Test a five-page workbook with one facilitator before selling a kit.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "people-homework-planning-check-ins",
+    "title": "Homework planning check-ins",
+    "service": "Guide students to prioritize assignments and track completion without doing their work.",
+    "customer": "Families wanting consistent after-school accountability",
+    "skills": [
+      "Study skills",
+      "Scheduling"
+    ],
+    "interests": [
+      "Helping students",
+      "Busy families",
+      "Helping people"
+    ],
+    "family": "study-coaching",
+    "needs": "A simple check-in format, guardian agreement, and clear academic honesty rules.",
+    "first": "Offer three short paid check-ins during one school week.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-constructive-feedback-circles",
+    "title": "Constructive feedback circles",
+    "service": "Facilitate small peer groups that practice giving useful, respectful feedback.",
+    "customer": "Adult creative groups improving work together",
+    "skills": [
+      "Giving feedback",
+      "Group workshops"
+    ],
+    "interests": [
+      "Creative work",
+      "Teaching adults",
+      "Bringing people together",
+      "Helping people"
+    ],
+    "family": "learning-groups",
+    "needs": "A feedback protocol and moderation boundaries.",
+    "first": "Invite four creators to one structured feedback session with sample work.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-family-learning-activity-packs",
+    "title": "Family learning activity packs",
+    "service": "Create simple, tested learning activities with instructions for adults.",
+    "customer": "Families seeking offline activities for children",
+    "skills": [
+      "Teaching",
+      "Step-by-step guides",
+      "Writing"
+    ],
+    "interests": [
+      "Teaching children",
+      "Busy families",
+      "Helping people"
+    ],
+    "family": "learning-products",
+    "needs": "Age-appropriate subject knowledge, safe materials, and original activity sheets.",
+    "first": "Test a three-activity pack with one family before selling it.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "people-new-manager-practice-coaching",
+    "title": "New manager practice coaching",
+    "service": "Rehearse delegation, check-ins, and giving feedback with first-time supervisors.",
+    "customer": "Small organizations promoting a first-time team lead",
+    "skills": [
+      "Coaching",
+      "Giving feedback"
+    ],
+    "interests": [
+      "Teaching adults",
+      "Small businesses",
+      "Helping people"
+    ],
+    "family": "practical-coaching",
+    "needs": "Demonstrated management experience and scenarios excluding employment-law advice.",
+    "first": "Offer one practice session focused on delegating a single task.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-goal-accountability-groups",
+    "title": "Goal accountability groups",
+    "service": "Host structured weekly check-ins where adults choose tasks and report progress.",
+    "customer": "Independent professionals pursuing a defined project",
+    "skills": [
+      "Coaching",
+      "Hosting events"
+    ],
+    "interests": [
+      "Independent professionals",
+      "Bringing people together",
+      "Helping people"
+    ],
+    "family": "learning-groups",
+    "needs": "A meeting agenda, confidentiality agreement, and non-therapeutic scope.",
+    "first": "Invite five professionals to a four-week paid pilot.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-tabletop-game-teaching-sessions",
+    "title": "Tabletop game teaching sessions",
+    "service": "Teach rules and guide a first playthrough without taking over the game.",
+    "customer": "Families and clubs learning a new tabletop game",
+    "skills": [
+      "Teaching",
+      "Explaining",
+      "Group workshops"
+    ],
+    "interests": [
+      "Tabletop games",
+      "Game tutorials"
+    ],
+    "family": "game-teaching",
+    "needs": "Deep familiarity with selected games and permission for any hosted venue.",
+    "first": "Offer a beginner session for one game at a local club.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-tutor-lesson-planning-support",
+    "title": "Tutor lesson planning support",
+    "service": "Turn a tutor’s existing topic knowledge into sequenced exercises and lesson notes.",
+    "customer": "Independent tutors with limited preparation time",
+    "skills": [
+      "Practice plans",
+      "Step-by-step guides",
+      "Writing",
+      "Teaching"
+    ],
+    "interests": [
+      "Tutoring",
+      "Teaching children",
+      "Teaching adults",
+      "Helping people"
+    ],
+    "family": "learning-products",
+    "needs": "Teaching experience and subject review by the commissioning tutor.",
+    "first": "Prepare one sample lesson outline and quote a three-lesson package.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-learning-resource-comparison-service",
+    "title": "Learning resource comparison service",
+    "service": "Compare course formats, prerequisites, and schedules against a learner’s stated needs.",
+    "customer": "Adults choosing a skill course",
+    "skills": [
+      "Research",
+      "Comparing prices"
+    ],
+    "interests": [
+      "Learning",
+      "Teaching adults",
+      "Helping people"
+    ],
+    "family": "learning-research",
+    "needs": "A transparent comparison checklist with no undisclosed referral incentives.",
+    "first": "Compare three courses for one specific learning goal and sell a small report.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-inbox-triage-service",
+    "title": "Inbox triage service",
+    "service": "Sort routine email, flag decisions, and draft replies for client approval.",
+    "customer": "Independent professionals with crowded inboxes",
+    "skills": [
+      "Inbox management",
+      "Administration",
+      "Organizing"
+    ],
+    "interests": [
+      "Independent professionals",
+      "Organizing",
+      "Business"
+    ],
+    "family": "administration",
+    "needs": "Client-approved categories, secure delegated access, and escalation rules.",
+    "first": "Offer a one-week trial covering one inbox and a daily summary.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-appointment-coordination",
+    "title": "Appointment coordination",
+    "service": "Arrange appointments, confirm details, and handle agreed rescheduling.",
+    "customer": "Solo service providers",
+    "skills": [
+      "Scheduling",
+      "Administration",
+      "Organizing"
+    ],
+    "interests": [
+      "Solo founders",
+      "Organizing",
+      "Business"
+    ],
+    "family": "administration",
+    "needs": "A scheduling procedure and access limited to the client’s booking tools.",
+    "first": "Offer to coordinate one week of appointments for a provider.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-client-intake-coordination",
+    "title": "Client intake coordination",
+    "service": "Collect required client information and check that intake packets are complete.",
+    "customer": "Independent service professionals",
+    "skills": [
+      "Administration",
+      "Following up",
+      "Organizing"
+    ],
+    "interests": [
+      "Independent professionals",
+      "Making systems",
+      "Business"
+    ],
+    "family": "administration",
+    "needs": "An approved intake checklist and secure handling of customer information.",
+    "first": "Map one provider’s intake steps and pilot five new-client packets.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-project-status-reporting",
+    "title": "Project status reporting",
+    "service": "Gather task updates and produce a short, accurate progress digest.",
+    "customer": "Small teams running several client projects",
+    "skills": [
+      "Project coordination",
+      "Reporting",
+      "Organizing"
+    ],
+    "interests": [
+      "Small businesses",
+      "Organizing",
+      "Business"
+    ],
+    "family": "project-support",
+    "needs": "A status format, agreed update sources, and clear reporting deadlines.",
+    "first": "Prepare one weekly digest from a team’s existing task list.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-meeting-notes-and-action-tracking",
+    "title": "Meeting notes and action tracking",
+    "service": "Record decisions, owners, and deadlines from meetings and circulate approved notes.",
+    "customer": "Small remote teams",
+    "skills": [
+      "Listening",
+      "Process documentation",
+      "Organizing"
+    ],
+    "interests": [
+      "Making systems",
+      "Independent professionals",
+      "Business"
+    ],
+    "family": "project-support",
+    "needs": "Accurate note-taking, meeting consent, and a confidentiality process.",
+    "first": "Offer to document one meeting and track its action list for a week.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-digital-file-organization",
+    "title": "Digital file organization",
+    "service": "Sort a defined set of documents into a searchable, consistent folder structure.",
+    "customer": "Independent professionals with disordered files",
+    "skills": [
+      "Digital filing",
+      "Digital organization",
+      "Organizing"
+    ],
+    "interests": [
+      "Digital organization",
+      "Organizing",
+      "Business"
+    ],
+    "family": "administration",
+    "needs": "A naming convention, backup, and client approval before moving files.",
+    "first": "Offer a fixed-scope cleanup of one project folder.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-document-control-service",
+    "title": "Document control service",
+    "service": "Maintain the approved current versions of shared procedures and forms.",
+    "customer": "Small teams confused by duplicate documents",
+    "skills": [
+      "Process documentation",
+      "Digital filing"
+    ],
+    "interests": [
+      "Making systems",
+      "Small businesses",
+      "Business"
+    ],
+    "family": "operations",
+    "needs": "Version rules, an owner list, and a review schedule.",
+    "first": "Inventory ten documents and create one approved-version register.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-travel-logistics-planning",
+    "title": "Travel logistics planning",
+    "service": "Assemble transport timings, lodging options, and a practical itinerary for approval.",
+    "customer": "Independent professionals arranging business travel",
+    "skills": [
+      "Planning",
+      "Scheduling",
+      "Organizing"
+    ],
+    "interests": [
+      "Independent professionals",
+      "Logistics",
+      "Business"
+    ],
+    "family": "administration",
+    "needs": "Research skills, clear spending limits, and client-controlled booking and payments.",
+    "first": "Sell a planning package for one short trip without taking booking funds.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-speaker-guest-coordination",
+    "title": "Speaker guest coordination",
+    "service": "Arrange availability, preparation details, and reminders for invited guests.",
+    "customer": "Podcast and community event hosts",
+    "skills": [
+      "Scheduling",
+      "Following up",
+      "Organizing"
+    ],
+    "interests": [
+      "Interviews",
+      "Community events",
+      "Business"
+    ],
+    "family": "project-support",
+    "needs": "A guest checklist and host-approved outreach templates.",
+    "first": "Coordinate one already-invited guest from confirmation through event day.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-member-renewal-administration",
+    "title": "Member renewal administration",
+    "service": "Track renewal dates and send approved reminders with accurate account status.",
+    "customer": "Small associations and clubs",
+    "skills": [
+      "Administration",
+      "Following up",
+      "Organizing"
+    ],
+    "interests": [
+      "Local clubs",
+      "Community groups",
+      "Business"
+    ],
+    "family": "administration",
+    "needs": "An authorized member list, privacy controls, and an approved reminder schedule.",
+    "first": "Offer one club a month of renewal tracking.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-waiting-list-coordination",
+    "title": "Waiting list coordination",
+    "service": "Maintain a fair, documented waiting list and offer open places in order.",
+    "customer": "Workshop hosts and small service businesses",
+    "skills": [
+      "Scheduling",
+      "Administration",
+      "Organizing"
+    ],
+    "interests": [
+      "Workshops",
+      "Customer service",
+      "Business"
+    ],
+    "family": "administration",
+    "needs": "Clear eligibility rules, client-approved offers, and accurate records.",
+    "first": "Set up and manage the next ten waiting-list contacts for one host.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-subscription-cancellation-admin",
+    "title": "Subscription cancellation admin",
+    "service": "Help a client inventory recurring subscriptions and process their chosen cancellations.",
+    "customer": "Busy independent professionals",
+    "skills": [
+      "Administration",
+      "Comparing prices",
+      "Organizing"
+    ],
+    "interests": [
+      "Organizing",
+      "Independent professionals",
+      "Business"
+    ],
+    "family": "administration",
+    "needs": "Explicit account permissions and a list reviewed by the client before changes.",
+    "first": "Offer an inventory of ten subscriptions and client-approved follow-through.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-paperwork-scanning-and-indexing",
+    "title": "Paperwork scanning and indexing",
+    "service": "Scan agreed paper records and create a searchable file index.",
+    "customer": "Households and sole traders digitizing old paperwork",
+    "skills": [
+      "Digital filing",
+      "Data entry",
+      "Organizing"
+    ],
+    "interests": [
+      "Home organization",
+      "Digital organization"
+    ],
+    "family": "document-services",
+    "needs": "A scanner, secure storage, and a retention decision approved by the owner.",
+    "first": "Quote one box of non-sensitive records after checking its condition.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-contact-list-maintenance",
+    "title": "Contact list maintenance",
+    "service": "Update contact details, remove verified duplicates, and record consent preferences.",
+    "customer": "Community organizations and small businesses",
+    "skills": [
+      "Data entry",
+      "Administration",
+      "Organizing"
+    ],
+    "interests": [
+      "Community groups",
+      "Organizing",
+      "Business"
+    ],
+    "family": "administration",
+    "needs": "An authorized source list and a process for checking uncertain records.",
+    "first": "Clean one small list and provide a change log for approval.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-application-checklist-support",
+    "title": "Application checklist support",
+    "service": "Organize required documents and deadlines without writing false claims or advising eligibility.",
+    "customer": "Adults completing non-legal course or program applications",
+    "skills": [
+      "Planning",
+      "Process documentation",
+      "Organizing"
+    ],
+    "interests": [
+      "Teaching adults",
+      "Organizing"
+    ],
+    "family": "document-services",
+    "needs": "Published application requirements and secure document handling.",
+    "first": "Build a deadline checklist for one course application.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-household-calendar-setup",
+    "title": "Household calendar setup",
+    "service": "Create a shared weekly calendar with agreed reminders and responsibilities.",
+    "customer": "Busy families managing activities",
+    "skills": [
+      "Scheduling",
+      "Organizing"
+    ],
+    "interests": [
+      "Busy families",
+      "Home organization",
+      "Helping people"
+    ],
+    "family": "household-admin",
+    "needs": "A family-approved routine and a calendar tool they can maintain.",
+    "first": "Offer one setup session covering a typical school or activity week.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-move-administration-service",
+    "title": "Move administration service",
+    "service": "Track address changes, utility dates, and packing milestones from a client-approved list.",
+    "customer": "Households planning a move",
+    "skills": [
+      "Planning",
+      "Administration",
+      "Organizing"
+    ],
+    "interests": [
+      "Moving",
+      "Home organization",
+      "Helping people"
+    ],
+    "family": "household-admin",
+    "needs": "A moving checklist and client control of contracts and payments.",
+    "first": "Offer a two-week administrative plan for one local move.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-digital-photo-sorting",
+    "title": "Digital photo sorting",
+    "service": "Group family photographs by date or occasion and prepare reviewable albums.",
+    "customer": "Families with large personal photo collections",
+    "skills": [
+      "Digital filing",
+      "Digital organization",
+      "Organizing"
+    ],
+    "interests": [
+      "Personal stories",
+      "Busy families"
+    ],
+    "family": "document-services",
+    "needs": "A secure copy of files and rules that leave originals intact.",
+    "first": "Sort a copy of one holiday folder and quote a larger batch.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-family-recipe-archive-organization",
+    "title": "Family recipe archive organization",
+    "service": "Transcribe and organize household recipes into a searchable personal collection.",
+    "customer": "Families preserving shared cooking traditions",
+    "skills": [
+      "Data entry",
+      "Organizing"
+    ],
+    "interests": [
+      "Meal planning",
+      "Personal stories"
+    ],
+    "family": "document-services",
+    "needs": "Accurate transcription and permission to handle family material.",
+    "first": "Organize ten recipes into a sample index and printable set.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-personal-correspondence-assistance",
+    "title": "Personal correspondence assistance",
+    "service": "Help clients draft, organize, and send their own everyday non-legal letters.",
+    "customer": "Older adults wanting practical paperwork help",
+    "skills": [
+      "Administration",
+      "Listening",
+      "Organizing"
+    ],
+    "interests": [
+      "Helping older adults",
+      "Everyday support",
+      "Helping people"
+    ],
+    "family": "household-admin",
+    "needs": "Patient communication, client approval, and a scope excluding financial or legal decisions.",
+    "first": "Offer one supervised session organizing and answering routine correspondence.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-small-gathering-coordination",
+    "title": "Small gathering coordination",
+    "service": "Build the schedule and coordinate approved suppliers for a small celebration.",
+    "customer": "Hosts of modest private celebrations",
+    "skills": [
+      "Event logistics",
+      "Planning",
+      "Organizing"
+    ],
+    "interests": [
+      "Small celebrations",
+      "Planning"
+    ],
+    "family": "event-coordination",
+    "needs": "A written scope, guest count, supplier contacts, and contingency checklist.",
+    "first": "Quote coordination for one small celebration after a planning call.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-community-event-registration",
+    "title": "Community event registration",
+    "service": "Manage attendee lists, confirmations, and check-in for a local event.",
+    "customer": "Community event organizers",
+    "skills": [
+      "Event logistics",
+      "Data entry",
+      "Organizing"
+    ],
+    "interests": [
+      "Community events",
+      "Logistics"
+    ],
+    "family": "event-operations",
+    "needs": "A privacy-aware attendee list and an agreed check-in procedure.",
+    "first": "Offer registration for one event with a defined attendance cap.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-workshop-venue-sourcing",
+    "title": "Workshop venue sourcing",
+    "service": "Compare accessible venues against a host’s capacity, budget, and equipment needs.",
+    "customer": "Independent workshop leaders",
+    "skills": [
+      "Research",
+      "Event logistics",
+      "Organizing"
+    ],
+    "interests": [
+      "Workshops",
+      "Planning"
+    ],
+    "family": "event-planning",
+    "needs": "A venue requirements sheet and transparent comparison criteria.",
+    "first": "Compare three local venues for one host’s upcoming workshop.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-wedding-guest-logistics",
+    "title": "Wedding guest logistics",
+    "service": "Coordinate guest information, transport instructions, and response tracking.",
+    "customer": "Couples handling their own wedding planning",
+    "skills": [
+      "Event logistics",
+      "Following up",
+      "Organizing"
+    ],
+    "interests": [
+      "Weddings",
+      "Logistics"
+    ],
+    "family": "event-coordination",
+    "needs": "A guest privacy process and clear limits excluding full wedding planning.",
+    "first": "Offer a fixed guest-response and travel-information package.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-event-run-of-show-preparation",
+    "title": "Event run-of-show preparation",
+    "service": "Turn an organizer’s program into a timed cue sheet with named responsibilities.",
+    "customer": "Hosts of small live events",
+    "skills": [
+      "Planning",
+      "Process documentation",
+      "Organizing"
+    ],
+    "interests": [
+      "Live events",
+      "Behind the scenes"
+    ],
+    "family": "event-planning",
+    "needs": "A confirmed program, cue format, and rehearsal with the event lead.",
+    "first": "Create a cue sheet for one two-hour event.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-vendor-coordination-desk",
+    "title": "Vendor coordination desk",
+    "service": "Collect supplier arrival times, requirements, and contact details for one event.",
+    "customer": "Small fairs and community festivals",
+    "skills": [
+      "Event logistics",
+      "Client interviews",
+      "Organizing"
+    ],
+    "interests": [
+      "Craft fairs",
+      "Community events",
+      "Logistics"
+    ],
+    "family": "event-operations",
+    "needs": "An approved supplier list and an escalation contact for event decisions.",
+    "first": "Coordinate the vendor details for one small fair.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-volunteer-shift-coordination",
+    "title": "Volunteer shift coordination",
+    "service": "Build fair shift assignments and handle confirmations for an event team.",
+    "customer": "Community event organizers",
+    "skills": [
+      "Scheduling",
+      "Connecting",
+      "Organizing"
+    ],
+    "interests": [
+      "Community events",
+      "Community groups"
+    ],
+    "family": "event-operations",
+    "needs": "Volunteer preferences, role requirements, and a backup coverage plan.",
+    "first": "Manage a shift roster for a single event with ten volunteers.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-community-meal-host-support",
+    "title": "Community meal host support",
+    "service": "Coordinate RSVPs, seating, and host-provided food information for a shared meal.",
+    "customer": "Community groups hosting gatherings",
+    "skills": [
+      "Hosting events",
+      "Event logistics",
+      "Organizing"
+    ],
+    "interests": [
+      "Bringing people together",
+      "Community groups"
+    ],
+    "family": "event-operations",
+    "needs": "A host-approved plan and accurate supplier-provided dietary information.",
+    "first": "Offer logistics support for one small community supper.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-tabletop-tournament-operations",
+    "title": "Tabletop tournament operations",
+    "service": "Manage registrations, pairings, round timings, and posted results.",
+    "customer": "Local tabletop clubs hosting competitive events",
+    "skills": [
+      "Hosting events",
+      "Planning"
+    ],
+    "interests": [
+      "Tabletop games",
+      "Gaming events"
+    ],
+    "family": "game-events",
+    "needs": "Game-specific tournament rules and a clear dispute escalation process.",
+    "first": "Run a small trial bracket with the club organizer before quoting an event.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-dance-event-door-coordination",
+    "title": "Dance event door coordination",
+    "service": "Run check-in, ticket verification, and attendee information at a dance event.",
+    "customer": "Independent dance event organizers",
+    "skills": [
+      "Hosting events",
+      "Customer support",
+      "Organizing"
+    ],
+    "interests": [
+      "Dance events",
+      "Dance"
+    ],
+    "family": "event-operations",
+    "needs": "A venue-approved door procedure and clear safety escalation contact.",
+    "first": "Offer a capped door shift for one small dance event.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-walking-club-administration",
+    "title": "Walking club administration",
+    "service": "Coordinate a club’s member notices, meeting points, and attendance records.",
+    "customer": "Established local walking groups",
+    "skills": [
+      "Administration",
+      "Scheduling",
+      "Organizing"
+    ],
+    "interests": [
+      "Walking",
+      "Local clubs"
+    ],
+    "family": "club-administration",
+    "needs": "Route details approved by the group leader and a clear admin-only scope.",
+    "first": "Prepare notices and attendance tracking for one month of existing walks.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-club-equipment-lending-coordination",
+    "title": "Club equipment lending coordination",
+    "service": "Track equipment reservations, loan forms, due dates, and return reminders.",
+    "customer": "Recreational clubs lending shared equipment",
+    "skills": [
+      "Scheduling",
+      "Administration",
+      "Organizing"
+    ],
+    "interests": [
+      "Local clubs",
+      "Cycling",
+      "Outdoor groups"
+    ],
+    "family": "club-administration",
+    "needs": "A club-approved loan policy and inventory; exclude equipment safety certification.",
+    "first": "Coordinate loans for five items over one month under the club’s rules.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-online-community-onboarding",
+    "title": "Online community onboarding",
+    "service": "Create a welcome sequence and orient new members to existing community rules.",
+    "customer": "Small paid membership communities",
+    "skills": [
+      "Community moderation",
+      "Customer support",
+      "Talking to people"
+    ],
+    "interests": [
+      "Community moderation",
+      "Bringing people together",
+      "Helping people"
+    ],
+    "family": "community-operations",
+    "needs": "Approved rules, role permissions, and a boundary for sensitive questions.",
+    "first": "Pilot a welcome checklist for the next ten members.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-community-discussion-moderation",
+    "title": "Community discussion moderation",
+    "service": "Apply approved rules, answer routine questions, and escalate disputes.",
+    "customer": "Independent creators with active member forums",
+    "skills": [
+      "Community moderation",
+      "Listening",
+      "Talking to people"
+    ],
+    "interests": [
+      "Community moderation",
+      "Game communities",
+      "Helping people"
+    ],
+    "family": "community-operations",
+    "needs": "A written moderation policy and limited working hours.",
+    "first": "Offer a one-week moderation shift with a clear escalation log.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-member-feedback-listening-sessions",
+    "title": "Member feedback listening sessions",
+    "service": "Facilitate a small discussion and summarize members’ requests without identifying speakers.",
+    "customer": "Clubs and membership organizers",
+    "skills": [
+      "Listening",
+      "Client interviews",
+      "Talking to people"
+    ],
+    "interests": [
+      "Listening",
+      "Community groups",
+      "Helping people"
+    ],
+    "family": "community-research",
+    "needs": "Consent, a discussion guide, and an anonymized reporting format.",
+    "first": "Run one paid listening session around a specific membership problem.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-community-resource-directory-upkeep",
+    "title": "Community resource directory upkeep",
+    "service": "Verify opening hours, contact details, and eligibility notes in an existing directory.",
+    "customer": "Local associations publishing practical information",
+    "skills": [
+      "Research",
+      "Data entry",
+      "Talking to people"
+    ],
+    "interests": [
+      "Community groups",
+      "Helping people"
+    ],
+    "family": "community-operations",
+    "needs": "A verification schedule and source links for each public listing.",
+    "first": "Update twenty listings and provide a dated verification log.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-local-club-partnership-outreach",
+    "title": "Local club partnership outreach",
+    "service": "Arrange introductions between clubs and relevant local businesses using approved proposals.",
+    "customer": "Clubs seeking venue or member-benefit partners",
+    "skills": [
+      "Building partnerships",
+      "Networking"
+    ],
+    "interests": [
+      "Local clubs",
+      "Local shops"
+    ],
+    "family": "partnership-support",
+    "needs": "A specific club-approved offer and no promise of sponsorship success.",
+    "first": "Prepare a partner brief and approach three suitable businesses with permission.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-event-accessibility-information-audit",
+    "title": "Event accessibility information audit",
+    "service": "Check whether an event’s public information clearly states organizer-confirmed access details.",
+    "customer": "Small event hosts",
+    "skills": [
+      "Research",
+      "Process documentation",
+      "Organizing"
+    ],
+    "interests": [
+      "Community events",
+      "Helping people"
+    ],
+    "family": "event-planning",
+    "needs": "A factual checklist and direct confirmation; no certification claims.",
+    "first": "Review one event page and deliver a missing-information checklist.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-event-feedback-reporting",
+    "title": "Event feedback reporting",
+    "service": "Collect approved attendee feedback and summarize actionable improvements.",
+    "customer": "Organizers of recurring workshops and events",
+    "skills": [
+      "Client interviews",
+      "Finding patterns",
+      "Talking to people"
+    ],
+    "interests": [
+      "Workshops",
+      "Community events",
+      "Helping people"
+    ],
+    "family": "community-research",
+    "needs": "Consent-aware questions and a method that distinguishes responses from all attendees.",
+    "first": "Analyze one event’s feedback and deliver a one-page improvement brief.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-meetup-host-facilitation",
+    "title": "Meetup host facilitation",
+    "service": "Welcome attendees and guide structured introductions at a small gathering.",
+    "customer": "Professional and community meetup organizers",
+    "skills": [
+      "Hosting events",
+      "Connecting",
+      "Talking to people"
+    ],
+    "interests": [
+      "Bringing people together",
+      "Community events",
+      "Helping people"
+    ],
+    "family": "event-facilitation",
+    "needs": "An inclusive agenda and organizer-approved venue and attendance limits.",
+    "first": "Host one paid ninety-minute meetup with a clear program.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-customer-support-overflow",
+    "title": "Customer support overflow",
+    "service": "Answer a defined set of routine customer questions using approved information.",
+    "customer": "Small online shops with occasional support peaks",
+    "skills": [
+      "Customer support",
+      "Listening",
+      "Talking to people"
+    ],
+    "interests": [
+      "Customer service",
+      "Online shops",
+      "Business"
+    ],
+    "family": "support-operations",
+    "needs": "Approved answers, limited account access, and escalation rules.",
+    "first": "Cover a short support window for one shop and review every response.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-returns-coordination-service",
+    "title": "Returns coordination service",
+    "service": "Track return requests and issue client-approved instructions under the shop’s policy.",
+    "customer": "Small product businesses",
+    "skills": [
+      "Customer support",
+      "Administration",
+      "Talking to people"
+    ],
+    "interests": [
+      "Online shops",
+      "Customer service",
+      "Business"
+    ],
+    "family": "support-operations",
+    "needs": "A current returns policy, order access, and rules requiring approval for refunds.",
+    "first": "Offer a one-week trial handling a limited number of returns.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-customer-faq-maintenance",
+    "title": "Customer FAQ maintenance",
+    "service": "Turn recurring support questions into an accurate, owner-approved answer library.",
+    "customer": "Small service businesses",
+    "skills": [
+      "Customer support",
+      "Process documentation",
+      "Writing"
+    ],
+    "interests": [
+      "Customer service",
+      "Making systems",
+      "Business"
+    ],
+    "family": "support-documentation",
+    "needs": "Verified answers and a named reviewer for policy changes.",
+    "first": "Convert ten real questions into a small FAQ for approval.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-service-follow-up-calls",
+    "title": "Service follow-up calls",
+    "service": "Check whether completed work met expectations and record issues for the provider.",
+    "customer": "Local service businesses",
+    "skills": [
+      "Following up",
+      "Listening",
+      "Talking to people"
+    ],
+    "interests": [
+      "Customer service",
+      "Local shops",
+      "Business"
+    ],
+    "family": "support-operations",
+    "needs": "Customer contact permission and a script that avoids pressuring reviews.",
+    "first": "Offer follow-up on ten completed jobs with a brief issue report.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-quote-follow-up-administration",
+    "title": "Quote follow-up administration",
+    "service": "Track outstanding quotes and send approved, respectful reminders.",
+    "customer": "Independent trades and service providers",
+    "skills": [
+      "Following up",
+      "Administration"
+    ],
+    "interests": [
+      "Independent professionals",
+      "Finding customers",
+      "Business"
+    ],
+    "family": "sales-support",
+    "needs": "An accurate quote register and client-approved contact cadence.",
+    "first": "Manage follow-up for five existing quotes during one week.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-sales-appointment-preparation",
+    "title": "Sales appointment preparation",
+    "service": "Research publicly available prospect context and organize questions for a meeting.",
+    "customer": "Independent professionals selling a service",
+    "skills": [
+      "Research",
+      "Client interviews"
+    ],
+    "interests": [
+      "Finding customers",
+      "Independent professionals",
+      "Business"
+    ],
+    "family": "sales-support",
+    "needs": "A narrow research brief and factual source-linked notes.",
+    "first": "Prepare a one-page brief for one scheduled prospect meeting.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-proposal-assembly-service",
+    "title": "Proposal assembly service",
+    "service": "Combine a client’s approved scope, prices, and terms into a clear proposal.",
+    "customer": "Solo service founders",
+    "skills": [
+      "Administration",
+      "Presentations"
+    ],
+    "interests": [
+      "Solo founders",
+      "Finding customers",
+      "Business"
+    ],
+    "family": "sales-support",
+    "needs": "An approved template and client review of all commercial terms.",
+    "first": "Assemble one proposal from supplied information with no invented promises.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-client-handover-coordination",
+    "title": "Client handover coordination",
+    "service": "Gather approved deliverables, access instructions, and acceptance questions at project close.",
+    "customer": "Small project-based agencies",
+    "skills": [
+      "Project coordination",
+      "Process documentation",
+      "Organizing"
+    ],
+    "interests": [
+      "Making systems",
+      "Independent professionals",
+      "Business"
+    ],
+    "family": "project-support",
+    "needs": "A handover checklist and secure transfer process.",
+    "first": "Coordinate the closeout checklist for one completed project.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-standard-procedure-interviews",
+    "title": "Standard procedure interviews",
+    "service": "Interview the person doing a task and document its repeatable steps.",
+    "customer": "Small businesses whose routines live in one person’s head",
+    "skills": [
+      "Interviews",
+      "Process documentation",
+      "Writing"
+    ],
+    "interests": [
+      "Making systems",
+      "Small businesses",
+      "Business"
+    ],
+    "family": "operations",
+    "needs": "A consented interview and review by the task owner.",
+    "first": "Document one recurring process and test it with its owner.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-new-hire-checklist-coordination",
+    "title": "New hire checklist coordination",
+    "service": "Track approved onboarding tasks and remind responsible team members.",
+    "customer": "Small employers onboarding their first few staff",
+    "skills": [
+      "Scheduling",
+      "Process documentation"
+    ],
+    "interests": [
+      "Small businesses",
+      "Organizing",
+      "Business"
+    ],
+    "family": "operations",
+    "needs": "Employer-approved requirements; exclude employment and legal advice.",
+    "first": "Coordinate the checklist for one new hire under the manager’s direction.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-service-quality-checklist-design",
+    "title": "Service quality checklist design",
+    "service": "Build a short observable checklist for a defined, non-regulated service.",
+    "customer": "Small teams seeking consistent delivery",
+    "skills": [
+      "Process documentation",
+      "Giving feedback"
+    ],
+    "interests": [
+      "Making systems",
+      "Customer service",
+      "Business"
+    ],
+    "family": "operations",
+    "needs": "A process walkthrough and agreement on measurable completion criteria.",
+    "first": "Pilot a checklist on five real jobs before expanding it.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-supplier-quote-comparison",
+    "title": "Supplier quote comparison",
+    "service": "Compare like-for-like supplier offers with clear assumptions and exclusions.",
+    "customer": "Small businesses making a routine purchase",
+    "skills": [
+      "Comparing prices",
+      "Research",
+      "Organizing"
+    ],
+    "interests": [
+      "Local shops",
+      "Small businesses",
+      "Business"
+    ],
+    "family": "procurement-support",
+    "needs": "Written requirements and itemized offers from authorized suppliers.",
+    "first": "Compare three offers for one defined purchase in a short report.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-purchase-order-administration",
+    "title": "Purchase order administration",
+    "service": "Prepare approved purchase orders and track acknowledgments and delivery dates.",
+    "customer": "Small product businesses",
+    "skills": [
+      "Administration",
+      "Following up",
+      "Organizing"
+    ],
+    "interests": [
+      "Local shops",
+      "Organizing",
+      "Business"
+    ],
+    "family": "procurement-support",
+    "needs": "Client approval rules and no authority to spend beyond written limits.",
+    "first": "Track five existing purchase orders through delivery.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-stockroom-labeling-plan",
+    "title": "Stockroom labeling plan",
+    "service": "Map a small stockroom and design an easy-to-follow location system.",
+    "customer": "Small shops losing time finding stock",
+    "skills": [
+      "Organizing",
+      "Inventory tracking"
+    ],
+    "interests": [
+      "Local shops",
+      "Organizing",
+      "Business"
+    ],
+    "family": "inventory-operations",
+    "needs": "A site walkthrough, sample labels, and staff review before moving items.",
+    "first": "Label a single shelf zone and test retrieval with staff.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-rental-equipment-turnaround-checks",
+    "title": "Rental equipment turnaround checks",
+    "service": "Check returned items against an approved inventory and flag missing components.",
+    "customer": "Small party or hobby equipment rental businesses",
+    "skills": [
+      "Inventory tracking",
+      "Detail work"
+    ],
+    "interests": [
+      "Logistics",
+      "Small businesses",
+      "Business"
+    ],
+    "family": "inventory-operations",
+    "needs": "An item checklist, condition photos, and no specialist safety certification claims.",
+    "first": "Trial the check-in process on five returned rental kits.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-content-production-coordination",
+    "title": "Content production coordination",
+    "service": "Maintain a creator’s deadlines, approvals, and asset handoffs.",
+    "customer": "Small creator teams publishing regularly",
+    "skills": [
+      "Content calendars",
+      "Project coordination",
+      "Organizing"
+    ],
+    "interests": [
+      "Video creators",
+      "YouTube",
+      "Newsletters",
+      "Business"
+    ],
+    "family": "project-support",
+    "needs": "A production calendar and named approval owners.",
+    "first": "Coordinate one week of already-planned content deliverables.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-rehearsal-space-coordination",
+    "title": "Rehearsal space coordination",
+    "service": "Match approved room availability with rehearsal bookings and communicate access details.",
+    "customer": "Small rehearsal studios and musician collectives",
+    "skills": [
+      "Scheduling",
+      "Customer support",
+      "Organizing"
+    ],
+    "interests": [
+      "Local bands",
+      "Independent musicians",
+      "Making music"
+    ],
+    "family": "creative-administration",
+    "needs": "Venue-approved booking rules, access procedures, and clear cancellation terms.",
+    "first": "Coordinate a week of bookings for one rehearsal room.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-exhibition-submission-administration",
+    "title": "Exhibition submission administration",
+    "service": "Track open calls, application materials, and deadlines for an artist.",
+    "customer": "Independent visual artists",
+    "skills": [
+      "Administration",
+      "Planning",
+      "Organizing"
+    ],
+    "interests": [
+      "Visual art",
+      "Creative work"
+    ],
+    "family": "creative-administration",
+    "needs": "Artist-approved submissions and a documented fee limit.",
+    "first": "Organize three suitable open calls and assemble one approved application.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-craft-stall-customer-service",
+    "title": "Craft stall customer service",
+    "service": "Explain a maker’s products, answer approved questions, and record orders at a market.",
+    "customer": "Handmade sellers needing help on busy market days",
+    "skills": [
+      "Customer support",
+      "Selling",
+      "Talking to people"
+    ],
+    "interests": [
+      "Craft fairs",
+      "Handmade gifts"
+    ],
+    "family": "sales-support",
+    "needs": "Product training, approved prices, and clear rules for taking orders or payments.",
+    "first": "Offer one supervised half-day stall shift after learning the maker’s product range.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-business-continuity-contact-folders",
+    "title": "Business continuity contact folders",
+    "service": "Organize approved supplier contacts, routine instructions, and handover information.",
+    "customer": "Solo founders preparing for short absences",
+    "skills": [
+      "Process documentation",
+      "Digital filing"
+    ],
+    "interests": [
+      "Solo founders",
+      "Making systems",
+      "Business"
+    ],
+    "family": "operations",
+    "needs": "A secure folder with sensitive credentials kept in the owner’s password manager.",
+    "first": "Build a one-week absence handover pack for one founder.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-invoice-tracking-support",
+    "title": "Invoice tracking support",
+    "service": "Maintain issued-invoice records and flag overdue items for owner action.",
+    "customer": "Independent professionals billing clients",
+    "skills": [
+      "Invoice tracking",
+      "Bookkeeping"
+    ],
+    "interests": [
+      "Independent professionals",
+      "Organizing",
+      "Business"
+    ],
+    "family": "financial-admin",
+    "needs": "Accurate source documents and a scope excluding tax or debt-collection advice.",
+    "first": "Track one month of issued invoices and reconcile statuses with the owner.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-expense-receipt-organization",
+    "title": "Expense receipt organization",
+    "service": "Sort receipts and label transactions using categories approved by the client’s bookkeeper.",
+    "customer": "Sole traders preparing routine records",
+    "skills": [
+      "Expense categorization",
+      "Data entry"
+    ],
+    "interests": [
+      "Solo founders",
+      "Organizing",
+      "Business"
+    ],
+    "family": "financial-admin",
+    "needs": "Secure document handling and categories approved by the client’s qualified adviser.",
+    "first": "Organize one month of receipts and flag uncertain items for review.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-bookkeeping-reconciliation-support",
+    "title": "Bookkeeping reconciliation support",
+    "service": "Match recorded transactions to bank statements and list discrepancies for review.",
+    "customer": "Small service businesses with established accounting routines",
+    "skills": [
+      "Bank reconciliation",
+      "Bookkeeping"
+    ],
+    "interests": [
+      "Small businesses",
+      "Spreadsheets",
+      "Business"
+    ],
+    "family": "financial-admin",
+    "needs": "Demonstrated bookkeeping competence and authorized read-only source records.",
+    "first": "Reconcile one account for one month under an agreed review process.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-customer-payment-schedule-tracking",
+    "title": "Customer payment schedule tracking",
+    "service": "Monitor agreed installments and prepare accurate reminders for approval.",
+    "customer": "Small providers selling fixed project packages",
+    "skills": [
+      "Invoice tracking",
+      "Scheduling"
+    ],
+    "interests": [
+      "Independent professionals",
+      "Organizing",
+      "Business"
+    ],
+    "family": "financial-admin",
+    "needs": "Signed payment schedules and rules requiring owner approval of disputes.",
+    "first": "Track the next month of payments for five existing projects.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-inventory-count-service",
+    "title": "Inventory count service",
+    "service": "Count stock using a client-approved method and report discrepancies.",
+    "customer": "Small shops checking shelf and storeroom quantities",
+    "skills": [
+      "Inventory tracking",
+      "Working with numbers"
+    ],
+    "interests": [
+      "Local shops",
+      "Logistics",
+      "Business"
+    ],
+    "family": "inventory-operations",
+    "needs": "A count sheet, agreed timing, and a process for recounting discrepancies.",
+    "first": "Quote a count of one small stock area after a site visit.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-stock-reorder-review",
+    "title": "Stock reorder review",
+    "service": "Summarize recent sales and stock levels to flag items for owner review.",
+    "customer": "Small retailers with simple product ranges",
+    "skills": [
+      "Inventory tracking",
+      "Finding patterns"
+    ],
+    "interests": [
+      "Local shops",
+      "Spreadsheets",
+      "Business"
+    ],
+    "family": "inventory-analysis",
+    "needs": "Reliable historical records and owner-set reorder rules.",
+    "first": "Review twenty products and produce a list of stock risks.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-product-cost-worksheets",
+    "title": "Product cost worksheets",
+    "service": "Calculate material and packaging costs from supplier invoices and recipes.",
+    "customer": "Makers checking their production costs",
+    "skills": [
+      "Working with numbers",
+      "Comparing prices"
+    ],
+    "interests": [
+      "Handmade gifts",
+      "Local shops",
+      "Business"
+    ],
+    "family": "cost-analysis",
+    "needs": "Accurate quantity inputs and a scope excluding profit or tax guarantees.",
+    "first": "Cost one product using the maker’s real material receipts.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-service-time-and-cost-review",
+    "title": "Service time and cost review",
+    "service": "Record task times and direct costs to show where a service consumes resources.",
+    "customer": "Solo service founders",
+    "skills": [
+      "Analysis",
+      "Finding patterns"
+    ],
+    "interests": [
+      "Solo founders",
+      "Making systems",
+      "Business"
+    ],
+    "family": "cost-analysis",
+    "needs": "A simple time log and accurate client-supplied cost inputs.",
+    "first": "Analyze one week of a single service and explain the assumptions.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-event-budget-tracking",
+    "title": "Event budget tracking",
+    "service": "Record approved event costs and compare commitments with the organizer’s budget.",
+    "customer": "Hosts of community events and small celebrations",
+    "skills": [
+      "Budget templates",
+      "Expense categorization"
+    ],
+    "interests": [
+      "Community events",
+      "Small celebrations"
+    ],
+    "family": "event-analysis",
+    "needs": "An owner-approved budget and a rule against committing spending.",
+    "first": "Track costs for one small event and send a weekly variance summary.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-supplier-price-change-monitoring",
+    "title": "Supplier price change monitoring",
+    "service": "Compare recurring supplier invoices and flag changes in unit prices.",
+    "customer": "Small shops purchasing repeat supplies",
+    "skills": [
+      "Comparing prices",
+      "Finding patterns",
+      "Organizing"
+    ],
+    "interests": [
+      "Local shops",
+      "Business"
+    ],
+    "family": "procurement-support",
+    "needs": "Comparable invoices and a clear method for package-size differences.",
+    "first": "Check ten recurring items across three months of invoices.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-waste-measurement-logs",
+    "title": "Waste measurement logs",
+    "service": "Record discarded quantities and summarize repeat sources of avoidable waste.",
+    "customer": "Small makers and shops",
+    "skills": [
+      "Inventory tracking",
+      "Finding patterns"
+    ],
+    "interests": [
+      "Conservation",
+      "Local shops",
+      "Business"
+    ],
+    "family": "operations-analysis",
+    "needs": "A safe counting process and owner-approved categories.",
+    "first": "Run a one-week waste log and identify the largest measured category.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-workshop-attendance-analysis",
+    "title": "Workshop attendance analysis",
+    "service": "Summarize bookings, attendance, and repeat participation without exposing attendee details.",
+    "customer": "Independent workshop organizers",
+    "skills": [
+      "Reporting",
+      "Finding patterns"
+    ],
+    "interests": [
+      "Workshops",
+      "Teaching adults"
+    ],
+    "family": "event-analysis",
+    "needs": "Authorized attendance records and anonymized aggregate reporting.",
+    "first": "Compare three past workshops in a one-page report.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-membership-activity-reporting",
+    "title": "Membership activity reporting",
+    "service": "Summarize signups, renewals, and participation using agreed definitions.",
+    "customer": "Local clubs and small associations",
+    "skills": [
+      "Reporting",
+      "Working with numbers"
+    ],
+    "interests": [
+      "Local clubs",
+      "Community groups"
+    ],
+    "family": "community-analysis",
+    "needs": "Permission to use records and a clear privacy-aware counting method.",
+    "first": "Create one monthly report with counts the organizer can verify.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-public-price-comparison-briefs",
+    "title": "Public price comparison briefs",
+    "service": "Produce dated like-for-like comparisons for a clearly defined everyday purchase.",
+    "customer": "Community groups and households making planned purchases",
+    "skills": [
+      "Comparing prices",
+      "Research"
+    ],
+    "interests": [
+      "Busy families",
+      "Community groups"
+    ],
+    "family": "consumer-research",
+    "needs": "Public prices, date stamps, and explicit delivery and quality assumptions.",
+    "first": "Compare three options for one requested item and show source links.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-donation-record-administration",
+    "title": "Donation record administration",
+    "service": "Record receipts and approved donor details for an organization’s own review.",
+    "customer": "Small community fundraising groups",
+    "skills": [
+      "Data entry",
+      "Expense categorization"
+    ],
+    "interests": [
+      "Community groups",
+      "Organizing",
+      "Business"
+    ],
+    "family": "financial-admin",
+    "needs": "Authorized access, privacy rules, and no charitable or tax-receipt advice.",
+    "first": "Organize records for one completed fundraiser and flag missing receipts.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-cash-register-closeout-support",
+    "title": "Cash register closeout support",
+    "service": "Check till totals against owner-provided sales records and log differences.",
+    "customer": "Small market stalls and shops",
+    "skills": [
+      "Working with numbers",
+      "Reporting"
+    ],
+    "interests": [
+      "Local shops",
+      "Craft fairs",
+      "Business"
+    ],
+    "family": "financial-admin",
+    "needs": "Demonstrated accuracy, a secure on-site process, and owner supervision.",
+    "first": "Pilot one supervised closeout using the shop’s approved procedure.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "people-mileage-and-job-expense-logs",
+    "title": "Mileage and job expense logs",
+    "service": "Organize client-supplied trip and expense records into reviewable job totals.",
+    "customer": "Independent mobile service providers",
+    "skills": [
+      "Data entry",
+      "Expense categorization"
+    ],
+    "interests": [
+      "Independent professionals",
+      "Organizing",
+      "Business"
+    ],
+    "family": "financial-admin",
+    "needs": "Reliable source records and no claims about tax deductibility.",
+    "first": "Prepare one month of logs and send uncertain entries for client review.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-customer-survey-coding",
+    "title": "Customer survey coding",
+    "service": "Group open-text survey responses into documented themes and count their frequency.",
+    "customer": "Small organizations reviewing customer feedback",
+    "skills": [
+      "Finding patterns",
+      "Research"
+    ],
+    "interests": [
+      "Customer service",
+      "Listening",
+      "Business"
+    ],
+    "family": "customer-research",
+    "needs": "Permission to analyze responses and a coding guide with anonymized examples.",
+    "first": "Code fifty responses and deliver a theme table with its limitations.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-mystery-customer-process-review",
+    "title": "Mystery customer process review",
+    "service": "Test a client-approved enquiry process and report observable delays and unclear steps.",
+    "customer": "Local service businesses reviewing customer experience",
+    "skills": [
+      "Customer support",
+      "Analysis"
+    ],
+    "interests": [
+      "Customer service",
+      "Local shops",
+      "Business"
+    ],
+    "family": "customer-research",
+    "needs": "Written authorization and a factual checklist; no deceptive public reviews.",
+    "first": "Test one approved enquiry channel and deliver a dated process report.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "people-capacity-planning-check-ins",
+    "title": "Capacity planning check-ins",
+    "service": "Compare booked work with owner-estimated available hours to flag scheduling overload.",
+    "customer": "Solo founders managing several client commitments",
+    "skills": [
+      "Scheduling",
+      "Finding patterns"
+    ],
+    "interests": [
+      "Solo founders",
+      "Organizing",
+      "Business"
+    ],
+    "family": "operations-analysis",
+    "needs": "An owner-reviewed estimate of task hours and a realistic availability calendar.",
+    "first": "Review one upcoming week and highlight commitments needing owner decisions.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  }
+]

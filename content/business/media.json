@@ -1,0 +1,2248 @@
+[
+  {
+    "id": "media-interview-film",
+    "title": "Customer interview films",
+    "service": "Film a short customer story with usable sound and a clear beginning and end.",
+    "customer": "Small businesses with willing customers",
+    "skills": [
+      "Filming",
+      "Phone filmmaking",
+      "Event coverage"
+    ],
+    "interests": [
+      "Interviews",
+      "Small businesses",
+      "Branding"
+    ],
+    "family": "video-capture",
+    "needs": "A camera or phone, microphone, permission and a simple interview outline.",
+    "first": "Record a two-minute sample with a consenting business owner.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-product-demo",
+    "title": "Product demonstration videos",
+    "service": "Show how a product works through a clear close-up demonstration.",
+    "customer": "Makers selling unfamiliar products",
+    "skills": [
+      "Product videos",
+      "Filming"
+    ],
+    "interests": [
+      "Online shops",
+      "Handmade gifts",
+      "Local shops"
+    ],
+    "family": "video-capture",
+    "needs": "A camera, basic lighting and a product you can demonstrate safely.",
+    "first": "Make a 30-second demonstration for one item and offer a three-video package.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-course-filming",
+    "title": "Lesson recording sessions",
+    "service": "Record clear lesson footage and demonstrations in a tutor’s own workspace.",
+    "customer": "Independent teachers building a course",
+    "skills": [
+      "Filming",
+      "Phone filmmaking"
+    ],
+    "interests": [
+      "Teaching adults",
+      "Tutorials",
+      "Workshops"
+    ],
+    "family": "video-capture",
+    "needs": "A stable camera, microphone, lighting and a lesson shot list.",
+    "first": "Film a five-minute practice lesson and quote one half-day session.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-maker-process",
+    "title": "Maker process films",
+    "service": "Capture the steps and handwork behind a handmade object.",
+    "customer": "Craft makers explaining their process",
+    "skills": [
+      "Filming",
+      "Product videos"
+    ],
+    "interests": [
+      "Craft fairs",
+      "Handmade gifts",
+      "Creative work"
+    ],
+    "family": "video-capture",
+    "needs": "A camera, safe workspace access and permission to show the process.",
+    "first": "Ask one maker to film a single object from raw material to finish.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-property-walkthrough",
+    "title": "Rental walkthrough videos",
+    "service": "Record an honest room-by-room video showing a rental’s layout and condition.",
+    "customer": "Independent rental owners",
+    "skills": [
+      "Filming",
+      "Phone filmmaking"
+    ],
+    "interests": [
+      "Homes",
+      "Interior styling",
+      "Moving"
+    ],
+    "family": "video-capture",
+    "needs": "A stabilized camera or phone, lighting and owner access permission.",
+    "first": "Film a consenting owner’s vacant unit and offer a fixed-length walkthrough.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-garden-timelapse",
+    "title": "Garden time-lapse films",
+    "service": "Document a growing season with planned time-lapse footage and a short final film.",
+    "customer": "Community gardens and plant growers",
+    "skills": [
+      "Filming",
+      "Production"
+    ],
+    "interests": [
+      "Growing food",
+      "Native plants",
+      "Gardens"
+    ],
+    "family": "video-capture",
+    "needs": "Weather-suitable camera placement, access permission and a repeat visit plan.",
+    "first": "Agree on one planter and capture a one-week trial sequence.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-event-highlights",
+    "title": "Community event highlight films",
+    "service": "Capture key moments and deliver a short recap that shows what happened.",
+    "customer": "Community event organizers",
+    "skills": [
+      "Event coverage",
+      "Filming"
+    ],
+    "interests": [
+      "Community events",
+      "Small celebrations",
+      "Videography"
+    ],
+    "family": "video-capture",
+    "needs": "Camera, microphone, event permission and a written coverage scope.",
+    "first": "Offer a 60-second recap of one small event with clear delivery terms.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-dance-audition",
+    "title": "Dance audition recordings",
+    "service": "Record full-body audition takes with consistent framing and sound.",
+    "customer": "Dancers submitting audition videos",
+    "skills": [
+      "Filming",
+      "Phone filmmaking"
+    ],
+    "interests": [
+      "Dance",
+      "Dance events"
+    ],
+    "family": "video-capture",
+    "needs": "A tripod, suitable space and the recipient’s exact submission requirements.",
+    "first": "Record a sample full-length take and offer a short booking slot.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-band-live-session",
+    "title": "Live band session films",
+    "service": "Record a continuous performance with a clean guide recording and planned camera angles.",
+    "customer": "Local bands needing a performance sample",
+    "skills": [
+      "Filming",
+      "Event coverage"
+    ],
+    "interests": [
+      "Local bands",
+      "Performing",
+      "Live events"
+    ],
+    "family": "video-capture",
+    "needs": "Camera, audio recording competence and performer/location permissions.",
+    "first": "Plan a one-song session with one band and agree on audio limitations.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-repair-demonstration",
+    "title": "Repair demonstration films",
+    "service": "Film close-up repair steps that a technician can use to explain their service.",
+    "customer": "Repair shops documenting familiar jobs",
+    "skills": [
+      "Filming",
+      "Product videos"
+    ],
+    "interests": [
+      "Repairs",
+      "DIY",
+      "Local shops"
+    ],
+    "family": "video-capture",
+    "needs": "Camera, safe filming position and a technician who checks every instruction.",
+    "first": "Film one nonhazardous repair under the shop’s supervision.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-vertical-recut",
+    "title": "Vertical video recuts",
+    "service": "Reframe an existing wide video into a concise vertical edit with readable captions.",
+    "customer": "Creators with useful long-form footage",
+    "skills": [
+      "Short-form editing",
+      "Video editing"
+    ],
+    "interests": [
+      "Short videos",
+      "Video creators",
+      "Social media"
+    ],
+    "family": "video-editing",
+    "needs": "An editor, licensed source footage and a caption/reframing workflow.",
+    "first": "Rework a permitted 30-second segment and pitch a fixed batch of clips.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-webinar-edit",
+    "title": "Webinar replay editing",
+    "service": "Remove dead air, add chapter cards and create a clean on-demand replay.",
+    "customer": "Workshop hosts with recorded sessions",
+    "skills": [
+      "Video editing",
+      "Subtitles"
+    ],
+    "interests": [
+      "Workshops",
+      "Teaching adults",
+      "Video tools"
+    ],
+    "family": "video-editing",
+    "needs": "Editing software, recording access and an agreed list of permitted cuts.",
+    "first": "Edit a five-minute sample from a host’s recording.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-tutorial-screen",
+    "title": "Screen tutorial editing",
+    "service": "Turn screen recordings into short task-focused lessons with zooms and callouts.",
+    "customer": "Software trainers and independent tool makers",
+    "skills": [
+      "Video editing",
+      "Production"
+    ],
+    "interests": [
+      "Tutorials",
+      "Creative software",
+      "Helping people with computers"
+    ],
+    "family": "video-editing",
+    "needs": "An editor and permission to use recordings without exposed private data.",
+    "first": "Edit one simple software task and ask a trainer to test its clarity.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-documentary-assembly",
+    "title": "Documentary rough-cut assembly",
+    "service": "Organize interviews and approved footage into a coherent first story cut.",
+    "customer": "Independent documentary makers",
+    "skills": [
+      "Video editing",
+      "Storyboarding"
+    ],
+    "interests": [
+      "Film",
+      "Personal stories",
+      "Local history"
+    ],
+    "family": "video-editing",
+    "needs": "An editor, transcript, organized footage and agreed editorial boundaries.",
+    "first": "Offer a paid assembly of one five-minute story section.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-multicam-performance",
+    "title": "Multicamera performance edits",
+    "service": "Synchronize camera angles and cut a continuous performance to its recorded audio.",
+    "customer": "Bands and performance groups",
+    "skills": [
+      "Video editing",
+      "Production"
+    ],
+    "interests": [
+      "Local bands",
+      "Performing",
+      "Live events"
+    ],
+    "family": "video-editing",
+    "needs": "Multicamera editing competence, synced recordings and music-use permission.",
+    "first": "Cut one song from a band’s existing two-camera recording.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-cooking-edit",
+    "title": "Overhead recipe video edits",
+    "service": "Condense filmed cooking steps into a clear recipe sequence with ingredient captions.",
+    "customer": "Recipe developers with recorded demonstrations",
+    "skills": [
+      "Video editing",
+      "Short-form editing"
+    ],
+    "interests": [
+      "Recipe development",
+      "Home cooking",
+      "Food"
+    ],
+    "family": "video-editing",
+    "needs": "An editor and a recipe owner who verifies timing and instructions.",
+    "first": "Edit one tested recipe into a minute-long demonstration.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-gaming-highlights",
+    "title": "Gameplay highlight editing",
+    "service": "Find and shape the strongest moments from recorded gameplay into a watchable episode.",
+    "customer": "Gaming video creators",
+    "skills": [
+      "Video editing",
+      "Short-form editing"
+    ],
+    "interests": [
+      "Video creators",
+      "Games"
+    ],
+    "family": "video-editing",
+    "needs": "Editing software, publisher-compatible footage rights and a moment-selection brief.",
+    "first": "Create a short sample from one creator’s approved recording.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-video-podcast",
+    "title": "Video podcast episode edits",
+    "service": "Synchronize speakers, remove pauses and deliver a consistent full episode.",
+    "customer": "Interview podcast hosts using cameras",
+    "skills": [
+      "Video editing",
+      "Podcast clips"
+    ],
+    "interests": [
+      "Interviews",
+      "YouTube",
+      "Video creators"
+    ],
+    "family": "video-editing",
+    "needs": "An editor, recording access and a reusable speaker layout.",
+    "first": "Edit a ten-minute pilot segment with one host.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-family-film",
+    "title": "Family archive films",
+    "service": "Shape permissioned family clips into a short chronological film with names and dates.",
+    "customer": "Families organizing their own recordings",
+    "skills": [
+      "Video editing"
+    ],
+    "interests": [
+      "Personal stories",
+      "Busy families",
+      "Helping older adults"
+    ],
+    "family": "video-editing",
+    "needs": "Secure file transfer, an editor and the family’s approved story outline.",
+    "first": "Build a two-minute sample from a few clips the family selects.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-stop-motion",
+    "title": "Stop-motion product shorts",
+    "service": "Create short frame-by-frame films that demonstrate or animate a physical product.",
+    "customer": "Small brands wanting distinctive product videos",
+    "skills": [
+      "Production",
+      "Product videos"
+    ],
+    "interests": [
+      "Online shops",
+      "Creative work",
+      "Short videos"
+    ],
+    "family": "video-production",
+    "needs": "Camera, stable lighting, animation practice and product access.",
+    "first": "Animate one object in a ten-second sample and quote one simple scene.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-caption-correction",
+    "title": "Human-checked video captions",
+    "service": "Correct machine captions, speaker names and timing against the actual recording.",
+    "customer": "Video creators publishing spoken content",
+    "skills": [
+      "Subtitles"
+    ],
+    "interests": [
+      "YouTube",
+      "Video creators",
+      "Video tools"
+    ],
+    "family": "video-access",
+    "needs": "Caption software, careful listening and proficiency in the spoken language.",
+    "first": "Correct a two-minute sample and quote per finished minute.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Short",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-caption-format",
+    "title": "Caption delivery packages",
+    "service": "Convert an approved transcript into synchronized caption files and open-caption video.",
+    "customer": "Course publishers with approved transcripts",
+    "skills": [
+      "Subtitles",
+      "Video editing"
+    ],
+    "interests": [
+      "Teaching adults",
+      "Tutorials",
+      "Video tools"
+    ],
+    "family": "video-access",
+    "needs": "Caption software, transcript approval and target-platform format requirements.",
+    "first": "Package one lesson in SRT, VTT and burned-in formats.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-readable-slides-video",
+    "title": "Readable presentation recordings",
+    "service": "Rebuild a recording’s crowded slide overlays into readable visual inserts.",
+    "customer": "Speakers repurposing recorded talks",
+    "skills": [
+      "Video editing",
+      "Production"
+    ],
+    "interests": [
+      "Workshops",
+      "Teaching adults",
+      "Video tools"
+    ],
+    "family": "video-access",
+    "needs": "An editor, source slides and speaker approval of simplified inserts.",
+    "first": "Improve three slides in one permitted talk segment.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-video-language-replace",
+    "title": "Localized video assembly",
+    "service": "Replace approved title cards and subtitles using translations supplied by a client.",
+    "customer": "Small course sellers with translated scripts",
+    "skills": [
+      "Subtitles",
+      "Video editing"
+    ],
+    "interests": [
+      "Languages",
+      "Tutorials",
+      "Video tools"
+    ],
+    "family": "video-access",
+    "needs": "An editor and client-approved translations; do not promise translation expertise.",
+    "first": "Assemble one translated lesson and have a fluent reviewer approve it.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-caption-quality-audit",
+    "title": "Caption quality reports",
+    "service": "Check existing captions for omissions, timing and speaker-identification problems.",
+    "customer": "Training teams publishing captioned lessons",
+    "skills": [
+      "Subtitles"
+    ],
+    "interests": [
+      "Teaching adults",
+      "Tutorials",
+      "Video tools"
+    ],
+    "family": "video-access",
+    "needs": "Caption review experience, recording access and a practical issue checklist.",
+    "first": "Audit one ten-minute lesson and return timestamped corrections.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-chapter-markers",
+    "title": "Video chapter maps",
+    "service": "Watch a long recording and deliver accurate chapter timestamps and short chapter labels.",
+    "customer": "Creators with long educational videos",
+    "skills": [
+      "Video editing",
+      "Subtitles"
+    ],
+    "interests": [
+      "YouTube",
+      "Tutorials",
+      "Learning"
+    ],
+    "family": "video-access",
+    "needs": "A player, careful review and an agreed chapter naming style.",
+    "first": "Map one public or permitted lesson and offer a small batch.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Short",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-video-format-rescue",
+    "title": "Legacy video conversion",
+    "service": "Convert supported old digital video files into playable modern copies with verified playback.",
+    "customer": "Families and small organizations with old files",
+    "skills": [
+      "Video editing",
+      "Production"
+    ],
+    "interests": [
+      "Personal stories",
+      "Local history",
+      "Video tools"
+    ],
+    "family": "video-restoration",
+    "needs": "Supported converters, secure backups and a no-data-loss workflow.",
+    "first": "Convert a copy of one noncritical file and verify it with the owner.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-tape-digitizing",
+    "title": "Home video tape digitizing",
+    "service": "Transfer supported home tapes into organized digital viewing files.",
+    "customer": "Families preserving home recordings",
+    "skills": [
+      "Production",
+      "Video editing"
+    ],
+    "interests": [
+      "Personal stories",
+      "Helping older adults",
+      "Busy families"
+    ],
+    "family": "video-restoration",
+    "needs": "Compatible playback deck, capture hardware and careful original-media handling.",
+    "first": "Test one family-owned tape and price by supported format.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-archive-video-index",
+    "title": "Video archive indexing",
+    "service": "Create a searchable timestamp index of a collection without changing the original videos.",
+    "customer": "Local history groups with recorded footage",
+    "skills": [
+      "Video editing",
+      "Production"
+    ],
+    "interests": [
+      "Local history",
+      "Personal stories",
+      "Film"
+    ],
+    "family": "video-restoration",
+    "needs": "Secure storage access, a consistent index and permission to view the recordings.",
+    "first": "Index three recordings and ask the group to find a known moment.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-video-color-match",
+    "title": "Shot color matching",
+    "service": "Balance exposure and color across a short video so consecutive shots look consistent.",
+    "customer": "Independent filmmakers with an uneven edit",
+    "skills": [
+      "Video editing",
+      "Production"
+    ],
+    "interests": [
+      "Film",
+      "Video tools"
+    ],
+    "family": "video-restoration",
+    "needs": "Color-capable editor, calibrated viewing practice and reference stills.",
+    "first": "Match a short scene and show the before-and-after comparison.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-podcast-dialogue",
+    "title": "Podcast dialogue editing",
+    "service": "Cut false starts and distracting pauses while preserving each speaker’s meaning.",
+    "customer": "Independent conversation podcasters",
+    "skills": [
+      "Podcast editing",
+      "Audio editing"
+    ],
+    "interests": [
+      "Interviews",
+      "Audio tools",
+      "Personal stories"
+    ],
+    "family": "audio-editing",
+    "needs": "Audio editor, headphones and an agreed editing style.",
+    "first": "Edit ten minutes of a host’s pilot recording.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-noise-cleanup",
+    "title": "Spoken-audio cleanup",
+    "service": "Reduce hum, hiss and distracting background noise in usable spoken recordings.",
+    "customer": "Course makers and interviewers",
+    "skills": [
+      "Audio cleanup",
+      "Audio editing"
+    ],
+    "interests": [
+      "Audio tools",
+      "Tutorials",
+      "Interviews"
+    ],
+    "family": "audio-restoration",
+    "needs": "Restoration tools, headphones and realistic limits for damaged audio.",
+    "first": "Clean a one-minute sample and let the owner assess intelligibility.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-audiobook-proof",
+    "title": "Audiobook audio proofing",
+    "service": "Listen against the supplied manuscript and flag misreads, repeats and missing sentences.",
+    "customer": "Independent audiobook authors",
+    "skills": [
+      "Audio editing",
+      "Podcast editing"
+    ],
+    "interests": [
+      "Reading",
+      "Personal stories",
+      "Audio tools"
+    ],
+    "family": "audio-quality",
+    "needs": "Approved manuscript, private recording access and a timestamped correction sheet.",
+    "first": "Proof one chapter and return precise pickup notes.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-audiobook-master",
+    "title": "Audiobook file finishing",
+    "service": "Edit approved narration and prepare consistent chapter files for a chosen distributor.",
+    "customer": "Independent authors with recorded narration",
+    "skills": [
+      "Audio editing",
+      "Mixing"
+    ],
+    "interests": [
+      "Reading",
+      "Audio tools"
+    ],
+    "family": "audio-finishing",
+    "needs": "Audio editing competence and the distributor’s current delivery specifications.",
+    "first": "Finish one chapter and check it against the required audio limits.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-podcast-mix",
+    "title": "Podcast mix and leveling",
+    "service": "Balance speakers, music and transitions into a consistent listening level.",
+    "customer": "Podcasters with separately recorded tracks",
+    "skills": [
+      "Mixing",
+      "Podcast editing"
+    ],
+    "interests": [
+      "Audio tools",
+      "Interviews",
+      "Recording"
+    ],
+    "family": "audio-finishing",
+    "needs": "Audio workstation, headphones and a reference episode.",
+    "first": "Mix one short multitrack segment and agree on the target format.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-remote-record-check",
+    "title": "Remote recording setup checks",
+    "service": "Test microphone placement, room sound and recording settings before a client records.",
+    "customer": "Remote interview hosts",
+    "skills": [
+      "Recording",
+      "Audio cleanup"
+    ],
+    "interests": [
+      "Audio tools",
+      "Interviews",
+      "Helping people with computers"
+    ],
+    "family": "audio-support",
+    "needs": "Audio troubleshooting competence and a checklist for supported recording tools.",
+    "first": "Offer a short rehearsal call and send a written setup checklist.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-oral-history-audio",
+    "title": "Oral history recording sessions",
+    "service": "Record a consented conversation and deliver a clearly labeled audio archive.",
+    "customer": "Families and local history groups",
+    "skills": [
+      "Recording",
+      "Audio editing"
+    ],
+    "interests": [
+      "Local history",
+      "Personal stories",
+      "Helping older adults"
+    ],
+    "family": "audio-capture",
+    "needs": "Recorder, microphone, consent process and secure archival copies.",
+    "first": "Record a 20-minute story with one willing participant.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-sound-effects-capture",
+    "title": "Custom sound-effect recording",
+    "service": "Record specific original everyday sounds for a production’s sound needs.",
+    "customer": "Independent game and film makers",
+    "skills": [
+      "Recording",
+      "Audio editing"
+    ],
+    "interests": [
+      "Game design",
+      "Film",
+      "Worldbuilding"
+    ],
+    "family": "audio-capture",
+    "needs": "Recorder, quiet capture practice and a release process for any people recorded.",
+    "first": "Record five requested object sounds and deliver clean named files.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-location-dialogue",
+    "title": "Small-production location sound",
+    "service": "Record clear dialogue and room tone for a small filmed scene.",
+    "customer": "Independent filmmakers",
+    "skills": [
+      "Recording",
+      "Live sound"
+    ],
+    "interests": [
+      "Film",
+      "Videography"
+    ],
+    "family": "audio-capture",
+    "needs": "Recorder, microphones, monitoring and demonstrated location-sound competence.",
+    "first": "Support one short rehearsal scene and review the sound with its editor.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-vo-demo-edit",
+    "title": "Voice demo reel editing",
+    "service": "Assemble approved voice recordings into a concise reel with clean transitions.",
+    "customer": "Voice performers seeking commissions",
+    "skills": [
+      "Audio editing",
+      "Mixing"
+    ],
+    "interests": [
+      "Performing",
+      "Audio tools",
+      "Artist releases"
+    ],
+    "family": "audio-editing",
+    "needs": "Audio editor, performer-owned clips and a clear reel brief.",
+    "first": "Build a one-minute sample reel from a performer’s approved takes.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-interview-double-ender",
+    "title": "Remote interview track alignment",
+    "service": "Align separately recorded guest and host files and repair timing drift.",
+    "customer": "Remote interview podcasters",
+    "skills": [
+      "Podcast editing",
+      "Audio editing"
+    ],
+    "interests": [
+      "Interviews",
+      "Audio tools"
+    ],
+    "family": "audio-editing",
+    "needs": "Audio editor and familiarity with drift correction and local-track workflows.",
+    "first": "Synchronize one short two-track interview sample.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-audio-trailer",
+    "title": "Audio series trailers",
+    "service": "Build a short narrated or clip-led preview from an existing audio series.",
+    "customer": "Independent podcast series producers",
+    "skills": [
+      "Audio editing",
+      "Mixing"
+    ],
+    "interests": [
+      "Personal stories",
+      "Interviews",
+      "Audio tools"
+    ],
+    "family": "audio-editing",
+    "needs": "Audio editor, approved clips and a clear listener invitation.",
+    "first": "Make a 45-second trailer from one producer’s chosen moments.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-radio-edit",
+    "title": "Clean music radio edits",
+    "service": "Create an artist-approved shorter or clean version from supplied stems.",
+    "customer": "Independent musicians releasing tracks",
+    "skills": [
+      "Audio editing",
+      "Mixing"
+    ],
+    "interests": [
+      "Independent musicians",
+      "Artist releases"
+    ],
+    "family": "music-finishing",
+    "needs": "Audio workstation, stems and written artist approval of removed material.",
+    "first": "Make one approved chorus-to-outro shortening for an artist.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-stem-prep",
+    "title": "Music stem preparation",
+    "service": "Export, label and check aligned stems from an existing music session.",
+    "customer": "Musicians collaborating with mixers or performers",
+    "skills": [
+      "Recording",
+      "Mixing"
+    ],
+    "interests": [
+      "Recording",
+      "Independent musicians"
+    ],
+    "family": "music-finishing",
+    "needs": "Compatible workstation, session access and agreed stem specifications.",
+    "first": "Prepare one song’s stems and test they reconstruct correctly.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-vocal-comp",
+    "title": "Vocal take comping",
+    "service": "Select and assemble an artist’s preferred phrases into a coherent lead vocal.",
+    "customer": "Independent singers with multiple takes",
+    "skills": [
+      "Audio editing",
+      "Mixing"
+    ],
+    "interests": [
+      "Performing",
+      "Recording",
+      "Independent musicians"
+    ],
+    "family": "music-finishing",
+    "needs": "Audio editor, organized takes and singer approval of phrase choices.",
+    "first": "Comp one verse and chorus before quoting a full song.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-drum-edit",
+    "title": "Recorded drum timing edits",
+    "service": "Tighten selected drum performances while retaining the artist’s intended feel.",
+    "customer": "Bands preparing a studio mix",
+    "skills": [
+      "Audio editing",
+      "Mixing"
+    ],
+    "interests": [
+      "Local bands",
+      "Recording"
+    ],
+    "family": "music-finishing",
+    "needs": "Multitrack editing competence, approved guide timing and unedited backups.",
+    "first": "Edit one chorus and compare it with the band before proceeding.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-mix-revision",
+    "title": "Mix translation checks",
+    "service": "Test a music mix on everyday listening setups and return specific revision notes.",
+    "customer": "Self-producing musicians",
+    "skills": [
+      "Mixing"
+    ],
+    "interests": [
+      "Recording",
+      "Artist releases"
+    ],
+    "family": "audio-quality",
+    "needs": "Critical-listening experience, several playback options and timestamped notes.",
+    "first": "Review one song and identify three actionable balance problems.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-rehearsal-recording",
+    "title": "Rehearsal recording services",
+    "service": "Capture a band rehearsal and deliver labeled practice tracks for review.",
+    "customer": "Local bands preparing performances",
+    "skills": [
+      "Recording",
+      "Live sound"
+    ],
+    "interests": [
+      "Local bands",
+      "Performing"
+    ],
+    "family": "audio-capture",
+    "needs": "A portable recorder, level-setting competence and permission from the group.",
+    "first": "Record one rehearsal set and deliver one file per song.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-concert-recording",
+    "title": "Small concert audio recording",
+    "service": "Record a permitted performance from an agreed sound feed and room microphones.",
+    "customer": "Small venues and performing groups",
+    "skills": [
+      "Recording",
+      "Live sound"
+    ],
+    "interests": [
+      "Live events",
+      "Local bands",
+      "Performing"
+    ],
+    "family": "audio-capture",
+    "needs": "Suitable recorder, venue coordination and performer recording permissions.",
+    "first": "Record a soundcheck and agree on deliverable limits before booking.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-dance-music-cuts",
+    "title": "Dance routine music cuts",
+    "service": "Build an approved routine-length edit with clear transitions and cue points.",
+    "customer": "Dance teachers and competition groups",
+    "skills": [
+      "Audio editing",
+      "Mixing"
+    ],
+    "interests": [
+      "Dance",
+      "Dance events"
+    ],
+    "family": "audio-editing",
+    "needs": "Audio editor, exact choreography timings and client-cleared music rights.",
+    "first": "Edit a short practice routine from music the client can lawfully use.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-theatre-cues",
+    "title": "Theatre sound-cue packages",
+    "service": "Prepare trimmed, leveled sound cues with clear filenames and a playback list.",
+    "customer": "Small theatre and community performance groups",
+    "skills": [
+      "Audio editing",
+      "Live sound"
+    ],
+    "interests": [
+      "Performing",
+      "Community events"
+    ],
+    "family": "audio-editing",
+    "needs": "An editor, approved source sounds and rehearsal time for cue checks.",
+    "first": "Package cues for one scene and test them in rehearsal.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-exhibit-audio",
+    "title": "Exhibit listening-station edits",
+    "service": "Create short labeled listening tracks from approved interviews and narration.",
+    "customer": "Local museums and community exhibitions",
+    "skills": [
+      "Audio editing",
+      "Mixing"
+    ],
+    "interests": [
+      "Local history",
+      "Personal stories",
+      "Community groups"
+    ],
+    "family": "audio-editing",
+    "needs": "Approved recordings, usage permission and the exhibit’s playback requirements.",
+    "first": "Produce one two-minute listening track for an exhibition organizer.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-audio-description-edit",
+    "title": "Audio description track assembly",
+    "service": "Edit specialist-approved description recordings into the pauses of a film.",
+    "customer": "Filmmakers supplying an approved description script",
+    "skills": [
+      "Audio editing",
+      "Mixing"
+    ],
+    "interests": [
+      "Film",
+      "Audio tools"
+    ],
+    "family": "audio-access",
+    "needs": "Audio editor and approved script/voice recording; a description specialist reviews timing.",
+    "first": "Assemble one scene and ask the client’s access reviewer to check it.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-vintage-audio",
+    "title": "Family audio restoration",
+    "service": "Improve intelligibility and preserve copies of supported family audio recordings.",
+    "customer": "Families with old personal recordings",
+    "skills": [
+      "Audio editing",
+      "Audio cleanup"
+    ],
+    "interests": [
+      "Personal stories",
+      "Helping older adults"
+    ],
+    "family": "audio-restoration",
+    "needs": "Restoration tools, secure backups and clear limits on recoverable sound.",
+    "first": "Restore a copy of one short recording and keep the original unchanged.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-music-session-cleanup",
+    "title": "Music session cleanup",
+    "service": "Organize tracks, remove unused takes and prepare a clear session for handoff.",
+    "customer": "Independent producers sharing projects",
+    "skills": [
+      "Recording",
+      "Audio editing"
+    ],
+    "interests": [
+      "Recording",
+      "Audio tools"
+    ],
+    "family": "music-finishing",
+    "needs": "Compatible workstation, full backups and the receiving engineer’s requirements.",
+    "first": "Clean a duplicate of one short session and verify it opens correctly.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-solo-performance",
+    "title": "Acoustic background performances",
+    "service": "Perform a short, agreed repertoire at an intimate gathering.",
+    "customer": "Hosts of small celebrations",
+    "skills": [
+      "Playing an instrument",
+      "Singing"
+    ],
+    "interests": [
+      "Small celebrations",
+      "Performing",
+      "Live events"
+    ],
+    "family": "music-performance",
+    "needs": "Reliable performance skill, suitable repertoire and clear sound/venue arrangements.",
+    "first": "Record a three-song demonstration and offer a short local set.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "media-session-instrument",
+    "title": "Remote instrumental session parts",
+    "service": "Record an original instrumental part to a musician’s supplied track and brief.",
+    "customer": "Independent songwriters",
+    "skills": [
+      "Playing an instrument"
+    ],
+    "interests": [
+      "Songwriting",
+      "Recording",
+      "Independent musicians"
+    ],
+    "family": "music-performance",
+    "needs": "Instrument, recording setup and clear arrangement/usage terms.",
+    "first": "Record a short sample part for one songwriter’s demo.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Deep",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "media-session-vocals",
+    "title": "Remote session vocals",
+    "service": "Record agreed lead or backing vocals for an original song.",
+    "customer": "Songwriters and independent producers",
+    "skills": [
+      "Singing"
+    ],
+    "interests": [
+      "Performing",
+      "Recording",
+      "Independent musicians"
+    ],
+    "family": "music-performance",
+    "needs": "Recording setup, confident vocal technique and written performance/usage terms.",
+    "first": "Offer a short chorus demo in a comfortable vocal range.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Deep",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "media-custom-lullaby",
+    "title": "Personalized original lullabies",
+    "service": "Compose and record a short original song using a family’s approved details.",
+    "customer": "Families commissioning a keepsake",
+    "skills": [
+      "Songwriting"
+    ],
+    "interests": [
+      "Personal stories",
+      "Handmade gifts",
+      "Making music"
+    ],
+    "family": "music-composition",
+    "needs": "Songwriting and recording competence plus a clear revision and usage agreement.",
+    "first": "Write a sample verse and melody using fictional family details.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "media-brand-jingle",
+    "title": "Original brand jingles",
+    "service": "Write and record a brief original musical hook for a small brand.",
+    "customer": "Small businesses commissioning an audio identity",
+    "skills": [
+      "Songwriting",
+      "Arranging"
+    ],
+    "interests": [
+      "Branding",
+      "Small businesses",
+      "Making music"
+    ],
+    "family": "music-composition",
+    "needs": "Composition and recording competence with explicit licensing terms.",
+    "first": "Create one fictional ten-second jingle to demonstrate your style.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-podcast-theme",
+    "title": "Original podcast themes",
+    "service": "Compose a short original intro, outro and matching transition cue.",
+    "customer": "Independent podcast hosts",
+    "skills": [
+      "Songwriting",
+      "Arranging"
+    ],
+    "interests": [
+      "Audio tools",
+      "Making music",
+      "Personal stories"
+    ],
+    "family": "music-composition",
+    "needs": "Music production ability and a written license covering the podcast’s use.",
+    "first": "Compose a short sample suite for a fictional interview show.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-game-score",
+    "title": "Looping game music commissions",
+    "service": "Compose original seamless music loops for a game’s defined scenes.",
+    "customer": "Independent game makers",
+    "skills": [
+      "Songwriting",
+      "Arranging"
+    ],
+    "interests": [
+      "Game design",
+      "Worldbuilding",
+      "Making games"
+    ],
+    "family": "music-composition",
+    "needs": "Composition tools, loop-testing skills and agreed usage rights.",
+    "first": "Score a one-minute loop to a developer’s prototype scene.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-film-score",
+    "title": "Short-film scoring",
+    "service": "Compose original music that follows the emotional timing of a short scene.",
+    "customer": "Independent short-film directors",
+    "skills": [
+      "Songwriting",
+      "Arranging"
+    ],
+    "interests": [
+      "Film",
+      "Making music"
+    ],
+    "family": "music-composition",
+    "needs": "Composition workstation, picture reference and a clear synchronization license.",
+    "first": "Score a single permitted scene and review it with its director.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-dance-score",
+    "title": "Original dance practice tracks",
+    "service": "Compose music with an agreed tempo, phrase length and cue structure for choreography.",
+    "customer": "Dance instructors and choreographers",
+    "skills": [
+      "Songwriting",
+      "Arranging"
+    ],
+    "interests": [
+      "Dance",
+      "Dance events"
+    ],
+    "family": "music-composition",
+    "needs": "Composition competence and a tempo/phrase brief from the choreographer.",
+    "first": "Create a short original eight-count practice section.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-sound-logo",
+    "title": "Sonic logo commissions",
+    "service": "Create a brief original sound signature with a few approved variants.",
+    "customer": "Independent brands launching audio or video content",
+    "skills": [
+      "Songwriting",
+      "Arranging",
+      "Mixing"
+    ],
+    "interests": [
+      "Branding",
+      "Audio tools"
+    ],
+    "family": "music-composition",
+    "needs": "Sound-design competence and explicit ownership or license terms.",
+    "first": "Make three short directions for a fictional brand brief.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-song-demo",
+    "title": "Song demo production",
+    "service": "Turn a songwriter’s melody and chords into a clear, simple recorded demo.",
+    "customer": "Songwriters pitching their own original work",
+    "skills": [
+      "Arranging",
+      "Recording",
+      "Mixing"
+    ],
+    "interests": [
+      "Songwriting",
+      "Independent musicians"
+    ],
+    "family": "music-production",
+    "needs": "Recording setup and agreed limits on instrumentation and revisions.",
+    "first": "Produce one verse and chorus from a songwriter’s original work.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-backing-tracks",
+    "title": "Custom rehearsal backing tracks",
+    "service": "Record an agreed accompaniment for a performer’s practice or rehearsal.",
+    "customer": "Solo performers rehearsing an approved repertoire",
+    "skills": [
+      "Arranging",
+      "Playing an instrument"
+    ],
+    "interests": [
+      "Performing",
+      "Music education"
+    ],
+    "family": "music-production",
+    "needs": "Recording tools, musical competence and appropriate arrangement permissions.",
+    "first": "Make a short accompaniment in a performer’s requested key.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-choir-practice",
+    "title": "Choir part-learning recordings",
+    "service": "Record separate guide tracks so singers can hear their own approved part.",
+    "customer": "Community choirs",
+    "skills": [
+      "Singing",
+      "Playing an instrument"
+    ],
+    "interests": [
+      "Music education",
+      "Community groups",
+      "Performing"
+    ],
+    "family": "music-production",
+    "needs": "Score-reading competence, recording setup and permission to reproduce the work.",
+    "first": "Record one short public-domain passage for a choir director.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-sheet-transcription",
+    "title": "Melody transcription",
+    "service": "Transcribe a client’s original recorded melody into readable notation.",
+    "customer": "Songwriters who record ideas by ear",
+    "skills": [
+      "Music notation"
+    ],
+    "interests": [
+      "Songwriting",
+      "Music education"
+    ],
+    "family": "music-notation",
+    "needs": "Notation software, accurate listening and permission to transcribe the recording.",
+    "first": "Transcribe eight bars of an original melody and confirm it with the writer.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-score-engraving",
+    "title": "Readable score engraving",
+    "service": "Turn a composer’s rough notation into clean, consistently laid-out sheet music.",
+    "customer": "Independent composers",
+    "skills": [
+      "Music notation"
+    ],
+    "interests": [
+      "Songwriting",
+      "Music education"
+    ],
+    "family": "music-notation",
+    "needs": "Notation software, engraving competence and a sample style sheet.",
+    "first": "Engrave two pages from a composer-approved draft.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-part-extraction",
+    "title": "Performance part preparation",
+    "service": "Extract and check individual instrumental parts from an approved score.",
+    "customer": "Small ensembles and composers",
+    "skills": [
+      "Music notation",
+      "Arranging"
+    ],
+    "interests": [
+      "Performing",
+      "Music education"
+    ],
+    "family": "music-notation",
+    "needs": "Notation software, score literacy and practical page-turn checks.",
+    "first": "Prepare one short movement’s parts and ask players to review readability.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-lead-sheets",
+    "title": "Lead sheet preparation",
+    "service": "Create melody, chords and lyric lead sheets from approved original songs.",
+    "customer": "Independent songwriters and bandleaders",
+    "skills": [
+      "Music notation",
+      "Arranging"
+    ],
+    "interests": [
+      "Songwriting",
+      "Local bands"
+    ],
+    "family": "music-notation",
+    "needs": "Notation tools and accurate chord/melody transcription.",
+    "first": "Prepare one verse and chorus from an artist’s own song.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-ensemble-arranging",
+    "title": "Small ensemble arrangements",
+    "service": "Adapt an authorized piece for a specific group’s instruments and ability level.",
+    "customer": "Community instrumental ensembles",
+    "skills": [
+      "Arranging",
+      "Music notation"
+    ],
+    "interests": [
+      "Music education",
+      "Community groups",
+      "Performing"
+    ],
+    "family": "music-arranging",
+    "needs": "Arranging competence, player ranges and appropriate work permissions.",
+    "first": "Arrange a short public-domain piece for a named ensemble.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-vocal-harmonies",
+    "title": "Backing-vocal arrangements",
+    "service": "Write and demonstrate supporting vocal lines for an original song.",
+    "customer": "Independent singers and bands",
+    "skills": [
+      "Arranging",
+      "Singing"
+    ],
+    "interests": [
+      "Songwriting",
+      "Local bands",
+      "Recording"
+    ],
+    "family": "music-arranging",
+    "needs": "Vocal arranging competence and singer ranges supplied by the client.",
+    "first": "Write and record a short chorus harmony from an original demo.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-instrument-reduction",
+    "title": "Piano rehearsal reductions",
+    "service": "Create playable rehearsal accompaniment from an authorized small-ensemble score.",
+    "customer": "Directors rehearsing singers or instrumentalists",
+    "skills": [
+      "Arranging",
+      "Music notation"
+    ],
+    "interests": [
+      "Performing",
+      "Music education"
+    ],
+    "family": "music-arranging",
+    "needs": "Advanced score reading, keyboard understanding and arrangement permission.",
+    "first": "Reduce one short approved passage and test it with a rehearsal player.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-song-form-feedback",
+    "title": "Song structure feedback",
+    "service": "Give timestamped feedback on sections, repetition and transitions in an original demo.",
+    "customer": "Songwriters revising unfinished work",
+    "skills": [
+      "Songwriting",
+      "Arranging"
+    ],
+    "interests": [
+      "Songwriting",
+      "Independent musicians"
+    ],
+    "family": "music-consulting",
+    "needs": "Demonstrated songwriting experience and a specific feedback rubric.",
+    "first": "Review one original song and suggest one testable structural revision.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "media-lyric-meter",
+    "title": "Lyric meter polishing",
+    "service": "Refine the rhythm and singability of an original lyric while preserving its meaning.",
+    "customer": "Songwriters with melodies and draft lyrics",
+    "skills": [
+      "Lyrics",
+      "Songwriting"
+    ],
+    "interests": [
+      "Songwriting",
+      "Making music"
+    ],
+    "family": "music-consulting",
+    "needs": "Lyric-writing ability and a clear agreement about authorship and revisions.",
+    "first": "Polish one chorus with the songwriter and sing-test the syllables.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "media-setlist-transitions",
+    "title": "Live set transition arrangements",
+    "service": "Design musical links and endings that make an existing live set flow.",
+    "customer": "Bands preparing a cohesive show",
+    "skills": [
+      "Arranging",
+      "Performing"
+    ],
+    "interests": [
+      "Local bands",
+      "Live events"
+    ],
+    "family": "music-arranging",
+    "needs": "Live-arranging experience, repertoire access and a rehearsal with the band.",
+    "first": "Arrange a transition between two original songs and test it live.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-mic-technique-lesson",
+    "title": "Microphone technique sessions",
+    "service": "Teach a performer how distance, angle and level affect their own microphone sound.",
+    "customer": "New singers and speakers",
+    "skills": [
+      "Live sound",
+      "Recording"
+    ],
+    "interests": [
+      "Performing",
+      "Audio tools",
+      "Music education"
+    ],
+    "family": "music-instruction",
+    "needs": "Sound competence, supported microphones and a short hands-on practice plan.",
+    "first": "Offer a 30-minute session using one performer’s microphone.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "media-song-recording-lesson",
+    "title": "Home recording lessons",
+    "service": "Teach a musician to capture a clean first take in their existing recording setup.",
+    "customer": "Musicians learning home recording",
+    "skills": [
+      "Recording",
+      "Audio editing"
+    ],
+    "interests": [
+      "Recording",
+      "Music education",
+      "Audio tools"
+    ],
+    "family": "music-instruction",
+    "needs": "Recording competence and a narrow lesson for the learner’s actual software.",
+    "first": "Build a one-hour record-and-export lesson around one short performance.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "media-notation-lesson",
+    "title": "Notation software starter lessons",
+    "service": "Teach a learner to enter, correct and export a short score.",
+    "customer": "Musicians new to notation software",
+    "skills": [
+      "Music notation"
+    ],
+    "interests": [
+      "Music education",
+      "Creative software"
+    ],
+    "family": "music-instruction",
+    "needs": "Notation-software competence and an original practice score.",
+    "first": "Teach one learner to make a readable eight-bar exercise.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "media-mixing-lesson",
+    "title": "Mixing practice sessions",
+    "service": "Guide a beginner through balancing a small multitrack project they own.",
+    "customer": "Self-recording musicians",
+    "skills": [
+      "Mixing"
+    ],
+    "interests": [
+      "Recording",
+      "Music education",
+      "Audio tools"
+    ],
+    "family": "music-instruction",
+    "needs": "Mixing competence, a lawful practice session and a limited lesson outline.",
+    "first": "Teach a short level-and-pan exercise with four tracks.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Deep",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "media-instrument-starter",
+    "title": "Beginner instrument lessons",
+    "service": "Teach posture, basic technique and a manageable practice routine on an instrument you play.",
+    "customer": "Beginning musicians",
+    "skills": [
+      "Playing an instrument"
+    ],
+    "interests": [
+      "Music education",
+      "Making music"
+    ],
+    "family": "music-instruction",
+    "needs": "Demonstrated instrument competence and appropriate learner arrangements.",
+    "first": "Offer a short beginner lesson with one achievable exercise.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "media-singing-starter",
+    "title": "Beginner singing sessions",
+    "service": "Teach basic pitch matching, phrasing and a gentle practice routine within your competence.",
+    "customer": "New singers",
+    "skills": [
+      "Singing"
+    ],
+    "interests": [
+      "Music education",
+      "Performing"
+    ],
+    "family": "music-instruction",
+    "needs": "Demonstrated singing competence; do not diagnose or treat voice problems.",
+    "first": "Offer one short pitch-and-phrase practice session.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "media-songwriting-workshop",
+    "title": "Original song workshops",
+    "service": "Guide a small group from a simple prompt to a short original verse and chorus.",
+    "customer": "Community groups and adult learners",
+    "skills": [
+      "Songwriting",
+      "Lyrics"
+    ],
+    "interests": [
+      "Workshops",
+      "Music education",
+      "Songwriting"
+    ],
+    "family": "music-instruction",
+    "needs": "Songwriting competence, facilitation ability and a compact original exercise.",
+    "first": "Pilot a one-hour workshop with a small consenting group.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-rhythm-practice",
+    "title": "Rhythm practice clubs",
+    "service": "Lead a small group through repeatable clapping and instrument rhythm exercises.",
+    "customer": "Community learners and beginning musicians",
+    "skills": [
+      "Playing an instrument"
+    ],
+    "interests": [
+      "Music education",
+      "Community groups"
+    ],
+    "family": "music-instruction",
+    "needs": "Rhythmic competence, a welcoming exercise sequence and suitable venue arrangements.",
+    "first": "Run one short taster focused on a single rhythm pattern.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-live-sound-small",
+    "title": "Small event sound operation",
+    "service": "Set levels, manage microphones and run a simple agreed sound system.",
+    "customer": "Hosts of small spoken or musical events",
+    "skills": [
+      "Live sound"
+    ],
+    "interests": [
+      "Live sound",
+      "Community events",
+      "Live events"
+    ],
+    "family": "live-production",
+    "needs": "Tested equipment competence, venue approval and a safe setup plan.",
+    "first": "Run a short rehearsal for a small event with a simple input list.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-soundcheck-prep",
+    "title": "Band soundcheck preparation",
+    "service": "Prepare an input list, stage plot and practical soundcheck plan with a band.",
+    "customer": "Bands booking small venues",
+    "skills": [
+      "Live sound"
+    ],
+    "interests": [
+      "Local bands",
+      "Live events"
+    ],
+    "family": "live-production",
+    "needs": "Live-sound competence and accurate details of the band’s equipment.",
+    "first": "Map one band’s setup and rehearse a ten-minute soundcheck order.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-audio-playback",
+    "title": "Event audio playback operation",
+    "service": "Build and operate an agreed cue list of client-cleared tracks during a small event.",
+    "customer": "Community event and dance hosts",
+    "skills": [
+      "Live sound",
+      "Audio editing"
+    ],
+    "interests": [
+      "Dance events",
+      "Community events",
+      "Small celebrations"
+    ],
+    "family": "live-production",
+    "needs": "Reliable playback equipment, backups and the host’s music permissions.",
+    "first": "Rehearse a short cue sequence with an event organizer.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-venue-sound-tune",
+    "title": "Small venue sound setup sessions",
+    "service": "Help a venue configure its existing system and document repeatable basic settings.",
+    "customer": "Small community venues",
+    "skills": [
+      "Live sound"
+    ],
+    "interests": [
+      "Live events",
+      "Community groups",
+      "Audio tools"
+    ],
+    "family": "live-production",
+    "needs": "Sound-system competence, venue access and clear limits excluding electrical work.",
+    "first": "Assess one simple setup and write a short operator checklist.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Deep",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "media-foley-library",
+    "title": "Original object sound libraries",
+    "service": "Sell organized recordings of a coherent set of original object and movement sounds.",
+    "customer": "Independent game and film makers",
+    "skills": [
+      "Recording",
+      "Audio editing"
+    ],
+    "interests": [
+      "Game design",
+      "Film",
+      "Audio tools"
+    ],
+    "family": "audio-products",
+    "needs": "Original recordings, consistent metadata and a clear reuse license.",
+    "first": "Record ten variations of one useful object sound and test the download package.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "media-nature-audio",
+    "title": "Original natural soundscapes",
+    "service": "Record and license long, clean location soundscapes with clear source descriptions.",
+    "customer": "Media producers needing authentic environmental audio",
+    "skills": [
+      "Recording",
+      "Audio editing"
+    ],
+    "interests": [
+      "Birdwatching",
+      "Nature",
+      "Camping"
+    ],
+    "family": "audio-products",
+    "needs": "Portable recorder, lawful location access and identifiable-voice privacy controls.",
+    "first": "Record one quiet location and offer a short preview with exact license terms.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "media-percussion-samples",
+    "title": "Original percussion sample packs",
+    "service": "Record and organize playable one-shot percussion samples across useful dynamics.",
+    "customer": "Music producers building original tracks",
+    "skills": [
+      "Playing an instrument"
+    ],
+    "interests": [
+      "Recording",
+      "Making music",
+      "Audio tools"
+    ],
+    "family": "music-products",
+    "needs": "Percussion instruments, recording competence and original-source licensing terms.",
+    "first": "Capture a small velocity-varied set from one instrument and test it in a sampler.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "media-stream-alerts",
+    "title": "Original stream alert sounds",
+    "service": "Create a licensed pack of short, distinct notification sounds at consistent levels.",
+    "customer": "Independent livestream creators",
+    "skills": [
+      "Mixing"
+    ],
+    "interests": [
+      "Video creators",
+      "Games",
+      "Audio tools"
+    ],
+    "family": "audio-products",
+    "needs": "Sound-design tools, original source material and a clear license.",
+    "first": "Create five related alerts and ask a creator to test their recognizability.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "media-ensemble-warmups",
+    "title": "Original ensemble warmup scores",
+    "service": "Publish short original warmup pieces targeting a specific ensemble skill.",
+    "customer": "Community ensemble directors",
+    "skills": [
+      "Arranging",
+      "Music notation"
+    ],
+    "interests": [
+      "Music education",
+      "Performing"
+    ],
+    "family": "music-products",
+    "needs": "Notation competence, original exercises and a player-tested score.",
+    "first": "Write one short warmup and have a director try it in rehearsal.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "media-beginner-duets",
+    "title": "Original beginner duet collections",
+    "service": "Publish simple original duets with graded parts and listening examples.",
+    "customer": "Instrument teachers and their students",
+    "skills": [
+      "Music notation",
+      "Arranging"
+    ],
+    "interests": [
+      "Music education",
+      "Teaching children"
+    ],
+    "family": "music-products",
+    "needs": "Instrument-range knowledge, notation tools and playable original compositions.",
+    "first": "Write one short duet and ask a teacher to test both parts.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "media-rhythm-tracks",
+    "title": "Graded rhythm practice tracks",
+    "service": "Sell original audio exercises with count-ins and gradually increasing tempos.",
+    "customer": "Beginning instrumental learners",
+    "skills": [
+      "Playing an instrument"
+    ],
+    "interests": [
+      "Music education",
+      "Study skills"
+    ],
+    "family": "music-products",
+    "needs": "Accurate rhythm performance, recording tools and clearly marked tempo levels.",
+    "first": "Record three tempos of one exercise and ask a learner to follow them.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "media-loop-library",
+    "title": "Original seamless music loop packs",
+    "service": "Publish coordinated original loops with tempo, key and clear reuse permissions.",
+    "customer": "Small game and video makers",
+    "skills": [
+      "Songwriting",
+      "Arranging",
+      "Mixing"
+    ],
+    "interests": [
+      "Game design",
+      "Video creators",
+      "Making music"
+    ],
+    "family": "music-products",
+    "needs": "Original composition, reliable loop testing and clear license boundaries.",
+    "first": "Release a coherent three-loop sample pack and test every loop seam.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Deep",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "media-audio-mystery",
+    "title": "Audio mystery game kits",
+    "service": "Produce an original short audio mystery with clues, character tracks and a host guide.",
+    "customer": "Tabletop groups and small gathering hosts",
+    "skills": [
+      "Audio editing",
+      "Recording"
+    ],
+    "interests": [
+      "Tabletop games",
+      "Worldbuilding",
+      "Small celebrations"
+    ],
+    "family": "audio-products",
+    "needs": "Original story/performer permissions, audio production ability and playtesting.",
+    "first": "Build a ten-minute puzzle and test whether one group solves its audio clues.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "media-public-domain-songbook",
+    "title": "Playable public-domain arrangements",
+    "service": "Publish carefully checked arrangements of verified public-domain works for one instrument.",
+    "customer": "Instrument learners and teachers",
+    "skills": [
+      "Arranging",
+      "Music notation"
+    ],
+    "interests": [
+      "Music education",
+      "Reading"
+    ],
+    "family": "music-products",
+    "needs": "Arrangement skill, jurisdiction-appropriate rights checks and playtested notation.",
+    "first": "Arrange one verified public-domain tune and test its stated difficulty.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Deep",
+      "growth": "Scalable"
+    }
+  }
+]

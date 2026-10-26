@@ -1,0 +1,2307 @@
+[
+  {
+    "id": "creative-welcome-email",
+    "title": "Welcome email sequences",
+    "service": "Write a short sequence that introduces an offer and answers new subscribers’ questions.",
+    "customer": "Independent professionals building an email list",
+    "skills": [
+      "Email newsletters",
+      "Website copy",
+      "Writing"
+    ],
+    "interests": [
+      "Email newsletters",
+      "Independent professionals"
+    ],
+    "family": "writing",
+    "needs": "Three sample emails and the client’s approved offer.",
+    "first": "Draft one welcome email for a professional you know and offer a three-email pilot.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "creative-case-studies",
+    "title": "Customer case studies",
+    "service": "Interview a satisfied customer and turn the results into a factual story.",
+    "customer": "Service businesses with completed client projects",
+    "skills": [
+      "Interviews",
+      "Brand stories",
+      "Research"
+    ],
+    "interests": [
+      "Interviews",
+      "Small businesses",
+      "Personal stories"
+    ],
+    "family": "writing",
+    "needs": "Interview questions, recording permission, and a sample case study.",
+    "first": "Ask one provider to introduce a customer willing to be interviewed.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "creative-website-copy",
+    "title": "Website copy refresh",
+    "service": "Rewrite a home page so visitors understand the service and next step.",
+    "customer": "Local providers with confusing websites",
+    "skills": [
+      "Website copy",
+      "Editing",
+      "Writing"
+    ],
+    "interests": [
+      "Small business websites",
+      "Local shops"
+    ],
+    "family": "writing",
+    "needs": "A before-and-after sample and a one-page scope.",
+    "first": "Offer to rewrite one provider’s home page after a short customer interview.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "creative-product-descriptions",
+    "title": "Product description packages",
+    "service": "Write clear listings that explain materials, dimensions, use, and care.",
+    "customer": "Makers selling physical products online",
+    "skills": [
+      "Website copy",
+      "Writing",
+      "Research"
+    ],
+    "interests": [
+      "Online shops",
+      "Handmade gifts",
+      "Craft fairs"
+    ],
+    "family": "writing",
+    "needs": "Accurate product facts and three sample listings.",
+    "first": "Rewrite one maker’s listing and quote a five-product package.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "creative-founder-story",
+    "title": "Founder story interviews",
+    "service": "Shape a recorded interview into an honest origin story for an about page.",
+    "customer": "Solo founders preparing to introduce their business",
+    "skills": [
+      "Interviews",
+      "Brand stories",
+      "Storytelling"
+    ],
+    "interests": [
+      "Solo founders",
+      "Personal stories"
+    ],
+    "family": "writing",
+    "needs": "A consent process and one sample profile.",
+    "first": "Interview a founder you know and propose a fixed-length story.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-family-memoir",
+    "title": "Family story booklets",
+    "service": "Interview relatives and edit their memories into a small private booklet.",
+    "customer": "Families preserving personal stories",
+    "skills": [
+      "Interviews",
+      "Personal essays",
+      "Storytelling"
+    ],
+    "interests": [
+      "Personal stories",
+      "Helping older adults"
+    ],
+    "family": "writing",
+    "needs": "Recording consent, a sample spread, and private file storage.",
+    "first": "Offer one family a single-interview chapter before proposing a longer booklet.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-oral-history",
+    "title": "Local oral-history profiles",
+    "service": "Document a resident’s memories with an edited transcript and short profile.",
+    "customer": "Local history groups and community archives",
+    "skills": [
+      "Interviews",
+      "Research",
+      "Fact checking"
+    ],
+    "interests": [
+      "Local history",
+      "Community groups"
+    ],
+    "family": "research",
+    "needs": "Interview permission, source notes, and archive-ready file formats.",
+    "first": "Ask a local history group which one resident they want to document.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-proofreading",
+    "title": "Final manuscript proofreading",
+    "service": "Mark spelling, punctuation, and consistency errors before publication.",
+    "customer": "Independent writers with finished manuscripts",
+    "skills": [
+      "Proofreading",
+      "Editing"
+    ],
+    "interests": [
+      "Reading",
+      "Writing",
+      "Stories"
+    ],
+    "family": "editing",
+    "needs": "A sample edit, style sheet, and clear exclusions from rewriting.",
+    "first": "Offer a paid proofread of a short finished chapter.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-copyediting",
+    "title": "Plain-language copyediting",
+    "service": "Improve sentence clarity and consistency while keeping the author’s voice.",
+    "customer": "Writers preparing guides or essays",
+    "skills": [
+      "Editing",
+      "Explaining complex ideas"
+    ],
+    "interests": [
+      "Reading",
+      "Writing guides"
+    ],
+    "family": "editing",
+    "needs": "A tracked-change sample and an agreed editing level.",
+    "first": "Edit a short public-domain passage to demonstrate your process.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-research-briefs",
+    "title": "Source-backed research briefs",
+    "service": "Summarize a narrow question with links, dates, and clearly separated unknowns.",
+    "customer": "Creators researching an article or project",
+    "skills": [
+      "Research",
+      "Fact checking"
+    ],
+    "interests": [
+      "Writing",
+      "Science",
+      "Local history"
+    ],
+    "family": "research",
+    "needs": "Source evaluation practice and a sample two-page brief.",
+    "first": "Ask a creator for one unanswered research question and quote a bounded brief.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-factcheck",
+    "title": "Article fact checking",
+    "service": "Check factual claims against primary sources and deliver a correction log.",
+    "customer": "Independent publishers preparing nonfiction",
+    "skills": [
+      "Fact checking",
+      "Research"
+    ],
+    "interests": [
+      "Reading",
+      "Newsletters",
+      "Science"
+    ],
+    "family": "editing",
+    "needs": "A claim-tracking sheet and access to appropriate sources.",
+    "first": "Offer to check one short article with a fixed claim limit.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-plant-care-guides",
+    "title": "Plain-language plant care guides",
+    "service": "Turn a grower’s verified care advice into short plant-specific instruction sheets.",
+    "customer": "Nurseries helping customers care for purchased plants",
+    "skills": [
+      "Writing",
+      "Explaining complex ideas",
+      "Step-by-step guides"
+    ],
+    "interests": [
+      "Outdoors",
+      "Gardens",
+      "Growing food",
+      "Houseplants",
+      "Native plants"
+    ],
+    "family": "writing",
+    "needs": "A grower-approved care brief and a sample instruction sheet.",
+    "first": "Ask a nursery which plant causes the most customer questions and draft one approved guide.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "creative-scripts",
+    "title": "Explainer video scripts",
+    "service": "Write a focused spoken script that explains one idea with visual cues.",
+    "customer": "Educational video creators",
+    "skills": [
+      "Video scripts",
+      "Explaining complex ideas",
+      "Storytelling"
+    ],
+    "interests": [
+      "YouTube",
+      "Tutorials",
+      "Science"
+    ],
+    "family": "writing",
+    "needs": "A timed script sample and a clear audience brief.",
+    "first": "Pitch one short explainer script to a creator in a subject you understand.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "creative-museum-labels",
+    "title": "Exhibit label writing",
+    "service": "Turn approved research into concise, readable labels and visitor questions.",
+    "customer": "Small museums and community exhibitions",
+    "skills": [
+      "Explaining complex ideas",
+      "Research",
+      "Writing"
+    ],
+    "interests": [
+      "Local history",
+      "Community events"
+    ],
+    "family": "writing",
+    "needs": "A label sample and an approval process with the organizer.",
+    "first": "Rewrite three sample labels and approach one small exhibition.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-artist-bios",
+    "title": "Artist biography packages",
+    "service": "Interview an artist and prepare short and long factual biographies.",
+    "customer": "Independent artists preparing applications or releases",
+    "skills": [
+      "Brand stories",
+      "Interviews",
+      "Writing"
+    ],
+    "interests": [
+      "Music",
+      "Artists",
+      "Independent musicians",
+      "Local bands",
+      "Artist releases",
+      "Visual art"
+    ],
+    "family": "writing",
+    "needs": "A questionnaire and two biography length samples.",
+    "first": "Offer one artist a biography plus a short press introduction.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-press-kits",
+    "title": "Music release press kit writing",
+    "service": "Assemble an approved release fact sheet, artist introduction, and story angles for music journalists.",
+    "customer": "Independent musicians and local bands releasing original music",
+    "skills": [
+      "Research",
+      "Brand stories",
+      "Writing"
+    ],
+    "interests": [
+      "Music",
+      "Artists",
+      "Independent musicians",
+      "Local bands",
+      "Artist releases"
+    ],
+    "family": "writing",
+    "needs": "Verified release facts, an artist interview, and a sample press kit.",
+    "first": "Help one musician turn an upcoming release into a concise factual press kit.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "creative-nursery-newsletters",
+    "title": "Seasonal nursery newsletters",
+    "service": "Write timely plant-care tips and nursery updates from approved local growing advice.",
+    "customer": "Independent nurseries maintaining a customer email list",
+    "skills": [
+      "Writing",
+      "Email newsletters",
+      "Editing"
+    ],
+    "interests": [
+      "Outdoors",
+      "Gardens",
+      "Growing food",
+      "Houseplants",
+      "Native plants"
+    ],
+    "family": "writing",
+    "needs": "An approved seasonal advice source and a sample email issue.",
+    "first": "Offer one nursery a short seasonal edition with a fixed monthly scope.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "creative-recipe-editing",
+    "title": "Recipe manuscript editing",
+    "service": "Standardize ingredient lists, measurements, and instructions from tested recipes.",
+    "customer": "Food writers preparing recipe collections",
+    "skills": [
+      "Recipe writing",
+      "Editing",
+      "Proofreading"
+    ],
+    "interests": [
+      "Food writing",
+      "Recipe development"
+    ],
+    "family": "editing",
+    "needs": "A recipe style sheet and a process for author queries.",
+    "first": "Edit three supplied tested recipes as a paid sample.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-game-dialogue",
+    "title": "Game dialogue commissions",
+    "service": "Write short character conversations that fit a game’s world and word limits.",
+    "customer": "Small game teams needing character dialogue",
+    "skills": [
+      "Storytelling",
+      "Writing",
+      "Video scripts"
+    ],
+    "interests": [
+      "Writing for games",
+      "Worldbuilding"
+    ],
+    "family": "writing",
+    "needs": "A playable-context writing sample and clear usage terms.",
+    "first": "Offer one scene with two revision rounds to an indie team.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-tabletop-adventures",
+    "title": "Short tabletop adventures",
+    "service": "Create an original one-session scenario with clues, locations, and facilitator notes.",
+    "customer": "Tabletop groups seeking ready-to-run sessions",
+    "skills": [
+      "Storytelling",
+      "Writing",
+      "Research"
+    ],
+    "interests": [
+      "Tabletop games",
+      "Worldbuilding"
+    ],
+    "family": "writing",
+    "needs": "A playtested original scenario and compatible licensing terms.",
+    "first": "Run a small playtest and sell a polished downloadable adventure.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-native-garden-labels",
+    "title": "Native garden interpretation signs",
+    "service": "Write concise plant stories and visitor labels from verified conservation research.",
+    "customer": "Community groups maintaining native plant demonstration gardens",
+    "skills": [
+      "Writing",
+      "Research",
+      "Explaining complex ideas"
+    ],
+    "interests": [
+      "Outdoors",
+      "Gardens",
+      "Native plants",
+      "Conservation"
+    ],
+    "family": "writing",
+    "needs": "A verified species list, source notes, and an organizer approval step.",
+    "first": "Draft labels for three plants in one community garden and ask for feedback.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "creative-transcript-polish",
+    "title": "Readable interview transcripts",
+    "service": "Clean a supplied transcript for publication while retaining the speaker’s meaning.",
+    "customer": "Researchers and creators with recorded interviews",
+    "skills": [
+      "Editing",
+      "Proofreading",
+      "Interviews"
+    ],
+    "interests": [
+      "Interviews",
+      "Personal stories"
+    ],
+    "family": "editing",
+    "needs": "A style policy, recording permission, and secure files.",
+    "first": "Offer a fixed-duration transcript cleanup using the client’s approved recording.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-speech-writing",
+    "title": "Personal occasion speeches",
+    "service": "Interview a speaker and draft a short speech in their own voice.",
+    "customer": "People speaking at weddings or celebrations",
+    "skills": [
+      "Storytelling",
+      "Personal essays",
+      "Writing"
+    ],
+    "interests": [
+      "Weddings",
+      "Small celebrations"
+    ],
+    "family": "writing",
+    "needs": "A voice questionnaire and a clearly timed sample.",
+    "first": "Offer a five-minute draft and one rehearsal revision.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-garden-journals",
+    "title": "Guided growing journals",
+    "service": "Create printable planning and observation prompts for recording one growing season.",
+    "customer": "Home gardeners who want a useful seasonal record",
+    "skills": [
+      "Writing",
+      "Step-by-step guides",
+      "Editing"
+    ],
+    "interests": [
+      "Outdoors",
+      "Gardens",
+      "Growing food",
+      "Houseplants",
+      "Native plants"
+    ],
+    "family": "writing",
+    "needs": "A sample journal tested with gardeners and printer-friendly files.",
+    "first": "Test a short journal with two gardeners, then sell a focused printable edition.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-music-programme-notes",
+    "title": "Live music programme notes",
+    "service": "Research approved repertoire and write short introductions that help audiences follow a performance.",
+    "customer": "Local bands and music venues preparing show programmes",
+    "skills": [
+      "Writing",
+      "Research",
+      "Explaining complex ideas"
+    ],
+    "interests": [
+      "Music",
+      "Artists",
+      "Local bands",
+      "Live events",
+      "Music culture"
+    ],
+    "family": "writing",
+    "needs": "The confirmed programme, reliable sources, and musician approval of the final notes.",
+    "first": "Offer one venue notes for a short upcoming programme with a clear word limit.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "creative-logo-kit",
+    "title": "Small-brand logo kits",
+    "service": "Design an original logo with a few useful size and color variants.",
+    "customer": "New local businesses needing a consistent identity",
+    "skills": [
+      "Logos",
+      "Graphic design",
+      "Design"
+    ],
+    "interests": [
+      "Branding",
+      "Local shops"
+    ],
+    "family": "graphic-design",
+    "needs": "An original portfolio and font/image licensing knowledge.",
+    "first": "Offer one discovery session and a tightly scoped logo package.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "creative-brand-guide",
+    "title": "Visual brand reference sheets",
+    "service": "Turn an existing identity into clear color, type, and layout rules.",
+    "customer": "Small teams whose marketing looks inconsistent",
+    "skills": [
+      "Graphic design",
+      "Design",
+      "Print layouts"
+    ],
+    "interests": [
+      "Branding",
+      "Typography"
+    ],
+    "family": "graphic-design",
+    "needs": "A sample reference sheet and approved brand files.",
+    "first": "Audit five existing pieces and propose a one-page visual guide.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "creative-social-templates",
+    "title": "Reusable social post templates",
+    "service": "Build editable layouts for recurring announcements and offers.",
+    "customer": "Local shops publishing their own updates",
+    "skills": [
+      "Social graphics",
+      "Graphic design"
+    ],
+    "interests": [
+      "Social media",
+      "Local shops"
+    ],
+    "family": "graphic-design",
+    "needs": "An editable design tool and a sample template set.",
+    "first": "Offer one shop five templates based on its real recurring posts.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-newsletter-layouts",
+    "title": "Newsletter layout templates",
+    "service": "Create readable reusable email layouts within the client’s existing platform.",
+    "customer": "Membership groups sending regular newsletters",
+    "skills": [
+      "Graphic design",
+      "Print layouts",
+      "Design"
+    ],
+    "interests": [
+      "Newsletters",
+      "Email newsletters"
+    ],
+    "family": "graphic-design",
+    "needs": "Email layout samples and basic cross-device checking.",
+    "first": "Redesign one existing issue and offer a reusable template.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-presentation-design",
+    "title": "Presentation slide cleanup",
+    "service": "Improve hierarchy, charts, and visual consistency in a supplied slide deck.",
+    "customer": "Independent professionals presenting their own work",
+    "skills": [
+      "Graphic design",
+      "Print layouts",
+      "Design"
+    ],
+    "interests": [
+      "Independent professionals",
+      "Typography"
+    ],
+    "family": "graphic-design",
+    "needs": "A before-and-after deck and a fixed slide limit.",
+    "first": "Offer to improve a short existing presentation without changing its claims.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "creative-report-layout",
+    "title": "Readable report layout",
+    "service": "Lay out supplied text, tables, and images into an accessible PDF report.",
+    "customer": "Community groups publishing annual reports",
+    "skills": [
+      "Print layouts",
+      "Graphic design"
+    ],
+    "interests": [
+      "Community groups",
+      "Typography"
+    ],
+    "family": "graphic-design",
+    "needs": "A report sample, tagged-document skills, and final proofing.",
+    "first": "Offer a short report layout using the group’s approved content.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "creative-book-covers",
+    "title": "Independent book cover design",
+    "service": "Create original cover artwork and print-ready files to the printer’s specification.",
+    "customer": "Independent authors publishing a finished book",
+    "skills": [
+      "Graphic design",
+      "Illustration",
+      "Print layouts"
+    ],
+    "interests": [
+      "Reading",
+      "Illustration"
+    ],
+    "family": "graphic-design",
+    "needs": "A cover portfolio and knowledge of printer templates.",
+    "first": "Create a sample cover for public-domain text and offer one cover package.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "creative-book-interiors",
+    "title": "Book interior formatting",
+    "service": "Set consistent headings, margins, page numbers, and readable text styles.",
+    "customer": "Independent authors with edited manuscripts",
+    "skills": [
+      "Print layouts",
+      "Design"
+    ],
+    "interests": [
+      "Reading",
+      "Typography"
+    ],
+    "family": "graphic-design",
+    "needs": "Typesetting software and a print proof checklist.",
+    "first": "Format one sample chapter and quote the full manuscript by length.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-packaging",
+    "title": "Small-batch packaging design",
+    "service": "Design labels and packaging artwork using the maker’s approved product facts.",
+    "customer": "Handmade product businesses",
+    "skills": [
+      "Graphic design",
+      "Print layouts"
+    ],
+    "interests": [
+      "Handmade gifts",
+      "Online shops",
+      "Branding"
+    ],
+    "family": "graphic-design",
+    "needs": "Printer specifications and a package mockup sample.",
+    "first": "Offer one label design and test a small print before a full run.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "creative-menu-design",
+    "title": "Menu layout and updates",
+    "service": "Organize approved dishes and prices into readable print and digital menus.",
+    "customer": "Independent restaurants",
+    "skills": [
+      "Print layouts",
+      "Graphic design"
+    ],
+    "interests": [
+      "Local restaurants",
+      "Typography"
+    ],
+    "family": "graphic-design",
+    "needs": "Menu samples and an exact content approval checklist.",
+    "first": "Offer one restaurant a one-page menu refresh.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "creative-wayfinding",
+    "title": "Event wayfinding signs",
+    "service": "Design consistent directions, schedules, and location signs for a small venue.",
+    "customer": "Community event organizers",
+    "skills": [
+      "Print layouts",
+      "Graphic design"
+    ],
+    "interests": [
+      "Community events",
+      "Logistics"
+    ],
+    "family": "graphic-design",
+    "needs": "A sign system sample and confirmed venue information.",
+    "first": "Map one small event and quote a limited sign set.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "creative-wedding-stationery",
+    "title": "Wedding stationery suites",
+    "service": "Create coordinated invitations, programs, and table cards from approved details.",
+    "customer": "Couples arranging a wedding",
+    "skills": [
+      "Print layouts",
+      "Graphic design",
+      "Design"
+    ],
+    "interests": [
+      "Weddings",
+      "Typography"
+    ],
+    "family": "graphic-design",
+    "needs": "Printer-ready samples and a spelling/date approval process.",
+    "first": "Offer one invitation design plus matching day-of cards.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-infographics",
+    "title": "Explanatory infographics",
+    "service": "Translate a client’s verified facts into a clear diagram or visual summary.",
+    "customer": "Educators and community organizations",
+    "skills": [
+      "Graphic design",
+      "Illustration",
+      "Design"
+    ],
+    "interests": [
+      "Science",
+      "Writing guides",
+      "Teaching adults"
+    ],
+    "family": "graphic-design",
+    "needs": "A sourced sample and a content verification workflow.",
+    "first": "Turn one short approved handout into a visual explanation.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "creative-icon-sets",
+    "title": "Custom icon sets",
+    "service": "Draw a consistent set of original icons for a product or publication.",
+    "customer": "Small digital product teams",
+    "skills": [
+      "Illustration",
+      "Graphic design",
+      "Custom illustrations"
+    ],
+    "interests": [
+      "Creative software",
+      "Design"
+    ],
+    "family": "graphic-design",
+    "needs": "A small icon portfolio and file-format expertise.",
+    "first": "Offer a five-icon pilot for one real interface.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-pixel-assets",
+    "title": "Original pixel-art asset packs",
+    "service": "Create coherent tiles and props with clear dimensions and usage terms.",
+    "customer": "Independent game makers",
+    "skills": [
+      "Pixel art",
+      "Custom illustrations"
+    ],
+    "interests": [
+      "Pixel art",
+      "Making games",
+      "Game design"
+    ],
+    "family": "illustration",
+    "needs": "A sample tileset tested in a scene and a license.",
+    "first": "Publish one small themed pack after testing its tile edges.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-character-sheets",
+    "title": "Character reference sheets",
+    "service": "Draw consistent front, side, and expression references from an approved brief.",
+    "customer": "Writers and small game teams",
+    "skills": [
+      "Drawing",
+      "Custom illustrations",
+      "Illustration"
+    ],
+    "interests": [
+      "Worldbuilding",
+      "Writing for games"
+    ],
+    "family": "illustration",
+    "needs": "A character portfolio and clear revision checkpoints.",
+    "first": "Offer one character sheet with a rough-sketch approval stage.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-tabletop-maps",
+    "title": "Original tabletop encounter maps",
+    "service": "Illustrate printable or virtual-tabletop maps with readable play spaces.",
+    "customer": "Tabletop game facilitators",
+    "skills": [
+      "Illustration",
+      "Drawing",
+      "Graphic design"
+    ],
+    "interests": [
+      "Tabletop games",
+      "Worldbuilding"
+    ],
+    "family": "illustration",
+    "needs": "A grid-tested map sample and export specifications.",
+    "first": "Make and playtest one encounter map before listing it.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-portrait-commissions",
+    "title": "Personal portrait commissions",
+    "service": "Draw an original portrait from authorized reference photographs.",
+    "customer": "People buying personal artwork or gifts",
+    "skills": [
+      "Portraits",
+      "Drawing",
+      "Custom illustrations"
+    ],
+    "interests": [
+      "Drawing",
+      "Handmade gifts"
+    ],
+    "family": "illustration",
+    "needs": "A portrait portfolio and a permission-based reference process.",
+    "first": "Open a few fixed-size portrait slots with a sketch checkpoint.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-pet-portraits",
+    "title": "Pet portrait illustrations",
+    "service": "Create an original keepsake portrait from the owner’s reference photos.",
+    "customer": "Pet owners seeking custom art",
+    "skills": [
+      "Portraits",
+      "Custom illustrations",
+      "Drawing",
+      "Illustration"
+    ],
+    "interests": [
+      "Pets",
+      "Dogs",
+      "Cats"
+    ],
+    "family": "illustration",
+    "needs": "Animal drawing samples and clear size/revision options.",
+    "first": "Draw one permission-based sample and offer three commission slots.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-botanical-art",
+    "title": "Botanical illustration prints",
+    "service": "Draw clearly labeled decorative plant studies from reliable references.",
+    "customer": "Plant enthusiasts and gift shops",
+    "skills": [
+      "Illustration",
+      "Drawing"
+    ],
+    "interests": [
+      "Houseplants",
+      "Native plants",
+      "Growing food"
+    ],
+    "family": "illustration",
+    "needs": "Original artwork, accurate labels, and a print proof.",
+    "first": "Create a small original plant series and test interest with preorders.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-editorial-art",
+    "title": "Editorial article illustrations",
+    "service": "Develop original concept artwork that helps explain a written story.",
+    "customer": "Independent magazines and newsletter writers",
+    "skills": [
+      "Illustration",
+      "Custom illustrations"
+    ],
+    "interests": [
+      "Newsletters",
+      "Reading",
+      "Stories"
+    ],
+    "family": "illustration",
+    "needs": "A concept portfolio and usage/license terms.",
+    "first": "Pitch a sketch concept for one forthcoming article.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-boardgame-cards",
+    "title": "Tabletop card layout",
+    "service": "Design readable cards with consistent symbols and print-ready files.",
+    "customer": "Independent tabletop game designers",
+    "skills": [
+      "Graphic design",
+      "Print layouts"
+    ],
+    "interests": [
+      "Tabletop games",
+      "Game design"
+    ],
+    "family": "graphic-design",
+    "needs": "A card sample and printer bleed/export knowledge.",
+    "first": "Offer a small prototype deck layout and test readability in play.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "creative-coloring-books",
+    "title": "Original coloring activity pages",
+    "service": "Draw themed line-art activities with a consistent age-appropriate difficulty.",
+    "customer": "Families and workshop organizers",
+    "skills": [
+      "Drawing",
+      "Illustration"
+    ],
+    "interests": [
+      "Handmade gifts",
+      "Teaching children",
+      "Drawing"
+    ],
+    "family": "illustration",
+    "needs": "Original line art and a home-printer test.",
+    "first": "Test a small printable pack with one workshop organizer.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-surface-patterns",
+    "title": "Original surface pattern licensing",
+    "service": "Create repeatable artwork for fabric, paper, or product decoration.",
+    "customer": "Small product makers seeking licensed patterns",
+    "skills": [
+      "Illustration",
+      "Graphic design"
+    ],
+    "interests": [
+      "Handmade gifts",
+      "Design",
+      "Craft fairs"
+    ],
+    "family": "illustration",
+    "needs": "Seamless-repeat skills and clear licensing options.",
+    "first": "Build a three-pattern collection and pitch a small maker.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-window-art",
+    "title": "Temporary shop window artwork",
+    "service": "Paint or draw removable seasonal window displays with agreed cleanup.",
+    "customer": "Local shops promoting seasonal events",
+    "skills": [
+      "Drawing",
+      "Visual art",
+      "Illustration"
+    ],
+    "interests": [
+      "Local shops",
+      "Decorating"
+    ],
+    "family": "illustration",
+    "needs": "Suitable removable materials, samples, and surface permission.",
+    "first": "Offer one small window panel after testing removal on a spare surface.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-product-photos",
+    "title": "Product listing photo sessions",
+    "service": "Photograph products on consistent backgrounds for clear online listings.",
+    "customer": "Small online sellers",
+    "skills": [
+      "Product photos",
+      "Product photography",
+      "Photography"
+    ],
+    "interests": [
+      "Online shops",
+      "Handmade gifts"
+    ],
+    "family": "photography",
+    "needs": "A camera or capable phone, lighting, and sample product images.",
+    "first": "Shoot one owned item and offer a five-product pilot.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "creative-food-photos",
+    "title": "Restaurant dish photography",
+    "service": "Make an agreed set of accurate dish photographs for menus and websites.",
+    "customer": "Independent restaurants updating their menus",
+    "skills": [
+      "Photography",
+      "Food photography",
+      "Product photos"
+    ],
+    "interests": [
+      "Local restaurants",
+      "Food photography"
+    ],
+    "family": "photography",
+    "needs": "A food portfolio, lighting, and a planned shot list.",
+    "first": "Offer a short off-peak session for three dishes.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "creative-headshots",
+    "title": "Approachable professional headshots",
+    "service": "Create a small set of natural portraits with consistent crops and retouching.",
+    "customer": "Independent professionals updating their profiles",
+    "skills": [
+      "Photography",
+      "Product photography",
+      "Event photos"
+    ],
+    "interests": [
+      "Independent professionals",
+      "Photography"
+    ],
+    "family": "photography",
+    "needs": "Portrait samples, reliable lighting, and clear image-use terms.",
+    "first": "Offer a short session with three delivered images.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-family-photo",
+    "title": "Small family photo sessions",
+    "service": "Photograph a family in one location and deliver a tightly edited gallery.",
+    "customer": "Families seeking updated pictures",
+    "skills": [
+      "Photography",
+      "Event photos"
+    ],
+    "interests": [
+      "Busy families",
+      "Photography"
+    ],
+    "family": "photography",
+    "needs": "A family portfolio, consent process, and weather backup.",
+    "first": "Offer a short session to one family with a fixed image count.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-pet-photo",
+    "title": "Pet photo mini sessions",
+    "service": "Capture an animal’s personality in a safe, owner-supervised session.",
+    "customer": "Pet owners buying keepsake photographs",
+    "skills": [
+      "Pet photography",
+      "Photography"
+    ],
+    "interests": [
+      "Pets",
+      "Dogs",
+      "Cats"
+    ],
+    "family": "photography",
+    "needs": "Animal-handling awareness, camera, and owner-supervised workflow.",
+    "first": "Offer a short session with one familiar animal and its owner.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-craft-process",
+    "title": "Maker process photography",
+    "service": "Document how a handmade product is made through a coherent photo sequence.",
+    "customer": "Craft makers explaining their work",
+    "skills": [
+      "Photography",
+      "Product photography",
+      "Product photos"
+    ],
+    "interests": [
+      "Craft fairs",
+      "Handmade gifts"
+    ],
+    "family": "photography",
+    "needs": "A camera, lighting, and agreed workshop safety boundaries.",
+    "first": "Offer one maker a ten-image process story.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "creative-event-gallery",
+    "title": "Community event photo coverage",
+    "service": "Capture agreed activities, people, and details for an organizer’s recap gallery.",
+    "customer": "Small community event organizers",
+    "skills": [
+      "Event photos",
+      "Photography"
+    ],
+    "interests": [
+      "Community events",
+      "Capturing events"
+    ],
+    "family": "photography",
+    "needs": "Reliable equipment, consent arrangements, and a coverage agreement.",
+    "first": "Quote one short community event with a defined shot list.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "creative-sports-gallery",
+    "title": "Local sports action galleries",
+    "service": "Photograph a club event and organize approved images by activity or participant.",
+    "customer": "Local sports clubs",
+    "skills": [
+      "Photography",
+      "Event photos"
+    ],
+    "interests": [
+      "Sports photography",
+      "Team events",
+      "Local clubs"
+    ],
+    "family": "photography",
+    "needs": "Suitable equipment, participant consent, and sport-specific shooting practice.",
+    "first": "Offer a limited match session to one club.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Deep",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-dance-portfolio",
+    "title": "Dance portfolio photography",
+    "service": "Plan portraits and movement images that show a dancer’s technique and style.",
+    "customer": "Dancers preparing personal portfolios",
+    "skills": [
+      "Photography",
+      "Event photos"
+    ],
+    "interests": [
+      "Dance",
+      "Dance events",
+      "Photography"
+    ],
+    "family": "photography",
+    "needs": "Movement photography samples and a safe location plan.",
+    "first": "Collaborate on one short portfolio shoot with an experienced dancer.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Deep",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-musician-press",
+    "title": "Musician press photographs",
+    "service": "Create portraits and detail shots for an artist’s approved publicity kit.",
+    "customer": "Independent musicians preparing a release",
+    "skills": [
+      "Photography",
+      "Event photos"
+    ],
+    "interests": [
+      "Independent musicians",
+      "Artist releases"
+    ],
+    "family": "photography",
+    "needs": "Portrait samples, location permission, and usage terms.",
+    "first": "Offer one artist a compact press-photo session.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-venue-tour",
+    "title": "Venue photo walkthroughs",
+    "service": "Photograph rooms, entrances, and facilities so prospective visitors can plan.",
+    "customer": "Small event venues",
+    "skills": [
+      "Photography",
+      "Product photography"
+    ],
+    "interests": [
+      "Live events",
+      "Weddings",
+      "Community events"
+    ],
+    "family": "photography",
+    "needs": "Wide-view photography practice and an agreed access plan.",
+    "first": "Offer one venue a short room-and-accessibility photo checklist.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-rental-inventory",
+    "title": "Visual home inventory records",
+    "service": "Create organized room-by-room photographs and item labels for private records.",
+    "customer": "Households documenting possessions before moving",
+    "skills": [
+      "Photography",
+      "Product photos",
+      "Product photography"
+    ],
+    "interests": [
+      "Moving",
+      "Home organization"
+    ],
+    "family": "photography",
+    "needs": "Private storage, a room checklist, and clear non-appraisal scope.",
+    "first": "Offer one household a single-room documentation session.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-garden-records",
+    "title": "Seasonal garden photo records",
+    "service": "Photograph fixed viewpoints and label plants using owner-approved information.",
+    "customer": "Garden owners tracking changes over time",
+    "skills": [
+      "Photography",
+      "Product photography"
+    ],
+    "interests": [
+      "Garden design",
+      "Native plants",
+      "Growing food"
+    ],
+    "family": "photography",
+    "needs": "A camera, repeatable shot plan, and plant-label verification.",
+    "first": "Offer a garden owner a baseline photo record with a seasonal revisit.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-nature-print",
+    "title": "Local nature photographic prints",
+    "service": "Produce original landscape or wildlife photographs as carefully proofed prints.",
+    "customer": "Nature enthusiasts and local gift shops",
+    "skills": [
+      "Photography"
+    ],
+    "interests": [
+      "Nature photography",
+      "Birdwatching",
+      "Hiking"
+    ],
+    "family": "photography",
+    "needs": "Original images, legal location access, and print proofs.",
+    "first": "Test a small print edition with local preorders.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-flatlays",
+    "title": "Styled flat-lay photography",
+    "service": "Arrange small products and props into coherent overhead promotional scenes.",
+    "customer": "Makers planning seasonal product campaigns",
+    "skills": [
+      "Product photography",
+      "Photography",
+      "Product photos"
+    ],
+    "interests": [
+      "Handmade gifts",
+      "Online shops",
+      "Interior styling"
+    ],
+    "family": "photography",
+    "needs": "A lighting setup, props budget, and approved mood board.",
+    "first": "Offer one maker three compositions for a single product.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-art-reproduction",
+    "title": "Artwork digitization photographs",
+    "service": "Photograph flat artwork with even lighting and careful color reference.",
+    "customer": "Artists preparing digital portfolios or print files",
+    "skills": [
+      "Photography",
+      "Product photography"
+    ],
+    "interests": [
+      "Visual art",
+      "Drawing",
+      "Illustration"
+    ],
+    "family": "photography",
+    "needs": "Color reference tools and tested reproduction technique.",
+    "first": "Digitize a few pieces for one artist with a color approval step.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Deep",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-photo-restoration",
+    "title": "Family photo restoration",
+    "service": "Repair scans of faded or damaged photographs without inventing undocumented details.",
+    "customer": "Families preserving older photographs",
+    "skills": [
+      "Photo editing"
+    ],
+    "interests": [
+      "Personal stories",
+      "Local history"
+    ],
+    "family": "photo-editing",
+    "needs": "Restoration samples and secure copies of original scans.",
+    "first": "Offer a single-photo restoration with a preview before delivery.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-photo-scanning",
+    "title": "Family photo scanning and labeling",
+    "service": "Digitize, name, and organize supplied family photographs into usable folders.",
+    "customer": "Families with boxes of printed photos",
+    "skills": [
+      "Digital filing",
+      "Photo editing",
+      "Organizing"
+    ],
+    "interests": [
+      "Personal stories",
+      "Helping older adults"
+    ],
+    "family": "photo-archiving",
+    "needs": "A scanner, backup process, and careful handling procedure.",
+    "first": "Offer one small photo box with a clearly stated item limit.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-photo-culling",
+    "title": "Photographer gallery culling",
+    "service": "Select technically usable images and apply an agreed consistent first edit.",
+    "customer": "Busy event photographers",
+    "skills": [
+      "Photo editing",
+      "Photography"
+    ],
+    "interests": [
+      "Photography",
+      "Capturing events"
+    ],
+    "family": "photo-editing",
+    "needs": "An editing portfolio and secure transfer workflow.",
+    "first": "Offer a paid test on a small gallery using the photographer’s style guide.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "creative-background-cleanup",
+    "title": "Product image cleanup",
+    "service": "Remove distracting backgrounds and standardize crop and exposure.",
+    "customer": "Online sellers with existing product photographs",
+    "skills": [
+      "Photo editing",
+      "Product photos"
+    ],
+    "interests": [
+      "Online shops",
+      "Photography"
+    ],
+    "family": "photo-editing",
+    "needs": "Before-and-after examples and agreed authenticity boundaries.",
+    "first": "Offer a ten-image cleanup batch without altering product features.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "creative-photo-books",
+    "title": "Family photo book layout",
+    "service": "Curate supplied photographs into a readable, proofed keepsake book.",
+    "customer": "Families commemorating a trip or milestone",
+    "skills": [
+      "Print layouts",
+      "Graphic design",
+      "Design"
+    ],
+    "interests": [
+      "Personal stories",
+      "Handmade gifts"
+    ],
+    "family": "graphic-design",
+    "needs": "Layout samples, printer specifications, and client proof approval.",
+    "first": "Offer a short book from one carefully limited photo collection.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-archive-captions",
+    "title": "Photo archive caption research",
+    "service": "Research names, dates, and places with documented confidence and source notes.",
+    "customer": "Local archives with uncatalogued image collections",
+    "skills": [
+      "Research",
+      "Fact checking",
+      "Digital filing"
+    ],
+    "interests": [
+      "Local history",
+      "Photography"
+    ],
+    "family": "photo-archiving",
+    "needs": "A metadata template and access to authorized archive materials.",
+    "first": "Offer to research a small batch of images, marking unknown details honestly.",
+    "ratings": {
+      "startup": "Low",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-stopmotion-stills",
+    "title": "Ecommerce angle reference sets",
+    "service": "Make consistent front, back, side, and detail stills for product comparison.",
+    "customer": "Makers selling complex physical goods",
+    "skills": [
+      "Product photos",
+      "Product photography"
+    ],
+    "interests": [
+      "Online shops",
+      "DIY"
+    ],
+    "family": "photography",
+    "needs": "A repeatable lighting rig and a required-angle checklist.",
+    "first": "Photograph one product from six useful angles and quote a small batch.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-location-library",
+    "title": "Licensed local place photo library",
+    "service": "Create a tagged collection of original local scenes for permitted commercial use.",
+    "customer": "Local publishers and neighborhood businesses",
+    "skills": [
+      "Photography",
+      "Digital filing"
+    ],
+    "interests": [
+      "Local history",
+      "Local shops",
+      "Photography"
+    ],
+    "family": "photography",
+    "needs": "Original location images, necessary releases, and a clear license.",
+    "first": "Build a small collection of recognizable public scenes and pitch one publisher.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-visual-instructions",
+    "title": "Photo-based assembly instructions",
+    "service": "Photograph an actual assembly process and pair images with verified short steps.",
+    "customer": "Small makers whose products require setup",
+    "skills": [
+      "Photography",
+      "Product photos",
+      "Product photography"
+    ],
+    "interests": [
+      "DIY",
+      "Writing guides",
+      "Online shops"
+    ],
+    "family": "photography",
+    "needs": "A product sample and a customer-tested instruction checklist.",
+    "first": "Document one product’s setup and have a new user try the guide.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Team"
+    }
+  },
+  {
+    "id": "creative-repair-patches",
+    "title": "Decorative garment repair patches",
+    "service": "Sew durable decorative patches sized for ordinary clothing repairs.",
+    "customer": "People wanting to extend the life of favorite clothes",
+    "skills": [
+      "Sewing",
+      "Clothing repairs",
+      "Crafting"
+    ],
+    "interests": [
+      "Handmade gifts",
+      "DIY"
+    ],
+    "family": "textiles",
+    "needs": "Sewing supplies, wash-tested samples, and care instructions.",
+    "first": "Make a small sample set and accept a few clearly scoped orders.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-fabric-giftwrap",
+    "title": "Reusable fabric gift wrap",
+    "service": "Make neatly finished reusable wraps with simple folding instructions.",
+    "customer": "Gift buyers and small gift shops",
+    "skills": [
+      "Sewing",
+      "Crafting"
+    ],
+    "interests": [
+      "Handmade gifts",
+      "Craft fairs"
+    ],
+    "family": "textiles",
+    "needs": "Fabric, sewing tools, and tested sizes.",
+    "first": "Produce a few sizes and test a small preorder batch.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-custom-aprons",
+    "title": "Practical maker aprons",
+    "service": "Sew washable aprons with pockets matched to a specific craft workflow.",
+    "customer": "Artists and craft makers",
+    "skills": [
+      "Sewing",
+      "Crafting"
+    ],
+    "interests": [
+      "Craft fairs",
+      "Visual art"
+    ],
+    "family": "textiles",
+    "needs": "A tested pattern, sturdy fabric, and clear sizing.",
+    "first": "Ask a maker to test one prototype before taking a short batch of orders.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-book-sleeves",
+    "title": "Protective fabric book sleeves",
+    "service": "Sew padded sleeves sized for books and notebooks.",
+    "customer": "Readers buying useful handmade accessories",
+    "skills": [
+      "Sewing",
+      "Crafting"
+    ],
+    "interests": [
+      "Reading",
+      "Handmade gifts"
+    ],
+    "family": "textiles",
+    "needs": "A sewing setup and a few fit-tested sizes.",
+    "first": "Make three prototypes and offer a small preorder run.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-storage-baskets",
+    "title": "Soft fabric storage baskets",
+    "service": "Make washable baskets sized for shelves and small home items.",
+    "customer": "Households organizing compact spaces",
+    "skills": [
+      "Sewing",
+      "Crafting"
+    ],
+    "interests": [
+      "Home organization",
+      "Interior styling"
+    ],
+    "family": "textiles",
+    "needs": "Sturdy fabric, reinforced samples, and clear dimensions.",
+    "first": "Test a basket on one real shelf and offer a limited size range.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-table-linens",
+    "title": "Custom-fit table runners",
+    "service": "Sew simple table runners with agreed dimensions and washable finishes.",
+    "customer": "Hosts decorating small celebrations",
+    "skills": [
+      "Sewing",
+      "Crafting"
+    ],
+    "interests": [
+      "Small celebrations",
+      "Decorating"
+    ],
+    "family": "textiles",
+    "needs": "Fabric swatches, sewing tools, and shrink-tested samples.",
+    "first": "Offer one runner style in a few fixed lengths.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-memory-quilts",
+    "title": "Keepsake textile panels",
+    "service": "Turn approved meaningful fabric pieces into a small framed or quilted panel.",
+    "customer": "Families preserving textiles with personal history",
+    "skills": [
+      "Sewing",
+      "Crafting"
+    ],
+    "interests": [
+      "Personal stories",
+      "Handmade gifts"
+    ],
+    "family": "textiles",
+    "needs": "Quilting competence and a written plan for irreplaceable fabric.",
+    "first": "Begin with a small panel made from replaceable sample fabrics.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Deep",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-embroidered-labels",
+    "title": "Personalized fabric labels",
+    "service": "Stitch readable names or short messages onto durable fabric labels.",
+    "customer": "Makers and families labeling handmade belongings",
+    "skills": [
+      "Sewing",
+      "Crafting"
+    ],
+    "interests": [
+      "Handmade gifts",
+      "Craft fairs"
+    ],
+    "family": "textiles",
+    "needs": "Stitching tools and wash-tested label samples.",
+    "first": "Offer a small set with limited lettering and colors.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-costume-accessories",
+    "title": "Original costume accessories",
+    "service": "Craft lightweight cuffs, belts, or decorative pieces from original designs.",
+    "customer": "Tabletop and game-event enthusiasts",
+    "skills": [
+      "Crafting",
+      "Sewing",
+      "Making things"
+    ],
+    "interests": [
+      "Worldbuilding",
+      "Gaming events"
+    ],
+    "family": "textiles",
+    "needs": "Safe materials, durable prototypes, and original designs.",
+    "first": "Test one accessory at a small event before offering custom orders.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-jewelry-commissions",
+    "title": "Custom everyday jewelry",
+    "service": "Make original wearable pieces with disclosed materials and agreed dimensions.",
+    "customer": "People seeking personal handmade gifts",
+    "skills": [
+      "Jewelry",
+      "Crafting"
+    ],
+    "interests": [
+      "Handmade gifts",
+      "Craft fairs"
+    ],
+    "family": "jewelry",
+    "needs": "Jewelry tools, tested closures, and material disclosure.",
+    "first": "Offer a small original collection with clear sizing.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-beaded-keytags",
+    "title": "Personalized beaded bag tags",
+    "service": "Make sturdy name or color-pattern bag tags with secure closures.",
+    "customer": "Gift buyers seeking small custom accessories",
+    "skills": [
+      "Jewelry",
+      "Crafting"
+    ],
+    "interests": [
+      "Handmade gifts",
+      "Craft fairs"
+    ],
+    "family": "jewelry",
+    "needs": "Durability-tested parts and age-appropriate product labeling.",
+    "first": "Test a few closure designs and take a small batch of adult gift orders.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-paper-flowers",
+    "title": "Reusable paper flower arrangements",
+    "service": "Build original paper flower displays for indoor tables or backdrops.",
+    "customer": "Hosts decorating small events",
+    "skills": [
+      "Paper crafts",
+      "Crafting",
+      "Making things"
+    ],
+    "interests": [
+      "Decorating",
+      "Small celebrations",
+      "Art & design"
+    ],
+    "family": "paper-craft",
+    "needs": "Paper tools, transportable samples, and a setup plan.",
+    "first": "Offer one tabletop arrangement with a fixed palette and size.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-pop-up-cards",
+    "title": "Original pop-up greeting cards",
+    "service": "Design and assemble folded paper cards with a tested opening mechanism.",
+    "customer": "Gift buyers and independent gift shops",
+    "skills": [
+      "Paper crafts",
+      "Illustration"
+    ],
+    "interests": [
+      "Handmade gifts",
+      "Illustration"
+    ],
+    "family": "paper-craft",
+    "needs": "Original artwork, cutting tools, and mail-tested samples.",
+    "first": "Create a small three-card range and test local demand.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-handbound-journals",
+    "title": "Handbound writing journals",
+    "service": "Bind useful notebooks with durable covers and specified paper.",
+    "customer": "Writers and readers buying handmade stationery",
+    "skills": [
+      "Paper crafts",
+      "Crafting"
+    ],
+    "interests": [
+      "Writing",
+      "Reading",
+      "Handmade gifts"
+    ],
+    "family": "paper-craft",
+    "needs": "Binding tools, paper samples, and durability practice.",
+    "first": "Make a small batch in one size and offer preorders.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-paper-scenes",
+    "title": "Personalized paper-cut scenes",
+    "service": "Layer original cut-paper artwork to commemorate a place or occasion.",
+    "customer": "People commissioning keepsake artwork",
+    "skills": [
+      "Paper crafts",
+      "Illustration",
+      "Drawing"
+    ],
+    "interests": [
+      "Personal stories",
+      "Handmade gifts"
+    ],
+    "family": "paper-craft",
+    "needs": "Cutting tools, original designs, and a framing sample.",
+    "first": "Offer a few fixed-size commissions based on authorized references.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Solo"
+    }
+  },
+  {
+    "id": "creative-party-kits",
+    "title": "Coordinated paper party kits",
+    "service": "Make a matching banner, table cards, and small decorations from an original theme.",
+    "customer": "Hosts arranging small celebrations",
+    "skills": [
+      "Paper crafts",
+      "Graphic design"
+    ],
+    "interests": [
+      "Small celebrations",
+      "Decorating"
+    ],
+    "family": "paper-craft",
+    "needs": "Original templates, material costs, and a packing checklist.",
+    "first": "Prototype one small kit and accept a limited preorder batch.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-tabletop-terrain",
+    "title": "Modular tabletop scenery",
+    "service": "Build durable miniature walls and landscape pieces for tabletop play.",
+    "customer": "Tabletop gaming groups",
+    "skills": [
+      "Set building",
+      "Crafting",
+      "Painting"
+    ],
+    "interests": [
+      "Tabletop games",
+      "Worldbuilding"
+    ],
+    "family": "miniature-craft",
+    "needs": "Safe materials, dimensions suited to play, and durable finishes.",
+    "first": "Playtest one small terrain set with a local group.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-wood-display",
+    "title": "Small maker display stands",
+    "service": "Build stable tabletop stands sized for products at a craft stall.",
+    "customer": "Craft fair sellers",
+    "skills": [
+      "Woodworking",
+      "Building"
+    ],
+    "interests": [
+      "Craft fairs",
+      "Handmade gifts"
+    ],
+    "family": "woodwork",
+    "needs": "Woodworking competence, tools, and load-tested prototypes.",
+    "first": "Build one portable stand and ask a seller to test it.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Deep",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-wood-keepsakes",
+    "title": "Engraved or painted keepsake boxes",
+    "service": "Finish small wooden boxes with original personalized artwork.",
+    "customer": "Gift buyers commemorating a milestone",
+    "skills": [
+      "Woodworking",
+      "Painting",
+      "Crafting"
+    ],
+    "interests": [
+      "Handmade gifts",
+      "Personal stories"
+    ],
+    "family": "woodwork",
+    "needs": "Safe finishing methods, box samples, and curing time.",
+    "first": "Offer one box size with a limited customization menu.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-plant-markers",
+    "title": "Weather-tested garden markers",
+    "service": "Make legible plant markers with durable finishes and verified plant names.",
+    "customer": "Home gardeners",
+    "skills": [
+      "Crafting",
+      "Painting",
+      "Making things"
+    ],
+    "interests": [
+      "Growing food",
+      "Native plants",
+      "Garden design"
+    ],
+    "family": "garden-craft",
+    "needs": "Outdoor-tested materials and readable label samples.",
+    "first": "Test a few markers outdoors before offering a small named set.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-art-print-editions",
+    "title": "Small original art print editions",
+    "service": "Produce proofed prints of original artwork with clear paper and size options.",
+    "customer": "Art buyers and independent shops",
+    "skills": [
+      "Illustration",
+      "Drawing",
+      "Visual art"
+    ],
+    "interests": [
+      "Visual art",
+      "Illustration",
+      "Art & design"
+    ],
+    "family": "print-products",
+    "needs": "Original artwork, print proofs, and a packing test.",
+    "first": "Offer preorders for a small cohesive edition before buying stock.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-sticker-sets",
+    "title": "Original illustrated sticker sets",
+    "service": "Create cohesive sticker artwork and test print, cut, and finish quality.",
+    "customer": "Readers, artists, and gift shops",
+    "skills": [
+      "Illustration",
+      "Graphic design",
+      "Drawing"
+    ],
+    "interests": [
+      "Illustration",
+      "Handmade gifts",
+      "Craft fairs"
+    ],
+    "family": "print-products",
+    "needs": "Original art, print samples, and truthful durability labeling.",
+    "first": "Produce a small sample sheet and collect preorders.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-art-activity-box",
+    "title": "Original paper craft activity kits",
+    "service": "Package pre-cut materials and clear instructions for one tested craft activity.",
+    "customer": "Families and community workshop organizers",
+    "skills": [
+      "Paper crafts",
+      "Step-by-step guides",
+      "Crafting"
+    ],
+    "interests": [
+      "Teaching children",
+      "Workshops",
+      "Handmade gifts"
+    ],
+    "family": "paper-craft",
+    "needs": "A tested activity, age-appropriate materials, and clear instructions.",
+    "first": "Run a small supervised trial before assembling a limited batch.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-custom-bookmarks",
+    "title": "Illustrated personalized bookmarks",
+    "service": "Create durable original bookmarks with optional names and a consistent finish.",
+    "customer": "Book clubs and gift shops",
+    "skills": [
+      "Illustration",
+      "Paper crafts",
+      "Drawing"
+    ],
+    "interests": [
+      "Reading",
+      "Handmade gifts"
+    ],
+    "family": "print-products",
+    "needs": "Original designs and print/finish samples.",
+    "first": "Offer one small book-club batch with a fixed design.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  },
+  {
+    "id": "creative-fabric-bunting",
+    "title": "Reusable fabric event bunting",
+    "service": "Sew sturdy decorative flags with secure ties for repeated indoor use.",
+    "customer": "Community groups hosting recurring gatherings",
+    "skills": [
+      "Sewing",
+      "Crafting"
+    ],
+    "interests": [
+      "Community events",
+      "Decorating"
+    ],
+    "family": "textiles",
+    "needs": "Sewing tools, washable fabrics, and tested attachment methods.",
+    "first": "Make one short sample strand and quote a reusable event set.",
+    "ratings": {
+      "startup": "Moderate",
+      "learning": "Practiced",
+      "growth": "Scalable"
+    }
+  }
+]

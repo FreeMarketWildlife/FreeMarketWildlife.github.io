@@ -1,0 +1,24 @@
+.workspace-welcome { --welcome-border: #777; --welcome-accent: #fff; }
+body.workspace-welcome[data-client="troy-kearns"] { --welcome-border: var(--tk-line); --welcome-accent: var(--tk-gold); }
+body.workspace-welcome[data-client="kat-kai"] { --welcome-border: var(--line); --welcome-accent: var(--rose); }
+body.workspace-welcome .welcome-main { width: min(100%, 560px); min-height: 100svh; margin: auto; padding: 64px 28px 40px; display: flex; flex-direction: column; justify-content: center; }
+body.workspace-welcome .welcome-main::after { display: none; }
+.welcome-logo { display: block; width: 126px; height: 88px; object-fit: contain; object-position: left center; margin-bottom: 28px; }
+body[data-client="kat-kai"] .welcome-logo { width: 104px; height: 104px; }
+body[data-client="philip-aram"] .welcome-logo { width: 64px; height: 64px; image-rendering: pixelated; }
+.welcome-brand { margin: 0 0 12px; font-size: 11px; letter-spacing: 1.8px; text-transform: uppercase; }
+body.workspace-welcome h1 { font-size: clamp(27px, 5vw, 36px); line-height: 1.2; margin: 0; letter-spacing: -.03em; }
+.welcome-intro { margin: 20px 0 28px; }
+.welcome-signin { border-top: 1px solid var(--welcome-border); padding-top: 28px; }
+.welcome-signin .welcome-provider { display: block; width: 100%; padding: 13px 16px; text-align: center; text-decoration: none; color: inherit; background: transparent; border: 1px solid var(--welcome-border); border-radius: 4px; font: inherit; cursor: pointer; }
+.welcome-provider:hover { border-color: var(--welcome-accent); }
+.welcome-divider { text-align: center; margin: 16px 0; font-size: 13px; }
+.welcome-signin form { margin: 0; }
+.welcome-signin label { font-size: 14px; }
+.welcome-signin input { display: block; width: 100%; font: inherit; padding: 12px; margin-bottom: 12px; border-color: var(--welcome-border); }
+.welcome-status { font-size: 14px; overflow-wrap: anywhere; }
+.welcome-status:empty { display: none; }
+.welcome-signin .welcome-back { width: auto; margin-top: 16px; padding: 6px 0; border: 0; background: transparent; text-decoration: underline; color: inherit; }
+.welcome-signin button:disabled { opacity: .6; cursor: wait; }
+.welcome-footer { display: flex; gap: 24px; margin: 28px 0 0; font-size: 12px; }
+@media (max-width: 480px) { body.workspace-welcome .welcome-main { padding: 36px 24px; } }

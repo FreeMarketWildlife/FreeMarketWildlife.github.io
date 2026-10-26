@@ -1,0 +1,12 @@
+#business-inbox { max-width:1000px; }
+#business-inbox h2 { margin-top:32px; }
+#business-inbox form { display:grid;gap:16px;border:1px solid #fff;padding:24px;margin:24px 0; }
+#business-inbox label { display:grid;gap:12px; }
+#business-inbox input { width:100%;padding:12px;font-family:Arial,sans-serif;font-size:16px;background:#000;color:#fff;border:1px solid #fff; }
+#business-inbox p { font-size:14px;line-height:1.8;margin:16px 0;overflow-wrap:anywhere;white-space:pre-wrap; }
+#business-inbox button { padding:12px;border:1px solid #fff;background:#000;color:#fff;cursor:pointer; }
+#business-inbox details { border:1px solid #fff;padding:24px;margin:20px 0; }
+#business-inbox summary { cursor:pointer;line-height:1.8; }
+#business-inbox details a { display:inline-block;margin-top:24px; }
+#business-inbox h3 { margin-top:24px;font-size:16px; }
+#business-inbox small { display:block;margin-top:24px;overflow-wrap:anywhere; }

@@ -1,0 +1,34 @@
+const {chromium}=require('playwright');
+const assert=require('node:assert/strict');
+const fs=require('node:fs');
+const output=process.env.BUSINESS_QA_OUTPUT||'outputs/build-a-business-2026-10-24';fs.mkdirSync(output,{recursive:true});
+(async()=>{const browser=await chromium.launch({headless:true,channel:'chrome'});const errors=[];let signedIn=false,saved;
+ const context=await browser.newContext({viewport:{width:1440,height:1050},reducedMotion:'reduce'});const page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
+ await page.route('**/api/account',r=>r.fulfill({json:{user:signedIn?{email:'alex@example.com'}:null,workspaces:[],providers:{email:true}}}));
+ await page.route('**/api/business/config',r=>r.fulfill({json:{bookingUrl:'https://calendly.com/example/business-chat'}}));
+ await page.route('**/auth/email/start?*',r=>r.fulfill({json:{ok:true}}));
+ await page.route('**/auth/email/verify',r=>{signedIn=true;return r.fulfill({json:{ok:true,redirect:'/build-a-business/'}});});
+ await page.route('**/api/business/inquiries',r=>{saved=r.request().postDataJSON();return r.fulfill({status:201,json:{ok:true,id:'11111111-1111-4111-8111-111111111111',notification:'sent'}});});
+ await page.route('https://calendly.com/**',r=>r.fulfill({body:'<p>Scheduler fixture</p>',contentType:'text/html'}));
+ const base=process.env.BUSINESS_BASE_URL||'http://127.0.0.1:4173';await page.goto(base+'/build-a-business/');
+ await page.getByRole('button',{name:'Pop Writing',exact:true}).click();assert.ok(await page.getByRole('button',{name:'Pop Storytelling',exact:true}).isVisible());
+ await page.getByRole('button',{name:'Pop Storytelling',exact:true}).click();assert.ok(await page.getByRole('button',{name:'Pop Video scripts',exact:true}).isVisible());
+ const before=await page.locator('.continue-button').boundingBox();
+ while(await page.locator('.selection-chip').count()<9)await page.locator('.skill-target').first().click();
+ assert.equal(await page.locator('.skill-target:disabled').count(),0);const after=await page.locator('.continue-button').boundingBox();assert.ok(after.width>before.width&&after.height>before.height);assert.ok(after.x>=0&&after.x+after.width<=1440);
+ await page.screenshot({path:output+'/skills-30-desktop.png',fullPage:true});
+ await page.getByRole('button',{name:'Remove Writing',exact:true}).click();assert.equal(await page.locator('.selection-chip').count(),8);assert.equal(await page.locator('.skill-target:disabled').count(),0);
+ await page.reload();assert.equal(await page.locator('.selection-chip').count(),8);
+ await page.getByRole('button',{name:'Continue to interests',exact:true}).click();await page.getByRole('button',{name:'Shoot Music',exact:true}).click();assert.ok(await page.getByRole('button',{name:'Shoot Artists',exact:true}).isVisible());await page.getByRole('button',{name:'Shoot Artists',exact:true}).click();await page.getByRole('button',{name:'Shoot Independent musicians',exact:true}).click();
+ await page.screenshot({path:output+'/interests-desktop.png',fullPage:true});
+ await page.getByRole('button',{name:'Continue to three business ideas',exact:true}).click();assert.ok(await page.locator('.business-card').count()>=1&&await page.locator('.business-card').count()<=3);assert.equal(await page.locator('.business-card details').count(),0);assert.ok(await page.locator('.business-card .card-details').first().isVisible());await page.screenshot({path:output+'/ideas-desktop.png',fullPage:true});
+ await page.locator('.choose-business').first().click();await page.getByLabel('Your name',{exact:true}).fill('Alex');await page.getByLabel('Anything else you wanna share with me?').fill('I enjoy working with independent musicians.');await page.locator('input[type=checkbox]').check();
+ await page.reload();await page.getByLabel('Your name',{exact:true}).waitFor();assert.equal(await page.getByLabel('Your name',{exact:true}).inputValue(),'Alex');assert.ok(await page.locator('input[type=checkbox]').isChecked());
+ const google=await page.getByRole('link',{name:'Continue with Google',exact:true}).getAttribute('href');assert.ok(google.includes('returnTo=%2Fbuild-a-business%2F'));
+ await page.getByLabel('Or use your email').fill('alex@example.com');await page.getByRole('button',{name:'Send sign-in code',exact:true}).click();await page.getByLabel('8-digit code from your email').fill('12345678');await page.getByRole('button',{name:'Verify email',exact:true}).click();await page.getByRole('button',{name:'Send my business plan →',exact:true}).click();await page.getByRole('heading',{name:'You’re in. Let’s talk about your business.',exact:true}).waitFor();assert.equal(saved.skills.length,8);assert.equal(saved.interests.length,3);assert.equal(saved.notes,'I enjoy working with independent musicians.');assert.equal(await page.locator('.booking-frame').count(),1);
+ // Mobile touch flow, curated selections, removal and exactly three choices.
+ const mobile=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true,reducedMotion:'reduce'});const m=await mobile.newPage();m.on('pageerror',e=>errors.push(e.message));await m.route('**/api/account',r=>r.fulfill({json:{user:{email:'alex@example.com'},workspaces:[],providers:{email:true}}}));await m.route('**/api/business/config',r=>r.fulfill({json:{bookingUrl:''}}));await m.goto(base+'/build-a-business/');await m.getByRole('button',{name:'Pop Writing',exact:true}).tap();await m.locator('.skill-target').first().tap();assert.equal(await m.locator('.selection-chip').count(),2);await m.screenshot({path:output+'/skills-mobile.png',fullPage:true});
+ for(const width of [320,390,768]){await m.setViewportSize({width,height:844});assert.ok(await m.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));}
+ await m.setViewportSize({width:390,height:844});await m.getByRole('button',{name:'Continue to interests',exact:true}).tap();await m.getByRole('button',{name:'Shoot Music',exact:true}).tap();await m.getByRole('button',{name:'Continue to three business ideas',exact:true}).tap();assert.equal(await m.locator('.business-card').count(),3);assert.equal(await m.locator('.business-card details').count(),0);await m.screenshot({path:output+'/ideas-mobile.png',fullPage:true});await m.locator('.choose-business').first().tap();await m.getByLabel('Your name',{exact:true}).waitFor();assert.ok(await m.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await m.screenshot({path:output+'/signup-mobile.png',fullPage:true});
+ assert.deepEqual(errors,[]);console.log('PASS: desktop and mobile game, niche branches, early progression, growing button, removal, reload persistence, eligible choices, email verification, submission and booking handoff; no browser errors.');await browser.close();
+})().catch(e=>{console.error(e);process.exit(1);});

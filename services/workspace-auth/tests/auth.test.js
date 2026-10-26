@@ -27,15 +27,25 @@ test('all private routes fail closed without configuration',async()=>{
  const env=environment();env.GOOGLE_CLIENT_ID='';
  for(const path of ['/philip-aram/','/kat-kai/statistics/','/api/account','/account/'])assert.equal((await call(env,path)).status,503);
 });
-test('anonymous sessions reveal no workspace list and direct links require login',async()=>{
+test('anonymous direct links show only branded welcome pages, never protected content',async()=>{
  const env=environment();assert.deepEqual((await (await call(env,'/api/account')).json()).workspaces,[]);
- for(const path of ['/philip-aram/','/troy-kearns/','/kat-kai/','/foo/%2e%2e/philip-aram/','/%70hilip-aram/'])assert.equal((await call(env,path)).status,303);
+ let assetReads=0;env.ASSETS.fetch=async()=>{assetReads++;return new Response('PRIVATE');};
+ for(const path of ['/philip-aram/','/kat-kai/','/foo/%2e%2e/philip-aram/','/%70hilip-aram/']) {
+  const result=await call(env,path);assert.equal(result.status,200);
+  const html=await result.text();assert.match(html,/Welcome to the/);assert.match(html,/Continue with Google/);assert.ok(!html.includes('PRIVATE'));assert.ok(!html.includes('data-email-signin'));
+  assert.equal(result.headers.get('cache-control'),'no-store');assert.equal(result.headers.get('vary'),'Cookie');assert.equal(result.headers.get('x-robots-tag'),'noindex, nofollow');
+ }
+ assert.equal(assetReads,0);
+ env.RESEND_API_KEY='test';env.EMAIL_FROM='test@example.com';
+ const kat=await (await call(env,'/kat-kai/links/')).text();assert.match(kat,/data-email-signin/);assert.match(kat,/returnTo=%2Fkat-kai%2Flinks%2F/);
+ assert.match(await (await call(env,'/kat-kai/')).text(),/kat-kai.css/);
+ assert.equal(await (await call(env,'/kat-kai/',{method:'HEAD'})).text(),'');
 });
 test('membership restricts pages, account manager and aliases; revoke applies to current session',async()=>{
  const env=environment(),headers=await session(env,'client','client@gmail.com');
  env.db.prepare('INSERT INTO memberships VALUES (?,?,?)').run('client@gmail.com','kat-kai','client');
  assert.equal((await call(env,'/kat-kai/',{headers})).status,200);
- for(const path of ['/philip-aram/','/troykearns/','/troy-kearns/','/account/','/api/account/memberships'])assert.equal((await call(env,path,{headers})).status,403);
+ for(const path of ['/philip-aram/','/account/','/api/account/memberships'])assert.equal((await call(env,path,{headers})).status,403);
  const account=await (await call(env,'/api/account',{headers})).json();assert.equal(account.workspaces.length,1);assert.equal(account.workspaces[0].id,'kat-kai');
  assert.equal((await call(env,'/kat-kai/',{headers})).headers.get('cache-control'),'private, no-store');
  env.db.exec('DELETE FROM memberships');assert.equal((await call(env,'/kat-kai/',{headers})).status,403);
@@ -74,10 +84,11 @@ test('Google round trip verifies signed ID token, binds membership, prevents rep
  };
  try{
   const env=environment();env.db.prepare('INSERT INTO memberships VALUES (?,?,NULL)').run('client@gmail.com','kat-kai');
-  const start=await call(env,'/auth/start');const google=new URL(start.headers.get('location'));nonce=google.searchParams.get('nonce');const state=google.searchParams.get('state');const headers={cookie:`__Host-fmw-state=${state}`};
+  env.db.prepare('INSERT INTO memberships VALUES (?,?,NULL)').run('client@gmail.com','troy-kearns');
+  const start=await call(env,'/auth/start?returnTo='+encodeURIComponent('/troykearns/links/'));const google=new URL(start.headers.get('location'));nonce=google.searchParams.get('nonce');const state=google.searchParams.get('state');const headers={cookie:`__Host-fmw-state=${state}; __Host-fmw-return=${encodeURIComponent('/troykearns/links/')}`};
   assert.equal(google.searchParams.get('scope'),'openid email');assert.equal(google.searchParams.get('code_challenge_method'),'S256');
   assert.equal((await call(env,`/auth/callback?state=${state}&code=example`)).status,400);
-  const result=await call(env,`/auth/callback?state=${state}&code=example`,{headers});assert.equal(result.headers.get('location'),'/kat-kai/');
+  const result=await call(env,`/auth/callback?state=${state}&code=example`,{headers});assert.equal(result.headers.get('location'),'/troykearns/links/');
   assert.equal(env.db.prepare('SELECT google_sub FROM memberships').get().google_sub,'new-user');
   assert.match(result.headers.get('set-cookie'),/HttpOnly; Secure; SameSite=Lax/);
   assert.equal((await call(env,`/auth/callback?state=${state}&code=example`,{headers})).status,400);
@@ -104,7 +115,7 @@ test('Google round trip verifies signed ID token, binds membership, prevents rep
 test('expired sessions and unexpected hosts are rejected',async()=>{
  const env=environment(),headers=await session(env,'expired','expired@gmail.com');
  env.db.exec('UPDATE sessions SET expires_at=1');
- assert.equal((await call(env,'/philip-aram/',{headers})).status,303);
+ const expired=await call(env,'/philip-aram/',{headers});assert.equal(expired.status,200);assert.match(await expired.text(),/Welcome to the/);
  assert.equal((await worker.fetch(new Request('https://other.example/philip-aram/'),env)).status,421);
 });
 test('canonical redirects preserve path and only allow expected hosts',async()=>{
@@ -198,6 +209,31 @@ async function emailFixture(run){
  const post=(path,body,cookie='')=>call(env,'/auth/email/'+path,{method:'POST',headers:{origin,'Content-Type':'application/json','cf-connecting-ip':'192.0.2.1',cookie},body:JSON.stringify(body)});
  try{await run({env,sent,post});}finally{globalThis.fetch=previous;}
 }
+test('return destinations reject external, malformed and private data paths',async()=>{
+ const env=environment();
+ for(const target of ['https://evil.example/','//evil.example/troykearns/','/\\evil.example/','/%2ftroykearns/','/troykearns/spreadsheets/shorts-analysis.xlsx','/kat-kai/api/task-photos/kat-photos','/account/']) {
+  const result=await call(env,'/auth/start?returnTo='+encodeURIComponent(target));
+  assert.ok(result.headers.getSetCookie().some(value=>value.startsWith('__Host-fmw-return=;')));
+ }
+ const valid=await call(env,'/auth/start?returnTo='+encodeURIComponent('/kat-kai/to-do/'));
+ assert.ok(valid.headers.getSetCookie().some(value=>value.startsWith('__Host-fmw-return=%2Fkat-kai%2Fto-do%2F;')));
+});
+test('email sign-in returns to an authorized linked page and ignores ungranted or external targets',async()=>emailFixture(async({env,sent,post})=>{
+ const email='linked@example.com';
+ env.db.prepare('INSERT INTO memberships VALUES (?,?,NULL)').run(email,'kat-kai');
+ env.db.prepare('INSERT INTO memberships VALUES (?,?,NULL)').run(email,'troy-kearns');
+ let index=0;
+ for(const target of ['/troykearns/links/','/philip-aram/','//evil.example/']) {
+  env.db.exec('DELETE FROM email_rate_limits');
+  const start=await post('start?returnTo='+encodeURIComponent(target),{email});
+  assert.equal(start.status,200);
+  const cookies=start.headers.getSetCookie().map(value=>value.split(';')[0]).join('; ');
+  const code=sent[index++].text.match(/code is (\d{8})/)[1];
+  const result=await post('verify',{code},cookies);
+  assert.equal((await result.json()).redirect,target==='/troykearns/links/'?target:'/kat-kai/');
+  assert.ok(result.headers.getSetCookie().some(value=>value.startsWith('__Host-fmw-return=;')&&value.includes('Max-Age=0')));
+ }
+}));
 test('email code requires inbox proof, binds Troy grant, restricts workspace and prevents replay',async()=>emailFixture(async({env,sent,post})=>{
  env.db.prepare('INSERT INTO memberships VALUES (?,?,NULL)').run('tk@troykearns.com','troy-kearns');
  const start=await post('start',{email:'TK@TroyKearns.com'});assert.equal(start.status,200);
@@ -213,7 +249,7 @@ test('email code requires inbox proof, binds Troy grant, restricts workspace and
  const headers={cookie:sessionCookie};assert.equal((await call(env,'/troykearns/strategy/',{headers})).status,200);
  assert.equal((await call(env,'/philip-aram/',{headers})).status,403);
  assert.equal((await post('verify',{code},cookie)).status,400);
- env.db.exec('DELETE FROM memberships');assert.equal((await call(env,'/troykearns/',{headers})).status,403);
+ env.db.exec('DELETE FROM memberships');assert.equal((await call(env,'/troykearns/',{headers})).status,303);
 }));
 test('email expiry and five wrong guesses invalidate codes; sending is throttled',async()=>emailFixture(async({env,sent,post})=>{
  const start=await post('start',{email:'test@example.com'});const cookie=start.headers.get('set-cookie').split(';')[0];
@@ -243,7 +279,7 @@ test('email login preserves existing Google membership; unassigned accounts get 
 }));
 
 
-test('Troy opens Strategy by default and protects To-Do List and Links with the same membership',async()=>{
+test('Troy opens Strategy by default and allows public viewing without membership',async()=>{
  const env=environment(),headers=await session(env,'troy-client','client@gmail.com');
  env.db.prepare('INSERT INTO memberships VALUES (?,?,?)').run('client@gmail.com','troy-kearns','troy-client');
  const account=await (await call(env,'/api/account',{headers})).json();
@@ -253,23 +289,23 @@ test('Troy opens Strategy by default and protects To-Do List and Links with the 
  }
  for(const path of ['/troykearns/strategy/','/troykearns/to-do/','/troykearns/links/']){
   assert.equal((await call(env,path,{headers})).status,200);
-  assert.equal((await call(env,path)).status,303);
+  assert.equal((await call(env,path)).status,200);
  }
  env.db.exec('DELETE FROM memberships');
- for(const path of ['/troykearns/','/troykearns/to-do/','/troykearns/links/'])assert.equal((await call(env,path,{headers})).status,403);
+ for(const path of ['/troykearns/to-do/','/troykearns/links/'])assert.equal((await call(env,path,{headers})).status,200);
 });
 
-test('Troy spreadsheet files require Troy membership and are private read-only downloads',async()=>{
+test('Troy spreadsheet files allow public read-only downloads',async()=>{
  const env=environment(),headers=await session(env,'reader','client@gmail.com');
  env.db.prepare('INSERT INTO memberships VALUES (?,?,?)').run('client@gmail.com','kat-kai','reader');
  const reads=[];
  env.TASK_PHOTOS={async get(key){reads.push(key);return {body:key.endsWith('.json')?'{}':'xlsx',size:key.endsWith('.json')?2:4};}};
  const jsonPath='/troykearns/spreadsheets/shorts-analysis.json',xlsxPath='/troykearns/spreadsheets/shorts-analysis.xlsx';
  for(const path of [jsonPath,xlsxPath]){
-  assert.equal((await call(env,path)).status,303);
-  assert.equal((await call(env,path,{headers})).status,403);
+  assert.equal((await call(env,path)).status,200);
+  assert.equal((await call(env,path,{headers})).status,200);
  }
- assert.equal(reads.length,0);
+ assert.equal(reads.length,4);
  env.db.prepare('INSERT INTO memberships VALUES (?,?,?)').run('client@gmail.com','troy-kearns','reader');
  const data=await call(env,jsonPath,{headers});assert.equal(data.status,200);assert.deepEqual(await data.json(),{});
  assert.equal(data.headers.get('cache-control'),'private, no-store');assert.equal(data.headers.get('vary'),'Cookie');
@@ -281,5 +317,20 @@ test('Troy spreadsheet files require Troy membership and are private read-only d
  env.TASK_PHOTOS={async get(){return null;}};assert.equal((await call(env,jsonPath,{headers})).status,404);
  env.TASK_PHOTOS=undefined;assert.equal((await call(env,jsonPath,{headers})).status,503);
  env.db.exec("DELETE FROM memberships WHERE workspace='troy-kearns'");
- assert.equal((await call(env,xlsxPath,{headers})).status,403);
+ env.TASK_PHOTOS={async get(){return {body:'xlsx',size:4};}};
+ assert.equal((await call(env,xlsxPath,{headers})).status,200);
+});
+
+
+test('public Troy views bypass auth configuration and session lookup, including encoded routes',async()=>{
+ const env=environment();env.GOOGLE_CLIENT_ID='';env.DB=undefined;
+ env.ASSETS.fetch=async(req)=>new Response(req.method==='HEAD'?null:'TROY CONTENT');
+ for(const path of ['/troykearns/strategy/','/troykearns/spreadsheets/','/troy-kearns/statistics/','/%74roykearns/links/']) {
+  const result=await call(env,path,{headers:{cookie:'__Host-fmw-session='+'a'.repeat(64)}});
+  assert.equal(result.status,200);assert.equal(await result.text(),'TROY CONTENT');
+  assert.equal(result.headers.get('x-robots-tag'),'noindex, nofollow');
+ }
+ assert.equal((await call(env,'/troykearns/links/',{method:'HEAD'})).status,200);
+ assert.equal((await call(env,'/troykearns/links/',{method:'POST'})).status,503);
+ for(const path of ['/philip-aram/','/kat-kai/','/account/'])assert.equal((await call(env,path)).status,503);
 });

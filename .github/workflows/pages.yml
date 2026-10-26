@@ -68,6 +68,11 @@ jobs:
         run: python3 -m unittest discover -s tests -v
       - name: Validate static source
         run: |
+          node scripts/build_business_catalog.mjs
+          git diff --exit-code -- assets/js/business-catalog.js
+          node --test tests/test_business_catalog.mjs
+          node scripts/build_blog.mjs --check
+          node tests/test_blog_publishing.mjs
           python3 scripts/check_site.py
           node tests/test_blog.mjs
           node tests/test_planner.mjs
@@ -80,11 +85,16 @@ jobs:
           mkdir _site
           cp index.html 404.html CNAME .nojekyll _site/
           cp -R assets portfolio tanoshi contact blog build-a-business privacy tutorials _site/
+          if [ -d games ]; then cp -R games _site/; fi
+          test ! -e _site/services
           test ! -e _site/philip-aram
           test ! -e _site/troykearns
           test ! -e _site/troy-kearns
           test ! -e _site/kat-kai
           test ! -e _site/account
+          test ! -e _site/AGENTS.md
+          test ! -e _site/blog.md
+          test ! -e _site/content
       - uses: actions/upload-pages-artifact@v3
         with:
           path: _site
