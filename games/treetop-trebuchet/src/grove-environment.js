@@ -1,4 +1,4 @@
-import {objectBounds,pointInPolygon} from './grove-geometry.js?v=70';
+import {objectBounds,pointInPolygon} from './grove-geometry.js?v=71';
 const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 export const LEAF_DRAG_PER_METRE=.018;
 export const leafRetention=(density,distance,resistance=0)=>Math.exp(-LEAF_DRAG_PER_METRE*Math.max(0,density)*Math.max(0,distance)*(1-clamp(resistance,0,1)));

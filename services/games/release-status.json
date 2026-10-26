@@ -1,10 +1,10 @@
 {
-  "staticVersion": "fe4d6b6b-081e-4204-b79b-32ae560f0802",
+  "staticVersion": "9bebfc1d-9a90-430c-8a35-3d5f2caee0f6",
   "kingdomBackendVersion": "9dc3b7b7-e75c-43f5-ab21-e11fa8fa63a2",
   "preservedBusinessVersion": "9688d043-54ee-4b75-bed0-518c7b7cdd12",
   "badmathCommit": "c5984a292dcf6bc1a7ec30b0f9d6c132d1624e0a",
-  "treetopCommit": "368ce2b799dcbaa0a23ba9710c4636199a86c444",
-  "treetopAssetVersion": 70,
+  "treetopCommit": "559ab8c2212de5b320f367d884ab1c525e46cc7e",
+  "treetopAssetVersion": 71,
   "pending": null,
   "hostedGames": 12,
   "publiclyListedGames": 6,

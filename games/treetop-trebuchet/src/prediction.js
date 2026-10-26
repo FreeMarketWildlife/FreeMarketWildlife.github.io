@@ -1,5 +1,5 @@
-import {surfaceCrossing} from './terrain.js?v=70';
-import {world as layout} from './world.js?v=70';
+import {surfaceCrossing} from './terrain.js?v=71';
+import {world as layout} from './world.js?v=71';
 export function capturePredictionPose(scene){return {elapsed:scene.elapsed,parts:scene.parts.map(b=>({id:b.getUserData().id,x:b.getPosition().x,y:b.getPosition().y,angle:b.getAngle()}))};}
 export function predictionPoseIsCurrent(scene,capture){
  if(!capture||scene.elapsed<capture.elapsed||scene.elapsed-capture.elapsed>1||scene.parts.length!==capture.parts.length)return false;

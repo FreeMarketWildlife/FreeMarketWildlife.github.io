@@ -1,4 +1,4 @@
-import {MAP_KEY,createGroveMap,readGroveMap,validateGroveMap} from './grove-map.js?v=70';
+import {MAP_KEY,createGroveMap,readGroveMap,validateGroveMap} from './grove-map.js?v=71';
 const freeze=value=>{if(value&&typeof value==='object'){for(const v of Object.values(value))freeze(v);Object.freeze(value);}return value;};
 export class WorldMapConflictError extends Error{
  constructor(){super('The saved map changed in another tab. Your edits remain here; export a backup before reloading the saved map.');this.name='WorldMapConflictError';}

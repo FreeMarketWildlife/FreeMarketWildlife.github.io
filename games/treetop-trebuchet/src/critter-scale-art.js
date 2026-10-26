@@ -1,4 +1,4 @@
-import {drawCritter} from './build-art.js?v=70';
+import {drawCritter} from './build-art.js?v=71';
 const xml=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&apos;'}[c]));
 const num=value=>Number(value.toFixed(7));
 /** Small path recorder for the existing ready-pose artwork. It does not run a

@@ -1,5 +1,5 @@
-import {CRITTERS} from './build-catalog.js?v=70';
-import {critterHitboxBounds} from './critter-body.js?v=70';
+import {CRITTERS} from './build-catalog.js?v=71';
+import {critterHitboxBounds} from './critter-body.js?v=71';
 // Game progression dimensions and prices, not biological or world canon.
 export const DOORS=Object.freeze([
  {height:.10,price:0},{height:.15,price:35},{height:.22,price:65},

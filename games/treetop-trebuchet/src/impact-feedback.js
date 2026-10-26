@@ -1,4 +1,4 @@
-import {enemyRecipe} from './grove-map.js?v=70';
+import {enemyRecipe} from './grove-map.js?v=71';
 /** External impact punctuation belongs to a recorded surface, never the moving
  * volunteer or decorative art. Reads immutable simulation maps and events only. */
 const sources=new WeakMap(),MAX_AGE=.23;

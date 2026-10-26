@@ -1,7 +1,7 @@
-import {GRAVITY} from './build-physics.js?v=70';
-import {gravityScaleAt,spaceScale} from './grove-map.js?v=70';
-import {objectBounds,pointInPolygon,polygonArea} from './grove-geometry.js?v=70';
-import {coveredDistance} from './grove-environment.js?v=70';
+import {GRAVITY} from './build-physics.js?v=71';
+import {gravityScaleAt,spaceScale} from './grove-map.js?v=71';
+import {objectBounds,pointInPolygon,polygonArea} from './grove-geometry.js?v=71';
+import {coveredDistance} from './grove-environment.js?v=71';
 // An opportunity is an advisory surface region, never an aiming solution.
 // Unknown contacts suppress it; no live body or environment history is stepped.
 const cache=new WeakMap(),CELL=32,MAX_OBJECTS=5000,MAX_CANDIDATES=96,MAX_EDGES=2048,STEPS=108;

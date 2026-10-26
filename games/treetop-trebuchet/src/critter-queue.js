@@ -1,5 +1,5 @@
-import {availableCritters} from './critter-door.js?v=70';
-import {buildFacts,critter} from './build-catalog.js?v=70';
+import {availableCritters} from './critter-door.js?v=71';
+import {buildFacts,critter} from './build-catalog.js?v=71';
 /** Door size is an invitation; the fitted machine must also carry its visitor.
  * Preview is a durable promise, advanced only after a collected Adventure run.
  * Build changes may reconcile a promise that has become unsafe. */

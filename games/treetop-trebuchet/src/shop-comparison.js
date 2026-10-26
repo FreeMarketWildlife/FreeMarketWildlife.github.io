@@ -1,6 +1,6 @@
-import {part,critter,buildFacts} from './build-catalog.js?v=70';
-import {purchaseFit,fitEquipment} from './build-equipment.js?v=70';
-import {equipmentSpec} from './equipment-summary.js?v=70';
+import {part,critter,buildFacts} from './build-catalog.js?v=71';
+import {purchaseFit,fitEquipment} from './build-equipment.js?v=71';
+import {equipmentSpec} from './equipment-summary.js?v=71';
 export function rigStats(c){const f=buildFacts(c);return {height:c.pivotHeight,capacity:f.capacity,movingGrams:critter(c.animal).grams+part(c.sling).mass+2*part(c.rope).linearGrams*c.slingLength,beamGrams:f.beamGrams,torque:c.counterGrams/1000*8.825985*c.shortArm,inertia:f.beamGrams/1000*(c.longArm**2-c.longArm*c.shortArm+c.shortArm**2)/3,potential:c.counterGrams/1000*8.825985*2*c.shortArm,opening:c.pouchWidth};}
 export function shopComparison(build,offer){
  if(offer.kind!=='part')return null;

@@ -1,18 +1,18 @@
-import{drawLoadingContacts}from'./loading-contact-art.js?v=70';
-import {drawFixedObstacles} from './fixed-obstacles.js?v=70';
-import {encounterAnimationState} from './encounter-state.js?v=70';
-import {drawMechanismDetails} from './mechanism-art.js?v=70-trebuchet';
-import {drawGripTether} from './grip-art.js?v=70';
-import {terrainApproaches} from './terrain-cues.js?v=70';
-import {surfaceY} from './terrain.js?v=70';
-import {drawSurfaceTrim} from './surface-art.js?v=70';
-import {PICKUP_RADIUS_CSS} from './pickup.js?v=70';
-import {approachCues,payloadWarningRadius} from './approach-cues.js?v=70';
-import {drawSpeciesMarkings} from './species-art.js?v=70';
-import {biomeAt,atmosphereAt} from './journey.js?v=70-trebuchet';
-import {createFlightCamera} from './camera.js?v=70';
-import {world as layout} from './world.js?v=70';
-import {drawScenery,drawFace,drawEncounterDetails} from './scenery.js?v=70';
+import{drawLoadingContacts}from'./loading-contact-art.js?v=71';
+import {drawFixedObstacles} from './fixed-obstacles.js?v=71';
+import {encounterAnimationState} from './encounter-state.js?v=71';
+import {drawMechanismDetails} from './mechanism-art.js?v=71-trebuchet';
+import {drawGripTether} from './grip-art.js?v=71';
+import {terrainApproaches} from './terrain-cues.js?v=71';
+import {surfaceY} from './terrain.js?v=71';
+import {drawSurfaceTrim} from './surface-art.js?v=71';
+import {PICKUP_RADIUS_CSS} from './pickup.js?v=71';
+import {approachCues,payloadWarningRadius} from './approach-cues.js?v=71';
+import {drawSpeciesMarkings} from './species-art.js?v=71';
+import {biomeAt,atmosphereAt} from './journey.js?v=71-trebuchet';
+import {createFlightCamera} from './camera.js?v=71';
+import {world as layout} from './world.js?v=71';
+import {drawScenery,drawFace,drawEncounterDetails} from './scenery.js?v=71';
 export function viewportFor(width,height=Infinity){return width<=650&&height>=width?{width:480,height:600,portrait:true,originX:240,originY:560}:{width:960,height:480,portrait:false,originX:260,originY:440};}
 export function pointerWorld(point,bounds,viewport){
  if(![point.clientX,point.clientY,bounds.left,bounds.top,bounds.width,bounds.height].every(Number.isFinite)||bounds.width<=0||bounds.height<=0)return null;

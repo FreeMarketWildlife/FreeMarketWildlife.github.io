@@ -1,4 +1,4 @@
-import {createEconomyState,validateState} from './economy.js?v=70';
+import {createEconomyState,validateState} from './economy.js?v=71';
 const SAVE='critz-prototype-economy-v1',BACKUP='critz-prototype-economy-backup-v1',QUARANTINE='critz-prototype-economy-unreadable-v1';
 function quarantine(storage,key,raw){const existing=storage.getItem(key),entries=existing===null?[]:JSON.parse(existing);if(!Array.isArray(entries)||entries.some(v=>typeof v!=='string'))throw new Error('Unreadable recovery archive');if(!entries.includes(raw))storage.setItem(key,JSON.stringify([...entries,raw]));}
 const copy=s=>JSON.parse(JSON.stringify(validateState(s)));

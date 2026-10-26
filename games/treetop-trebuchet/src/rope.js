@@ -1,4 +1,4 @@
-import {config,geometry,initialState,flightStep} from './physics.js?v=70';
+import {config,geometry,initialState,flightStep} from './physics.js?v=71';
 // Cartesian particle + rotating beam. A unilateral massless cable can pull only.
 export function ropeConfig(overrides={}) { return config(overrides); }
 const inertia=p=>p.beamLinearDensity*(p.longArm+p.shortArm)*( (p.longArm+p.shortArm)**2/12+((p.longArm-p.shortArm)/2)**2)+p.counterMass*p.shortArm**2;

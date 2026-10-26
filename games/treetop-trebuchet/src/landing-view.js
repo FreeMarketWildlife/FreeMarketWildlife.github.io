@@ -1,4 +1,4 @@
-import {objectBounds,polygonArea} from './grove-geometry.js?v=70';
+import {objectBounds,polygonArea} from './grove-geometry.js?v=71';
 // A short presentation forecast, never a collision response or aiming guide.
 // Only the next upward solid face in the current ballistic path is considered.
 const cache=new WeakMap(),cross=(a,b)=>a.x*b.y-a.y*b.x;

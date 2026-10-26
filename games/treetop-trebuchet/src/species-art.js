@@ -1,6 +1,6 @@
 /** Original markings follow each physical body. Decorative strokes are clipped to
  * its real silhouette; they neither enlarge colliders nor imply powered abilities. */
-import {drawFace} from './scenery.js?v=70';
+import {drawFace} from './scenery.js?v=71';
 export const speciesTraits=Object.freeze({
  lizard:'Light • grippy feet • long flexible tail',salamander:'Slippery • broad head • supple tail',mouse:'Light • round ears • fine tail',turtle:'Shell-heavy • compact limbs • short tail',snake:'Seven linked segments • bends and tumbles',chipmunk:'Striped coat • broad tail • balanced limbs',
  'flying-squirrel':'Rare • membrane glide • left flares, right dives',armadillo:'Heaviest • banded shell • small head',

@@ -1,5 +1,5 @@
-import {ancientBough} from './grove-tree-layout.js?v=70';
-import {foliageClump} from './grove-nature.js?v=70';
+import {ancientBough} from './grove-tree-layout.js?v=71';
+import {foliageClump} from './grove-nature.js?v=71';
 // A whole, branching tree, rather than a cylinder behind an oval. Coordinates
 // remain fixed at every camera scale, including the academy doorway at y=0.
 export function drawAncientTree(c,{project,tree:t,origin,scale:s,width:W,height:H,camera}){

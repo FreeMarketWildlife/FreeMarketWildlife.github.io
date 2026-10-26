@@ -1,8 +1,8 @@
-import {drawProportionedForestBackdrop} from './proportioned-forest-art.js?v=70';
-import {ordinaryLeafHalfLength,drawCanopySpray} from './grove-nature.js?v=70';
-import {drawAncientTree} from './grove-tree-art.js?v=70';
-import {drawJungleBackdrop} from './grove-jungle-art.js?v=70';
-import {spaceScale} from './grove-map.js?v=70';
+import {drawProportionedForestBackdrop} from './proportioned-forest-art.js?v=71';
+import {ordinaryLeafHalfLength,drawCanopySpray} from './grove-nature.js?v=71';
+import {drawAncientTree} from './grove-tree-art.js?v=71';
+import {drawJungleBackdrop} from './grove-jungle-art.js?v=71';
+import {spaceScale} from './grove-map.js?v=71';
 const TAU=Math.PI*2,clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 const blend=(a,b,t)=>'#'+[1,3,5].map(i=>Math.round(parseInt(a.slice(i,i+2),16)*(1-t)+parseInt(b.slice(i,i+2),16)*t).toString(16).padStart(2,'0')).join('');
 /** Every crown, trunk and forest tree is placed in metres. Parallax fades out

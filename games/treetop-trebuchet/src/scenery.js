@@ -103,4 +103,4 @@ export function drawFace(ctx,{x,y,angle=0,size=7,species='mouse',color='#b6b0a9'
  }
  ctx.restore();
 }
-export {drawEncounterDetails} from './enemy-art.js?v=70';
+export {drawEncounterDetails} from './enemy-art.js?v=71';

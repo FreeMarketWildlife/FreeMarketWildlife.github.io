@@ -1,6 +1,6 @@
 /** A massless winding transmission: the wheel follows beam travel, never adds
  * launch energy. Positive screen angles are clockwise. All points are metres. */
-import {part,REST_ARM_ANGLE} from './build-catalog.js?v=70';
+import {part,REST_ARM_ANGLE} from './build-catalog.js?v=71';
 export function crankGeometry(sim){
  const c=sim.c,p=part(c.winch),radius=Math.min(c.pivotHeight,c.baseWidth*1.65)*p.radiusRatio,drumRadius=radius*p.drumRatio;
  const local={x:c.baseWidth*.44,y:radius+c.pivotHeight*.055};

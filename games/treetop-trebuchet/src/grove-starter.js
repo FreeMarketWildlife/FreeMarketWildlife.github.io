@@ -1,4 +1,4 @@
-import {branchPolygon,slopedPlatform} from './grove-branches.js?v=70';
+import {branchPolygon,slopedPlatform} from './grove-branches.js?v=71';
 export const CROWN_TREE=Object.freeze({height:800,trunkX:-145,trunkWidth:280,doorX:-8,crownRadius:500,crownDepth:350});
 const ellipsePoints=(x,y,rx,ry)=>Array.from({length:12},(_,i)=>({x:x+Math.cos(i*Math.PI/6)*rx,y:y+Math.sin(i*Math.PI/6)*ry}));
 export function crownStarterObjects(base,makeEnemy){

@@ -1,4 +1,4 @@
-import {surfaceImpactSource,recentContactFeedback,drawContactWord} from './impact-feedback.js?v=70';
+import {surfaceImpactSource,recentContactFeedback,drawContactWord} from './impact-feedback.js?v=71';
 /** Original ink-and-cream flight punctuation. Rendering only, driven by real
  * simulation time and contact events; no forces, randomness or screen flashes. */
 const TAU=Math.PI*2,clamp=(v,a,b)=>Math.max(a,Math.min(b,v));

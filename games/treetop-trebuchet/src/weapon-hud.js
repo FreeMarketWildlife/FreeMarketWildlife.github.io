@@ -1,4 +1,4 @@
-import {WEAPONS,createFlightWeapons} from './flight-weapons.js?v=70';
+import {WEAPONS,createFlightWeapons} from './flight-weapons.js?v=71';
 export function flightEffectCaption(sim){
  if(sim?.phase!=='flight'||!sim.release)return 'In flight';
  const p=sim.real(sim.shot);if(![p.vx,p.vy].every(Number.isFinite))return 'In flight';

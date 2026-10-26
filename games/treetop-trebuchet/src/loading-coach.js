@@ -1,4 +1,4 @@
-import {world as layout} from './world.js?v=70';
+import {world as layout} from './world.js?v=71';
 /** Observes real contact/motion; never changes a pose or imposes a settling timer. */
 export function createLoadingCoach(){let touched=false;return {update(scene,{fraction=.6,held=false}={}){
  if(scene.phase==='wind-stalled')return {reason:'The motor did not reach its target. Retry this volunteer at medium winding or adjust hardware.',retry:true};
