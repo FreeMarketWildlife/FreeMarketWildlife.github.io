@@ -1,0 +1,161 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#f7e8c4">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>Critz Tower Defense</title>
+  <meta name="description" content="Stack a tower to the heavens and declare war on God.">
+  <link rel="stylesheet" href="style.css?v=7">
+  <link rel="stylesheet" href="style-v25.css?v=25">
+  <link rel="stylesheet" href="style-v28.css?v=28">
+  <link rel="stylesheet" href="style-v30-dev.css?v=30">
+  <link rel="stylesheet" href="style-v32-art.css?v=32">
+  <link rel="stylesheet" href="style-v39-pickaxe.css?v=39">
+  <link rel="stylesheet" href="style-v41-trees.css?v=41">
+  <link rel="stylesheet" href="style-v45-audio-controls.css?v=45">
+  <link rel="stylesheet" href="style-v44-industry.css?v=45">
+  <link rel="stylesheet" href="style-v46-structures.css?v=61">
+  <link rel="stylesheet" href="style-v64-compact-structures.css?v=67">
+  <link rel="stylesheet" href="style-v66-mobile-ui.css?v=67">
+  <link rel="stylesheet" href="style-v68-hotbar.css?v=68">
+  <link rel="stylesheet" href="style-v70-extraction.css?v=70">
+  <link rel="stylesheet" href="wildlife-v71.css?v=71">
+</head>
+<body>
+<div id="app">
+  <canvas id="game"></canvas>
+
+  <div id="hud">
+    <div class="hudLeft">
+      <div class="height box"><small>HEIGHT</small><b id="height">0 m</b></div>
+      <div id="goldHud" class="box"><small>GOLD</small><b>● <span id="gc">0</span></b></div>
+      <div id="diamondHud" class="box" hidden><small>DIAMOND</small><b>◆ <span id="diamondCount">0</span></b></div>
+    </div>
+    <div class="cams">
+      <button class="btn" id="top">▲ TOP</button>
+      <button class="btn" id="down">▼ DOWN</button>
+      <div class="audioToggles" aria-label="Audio controls"><button class="btn audioToggle" id="musicToggle" aria-pressed="true">♫ MUSIC ON</button><button class="btn audioToggle" id="sfxToggle" aria-pressed="true">♪ SFX ON</button></div>
+    </div>
+  </div>
+
+  <div id="stability" class="box stability" aria-live="polite">
+    <div id="stabilityText">STABILIZING…</div>
+    <div class="stabilityTrack"><i id="stabilityFill"></i></div>
+  </div>
+
+  <div id="quest" class="box">
+    <small>NEXT GOAL</small>
+    <div id="questTitle">Reach 5 m</div>
+    <div id="questSub">Unlock 2×2 solid building</div>
+  </div>
+
+  <div id="mode" class="box">MAX 1×1</div>
+  <button class="btn" id="gridToggle" aria-pressed="true">▦ GRID ON</button>
+  <button class="btn" id="tipBtn">💡</button>
+
+  <div id="tips" class="box" aria-label="Game guide">
+    <div class="tipsTitle"><b>TOWER OF BABEL</b><small>Tap a section to open it</small></div>
+    <div class="tipsGroups">
+      <details open><summary>TO THE HEAVENS <span>Your purpose</span></summary><div class="tipBody"><p>Stack a tower to the heavens and declare war on God. Mine the earth, marshal your workers, and build higher with every hard-won block.</p></div></details>
+      <details open><summary>CONTROLS <span>Move, zoom, camera</span></summary><div class="tipBody">
+        <p><b>MOVE</b> drags around safely. Pinch to zoom.</p><p><b>WASD / ARROWS</b> pan the map. Hold <b>SHIFT</b> for temporary Grab; release to restore your tool and stop dragging. <b>1–3</b> select tools; <b>4–6</b> select items. Double click or double tap slots 4–6 to change items; focus a slot and press Enter to choose with a keyboard.</p><p>Select the pickaxe to equip your last pick. Click it again to choose another.</p><p>The up/down arrow buttons jump between your tower and mine.</p><p>Grid in Options switches between snapped and free placement. Press Escape or click the clock to pause; Tips and audio sliders are in Options.</p>
+      </div></details>
+      <details><summary>MINING &amp; BUILDING <span>Blocks, workers, records</span></summary><div class="tipBody">
+        <p>Tap exposed blocks to mine. Drag with the pickaxe to look around. Hold still on a block briefly to start auto-mining, then drag to aim. Starting on empty space always pans. Buried blocks must touch open space.</p><p>Open the pickaxe toolbar tab to buy or equip a pick: Iron 2×2 costs 5 Bells, Steel 3×3 costs 20, and Titanium 4×4 costs 50. Auto-mining strikes one square on each sixteenth-note tick. Owned picks can be equipped at any time.</p><p>Workers prioritize blocks within reach and use ladders to leave deep mines. They keep earlier mining abilities when upgraded: level 1 mines dirt, level 2 adds stone, and level 3 adds deepslate. Dirt hits on beats 1 and 3; stone on 2 and 4; deepslate on the “and” after 2 and 4.</p><p>Supported towers earn height records as soon as they stop moving and tilting.</p>
+      </div></details>
+      <details><summary>WORKER GHOSTS <span>Hazards and revival</span></summary><div class="tipBody">
+        <p>Workers drown after 5 seconds with their head underwater, or burn after a short stay in lava. Watch their air and heat bars.</p><p>Their ghosts sway upward with a spooky melody. Tap a ghost with any tool to revive the Worker right there in a burst of pixels, keeping its level and pocketed Bells.</p><p>Revived Workers have a brief protective shield. Ghosts wait above the world and save with your game. Bells claimed through the Worker menu stay in your inventory.</p>
+      </div></details>
+      <details><summary>INDUSTRY <span>Ore deposits and smelting</span></summary><div class="tipBody">
+        <p>Coal, iron, copper, and gold ore pockets are visible inside rock, even before digging. Ore never forms in dirt. Expose a side, then break the rock to collect both resources. Workers can mine deposits when they can mine the base rock.</p><p>Craft a Workshop in STRUCTURES for 5 wood, 5 dirt, and 10 stone. Drag it from the house icon in the toolbar onto a fully supported foundation. Click a placed building to open its shop. Workshops craft Forges and Blacksmiths; Forges smelt one ore + one coal into an ingot; Blacksmiths turn one iron ingot into 10 nails.</p><p>Craft a reusable bucket in the item picker for 5 iron ingots. An empty bucket collects one block from a connected pool; a filled bucket pours into an empty grid square. Water and lava stay separate.</p><p>Finished structures go into STRUCTURES; other products go into your inventory. Choose Nails from inventory and tap an existing block to pin it at the nearest grid-cell center. One nail per square; hammer strikes follow the quarter-note beat. Buildings need fixed blocks across their entire base. Pack buildings away before removing their supports. Production pauses while you are away.</p>
+      </div></details>
+      <details><summary>TREES <span>Wood, leaves, falling trunks</span></summary><div class="tipBody">
+        <p>Wood takes two hits to chop. Every trunk block above the cut falls with gravity; you can mine the fallen logs too.</p><p>Unsupported leaves disappear in 1–2 seconds. Mine them first to collect leaf blocks.</p><p>Select blocks in slots 4–6 to build. Placed leaf blocks stay put. Double tap or double click an item slot to choose from your inventory.</p>
+      </div></details>
+      <details><summary>BIOMES &amp; ANIMALS <span>Explore, listen, collect</span></summary><div class="tipBody">
+        <p>Start among mountains. Pan across large, randomly ordered plains, jungles, and ocean views. Scenery, wildlife, and music change gently; ground and resources follow the same rules everywhere.</p><p>Fireflies light the plains at night. Tap any animal to hear it. Use an empty bucket to collect it, then use its filled bucket to release it wherever you choose.</p><p>Craft small, medium, or large cages in STRUCTURES. Use an animal bucket on a cage to put it inside. Use an empty bucket to take one out. Open a cage to choose an animal to take.</p>
+      </div></details>
+      <details><summary>LIQUIDS &amp; SECRETS <span>Water, lava, discoveries</span></summary><div class="tipBody">
+        <p>Dirt floats in water. Stone and deepslate sink.</p><p>Water touching lava cools into solid obsidian.</p><p>No spoilers—valuable things can hide where you least expect them.</p>
+      </div></details>
+    </div>
+    <div class="tipsFooter"><div class="saveNote">YOUR WORLD SAVES AUTOMATICALLY</div><div class="tipsActions">
+      <button class="btn devLink" id="devToggle" title="Developer tools (F2)" aria-haspopup="dialog" aria-controls="devPanel">DEV TOOLS</button>
+      <button class="resetLink" id="restartWorld">RESTART WORLD</button>
+    </div></div>
+  </div>
+
+  <button class="btn" id="pickaxeUpgrade" aria-haspopup="dialog" aria-controls="pickaxeShop">UPGRADE PICK · 5 GOLD</button>
+  <button class="btn" id="industryOpen" aria-haspopup="dialog" aria-controls="industryPanel">⚙ INDUSTRY</button>
+  <dialog id="industryPanel" class="box" aria-labelledby="industryTitle">
+    <header><div><small>FROM THE MINE TO YOUR SETTLEMENT</small><h2 id="industryTitle">INDUSTRY</h2></div><button class="btn" id="industryClose" aria-label="Close Industry">✕</button></header>
+    <section aria-label="Industrial resources"><h3>RESOURCES</h3><div class="industryResources">
+      <div class="resourceCard coal"><span class="oreIcon" aria-hidden="true"></span><span>Coal<small>Forge fuel</small></span><b id="resource-coal">0</b></div>
+      <div class="resourceCard ironOre"><span class="oreIcon" aria-hidden="true"></span><span>Iron ore<small>Raw mineral</small></span><b id="resource-ironOre">0</b></div>
+      <div class="resourceCard copperOre"><span class="oreIcon" aria-hidden="true"></span><span>Copper ore<small>Raw mineral</small></span><b id="resource-copperOre">0</b></div>
+      <div class="resourceCard ironIngot"><span class="oreIcon ingot" aria-hidden="true"></span><span>Iron ingot<small>Refined metal</small></span><b id="resource-ironIngot">0</b></div>
+      <div class="resourceCard copperIngot"><span class="oreIcon ingot" aria-hidden="true"></span><span>Copper ingot<small>Refined metal</small></span><b id="resource-copperIngot">0</b></div>
+    </div></section>
+    <section class="furnaceCard" aria-labelledby="furnaceTitle"><h3 id="furnaceTitle"><span aria-hidden="true">▣</span> FURNACE</h3><p id="furnaceCost"></p><button class="btn primary" id="furnaceBuild">BUILD FURNACE · 10 STONE + 5 WOOD</button>
+      <div id="furnaceControls" hidden><label for="furnaceRecipe">PRODUCE</label><select id="furnaceRecipe"><option value="ironIngot">Iron ingot</option><option value="copperIngot">Copper ingot</option></select><p id="furnaceIngredients"></p>
+        <progress id="furnaceProgress" max="1" value="0" aria-label="Smelting progress"></progress><p id="furnaceStatus" role="status"></p>
+        <div class="furnaceActions"><button class="btn primary" id="furnaceProduce">PRODUCE</button><button class="btn" id="furnacePause">PAUSE</button></div>
+        <p class="industryNote">Inputs are reserved when a batch starts.</p>
+      </div>
+    </section>
+    <p class="industryNote">Progress saves with your world and pauses while you are away. Refined metals are stored for future industry upgrades.</p>
+  </dialog>
+  <div id="bar">
+    <button class="slot" data-tool="move"><span class="icon">✋</span><span>MOVE</span></button>
+    <button class="slot sel" data-tool="pick"><span class="icon">⛏</span><span id="pickaxeLabel">STONE 1×1</span></button>
+    <button class="slot empty" data-tool="dirt"><span class="blk dirt"><b class="num" id="dc">0</b></span><span>DIRT</span></button>
+    <button class="slot empty" data-tool="wood" aria-label="Wood blocks"><span class="blk wood"><b class="num" id="woodCount">0</b></span><span>WOOD</span></button>
+    <button class="slot empty" data-tool="leaves" aria-label="Leaf blocks"><span class="blk leaves"><b class="num" id="leavesCount">0</b></span><span>LEAVES</span></button>
+    <button class="slot locked" data-tool="stone" id="stoneSlot"><span class="blk stone"><b class="num" id="sc">0</b><i class="lock">×</i></span><span>STONE</span></button>
+    <button class="slot locked" data-tool="deepslate" id="deepSlot"><span class="blk deepslate"><b class="num" id="dsc">0</b><i class="lock">?</i></span><span>DEEP</span></button>
+    <button class="slot locked" data-tool="obsidian" id="obsidianSlot"><span class="blk obsidian"><b class="num" id="oc">0</b><i class="lock">?</i></span><span>OBSIDIAN</span></button>
+    <button class="slot locked" data-tool="miner" id="minerSlot">
+      <span class="minerToolIcon">👷<b class="minerCount" id="mc">0</b><i class="lock">20m</i></span>
+      <span>WORKER</span>
+    </button>
+  </div>
+
+  <dialog id="pickaxeShop" class="box" aria-labelledby="pickaxeShopTitle">
+    <header><h2 id="pickaxeShopTitle">PICKAXE UPGRADES</h2><button id="pickaxeClose" class="btn" aria-label="Close pickaxe upgrades">✕</button></header>
+    <p id="pickaxeCurrent"></p><div id="pickaxeTiers"></div>
+    <p class="pickaxeNote">Upgrades are permanent for this world. You cannot switch back to an earlier pickaxe. Harder blocks still take multiple hits.</p>
+    <p class="pickaxeNote">Tap to mine. Drag to pan. Hold still on a block to auto-mine, then drag to aim.</p>
+    <button id="pickaxeBuy" class="btn primary"></button><p id="pickaxeFunds" role="status"></p>
+  </dialog>
+  <div id="overlapWarn" class="modal" aria-hidden="true">
+    <div class="modalCard box"><div class="warningIcon">⚠</div><b>BLOCK COLLISION</b><p>This block overlaps one of your placed blocks.</p><p class="warningText">Placing it anyway may push, tilt, or launch your other blocks because the physics will force them apart.</p><label class="dontShow"><input type="checkbox" id="overlapDont"> <span>Don't show this again</span></label><div class="modalActions"><button class="btn" id="overlapCancel">CANCEL</button><button class="btn primary" id="overlapPlace">PLACE ANYWAY</button></div></div>
+  </div>
+
+  <div id="minerMenu" class="modal" aria-hidden="true">
+    <div class="modalCard box minerCard">
+      <div class="minerPortrait">👷</div><b id="minerTitle">LEVEL 1 MINER</b><div class="minerGold" id="minerGold">POCKETED GOLD: 0</div>
+      <p id="minerDesc">He mines dirt and sends the dirt to you. Hidden gold goes in his pocket.</p><p class="warningText" id="minerUpgradeHint">Upgrade him with gold to mine tougher material.</p>
+      <button class="btn upgradeBtn" id="minerUpgrade">UPGRADE TO LEVEL 2 · 8 GOLD</button>
+      <div class="minerActions3"><button class="btn" id="minerKeep">KEEP MINING</button><button class="btn primary" id="minerBreak">RETURN</button><button class="btn danger" id="minerKill">KILL MINER</button></div>
+    </div>
+  </div>
+
+  <div id="killModal" class="modal" aria-hidden="true"><div class="modalCard box restartCard"><div class="warningIcon dangerIcon">!</div><b>KILL THIS MINER?</b><p>The miner will become a ghost. Tap the ghost to revive them.</p><p class="warningText">You will recover the <b id="killGold">0</b> gold they are carrying. Reviving them will not return that claimed gold to their pocket.</p><div class="modalActions"><button class="btn" id="killCancel">NEVER MIND</button><button class="btn danger" id="killConfirm">YES, KILL MINER</button></div></div></div>
+
+  <div id="restartModal" class="modal" aria-hidden="true"><div class="modalCard box restartCard"><div class="warningIcon">↻</div><b>RESTART TOWER OF BABEL?</b><p>This permanently deletes this world's locally saved progress in this browser.</p><p class="warningText">Your mined terrain, inventory, gold, placed blocks, height progress, pickaxe upgrades, and miners will all reset to the beginning.</p><label class="dontShow restartAgree"><input type="checkbox" id="restartAgree"> <span>I understand my saved world will be deleted.</span></label><div class="modalActions"><button class="btn" id="restartCancel">KEEP MY WORLD</button><button class="btn danger" id="restartConfirm" disabled>YES, START OVER</button></div></div></div>
+
+  <div id="toast" class="hide"></div><div id="load">Loading physics…</div>
+</div>
+<script src="matter.min.js"></script>
+<script src="audio.js?v=93"></script>
+<script src="storm-audio.js?v=89"></script>
+<script src="game-v28.js?v=93"></script>
+<script>
+for(const [id,label,fn] of [['musicToggle','MUSIC', 'setMusicEnabled'],['sfxToggle','SFX','setSfxEnabled']])document.getElementById(id).addEventListener('click',async()=>{await window.SkyAudio?.ensure();const on=window.SkyAudio?.[fn](!document.getElementById(id).matches('[aria-pressed=true]'));const b=document.getElementById(id);b.setAttribute('aria-pressed',on);b.textContent=(label==='MUSIC'?'♫ ':'♪ ')+label+' '+(on?'ON':'OFF')});
+</script>
+</body>
+</html>

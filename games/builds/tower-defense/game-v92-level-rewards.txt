@@ -1,0 +1,46 @@
+// ART-BIBLE §§3–4, 9–10: text-free, tiered unlock celebrations in native HUD pixels.
+let levelRewardV92=null;const levelHistoryV92=[];
+function levelTierV92(q){return q.height%100===0?3:/Worker|stone|Grid/i.test(q.reward)||q.height>=45?2:1}
+function queueLevelRewardV92(old,height){
+ const crossed=questsV77().filter(q=>q.height>old&&q.height<=height);if(!crossed.length)return;
+ const tier=Math.max(...crossed.map(levelTierV92),levelRewardV92&&!levelRewardV92.started?levelRewardV92.tier:1),r=SkyAudio.rhythm(),top=topInfo();
+ // Several unlocks in a single height jump make one appropriately sized phrase.
+ const plan=SkyAudio.levelReward?.(tier,height),beatMs=60000/SkyAudio.bpm,now=performance.now();
+ levelRewardV92={tier,height,plan,epoch:r.ready?r.epoch:null,due:(Math.floor(now/(beatMs*4))+1)*beatMs*4,x:top?.x??cam.x,y:top?.y??cam.y,started:false};
+ levelHistoryV92.push({height,tier,unlocks:crossed.length});if(levelHistoryV92.length>16)levelHistoryV92.shift();
+}
+const awardBeforeV92=awardHigh;
+awardHigh=function(m){const old=best;if(m<=old)return awardBeforeV92(m);
+ const announce=toast,unlock=SkyAudio.unlock;
+ // Retain all actual grants and quest updates; replace only their old celebrations.
+ toast=function(message,...args){if(/5 m! SOLID|10 m! STONE|BUILD SIZE UPGRADED|MINER UNLOCKED|WORKER UNLOCKED|^Grid unlocked$/i.test(message))return;return announce(message,...args)};
+ SkyAudio.unlock=()=>{};
+ try{return awardBeforeV92(m)}finally{toast=announce;SkyAudio.unlock=unlock;if(best>old)queueLevelRewardV92(old,best)}
+};
+function paintLevelRewardV92(now){
+ const e=levelRewardV92;if(!e||gameClockV76.paused||document.hidden)return;
+ const r=SkyAudio.rhythm(),beatMs=60000/SkyAudio.bpm;
+ if(r.ready&&(!e.plan||e.epoch!==r.epoch)){e.plan=SkyAudio.levelReward?.(e.tier,e.height);e.epoch=r.epoch}
+ const age=e.plan&&r.ready?r.beatIndex+r.phase-e.plan.beatIndex:(now-e.due)/beatMs;
+ if(age<0)return;e.started=true;if(age>4){levelRewardV92=null;return}
+ if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+ const p=w2s(e.x,e.y),anchor={x:Math.round(clamp(p.x,64,Math.max(64,W-64))),y:Math.round(clamp(p.y-48,156,Math.max(156,HH-160)))},P=ButtonwoodArt.palette,colors=[P.gold,P.mint,P.coral,P.creamLight],bursts=e.tier===1?1:e.tier===2?3:5;
+ ctx.save();ctx.imageSmoothingEnabled=false;
+ for(let n=0;n<bursts;n++){
+  const t=age-n*.38;if(t<0||t>1.4)continue;
+  const radius=3+Math.floor(t*22),cx=anchor.x+(n===0?0:(n%2?1:-1)*Math.ceil(n/2)*26),cy=anchor.y-(n%3)*12,drop=Math.floor(t*t*7);
+  for(const [i,[dx,dy]]of [[0,-1],[1,-1],[1,0],[1,1],[0,1],[-1,1],[-1,0],[-1,-1]].entries()){
+   const x=cx+dx*radius,y=cy+dy*radius+drop;ctx.fillStyle=colors[(n+i+e.height)%4];ctx.fillRect(x,y,3,3);if(t<.7){ctx.fillStyle=P.cream;ctx.fillRect(x-dx*3,y-dy*3,2,2)}
+  }
+ }
+ ctx.restore();
+}
+const rewardDrawBeforeV92=drawGoldBursts;
+drawGoldBursts=function(now){rewardDrawBeforeV92(now);paintLevelRewardV92(now)};
+const rewardRestoreBeforeV92=restoreDynamicState;
+restoreDynamicState=function(s){rewardRestoreBeforeV92(s);levelRewardV92=null;SkyAudio.cancelLevelReward?.()};
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&levelRewardV92){SkyAudio.cancelLevelReward?.();if(levelRewardV92.started)levelRewardV92=null;else{levelRewardV92.plan=null;levelRewardV92.due=Infinity}}else if(levelRewardV92&&!Number.isFinite(levelRewardV92.due)){const bar=240000/SkyAudio.bpm;levelRewardV92.due=(Math.floor(performance.now()/bar)+1)*bar}});
+window.skyStackLevelRewards={get state(){return{current:levelRewardV92?{tier:levelRewardV92.tier,height:levelRewardV92.height,beat:levelRewardV92.plan?.beatIndex??null,started:levelRewardV92.started}:null,history:levelHistoryV92.map(e=>({...e}))}}};
+
+// The existing isolated sound playground can audition rewards without granting unlocks.
+if(demoV88){const rewardBootBeforeV92=buttonwoodBoot;buttonwoodBoot=function(){rewardBootBeforeV92();const panel=$('soundDemoV88');if(!panel)return;for(const [label,from,to]of [['5 m reward',0,5],['Stone reward',5,10],['100 m reward',90,100]]){const b=document.createElement('button');b.className='btn';b.textContent=label;Object.assign(b.style,{minHeight:'44px',margin:'4px',font:'14px monospace'});b.onclick=async()=>{if(gameClockV76.paused)resumeGameV76();await SkyAudio.ensure();queueLevelRewardV92(from,to)};panel.append(b)}}}

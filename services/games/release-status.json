@@ -1,0 +1,12 @@
+{
+  "staticVersion": "7f08c07e-1520-490e-9f34-fd96dea03e9c",
+  "kingdomBackendVersion": "9dc3b7b7-e75c-43f5-ab21-e11fa8fa63a2",
+  "preservedBusinessVersion": "fd48e212-5075-4da8-b684-64832272b988",
+  "badmathCommit": "c5984a292dcf6bc1a7ec30b0f9d6c132d1624e0a",
+  "treetopCommit": "c5a508880c3bebdbf04cfaa8100406e094920f1b",
+  "treetopAssetVersion": 67,
+  "pending": "Newest Treetop shop/swing/FAIL changes are excluded until accepted",
+  "hostedGames": 12,
+  "publiclyListedGames": 6,
+  "hiddenDirectURLsAccessible": true
+}

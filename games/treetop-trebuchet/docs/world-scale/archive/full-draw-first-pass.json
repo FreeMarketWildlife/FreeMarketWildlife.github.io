@@ -1,0 +1,969 @@
+{
+  "version": 1,
+  "status": "Local uncommitted test evidence; no native browser QA or publication implied",
+  "scope": "Optional physical-scale recipes; existing catalogue and starter unchanged",
+  "map": {
+    "version": 4,
+    "starterRevision": 1,
+    "launch": {
+      "x": 0,
+      "y": 32
+    },
+    "tree": {
+      "height": 110,
+      "trunkX": -8,
+      "trunkWidth": 7,
+      "doorX": -4,
+      "crownRadius": 38,
+      "crownDepth": 64
+    },
+    "canonicalSha256": "f1cd9dbf72c67a5ac2261c63130f7677688e84f2c0b6fc6b277247596b383451"
+  },
+  "protocol": {
+    "preparationStep": 0.008333333333333333,
+    "consecutiveSupportedFrames": 30,
+    "draw": 1,
+    "externalFlightStep": 0.004166666666666667,
+    "keyboardDrops": "Explicit initial Enter, plus explicit second Enter after winding if support is lost",
+    "playerWeapons": false,
+    "authoredMapTargets": true,
+    "poseOverrides": false
+  },
+  "candidateSearch": {
+    "uniqueConfigurations": 7,
+    "limit": 24,
+    "elephantCandidates": [
+      {
+        "axleHeight": 13.5,
+        "beamLength": 17,
+        "feetWidth": 10,
+        "counterGrams": 50000000,
+        "rope": "cable",
+        "releaseSpeed": 14.718,
+        "releaseAngle": -40.96,
+        "peakTension": 8427000,
+        "failure": "Sling cord snapped",
+        "selected": false
+      },
+      {
+        "axleHeight": 16.2,
+        "beamLength": 20.4,
+        "feetWidth": 12,
+        "counterGrams": 80000000,
+        "rope": "cable",
+        "releaseSpeed": 18.6311,
+        "releaseAngle": 54.135,
+        "peakTension": 1607800,
+        "failure": "",
+        "selected": true
+      },
+      {
+        "axleHeight": 18.9,
+        "beamLength": 23.8,
+        "feetWidth": 14,
+        "counterGrams": 100000000,
+        "rope": "cable",
+        "releaseSpeed": 19.2685,
+        "releaseAngle": 43.134,
+        "peakTension": 1963400,
+        "failure": "",
+        "selected": false
+      }
+    ],
+    "candidateProtocol": "Raw full-draw no-map mechanism selection, followed by actual canonical-map preparation; candidate values rounded"
+  },
+  "rawDrawChecks": {
+    "protocol": "No-map, no loose loading, actual solver, no player weapons; not universal partial-draw certification",
+    "drawFractions": [
+      0.2,
+      0.6,
+      1
+    ],
+    "small": [
+      [
+        "Sling cord snapped",
+        2.47,
+        -173.2334
+      ],
+      [
+        "",
+        13.1518,
+        33.4147
+      ],
+      [
+        "",
+        22.0049,
+        38.9448
+      ]
+    ],
+    "medium": [
+      [
+        "Beam overloaded",
+        2.3322,
+        38.7407
+      ],
+      [
+        "",
+        12.4151,
+        -25.6519
+      ],
+      [
+        "",
+        20.1631,
+        40.4064
+      ]
+    ],
+    "large": [
+      [
+        "",
+        10.024408026831468,
+        34.082576917406676
+      ],
+      [
+        "",
+        6.573926125624612,
+        -76.35293279979818
+      ],
+      [
+        "",
+        15.980661673289685,
+        43.37000252803249
+      ]
+    ],
+    "elephant": [
+      [
+        "Sling cord snapped",
+        10.4739,
+        -46.3183
+      ],
+      [
+        "Sling cord snapped",
+        9.5043,
+        -53.8627
+      ],
+      [
+        "",
+        18.6311,
+        54.1352
+      ]
+    ],
+    "tupleFields": [
+      "failure",
+      "releaseSpeedMetresPerSecond",
+      "releaseAngleDegrees"
+    ]
+  },
+  "physicalRuns": [
+    {
+      "id": "small",
+      "initialLoaded": true,
+      "loadedAfterWind": true,
+      "lostFrames": 7,
+      "windTime": 3.0083333333333253,
+      "prepTime": 0.6416666666666668,
+      "reDrops": 1,
+      "preFire": {
+        "loaded": true,
+        "draw": 1,
+        "pose": {
+          "x": 0.302789202051843,
+          "y": 0.06794729342100579
+        },
+        "motion": {
+          "vx": 0,
+          "vy": 0,
+          "omega": 0
+        }
+      },
+      "fired": true,
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -0.7968307981629215,
+        "y": 2.9045255452716696,
+        "vx": 16.805745597696983,
+        "vy": 13.773198711356189,
+        "angle": 39.33643418068273,
+        "time": 0.5274523850723586,
+        "reason": "Release ring cleared the pin",
+        "speed": 21.728646709747373,
+        "energy": 5.901676097962691
+      },
+      "point": {
+        "x": 58.75007247712685,
+        "y": -31.97422928135768,
+        "vx": 1.5959023863575186e-19,
+        "vy": 3.830165727258045e-19,
+        "angle": -100.59804858416564
+      },
+      "maxX": 58.44728327507501,
+      "maxY": 9.008603155179575,
+      "time": 13.83151882343177,
+      "peakTension": 21.30589980583559,
+      "peakStress": 18167562.216051757,
+      "contactIds": [
+        "opening-skip-1",
+        "first-hopper",
+        "opening-skip-2",
+        "forest-floor"
+      ],
+      "facts": {
+        "axleHeight": 1.2,
+        "feetWidth": 0.8,
+        "guideLength": 1.6,
+        "guideBounds": {
+          "minX": -1.2000000000000002,
+          "maxX": 0.4
+        },
+        "stationaryBounds": {
+          "minX": -1.2000000000000002,
+          "maxX": 0.5104000000000001
+        },
+        "stationaryWidth": 1.7104000000000004,
+        "beamLength": 1.3,
+        "longArm": 1.04,
+        "shortArm": 0.26,
+        "cordLength": 0.96,
+        "longSideReach": 2.09,
+        "counterSideReach": 0.500953002100176,
+        "beamThickness": 0.02,
+        "pouchOpening": 0.2,
+        "pouchCapacityGrams": 150,
+        "volunteerLength": 0.18,
+        "volunteerWidth": 0.055,
+        "volunteerGrams": 25,
+        "counterGrams": 6000,
+        "frameGrams": 1500,
+        "beamGrams": 364.00000000000006,
+        "counterRadius": 0.08095300210017602,
+        "parts": [
+          {
+            "slot": "chassis",
+            "label": "Foundation",
+            "id": "anchored",
+            "name": "Root anchors"
+          },
+          {
+            "slot": "arm",
+            "label": "Throwing arm",
+            "id": "oak",
+            "name": "Oak beam"
+          },
+          {
+            "slot": "frame",
+            "label": "Frame",
+            "id": "sapling",
+            "name": "Sapling A-frame"
+          },
+          {
+            "slot": "ballast",
+            "label": "Counterweight capacity",
+            "id": "boulder",
+            "name": "Boulder basket"
+          },
+          {
+            "slot": "material",
+            "label": "Ballast material",
+            "id": "stone",
+            "name": "River stone"
+          },
+          {
+            "slot": "mount",
+            "label": "Counterweight joint",
+            "id": "hinged",
+            "name": "Swinging hanger"
+          },
+          {
+            "slot": "sling",
+            "label": "Pouch",
+            "id": "pocket",
+            "name": "Leaf pocket"
+          },
+          {
+            "slot": "rope",
+            "label": "Sling cords",
+            "id": "twine",
+            "name": "Braided twine"
+          },
+          {
+            "slot": "bearing",
+            "label": "Axle",
+            "id": "bronze",
+            "name": "Bronze bushings"
+          },
+          {
+            "slot": "release",
+            "label": "Release finger",
+            "id": "polished",
+            "name": "Polished release pin"
+          },
+          {
+            "slot": "winch",
+            "label": "Crank wheel",
+            "id": "hand",
+            "name": "Acorn crank wheel"
+          },
+          {
+            "slot": "trough",
+            "label": "Launch trough",
+            "id": "runway",
+            "name": "Timber launch rail"
+          }
+        ]
+      },
+      "build": {
+        "name": "Acorn Flyer",
+        "chassis": "anchored",
+        "arm": "oak",
+        "frame": "sapling",
+        "ballast": "boulder",
+        "material": "stone",
+        "mount": "hinged",
+        "sling": "pocket",
+        "rope": "twine",
+        "bearing": "bronze",
+        "release": "polished",
+        "winch": "hand",
+        "animal": "mouse",
+        "longArm": 1.04,
+        "shortArm": 0.26,
+        "beamWidth": 0.02,
+        "pivotHeight": 1.2,
+        "baseWidth": 0.8,
+        "frameGrams": 1500,
+        "counterGrams": 6000,
+        "hanger": 0.16,
+        "slingLength": 0.96,
+        "pouchWidth": 0.2,
+        "pinAngle": -40,
+        "pinLength": 0.018,
+        "axleRadius": 0.008,
+        "cockAngle": 55,
+        "footFriction": 0.8,
+        "wheelRadius": 0.13,
+        "wheelGrams": 150,
+        "brake": 0.002,
+        "walkingLean": 22,
+        "braceCount": 2,
+        "hingeFriction": 0.008,
+        "wind": 0,
+        "drag": 1,
+        "trough": "runway",
+        "troughLength": 1.6,
+        "troughHeight": 0.035
+      }
+    },
+    {
+      "id": "medium",
+      "initialLoaded": true,
+      "loadedAfterWind": true,
+      "lostFrames": 11,
+      "windTime": 3.0083333333333253,
+      "prepTime": 0.8083333333333329,
+      "reDrops": 1,
+      "preFire": {
+        "loaded": true,
+        "draw": 1,
+        "pose": {
+          "x": -0.21427814395602857,
+          "y": 0.18317436252505456
+        },
+        "motion": {
+          "vx": 4.1113031825422245e-11,
+          "vy": 1.8663727322522127e-17,
+          "omega": -1.50362221469999e-16
+        }
+      },
+      "fired": true,
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -2.4803136662508045,
+        "y": 7.57179771481091,
+        "vx": 15.357664355348113,
+        "vy": 13.358735619677027,
+        "angle": 41.01810350520089,
+        "time": 1.05625,
+        "reason": "Release ring cleared the pin",
+        "speed": 20.35469655406235,
+        "energy": 414.31367180795775
+      },
+      "point": {
+        "x": 58.523593985421435,
+        "y": -31.911102761619258,
+        "vx": -1.6263032587282567e-19,
+        "vy": 0,
+        "angle": -34.877803563371515
+      },
+      "maxX": 58.73787869107913,
+      "maxY": 16.25254806670059,
+      "time": 10.897916666666209,
+      "peakTension": 826.7321832068313,
+      "peakStress": 15834385.677722959,
+      "contactIds": [
+        "forest-floor",
+        "opening-skip-4"
+      ],
+      "facts": {
+        "axleHeight": 2.7,
+        "feetWidth": 2,
+        "guideLength": 4,
+        "guideBounds": {
+          "minX": -3,
+          "maxX": 1
+        },
+        "stationaryBounds": {
+          "minX": -3.1037500000000002,
+          "maxX": 1.31065
+        },
+        "stationaryWidth": 4.4144000000000005,
+        "beamLength": 3.8,
+        "longArm": 3,
+        "shortArm": 0.8,
+        "cordLength": 2.7,
+        "longSideReach": 5.925,
+        "counterSideReach": 1.4367080141024982,
+        "beamThickness": 0.1,
+        "pouchOpening": 0.55,
+        "pouchCapacityGrams": 3000,
+        "volunteerLength": 0.45,
+        "volunteerWidth": 0.22,
+        "volunteerGrams": 2000,
+        "counterGrams": 150000,
+        "frameGrams": 30000,
+        "beamGrams": 26600.000000000004,
+        "counterRadius": 0.2367080141024981,
+        "parts": [
+          {
+            "slot": "chassis",
+            "label": "Foundation",
+            "id": "anchored",
+            "name": "Root anchors"
+          },
+          {
+            "slot": "arm",
+            "label": "Throwing arm",
+            "id": "oak",
+            "name": "Oak beam"
+          },
+          {
+            "slot": "frame",
+            "label": "Frame",
+            "id": "timber",
+            "name": "Timber tower"
+          },
+          {
+            "slot": "ballast",
+            "label": "Counterweight capacity",
+            "id": "quarry",
+            "name": "Quarry basket"
+          },
+          {
+            "slot": "material",
+            "label": "Ballast material",
+            "id": "stone",
+            "name": "River stone"
+          },
+          {
+            "slot": "mount",
+            "label": "Counterweight joint",
+            "id": "hinged",
+            "name": "Swinging hanger"
+          },
+          {
+            "slot": "sling",
+            "label": "Pouch",
+            "id": "pouch",
+            "name": "Canvas pouch"
+          },
+          {
+            "slot": "rope",
+            "label": "Sling cords",
+            "id": "hemp",
+            "name": "Hemp cord"
+          },
+          {
+            "slot": "bearing",
+            "label": "Axle",
+            "id": "bronze",
+            "name": "Bronze bushings"
+          },
+          {
+            "slot": "release",
+            "label": "Release finger",
+            "id": "polished",
+            "name": "Polished release pin"
+          },
+          {
+            "slot": "winch",
+            "label": "Crank wheel",
+            "id": "geared",
+            "name": "Brass geared wheel"
+          },
+          {
+            "slot": "trough",
+            "label": "Launch trough",
+            "id": "runway",
+            "name": "Timber launch rail"
+          }
+        ]
+      },
+      "build": {
+        "name": "Oak field launcher",
+        "chassis": "anchored",
+        "arm": "oak",
+        "frame": "timber",
+        "ballast": "quarry",
+        "material": "stone",
+        "mount": "hinged",
+        "sling": "pouch",
+        "rope": "hemp",
+        "bearing": "bronze",
+        "release": "polished",
+        "winch": "geared",
+        "animal": "rabbit",
+        "longArm": 3,
+        "shortArm": 0.8,
+        "beamWidth": 0.1,
+        "pivotHeight": 2.7,
+        "baseWidth": 2,
+        "frameGrams": 30000,
+        "counterGrams": 150000,
+        "hanger": 0.4,
+        "slingLength": 2.7,
+        "pouchWidth": 0.55,
+        "pinAngle": -45,
+        "pinLength": 0.035,
+        "axleRadius": 0.012,
+        "cockAngle": 28,
+        "footFriction": 0.8,
+        "wheelRadius": 0.13,
+        "wheelGrams": 150,
+        "brake": 0.002,
+        "walkingLean": 22,
+        "braceCount": 2,
+        "hingeFriction": 0.008,
+        "wind": 0,
+        "drag": 1,
+        "trough": "runway",
+        "troughLength": 4,
+        "troughHeight": 0.06
+      }
+    },
+    {
+      "id": "large",
+      "initialLoaded": true,
+      "loadedAfterWind": false,
+      "lostFrames": 153,
+      "windTime": 2.008333333333329,
+      "prepTime": 2.099999999999995,
+      "reDrops": 2,
+      "preFire": {
+        "loaded": true,
+        "draw": 1,
+        "pose": {
+          "x": -1.068307300921228,
+          "y": 0.7611212023361886
+        },
+        "motion": {
+          "vx": 2.7359442010514166e-10,
+          "vy": 1.2516478321403057e-17,
+          "omega": 3.164510022261236e-18
+        }
+      },
+      "fired": true,
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -8.079895572603018,
+        "y": 19.887044756109006,
+        "vx": 11.616918567971492,
+        "vy": 10.974297209166798,
+        "angle": 43.37062484868628,
+        "time": 2.5765632053937817,
+        "reason": "Release ring cleared the pin",
+        "speed": 15.980863438813529,
+        "energy": 31923.499531250873
+      },
+      "point": {
+        "x": 100.29276162390234,
+        "y": -30.73873058980072,
+        "vx": 0.07814253330095393,
+        "vy": -0.01033825850043372,
+        "angle": 8.030693278395946
+      },
+      "maxX": 101.36106892482357,
+      "maxY": 26.546716474572,
+      "time": 20.41766774756536,
+      "peakTension": 95650.98169334438,
+      "peakStress": 24943960.62620356,
+      "contactIds": [
+        "opening-skip-2",
+        "canopy-bug",
+        "amazon-bough-1-1",
+        "opening-skip-3",
+        "floor-log-2",
+        "forest-floor",
+        "small-floor-fungus",
+        "floor-log-3",
+        "floor-stone-3"
+      ],
+      "facts": {
+        "axleHeight": 8.100000000000001,
+        "feetWidth": 6,
+        "guideLength": 16.5,
+        "guideBounds": {
+          "minX": -12.375,
+          "maxX": 4.125
+        },
+        "stationaryBounds": {
+          "minX": -12.375,
+          "maxX": 4.2438
+        },
+        "stationaryWidth": 16.6188,
+        "beamLength": 10.200000000000001,
+        "longArm": 7.800000000000001,
+        "shortArm": 2.4000000000000004,
+        "cordLength": 7.199999999999999,
+        "longSideReach": 16.1,
+        "counterSideReach": 4.510990323848519,
+        "beamThickness": 0.5700000000000001,
+        "pouchOpening": 2.64,
+        "pouchCapacityGrams": 500000,
+        "volunteerLength": 2.2,
+        "volunteerWidth": 1.1,
+        "volunteerGrams": 250000,
+        "counterGrams": 7500000,
+        "frameGrams": 1650000,
+        "beamGrams": 2816883.0000000014,
+        "counterRadius": 0.6109903238485185,
+        "parts": [
+          {
+            "slot": "chassis",
+            "label": "Foundation",
+            "id": "anchored",
+            "name": "Root anchors"
+          },
+          {
+            "slot": "arm",
+            "label": "Throwing arm",
+            "id": "ironwood",
+            "name": "Ironwood beam"
+          },
+          {
+            "slot": "frame",
+            "label": "Frame",
+            "id": "braced",
+            "name": "Braced tower"
+          },
+          {
+            "slot": "ballast",
+            "label": "Counterweight capacity",
+            "id": "mountain",
+            "name": "Mountain ballast"
+          },
+          {
+            "slot": "material",
+            "label": "Ballast material",
+            "id": "steel",
+            "name": "Steel plates"
+          },
+          {
+            "slot": "mount",
+            "label": "Counterweight joint",
+            "id": "hinged",
+            "name": "Swinging hanger"
+          },
+          {
+            "slot": "sling",
+            "label": "Pouch",
+            "id": "hammock",
+            "name": "Great hammock"
+          },
+          {
+            "slot": "rope",
+            "label": "Sling cords",
+            "id": "cable",
+            "name": "Steel cable"
+          },
+          {
+            "slot": "bearing",
+            "label": "Axle",
+            "id": "precision",
+            "name": "Precision bearings"
+          },
+          {
+            "slot": "release",
+            "label": "Release finger",
+            "id": "polished",
+            "name": "Polished release pin"
+          },
+          {
+            "slot": "winch",
+            "label": "Crank wheel",
+            "id": "capstan",
+            "name": "Iron capstan wheel"
+          },
+          {
+            "slot": "trough",
+            "label": "Launch trough",
+            "id": "runway",
+            "name": "Timber launch rail"
+          }
+        ]
+      },
+      "build": {
+        "name": "Braced bear launcher",
+        "chassis": "anchored",
+        "arm": "ironwood",
+        "frame": "braced",
+        "ballast": "mountain",
+        "material": "steel",
+        "mount": "hinged",
+        "sling": "hammock",
+        "rope": "cable",
+        "bearing": "precision",
+        "release": "polished",
+        "winch": "capstan",
+        "animal": "bear",
+        "longArm": 7.800000000000001,
+        "shortArm": 2.4000000000000004,
+        "beamWidth": 0.5700000000000001,
+        "pivotHeight": 8.100000000000001,
+        "baseWidth": 6,
+        "frameGrams": 1650000,
+        "counterGrams": 7500000,
+        "hanger": 1.5,
+        "slingLength": 7.199999999999999,
+        "pouchWidth": 2.64,
+        "pinAngle": -45,
+        "pinLength": 0.07500000000000001,
+        "axleRadius": 0.07500000000000001,
+        "cockAngle": 28,
+        "footFriction": 0.8,
+        "wheelRadius": 0.66,
+        "wheelGrams": 60000,
+        "brake": 0.002,
+        "walkingLean": 22,
+        "braceCount": 2,
+        "hingeFriction": 0.008,
+        "wind": 0,
+        "drag": 1,
+        "trough": "runway",
+        "troughLength": 16.5,
+        "troughHeight": 0.18
+      }
+    },
+    {
+      "id": "elephant",
+      "initialLoaded": true,
+      "loadedAfterWind": true,
+      "lostFrames": 8,
+      "windTime": 8.891666666666802,
+      "prepTime": 1.908333333333329,
+      "reDrops": 1,
+      "preFire": {
+        "loaded": true,
+        "draw": 1,
+        "pose": {
+          "x": -1.890026229646344,
+          "y": 1.8424642274404675
+        },
+        "motion": {
+          "vx": 0.6210206250106332,
+          "vy": -0.06179590935148044,
+          "omega": 0.044423192713011074
+        }
+      },
+      "fired": true,
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -20.943125077907943,
+        "y": 35.560413458918084,
+        "vx": 10.804832943768945,
+        "vy": 15.127671433120824,
+        "angle": 54.46394399518144,
+        "time": 3.4917872393660656,
+        "reason": "Release ring cleared the pin",
+        "speed": 18.59007417766843,
+        "energy": 863977.1448280363
+      },
+      "point": {
+        "x": 82.5042557600469,
+        "y": -30.857497752691142,
+        "vx": 0,
+        "vy": 0,
+        "angle": 9.355744009269712
+      },
+      "maxX": 84.65959250096344,
+      "maxY": 41.48843551659654,
+      "time": 18.542102850674457,
+      "peakTension": 1437429.0004202072,
+      "peakStress": 92871770.83861934,
+      "contactIds": [
+        "oak-scaffold-0-west",
+        "opening-skip-2",
+        "floor-log-2",
+        "forest-pod",
+        "forest-floor"
+      ],
+      "facts": {
+        "axleHeight": 16.2,
+        "feetWidth": 12,
+        "guideLength": 33,
+        "guideBounds": {
+          "minX": -24.75,
+          "maxX": 8.25
+        },
+        "stationaryBounds": {
+          "minX": -24.75,
+          "maxX": 8.4876
+        },
+        "stationaryWidth": 33.2376,
+        "beamLength": 20.4,
+        "longArm": 15.6,
+        "shortArm": 4.8,
+        "cordLength": 14.4,
+        "longSideReach": 33,
+        "counterSideReach": 9.144963732750917,
+        "beamThickness": 1.14,
+        "pouchOpening": 5.28,
+        "pouchCapacityGrams": 8000000,
+        "volunteerLength": 6,
+        "volunteerWidth": 2.6,
+        "volunteerGrams": 5000000,
+        "counterGrams": 80000000,
+        "frameGrams": 17600000,
+        "beamGrams": 22535063.999999996,
+        "counterRadius": 1.3449637327509172,
+        "parts": [
+          {
+            "slot": "chassis",
+            "label": "Foundation",
+            "id": "anchored",
+            "name": "Root anchors"
+          },
+          {
+            "slot": "arm",
+            "label": "Throwing arm",
+            "id": "ironwood",
+            "name": "Ironwood beam"
+          },
+          {
+            "slot": "frame",
+            "label": "Frame",
+            "id": "giant",
+            "name": "Giant gantry"
+          },
+          {
+            "slot": "ballast",
+            "label": "Counterweight capacity",
+            "id": "mountain",
+            "name": "Mountain ballast"
+          },
+          {
+            "slot": "material",
+            "label": "Ballast material",
+            "id": "steel",
+            "name": "Steel plates"
+          },
+          {
+            "slot": "mount",
+            "label": "Counterweight joint",
+            "id": "hinged",
+            "name": "Swinging hanger"
+          },
+          {
+            "slot": "sling",
+            "label": "Pouch",
+            "id": "elephant",
+            "name": "Elephant harness"
+          },
+          {
+            "slot": "rope",
+            "label": "Sling cords",
+            "id": "cable",
+            "name": "Steel cable"
+          },
+          {
+            "slot": "bearing",
+            "label": "Axle",
+            "id": "precision",
+            "name": "Precision bearings"
+          },
+          {
+            "slot": "release",
+            "label": "Release finger",
+            "id": "polished",
+            "name": "Polished release pin"
+          },
+          {
+            "slot": "winch",
+            "label": "Crank wheel",
+            "id": "capstan",
+            "name": "Iron capstan wheel"
+          },
+          {
+            "slot": "trough",
+            "label": "Launch trough",
+            "id": "runway",
+            "name": "Timber launch rail"
+          }
+        ]
+      },
+      "build": {
+        "name": "Elephant grove gantry",
+        "chassis": "anchored",
+        "arm": "ironwood",
+        "frame": "giant",
+        "ballast": "mountain",
+        "material": "steel",
+        "mount": "hinged",
+        "sling": "elephant",
+        "rope": "cable",
+        "bearing": "precision",
+        "release": "polished",
+        "winch": "capstan",
+        "animal": "elephant",
+        "longArm": 15.6,
+        "shortArm": 4.8,
+        "beamWidth": 1.14,
+        "pivotHeight": 16.2,
+        "baseWidth": 12,
+        "frameGrams": 17600000,
+        "counterGrams": 80000000,
+        "hanger": 3,
+        "slingLength": 14.4,
+        "pouchWidth": 5.28,
+        "pinAngle": -45,
+        "pinLength": 0.15,
+        "axleRadius": 0.15,
+        "cockAngle": 28,
+        "footFriction": 0.8,
+        "wheelRadius": 1.32,
+        "wheelGrams": 640000,
+        "brake": 0.002,
+        "walkingLean": 22,
+        "braceCount": 2,
+        "hingeFriction": 0.008,
+        "wind": 0,
+        "drag": 1,
+        "trough": "runway",
+        "troughLength": 33,
+        "troughHeight": 0.36
+      }
+    }
+  ],
+  "testResult": {
+    "command": "node --test test/scale-builds.test.js",
+    "passed": 7,
+    "failed": 0
+  },
+  "limitations": [
+    "Large requires an explicit second Enter after winding unseats the loose Bear.",
+    "Partial draws can snap cords, overload the beam, or release downward; recipes verified at full draw.",
+    "Route distances include authored map contacts and automatic target effects.",
+    "Fantasy engineering; no real structure or animal safety certification."
+  ]
+}

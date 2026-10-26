@@ -1,0 +1,209 @@
+{
+  "format": 1,
+  "entry": "index.html",
+  "classic": "classic.html",
+  "conquerors": [
+    "lincoln",
+    "theodore"
+  ],
+  "minionSpecies": 18,
+  "offlineRuntime": true,
+  "files": [
+    {
+      "path": "index.html",
+      "bytes": 2334,
+      "sha256": "67502c4ddcf1826a0d52b330ef1644ea3eae12d04906e3465b2fb8403d4c2901"
+    },
+    {
+      "path": "conquerors.html",
+      "bytes": 2334,
+      "sha256": "67502c4ddcf1826a0d52b330ef1644ea3eae12d04906e3465b2fb8403d4c2901"
+    },
+    {
+      "path": "classic.html",
+      "bytes": 2096,
+      "sha256": "a703d7c10bd789c8051da41ca894a79d112f1f8339d6d725917c3f5ecf894ec1"
+    },
+    {
+      "path": "style.css",
+      "bytes": 8510,
+      "sha256": "c6db37dab50433f030ddf59e9dbed163c03b0ee21be3b3051fb6fcbe230b8093"
+    },
+    {
+      "path": "game.js",
+      "bytes": 2639,
+      "sha256": "e83575ee552ea00bc3379df64959860780049262b12487533e4bba2ef96e607d"
+    },
+    {
+      "path": "play.js",
+      "bytes": 51565,
+      "sha256": "539262bc0a758a6891aba448a1104cdfa93a86857a213f3395e576f62192a25e"
+    },
+    {
+      "path": "conqueror-demo.js",
+      "bytes": 7298,
+      "sha256": "8eec47d97c9a5319223ce2a5eb38efa9db7f167d45d29b3eb985d92a61c5a96f"
+    },
+    {
+      "path": "minion-roster.js",
+      "bytes": 3933,
+      "sha256": "81c8a73ad36fcab41fece1438cb963e2e8d22a5d83ac4ef177a354cf31556e6a"
+    },
+    {
+      "path": "minion-combat.js",
+      "bytes": 4661,
+      "sha256": "189ead8f765ecfb3ceb379c262cc19f543eea3d74c0a3d5ae3e68ef584f9334f"
+    },
+    {
+      "path": "minion-renderer.mjs",
+      "bytes": 8443,
+      "sha256": "286e7856dc8b5a424ff339992fabbe90fa788230f1a0a2499e83e49a31fce889"
+    },
+    {
+      "path": "minions.html",
+      "bytes": 3363,
+      "sha256": "fcd2e809827c3900f68682cd5e652b5e02a30bfbe49d2e1fd9ff132df448089d"
+    },
+    {
+      "path": "minion-gallery.mjs",
+      "bytes": 3545,
+      "sha256": "f3e3c81925fb7b86b1f06d07dc8a8a8f3d98c53d589c7c79f2d53409fa64b01a"
+    },
+    {
+      "path": "assets/minions/box-turtle.glb",
+      "bytes": 202992,
+      "sha256": "71525111532c67e2fa18c1fc3def056e7b7409eab2b4845b955325d84e226ddc"
+    },
+    {
+      "path": "assets/minions/chameleon.glb",
+      "bytes": 216700,
+      "sha256": "31f566fdd11f7108b24f56e7f8034070c01451ebf734cd08d5424e08ee0dd672"
+    },
+    {
+      "path": "assets/minions/chipmunk.glb",
+      "bytes": 230100,
+      "sha256": "1938df1e37a1b9731fe8ebe8b419e8e893343fdd663856169048f0e4e4d9bd19"
+    },
+    {
+      "path": "assets/minions/dormouse.glb",
+      "bytes": 229524,
+      "sha256": "df056ab77338a7910424ea441d237034f44b77b87de833dc983f3106aee37955"
+    },
+    {
+      "path": "assets/minions/gecko.glb",
+      "bytes": 197712,
+      "sha256": "658b395b56e6a052fac5633f2fbe74c08c8b10dfb7e65d8c0e0104ed15f79d37"
+    },
+    {
+      "path": "assets/minions/hedgehog.glb",
+      "bytes": 225304,
+      "sha256": "8922102ca34caef9cdec1c1769b9e4449810e04bc2beebfb28306f298fe27b16"
+    },
+    {
+      "path": "assets/minions/jerboa.glb",
+      "bytes": 217652,
+      "sha256": "6d863e8515d333c9015e5ae13b267874f6a90eaa81cbe34f738dd56131987dce"
+    },
+    {
+      "path": "assets/minions/mole.glb",
+      "bytes": 207136,
+      "sha256": "d55296f0381a1855397f58cd241976338bef10c71a738045ff9d22a0c47bdd66"
+    },
+    {
+      "path": "assets/minions/mouse.glb",
+      "bytes": 227464,
+      "sha256": "eea77ec1cad192842e50ca41340c5ebf9299a4ffaf9796352ba041644a0df3b2"
+    },
+    {
+      "path": "assets/minions/newt.glb",
+      "bytes": 217408,
+      "sha256": "76dcbca488709c0be024da5748c3ff794c74115243264f26c8d4826f146ff722"
+    },
+    {
+      "path": "assets/minions/pika.glb",
+      "bytes": 216028,
+      "sha256": "cdf2c462d06e423739286a57358fb1363f604893573277236526ab5389f997b2"
+    },
+    {
+      "path": "assets/minions/pygmy-owl.glb",
+      "bytes": 215456,
+      "sha256": "938de1a125f429445647a1e1886853546f6ac756d4f4dbf1c2d9ac65b394b0f1"
+    },
+    {
+      "path": "assets/minions/red-squirrel.glb",
+      "bytes": 219948,
+      "sha256": "ce2ea1f968485eff34c2e727c271304a273a8e2211db1e4b35bc8b71c7367bbb"
+    },
+    {
+      "path": "assets/minions/shrew.glb",
+      "bytes": 210672,
+      "sha256": "2a117acf3a1b6b40d7cdbc88bb39e0474d1d62fe701c2b2c3b89aae3267281f3"
+    },
+    {
+      "path": "assets/minions/sparrow.glb",
+      "bytes": 207316,
+      "sha256": "aaad8b6f3dc1a724ec296b7a9d729492872c302ada258990ce19bac38840c053"
+    },
+    {
+      "path": "assets/minions/toad.glb",
+      "bytes": 226488,
+      "sha256": "98fe5bf2750bae1233c11051d0610dc377ee485d1186653620c470df076f4cc3"
+    },
+    {
+      "path": "assets/minions/tree-frog.glb",
+      "bytes": 220508,
+      "sha256": "5d46b9a720f7f7639c72f72ca53868b807eadc25236325d2634ddd2ec3fdb0e5"
+    },
+    {
+      "path": "assets/minions/vole.glb",
+      "bytes": 200884,
+      "sha256": "6c17909d398cc220ffe4fd3ebbb5539447784942d8e7049ed2aa5b7452a2af07"
+    },
+    {
+      "path": "assets/conquerors/lincoln.glb",
+      "bytes": 741248,
+      "sha256": "0e2aca79579d9236644589801535b707462cb2e54e8c4af6fd05c1bfd2d6d34d"
+    },
+    {
+      "path": "assets/conquerors/theodore.glb",
+      "bytes": 1373940,
+      "sha256": "4b6ebfb9f496e77f1836590aa08db90723dd231205983c765d8b11b0b7f24f10"
+    },
+    {
+      "path": "vendor/BufferGeometryUtils.js",
+      "bytes": 37712,
+      "sha256": "9fb63427ce6641fa14fd0baff9cc4d1b5f9c3d85fd084bf2e90e803c44ec1797"
+    },
+    {
+      "path": "vendor/GLTFLoader.js",
+      "bytes": 117556,
+      "sha256": "200cb5621236d83d241662078878de25800b152d091ac63678d74179abb0df6b"
+    },
+    {
+      "path": "vendor/README.txt",
+      "bytes": 270,
+      "sha256": "b97dbbf5029dd8bb8ec8578cfa9b956ba08a30b2cefa82b61c4da6557fe446f1"
+    },
+    {
+      "path": "vendor/SkeletonUtils.js",
+      "bytes": 11535,
+      "sha256": "b1632a703206c3d830de9fcbe515696770d04b71a15ee6b50afa6d2c3298c86f"
+    },
+    {
+      "path": "vendor/THREE-LICENSE.txt",
+      "bytes": 1081,
+      "sha256": "8b378ebe60e2fe500158cb0ac71cb5e8b7d92953c2abcc63a0eb90499653b5bc"
+    },
+    {
+      "path": "vendor/three.core.js",
+      "bytes": 1458112,
+      "sha256": "859ed43eacd3cd9295c14a568365911793f5e1647916f735c60720dc8fb9a86f"
+    },
+    {
+      "path": "vendor/three.module.js",
+      "bytes": 662772,
+      "sha256": "9052042d676cb0fdc1ddfefe193053f34b7ac0513a616fdac4535d49987812ea"
+    }
+  ],
+  "bytes": 8394239
+}

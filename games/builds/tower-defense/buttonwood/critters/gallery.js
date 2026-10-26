@@ -1,0 +1,22 @@
+(() => {
+ 'use strict';
+ const A=window.ButtonwoodArt,C=A.critters,P=A.palette,$=id=>document.getElementById(id);
+ let paused=matchMedia('(prefers-reduced-motion: reduce)').matches,time=0,last=0;
+ const pets=new Map(),cards=[],details=[],actions=['walk','sprint','mine','use','yay','pet'];
+ function paint(canvas,species,state,f){const g=canvas.getContext('2d');g.imageSmoothingEnabled=false;g.fillStyle=P.creamLight;g.fillRect(0,0,64,48);g.fillStyle=P.creamShade;g.fillRect(3,42,58,1);if(state==='mine'){g.fillStyle=P.stoneShade;g.fillRect(43,35,8,7);g.fillStyle=P.stone;g.fillRect(44,34,6,5);}if(state==='use'){g.fillStyle=P.woodShade;g.fillRect(40,40,8,2);g.fillStyle=P.woodLight;g.fillRect(40,38,8,2);}g.drawImage(C.sprite({species,state,frame:f,direction:Number($('direction').value)}),10,11+(state==='yay'?C.jumpOffset[f]:0));}
+ function pet(species){pets.set(species,performance.now());const s=C.roster.find(s=>s.id===species);$('status').textContent=`${s.name} is enjoying the touch.`;}
+ for(const [index,s]of C.roster.entries()){
+  const opt=document.createElement('option');opt.value=s.id;opt.textContent=s.name;$('species').append(opt);
+  const card=document.createElement('article');card.className='critter';const title=document.createElement('h2');title.textContent=`${String(index+1).padStart(2,'0')} ${s.name}`;card.append(title);
+  const stage=document.createElement('div');stage.className='stage';const b=document.createElement('button');b.className='sprite-button';b.setAttribute('aria-label',`Pet ${s.name}`);b.onclick=()=>pet(s.id);const c=document.createElement('canvas');c.width=64;c.height=48;c.setAttribute('aria-label',`${s.name} animation`);b.append(c);stage.append(b);card.append(stage);
+  const inspect=document.createElement('button');inspect.className='inspect';inspect.textContent='All actions';inspect.setAttribute('aria-label',`Inspect all ${s.name} actions`);inspect.onclick=()=>{$('species').value=s.id;select();$('detail-heading').scrollIntoView({behavior:'instant',block:'start'});};card.append(inspect);$('roster').append(card);cards.push({species:s.id,canvas:c});
+ }
+ for(const state of actions){const fig=document.createElement('figure'),cap=document.createElement('figcaption'),name=document.createElement('strong'),count=document.createElement('small');name.textContent=state[0].toUpperCase()+state.slice(1);count.textContent=`${C.motions[state].frames} frames`;cap.append(name,count);fig.append(cap);const stage=document.createElement('div');stage.className='stage';const c=document.createElement('canvas');c.width=64;c.height=48;c.setAttribute('role','img');stage.append(c);fig.append(stage);const label=document.createElement('label');label.className='scrub';label.append('Frame');const slider=document.createElement('input');slider.type='range';slider.min='0';slider.max=String(C.motions[state].frames-1);slider.value='0';slider.setAttribute('aria-label',`Inspect ${state} frame`);const out=document.createElement('output');out.value='1';label.append(slider,out);fig.append(label);$('detail').append(fig);slider.oninput=()=>{paused=true;pauseLabel();paint(c,$('species').value,state,Number(slider.value));out.value=Number(slider.value)+1;};details.push({state,canvas:c,slider,out});}
+ function select(){const s=C.roster.find(s=>s.id===$('species').value);$('cue').textContent=s.cue;$('download').href=`exports/${s.id}-six-actions.gif`;for(const d of details)d.canvas.setAttribute('aria-label',`${s.name} ${d.state} animation`);}
+ $('species').onchange=select;select();
+ function scale(){const n=Number($('scale').value);for(const c of [...cards,...details]){c.canvas.style.width=`${64*n}px`;c.canvas.style.height=`${48*n}px`;}}
+ $('scale').onchange=scale;scale();
+ function pauseLabel(){$('pause').textContent=paused?'Play':'Pause';$('pause').setAttribute('aria-pressed',String(paused));}
+ $('pause').onclick=()=>{paused=!paused;pauseLabel();};pauseLabel();
+ function tick(now){if(last&&!paused)time+=Math.min(80,now-last);last=now;for(const c of cards){let state=$('action').value,f=C.frameAt(state,time);const start=pets.get(c.species);if(start!==undefined){const elapsed=now-start;if(elapsed<1500){state='pet';f=Math.floor(elapsed/150);}else{pets.delete(c.species);if(!pets.size)$('status').textContent='Ready to pet.';}}paint(c.canvas,c.species,state,f);}for(const d of details){const f=paused?Number(d.slider.value):C.frameAt(d.state,time);paint(d.canvas,$('species').value,d.state,f);if(!paused){d.slider.value=f;d.out.value=f+1;}}requestAnimationFrame(tick);}requestAnimationFrame(tick);
+})();

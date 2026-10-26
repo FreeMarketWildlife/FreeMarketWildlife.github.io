@@ -1,0 +1,320 @@
+// Shared Buttonwood presentation. Only the review sample changes setup or saves.
+const bwSampleMode=new URLSearchParams(location.search).get('sample')==='buttonwood';
+const bwArt=window.ButtonwoodArt,bwP=bwArt.palette;
+let bwEnabled=true;
+const bwOriginal={worker:spiritBaseMinerDrawV42,tile:artTileV32,terrain:treeBaseDrawV41,
+ ore:oreTileV44,sprite:structureSpriteV46,building:paintStructureV46,icon:uiPixelV48,
+ liquids:drawMappedLiquids,background:bg};
+// Collision continues to use the established silhouettes, including future placements.
+const bwCollisionBaseline={};
+for(const type of Object.keys(STRUCTURES_V46))bwCollisionBaseline[type]=JSON.stringify(structureShapeV47(type));
+const bwBuildingTypes=['home','workshop','storehouse','forge','blacksmith'];
+const bwIsBuilding=type=>bwBuildingTypes.includes(type);
+const bwSavedStudy=initialSave?.structuresV46?.buttonwoodIndustry;
+let bwIndustryStudy=bwSavedStudy?.version===1&&Number.isFinite(bwSavedStudy.center)?bwSavedStudy:null;
+const bwSaveStructures=saveStructuresV46;
+if(bwSampleMode)saveStructuresV46=function(){return{...bwSaveStructures(),buttonwoodIndustry:bwIndustryStudy}};
+function bwSkyState(){return bwArt.skyState((workerNightV55()?DAY_V55/2000:0)+settlementV55.elapsed/2000,settlementV55.day)}
+function bwBiomeWeights(){return window.ButtonwoodBiomes?.weightsAt(skySeedV62,cam.x)}
+const bwSyncOriginalAudio=syncSkyAudioV62;
+syncSkyAudioV62=function(){if(bwEnabled)window.SkyAudio?.setNightMix?.(bwSkyState().darkness);else bwSyncOriginalAudio();window.SkyAudio?.setBiome?.(bwBiomeWeights())};
+window.__skyStackBiomeDebug=()=>({seed:skySeedV62,current:window.ButtonwoodBiomes?.biomeAt(skySeedV62,cam.x),region:window.ButtonwoodBiomes?.regionAt(skySeedV62,cam.x),weights:bwBiomeWeights()});
+
+// This visual index never enters the physics grid or the saved world. Rebuild it
+// once before rendering so excavation and block motion cannot leave stale joins.
+const bwTerrainDirections={n:[0,-1],e:[1,0],s:[0,1],w:[-1,0],ne:[1,-1],se:[1,1],sw:[-1,1],nw:[-1,-1]};
+const bwTerrainDirectionEntries=Object.entries(bwTerrainDirections);
+const bwPlacedCells=new Map();let bwAlignedBodies=new WeakMap();
+function bwIndexTerrain(){
+ bwPlacedCells.clear();bwAlignedBodies=new WeakMap();
+ for(const z of (typeof placedBodiesV87==='undefined'?bs:placedBodiesV87)){
+  if(!z.game?.placed||z.game.naturalTree||!artPaletteV32[z.game.material]||(!z.isStatic&&!z.isSleeping))continue;
+  const cols=Math.max(1,Math.round(z.game.w/B)),rows=Math.max(1,Math.round(z.game.h/B));
+  const ox=z.position.x-cols*B/2,oy=z.position.y-rows*B/2,cx=Math.round(ox/B),cy=Math.round(oy/B);
+  const angle=Math.atan2(Math.sin(z.angle),Math.cos(z.angle));
+  if(Math.abs(angle)>.002||Math.hypot(z.velocity.x,z.velocity.y)>.03||Math.abs(z.angularVelocity)>.002||Math.abs(ox-cx*B)>.2||Math.abs(oy-cy*B)>.2||Math.abs(z.game.w-(cols*B-1))>.1||Math.abs(z.game.h-(rows*B-1))>.1)continue;
+  bwAlignedBodies.set(z,{cx,cy});
+  for(let y=0;y<rows;y++)for(let x=0;x<cols;x++){
+   const k=key(cx+x,cy+y),existing=bwPlacedCells.get(k);
+   if(bwPlacedCells.has(k)){if(existing)bwAlignedBodies.delete(existing);bwAlignedBodies.delete(z);bwPlacedCells.set(k,null)}
+   else bwPlacedCells.set(k,z);
+  }
+ }
+ // A conflicted piece cannot lend its clear cells to another body's seam either.
+ for(const [k,z]of bwPlacedCells)if(z&&!bwAlignedBodies.has(z))bwPlacedCells.set(k,null);
+}
+function bwTerrainNeighbors(z,x=0,y=0,cols=1,rows=1){
+ const origin=z.game.terrain?z.game:bwAlignedBodies.get(z);
+ const cx=(origin?.cx??0)+x,cy=(origin?.cy??0)+y,neighbors={meadow:!!z.game.terrain&&cy===0&&z.game.material==='dirt'};
+ for(const [side,[dx,dy]]of bwTerrainDirectionEntries){
+  if(x+dx>=0&&x+dx<cols&&y+dy>=0&&y+dy<rows)neighbors[side]=z.game.material;
+  else if(origin){const k=key(cx+dx,cy+dy);neighbors[side]=grid.get(k)?.game.material??bwPlacedCells.get(k)?.game.material??null}
+  else neighbors[side]=null;
+ }
+ return{cx,cy,neighbors};
+}
+
+artTileV32=function(material,variant=0){return bwEnabled?bwArt.tile(material,variant):bwOriginal.tile(material,variant)};
+oreTileV44=function(type,variant=0){return bwEnabled?bwArt.ore(type,variant):bwOriginal.ore(type,variant)};
+structureSpriteV46=function(type){return bwEnabled&&bwIsBuilding(type)?bwArt.building(type):bwOriginal.sprite(type)};
+paintStructureV46=function(g,b,now=0,active=false){
+ if(bwEnabled&&bwIsBuilding(b.type))bwArt.paintBuilding(g,b.type,now,active);
+ else bwOriginal.building(g,b,now,active);
+};
+uiPixelV48=function(kind){
+ if(kind==='flowers')return bwArt.flowerIcon().toDataURL();
+ if(bwEnabled&&bwIsBuilding(kind))return bwArt.buildingIcon(kind).toDataURL();
+ if(bwEnabled&&['close','up','down','grid','music','sound','nails'].includes(kind))return bwOriginal.icon(kind,{ink:bwP.ink,pale:bwP.ink,gold:bwP.woodShade});
+ return bwOriginal.icon(kind);
+};
+
+const bwWorkerMotion=new WeakMap();
+// Render-only concept fixtures in the isolated sample; never enter saves or physics.
+if(bwSampleMode&&bwArt.concepts42){
+ const drawOriginalBursts=drawGoldBursts;
+ drawGoldBursts=function(now){
+  drawOriginalBursts(now);
+  const home=structuresV46.find(b=>b.type==='home');if(!home)return;
+  bwArt.concepts42.forEach((image,i)=>{
+   const foot=w2s(home.x+160+i*58,home.y+128);
+   ctx.save();ctx.translate(foot.x,foot.y);ctx.scale(cam.z,cam.z);ctx.imageSmoothingEnabled=false;
+   ctx.drawImage(image,-21,-40);ctx.restore();
+  });
+ };
+}
+spiritBaseMinerDrawV42=function(q,now){
+ if(!bwEnabled)return bwOriginal.worker(q,now);
+ const foot=w2s(Math.round(q.position.x),Math.round(q.position.y+B*.4));
+ if(foot.x<-60||foot.x>W+60||foot.y<-60||foot.y>HH+60)return;
+ let motion=bwWorkerMotion.get(q);
+ if(!motion){motion={until:0,strike:-Infinity};bwWorkerMotion.set(q,motion)}
+ if(q.game.pickUntil!==motion.until&&now<q.game.pickUntil){motion.until=q.game.pickUntil;motion.strike=q.game.pickUntil-300}
+ const age=now-motion.strike,working=age>=0&&age<270;
+ const state=working?'work':Math.abs(q.velocity.x)>.15?'walk':'idle';
+ // A hit has already happened when pickUntil is set. Start on impact, then recover.
+ const frame=working?Math.min(5,3+Math.floor(age/90)):bwArt.frameFor(state,now+q.game.id*170);
+ ctx.save();ctx.translate(foot.x,foot.y);ctx.scale(cam.z,cam.z);ctx.imageSmoothingEnabled=false;
+ ctx.drawImage(bwArt.worker({state,frame,variant:(q.game.id-1)%3,dir:q.game.dir}),-bwArt.workerAnchor.x,-bwArt.workerAnchor.y);
+ // Small buttons identify equipment level without changing body proportions.
+ if(q.game.level>1){ctx.fillStyle=q.game.level===3?bwP.coralLight:bwP.gold;ctx.fillRect(-7,-15,2,2)}
+ ctx.restore();
+};
+
+treeBaseDrawV41=function(z){
+ if(!bwEnabled)return bwOriginal.terrain(z);
+ const material=z.game?.material;if(!artPaletteV32[material])return bwOriginal.terrain(z);
+ const s=w2s(z.position.x,z.position.y),cols=Math.max(1,Math.round(z.game.w/B)),rows=Math.max(1,Math.round(z.game.h/B));
+ const width=cols*B,height=rows*B,radius=Math.hypot(width,height)*cam.z/2;
+ if(s.x+radius<0||s.x-radius>W||s.y+radius<0||s.y-radius>HH)return;
+ ctx.save();ctx.translate(s.x,s.y);ctx.rotate(z.angle);ctx.scale(cam.z,cam.z);ctx.imageSmoothingEnabled=false;
+ // Physics retains its 31px contact body; the native 32px tile covers its grid cell.
+ for(let y=0;y<rows;y++)for(let x=0;x<cols;x++){
+  const {cx,cy,neighbors}=bwTerrainNeighbors(z,x,y,cols,rows);
+  ctx.drawImage(bwArt.terrain(material,cx,cy,neighbors),-width/2+x*B,-height/2+y*B);
+ }
+ if(z.game.hits>0&&['obsidian','deepslate'].includes(material)&&typeof paintStrongWearV85==='function'){paintStrongWearV85(z)}
+ else if(z.game.hits>0){
+  const count=Math.min(4,Math.ceil(z.game.hits/z.game.max*4));ctx.fillStyle=bwP.ink;
+  for(let i=0;i<count;i++){ctx.fillRect(-3+i*2,-11+i*5,1,6);ctx.fillRect(-3+i*2,-6+i*5,4,1)}
+ }
+ if(z.game.flash>0){ctx.globalAlpha=.65;ctx.fillStyle=bwP.creamLight;ctx.fillRect(-width/2,-height/2,width,1);z.game.flash--}
+ ctx.restore();
+};
+
+// Read the unchanged liquid solver; rasterize its geometry at one pixel per world unit.
+const bwLiquidCanvas=document.createElement('canvas'),bwLiquidContext=bwLiquidCanvas.getContext('2d');
+drawMappedLiquids=function(now){
+ if(!bwEnabled)return bwOriginal.liquids(now);
+ liquidV22Init();const sb=liquidSBV22(),left=Math.floor(cam.x-W/(2*cam.z)),top=Math.floor(cam.y-HH/(2*cam.z));
+ const width=Math.ceil(W/cam.z)+2,height=Math.ceil(HH/cam.z)+2;
+ if(bwLiquidCanvas.width!==width||bwLiquidCanvas.height!==height){bwLiquidCanvas.width=width;bwLiquidCanvas.height=height}
+ const g=bwLiquidContext;g.clearRect(0,0,width,height);
+ const visible=[];
+ for(const r of liquidSubV22.values()){
+  if(r.a<.006||r.x*sb>left+width||r.x*sb+sb<left||r.y*sb>top+height||r.y*sb+sb<top||!liquidSubOpenV22(r.x,r.y))continue;
+  visible.push({r,s:liquidGeometryV29(r,now)});
+ }
+ const shapes=new Map(visible.map(q=>[liquidSubKeyV22(q.r.x,q.r.y),q]));
+ const rect=(x,y,w,h,color)=>{const x1=Math.round(x-left),y1=Math.round(y-top),x2=Math.round(x+w-left),y2=Math.round(y+h-top);if(x2<=x1||y2<=y1)return;g.fillStyle=color;g.fillRect(x1,y1,x2-x1,y2-y1)};
+ const surfaceY=(r,s,x)=>{const dx=x<s.left+sb/2?-1:1,n=shapes.get(liquidSubKeyV22(r.x+dx,r.y));return n&&n.r.kind===r.kind&&n.s.surface?s.top+(n.s.top-s.top)*Math.abs(x-(s.left+sb/2))/sb:s.top};
+ for(const {r,s} of visible){
+  const colors=bwArt.liquidColors[r.kind],above=liquidSubRecV22(r.x,r.y-2),color=above?.kind===r.kind?colors[2]:colors[0];
+  if(s.surface){for(let x=s.left;x<s.left+s.width;x++){const y=surfaceY(r,s,x+.5);rect(x,y,1,s.bottom-y,color)}}
+  else rect(s.left,s.top,s.width,s.bottom-s.top,color);
+ }
+ for(const {r,s} of visible){
+  const colors=bwArt.liquidColors[r.kind];
+  if(s.surface){
+   for(let x=s.left;x<s.left+s.width;x++)rect(x,surfaceY(r,s,x+.5),1,1,colors[1]);
+   const phase=((r.x*7+Math.floor(now/(r.kind==='oil'?600:r.kind==='lava'?450:250)))%19+19)%19;
+   if(phase<5&&s.bottom-s.top>5)rect(s.left+phase,s.top+3,Math.min(4,s.width-phase),1,r.kind==='lava'?colors[2]:colors[1]);
+  }else if(s.falling){
+   const phase=(Math.floor(now/(r.kind==='oil'?170:r.kind==='lava'?130:60))+r.y*3)%sb;
+   rect(s.left+Math.floor(s.width/3),r.y*sb+phase,1,Math.min(3,sb-phase),colors[1]);
+  }
+ }
+ const screen=w2s(left,top);ctx.save();ctx.imageSmoothingEnabled=false;ctx.globalAlpha=.9;
+ ctx.drawImage(bwLiquidCanvas,screen.x,screen.y,width*cam.z,height*cam.z);ctx.restore();
+};
+
+// Composite scenery in native world pixels before the camera scales it. Painting
+// adjacent rectangles directly at fractional zoom exposes dark antialiased seams.
+let bwSkyPaintKey='',bwSkyPaintCount=0;
+const bwSkyCanvas=document.createElement('canvas'),bwSkyContext=bwSkyCanvas.getContext('2d');
+bg=function(){
+ if(!bwEnabled)return bwOriginal.background();
+ bwIndexTerrain();
+ syncSkyAudioV62();const sky=bwSkyState();
+ if($('bw-time'))$('bw-time').value=sky.phase;
+ const width=Math.ceil(W/cam.z),height=Math.ceil(HH/cam.z);
+ if(bwSkyCanvas.width!==width)bwSkyCanvas.width=width;
+ if(bwSkyCanvas.height!==height)bwSkyCanvas.height=height;
+ const paintKey=[width,height,cam.x,cam.y,cam.z,Math.floor(sky.seconds*20),settlementV55.day,bwArt.meteorSkyState?.active?Math.floor(bwArt.meteorSkyState.elapsed/50):0].join(':');
+ if(paintKey!==bwSkyPaintKey){bwSkyPaintKey=paintKey;bwSkyPaintCount++;bwArt.paintSky(bwSkyContext,{width,height,ground:Math.round(w2s(0,0).y/cam.z),camX:cam.x,camY:cam.y,seconds:sky.seconds,day:settlementV55.day,biomeSeed:skySeedV62,biomeWeights:bwBiomeWeights()});}
+ ctx.save();ctx.globalAlpha=1;ctx.imageSmoothingEnabled=false;
+ ctx.drawImage(bwSkyCanvas,0,0,width*cam.z,height*cam.z);ctx.restore();
+};
+
+const bwSceneDetails=drawGoldBursts;
+drawGoldBursts=function(now){
+ bwSceneDetails(now);if(!bwEnabled)return;
+ for(const b of structuresV46)if(b.type==='home'||b.type==='workshop'||b.type==='storehouse'){
+  const s=w2s(b.x-25,b.y+STRUCTURES_V46[b.type].h*B);ctx.save();ctx.translate(s.x,s.y);ctx.scale(cam.z,cam.z);bwArt.paintGarden(ctx,0,0);ctx.restore();
+ }
+ const sky=bwSkyState();ctx.save();ctx.fillStyle=sky.tint.color;ctx.globalAlpha=sky.tint.alpha;ctx.fillRect(0,0,W,HH);ctx.restore();
+ if(sky.darkness>0)for(const b of structuresV46)if(bwIsBuilding(b.type)){
+  const s=w2s(b.x,b.y),d=STRUCTURES_V46[b.type];if(s.x+d.w*B*cam.z<0||s.x>W||s.y+d.h*B*cam.z<0||s.y>HH)continue;
+  ctx.save();ctx.translate(s.x,s.y);ctx.scale(cam.z,cam.z);bwArt.paintBuildingLights(ctx,b.type,sky.darkness,now);ctx.restore();
+ }
+};
+
+function bwRefreshIcons(){
+ for(const [id,kind]of Object.entries({structuresClose:'close',buildingClose:'close',pickaxeClose:'close',top:'up',down:'down',gridToggle:'grid',musicToggle:'music',sfxToggle:'sound',nailToggle:'nails'}))$(id).style.setProperty('--control-icon','url('+uiPixelV48(kind)+')');
+ const worker=bwEnabled?bwArt.workerIcon().toDataURL():artIconV32('miner');
+ for(const el of document.querySelectorAll('.minerToolIcon,.minerPortrait'))el.style.backgroundImage='url('+worker+')';
+ for(const type of bwBuildingTypes){
+  const img=$('structure-card-'+type)?.querySelector('img');if(img)img.src=uiPixelV48(type);
+ }
+ const home=bwEnabled?bwArt.buildingIcon('home').toDataURL():bwOriginal.icon('home');
+ triggerV48.querySelector('.houseIcon').style.backgroundImage='url('+home+')';
+ const starter=document.querySelector('.workshopStarter img');if(starter)starter.src=uiPixelV48('workshop');
+ for(const type of bwBuildingTypes){const img=$('craft-structure-'+type)?.querySelector('.recipeBuilding');if(img)img.src=uiPixelV48(type)}
+ const homePortrait=$('bw-home-portrait');if(homePortrait){const g=homePortrait.getContext('2d');g.clearRect(0,0,128,128);g.drawImage(structureSpriteV46('home'),0,0)}
+ for(const material of Object.keys(artPaletteV32)){
+  const el=document.querySelector('.blk.'+material);if(el)el.style.backgroundImage='url('+artTileV32(material).toDataURL()+')';
+ }
+ document.body.classList.toggle('buttonwood-art',bwEnabled);
+ const active=structuresV46.find(b=>b.id===selectedBuildingV46);if(active&&$('buildingPanel').open)openBuildingV46(active);
+}
+const bwRefreshWorkerMenu=refreshMinerMenu;
+refreshMinerMenu=function(){bwRefreshWorkerMenu();if(bwEnabled&&selectedMiner){const el=document.querySelector('.minerPortrait');el.style.backgroundImage='url('+bwArt.workerIcon((selectedMiner.game.id-1)%3).toDataURL()+')'}};
+
+function bwCamera(view='village',zoom=cam.z){
+ cam.z=zoom;cam.x=view==='mine'?256:innerWidth<700?-16:16;cam.y=view==='mine'?142:-25;cam.tx=cam.x;cam.ty=cam.y;cam.anim=false;
+ if(view==='industry'&&bwIndustryStudy){cam.x=bwIndustryStudy.center;cam.y=-30}
+ else if(['storehouse','forge','blacksmith'].includes(view)){
+  const b=structuresV46.find(b=>b.type===view);if(b){cam.x=b.x+STRUCTURES_V46[b.type].w*B/2;cam.y=-30}
+ }
+ cam.tx=cam.x;cam.ty=cam.y;ensureWorld();
+ if($('bw-zoom'))$('bw-zoom').value=String(zoom);
+}
+function bwTime(phase){
+ const name=phase===true?'night':phase===false?'day':phase;
+ const seconds={sunrise:0,day:90,sunset:150,night:210}[name]??90;
+ settlementV55.phase=seconds>=180?'night':'day';settlementV55.elapsed=(seconds>=180?seconds-180:seconds)*2000;
+ shelterWorkersV55();refreshWorkersV55();syncSkyAudioV62();
+ if($('bw-time'))$('bw-time').value=name;
+}
+const bwRefreshClock=refreshWorkersV55;
+refreshWorkersV55=function(){bwRefreshClock();if(bwEnabled){const sky=bwSkyState(),phase=sky.phase;if(phase==='sunrise'||phase==='sunset'){const remaining=Math.ceil((phase==='sunrise'?30:180)-sky.seconds);clockHudV55.textContent=clockHudV55.textContent.replace(/DAYTIME \d+:\d+/,phase.toUpperCase()+' 0:'+String(remaining).padStart(2,'0'))}}};
+
+function bwSeedIndustryStudy(){
+ if(bwIndustryStudy)return;
+ const occupiedRight=Math.max(800,...structuresV46.map(b=>b.x+STRUCTURES_V46[b.type].w*B),...[...bs].filter(z=>z.game?.placed).map(z=>z.bounds.max.x));
+ const start=Math.ceil((occupiedRight+96)/B)*B,layout=[['storehouse',0],['forge',192],['blacksmith',320]];
+ liquidV22Init();const sb=liquidSBV22();
+ for(let offset=0;offset<2048;offset+=B){
+  const base=start+offset,plan=layout.map(([type,dx])=>({type,x:base+dx,y:-STRUCTURES_V46[type].h*B}));
+  ensureChunkAtX(base);ensureChunkAtX(base+480);
+  const blocked=plan.some(b=>{
+   if(validStructureV46(b))return true;
+   const r=boundsV46(b);
+   if([...miners].some(q=>overlapsV46(r,q.bounds)))return true;
+   if(childrenV55.some(c=>overlapsV46(r,{min:{x:c.x-7,y:c.y-24},max:{x:c.x+7,y:c.y}})))return true;
+   for(const liquid of liquidSubV22.values())if(liquid.a>.006&&overlapsV46(r,{min:{x:liquid.x*sb,y:liquid.y*sb},max:{x:(liquid.x+1)*sb,y:(liquid.y+1)*sb}}))return true;
+   return false;
+  });
+  if(blocked)continue;
+  for(const b of plan){const placed={...b,id:++structureIdV46,selected:Object.keys(JOBS_V46[b.type])[0],secondary:'',auto:false,paused:false,job:null,stock:{}};structuresV46.push(placed);addStructureBodyV47(placed)}
+  bwIndustryStudy={version:1,center:base+240};ui();saveGame();return;
+ }
+}
+function bwDecorateSampleTerrain(){
+ // Natural cells regenerate from the world seed. Restore this fixture's art materials
+ // on surviving cells only, so mining and saved damage remain intact after reload.
+ for(let x=2;x<=14;x++){
+  const z=grid.get(key(x,8));if(z){z.game.material='stone';z.game.max=M.stone.taps}
+ }
+ for(const [x,y,type] of [[7,6,'copperOre'],[10,6,'copperOre'],[2,6,'ironOre']]){
+  const z=grid.get(key(x,y));if(z){z.game.material='stone';z.game.max=M.stone.taps;z.game.resourceType=type;z.game.resourceAmount=3}
+ }
+}
+function bwSeedSample(){
+ // Only the new isolated sample save reaches this branch. Keep simulation rules intact.
+ for(const z of [...bs])if(z.game.naturalTree){treeBlocksV41.delete(z);bs.delete(z);World.remove(eng.world,z)}
+ for(const ch of generated)treeChunksV41.add(ch);
+ const clear=(x,y)=>{const k=key(x,y),z=grid.get(k);if(z){bs.delete(z);grid.delete(k);World.remove(eng.world,z)}removedTerrain.add(k);terrainDamage.delete(k)};
+ // Two underground basins, a dry working ledge and a surface entrance.
+ for(let y=0;y<=5;y++)for(let x=8;x<=9;x++)clear(x,y);
+ for(let y=3;y<=5;y++)for(let x=2;x<=14;x++)clear(x,y);
+ for(let y=6;y<=7;y++)for(const [a,b] of [[3,6],[11,13]])for(let x=a;x<=b;x++)clear(x,y);
+ bwDecorateSampleTerrain();
+ liquidV22Init();for(const [k,r] of liquidSubV22)if(r.x>=0&&r.x<=32&&r.y<20)liquidSubV22.delete(k);
+ for(const [a,b,kind] of [[3,6,'water'],[11,13,'lava']])for(let y=6;y<=7;y++)for(let x=a;x<=b;x++)liquidSeedTileV22(x,y,kind,y===6?.55:1);
+ for(const [type,x] of [['home',-192],['workshop',32]]){
+  const b={id:++structureIdV46,type,x,y:-128,selected:type==='workshop'?'ladder':undefined,secondary:'',auto:false,paused:false,job:null,stock:{wood:25,stone:20,gold:2}};
+  structuresV46.push(b);addStructureBodyV47(b);
+ }
+ best=40;shape=stone=deepslate=true;pickaxeTier=0;pickaxeOwnedTier=3;
+ Object.assign(inv,{wood:80,stone:80,dirt:80,leaves:30,gold:50,copperOre:10,ironOre:10,coal:10,nails:30});
+ Object.assign(structureBagV46,{home:1,workshop:1});
+ createMinerAt(-226,-15,{level:1});createMinerAt(-20,-15,{level:2});createMinerAt(272,170,{level:3});
+ shelterWorkersV55();bwCamera('village',innerWidth<700?1:2);bwTime(false);ui();saveGame();
+}
+function buttonwoodBoot(){
+ const homePortrait=document.createElement('canvas');homePortrait.id='bw-home-portrait';homePortrait.width=homePortrait.height=128;homePortrait.setAttribute('role','img');homePortrait.setAttribute('aria-label','Home portrait');homePanelV55.querySelector('header').after(homePortrait);
+ const favicon=document.createElement('link');favicon.rel='icon';favicon.href=bwArt.buildingIcon('home').toDataURL();document.head.append(favicon);
+ bwRefreshIcons();
+ if(bwSampleMode){
+ document.body.classList.add('buttonwood-sample');document.title='Buttonwood · Playable art sample';
+ const nav=document.createElement('nav');nav.id='bw-controls';nav.setAttribute('aria-label','Buttonwood sample controls');
+ nav.innerHTML='<a class="bw-title" href="buttonwood/">Buttonwood <small>ART SAMPLE</small></a><div class="bw-actions"><button id="bw-village">Village</button><button id="bw-industry">Industry</button><button id="bw-mine">Mine</button><label>Time <select id="bw-time"><option value="sunrise">Sunrise</option><option value="day">Day</option><option value="sunset">Sunset</option><option value="night">Night</option></select></label><label>Zoom <select id="bw-zoom"><option value="1">1×</option><option value="2">2×</option><option value="3">3×</option></select></label><button id="bw-original" aria-pressed="false">Original art</button><button id="bw-reset">Reset sample</button><a href="buttonwood/">Art guide</a></div>';
+ document.body.append(nav);
+ $('bw-village').onclick=()=>bwCamera('village');$('bw-mine').onclick=()=>bwCamera('mine');
+ $('bw-industry').onclick=()=>bwCamera('industry',innerWidth<1050?1:2);
+ $('bw-time').onchange=e=>bwTime(e.target.value);
+ $('bw-zoom').onchange=e=>{cam.z=Number(e.target.value);cam.anim=false};
+ $('bw-original').onclick=()=>{bwEnabled=!bwEnabled;bwRefreshIcons();$('bw-original').textContent=bwEnabled?'Original art':'Buttonwood art';$('bw-original').setAttribute('aria-pressed',String(!bwEnabled))};
+ $('bw-reset').onclick=()=>{resetting=true;localStorage.removeItem(SAVE_KEY);location.reload()};
+ if(!initialSave)bwSeedSample();else{bwDecorateSampleTerrain();bwCamera('village',innerWidth<700?1:2)}
+ bwSeedIndustryStudy();$('bw-industry').disabled=!bwIndustryStudy;$('bw-time').value=bwSkyState().phase;
+ const requestedView=new URLSearchParams(location.search).get('view');if(['industry','storehouse','forge','blacksmith'].includes(requestedView))bwCamera(requestedView,innerWidth<1050?1:2);
+ if(requestedView==='moon-fairy'&&typeof refreshCrittersV73==='function'){settlementV55.day=5;bwTime('night');bwCamera('village',innerWidth<700?1:2);inv.gold=Math.max(inv.gold||0,50);ui();refreshCrittersV73();}
+ const resizeHeader=()=>{const header=nav.getBoundingClientRect(),bar=$('bar').getBoundingClientRect();document.documentElement.style.setProperty('--bw-header-height',Math.ceil(header.height)+'px');document.documentElement.style.setProperty('--bw-panel-height',Math.max(0,Math.floor(bar.top-header.bottom-16))+'px')};
+ const sampleBounds=new ResizeObserver(resizeHeader);sampleBounds.observe(nav);sampleBounds.observe($('bar'));addEventListener('resize',resizeHeader);resizeHeader();
+ $('bw-zoom').value=String(cam.z);bwRefreshIcons();
+ $('questTitle').textContent='Make yourself at home';$('questSub').textContent='Mine, build, or open a Workshop.';
+ const note=document.createElement('div');note.id='bw-note';note.textContent='Sample save · Mine and build freely';document.body.append(note);
+ if(bwArt.concepts42){note.textContent='42 × 42 critter stills · sample save';bwCamera('village',1);$('bw-zoom').value='1';}
+ }
+ window.__buttonwood={
+  save:saveGame,
+  render(now=0){ctx.setTransform(DPR,0,0,DPR,0,0);bg();for(const z of (typeof visibleBlocksV87==='function'?visibleBlocksV87():bs))draw(z);drawMappedLiquids(now);for(const q of miners)drawMiner(q,now);drawGoldBursts(now);preview()},
+  get state(){return{enabled:bwEnabled,sample:bwSampleMode,saveKey:SAVE_KEY,workers:miners.size,buildings:structuresV46.map(b=>({id:b.id,type:b.type,x:b.x,y:b.y})),industry:bwIndustryStudy,sky:bwSkyState(),clock:{...settlementV55},liquids:window.__skyStackLiquidDebug(),camera:{...cam},collisionsUnchanged:Object.keys(STRUCTURES_V46).every(t=>JSON.stringify(structureShapeV47(t))===bwCollisionBaseline[t])}}
+ };
+ if(bwSampleMode)Object.assign(window.__buttonwood,{
+  setArt(enabled){bwEnabled=!!enabled;bwRefreshIcons()},view:bwCamera,time:bwTime,
+  // Explicit fixture operations used by the save/physics regression and review page.
+  fixture:{advanceClock(ms){stepWorkersV55(ms,()=>1)},cell(x,y){const z=grid.get(key(x,y));return z?{material:z.game.material,resourceType:z.game.resourceType??null,resourceAmount:z.game.resourceAmount??0,hits:z.game.hits??0}:null},mine(x,y){const z=grid.get(key(x,y));return z?harvest(z):false},step(ms){for(let t=0;t<ms;t+=1000/60){Engine.update(eng,1000/60);updateLiquids(performance.now()+t)}},place(type,x,y){return placeStructureV46({type,x,y})}}
+ });
+}

@@ -1,0 +1,35 @@
+<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Guillotine — User-generated item ideas</title><style>*{box-sizing:border-box}body{margin:0;background:#f5f0df;color:#2c4133;font:17px system-ui}main{max-width:1160px;margin:auto;padding:28px}header{display:flex;justify-content:space-between;align-items:center;gap:20px}small{color:#637650}h1{margin:4px 0 10px;font-size:36px}p{max-width:800px;line-height:1.5}button,a{font:inherit}button{padding:12px 18px;border:1px solid #617246;border-radius:10px;background:#34563d;color:#fff;cursor:pointer}button+button{background:#e7dfc2;color:#2c4133}canvas{display:block;width:min(100%,800px);aspect-ratio:1100/620;background:#e9edda;border:1px solid #b1ba91;border-radius:18px;margin:20px auto}output{display:block;font-weight:600;min-height:28px}a{color:#34563d}@media(max-width:600px){main{padding:16px}header{display:block}h1{font-size:28px}canvas{aspect-ratio:1/1}}</style><main><header><div><small>USER-GENERATED ITEM IDEAS · WORKING PHYSICS PREVIEW</small><h1>Guillotine counterweight</h1></div><div><button id="replay">Replay launch</button> <button id="pause">Pause</button></div></header><p>A 58 cm guide and 17 cm blade beside the default 60 cm Acorn Flyer. The crank lifts the 2 kg blade; its fall pulls a cable drum on the axle. The blade stops at the bottom.</p><canvas id="view" width="1650" height="930" aria-label="Working guillotine counterweight on the default-sized trebuchet"></canvas><output id="status" aria-live="polite">Ready to replay.</output><p id="result"></p><p><a href="../../index.html?qa=1">Open the full game</a> · Pause → Options → Creative → Build → Counterweight → User-generated item ideas → Guillotine.</p><p><small>This review page uses the game's actual simulation and loading controller. It does not save progress. The small cartoon serpent gag adds no force to the launch.</small></p></main><script type="module">
+import {STARTER,part} from '../../src/build-catalog.js?v=57';
+import {fitEquipment} from '../../src/build-equipment.js?v=57';
+import {BuildSimulation} from '../../src/build-physics.js?v=57';
+import {createPayloadLoading} from '../../src/payload-loading.js?v=57';
+import {drawGuillotine,GUILLOTINE} from '../../src/guillotine.js?v=57';
+import {drawCrankWheel} from '../../src/crank-wheel.js?v=57';
+import {drawCritter} from '../../src/build-art.js?v=57';
+const canvas=document.querySelector('canvas'),ctx=canvas.getContext('2d'),status=document.querySelector('output'),result=document.querySelector('#result');
+let sim,loading,phase,wait=0,paused=false,last=0,done=false;
+function reset(){sim=new BuildSimulation(fitEquipment(STARTER,{kind:'part',id:'guillotine'}));sim.setDraw(0);loading=sim.loading=createPayloadLoading(sim);loading.loadKeyboard();phase='loading';wait=0;done=false;paused=false;document.querySelector('#pause').textContent='Pause';result.textContent='';}
+const scale=690,project=p=>[725+p.x*scale,790-p.y*scale];
+function line(a,b,color,width){ctx.beginPath();ctx.moveTo(...project(a));ctx.lineTo(...project(b));ctx.strokeStyle='#354335';ctx.lineWidth=width+3;ctx.lineCap='round';ctx.stroke();ctx.strokeStyle=color;ctx.lineWidth=width;ctx.stroke();}
+function body(b,color){for(let f=b.getFixtureList();f;f=f.getNext()){const sh=f.getShape();if(sh.getType()!=='polygon')continue;ctx.beginPath();sh.m_vertices.forEach((v,i)=>{const q=b.getWorldPoint(v),p=project({x:q.x*sim.L,y:q.y*sim.L});i?ctx.lineTo(...p):ctx.moveTo(...p)});ctx.closePath();ctx.fillStyle=color;ctx.fill();ctx.strokeStyle='#354335';ctx.lineWidth=2;ctx.stroke();}}
+function draw(){ctx.clearRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#e9edda';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.fillStyle='#d2d8b4';ctx.fillRect(0,790,canvas.width,140);line({x:-.85,y:0},{x:.70,y:0},'#899770',5);
+ body(sim.frame,'#b98b51');body(sim.arm,'#a96f3b');drawGuillotine(ctx,sim,project,scale);
+ const tip=sim.tip(),p=sim.phase==='ready'?loading.target():sim.real(sim.shot),width=sim.c.pouchWidth*.65;
+ if(sim.sling){line(tip,{x:p.x-width,y:p.y},'#b49d67',2.5);line(tip,{x:p.x+width,y:p.y},'#88764f',2.5);const [x,y]=project(p);ctx.beginPath();ctx.moveTo(x-width*scale,y);ctx.quadraticCurveTo(x,y+35,x+width*scale,y);ctx.quadraticCurveTo(x,y+17,x-width*scale,y);ctx.fillStyle='#83995d';ctx.fill();ctx.strokeStyle='#354335';ctx.lineWidth=2;ctx.stroke();}
+ if(sim.phase==='ready'){for(const p of loading.parts){ctx.save();const [x,y]=project(p);ctx.translate(x,y);ctx.rotate(-p.angle);const w=sim.animal.length*scale,h=sim.animal.width*scale;ctx.beginPath();ctx.rect((p.a-p.offset-.012)*w,-h*.7,(p.b-p.a+.024)*w,h*1.4);ctx.clip();drawCritter(ctx,sim.animal,-p.offset*w,0,w,0,false,h);ctx.restore();}}
+ else{const q=sim.real(sim.shot);drawCritter(ctx,sim.animal,...project(q),sim.animal.length*scale,-q.angle,true,sim.animal.width*scale);}
+ drawCrankWheel(ctx,sim,project,scale);
+ ctx.font='600 23px system-ui';ctx.fillStyle='#2c4133';ctx.fillText('60 cm axle',425,330);ctx.fillText('58 cm guide',1080,330);ctx.font='20px system-ui';ctx.fillText('Default Acorn Flyer',425,365);ctx.fillText('2 kg blade',1080,365);ctx.fillText('Actual physics · fixed camera',45,60);
+ canvas.dataset.phase=phase;canvas.dataset.cut=String(!!sim.guillotineCut);canvas.dataset.draw=String(sim.drawFraction);canvas.dataset.failure=sim.failure;
+}
+function frame(now){const dt=Math.min(.03,(now-last)/1000||1/60);last=now;
+ if(!paused&&!done){
+  if(phase==='loading'){loading.step(dt);if(loading.loaded){wait+=dt;if(wait>.6){phase='winding';sim.beginWinding();}}}
+  else if(phase==='winding'){sim.wind(dt);loading.step(dt);if(sim.drawFraction===1){wait=0;phase='held';}}
+  else if(phase==='held'){loading.step(dt);wait+=dt;if(wait>.9){if(sim.fire())phase='launch';else{phase='loading';wait=0;}}}
+  else{sim.step(dt);if(sim.time>1.25||!['swing','flight'].includes(sim.phase)){done=true;phase='complete';result.textContent=sim.release?`Released at ${sim.release.speed.toFixed(1)} m/s. Blade stop ${sim.guillotineCut?'reached':'not yet reached'}. ${sim.failure}`:sim.failure;}}
+ }
+ status.textContent=({loading:'Loading the loose sling…',winding:'Winding: lifting the blade…',held:'Fully wound — release next.',launch:'Gravity is pulling the blade down.',complete:'Launch complete. Replay to watch again.'})[phase]+(paused?' · Paused':'');draw();requestAnimationFrame(frame);
+}
+document.querySelector('#replay').onclick=reset;document.querySelector('#pause').onclick=()=>{paused=!paused;document.querySelector('#pause').textContent=paused?'Resume':'Pause';};window.addEventListener('blur',()=>{paused=true;document.querySelector('#pause').textContent='Resume';});reset();requestAnimationFrame(frame);
+</script></html>

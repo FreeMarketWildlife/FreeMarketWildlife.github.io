@@ -1,0 +1,5019 @@
+{
+  "map": {
+    "version": 4,
+    "revision": 3,
+    "count": 377,
+    "solidCount": 230,
+    "fieldCount": 16,
+    "sceneryCount": 131,
+    "canonicalSha256": "06e741415ebe9f37514fb943a548e0d9e56ac7e11c3a58f7f8fc9a1e07569817"
+  },
+  "protocol": "One physical Enter carry, observed .25s support, powered winding and support, actual release. Preparation/flight 120 Hz. Minimum/75%/full natural throws plus Air once or Staff three times at release+1.6s then .7s intervals. No injected launch velocity or hidden collision surfaces. Max gap includes release-to-first and last-to-finish. Discrete synthetic controllers, not novice/native acceptance or continuous certification. All contact histories are complete: eventSequence equals eventRetained.",
+  "baselineRevision": 2,
+  "targetGapSeconds": 1,
+  "targetComplete": false,
+  "baseline": [
+    {
+      "id": "small",
+      "draw": 0.4,
+      "weapon": "none",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -0.6149470518935163,
+        "y": 2.9766370964548137,
+        "vx": 4.979662369640112,
+        "vy": 3.920073184168972,
+        "angle": 38.21041057852509,
+        "time": 0.5029197159992246,
+        "reason": "Release ring cleared the pin",
+        "speed": 6.33750827098872,
+        "energy": 0.5020501385606305
+      },
+      "range": 5.7948367533473,
+      "flight": 2.9095745520734746,
+      "eventSequence": 3,
+      "eventRetained": 3,
+      "props": [
+        "launch-bough"
+      ],
+      "gaps": [
+        {
+          "from": "release",
+          "to": "launch-bough",
+          "seconds": 1.382415902271021,
+          "fromT": 0,
+          "toT": 1.382415902271021,
+          "fromX": -0.6149470518935163,
+          "fromY": 2.9766370964548137,
+          "toX": 5.2841362702947094,
+          "toY": 0.001096285665692247
+        },
+        {
+          "from": "launch-bough",
+          "to": "finished",
+          "seconds": 0.8709097520961784,
+          "fromT": 2.038664799977296,
+          "toT": 2.9095745520734746,
+          "fromX": 5.298346766645161,
+          "fromY": 0.0034177775357086796,
+          "toX": 5.354655864958794,
+          "toY": 0.028221487987197848
+        },
+        {
+          "from": "launch-bough",
+          "to": "launch-bough",
+          "seconds": 0.5102795167211411,
+          "fromT": 1.382415902271021,
+          "toT": 1.892695418992162,
+          "fromX": 5.2841362702947094,
+          "fromY": 0.001096285665692247,
+          "toX": 5.153093582179324,
+          "toY": 0.0029558533962352495
+        },
+        {
+          "from": "launch-bough",
+          "to": "launch-bough",
+          "seconds": 0.14596938098513412,
+          "fromT": 1.892695418992162,
+          "toT": 2.038664799977296,
+          "fromX": 5.153093582179324,
+          "fromY": 0.0029558533962352495,
+          "toX": 5.298346766645161,
+          "toY": 0.0034177775357086796
+        }
+      ],
+      "obstructions": [],
+      "shots": 0
+    },
+    {
+      "id": "small",
+      "draw": 0.75,
+      "weapon": "none",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -0.4540356397560218,
+        "y": 3.026837364862814,
+        "vx": 15.519956177989881,
+        "vy": 9.183459277221996,
+        "angle": 30.61362663911203,
+        "time": 0.4771604134724349,
+        "reason": "Release ring cleared the pin",
+        "speed": 18.033440161630867,
+        "energy": 4.065062050789012
+      },
+      "range": 67.80446799193153,
+      "flight": 13.622991136310128,
+      "eventSequence": 14,
+      "eventRetained": 14,
+      "props": [
+        "route-perch-0",
+        "route-opening-catch-0",
+        "route-opening-catch-4",
+        "route-opening-catch-5",
+        "opening-skip-3",
+        "opening-skip-4"
+      ],
+      "gaps": [
+        {
+          "from": "opening-skip-3",
+          "to": "opening-skip-4",
+          "seconds": 1.7491793049142963,
+          "fromT": 7.5769148432368,
+          "toT": 9.326094148151096,
+          "fromX": 46.281925084029076,
+          "fromY": -20.13999889180815,
+          "toX": 55.87354757966478,
+          "toY": -28.935805539023697
+        },
+        {
+          "from": "route-perch-0",
+          "to": "route-opening-catch-0",
+          "seconds": 1.594623489753566,
+          "fromT": 1.4523340091294479,
+          "toT": 3.046957498883014,
+          "fromX": 14.240636128163217,
+          "fromY": 5.865637020444472,
+          "toX": 21.455647369415804,
+          "toY": -1.0244136598387352
+        },
+        {
+          "from": "opening-skip-4",
+          "to": "forest-floor",
+          "seconds": 1.3762827350026932,
+          "fromT": 9.326094148151096,
+          "toT": 10.70237688315379,
+          "fromX": 55.87354757966478,
+          "fromY": -28.935805539023697,
+          "toX": 63.331384072200656,
+          "toY": -31.99913701251549
+        },
+        {
+          "from": "route-opening-catch-4",
+          "to": "route-opening-catch-5",
+          "seconds": 1.338257097939339,
+          "fromT": 5.041463494528629,
+          "toT": 6.379720592467968,
+          "fromX": 32.810652953505745,
+          "fromY": -7.101156385039941,
+          "toX": 38.15820252458542,
+          "toY": -13.312978986874995
+        },
+        {
+          "from": "route-opening-catch-5",
+          "to": "opening-skip-3",
+          "seconds": 1.197194250768832,
+          "fromT": 6.379720592467968,
+          "toT": 7.5769148432368,
+          "fromX": 38.15820252458542,
+          "fromY": -13.312978986874995,
+          "toX": 46.281925084029076,
+          "toY": -20.13999889180815
+        }
+      ],
+      "obstructions": [],
+      "shots": 0
+    },
+    {
+      "id": "small",
+      "draw": 0.75,
+      "weapon": "air",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -0.4540356397560218,
+        "y": 3.026837364862814,
+        "vx": 15.519956177989881,
+        "vy": 9.183459277221996,
+        "angle": 30.61362663911203,
+        "time": 0.4771604134724349,
+        "reason": "Release ring cleared the pin",
+        "speed": 18.033440161630867,
+        "energy": 4.065062050789012
+      },
+      "range": 68.18930222803054,
+      "flight": 12.931169868447812,
+      "eventSequence": 12,
+      "eventRetained": 12,
+      "props": [
+        "route-perch-0",
+        "route-opening-catch-5",
+        "opening-skip-3",
+        "opening-skip-4",
+        "floor-log-2"
+      ],
+      "gaps": [
+        {
+          "from": "route-perch-0",
+          "to": "route-opening-catch-5",
+          "seconds": 4.120261770832483,
+          "fromT": 1.4523340091294479,
+          "toT": 5.572595779961932,
+          "fromX": 14.240636128163217,
+          "fromY": 5.865637020444472,
+          "toX": 38.19134726265442,
+          "toY": -13.32766548600998
+        },
+        {
+          "from": "opening-skip-3",
+          "to": "opening-skip-4",
+          "seconds": 1.9221346218798763,
+          "fromT": 7.19175193878863,
+          "toT": 9.113886560668506,
+          "fromX": 43.66866609617294,
+          "fromY": -18.833381417945006,
+          "toX": 56.39508821905307,
+          "toY": -29.193864814936052
+        },
+        {
+          "from": "route-opening-catch-5",
+          "to": "opening-skip-3",
+          "seconds": 1.6191561588266978,
+          "fromT": 5.572595779961932,
+          "toT": 7.19175193878863,
+          "fromX": 38.19134726265442,
+          "fromY": -13.32766548600998,
+          "toX": 43.66866609617294,
+          "toY": -18.833381417945006
+        },
+        {
+          "from": "release",
+          "to": "route-perch-0",
+          "seconds": 1.0941570406617238,
+          "fromT": 0,
+          "toT": 1.0941570406617238,
+          "fromX": -0.4540356397560218,
+          "fromY": 3.026837364862814,
+          "toX": 11.770957478214632,
+          "toY": 5.879215468683424
+        },
+        {
+          "from": "forest-floor",
+          "to": "forest-floor",
+          "seconds": 0.9935730974618373,
+          "fromT": 9.938184241525734,
+          "toT": 10.931757338987572,
+          "fromX": 62.45208661664186,
+          "fromY": -31.997831965500545,
+          "toX": 66.45776196958639,
+          "toY": -31.998154749424277
+        }
+      ],
+      "obstructions": [],
+      "shots": 1
+    },
+    {
+      "id": "small",
+      "draw": 0.75,
+      "weapon": "staff",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -0.4540356397560218,
+        "y": 3.026837364862814,
+        "vx": 15.519956177989881,
+        "vy": 9.183459277221996,
+        "angle": 30.61362663911203,
+        "time": 0.4771604134724349,
+        "reason": "Release ring cleared the pin",
+        "speed": 18.033440161630867,
+        "energy": 4.065062050789012
+      },
+      "range": 73.15161397722069,
+      "flight": 16.649095866482565,
+      "eventSequence": 11,
+      "eventRetained": 11,
+      "props": [
+        "route-perch-0",
+        "amazon-bough-1-1",
+        "route-opening-catch-7",
+        "opening-exit-skid",
+        "forest-pod",
+        "floor-log-2"
+      ],
+      "gaps": [
+        {
+          "from": "route-perch-0",
+          "to": "amazon-bough-1-1",
+          "seconds": 4.347188959758952,
+          "fromT": 1.4523340091294479,
+          "toT": 5.799522968888401,
+          "fromX": 14.240636128163217,
+          "fromY": 5.865637020444472,
+          "toX": 47.9937717239918,
+          "toY": -2.026722280315945
+        },
+        {
+          "from": "forest-pod",
+          "to": "floor-log-2",
+          "seconds": 2.1490618108063444,
+          "fromT": 10.826266861973105,
+          "toT": 12.97532867277945,
+          "fromX": 72.92270069385613,
+          "fromY": -30.725427043010498,
+          "toX": 70.69571905661225,
+          "toY": -31.738153946680367
+        },
+        {
+          "from": "amazon-bough-1-1",
+          "to": "route-opening-catch-7",
+          "seconds": 1.9577069920359174,
+          "fromT": 5.799522968888401,
+          "toT": 7.7572299609243185,
+          "fromX": 47.9937717239918,
+          "fromY": -2.026722280315945,
+          "toX": 50.352564832614235,
+          "toY": -26.741235108264043
+        },
+        {
+          "from": "route-opening-catch-7",
+          "to": "opening-exit-skid",
+          "seconds": 1.84853661466048,
+          "fromT": 7.7572299609243185,
+          "toT": 9.605766575584799,
+          "fromX": 50.352564832614235,
+          "fromY": -26.741235108264043,
+          "toX": 63.01995698023921,
+          "toY": -28.853956188237014
+        },
+        {
+          "from": "forest-floor",
+          "to": "finished",
+          "seconds": 1.3983621371701442,
+          "fromT": 15.250733729312422,
+          "toT": 16.649095866482565,
+          "fromX": 63.55025609157167,
+          "fromY": -31.996556983849807,
+          "toX": 62.9849855567355,
+          "toY": -31.974354520397878
+        }
+      ],
+      "obstructions": [],
+      "shots": 3
+    },
+    {
+      "id": "small",
+      "draw": 1,
+      "weapon": "none",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -0.789714821307589,
+        "y": 2.9051880916352393,
+        "vx": 16.911576410263713,
+        "vy": 13.678227452097591,
+        "angle": 38.96622786159433,
+        "time": 0.5274523850723586,
+        "reason": "Release ring cleared the pin",
+        "speed": 21.75075453660181,
+        "energy": 5.913691536393803
+      },
+      "range": 68.70973836231248,
+      "flight": 13.824159022709805,
+      "eventSequence": 14,
+      "eventRetained": 14,
+      "props": [
+        "route-perch-1",
+        "route-opening-catch-0",
+        "opening-skip-1",
+        "opening-skip-2",
+        "route-descent-fork-0",
+        "opening-skip-4",
+        "floor-log-2"
+      ],
+      "gaps": [
+        {
+          "from": "route-descent-fork-0",
+          "to": "opening-skip-4",
+          "seconds": 2.4299608716937033,
+          "fromT": 7.8811199397436305,
+          "toT": 10.311080811437334,
+          "fromX": 46.997355436444096,
+          "fromY": -12.196040662294076,
+          "toX": 53.87767339421398,
+          "toY": -27.937724247691637
+        },
+        {
+          "from": "opening-skip-1",
+          "to": "opening-skip-2",
+          "seconds": 2.1404753766307483,
+          "fromT": 4.106768802842304,
+          "toT": 6.247244179473053,
+          "fromX": 26.0502500768271,
+          "fromY": -5.824169498071916,
+          "toX": 37.651529595050775,
+          "toY": -12.823330633873814
+        },
+        {
+          "from": "route-perch-1",
+          "to": "route-opening-catch-0",
+          "seconds": 1.9356275898700983,
+          "fromT": 1.7724853405338141,
+          "toT": 3.7081129304039124,
+          "fromX": 16.63964897692481,
+          "fromY": 8.558631664054579,
+          "toX": 23.99403053491383,
+          "toY": -2.2960465646707027
+        },
+        {
+          "from": "release",
+          "to": "route-perch-1",
+          "seconds": 1.3272173968564722,
+          "fromT": 0,
+          "toT": 1.3272173968564722,
+          "fromX": -0.789714821307589,
+          "fromY": 2.9051880916352393,
+          "toX": 13.862368441789737,
+          "toY": 8.572938200834313
+        },
+        {
+          "from": "opening-skip-4",
+          "to": "forest-floor",
+          "seconds": 0.9972529978228071,
+          "fromT": 10.311080811437334,
+          "toT": 11.30833380926014,
+          "fromX": 53.87767339421398,
+          "fromY": -27.937724247691637,
+          "toX": 63.06453687764775,
+          "toY": -31.996642527691794
+        }
+      ],
+      "obstructions": [],
+      "shots": 0
+    },
+    {
+      "id": "small",
+      "draw": 1,
+      "weapon": "air",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -0.789714821307589,
+        "y": 2.9051880916352393,
+        "vx": 16.911576410263713,
+        "vy": 13.678227452097591,
+        "angle": 38.96622786159433,
+        "time": 0.5274523850723586,
+        "reason": "Release ring cleared the pin",
+        "speed": 21.75075453660181,
+        "energy": 5.913691536393803
+      },
+      "range": 70.07297816886997,
+      "flight": 11.426090620811173,
+      "eventSequence": 6,
+      "eventRetained": 6,
+      "props": [
+        "route-perch-1",
+        "route-opening-catch-5",
+        "opening-skip-4",
+        "floor-log-2"
+      ],
+      "gaps": [
+        {
+          "from": "route-perch-1",
+          "to": "route-opening-catch-5",
+          "seconds": 4.379081429554024,
+          "fromT": 1.3272173968564722,
+          "toT": 5.706298826410497,
+          "fromX": 13.862368441789737,
+          "fromY": 8.572938200834313,
+          "toX": 39.872082982174526,
+          "toY": -14.02919842805435
+        },
+        {
+          "from": "route-opening-catch-5",
+          "to": "opening-skip-4",
+          "seconds": 2.6176357901031624,
+          "fromT": 5.706298826410497,
+          "toT": 8.32393461651366,
+          "fromX": 39.872082982174526,
+          "fromY": -14.02919842805435,
+          "toX": 56.75778392275849,
+          "toY": -29.377941957023015
+        },
+        {
+          "from": "floor-log-2",
+          "to": "finished",
+          "seconds": 1.3419369983003087,
+          "fromT": 10.084153622510865,
+          "toT": 11.426090620811173,
+          "fromX": 69.5033377163168,
+          "fromY": -31.72830937598591,
+          "toX": 70.37174358439621,
+          "toY": -31.712536244265145
+        },
+        {
+          "from": "release",
+          "to": "route-perch-1",
+          "seconds": 1.3272173968564722,
+          "fromT": 0,
+          "toT": 1.3272173968564722,
+          "fromX": -0.789714821307589,
+          "fromY": 2.9051880916352393,
+          "toX": 13.862368441789737,
+          "toY": 8.572938200834313
+        },
+        {
+          "from": "opening-skip-4",
+          "to": "forest-floor",
+          "seconds": 1.0217856668959389,
+          "fromT": 8.32393461651366,
+          "toT": 9.345720283409598,
+          "fromX": 56.75778392275849,
+          "fromY": -29.377941957023015,
+          "toX": 65.98963940475531,
+          "toY": -31.999137632675716
+        }
+      ],
+      "obstructions": [],
+      "shots": 1
+    },
+    {
+      "id": "small",
+      "draw": 1,
+      "weapon": "staff",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -0.789714821307589,
+        "y": 2.9051880916352393,
+        "vx": 16.911576410263713,
+        "vy": 13.678227452097591,
+        "angle": 38.96622786159433,
+        "time": 0.5274523850723586,
+        "reason": "Release ring cleared the pin",
+        "speed": 21.75075453660181,
+        "energy": 5.913691536393803
+      },
+      "range": 69.2079360732714,
+      "flight": 13.463528787334768,
+      "eventSequence": 8,
+      "eventRetained": 8,
+      "props": [
+        "route-perch-1",
+        "amazon-bough-1-1",
+        "amazon-bough-1-0",
+        "opening-skip-4",
+        "floor-log-2"
+      ],
+      "gaps": [
+        {
+          "from": "route-perch-1",
+          "to": "amazon-bough-1-1",
+          "seconds": 4.54222367889035,
+          "fromT": 1.3272173968564722,
+          "toT": 5.869441075746823,
+          "fromX": 13.862368441789737,
+          "fromY": 8.572938200834313,
+          "toX": 49.62843552669706,
+          "toY": -2.2485605766293175
+        },
+        {
+          "from": "amazon-bough-1-0",
+          "to": "opening-skip-4",
+          "seconds": 3.2677515205411547,
+          "fromT": 6.894906643003732,
+          "toT": 10.162658163544886,
+          "fromX": 55.95150163591358,
+          "fromY": -3.966486992721422,
+          "toX": 57.99123600517551,
+          "toY": -29.99259766316298
+        },
+        {
+          "from": "release",
+          "to": "route-perch-1",
+          "seconds": 1.3272173968564722,
+          "fromT": 0,
+          "toT": 1.3272173968564722,
+          "fromX": -0.789714821307589,
+          "fromY": 2.9051880916352393,
+          "toX": 13.862368441789737,
+          "toY": 8.572938200834313
+        },
+        {
+          "from": "opening-skip-4",
+          "to": "forest-floor",
+          "seconds": 1.2376731547394986,
+          "fromT": 10.162658163544886,
+          "toT": 11.400331318284385,
+          "fromX": 57.99123600517551,
+          "fromY": -29.99259766316298,
+          "toX": 66.17824158442843,
+          "toY": -31.99915815879812
+        },
+        {
+          "from": "amazon-bough-1-1",
+          "to": "amazon-bough-1-0",
+          "seconds": 1.0254655672569086,
+          "fromT": 5.869441075746823,
+          "toT": 6.894906643003732,
+          "fromX": 49.62843552669706,
+          "fromY": -2.2485605766293175,
+          "toX": 55.95150163591358,
+          "toY": -3.966486992721422
+        }
+      ],
+      "obstructions": [],
+      "shots": 3
+    },
+    {
+      "id": "medium",
+      "draw": 0.4,
+      "weapon": "none",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -0.3156982747126838,
+        "y": 8.911706389026362,
+        "vx": 13.638018405490616,
+        "vy": 7.347630320059117,
+        "angle": 28.314048513663273,
+        "time": 0.8312499999999977,
+        "reason": "Release ring cleared the pin",
+        "speed": 15.491391717620237,
+        "energy": 239.98321734875282
+      },
+      "range": 89.95737808031892,
+      "flight": 13.904166666665994,
+      "eventSequence": 9,
+      "eventRetained": 9,
+      "props": [
+        "route-opening-catch-4",
+        "small-floor-fungus"
+      ],
+      "gaps": [
+        {
+          "from": "release",
+          "to": "route-opening-catch-4",
+          "seconds": 2.9583333333332806,
+          "fromT": 0,
+          "toT": 2.9583333333332806,
+          "fromX": -0.3156982747126838,
+          "fromY": 8.911706389026362,
+          "toX": 33.25733186149722,
+          "toY": -7.245139531374122
+        },
+        {
+          "from": "forest-floor",
+          "to": "forest-floor",
+          "seconds": 2.608333333333186,
+          "fromT": 5.48541666666647,
+          "toT": 8.093749999999657,
+          "fromX": 65.06602773601708,
+          "fromY": -31.99144959590363,
+          "toX": 88.03110367086616,
+          "toY": -31.990307610032207
+        },
+        {
+          "from": "route-opening-catch-4",
+          "to": "forest-floor",
+          "seconds": 2.52708333333319,
+          "fromT": 2.9583333333332806,
+          "toT": 5.48541666666647,
+          "fromX": 33.25733186149722,
+          "fromY": -7.245139531374122,
+          "toX": 65.06602773601708,
+          "toY": -31.99144959590363
+        },
+        {
+          "from": "small-floor-fungus",
+          "to": "forest-floor",
+          "seconds": 2.3145833333332018,
+          "fromT": 8.170833333332986,
+          "toT": 10.485416666666188,
+          "fromX": 88.81812833011271,
+          "fromY": -31.722094307223216,
+          "toX": 87.87793041467994,
+          "toY": -31.993852715770068
+        },
+        {
+          "from": "forest-floor",
+          "to": "forest-floor",
+          "seconds": 1.2729166666665943,
+          "fromT": 10.485416666666188,
+          "toT": 11.758333333332782,
+          "fromX": 87.87793041467994,
+          "fromY": -31.993852715770068,
+          "toX": 85.47335022371938,
+          "toY": -31.99209773647712
+        }
+      ],
+      "obstructions": [],
+      "shots": 0
+    },
+    {
+      "id": "medium",
+      "draw": 0.75,
+      "weapon": "none",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -0.5219983286879536,
+        "y": 8.820602870082743,
+        "vx": 34.38802922930884,
+        "vy": 12.247116445688397,
+        "angle": 19.603090411157645,
+        "time": 0.7895833333333312,
+        "reason": "Release ring cleared the pin",
+        "speed": 36.50381371185825,
+        "energy": 1332.5284155100505
+      },
+      "range": 88.90013141096956,
+      "flight": 6.997916666666387,
+      "eventSequence": 7,
+      "eventRetained": 7,
+      "props": [
+        "route-perch-2",
+        "route-descent-fork-1",
+        "amazon-bough-2-0"
+      ],
+      "gaps": [
+        {
+          "from": "route-descent-fork-1",
+          "to": "amazon-bough-2-0",
+          "seconds": 1.8458333333332289,
+          "fromT": 2.4208333333333134,
+          "toT": 4.266666666666542,
+          "fromX": 59.746116759074496,
+          "fromY": 13.173740933978987,
+          "toX": 86.30056083853805,
+          "toY": 2.7034281152445523
+        },
+        {
+          "from": "release",
+          "to": "route-perch-2",
+          "seconds": 1.7458333333333518,
+          "fromT": 0,
+          "toT": 1.7458333333333518,
+          "fromX": -0.5219983286879536,
+          "fromY": 8.820602870082743,
+          "toX": 46.96839980063886,
+          "toY": 13.884024895407979
+        },
+        {
+          "from": "amazon-bough-2-0",
+          "to": "amazon-bough-2-0",
+          "seconds": 1.0916666666666046,
+          "fromT": 4.266666666666542,
+          "toT": 5.358333333333147,
+          "fromX": 86.30056083853805,
+          "fromY": 2.7034281152445523,
+          "toX": 86.94369206538173,
+          "toY": 2.8070453607948775
+        },
+        {
+          "from": "amazon-bough-2-0",
+          "to": "finished",
+          "seconds": 0.8187499999999535,
+          "fromT": 6.1791666666664335,
+          "toT": 6.997916666666387,
+          "fromX": 88.32144427887977,
+          "fromY": 3.0224808840424817,
+          "toX": 88.19131329592665,
+          "toY": 3.09487577955296
+        },
+        {
+          "from": "route-perch-2",
+          "to": "route-descent-fork-1",
+          "seconds": 0.6749999999999616,
+          "fromT": 1.7458333333333518,
+          "toT": 2.4208333333333134,
+          "fromX": 46.96839980063886,
+          "fromY": 13.884024895407979,
+          "toX": 59.746116759074496,
+          "toY": 13.173740933978987
+        }
+      ],
+      "obstructions": [],
+      "shots": 0
+    },
+    {
+      "id": "medium",
+      "draw": 0.75,
+      "weapon": "air",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -0.5219983286879536,
+        "y": 8.820602870082743,
+        "vx": 34.38802922930884,
+        "vy": 12.247116445688397,
+        "angle": 19.603090411157645,
+        "time": 0.7895833333333312,
+        "reason": "Release ring cleared the pin",
+        "speed": 36.50381371185825,
+        "energy": 1332.5284155100505
+      },
+      "range": 161.04002991991058,
+      "flight": 11.206249999999482,
+      "eventSequence": 6,
+      "eventRetained": 6,
+      "props": [
+        "floor-log-4",
+        "route-floor-log-1"
+      ],
+      "gaps": [
+        {
+          "from": "release",
+          "to": "floor-log-4",
+          "seconds": 6.218749999999765,
+          "fromT": 0,
+          "toT": 6.218749999999765,
+          "fromX": -0.5219983286879536,
+          "fromY": 8.820602870082743,
+          "toX": 130.53586388314832,
+          "toY": -31.52391534571472
+        },
+        {
+          "from": "floor-log-4",
+          "to": "forest-floor",
+          "seconds": 1.591666666666577,
+          "fromT": 6.218749999999765,
+          "toT": 7.810416666666342,
+          "fromX": 130.53586388314832,
+          "fromY": -31.52391534571472,
+          "toX": 148.22997400867365,
+          "toY": -31.99112012479143
+        },
+        {
+          "from": "forest-floor",
+          "to": "forest-floor",
+          "seconds": 0.979166666666611,
+          "fromT": 7.810416666666342,
+          "toT": 8.789583333332953,
+          "fromX": 148.22997400867365,
+          "fromY": -31.99112012479143,
+          "toX": 155.67872759244543,
+          "toY": -31.995816901115305
+        },
+        {
+          "from": "route-floor-log-1",
+          "to": "finished",
+          "seconds": 0.8958333333332824,
+          "fromT": 10.3104166666662,
+          "toT": 11.206249999999482,
+          "fromX": 160.17571619323405,
+          "fromY": -31.642238458309645,
+          "toX": 160.3192474448756,
+          "toY": -31.563995754877546
+        },
+        {
+          "from": "forest-floor",
+          "to": "route-floor-log-1",
+          "seconds": 0.6520833333332963,
+          "fromT": 8.789583333332953,
+          "toT": 9.441666666666249,
+          "fromX": 155.67872759244543,
+          "fromY": -31.995816901115305,
+          "toX": 159.9889106865561,
+          "toY": -31.650450683662335
+        }
+      ],
+      "obstructions": [],
+      "shots": 1
+    },
+    {
+      "id": "medium",
+      "draw": 0.75,
+      "weapon": "staff",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -0.5219983286879536,
+        "y": 8.820602870082743,
+        "vx": 34.38802922930884,
+        "vy": 12.247116445688397,
+        "angle": 19.603090411157645,
+        "time": 0.7895833333333312,
+        "reason": "Release ring cleared the pin",
+        "speed": 36.50381371185825,
+        "energy": 1332.5284155100505
+      },
+      "range": 182.94813326445723,
+      "flight": 14.46458333333263,
+      "eventSequence": 9,
+      "eventRetained": 9,
+      "props": [
+        "route-descent-fork-2"
+      ],
+      "gaps": [
+        {
+          "from": "release",
+          "to": "route-descent-fork-2",
+          "seconds": 4.587499999999857,
+          "fromT": 0,
+          "toT": 4.587499999999857,
+          "fromX": -0.5219983286879536,
+          "fromY": 8.820602870082743,
+          "toX": 115.75567988067857,
+          "toY": 11.647017701415969
+        },
+        {
+          "from": "route-descent-fork-2",
+          "to": "forest-floor",
+          "seconds": 4.0874999999997685,
+          "fromT": 4.587499999999857,
+          "toT": 8.674999999999626,
+          "fromX": 115.75567988067857,
+          "fromY": 11.647017701415969,
+          "toX": 165.54217315158033,
+          "toY": -31.996311133766092
+        },
+        {
+          "from": "forest-floor",
+          "to": "forest-floor",
+          "seconds": 1.9624999999998884,
+          "fromT": 8.674999999999626,
+          "toT": 10.637499999999514,
+          "fromX": 165.54217315158033,
+          "fromY": -31.996311133766092,
+          "toX": 175.2925923956976,
+          "toY": -31.992512150739334
+        },
+        {
+          "from": "forest-floor",
+          "to": "forest-floor",
+          "seconds": 0.8854166666666163,
+          "fromT": 10.637499999999514,
+          "toT": 11.52291666666613,
+          "fromX": 175.2925923956976,
+          "fromY": -31.992512150739334,
+          "toX": 177.38643035315323,
+          "toY": -31.99751637028463
+        },
+        {
+          "from": "forest-floor",
+          "to": "finished",
+          "seconds": 0.7999999999999545,
+          "fromT": 13.664583333332676,
+          "toT": 14.46458333333263,
+          "fromX": 182.09842148324876,
+          "fromY": -31.99065478791247,
+          "toX": 182.2393151494143,
+          "toY": -31.91127226552227
+        }
+      ],
+      "obstructions": [],
+      "shots": 3
+    },
+    {
+      "id": "medium",
+      "draw": 1,
+      "weapon": "none",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -1.4934562818775388,
+        "y": 8.62689811832084,
+        "vx": 37.62663102831026,
+        "vy": 20.766692236951844,
+        "angle": 28.894953240776903,
+        "time": 0.8749999999999976,
+        "reason": "Release ring cleared the pin",
+        "speed": 42.97695741912026,
+        "energy": 1847.0188690048763
+      },
+      "range": 135.04581955004258,
+      "flight": 19.68125000000288,
+      "eventSequence": 13,
+      "eventRetained": 13,
+      "props": [
+        "route-perch-3",
+        "route-perch-4",
+        "route-perch-5",
+        "route-descent-fork-2",
+        "route-forest-bough-0-2"
+      ],
+      "gaps": [
+        {
+          "from": "route-forest-bough-0-2",
+          "to": "forest-floor",
+          "seconds": 3.0291666666664945,
+          "fromT": 10.970833333332823,
+          "toT": 13.999999999999318,
+          "fromX": 130.9987254237585,
+          "fromY": -0.044027440041216545,
+          "toX": 115.67866276227124,
+          "toY": -31.993202308120466
+        },
+        {
+          "from": "route-descent-fork-2",
+          "to": "route-forest-bough-0-2",
+          "seconds": 2.529166666666524,
+          "fromT": 6.52291666666641,
+          "toT": 9.052083333332932,
+          "fromX": 114.04172061834683,
+          "fromY": 11.67658104579991,
+          "toX": 136.0062689234137,
+          "toY": 0.3593882073416381
+        },
+        {
+          "from": "release",
+          "to": "route-perch-3",
+          "seconds": 2.3895833333333103,
+          "fromT": 0,
+          "toT": 2.3895833333333103,
+          "fromX": -1.4934562818775388,
+          "fromY": 8.62689811832084,
+          "toX": 62.654919623263766,
+          "toY": 23.044103758737467
+        },
+        {
+          "from": "forest-floor",
+          "to": "forest-floor",
+          "seconds": 2.2833333333341894,
+          "fromT": 13.999999999999318,
+          "toT": 16.28333333333351,
+          "fromX": 115.67866276227124,
+          "fromY": -31.993202308120466,
+          "toX": 114.76689042270452,
+          "toY": -31.99025522430327
+        },
+        {
+          "from": "route-perch-4",
+          "to": "route-perch-5",
+          "seconds": 2.0895833333332146,
+          "fromT": 3.7208333333332355,
+          "toT": 5.81041666666645,
+          "fromX": 84.45543262984097,
+          "fromY": 18.581382142623905,
+          "toX": 105.64464126910275,
+          "toY": 12.072420740079064
+        }
+      ],
+      "obstructions": [],
+      "shots": 0
+    },
+    {
+      "id": "medium",
+      "draw": 1,
+      "weapon": "air",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -1.4934562818775388,
+        "y": 8.62689811832084,
+        "vx": 37.62663102831026,
+        "vy": 20.766692236951844,
+        "angle": 28.894953240776903,
+        "time": 0.8749999999999976,
+        "reason": "Release ring cleared the pin",
+        "speed": 42.97695741912026,
+        "energy": 1847.0188690048763
+      },
+      "range": 163.70713243322103,
+      "flight": 16.783333333333907,
+      "eventSequence": 10,
+      "eventRetained": 10,
+      "props": [
+        "amazon-bough-3-1",
+        "route-forest-bough-0-2",
+        "route-floor-log-1"
+      ],
+      "gaps": [
+        {
+          "from": "release",
+          "to": "amazon-bough-3-1",
+          "seconds": 4.822916666666506,
+          "fromT": 0,
+          "toT": 4.822916666666506,
+          "fromX": -1.4934562818775388,
+          "fromY": 8.62689811832084,
+          "toX": 116.0003516527232,
+          "toY": 17.911079948341715
+        },
+        {
+          "from": "route-forest-bough-0-2",
+          "to": "forest-floor",
+          "seconds": 3.9687499999997753,
+          "fromT": 7.108333333333043,
+          "toT": 11.077083333332817,
+          "fromX": 137.53389920790016,
+          "fromY": 0.4839214891178722,
+          "toX": 159.83992920186475,
+          "toY": -31.997506213233365
+        },
+        {
+          "from": "forest-floor",
+          "to": "route-floor-log-1",
+          "seconds": 2.3499999999998664,
+          "fromT": 11.077083333332817,
+          "toT": 13.427083333332684,
+          "fromX": 159.83992920186475,
+          "fromY": -31.997506213233365,
+          "toX": 160.48432749002254,
+          "toY": -31.6459081040939
+        },
+        {
+          "from": "amazon-bough-3-1",
+          "to": "route-forest-bough-0-2",
+          "seconds": 2.2854166666665368,
+          "fromT": 4.822916666666506,
+          "toT": 7.108333333333043,
+          "fromX": 116.0003516527232,
+          "fromY": 17.911079948341715,
+          "toX": 137.53389920790016,
+          "toY": 0.4839214891178722
+        },
+        {
+          "from": "route-floor-log-1",
+          "to": "route-floor-log-1",
+          "seconds": 0.9624999999999453,
+          "fromT": 13.427083333332684,
+          "toT": 14.389583333332629,
+          "fromX": 160.48432749002254,
+          "fromY": -31.6459081040939,
+          "toX": 163.83854808582726,
+          "toY": -31.676767589435997
+        }
+      ],
+      "obstructions": [],
+      "shots": 1
+    },
+    {
+      "id": "medium",
+      "draw": 1,
+      "weapon": "staff",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -1.4934562818775388,
+        "y": 8.62689811832084,
+        "vx": 37.62663102831026,
+        "vy": 20.766692236951844,
+        "angle": 28.894953240776903,
+        "time": 0.8749999999999976,
+        "reason": "Release ring cleared the pin",
+        "speed": 42.97695741912026,
+        "energy": 1847.0188690048763
+      },
+      "range": 170.0590878330792,
+      "flight": 15.970833333333259,
+      "eventSequence": 12,
+      "eventRetained": 12,
+      "props": [
+        "route-mid-bay-2",
+        "route-mid-bay-3"
+      ],
+      "gaps": [
+        {
+          "from": "release",
+          "to": "route-mid-bay-2",
+          "seconds": 6.058333333333103,
+          "fromT": 0,
+          "toT": 6.058333333333103,
+          "fromX": -1.4934562818775388,
+          "fromY": 8.62689811832084,
+          "toX": 144.55082156329576,
+          "toY": 16.06484206992505
+        },
+        {
+          "from": "route-mid-bay-2",
+          "to": "route-mid-bay-3",
+          "seconds": 2.910416666666502,
+          "fromT": 6.058333333333103,
+          "toT": 8.968749999999604,
+          "fromX": 144.55082156329576,
+          "fromY": 16.06484206992505,
+          "toX": 165.66134472594803,
+          "toY": 10.113512758030524
+        },
+        {
+          "from": "route-mid-bay-3",
+          "to": "route-mid-bay-3",
+          "seconds": 1.8374999999998956,
+          "fromT": 8.968749999999604,
+          "toT": 10.8062499999995,
+          "fromX": 165.66134472594803,
+          "fromY": 10.113512758030524,
+          "toX": 166.90677793653552,
+          "toY": 10.101873276930196
+        },
+        {
+          "from": "route-mid-bay-3",
+          "to": "route-mid-bay-3",
+          "seconds": 1.154166666666601,
+          "fromT": 10.8062499999995,
+          "toT": 11.9604166666661,
+          "fromX": 166.90677793653552,
+          "fromY": 10.101873276930196,
+          "toX": 169.4302159695343,
+          "toY": 10.066047701606593
+        },
+        {
+          "from": "route-mid-bay-3",
+          "to": "route-mid-bay-3",
+          "seconds": 0.8187499999999535,
+          "fromT": 11.9604166666661,
+          "toT": 12.779166666666054,
+          "fromX": 169.4302159695343,
+          "fromY": 10.066047701606593,
+          "toX": 169.05497697109917,
+          "toY": 10.068744407510856
+        }
+      ],
+      "obstructions": [],
+      "shots": 3
+    },
+    {
+      "id": "large",
+      "draw": 0.4,
+      "weapon": "none",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -2.177963492843715,
+        "y": 22.224267744741343,
+        "vx": 10.413402048066564,
+        "vy": 8.710550866403512,
+        "angle": 39.91164035482105,
+        "time": 1.494876957497031,
+        "reason": "Release ring cleared the pin",
+        "speed": 13.576179087316131,
+        "energy": 23039.079826359983
+      },
+      "range": 117.89874561702244,
+      "flight": 13.712556720231902,
+      "eventSequence": 9,
+      "eventRetained": 9,
+      "props": [
+        "opening-skip-2",
+        "floor-log-3"
+      ],
+      "gaps": [
+        {
+          "from": "release",
+          "to": "opening-skip-2",
+          "seconds": 3.9437877485426207,
+          "fromT": 0,
+          "toT": 3.9437877485426207,
+          "fromX": -2.177963492843715,
+          "fromY": 22.224267744741343,
+          "toX": 36.457922215185555,
+          "toY": -12.21075259186861
+        },
+        {
+          "from": "opening-skip-2",
+          "to": "floor-log-3",
+          "seconds": 2.9998317371792167,
+          "fromT": 3.9437877485426207,
+          "toT": 6.943619485721838,
+          "fromX": 36.457922215185555,
+          "fromY": -12.21075259186861,
+          "toX": 97.1177895682034,
+          "toY": -31.760079899978052
+        },
+        {
+          "from": "floor-log-3",
+          "to": "forest-floor",
+          "seconds": 2.88561641907898,
+          "fromT": 6.943619485721838,
+          "toT": 9.829235904800818,
+          "fromX": 97.1177895682034,
+          "fromY": -31.760079899978052,
+          "toX": 112.27308297981114,
+          "toY": -31.98759381283617
+        },
+        {
+          "from": "forest-floor",
+          "to": "forest-floor",
+          "seconds": 1.269805595357223,
+          "fromT": 9.829235904800818,
+          "toT": 11.099041500158041,
+          "fromX": 112.27308297981114,
+          "fromY": -31.98759381283617,
+          "toX": 114.50090627741403,
+          "toY": -31.977306690907273
+        },
+        {
+          "from": "forest-floor",
+          "to": "finished",
+          "seconds": 0.829740693262524,
+          "fromT": 12.882816026969378,
+          "toT": 13.712556720231902,
+          "fromX": 115.7589221638162,
+          "fromY": -31.97407046985956,
+          "toX": 115.33614851293856,
+          "toY": -31.50815627653917
+        }
+      ],
+      "obstructions": [],
+      "shots": 0
+    },
+    {
+      "id": "large",
+      "draw": 0.75,
+      "weapon": "none",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": 1.450894818187782,
+        "y": 22.356128841723198,
+        "vx": 48.576163541005286,
+        "vy": 6.952387589505165,
+        "angle": 8.145054300233594,
+        "time": 1.2765241434806063,
+        "reason": "Release ring cleared the pin",
+        "speed": 49.07116625430047,
+        "energy": 300997.4196946496
+      },
+      "range": 273.50200214610385,
+      "flight": 13.695760349922914,
+      "eventSequence": 12,
+      "eventRetained": 12,
+      "props": [
+        "route-perch-3",
+        "route-mid-bay-0",
+        "route-mid-bay-2",
+        "route-descent-fork-3",
+        "route-floor-log-4",
+        "route-forest-bough-4-0"
+      ],
+      "gaps": [
+        {
+          "from": "route-descent-fork-3",
+          "to": "route-floor-log-4",
+          "seconds": 3.500363572386328,
+          "fromT": 4.780246989928536,
+          "toT": 8.280610562314862,
+          "fromX": 179.84465518137466,
+          "fromY": 18.47593204972261,
+          "toX": 267.01502267255887,
+          "toY": -31.653435586439773
+        },
+        {
+          "from": "route-mid-bay-0",
+          "to": "route-mid-bay-2",
+          "seconds": 1.4276914762611486,
+          "fromT": 1.978612422394988,
+          "toT": 3.4063038986561365,
+          "fromX": 89.16181293417597,
+          "fromY": 21.58050266497903,
+          "toX": 140.00577908849485,
+          "toY": 16.134985794679984
+        },
+        {
+          "from": "route-mid-bay-2",
+          "to": "route-descent-fork-3",
+          "seconds": 1.373943091272399,
+          "fromT": 3.4063038986561365,
+          "toT": 4.780246989928536,
+          "fromX": 140.00577908849485,
+          "fromY": 16.134985794679984,
+          "toX": 179.84465518137466,
+          "toY": 18.47593204972261
+        },
+        {
+          "from": "route-forest-bough-4-0",
+          "to": "route-floor-log-4",
+          "seconds": 1.2899612397279725,
+          "fromT": 9.47315285425088,
+          "toT": 10.763114093978853,
+          "fromX": 270.97724260205666,
+          "fromY": -24.45323845129275,
+          "toX": 267.5017348080286,
+          "toY": -31.65741115422239
+        },
+        {
+          "from": "release",
+          "to": "route-perch-3",
+          "seconds": 1.2832426916042197,
+          "fromT": 0,
+          "toT": 1.2832426916042197,
+          "fromX": 1.450894818187782,
+          "fromY": 22.356128841723198,
+          "toX": 60.97824115148175,
+          "toY": 23.090494271083116
+        }
+      ],
+      "obstructions": [],
+      "shots": 0
+    },
+    {
+      "id": "large",
+      "draw": 0.75,
+      "weapon": "air",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": 1.450894818187782,
+        "y": 22.356128841723198,
+        "vx": 48.576163541005286,
+        "vy": 6.952387589505165,
+        "angle": 8.145054300233594,
+        "time": 1.2765241434806063,
+        "reason": "Release ring cleared the pin",
+        "speed": 49.07116625430047,
+        "energy": 300997.4196946496
+      },
+      "range": 349.36283890892554,
+      "flight": 19.473711736201945,
+      "eventSequence": 17,
+      "eventRetained": 17,
+      "props": [
+        "route-perch-3",
+        "route-descent-fork-3",
+        "route-upper-bay-0-b",
+        "route-descent-fork-9",
+        "route-forest-bough-4-1",
+        "route-forest-bough-5-0",
+        "route-floor-log-6",
+        "route-floor-stone-6"
+      ],
+      "gaps": [
+        {
+          "from": "route-descent-fork-9",
+          "to": "route-forest-bough-4-1",
+          "seconds": 3.043502299982987,
+          "fromT": 5.976148555926027,
+          "toT": 9.019650855909013,
+          "fromX": 218.71507418163122,
+          "fromY": 17.21019713312385,
+          "toX": 275.0006660027111,
+          "toY": -12.952822907828224
+        },
+        {
+          "from": "route-perch-3",
+          "to": "route-descent-fork-3",
+          "seconds": 3.0233466556118103,
+          "fromT": 1.404176557828701,
+          "toT": 4.427523213440511,
+          "fromX": 64.8389328981272,
+          "fromY": 23.020292097709575,
+          "toX": 178.47170424949297,
+          "toY": 18.498960041807212
+        },
+        {
+          "from": "forest-floor",
+          "to": "route-forest-bough-5-0",
+          "seconds": 2.2876656360800762,
+          "fromT": 10.094618555682324,
+          "toT": 12.382284191762402,
+          "fromX": 292.5229519544578,
+          "fromY": -31.9935570796643,
+          "toX": 311.80169205563874,
+          "toY": -24.147075752886572
+        },
+        {
+          "from": "route-forest-bough-5-0",
+          "to": "forest-floor",
+          "seconds": 1.9752531483334579,
+          "fromT": 12.382284191762402,
+          "toT": 14.35753734009586,
+          "fromX": 311.80169205563874,
+          "fromY": -24.147075752886572,
+          "toX": 322.2891384635317,
+          "toY": -31.9750003496052
+        },
+        {
+          "from": "release",
+          "to": "route-perch-3",
+          "seconds": 1.2832426916042197,
+          "fromT": 0,
+          "toT": 1.2832426916042197,
+          "fromX": 1.450894818187782,
+          "fromY": 22.356128841723198,
+          "toX": 60.97824115148175,
+          "toY": 23.090494271083116
+        }
+      ],
+      "obstructions": [],
+      "shots": 1
+    },
+    {
+      "id": "large",
+      "draw": 0.75,
+      "weapon": "staff",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": 1.450894818187782,
+        "y": 22.356128841723198,
+        "vx": 48.576163541005286,
+        "vy": 6.952387589505165,
+        "angle": 8.145054300233594,
+        "time": 1.2765241434806063,
+        "reason": "Release ring cleared the pin",
+        "speed": 49.07116625430047,
+        "energy": 300997.4196946496
+      },
+      "range": 337.06010529744356,
+      "flight": 19.91377663829641,
+      "eventSequence": 18,
+      "eventRetained": 18,
+      "props": [
+        "route-perch-3",
+        "route-descent-fork-9",
+        "route-descent-fork-11",
+        "route-forest-friend-5",
+        "route-forest-bough-5-1",
+        "route-forest-bough-5-2",
+        "route-floor-log-6"
+      ],
+      "gaps": [
+        {
+          "from": "route-perch-3",
+          "to": "route-descent-fork-9",
+          "seconds": 4.178936932867813,
+          "fromT": 1.404176557828701,
+          "toT": 5.5831134906965145,
+          "fromX": 64.8389328981272,
+          "fromY": 23.020292097709575,
+          "toX": 222.3560407851344,
+          "toY": 17.13458814586683
+        },
+        {
+          "from": "route-forest-bough-5-1",
+          "to": "forest-floor",
+          "seconds": 3.077095040601101,
+          "fromT": 10.726162079299144,
+          "toT": 13.803257119900245,
+          "fromX": 306.6931801328192,
+          "fromY": -13.76934126489214,
+          "toX": 324.06780645754964,
+          "toY": -31.97646090517523
+        },
+        {
+          "from": "route-descent-fork-11",
+          "to": "route-forest-friend-5",
+          "seconds": 2.149935399546621,
+          "fromT": 7.245954151283052,
+          "toT": 9.395889550829672,
+          "fromX": 262.0939696739631,
+          "fromY": 13.505705410943904,
+          "toX": 305.9210519748991,
+          "toY": -13.563710336290876
+        },
+        {
+          "from": "forest-floor",
+          "to": "forest-floor",
+          "seconds": 2.109624110804493,
+          "fromT": 13.803257119900245,
+          "toT": 15.912881230704738,
+          "fromX": 324.06780645754964,
+          "fromY": -31.97646090517523,
+          "toX": 326.6676941061585,
+          "toY": -31.982989169926608
+        },
+        {
+          "from": "route-descent-fork-9",
+          "to": "route-descent-fork-11",
+          "seconds": 1.6628406605865376,
+          "fromT": 5.5831134906965145,
+          "toT": 7.245954151283052,
+          "fromX": 222.3560407851344,
+          "fromY": 17.13458814586683,
+          "toX": 262.0939696739631,
+          "toY": 13.505705410943904
+        }
+      ],
+      "obstructions": [],
+      "shots": 3
+    },
+    {
+      "id": "large",
+      "draw": 1,
+      "weapon": "none",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -0.7902144686741717,
+        "y": 22.362422138008508,
+        "vx": 64.5614816642392,
+        "vy": 18.44602572457988,
+        "angle": 15.945304093990565,
+        "time": 1.2664463212952328,
+        "reason": "Release ring cleared the pin",
+        "speed": 67.14492370770672,
+        "energy": 563555.0974642196
+      },
+      "range": 338.2943954965153,
+      "flight": 22.94720111609262,
+      "eventSequence": 19,
+      "eventRetained": 19,
+      "props": [
+        "route-upper-bay-0-b",
+        "route-upper-bay-1-a",
+        "route-forest-bough-5-2",
+        "route-descent-fork-6",
+        "route-forest-bough-6-1",
+        "route-descent-fork-4",
+        "route-forest-bough-5-0",
+        "route-descent-fork-5",
+        "route-floor-stone-4"
+      ],
+      "gaps": [
+        {
+          "from": "release",
+          "to": "route-upper-bay-0-b",
+          "seconds": 3.74894985295879,
+          "fromT": 0,
+          "toT": 3.74894985295879,
+          "fromX": -0.7902144686741717,
+          "fromY": 22.362422138008508,
+          "toX": 198.9468536885511,
+          "toY": 23.709105005337836
+        },
+        {
+          "from": "route-descent-fork-6",
+          "to": "route-forest-bough-6-1",
+          "seconds": 2.6605450569389433,
+          "fromT": 9.32870406959384,
+          "toT": 11.989249126532783,
+          "fromX": 323.35801280842054,
+          "fromY": 4.674251037967163,
+          "toX": 337.9850663027971,
+          "toY": -14.76748211537513
+        },
+        {
+          "from": "route-upper-bay-1-a",
+          "to": "route-forest-bough-5-2",
+          "seconds": 2.640389412567706,
+          "fromT": 4.89110303396763,
+          "toT": 7.531492446535337,
+          "fromX": 236.193309048714,
+          "fromY": 25.015478934719624,
+          "toX": 311.02991143119556,
+          "toY": -3.229041167181595
+        },
+        {
+          "from": "forest-floor",
+          "to": "forest-floor",
+          "seconds": 1.8375229117990308,
+          "fromT": 16.50075419151796,
+          "toT": 18.33827710331699,
+          "fromX": 299.10726023052683,
+          "fromY": -31.994079095920775,
+          "toX": 289.49897083096243,
+          "toY": -31.984432923079257
+        },
+        {
+          "from": "route-forest-bough-5-2",
+          "to": "route-descent-fork-6",
+          "seconds": 1.7972116230585033,
+          "fromT": 7.531492446535337,
+          "toT": 9.32870406959384,
+          "fromX": 311.02991143119556,
+          "fromY": -3.229041167181595,
+          "toX": 323.35801280842054,
+          "toY": 4.674251037967163
+        }
+      ],
+      "obstructions": [],
+      "shots": 0
+    },
+    {
+      "id": "large",
+      "draw": 1,
+      "weapon": "air",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -0.7902144686741717,
+        "y": 22.362422138008508,
+        "vx": 64.5614816642392,
+        "vy": 18.44602572457988,
+        "angle": 15.945304093990565,
+        "time": 1.2664463212952328,
+        "reason": "Release ring cleared the pin",
+        "speed": 67.14492370770672,
+        "energy": 563555.0974642196
+      },
+      "range": 340.9918053178943,
+      "flight": 20.19259638542497,
+      "eventSequence": 12,
+      "eventRetained": 12,
+      "props": [
+        "route-forest-bough-6-0",
+        "route-floor-log-4",
+        "route-floor-log-3"
+      ],
+      "gaps": [
+        {
+          "from": "release",
+          "to": "route-forest-bough-6-0",
+          "seconds": 7.457588417175922,
+          "fromT": 0,
+          "toT": 7.457588417175922,
+          "fromX": -0.7902144686741717,
+          "fromY": 22.362422138008508,
+          "toX": 340.9878425941044,
+          "toY": -25.52273300904531
+        },
+        {
+          "from": "route-forest-bough-6-0",
+          "to": "forest-floor",
+          "seconds": 3.4197409949038438,
+          "fromT": 7.457588417175922,
+          "toT": 10.877329412079765,
+          "fromX": 340.9878425941044,
+          "fromY": -25.52273300904531,
+          "toX": 294.9553055402951,
+          "toY": -31.99350942774891
+        },
+        {
+          "from": "forest-floor",
+          "to": "finished",
+          "seconds": 2.4959406279098353,
+          "fromT": 17.696655757515135,
+          "toT": 20.19259638542497,
+          "fromX": 219.00937624736315,
+          "fromY": -31.975290202950955,
+          "toX": 215.0928793872408,
+          "toY": -31.51946021103897
+        },
+        {
+          "from": "forest-floor",
+          "to": "route-floor-log-4",
+          "seconds": 2.2104023326588695,
+          "fromT": 10.877329412079765,
+          "toT": 13.087731744738635,
+          "fromX": 294.9553055402951,
+          "fromY": -31.99350942774891,
+          "toX": 265.30383152498723,
+          "toY": -31.627702897617016
+        },
+        {
+          "from": "forest-floor",
+          "to": "forest-floor",
+          "seconds": 1.464643490940853,
+          "fromT": 13.803257119900245,
+          "toT": 15.267900610841098,
+          "fromX": 255.0552250265005,
+          "fromY": -31.975055491445467,
+          "toX": 238.24336786663062,
+          "toY": -31.978210336294442
+        }
+      ],
+      "obstructions": [],
+      "shots": 1
+    },
+    {
+      "id": "large",
+      "draw": 1,
+      "weapon": "staff",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -0.7902144686741717,
+        "y": 22.362422138008508,
+        "vx": 64.5614816642392,
+        "vy": 18.44602572457988,
+        "angle": 15.945304093990565,
+        "time": 1.2664463212952328,
+        "reason": "Release ring cleared the pin",
+        "speed": 67.14492370770672,
+        "energy": 563555.0974642196
+      },
+      "range": 376.3677340798713,
+      "flight": 18.33827710331699,
+      "eventSequence": 12,
+      "eventRetained": 12,
+      "props": [
+        "route-forest-bough-7-0",
+        "route-floor-log-7"
+      ],
+      "gaps": [
+        {
+          "from": "release",
+          "to": "route-forest-bough-7-0",
+          "seconds": 8.535915391011024,
+          "fromT": 0,
+          "toT": 8.535915391011024,
+          "fromX": -0.7902144686741717,
+          "fromY": 22.362422138008508,
+          "toX": 375.98595978297567,
+          "toY": -25.463887162988506
+        },
+        {
+          "from": "route-floor-log-7",
+          "to": "forest-floor",
+          "seconds": 2.2003245104734948,
+          "fromT": 10.706006434928394,
+          "toT": 12.906330945401889,
+          "fromX": 373.7770706059509,
+          "fromY": -31.68054981446095,
+          "toX": 362.8056163259226,
+          "toY": -31.982042440606797
+        },
+        {
+          "from": "route-forest-bough-7-0",
+          "to": "route-floor-log-7",
+          "seconds": 2.1700910439173704,
+          "fromT": 8.535915391011024,
+          "toT": 10.706006434928394,
+          "fromX": 375.98595978297567,
+          "fromY": -25.463887162988506,
+          "toX": 373.7770706059509,
+          "toY": -31.68054981446095
+        },
+        {
+          "from": "forest-floor",
+          "to": "forest-floor",
+          "seconds": 1.4780805871883018,
+          "fromT": 12.906330945401889,
+          "toT": 14.38441153259019,
+          "fromX": 362.8056163259226,
+          "fromY": -31.982042440606797,
+          "toX": 360.86886128129,
+          "toY": -31.9814168786165
+        },
+        {
+          "from": "forest-floor",
+          "to": "finished",
+          "seconds": 0.9909858482279965,
+          "fromT": 17.347291255088994,
+          "toT": 18.33827710331699,
+          "fromX": 355.7443673699497,
+          "fromY": -31.97420785624054,
+          "toX": 355.65117411407425,
+          "toY": -31.519110429935395
+        }
+      ],
+      "obstructions": [],
+      "shots": 3
+    },
+    {
+      "id": "elephant",
+      "draw": 0.6,
+      "weapon": "none",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -7.330751969911442,
+        "y": 44.11327723168224,
+        "vx": 22.53840335398276,
+        "vy": 18.701818165860097,
+        "angle": 39.68506106659942,
+        "time": 2.0950723436196745,
+        "reason": "Release ring cleared the pin",
+        "speed": 29.28715808090153,
+        "energy": 2144344.07113929
+      },
+      "range": 54.79106792961605,
+      "flight": 17.24040257368646,
+      "eventSequence": 14,
+      "eventRetained": 14,
+      "props": [
+        "oak-scaffold-0-east",
+        "cloud-one",
+        "route-opening-catch-4",
+        "route-descent-fork-0",
+        "canopy-bug"
+      ],
+      "gaps": [
+        {
+          "from": "cloud-one",
+          "to": "route-opening-catch-4",
+          "seconds": 4.707974359471926,
+          "fromT": 2.228092809881178,
+          "toT": 6.9360671693531035,
+          "fromX": 42.77750118563879,
+          "fromY": 41.91509494835606,
+          "toX": 34.02461710871266,
+          "toY": -7.532406552500782
+        },
+        {
+          "from": "route-opening-catch-4",
+          "to": "route-descent-fork-0",
+          "seconds": 2.266098657384239,
+          "fromT": 9.064394629537881,
+          "toT": 11.33049328692212,
+          "fromX": 28.93935662088789,
+          "fromY": -5.7755361782628105,
+          "toX": 46.20147052906072,
+          "toY": -12.149569411364764
+        },
+        {
+          "from": "route-descent-fork-0",
+          "to": "finished",
+          "seconds": 2.0238113795514607,
+          "fromT": 15.216591194134997,
+          "toT": 17.24040257368646,
+          "fromX": 46.978092210321655,
+          "fromY": -12.149026560855301,
+          "toX": 47.685536947942204,
+          "toY": -10.815734352787834
+        },
+        {
+          "from": "oak-scaffold-0-east",
+          "to": "cloud-one",
+          "seconds": 1.9382982226684913,
+          "fromT": 0.2897945872126866,
+          "toT": 2.228092809881178,
+          "fromX": -1.1403798612355427,
+          "fromY": 52.01403817258544,
+          "toX": 42.77750118563879,
+          "toY": 41.91509494835606
+        },
+        {
+          "from": "route-descent-fork-0",
+          "to": "canopy-bug",
+          "seconds": 1.8717879895375056,
+          "fromT": 11.33049328692212,
+          "toT": 13.202281276459626,
+          "fromX": 46.20147052906072,
+          "fromY": -12.149569411364764,
+          "toX": 49.94385359871629,
+          "toY": -11.985956192761426
+        }
+      ],
+      "obstructions": [],
+      "shots": 0
+    },
+    {
+      "id": "elephant",
+      "draw": 0.75,
+      "weapon": "none",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -6.044619896271604,
+        "y": 44.44302229852062,
+        "vx": 35.509349164914646,
+        "vy": 22.98832727082664,
+        "angle": 32.918536059052094,
+        "time": 2.0570664961163714,
+        "reason": "Release ring cleared the pin",
+        "speed": 42.30102916982583,
+        "energy": 4473442.672066141
+      },
+      "range": 235.04808191167396,
+      "flight": 23.68239372549814,
+      "eventSequence": 16,
+      "eventRetained": 16,
+      "props": [
+        "oak-scaffold-0-east",
+        "route-descent-fork-8",
+        "route-upper-bay-0-a",
+        "route-mid-bay-4",
+        "route-forest-bough-2-2",
+        "route-floor-log-3"
+      ],
+      "gaps": [
+        {
+          "from": "oak-scaffold-0-east",
+          "to": "route-descent-fork-8",
+          "seconds": 4.1996461491152495,
+          "fromT": 0.42281505347424764,
+          "toT": 4.622461202589497,
+          "fromX": 8.10616620109262,
+          "fromY": 56.129679054942365,
+          "toX": 153.18238089129397,
+          "toY": 24.92110507730446
+        },
+        {
+          "from": "route-mid-bay-4",
+          "to": "route-forest-bough-2-2",
+          "seconds": 3.3587667731041027,
+          "fromT": 8.02873528507297,
+          "toT": 11.387502058177073,
+          "fromX": 194.2529791638068,
+          "fromY": 3.09825644381731,
+          "toX": 202.79237569968154,
+          "toY": -5.54701483152265
+        },
+        {
+          "from": "forest-floor",
+          "to": "forest-floor",
+          "seconds": 2.9834590290101346,
+          "fromT": 16.00521252982875,
+          "toT": 18.988671558838885,
+          "fromX": 220.1852633816979,
+          "fromY": -31.969940603860262,
+          "toX": 221.49414404667058,
+          "toY": -31.95368127398579
+        },
+        {
+          "from": "route-forest-bough-2-2",
+          "to": "forest-floor",
+          "seconds": 2.6319049396042704,
+          "fromT": 13.373307590224478,
+          "toT": 16.00521252982875,
+          "fromX": 204.47704393922217,
+          "fromY": -5.485268213054949,
+          "toX": 220.1852633816979,
+          "toY": -31.969940603860262
+        },
+        {
+          "from": "route-forest-bough-2-2",
+          "to": "route-forest-bough-2-2",
+          "seconds": 1.9858055320474044,
+          "fromT": 11.387502058177073,
+          "toT": 13.373307590224478,
+          "fromX": 202.79237569968154,
+          "fromY": -5.54701483152265,
+          "toX": 204.47704393922217,
+          "toY": -5.485268213054949
+        }
+      ],
+      "obstructions": [],
+      "shots": 0
+    },
+    {
+      "id": "elephant",
+      "draw": 0.75,
+      "weapon": "air",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -6.044619896271604,
+        "y": 44.44302229852062,
+        "vx": 35.509349164914646,
+        "vy": 22.98832727082664,
+        "angle": 32.918536059052094,
+        "time": 2.0570664961163714,
+        "reason": "Release ring cleared the pin",
+        "speed": 42.30102916982583,
+        "energy": 4473442.672066141
+      },
+      "range": 255.0823080893209,
+      "flight": 28.97470799033459,
+      "eventSequence": 15,
+      "eventRetained": 15,
+      "props": [
+        "oak-scaffold-0-east",
+        "route-upper-bay-1-a",
+        "route-descent-fork-10",
+        "route-forest-bough-2-0",
+        "route-floor-log-2"
+      ],
+      "gaps": [
+        {
+          "from": "route-upper-bay-1-a",
+          "to": "route-descent-fork-10",
+          "seconds": 6.147445833659777,
+          "fromT": 10.641637300924819,
+          "toT": 16.789083134584597,
+          "fromX": 233.61290693958864,
+          "fromY": 25.021722852037485,
+          "toX": 250.69523880711967,
+          "toY": 21.211578922286478
+        },
+        {
+          "from": "oak-scaffold-0-east",
+          "to": "route-upper-bay-1-a",
+          "seconds": 5.900407824888154,
+          "fromT": 0.42281505347424764,
+          "toT": 6.323222878362401,
+          "fromX": 8.10616620109262,
+          "fromY": 56.129679054942365,
+          "toX": 229.99140441221505,
+          "toY": 25.132816986787503
+        },
+        {
+          "from": "route-upper-bay-1-a",
+          "to": "route-upper-bay-1-a",
+          "seconds": 4.318414422562418,
+          "fromT": 6.323222878362401,
+          "toT": 10.641637300924819,
+          "fromX": 229.99140441221505,
+          "fromY": 25.132816986787503,
+          "toX": 233.61290693958864,
+          "toY": 25.021722852037485
+        },
+        {
+          "from": "forest-floor",
+          "to": "route-forest-bough-2-0",
+          "seconds": 3.2542506924712455,
+          "fromT": 19.04092959915594,
+          "toT": 22.295180291627187,
+          "fromX": 217.24067267248475,
+          "fromY": -31.950514698915647,
+          "toX": 203.39721967110455,
+          "toY": -24.928270900481103
+        },
+        {
+          "from": "route-descent-fork-10",
+          "to": "forest-floor",
+          "seconds": 2.2518464645713436,
+          "fromT": 16.789083134584597,
+          "toT": 19.04092959915594,
+          "fromX": 250.69523880711967,
+          "fromY": 21.211578922286478,
+          "toX": 217.24067267248475,
+          "toY": -31.950514698915647
+        }
+      ],
+      "obstructions": [],
+      "shots": 1
+    },
+    {
+      "id": "elephant",
+      "draw": 0.75,
+      "weapon": "staff",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -6.044619896271604,
+        "y": 44.44302229852062,
+        "vx": 35.509349164914646,
+        "vy": 22.98832727082664,
+        "angle": 32.918536059052094,
+        "time": 2.0570664961163714,
+        "reason": "Release ring cleared the pin",
+        "speed": 42.30102916982583,
+        "energy": 4473442.672066141
+      },
+      "range": 381.1097221001269,
+      "flight": 26.09576504195857,
+      "eventSequence": 16,
+      "eventRetained": 16,
+      "props": [
+        "oak-scaffold-0-east",
+        "route-upper-bay-2-a",
+        "route-upper-bay-2-b",
+        "route-forest-bough-6-1",
+        "route-forest-bough-7-0",
+        "route-forest-bough-6-0"
+      ],
+      "gaps": [
+        {
+          "from": "oak-scaffold-0-east",
+          "to": "route-upper-bay-2-a",
+          "seconds": 7.0358325190492295,
+          "fromT": 0.42281505347424764,
+          "toT": 7.458647572523477,
+          "fromX": 8.10616620109262,
+          "fromY": 56.129679054942365,
+          "toX": 274.9642363516942,
+          "toY": 25.155178806203025
+        },
+        {
+          "from": "route-upper-bay-2-b",
+          "to": "route-forest-bough-6-1",
+          "seconds": 4.019118373474468,
+          "fromT": 11.349496210673774,
+          "toT": 15.368614584148242,
+          "fromX": 288.71799275845717,
+          "fromY": 23.7176194632159,
+          "toX": 342.11801190310507,
+          "toY": -14.408771939513338
+        },
+        {
+          "from": "route-upper-bay-2-a",
+          "to": "route-upper-bay-2-b",
+          "seconds": 3.743575979075011,
+          "fromT": 7.458647572523477,
+          "toT": 11.202223551598488,
+          "fromX": 274.9642363516942,
+          "fromY": 25.155178806203025,
+          "toX": 290.0412905877471,
+          "toY": 23.73395220476975
+        },
+        {
+          "from": "route-forest-bough-7-0",
+          "to": "route-forest-bough-6-0",
+          "seconds": 2.631904939604482,
+          "fromT": 17.154889416803993,
+          "toT": 19.786794356408475,
+          "fromX": 375.97555968101506,
+          "fromY": -25.430791031374113,
+          "toX": 346.0019697603692,
+          "toY": -25.276604692250412
+        },
+        {
+          "from": "route-forest-bough-6-1",
+          "to": "route-forest-bough-7-0",
+          "seconds": 1.7862748326557494,
+          "fromT": 15.368614584148242,
+          "toT": 17.154889416803993,
+          "fromX": 342.11801190310507,
+          "fromY": -14.408771939513338,
+          "toX": 375.97555968101506,
+          "toY": -25.430791031374113
+        }
+      ],
+      "obstructions": [],
+      "shots": 3
+    },
+    {
+      "id": "elephant",
+      "draw": 1,
+      "weapon": "none",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -9.221120436569226,
+        "y": 43.405360638915596,
+        "vx": 50.55534908309665,
+        "vy": 35.61115848552184,
+        "angle": 35.16084399870182,
+        "time": 2.023811379550981,
+        "reason": "Release ring cleared the pin",
+        "speed": 61.838482594535876,
+        "energy": 9559994.82398679
+      },
+      "range": 478.4311100094004,
+      "flight": 16.85084263677747,
+      "eventSequence": 15,
+      "eventRetained": 15,
+      "props": [
+        "oak-scaffold-0-east",
+        "route-descent-fork-10",
+        "route-forest-bough-6-1",
+        "route-forest-bough-6-2",
+        "route-forest-bough-8-0",
+        "route-floor-log-10"
+      ],
+      "gaps": [
+        {
+          "from": "oak-scaffold-0-east",
+          "to": "route-descent-fork-10",
+          "seconds": 5.401581076407299,
+          "fromT": 0.1900292375165158,
+          "toT": 5.591610313923815,
+          "fromX": 0.4452024981657176,
+          "fromY": 52.740788468039035,
+          "toX": 251.69145535718175,
+          "toY": 21.223950250902263
+        },
+        {
+          "from": "route-forest-bough-6-2",
+          "to": "forest-floor",
+          "seconds": 2.413371316459525,
+          "fromT": 8.15700502039661,
+          "toT": 10.570376336856135,
+          "fromX": 347.650947149395,
+          "fromY": -0.8023958950866575,
+          "toX": 411.749874330894,
+          "toY": -31.955200519767715
+        },
+        {
+          "from": "route-descent-fork-10",
+          "to": "route-forest-bough-6-1",
+          "seconds": 2.2423450026947487,
+          "fromT": 5.591610313923815,
+          "toT": 7.833955316618564,
+          "fromX": 251.69145535718175,
+          "fromY": 21.223950250902263,
+          "toX": 343.91677303948296,
+          "toY": -14.226901032922122
+        },
+        {
+          "from": "route-floor-log-10",
+          "to": "finished",
+          "seconds": 1.5439875548221238,
+          "fromT": 15.306855081955348,
+          "toT": 16.85084263677747,
+          "fromX": 476.83157073126057,
+          "fromY": -31.617938742289077,
+          "toX": 476.27224302399975,
+          "toY": -28.564684385364533
+        },
+        {
+          "from": "forest-floor",
+          "to": "forest-floor",
+          "seconds": 1.0166564207132645,
+          "fromT": 11.753308340396336,
+          "toT": 12.7699647611096,
+          "fromX": 435.54901944370414,
+          "fromY": -31.954235106904203,
+          "toX": 449.28974104132067,
+          "toY": -31.951392987518364
+        }
+      ],
+      "obstructions": [],
+      "shots": 0
+    },
+    {
+      "id": "elephant",
+      "draw": 1,
+      "weapon": "air",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -9.221120436569226,
+        "y": 43.405360638915596,
+        "vx": 50.55534908309665,
+        "vy": 35.61115848552184,
+        "angle": 35.16084399870182,
+        "time": 2.023811379550981,
+        "reason": "Release ring cleared the pin",
+        "speed": 61.838482594535876,
+        "energy": 9559994.82398679
+      },
+      "range": 470.37549600796257,
+      "flight": 29.901100523227854,
+      "eventSequence": 20,
+      "eventRetained": 20,
+      "props": [
+        "oak-scaffold-0-east",
+        "route-upper-bay-3-b",
+        "route-forest-bough-9-2"
+      ],
+      "gaps": [
+        {
+          "from": "oak-scaffold-0-east",
+          "to": "route-upper-bay-3-b",
+          "seconds": 7.1641022543728905,
+          "fromT": 0.1900292375165158,
+          "toT": 7.354131491889406,
+          "fromX": 0.4452024981657176,
+          "fromY": 52.740788468039035,
+          "toX": 329.2495857551403,
+          "toY": 23.632646626321606
+        },
+        {
+          "from": "route-upper-bay-3-b",
+          "to": "route-forest-bough-9-2",
+          "seconds": 6.123692178969149,
+          "fromT": 7.354131491889406,
+          "toT": 13.477823670858555,
+          "fromX": 329.2495857551403,
+          "fromY": 23.632646626321606,
+          "toX": 447.5658307744218,
+          "toY": 20.27799549900276
+        },
+        {
+          "from": "route-forest-bough-9-2",
+          "to": "forest-floor",
+          "seconds": 3.6913179387593544,
+          "fromT": 17.686971281850376,
+          "toT": 21.37828922060973,
+          "fromX": 453.0147673965017,
+          "fromY": 20.277892336069655,
+          "toX": 462.79510768026023,
+          "toY": -31.98700120796241
+        },
+        {
+          "from": "forest-floor",
+          "to": "forest-floor",
+          "seconds": 3.4822857774911284,
+          "fromT": 21.37828922060973,
+          "toT": 24.86057499810086,
+          "fromX": 462.79510768026023,
+          "fromY": -31.98700120796241,
+          "toX": 469.47847796600547,
+          "toY": -31.95957579315492
+        },
+        {
+          "from": "route-forest-bough-9-2",
+          "to": "route-forest-bough-9-2",
+          "seconds": 1.187682734478372,
+          "fromT": 13.477823670858555,
+          "toT": 14.665506405336927,
+          "fromX": 447.5658307744218,
+          "fromY": 20.27799549900276,
+          "toX": 448.6904679696521,
+          "toY": 20.27999839235361
+        }
+      ],
+      "obstructions": [],
+      "shots": 1
+    },
+    {
+      "id": "elephant",
+      "draw": 1,
+      "weapon": "staff",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -9.221120436569226,
+        "y": 43.405360638915596,
+        "vx": 50.55534908309665,
+        "vy": 35.61115848552184,
+        "angle": 35.16084399870182,
+        "time": 2.023811379550981,
+        "reason": "Release ring cleared the pin",
+        "speed": 61.838482594535876,
+        "energy": 9559994.82398679
+      },
+      "range": 516.0099801916494,
+      "flight": 22.39969637226129,
+      "eventSequence": 16,
+      "eventRetained": 16,
+      "props": [
+        "oak-scaffold-0-east",
+        "route-upper-bay-4-b",
+        "route-forest-bough-10-1",
+        "route-forest-bough-11-2",
+        "route-forest-bough-9-0",
+        "route-forest-bough-9-1",
+        "route-floor-log-9"
+      ],
+      "gaps": [
+        {
+          "from": "oak-scaffold-0-east",
+          "to": "route-upper-bay-4-b",
+          "seconds": 8.427796683857602,
+          "fromT": 0.1900292375165158,
+          "toT": 8.617825921374118,
+          "fromX": 0.4452024981657176,
+          "fromY": 52.740788468039035,
+          "toX": 379.5309753368298,
+          "toY": 23.71563705190953
+        },
+        {
+          "from": "route-upper-bay-4-b",
+          "to": "route-forest-bough-10-1",
+          "seconds": 2.5986498230381105,
+          "fromT": 8.617825921374118,
+          "toT": 11.216475744412229,
+          "fromX": 379.5309753368298,
+          "fromY": 23.71563705190953,
+          "toX": 483.9419080077797,
+          "toY": -14.547942575962571
+        },
+        {
+          "from": "route-forest-bough-10-1",
+          "to": "route-forest-bough-9-0",
+          "seconds": 1.800527025469492,
+          "fromT": 14.166679656855933,
+          "toT": 15.967206682325426,
+          "fromX": 484.7559931640961,
+          "fromY": -14.530306858521614,
+          "toX": 449.762438274805,
+          "toY": -24.192100918025666
+        },
+        {
+          "from": "route-forest-bough-11-2",
+          "to": "route-forest-bough-10-1",
+          "seconds": 1.7340167923381173,
+          "fromT": 12.432662864517816,
+          "toT": 14.166679656855933,
+          "fromX": 515.9983352757097,
+          "fromY": -2.2697242413496563,
+          "toX": 484.7559931640961,
+          "toY": -14.530306858521614
+        },
+        {
+          "from": "route-forest-bough-9-0",
+          "to": "route-floor-log-9",
+          "seconds": 1.3634597791813832,
+          "fromT": 17.088379183673183,
+          "toT": 18.451838962854566,
+          "fromX": 448.16182380475004,
+          "fromY": -24.333475110829244,
+          "toX": 440.5528128343852,
+          "toY": -31.63515383457081
+        }
+      ],
+      "obstructions": [],
+      "shots": 3
+    }
+  ],
+  "after": [
+    {
+      "id": "small",
+      "draw": 0.4,
+      "weapon": "none",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -0.6149470518935163,
+        "y": 2.9766370964548137,
+        "vx": 4.979662369640112,
+        "vy": 3.920073184168972,
+        "angle": 38.21041057852509,
+        "time": 0.5029197159992246,
+        "reason": "Release ring cleared the pin",
+        "speed": 6.33750827098872,
+        "energy": 0.5020501385606305
+      },
+      "range": 5.7948367533473,
+      "flight": 2.9095745520734746,
+      "eventSequence": 3,
+      "eventRetained": 3,
+      "props": [
+        "launch-bough"
+      ],
+      "gaps": [
+        {
+          "from": "release",
+          "to": "launch-bough",
+          "seconds": 1.382415902271021,
+          "fromT": 0,
+          "toT": 1.382415902271021,
+          "fromX": -0.6149470518935163,
+          "fromY": 2.9766370964548137,
+          "toX": 5.2841362702947094,
+          "toY": 0.001096285665692247
+        },
+        {
+          "from": "launch-bough",
+          "to": "finished",
+          "seconds": 0.8709097520961784,
+          "fromT": 2.038664799977296,
+          "toT": 2.9095745520734746,
+          "fromX": 5.298346766645161,
+          "fromY": 0.0034177775357086796,
+          "toX": 5.354655864958794,
+          "toY": 0.028221487987197848
+        },
+        {
+          "from": "launch-bough",
+          "to": "launch-bough",
+          "seconds": 0.5102795167211411,
+          "fromT": 1.382415902271021,
+          "toT": 1.892695418992162,
+          "fromX": 5.2841362702947094,
+          "fromY": 0.001096285665692247,
+          "toX": 5.153093582179324,
+          "toY": 0.0029558533962352495
+        },
+        {
+          "from": "launch-bough",
+          "to": "launch-bough",
+          "seconds": 0.14596938098513412,
+          "fromT": 1.892695418992162,
+          "toT": 2.038664799977296,
+          "fromX": 5.153093582179324,
+          "fromY": 0.0029558533962352495,
+          "toX": 5.298346766645161,
+          "toY": 0.0034177775357086796
+        }
+      ],
+      "obstructions": [],
+      "shots": 0
+    },
+    {
+      "id": "small",
+      "draw": 0.75,
+      "weapon": "none",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -0.4540356397560218,
+        "y": 3.026837364862814,
+        "vx": 15.519956177989881,
+        "vy": 9.183459277221996,
+        "angle": 30.61362663911203,
+        "time": 0.4771604134724349,
+        "reason": "Release ring cleared the pin",
+        "speed": 18.033440161630867,
+        "energy": 4.065062050789012
+      },
+      "range": 67.80446799193153,
+      "flight": 13.622991136310128,
+      "eventSequence": 14,
+      "eventRetained": 14,
+      "props": [
+        "route-perch-0",
+        "route-opening-catch-0",
+        "route-opening-catch-4",
+        "route-opening-catch-5",
+        "opening-skip-3",
+        "opening-skip-4"
+      ],
+      "gaps": [
+        {
+          "from": "opening-skip-3",
+          "to": "opening-skip-4",
+          "seconds": 1.7491793049142963,
+          "fromT": 7.5769148432368,
+          "toT": 9.326094148151096,
+          "fromX": 46.281925084029076,
+          "fromY": -20.13999889180815,
+          "toX": 55.87354757966478,
+          "toY": -28.935805539023697
+        },
+        {
+          "from": "route-perch-0",
+          "to": "route-opening-catch-0",
+          "seconds": 1.594623489753566,
+          "fromT": 1.4523340091294479,
+          "toT": 3.046957498883014,
+          "fromX": 14.240636128163217,
+          "fromY": 5.865637020444472,
+          "toX": 21.455647369415804,
+          "toY": -1.0244136598387352
+        },
+        {
+          "from": "opening-skip-4",
+          "to": "forest-floor",
+          "seconds": 1.3762827350026932,
+          "fromT": 9.326094148151096,
+          "toT": 10.70237688315379,
+          "fromX": 55.87354757966478,
+          "fromY": -28.935805539023697,
+          "toX": 63.331384072200656,
+          "toY": -31.99913701251549
+        },
+        {
+          "from": "route-opening-catch-4",
+          "to": "route-opening-catch-5",
+          "seconds": 1.338257097939339,
+          "fromT": 5.041463494528629,
+          "toT": 6.379720592467968,
+          "fromX": 32.810652953505745,
+          "fromY": -7.101156385039941,
+          "toX": 38.15820252458542,
+          "toY": -13.312978986874995
+        },
+        {
+          "from": "route-opening-catch-5",
+          "to": "opening-skip-3",
+          "seconds": 1.197194250768832,
+          "fromT": 6.379720592467968,
+          "toT": 7.5769148432368,
+          "fromX": 38.15820252458542,
+          "fromY": -13.312978986874995,
+          "toX": 46.281925084029076,
+          "toY": -20.13999889180815
+        }
+      ],
+      "obstructions": [],
+      "shots": 0
+    },
+    {
+      "id": "small",
+      "draw": 0.75,
+      "weapon": "air",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -0.4540356397560218,
+        "y": 3.026837364862814,
+        "vx": 15.519956177989881,
+        "vy": 9.183459277221996,
+        "angle": 30.61362663911203,
+        "time": 0.4771604134724349,
+        "reason": "Release ring cleared the pin",
+        "speed": 18.033440161630867,
+        "energy": 4.065062050789012
+      },
+      "range": 68.18930222803054,
+      "flight": 12.931169868447812,
+      "eventSequence": 12,
+      "eventRetained": 12,
+      "props": [
+        "route-perch-0",
+        "route-opening-catch-5",
+        "opening-skip-3",
+        "opening-skip-4",
+        "floor-log-2"
+      ],
+      "gaps": [
+        {
+          "from": "route-perch-0",
+          "to": "route-opening-catch-5",
+          "seconds": 4.120261770832483,
+          "fromT": 1.4523340091294479,
+          "toT": 5.572595779961932,
+          "fromX": 14.240636128163217,
+          "fromY": 5.865637020444472,
+          "toX": 38.19134726265442,
+          "toY": -13.32766548600998
+        },
+        {
+          "from": "opening-skip-3",
+          "to": "opening-skip-4",
+          "seconds": 1.9221346218798763,
+          "fromT": 7.19175193878863,
+          "toT": 9.113886560668506,
+          "fromX": 43.66866609617294,
+          "fromY": -18.833381417945006,
+          "toX": 56.39508821905307,
+          "toY": -29.193864814936052
+        },
+        {
+          "from": "route-opening-catch-5",
+          "to": "opening-skip-3",
+          "seconds": 1.6191561588266978,
+          "fromT": 5.572595779961932,
+          "toT": 7.19175193878863,
+          "fromX": 38.19134726265442,
+          "fromY": -13.32766548600998,
+          "toX": 43.66866609617294,
+          "toY": -18.833381417945006
+        },
+        {
+          "from": "release",
+          "to": "route-perch-0",
+          "seconds": 1.0941570406617238,
+          "fromT": 0,
+          "toT": 1.0941570406617238,
+          "fromX": -0.4540356397560218,
+          "fromY": 3.026837364862814,
+          "toX": 11.770957478214632,
+          "toY": 5.879215468683424
+        },
+        {
+          "from": "forest-floor",
+          "to": "forest-floor",
+          "seconds": 0.9935730974618373,
+          "fromT": 9.938184241525734,
+          "toT": 10.931757338987572,
+          "fromX": 62.45208661664186,
+          "fromY": -31.997831965500545,
+          "toX": 66.45776196958639,
+          "toY": -31.998154749424277
+        }
+      ],
+      "obstructions": [],
+      "shots": 1
+    },
+    {
+      "id": "small",
+      "draw": 0.75,
+      "weapon": "staff",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -0.4540356397560218,
+        "y": 3.026837364862814,
+        "vx": 15.519956177989881,
+        "vy": 9.183459277221996,
+        "angle": 30.61362663911203,
+        "time": 0.4771604134724349,
+        "reason": "Release ring cleared the pin",
+        "speed": 18.033440161630867,
+        "energy": 4.065062050789012
+      },
+      "range": 73.15161397722069,
+      "flight": 16.649095866482565,
+      "eventSequence": 11,
+      "eventRetained": 11,
+      "props": [
+        "route-perch-0",
+        "amazon-bough-1-1",
+        "route-opening-catch-7",
+        "opening-exit-skid",
+        "forest-pod",
+        "floor-log-2"
+      ],
+      "gaps": [
+        {
+          "from": "route-perch-0",
+          "to": "amazon-bough-1-1",
+          "seconds": 4.347188959758952,
+          "fromT": 1.4523340091294479,
+          "toT": 5.799522968888401,
+          "fromX": 14.240636128163217,
+          "fromY": 5.865637020444472,
+          "toX": 47.9937717239918,
+          "toY": -2.026722280315945
+        },
+        {
+          "from": "forest-pod",
+          "to": "floor-log-2",
+          "seconds": 2.1490618108063444,
+          "fromT": 10.826266861973105,
+          "toT": 12.97532867277945,
+          "fromX": 72.92270069385613,
+          "fromY": -30.725427043010498,
+          "toX": 70.69571905661225,
+          "toY": -31.738153946680367
+        },
+        {
+          "from": "amazon-bough-1-1",
+          "to": "route-opening-catch-7",
+          "seconds": 1.9577069920359174,
+          "fromT": 5.799522968888401,
+          "toT": 7.7572299609243185,
+          "fromX": 47.9937717239918,
+          "fromY": -2.026722280315945,
+          "toX": 50.352564832614235,
+          "toY": -26.741235108264043
+        },
+        {
+          "from": "route-opening-catch-7",
+          "to": "opening-exit-skid",
+          "seconds": 1.84853661466048,
+          "fromT": 7.7572299609243185,
+          "toT": 9.605766575584799,
+          "fromX": 50.352564832614235,
+          "fromY": -26.741235108264043,
+          "toX": 63.01995698023921,
+          "toY": -28.853956188237014
+        },
+        {
+          "from": "forest-floor",
+          "to": "finished",
+          "seconds": 1.3983621371701442,
+          "fromT": 15.250733729312422,
+          "toT": 16.649095866482565,
+          "fromX": 63.55025609157167,
+          "fromY": -31.996556983849807,
+          "toX": 62.9849855567355,
+          "toY": -31.974354520397878
+        }
+      ],
+      "obstructions": [],
+      "shots": 3
+    },
+    {
+      "id": "small",
+      "draw": 1,
+      "weapon": "none",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -0.789714821307589,
+        "y": 2.9051880916352393,
+        "vx": 16.911576410263713,
+        "vy": 13.678227452097591,
+        "angle": 38.96622786159433,
+        "time": 0.5274523850723586,
+        "reason": "Release ring cleared the pin",
+        "speed": 21.75075453660181,
+        "energy": 5.913691536393803
+      },
+      "range": 68.70973836231248,
+      "flight": 13.824159022709805,
+      "eventSequence": 14,
+      "eventRetained": 14,
+      "props": [
+        "route-perch-1",
+        "route-opening-catch-0",
+        "opening-skip-1",
+        "opening-skip-2",
+        "route-descent-fork-0",
+        "opening-skip-4",
+        "floor-log-2"
+      ],
+      "gaps": [
+        {
+          "from": "route-descent-fork-0",
+          "to": "opening-skip-4",
+          "seconds": 2.4299608716937033,
+          "fromT": 7.8811199397436305,
+          "toT": 10.311080811437334,
+          "fromX": 46.997355436444096,
+          "fromY": -12.196040662294076,
+          "toX": 53.87767339421398,
+          "toY": -27.937724247691637
+        },
+        {
+          "from": "opening-skip-1",
+          "to": "opening-skip-2",
+          "seconds": 2.1404753766307483,
+          "fromT": 4.106768802842304,
+          "toT": 6.247244179473053,
+          "fromX": 26.0502500768271,
+          "fromY": -5.824169498071916,
+          "toX": 37.651529595050775,
+          "toY": -12.823330633873814
+        },
+        {
+          "from": "route-perch-1",
+          "to": "route-opening-catch-0",
+          "seconds": 1.9356275898700983,
+          "fromT": 1.7724853405338141,
+          "toT": 3.7081129304039124,
+          "fromX": 16.63964897692481,
+          "fromY": 8.558631664054579,
+          "toX": 23.99403053491383,
+          "toY": -2.2960465646707027
+        },
+        {
+          "from": "release",
+          "to": "route-perch-1",
+          "seconds": 1.3272173968564722,
+          "fromT": 0,
+          "toT": 1.3272173968564722,
+          "fromX": -0.789714821307589,
+          "fromY": 2.9051880916352393,
+          "toX": 13.862368441789737,
+          "toY": 8.572938200834313
+        },
+        {
+          "from": "opening-skip-4",
+          "to": "forest-floor",
+          "seconds": 0.9972529978228071,
+          "fromT": 10.311080811437334,
+          "toT": 11.30833380926014,
+          "fromX": 53.87767339421398,
+          "fromY": -27.937724247691637,
+          "toX": 63.06453687764775,
+          "toY": -31.996642527691794
+        }
+      ],
+      "obstructions": [],
+      "shots": 0
+    },
+    {
+      "id": "small",
+      "draw": 1,
+      "weapon": "air",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -0.789714821307589,
+        "y": 2.9051880916352393,
+        "vx": 16.911576410263713,
+        "vy": 13.678227452097591,
+        "angle": 38.96622786159433,
+        "time": 0.5274523850723586,
+        "reason": "Release ring cleared the pin",
+        "speed": 21.75075453660181,
+        "energy": 5.913691536393803
+      },
+      "range": 70.07297816886997,
+      "flight": 11.426090620811173,
+      "eventSequence": 6,
+      "eventRetained": 6,
+      "props": [
+        "route-perch-1",
+        "route-opening-catch-5",
+        "opening-skip-4",
+        "floor-log-2"
+      ],
+      "gaps": [
+        {
+          "from": "route-perch-1",
+          "to": "route-opening-catch-5",
+          "seconds": 4.379081429554024,
+          "fromT": 1.3272173968564722,
+          "toT": 5.706298826410497,
+          "fromX": 13.862368441789737,
+          "fromY": 8.572938200834313,
+          "toX": 39.872082982174526,
+          "toY": -14.02919842805435
+        },
+        {
+          "from": "route-opening-catch-5",
+          "to": "opening-skip-4",
+          "seconds": 2.6176357901031624,
+          "fromT": 5.706298826410497,
+          "toT": 8.32393461651366,
+          "fromX": 39.872082982174526,
+          "fromY": -14.02919842805435,
+          "toX": 56.75778392275849,
+          "toY": -29.377941957023015
+        },
+        {
+          "from": "floor-log-2",
+          "to": "finished",
+          "seconds": 1.3419369983003087,
+          "fromT": 10.084153622510865,
+          "toT": 11.426090620811173,
+          "fromX": 69.5033377163168,
+          "fromY": -31.72830937598591,
+          "toX": 70.37174358439621,
+          "toY": -31.712536244265145
+        },
+        {
+          "from": "release",
+          "to": "route-perch-1",
+          "seconds": 1.3272173968564722,
+          "fromT": 0,
+          "toT": 1.3272173968564722,
+          "fromX": -0.789714821307589,
+          "fromY": 2.9051880916352393,
+          "toX": 13.862368441789737,
+          "toY": 8.572938200834313
+        },
+        {
+          "from": "opening-skip-4",
+          "to": "forest-floor",
+          "seconds": 1.0217856668959389,
+          "fromT": 8.32393461651366,
+          "toT": 9.345720283409598,
+          "fromX": 56.75778392275849,
+          "fromY": -29.377941957023015,
+          "toX": 65.98963940475531,
+          "toY": -31.999137632675716
+        }
+      ],
+      "obstructions": [],
+      "shots": 1
+    },
+    {
+      "id": "small",
+      "draw": 1,
+      "weapon": "staff",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -0.789714821307589,
+        "y": 2.9051880916352393,
+        "vx": 16.911576410263713,
+        "vy": 13.678227452097591,
+        "angle": 38.96622786159433,
+        "time": 0.5274523850723586,
+        "reason": "Release ring cleared the pin",
+        "speed": 21.75075453660181,
+        "energy": 5.913691536393803
+      },
+      "range": 69.2079360732714,
+      "flight": 13.463528787334768,
+      "eventSequence": 8,
+      "eventRetained": 8,
+      "props": [
+        "route-perch-1",
+        "amazon-bough-1-1",
+        "amazon-bough-1-0",
+        "opening-skip-4",
+        "floor-log-2"
+      ],
+      "gaps": [
+        {
+          "from": "route-perch-1",
+          "to": "amazon-bough-1-1",
+          "seconds": 4.54222367889035,
+          "fromT": 1.3272173968564722,
+          "toT": 5.869441075746823,
+          "fromX": 13.862368441789737,
+          "fromY": 8.572938200834313,
+          "toX": 49.62843552669706,
+          "toY": -2.2485605766293175
+        },
+        {
+          "from": "amazon-bough-1-0",
+          "to": "opening-skip-4",
+          "seconds": 3.2677515205411547,
+          "fromT": 6.894906643003732,
+          "toT": 10.162658163544886,
+          "fromX": 55.95150163591358,
+          "fromY": -3.966486992721422,
+          "toX": 57.99123600517551,
+          "toY": -29.99259766316298
+        },
+        {
+          "from": "release",
+          "to": "route-perch-1",
+          "seconds": 1.3272173968564722,
+          "fromT": 0,
+          "toT": 1.3272173968564722,
+          "fromX": -0.789714821307589,
+          "fromY": 2.9051880916352393,
+          "toX": 13.862368441789737,
+          "toY": 8.572938200834313
+        },
+        {
+          "from": "opening-skip-4",
+          "to": "forest-floor",
+          "seconds": 1.2376731547394986,
+          "fromT": 10.162658163544886,
+          "toT": 11.400331318284385,
+          "fromX": 57.99123600517551,
+          "fromY": -29.99259766316298,
+          "toX": 66.17824158442843,
+          "toY": -31.99915815879812
+        },
+        {
+          "from": "amazon-bough-1-1",
+          "to": "amazon-bough-1-0",
+          "seconds": 1.0254655672569086,
+          "fromT": 5.869441075746823,
+          "toT": 6.894906643003732,
+          "fromX": 49.62843552669706,
+          "fromY": -2.2485605766293175,
+          "toX": 55.95150163591358,
+          "toY": -3.966486992721422
+        }
+      ],
+      "obstructions": [],
+      "shots": 3
+    },
+    {
+      "id": "medium",
+      "draw": 0.4,
+      "weapon": "none",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -0.3156982747126838,
+        "y": 8.911706389026362,
+        "vx": 13.638018405490616,
+        "vy": 7.347630320059117,
+        "angle": 28.314048513663273,
+        "time": 0.8312499999999977,
+        "reason": "Release ring cleared the pin",
+        "speed": 15.491391717620237,
+        "energy": 239.98321734875282
+      },
+      "range": 89.95737808031892,
+      "flight": 13.904166666665994,
+      "eventSequence": 9,
+      "eventRetained": 9,
+      "props": [
+        "route-opening-catch-4",
+        "small-floor-fungus"
+      ],
+      "gaps": [
+        {
+          "from": "release",
+          "to": "route-opening-catch-4",
+          "seconds": 2.9583333333332806,
+          "fromT": 0,
+          "toT": 2.9583333333332806,
+          "fromX": -0.3156982747126838,
+          "fromY": 8.911706389026362,
+          "toX": 33.25733186149722,
+          "toY": -7.245139531374122
+        },
+        {
+          "from": "forest-floor",
+          "to": "forest-floor",
+          "seconds": 2.608333333333186,
+          "fromT": 5.48541666666647,
+          "toT": 8.093749999999657,
+          "fromX": 65.06602773601708,
+          "fromY": -31.99144959590363,
+          "toX": 88.03110367086616,
+          "toY": -31.990307610032207
+        },
+        {
+          "from": "route-opening-catch-4",
+          "to": "forest-floor",
+          "seconds": 2.52708333333319,
+          "fromT": 2.9583333333332806,
+          "toT": 5.48541666666647,
+          "fromX": 33.25733186149722,
+          "fromY": -7.245139531374122,
+          "toX": 65.06602773601708,
+          "toY": -31.99144959590363
+        },
+        {
+          "from": "small-floor-fungus",
+          "to": "forest-floor",
+          "seconds": 2.3145833333332018,
+          "fromT": 8.170833333332986,
+          "toT": 10.485416666666188,
+          "fromX": 88.81812833011271,
+          "fromY": -31.722094307223216,
+          "toX": 87.87793041467994,
+          "toY": -31.993852715770068
+        },
+        {
+          "from": "forest-floor",
+          "to": "forest-floor",
+          "seconds": 1.2729166666665943,
+          "fromT": 10.485416666666188,
+          "toT": 11.758333333332782,
+          "fromX": 87.87793041467994,
+          "fromY": -31.993852715770068,
+          "toX": 85.47335022371938,
+          "toY": -31.99209773647712
+        }
+      ],
+      "obstructions": [],
+      "shots": 0
+    },
+    {
+      "id": "medium",
+      "draw": 0.75,
+      "weapon": "none",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -0.5219983286879536,
+        "y": 8.820602870082743,
+        "vx": 34.38802922930884,
+        "vy": 12.247116445688397,
+        "angle": 19.603090411157645,
+        "time": 0.7895833333333312,
+        "reason": "Release ring cleared the pin",
+        "speed": 36.50381371185825,
+        "energy": 1332.5284155100505
+      },
+      "range": 88.90013141096956,
+      "flight": 6.997916666666387,
+      "eventSequence": 7,
+      "eventRetained": 7,
+      "props": [
+        "route-perch-2",
+        "route-descent-fork-1",
+        "amazon-bough-2-0"
+      ],
+      "gaps": [
+        {
+          "from": "route-descent-fork-1",
+          "to": "amazon-bough-2-0",
+          "seconds": 1.8458333333332289,
+          "fromT": 2.4208333333333134,
+          "toT": 4.266666666666542,
+          "fromX": 59.746116759074496,
+          "fromY": 13.173740933978987,
+          "toX": 86.30056083853805,
+          "toY": 2.7034281152445523
+        },
+        {
+          "from": "release",
+          "to": "route-perch-2",
+          "seconds": 1.7458333333333518,
+          "fromT": 0,
+          "toT": 1.7458333333333518,
+          "fromX": -0.5219983286879536,
+          "fromY": 8.820602870082743,
+          "toX": 46.96839980063886,
+          "toY": 13.884024895407979
+        },
+        {
+          "from": "amazon-bough-2-0",
+          "to": "amazon-bough-2-0",
+          "seconds": 1.0916666666666046,
+          "fromT": 4.266666666666542,
+          "toT": 5.358333333333147,
+          "fromX": 86.30056083853805,
+          "fromY": 2.7034281152445523,
+          "toX": 86.94369206538173,
+          "toY": 2.8070453607948775
+        },
+        {
+          "from": "amazon-bough-2-0",
+          "to": "finished",
+          "seconds": 0.8187499999999535,
+          "fromT": 6.1791666666664335,
+          "toT": 6.997916666666387,
+          "fromX": 88.32144427887977,
+          "fromY": 3.0224808840424817,
+          "toX": 88.19131329592665,
+          "toY": 3.09487577955296
+        },
+        {
+          "from": "route-perch-2",
+          "to": "route-descent-fork-1",
+          "seconds": 0.6749999999999616,
+          "fromT": 1.7458333333333518,
+          "toT": 2.4208333333333134,
+          "fromX": 46.96839980063886,
+          "fromY": 13.884024895407979,
+          "toX": 59.746116759074496,
+          "toY": 13.173740933978987
+        }
+      ],
+      "obstructions": [],
+      "shots": 0
+    },
+    {
+      "id": "medium",
+      "draw": 0.75,
+      "weapon": "air",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -0.5219983286879536,
+        "y": 8.820602870082743,
+        "vx": 34.38802922930884,
+        "vy": 12.247116445688397,
+        "angle": 19.603090411157645,
+        "time": 0.7895833333333312,
+        "reason": "Release ring cleared the pin",
+        "speed": 36.50381371185825,
+        "energy": 1332.5284155100505
+      },
+      "range": 161.04002991991058,
+      "flight": 11.206249999999482,
+      "eventSequence": 6,
+      "eventRetained": 6,
+      "props": [
+        "floor-log-4",
+        "route-floor-log-1"
+      ],
+      "gaps": [
+        {
+          "from": "release",
+          "to": "floor-log-4",
+          "seconds": 6.218749999999765,
+          "fromT": 0,
+          "toT": 6.218749999999765,
+          "fromX": -0.5219983286879536,
+          "fromY": 8.820602870082743,
+          "toX": 130.53586388314832,
+          "toY": -31.52391534571472
+        },
+        {
+          "from": "floor-log-4",
+          "to": "forest-floor",
+          "seconds": 1.591666666666577,
+          "fromT": 6.218749999999765,
+          "toT": 7.810416666666342,
+          "fromX": 130.53586388314832,
+          "fromY": -31.52391534571472,
+          "toX": 148.22997400867365,
+          "toY": -31.99112012479143
+        },
+        {
+          "from": "forest-floor",
+          "to": "forest-floor",
+          "seconds": 0.979166666666611,
+          "fromT": 7.810416666666342,
+          "toT": 8.789583333332953,
+          "fromX": 148.22997400867365,
+          "fromY": -31.99112012479143,
+          "toX": 155.67872759244543,
+          "toY": -31.995816901115305
+        },
+        {
+          "from": "route-floor-log-1",
+          "to": "finished",
+          "seconds": 0.8958333333332824,
+          "fromT": 10.3104166666662,
+          "toT": 11.206249999999482,
+          "fromX": 160.17571619323405,
+          "fromY": -31.642238458309645,
+          "toX": 160.3192474448756,
+          "toY": -31.563995754877546
+        },
+        {
+          "from": "forest-floor",
+          "to": "route-floor-log-1",
+          "seconds": 0.6520833333332963,
+          "fromT": 8.789583333332953,
+          "toT": 9.441666666666249,
+          "fromX": 155.67872759244543,
+          "fromY": -31.995816901115305,
+          "toX": 159.9889106865561,
+          "toY": -31.650450683662335
+        }
+      ],
+      "obstructions": [],
+      "shots": 1
+    },
+    {
+      "id": "medium",
+      "draw": 0.75,
+      "weapon": "staff",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -0.5219983286879536,
+        "y": 8.820602870082743,
+        "vx": 34.38802922930884,
+        "vy": 12.247116445688397,
+        "angle": 19.603090411157645,
+        "time": 0.7895833333333312,
+        "reason": "Release ring cleared the pin",
+        "speed": 36.50381371185825,
+        "energy": 1332.5284155100505
+      },
+      "range": 182.94813326445723,
+      "flight": 14.46458333333263,
+      "eventSequence": 9,
+      "eventRetained": 9,
+      "props": [
+        "route-descent-fork-2"
+      ],
+      "gaps": [
+        {
+          "from": "release",
+          "to": "route-descent-fork-2",
+          "seconds": 4.587499999999857,
+          "fromT": 0,
+          "toT": 4.587499999999857,
+          "fromX": -0.5219983286879536,
+          "fromY": 8.820602870082743,
+          "toX": 115.75567988067857,
+          "toY": 11.647017701415969
+        },
+        {
+          "from": "route-descent-fork-2",
+          "to": "forest-floor",
+          "seconds": 4.0874999999997685,
+          "fromT": 4.587499999999857,
+          "toT": 8.674999999999626,
+          "fromX": 115.75567988067857,
+          "fromY": 11.647017701415969,
+          "toX": 165.54217315158033,
+          "toY": -31.996311133766092
+        },
+        {
+          "from": "forest-floor",
+          "to": "forest-floor",
+          "seconds": 1.9624999999998884,
+          "fromT": 8.674999999999626,
+          "toT": 10.637499999999514,
+          "fromX": 165.54217315158033,
+          "fromY": -31.996311133766092,
+          "toX": 175.2925923956976,
+          "toY": -31.992512150739334
+        },
+        {
+          "from": "forest-floor",
+          "to": "forest-floor",
+          "seconds": 0.8854166666666163,
+          "fromT": 10.637499999999514,
+          "toT": 11.52291666666613,
+          "fromX": 175.2925923956976,
+          "fromY": -31.992512150739334,
+          "toX": 177.38643035315323,
+          "toY": -31.99751637028463
+        },
+        {
+          "from": "forest-floor",
+          "to": "finished",
+          "seconds": 0.7999999999999545,
+          "fromT": 13.664583333332676,
+          "toT": 14.46458333333263,
+          "fromX": 182.09842148324876,
+          "fromY": -31.99065478791247,
+          "toX": 182.2393151494143,
+          "toY": -31.91127226552227
+        }
+      ],
+      "obstructions": [],
+      "shots": 3
+    },
+    {
+      "id": "medium",
+      "draw": 1,
+      "weapon": "none",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -1.4934562818775388,
+        "y": 8.62689811832084,
+        "vx": 37.62663102831026,
+        "vy": 20.766692236951844,
+        "angle": 28.894953240776903,
+        "time": 0.8749999999999976,
+        "reason": "Release ring cleared the pin",
+        "speed": 42.97695741912026,
+        "energy": 1847.0188690048763
+      },
+      "range": 135.04581955004258,
+      "flight": 19.68125000000288,
+      "eventSequence": 13,
+      "eventRetained": 13,
+      "props": [
+        "route-perch-3",
+        "route-perch-4",
+        "route-perch-5",
+        "route-descent-fork-2",
+        "route-forest-bough-0-2"
+      ],
+      "gaps": [
+        {
+          "from": "route-forest-bough-0-2",
+          "to": "forest-floor",
+          "seconds": 3.0291666666664945,
+          "fromT": 10.970833333332823,
+          "toT": 13.999999999999318,
+          "fromX": 130.9987254237585,
+          "fromY": -0.044027440041216545,
+          "toX": 115.67866276227124,
+          "toY": -31.993202308120466
+        },
+        {
+          "from": "route-descent-fork-2",
+          "to": "route-forest-bough-0-2",
+          "seconds": 2.529166666666524,
+          "fromT": 6.52291666666641,
+          "toT": 9.052083333332932,
+          "fromX": 114.04172061834683,
+          "fromY": 11.67658104579991,
+          "toX": 136.0062689234137,
+          "toY": 0.3593882073416381
+        },
+        {
+          "from": "release",
+          "to": "route-perch-3",
+          "seconds": 2.3895833333333103,
+          "fromT": 0,
+          "toT": 2.3895833333333103,
+          "fromX": -1.4934562818775388,
+          "fromY": 8.62689811832084,
+          "toX": 62.654919623263766,
+          "toY": 23.044103758737467
+        },
+        {
+          "from": "forest-floor",
+          "to": "forest-floor",
+          "seconds": 2.2833333333341894,
+          "fromT": 13.999999999999318,
+          "toT": 16.28333333333351,
+          "fromX": 115.67866276227124,
+          "fromY": -31.993202308120466,
+          "toX": 114.76689042270452,
+          "toY": -31.99025522430327
+        },
+        {
+          "from": "route-perch-4",
+          "to": "route-perch-5",
+          "seconds": 2.0895833333332146,
+          "fromT": 3.7208333333332355,
+          "toT": 5.81041666666645,
+          "fromX": 84.45543262984097,
+          "fromY": 18.581382142623905,
+          "toX": 105.64464126910275,
+          "toY": 12.072420740079064
+        }
+      ],
+      "obstructions": [],
+      "shots": 0
+    },
+    {
+      "id": "medium",
+      "draw": 1,
+      "weapon": "air",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -1.4934562818775388,
+        "y": 8.62689811832084,
+        "vx": 37.62663102831026,
+        "vy": 20.766692236951844,
+        "angle": 28.894953240776903,
+        "time": 0.8749999999999976,
+        "reason": "Release ring cleared the pin",
+        "speed": 42.97695741912026,
+        "energy": 1847.0188690048763
+      },
+      "range": 163.70713243322103,
+      "flight": 16.783333333333907,
+      "eventSequence": 10,
+      "eventRetained": 10,
+      "props": [
+        "amazon-bough-3-1",
+        "route-forest-bough-0-2",
+        "route-floor-log-1"
+      ],
+      "gaps": [
+        {
+          "from": "release",
+          "to": "amazon-bough-3-1",
+          "seconds": 4.822916666666506,
+          "fromT": 0,
+          "toT": 4.822916666666506,
+          "fromX": -1.4934562818775388,
+          "fromY": 8.62689811832084,
+          "toX": 116.0003516527232,
+          "toY": 17.911079948341715
+        },
+        {
+          "from": "route-forest-bough-0-2",
+          "to": "forest-floor",
+          "seconds": 3.9687499999997753,
+          "fromT": 7.108333333333043,
+          "toT": 11.077083333332817,
+          "fromX": 137.53389920790016,
+          "fromY": 0.4839214891178722,
+          "toX": 159.83992920186475,
+          "toY": -31.997506213233365
+        },
+        {
+          "from": "forest-floor",
+          "to": "route-floor-log-1",
+          "seconds": 2.3499999999998664,
+          "fromT": 11.077083333332817,
+          "toT": 13.427083333332684,
+          "fromX": 159.83992920186475,
+          "fromY": -31.997506213233365,
+          "toX": 160.48432749002254,
+          "toY": -31.6459081040939
+        },
+        {
+          "from": "amazon-bough-3-1",
+          "to": "route-forest-bough-0-2",
+          "seconds": 2.2854166666665368,
+          "fromT": 4.822916666666506,
+          "toT": 7.108333333333043,
+          "fromX": 116.0003516527232,
+          "fromY": 17.911079948341715,
+          "toX": 137.53389920790016,
+          "toY": 0.4839214891178722
+        },
+        {
+          "from": "route-floor-log-1",
+          "to": "route-floor-log-1",
+          "seconds": 0.9624999999999453,
+          "fromT": 13.427083333332684,
+          "toT": 14.389583333332629,
+          "fromX": 160.48432749002254,
+          "fromY": -31.6459081040939,
+          "toX": 163.83854808582726,
+          "toY": -31.676767589435997
+        }
+      ],
+      "obstructions": [],
+      "shots": 1
+    },
+    {
+      "id": "medium",
+      "draw": 1,
+      "weapon": "staff",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -1.4934562818775388,
+        "y": 8.62689811832084,
+        "vx": 37.62663102831026,
+        "vy": 20.766692236951844,
+        "angle": 28.894953240776903,
+        "time": 0.8749999999999976,
+        "reason": "Release ring cleared the pin",
+        "speed": 42.97695741912026,
+        "energy": 1847.0188690048763
+      },
+      "range": 170.0590878330792,
+      "flight": 15.970833333333259,
+      "eventSequence": 12,
+      "eventRetained": 12,
+      "props": [
+        "route-mid-bay-2",
+        "route-mid-bay-3"
+      ],
+      "gaps": [
+        {
+          "from": "release",
+          "to": "route-mid-bay-2",
+          "seconds": 6.058333333333103,
+          "fromT": 0,
+          "toT": 6.058333333333103,
+          "fromX": -1.4934562818775388,
+          "fromY": 8.62689811832084,
+          "toX": 144.55082156329576,
+          "toY": 16.06484206992505
+        },
+        {
+          "from": "route-mid-bay-2",
+          "to": "route-mid-bay-3",
+          "seconds": 2.910416666666502,
+          "fromT": 6.058333333333103,
+          "toT": 8.968749999999604,
+          "fromX": 144.55082156329576,
+          "fromY": 16.06484206992505,
+          "toX": 165.66134472594803,
+          "toY": 10.113512758030524
+        },
+        {
+          "from": "route-mid-bay-3",
+          "to": "route-mid-bay-3",
+          "seconds": 1.8374999999998956,
+          "fromT": 8.968749999999604,
+          "toT": 10.8062499999995,
+          "fromX": 165.66134472594803,
+          "fromY": 10.113512758030524,
+          "toX": 166.90677793653552,
+          "toY": 10.101873276930196
+        },
+        {
+          "from": "route-mid-bay-3",
+          "to": "route-mid-bay-3",
+          "seconds": 1.154166666666601,
+          "fromT": 10.8062499999995,
+          "toT": 11.9604166666661,
+          "fromX": 166.90677793653552,
+          "fromY": 10.101873276930196,
+          "toX": 169.4302159695343,
+          "toY": 10.066047701606593
+        },
+        {
+          "from": "route-mid-bay-3",
+          "to": "route-mid-bay-3",
+          "seconds": 0.8187499999999535,
+          "fromT": 11.9604166666661,
+          "toT": 12.779166666666054,
+          "fromX": 169.4302159695343,
+          "fromY": 10.066047701606593,
+          "toX": 169.05497697109917,
+          "toY": 10.068744407510856
+        }
+      ],
+      "obstructions": [],
+      "shots": 3
+    },
+    {
+      "id": "large",
+      "draw": 0.4,
+      "weapon": "none",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -2.177963492843715,
+        "y": 22.224267744741343,
+        "vx": 10.413402048066564,
+        "vy": 8.710550866403512,
+        "angle": 39.91164035482105,
+        "time": 1.494876957497031,
+        "reason": "Release ring cleared the pin",
+        "speed": 13.576179087316131,
+        "energy": 23039.079826359983
+      },
+      "range": 117.89874561702244,
+      "flight": 13.712556720231902,
+      "eventSequence": 9,
+      "eventRetained": 9,
+      "props": [
+        "opening-skip-2",
+        "floor-log-3"
+      ],
+      "gaps": [
+        {
+          "from": "release",
+          "to": "opening-skip-2",
+          "seconds": 3.9437877485426207,
+          "fromT": 0,
+          "toT": 3.9437877485426207,
+          "fromX": -2.177963492843715,
+          "fromY": 22.224267744741343,
+          "toX": 36.457922215185555,
+          "toY": -12.21075259186861
+        },
+        {
+          "from": "opening-skip-2",
+          "to": "floor-log-3",
+          "seconds": 2.9998317371792167,
+          "fromT": 3.9437877485426207,
+          "toT": 6.943619485721838,
+          "fromX": 36.457922215185555,
+          "fromY": -12.21075259186861,
+          "toX": 97.1177895682034,
+          "toY": -31.760079899978052
+        },
+        {
+          "from": "floor-log-3",
+          "to": "forest-floor",
+          "seconds": 2.88561641907898,
+          "fromT": 6.943619485721838,
+          "toT": 9.829235904800818,
+          "fromX": 97.1177895682034,
+          "fromY": -31.760079899978052,
+          "toX": 112.27308297981114,
+          "toY": -31.98759381283617
+        },
+        {
+          "from": "forest-floor",
+          "to": "forest-floor",
+          "seconds": 1.269805595357223,
+          "fromT": 9.829235904800818,
+          "toT": 11.099041500158041,
+          "fromX": 112.27308297981114,
+          "fromY": -31.98759381283617,
+          "toX": 114.50090627741403,
+          "toY": -31.977306690907273
+        },
+        {
+          "from": "forest-floor",
+          "to": "finished",
+          "seconds": 0.829740693262524,
+          "fromT": 12.882816026969378,
+          "toT": 13.712556720231902,
+          "fromX": 115.7589221638162,
+          "fromY": -31.97407046985956,
+          "toX": 115.33614851293856,
+          "toY": -31.50815627653917
+        }
+      ],
+      "obstructions": [],
+      "shots": 0
+    },
+    {
+      "id": "large",
+      "draw": 0.75,
+      "weapon": "none",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": 1.450894818187782,
+        "y": 22.356128841723198,
+        "vx": 48.576163541005286,
+        "vy": 6.952387589505165,
+        "angle": 8.145054300233594,
+        "time": 1.2765241434806063,
+        "reason": "Release ring cleared the pin",
+        "speed": 49.07116625430047,
+        "energy": 300997.4196946496
+      },
+      "range": 273.50200214610385,
+      "flight": 13.695760349922914,
+      "eventSequence": 12,
+      "eventRetained": 12,
+      "props": [
+        "route-perch-3",
+        "route-mid-bay-0",
+        "route-mid-bay-2",
+        "route-descent-fork-3",
+        "route-floor-log-4",
+        "route-forest-bough-4-0"
+      ],
+      "gaps": [
+        {
+          "from": "route-descent-fork-3",
+          "to": "route-floor-log-4",
+          "seconds": 3.500363572386328,
+          "fromT": 4.780246989928536,
+          "toT": 8.280610562314862,
+          "fromX": 179.84465518137466,
+          "fromY": 18.47593204972261,
+          "toX": 267.01502267255887,
+          "toY": -31.653435586439773
+        },
+        {
+          "from": "route-mid-bay-0",
+          "to": "route-mid-bay-2",
+          "seconds": 1.4276914762611486,
+          "fromT": 1.978612422394988,
+          "toT": 3.4063038986561365,
+          "fromX": 89.16181293417597,
+          "fromY": 21.58050266497903,
+          "toX": 140.00577908849485,
+          "toY": 16.134985794679984
+        },
+        {
+          "from": "route-mid-bay-2",
+          "to": "route-descent-fork-3",
+          "seconds": 1.373943091272399,
+          "fromT": 3.4063038986561365,
+          "toT": 4.780246989928536,
+          "fromX": 140.00577908849485,
+          "fromY": 16.134985794679984,
+          "toX": 179.84465518137466,
+          "toY": 18.47593204972261
+        },
+        {
+          "from": "route-forest-bough-4-0",
+          "to": "route-floor-log-4",
+          "seconds": 1.2899612397279725,
+          "fromT": 9.47315285425088,
+          "toT": 10.763114093978853,
+          "fromX": 270.97724260205666,
+          "fromY": -24.45323845129275,
+          "toX": 267.5017348080286,
+          "toY": -31.65741115422239
+        },
+        {
+          "from": "release",
+          "to": "route-perch-3",
+          "seconds": 1.2832426916042197,
+          "fromT": 0,
+          "toT": 1.2832426916042197,
+          "fromX": 1.450894818187782,
+          "fromY": 22.356128841723198,
+          "toX": 60.97824115148175,
+          "toY": 23.090494271083116
+        }
+      ],
+      "obstructions": [],
+      "shots": 0
+    },
+    {
+      "id": "large",
+      "draw": 0.75,
+      "weapon": "air",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": 1.450894818187782,
+        "y": 22.356128841723198,
+        "vx": 48.576163541005286,
+        "vy": 6.952387589505165,
+        "angle": 8.145054300233594,
+        "time": 1.2765241434806063,
+        "reason": "Release ring cleared the pin",
+        "speed": 49.07116625430047,
+        "energy": 300997.4196946496
+      },
+      "range": 349.36283890892554,
+      "flight": 19.473711736201945,
+      "eventSequence": 17,
+      "eventRetained": 17,
+      "props": [
+        "route-perch-3",
+        "route-descent-fork-3",
+        "route-upper-bay-0-b",
+        "route-descent-fork-9",
+        "route-forest-bough-4-1",
+        "route-forest-bough-5-0",
+        "route-floor-log-6",
+        "route-floor-stone-6"
+      ],
+      "gaps": [
+        {
+          "from": "route-descent-fork-9",
+          "to": "route-forest-bough-4-1",
+          "seconds": 3.043502299982987,
+          "fromT": 5.976148555926027,
+          "toT": 9.019650855909013,
+          "fromX": 218.71507418163122,
+          "fromY": 17.21019713312385,
+          "toX": 275.0006660027111,
+          "toY": -12.952822907828224
+        },
+        {
+          "from": "route-perch-3",
+          "to": "route-descent-fork-3",
+          "seconds": 3.0233466556118103,
+          "fromT": 1.404176557828701,
+          "toT": 4.427523213440511,
+          "fromX": 64.8389328981272,
+          "fromY": 23.020292097709575,
+          "toX": 178.47170424949297,
+          "toY": 18.498960041807212
+        },
+        {
+          "from": "forest-floor",
+          "to": "route-forest-bough-5-0",
+          "seconds": 2.2876656360800762,
+          "fromT": 10.094618555682324,
+          "toT": 12.382284191762402,
+          "fromX": 292.5229519544578,
+          "fromY": -31.9935570796643,
+          "toX": 311.80169205563874,
+          "toY": -24.147075752886572
+        },
+        {
+          "from": "route-forest-bough-5-0",
+          "to": "forest-floor",
+          "seconds": 1.9752531483334579,
+          "fromT": 12.382284191762402,
+          "toT": 14.35753734009586,
+          "fromX": 311.80169205563874,
+          "fromY": -24.147075752886572,
+          "toX": 322.2891384635317,
+          "toY": -31.9750003496052
+        },
+        {
+          "from": "release",
+          "to": "route-perch-3",
+          "seconds": 1.2832426916042197,
+          "fromT": 0,
+          "toT": 1.2832426916042197,
+          "fromX": 1.450894818187782,
+          "fromY": 22.356128841723198,
+          "toX": 60.97824115148175,
+          "toY": 23.090494271083116
+        }
+      ],
+      "obstructions": [],
+      "shots": 1
+    },
+    {
+      "id": "large",
+      "draw": 0.75,
+      "weapon": "staff",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": 1.450894818187782,
+        "y": 22.356128841723198,
+        "vx": 48.576163541005286,
+        "vy": 6.952387589505165,
+        "angle": 8.145054300233594,
+        "time": 1.2765241434806063,
+        "reason": "Release ring cleared the pin",
+        "speed": 49.07116625430047,
+        "energy": 300997.4196946496
+      },
+      "range": 337.06010529744356,
+      "flight": 19.91377663829641,
+      "eventSequence": 18,
+      "eventRetained": 18,
+      "props": [
+        "route-perch-3",
+        "route-descent-fork-9",
+        "route-descent-fork-11",
+        "route-forest-friend-5",
+        "route-forest-bough-5-1",
+        "route-forest-bough-5-2",
+        "route-floor-log-6"
+      ],
+      "gaps": [
+        {
+          "from": "route-perch-3",
+          "to": "route-descent-fork-9",
+          "seconds": 4.178936932867813,
+          "fromT": 1.404176557828701,
+          "toT": 5.5831134906965145,
+          "fromX": 64.8389328981272,
+          "fromY": 23.020292097709575,
+          "toX": 222.3560407851344,
+          "toY": 17.13458814586683
+        },
+        {
+          "from": "route-forest-bough-5-1",
+          "to": "forest-floor",
+          "seconds": 3.077095040601101,
+          "fromT": 10.726162079299144,
+          "toT": 13.803257119900245,
+          "fromX": 306.6931801328192,
+          "fromY": -13.76934126489214,
+          "toX": 324.06780645754964,
+          "toY": -31.97646090517523
+        },
+        {
+          "from": "route-descent-fork-11",
+          "to": "route-forest-friend-5",
+          "seconds": 2.149935399546621,
+          "fromT": 7.245954151283052,
+          "toT": 9.395889550829672,
+          "fromX": 262.0939696739631,
+          "fromY": 13.505705410943904,
+          "toX": 305.9210519748991,
+          "toY": -13.563710336290876
+        },
+        {
+          "from": "forest-floor",
+          "to": "forest-floor",
+          "seconds": 2.109624110804493,
+          "fromT": 13.803257119900245,
+          "toT": 15.912881230704738,
+          "fromX": 324.06780645754964,
+          "fromY": -31.97646090517523,
+          "toX": 326.6676941061585,
+          "toY": -31.982989169926608
+        },
+        {
+          "from": "route-descent-fork-9",
+          "to": "route-descent-fork-11",
+          "seconds": 1.6628406605865376,
+          "fromT": 5.5831134906965145,
+          "toT": 7.245954151283052,
+          "fromX": 222.3560407851344,
+          "fromY": 17.13458814586683,
+          "toX": 262.0939696739631,
+          "toY": 13.505705410943904
+        }
+      ],
+      "obstructions": [],
+      "shots": 3
+    },
+    {
+      "id": "large",
+      "draw": 1,
+      "weapon": "none",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -0.7902144686741717,
+        "y": 22.362422138008508,
+        "vx": 64.5614816642392,
+        "vy": 18.44602572457988,
+        "angle": 15.945304093990565,
+        "time": 1.2664463212952328,
+        "reason": "Release ring cleared the pin",
+        "speed": 67.14492370770672,
+        "energy": 563555.0974642196
+      },
+      "range": 264.63370211653194,
+      "flight": 16.530987658074068,
+      "eventSequence": 18,
+      "eventRetained": 18,
+      "props": [
+        "route-rare-bough-55-0",
+        "route-rare-bough-56-0",
+        "route-rare-bough-56-1",
+        "route-floor-stone-1",
+        "route-forest-bough-2-0",
+        "route-floor-log-3",
+        "route-floor-log-4"
+      ],
+      "gaps": [
+        {
+          "from": "route-rare-bough-56-1",
+          "to": "route-floor-stone-1",
+          "seconds": 3.2282623733809572,
+          "fromT": 3.839650252627139,
+          "toT": 7.067912626008097,
+          "fromX": 179.60077189976138,
+          "fromY": 48.74322039259,
+          "toX": 172.15813098276507,
+          "toY": -31.533547866509988
+        },
+        {
+          "from": "forest-floor",
+          "to": "route-forest-bough-2-0",
+          "seconds": 1.8778342005415016,
+          "fromT": 7.104864640687804,
+          "toT": 8.982698841229306,
+          "fromX": 174.2930067766235,
+          "fromY": -31.987344536652884,
+          "toX": 207.29436988875895,
+          "toY": -24.592026894419384
+        },
+        {
+          "from": "route-rare-bough-55-0",
+          "to": "route-rare-bough-56-0",
+          "seconds": 1.834163637737861,
+          "fromT": 1.7098704974516958,
+          "toT": 3.544034135189557,
+          "fromX": 99.28330525380024,
+          "fromY": 37.68588519807517,
+          "toX": 180.939199945827,
+          "toY": 41.20749801909381
+        },
+        {
+          "from": "release",
+          "to": "route-rare-bough-55-0",
+          "seconds": 1.7098704974516958,
+          "fromT": 0,
+          "toT": 1.7098704974516958,
+          "fromX": -0.7902144686741717,
+          "fromY": 22.362422138008508,
+          "toX": 99.28330525380024,
+          "toY": 37.68588519807517
+        },
+        {
+          "from": "route-forest-bough-2-0",
+          "to": "forest-floor",
+          "seconds": 1.64268501621609,
+          "fromT": 8.982698841229306,
+          "toT": 10.625383857445396,
+          "fromX": 207.29436988875895,
+          "fromY": -24.592026894419384,
+          "toX": 227.00908239814194,
+          "toY": -31.987456250916527
+        }
+      ],
+      "obstructions": [],
+      "shots": 0
+    },
+    {
+      "id": "large",
+      "draw": 1,
+      "weapon": "air",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -0.7902144686741717,
+        "y": 22.362422138008508,
+        "vx": 64.5614816642392,
+        "vy": 18.44602572457988,
+        "angle": 15.945304093990565,
+        "time": 1.2664463212952328,
+        "reason": "Release ring cleared the pin",
+        "speed": 67.14492370770672,
+        "energy": 563555.0974642196
+      },
+      "range": 288.4648634247335,
+      "flight": 24.351377673920766,
+      "eventSequence": 13,
+      "eventRetained": 13,
+      "props": [
+        "route-rare-bough-56-1",
+        "route-rare-bough-56-0",
+        "route-upper-bay-2-b",
+        "route-upper-bay-2-a",
+        "route-floor-log-4"
+      ],
+      "gaps": [
+        {
+          "from": "route-rare-bough-56-0",
+          "to": "route-upper-bay-2-b",
+          "seconds": 5.398353417298253,
+          "fromT": 3.5574712314367196,
+          "toT": 8.955824648734973,
+          "fromX": 187.20468152602484,
+          "fromY": 42.898914506112334,
+          "toX": 288.43841632460834,
+          "toY": 23.69181108272298
+        },
+        {
+          "from": "route-upper-bay-2-a",
+          "to": "forest-floor",
+          "seconds": 4.773528441804521,
+          "fromT": 12.48642168767794,
+          "toT": 17.25995012948246,
+          "fromX": 274.9934473650265,
+          "fromY": 25.148449212825305,
+          "toX": 263.76923446948473,
+          "toY": -31.977116513123963
+        },
+        {
+          "from": "route-upper-bay-2-b",
+          "to": "route-upper-bay-2-a",
+          "seconds": 3.5305970389429664,
+          "fromT": 8.955824648734973,
+          "toT": 12.48642168767794,
+          "fromX": 288.43841632460834,
+          "fromY": 23.69181108272298,
+          "toX": 274.9934473650265,
+          "toY": 25.148449212825305
+        },
+        {
+          "from": "release",
+          "to": "route-rare-bough-56-1",
+          "seconds": 3.245058743690184,
+          "fromT": 0,
+          "toT": 3.245058743690184,
+          "fromX": -0.7902144686741717,
+          "fromY": 22.362422138008508,
+          "toX": 176.18896189610544,
+          "toY": 49.74490392110018
+        },
+        {
+          "from": "route-floor-log-4",
+          "to": "route-floor-log-4",
+          "seconds": 2.9897539149929386,
+          "fromT": 17.273387225729618,
+          "toT": 20.263141140722556,
+          "fromX": 264.9950665698723,
+          "fromY": -31.629343174118354,
+          "toX": 265.70839522684815,
+          "toY": -31.64733583658643
+        }
+      ],
+      "obstructions": [],
+      "shots": 1
+    },
+    {
+      "id": "large",
+      "draw": 1,
+      "weapon": "staff",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -0.7902144686741717,
+        "y": 22.362422138008508,
+        "vx": 64.5614816642392,
+        "vy": 18.44602572457988,
+        "angle": 15.945304093990565,
+        "time": 1.2664463212952328,
+        "reason": "Release ring cleared the pin",
+        "speed": 67.14492370770672,
+        "energy": 563555.0974642196
+      },
+      "range": 240.51190039039983,
+      "flight": 15.519846165475334,
+      "eventSequence": 12,
+      "eventRetained": 12,
+      "props": [
+        "route-rare-bough-56-1",
+        "route-rare-bough-56-0",
+        "route-rare-bough-57-2",
+        "route-rare-bough-57-1"
+      ],
+      "gaps": [
+        {
+          "from": "route-rare-bough-56-0",
+          "to": "route-rare-bough-57-2",
+          "seconds": 5.025473996439386,
+          "fromT": 3.5574712314367196,
+          "toT": 8.582945227876106,
+          "fromX": 184.35617310764968,
+          "fromY": 42.13884957744266,
+          "toX": 239.9783916483683,
+          "toY": 54.61340656384012
+        },
+        {
+          "from": "release",
+          "to": "route-rare-bough-56-1",
+          "seconds": 3.2282623733812303,
+          "fromT": 0,
+          "toT": 3.2282623733812303,
+          "fromX": -0.7902144686741717,
+          "fromY": 22.362422138008508,
+          "toX": 175.4531760817291,
+          "toY": 49.96239339146137
+        },
+        {
+          "from": "route-rare-bough-57-2",
+          "to": "route-rare-bough-57-2",
+          "seconds": 1.9483789558391251,
+          "fromT": 8.582945227876106,
+          "toT": 10.531324183715231,
+          "fromX": 239.9783916483683,
+          "fromY": 54.61340656384012,
+          "toX": 239.9755058425844,
+          "toY": 54.616494702222084
+        },
+        {
+          "from": "route-rare-bough-57-1",
+          "to": "route-rare-bough-57-1",
+          "seconds": 1.0077822185374785,
+          "fromT": 11.488717291325836,
+          "toT": 12.496499509863314,
+          "fromX": 236.10262021278862,
+          "fromY": 48.009568867885044,
+          "toX": 236.5329498076428,
+          "toY": 47.92531419892954
+        },
+        {
+          "from": "route-rare-bough-57-1",
+          "to": "finished",
+          "seconds": 0.9775487519809385,
+          "fromT": 14.542297413494396,
+          "toT": 15.519846165475334,
+          "fromX": 238.40317189459057,
+          "fromY": 47.57839657731145,
+          "toX": 238.8130084981926,
+          "toY": 47.976474866523816
+        }
+      ],
+      "obstructions": [],
+      "shots": 3
+    },
+    {
+      "id": "elephant",
+      "draw": 0.6,
+      "weapon": "none",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -7.330751969911442,
+        "y": 44.11327723168224,
+        "vx": 22.53840335398276,
+        "vy": 18.701818165860097,
+        "angle": 39.68506106659942,
+        "time": 2.0950723436196745,
+        "reason": "Release ring cleared the pin",
+        "speed": 29.28715808090153,
+        "energy": 2144344.07113929
+      },
+      "range": 54.79106792961605,
+      "flight": 17.24040257368646,
+      "eventSequence": 14,
+      "eventRetained": 14,
+      "props": [
+        "oak-scaffold-0-east",
+        "cloud-one",
+        "route-opening-catch-4",
+        "route-descent-fork-0",
+        "canopy-bug"
+      ],
+      "gaps": [
+        {
+          "from": "cloud-one",
+          "to": "route-opening-catch-4",
+          "seconds": 4.707974359471926,
+          "fromT": 2.228092809881178,
+          "toT": 6.9360671693531035,
+          "fromX": 42.77750118563879,
+          "fromY": 41.91509494835606,
+          "toX": 34.02461710871266,
+          "toY": -7.532406552500782
+        },
+        {
+          "from": "route-opening-catch-4",
+          "to": "route-descent-fork-0",
+          "seconds": 2.266098657384239,
+          "fromT": 9.064394629537881,
+          "toT": 11.33049328692212,
+          "fromX": 28.93935662088789,
+          "fromY": -5.7755361782628105,
+          "toX": 46.20147052906072,
+          "toY": -12.149569411364764
+        },
+        {
+          "from": "route-descent-fork-0",
+          "to": "finished",
+          "seconds": 2.0238113795514607,
+          "fromT": 15.216591194134997,
+          "toT": 17.24040257368646,
+          "fromX": 46.978092210321655,
+          "fromY": -12.149026560855301,
+          "toX": 47.685536947942204,
+          "toY": -10.815734352787834
+        },
+        {
+          "from": "oak-scaffold-0-east",
+          "to": "cloud-one",
+          "seconds": 1.9382982226684913,
+          "fromT": 0.2897945872126866,
+          "toT": 2.228092809881178,
+          "fromX": -1.1403798612355427,
+          "fromY": 52.01403817258544,
+          "toX": 42.77750118563879,
+          "toY": 41.91509494835606
+        },
+        {
+          "from": "route-descent-fork-0",
+          "to": "canopy-bug",
+          "seconds": 1.8717879895375056,
+          "fromT": 11.33049328692212,
+          "toT": 13.202281276459626,
+          "fromX": 46.20147052906072,
+          "fromY": -12.149569411364764,
+          "toX": 49.94385359871629,
+          "toY": -11.985956192761426
+        }
+      ],
+      "obstructions": [],
+      "shots": 0
+    },
+    {
+      "id": "elephant",
+      "draw": 0.75,
+      "weapon": "none",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -6.044619896271604,
+        "y": 44.44302229852062,
+        "vx": 35.509349164914646,
+        "vy": 22.98832727082664,
+        "angle": 32.918536059052094,
+        "time": 2.0570664961163714,
+        "reason": "Release ring cleared the pin",
+        "speed": 42.30102916982583,
+        "energy": 4473442.672066141
+      },
+      "range": 244.67748294177204,
+      "flight": 24.257232168985762,
+      "eventSequence": 15,
+      "eventRetained": 15,
+      "props": [
+        "oak-scaffold-0-east",
+        "route-rare-bough-55-2",
+        "route-descent-fork-3",
+        "route-mid-bay-3",
+        "route-forest-bough-2-2",
+        "route-forest-bough-3-0",
+        "route-floor-log-3"
+      ],
+      "gaps": [
+        {
+          "from": "route-descent-fork-3",
+          "to": "route-mid-bay-3",
+          "seconds": 4.717475821347064,
+          "fromT": 7.107093483117955,
+          "toT": 11.824569304465019,
+          "fromX": 177.07108773818643,
+          "fromY": 18.53727696257002,
+          "toX": 169.68025050857534,
+          "toY": 10.080062306630126
+        },
+        {
+          "from": "route-rare-bough-55-2",
+          "to": "route-descent-fork-3",
+          "seconds": 4.351669539128401,
+          "fromT": 2.755423943989555,
+          "toT": 7.107093483117955,
+          "fromX": 88.9921761467487,
+          "fromY": 54.71724707105401,
+          "toX": 177.07108773818643,
+          "toY": 18.53727696257002
+        },
+        {
+          "from": "route-forest-bough-2-2",
+          "to": "forest-floor",
+          "seconds": 3.6058047818768983,
+          "fromT": 17.24040257368645,
+          "toT": 20.846207355563347,
+          "fromX": 201.472982823736,
+          "fromY": -5.508466687215462,
+          "toX": 234.4606801574004,
+          "toY": -31.963401623048544
+        },
+        {
+          "from": "route-mid-bay-3",
+          "to": "route-descent-fork-3",
+          "seconds": 2.769676136803204,
+          "fromT": 11.824569304465019,
+          "toT": 14.594245441268223,
+          "fromX": 169.68025050857534,
+          "fromY": 10.080062306630126,
+          "toX": 184.11037597083384,
+          "toY": 18.430971807052117
+        },
+        {
+          "from": "route-descent-fork-3",
+          "to": "route-forest-bough-2-2",
+          "seconds": 2.6461571324182245,
+          "fromT": 14.594245441268223,
+          "toT": 17.24040257368645,
+          "fromX": 184.11037597083384,
+          "fromY": 18.430971807052117,
+          "toX": 201.472982823736,
+          "toY": -5.508466687215462
+        }
+      ],
+      "obstructions": [],
+      "shots": 0
+    },
+    {
+      "id": "elephant",
+      "draw": 0.75,
+      "weapon": "air",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -6.044619896271604,
+        "y": 44.44302229852062,
+        "vx": 35.509349164914646,
+        "vy": 22.98832727082664,
+        "angle": 32.918536059052094,
+        "time": 2.0570664961163714,
+        "reason": "Release ring cleared the pin",
+        "speed": 42.30102916982583,
+        "energy": 4473442.672066141
+      },
+      "range": 222.24375255792543,
+      "flight": 22.76075192354278,
+      "eventSequence": 15,
+      "eventRetained": 15,
+      "props": [
+        "oak-scaffold-0-east",
+        "route-rare-bough-56-2",
+        "route-upper-bay-0-b",
+        "route-descent-fork-9",
+        "route-forest-bough-1-1",
+        "route-forest-bough-1-0",
+        "route-floor-stone-0"
+      ],
+      "gaps": [
+        {
+          "from": "route-rare-bough-56-2",
+          "to": "route-upper-bay-0-b",
+          "seconds": 5.050026987001109,
+          "fromT": 5.0120211394983905,
+          "toT": 10.0620481264995,
+          "fromX": 181.97499908343593,
+          "fromY": 54.3153147008509,
+          "toX": 200.05037128985788,
+          "toY": 23.574561709526993
+        },
+        {
+          "from": "oak-scaffold-0-east",
+          "to": "route-rare-bough-56-2",
+          "seconds": 4.589206086024143,
+          "fromT": 0.42281505347424764,
+          "toT": 5.0120211394983905,
+          "fromX": 8.10616620109262,
+          "fromY": 56.129679054942365,
+          "toX": 181.97499908343593,
+          "toY": 54.3153147008509
+        },
+        {
+          "from": "route-descent-fork-9",
+          "to": "forest-floor",
+          "seconds": 2.8741922174370327,
+          "fromT": 10.898176771572091,
+          "toT": 13.772368989009124,
+          "fromX": 218.08870240101044,
+          "fromY": 17.206152232960193,
+          "toX": 187.05176010489797,
+          "toY": -31.9870046028651
+        },
+        {
+          "from": "route-forest-bough-1-0",
+          "to": "forest-floor",
+          "seconds": 1.9905562629860611,
+          "fromT": 16.35201588829649,
+          "toT": 18.34257215128255,
+          "fromX": 166.27960179183293,
+          "fromY": -23.962945628139988,
+          "toX": 150.23962824677147,
+          "toY": -31.98287243995539
+        },
+        {
+          "from": "forest-floor",
+          "to": "route-forest-bough-1-1",
+          "seconds": 1.867037258600229,
+          "fromT": 13.772368989009124,
+          "toT": 15.639406247609353,
+          "fromX": 187.05176010489797,
+          "fromY": -31.9870046028651,
+          "toX": 168.30162110321527,
+          "toY": -13.272085603005536
+        }
+      ],
+      "obstructions": [],
+      "shots": 1
+    },
+    {
+      "id": "elephant",
+      "draw": 0.75,
+      "weapon": "staff",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -6.044619896271604,
+        "y": 44.44302229852062,
+        "vx": 35.509349164914646,
+        "vy": 22.98832727082664,
+        "angle": 32.918536059052094,
+        "time": 2.0570664961163714,
+        "reason": "Release ring cleared the pin",
+        "speed": 42.30102916982583,
+        "energy": 4473442.672066141
+      },
+      "range": 324.2559929639654,
+      "flight": 27.668256982408177,
+      "eventSequence": 22,
+      "eventRetained": 22,
+      "props": [
+        "oak-scaffold-0-east",
+        "route-rare-bough-57-1",
+        "route-upper-bay-3-a",
+        "route-descent-fork-10",
+        "route-upper-bay-1-a",
+        "route-descent-fork-9",
+        "route-forest-bough-3-1",
+        "route-forest-bough-2-0",
+        "route-floor-stone-2"
+      ],
+      "gaps": [
+        {
+          "from": "oak-scaffold-0-east",
+          "to": "route-rare-bough-57-1",
+          "seconds": 6.071434138653002,
+          "fromT": 0.42281505347424764,
+          "toT": 6.494249192127249,
+          "fromX": 8.10616620109262,
+          "fromY": 56.129679054942365,
+          "toX": 238.3088666294342,
+          "toY": 47.599759096818815
+        },
+        {
+          "from": "route-upper-bay-3-a",
+          "to": "route-descent-fork-10",
+          "seconds": 2.812432715244171,
+          "fromT": 8.988382934531286,
+          "toT": 11.800815649775457,
+          "fromX": 319.9791877707309,
+          "fromY": 25.148386975030366,
+          "toX": 254.78887545182792,
+          "toY": 21.171541600562982
+        },
+        {
+          "from": "route-descent-fork-9",
+          "to": "route-forest-bough-3-1",
+          "seconds": 2.741171751176509,
+          "fromT": 19.32122272449288,
+          "toT": 22.06239447566939,
+          "fromX": 225.13409091274494,
+          "fromY": 17.11832541229193,
+          "toX": 232.97680543189782,
+          "toY": -14.039230592577464
+        },
+        {
+          "from": "route-descent-fork-10",
+          "to": "route-upper-bay-1-a",
+          "seconds": 2.5748961683487117,
+          "fromT": 11.800815649775457,
+          "toT": 14.375711818124168,
+          "fromX": 254.78887545182792,
+          "fromY": 21.171541600562982,
+          "toX": 231.69337990343013,
+          "toY": 25.104020394256143
+        },
+        {
+          "from": "route-rare-bough-57-1",
+          "to": "route-upper-bay-3-a",
+          "seconds": 2.4941337424040366,
+          "fromT": 6.494249192127249,
+          "toT": 8.988382934531286,
+          "fromX": 238.3088666294342,
+          "fromY": 47.599759096818815,
+          "toX": 319.9791877707309,
+          "toY": 25.148386975030366
+        }
+      ],
+      "obstructions": [],
+      "shots": 3
+    },
+    {
+      "id": "elephant",
+      "draw": 1,
+      "weapon": "none",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -9.221120436569226,
+        "y": 43.405360638915596,
+        "vx": 50.55534908309665,
+        "vy": 35.61115848552184,
+        "angle": 35.16084399870182,
+        "time": 2.023811379550981,
+        "reason": "Release ring cleared the pin",
+        "speed": 61.838482594535876,
+        "energy": 9559994.82398679
+      },
+      "range": 414.190081554256,
+      "flight": 23.824915653635557,
+      "eventSequence": 14,
+      "eventRetained": 14,
+      "props": [
+        "oak-scaffold-0-east",
+        "route-rare-bough-56-2",
+        "route-rare-bough-57-2",
+        "route-descent-fork-6",
+        "route-forest-bough-7-1",
+        "route-floor-log-8"
+      ],
+      "gaps": [
+        {
+          "from": "route-descent-fork-6",
+          "to": "forest-floor",
+          "seconds": 4.679469973844132,
+          "fromT": 10.275831018705563,
+          "toT": 14.955300992549695,
+          "fromX": 321.2861196031694,
+          "fromY": 4.72987409159989,
+          "toX": 359.8253056436488,
+          "toY": -31.952980152443775
+        },
+        {
+          "from": "route-rare-bough-57-2",
+          "to": "route-descent-fork-6",
+          "seconds": 4.080877875666795,
+          "fromT": 6.047680483963482,
+          "toT": 10.128558359630278,
+          "fromX": 245.55503332645122,
+          "fromY": 55.44977159042187,
+          "toX": 323.0390772316697,
+          "toY": 4.668272591874279
+        },
+        {
+          "from": "oak-scaffold-0-east",
+          "to": "route-rare-bough-56-2",
+          "seconds": 3.9051008309645976,
+          "fromT": 0.1900292375165158,
+          "toT": 4.095130068481113,
+          "fromX": 0.4452024981657176,
+          "fromY": 52.740788468039035,
+          "toX": 188.2964593113482,
+          "toY": 55.26553048982103
+        },
+        {
+          "from": "forest-floor",
+          "to": "route-floor-log-8",
+          "seconds": 2.0238113795514607,
+          "fromT": 18.238056070648426,
+          "toT": 20.261867450199887,
+          "fromX": 392.23296685407877,
+          "fromY": -31.972093216527252,
+          "toX": 409.60375071951563,
+          "toY": -31.63742967258523
+        },
+        {
+          "from": "route-rare-bough-56-2",
+          "to": "route-rare-bough-57-2",
+          "seconds": 1.952550415482369,
+          "fromT": 4.095130068481113,
+          "toT": 6.047680483963482,
+          "fromX": 188.2964593113482,
+          "fromY": 55.26553048982103,
+          "toX": 245.55503332645122,
+          "toY": 55.44977159042187
+        }
+      ],
+      "obstructions": [],
+      "shots": 0
+    },
+    {
+      "id": "elephant",
+      "draw": 1,
+      "weapon": "air",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -9.221120436569226,
+        "y": 43.405360638915596,
+        "vx": 50.55534908309665,
+        "vy": 35.61115848552184,
+        "angle": 35.16084399870182,
+        "time": 2.023811379550981,
+        "reason": "Release ring cleared the pin",
+        "speed": 61.838482594535876,
+        "energy": 9559994.82398679
+      },
+      "range": 302.10173080016324,
+      "flight": 13.819876298388252,
+      "eventSequence": 6,
+      "eventRetained": 6,
+      "props": [
+        "oak-scaffold-0-east",
+        "route-rare-bough-58-1",
+        "route-descent-fork-11",
+        "route-descent-fork-10"
+      ],
+      "gaps": [
+        {
+          "from": "oak-scaffold-0-east",
+          "to": "route-rare-bough-58-1",
+          "seconds": 6.494249192127235,
+          "fromT": 0.1900292375165158,
+          "toT": 6.684278429643751,
+          "fromX": 0.4452024981657176,
+          "fromY": 52.740788468039035,
+          "toX": 302.9655902068091,
+          "toY": 45.562839889263316
+        },
+        {
+          "from": "route-descent-fork-11",
+          "to": "route-descent-fork-10",
+          "seconds": 2.5986498230381105,
+          "fromT": 8.266271831968597,
+          "toT": 10.864921655006707,
+          "fromX": 262.8198750795112,
+          "fromY": 13.512985098904538,
+          "toX": 257.35116717718546,
+          "toY": 21.136854605713776
+        },
+        {
+          "from": "route-descent-fork-10",
+          "to": "finished",
+          "seconds": 1.8812894514133305,
+          "fromT": 11.938586846974921,
+          "toT": 13.819876298388252,
+          "fromX": 254.10013148798728,
+          "fromY": 21.19293989438405,
+          "toX": 253.35382331975245,
+          "toY": 24.312794555430063
+        },
+        {
+          "from": "route-rare-bough-58-1",
+          "to": "route-descent-fork-11",
+          "seconds": 1.581993402324846,
+          "fromT": 6.684278429643751,
+          "toT": 8.266271831968597,
+          "fromX": 302.9655902068091,
+          "fromY": 45.562839889263316,
+          "toX": 262.8198750795112,
+          "toY": 13.512985098904538
+        },
+        {
+          "from": "route-descent-fork-10",
+          "to": "route-descent-fork-10",
+          "seconds": 0.7933720666313793,
+          "fromT": 10.864921655006707,
+          "toT": 11.658293721638087,
+          "fromX": 257.35116717718546,
+          "fromY": 21.136854605713776,
+          "toX": 254.08497422190132,
+          "toY": 21.1912902694226
+        }
+      ],
+      "obstructions": [],
+      "shots": 1
+    },
+    {
+      "id": "elephant",
+      "draw": 1,
+      "weapon": "staff",
+      "phase": "finished",
+      "failure": "",
+      "release": {
+        "x": -9.221120436569226,
+        "y": 43.405360638915596,
+        "vx": 50.55534908309665,
+        "vy": 35.61115848552184,
+        "angle": 35.16084399870182,
+        "time": 2.023811379550981,
+        "reason": "Release ring cleared the pin",
+        "speed": 61.838482594535876,
+        "energy": 9559994.82398679
+      },
+      "range": 516.0099801916494,
+      "flight": 22.39969637226129,
+      "eventSequence": 16,
+      "eventRetained": 16,
+      "props": [
+        "oak-scaffold-0-east",
+        "route-upper-bay-4-b",
+        "route-forest-bough-10-1",
+        "route-forest-bough-11-2",
+        "route-forest-bough-9-0",
+        "route-forest-bough-9-1",
+        "route-floor-log-9"
+      ],
+      "gaps": [
+        {
+          "from": "oak-scaffold-0-east",
+          "to": "route-upper-bay-4-b",
+          "seconds": 8.427796683857602,
+          "fromT": 0.1900292375165158,
+          "toT": 8.617825921374118,
+          "fromX": 0.4452024981657176,
+          "fromY": 52.740788468039035,
+          "toX": 379.5309753368298,
+          "toY": 23.71563705190953
+        },
+        {
+          "from": "route-upper-bay-4-b",
+          "to": "route-forest-bough-10-1",
+          "seconds": 2.5986498230381105,
+          "fromT": 8.617825921374118,
+          "toT": 11.216475744412229,
+          "fromX": 379.5309753368298,
+          "fromY": 23.71563705190953,
+          "toX": 483.9419080077797,
+          "toY": -14.547942575962571
+        },
+        {
+          "from": "route-forest-bough-10-1",
+          "to": "route-forest-bough-9-0",
+          "seconds": 1.800527025469492,
+          "fromT": 14.166679656855933,
+          "toT": 15.967206682325426,
+          "fromX": 484.7559931640961,
+          "fromY": -14.530306858521614,
+          "toX": 449.762438274805,
+          "toY": -24.192100918025666
+        },
+        {
+          "from": "route-forest-bough-11-2",
+          "to": "route-forest-bough-10-1",
+          "seconds": 1.7340167923381173,
+          "fromT": 12.432662864517816,
+          "toT": 14.166679656855933,
+          "fromX": 515.9983352757097,
+          "fromY": -2.2697242413496563,
+          "toX": 484.7559931640961,
+          "toY": -14.530306858521614
+        },
+        {
+          "from": "route-forest-bough-9-0",
+          "to": "route-floor-log-9",
+          "seconds": 1.3634597791813832,
+          "fromT": 17.088379183673183,
+          "toT": 18.451838962854566,
+          "fromX": 448.16182380475004,
+          "fromY": -24.333475110829244,
+          "toX": 440.5528128343852,
+          "toY": -31.63515383457081
+        }
+      ],
+      "obstructions": [],
+      "shots": 3
+    }
+  ],
+  "spaceComparison": [
+    {
+      "revision": "before",
+      "phase": "escaped",
+      "failure": "",
+      "preReleaseContacts": [],
+      "release": {
+        "x": -78.18822926331498,
+        "y": 306.0288346664949,
+        "vx": 72.41561236931312,
+        "vy": 173.70752109698893,
+        "angle": 67.36960259624608,
+        "time": 3.383640559737411,
+        "reason": "Release ring cleared the pin",
+        "speed": 188.19756587289717,
+        "energy": 88545809.50120868
+      },
+      "escape": {
+        "version": 1,
+        "world": {
+          "version": 4,
+          "height": 3000,
+          "treeHeight": 110,
+          "launchY": 32
+        },
+        "threshold": 3000,
+        "altitude": 3000,
+        "time": 42.6125646800225,
+        "payload": {
+          "x": 1926.5226186934053,
+          "y": 2968,
+          "vx": 49.84283513656048,
+          "vy": 38.571861081470296,
+          "angle": -78.20327325090203,
+          "omega": -2.05664218234415
+        },
+        "distance": 1950.6414836610727,
+        "height": 2968,
+        "release": {
+          "x": -78.18822926331498,
+          "y": 306.0288346664949,
+          "vx": 72.41561236931312,
+          "vy": 173.70752109698893,
+          "time": 3.383640559737411,
+          "speed": 188.19756587289717,
+          "angle": 67.36960259624608,
+          "energy": 88545809.50120868,
+          "reason": "Release ring cleared the pin"
+        },
+        "failure": "",
+        "grams": 5000000,
+        "animal": "elephant"
+      },
+      "events": 0
+    },
+    {
+      "revision": "after",
+      "phase": "escaped",
+      "failure": "",
+      "preReleaseContacts": [],
+      "release": {
+        "x": -78.18822926331498,
+        "y": 306.0288346664949,
+        "vx": 72.41561236931312,
+        "vy": 173.70752109698893,
+        "angle": 67.36960259624608,
+        "time": 3.383640559737411,
+        "reason": "Release ring cleared the pin",
+        "speed": 188.19756587289717,
+        "energy": 88545809.50120868
+      },
+      "escape": {
+        "version": 1,
+        "world": {
+          "version": 4,
+          "height": 3000,
+          "treeHeight": 110,
+          "launchY": 32
+        },
+        "threshold": 3000,
+        "altitude": 3000,
+        "time": 42.6125646800225,
+        "payload": {
+          "x": 1926.5226186934053,
+          "y": 2968,
+          "vx": 49.84283513656048,
+          "vy": 38.571861081470296,
+          "angle": -78.20327325090203,
+          "omega": -2.05664218234415
+        },
+        "distance": 1950.6414836610727,
+        "height": 2968,
+        "release": {
+          "x": -78.18822926331498,
+          "y": 306.0288346664949,
+          "vx": 72.41561236931312,
+          "vy": 173.70752109698893,
+          "time": 3.383640559737411,
+          "speed": 188.19756587289717,
+          "angle": 67.36960259624608,
+          "energy": 88545809.50120868,
+          "reason": "Release ring cleared the pin"
+        },
+        "failure": "",
+        "grams": 5000000,
+        "animal": "elephant"
+      },
+      "events": 0
+    }
+  ],
+  "status": "Archived revision2\u21923 rare-emergent comparison; current revision4 forest-return data is forest-corridor-comparison.json."
+}

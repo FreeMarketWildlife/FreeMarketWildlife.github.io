@@ -1,0 +1,19 @@
+/* Moon, fairy and egg artwork: native pixels, named Buttonwood palette. */
+(()=>{'use strict';const A=window.ButtonwoodArt,P=A.palette,cache=new Map();
+const names=Object.freeze(['New Moon','Waxing Crescent','First Quarter','Waxing Gibbous','Full Moon','Waning Gibbous','Third Quarter','Waning Crescent']);
+const phaseForNight=day=>((Math.max(1,Math.floor(Number(day)||1))-1)%8+8)%8;
+function r(g,color,x,y,w,h){g.fillStyle=P[color];g.fillRect(x,y,w,h)}
+function oct(g,color,x,y,w,h,k=2){r(g,color,x+k,y,w-k*2,h);r(g,color,x,y+k,w,h-k*2)}
+function moon(g,x,y,radius,phase,blood=false){phase=((phase%8)+8)%8;if(phase===0)return;for(let yy=-radius;yy<=radius;yy++){const span=Math.floor(Math.sqrt(radius*radius-yy*yy)),terminator=Math.cos((phase<=4?phase:8-phase)*Math.PI/4)*span;for(let xx=-span;xx<=span;xx++){const lit=phase<=4?xx>=terminator:xx<=-terminator;if(lit)r(g,blood?((xx===-span||yy===radius)?'coralShade':'coral'):((xx===-span||yy===radius)?'creamShade':'cream'),x+xx,y+yy,1,1)}}}
+A.lunar=Object.freeze({names,phaseForNight,paint:moon,icon(phase){const key='moon:'+phase;if(cache.has(key))return cache.get(key);const c=document.createElement('canvas');c.width=c.height=32;const g=c.getContext('2d');r(g,'nightSky',0,0,32,32);moon(g,16,16,10,phase);if(phase===0){r(g,'outline',12,6,8,1);r(g,'outline',12,26,8,1);r(g,'outline',6,12,1,8);r(g,'outline',26,12,1,8)}cache.set(key,c);return c}});
+A.fairySprite=function(frame=0){const key='fairy:'+frame%4;if(cache.has(key))return cache.get(key);const c=document.createElement('canvas');c.width=32;c.height=40;const g=c.getContext('2d'),lift=frame%2;
+for(const x of [3,20]){oct(g,'outline',x,8-lift,9,13,3);oct(g,'mintLight',x+1,9-lift,7,10,2);r(g,'creamLight',x+2,11-lift,2,5)}
+oct(g,'outline',11,7,11,11,3);oct(g,'skin',12,8,9,9,2);r(g,'skinLight',13,9,4,3);oct(g,'hair',10,5,12,7,2);r(g,'hairLight',12,6,7,2);r(g,'gold',14,5,4,1);r(g,'skin',15,10,6,5);r(g,'ink',19,11,1,1);r(g,'skinLight',21,13,1,2);r(g,'outline',18,15,2,1);
+oct(g,'outline',11,17,11,12,2);oct(g,'mint',12,18,9,10,2);r(g,'mintLight',13,18,3,4);r(g,'outline',9,25,15,3);r(g,'coral',10,25,13,2);r(g,'skin',12,29,2,4);r(g,'skin',19,29,2,4);
+r(g,'woodShade',24,15,1,16);r(g,'gold',22,12,5,3);r(g,'creamLight',24,10,1,7);r(g,'gold',21,14,7,1);r(g,'skin',21,20,4,2);
+r(g,'outline',3,31,8,6);r(g,'wood',4,32,6,4);r(g,'gold',5,32,4,1);r(g,'cream',5,29,3,4);cache.set(key,c);return c};
+A.eggSprite=function(stage=0,icon=false){const key='egg:'+stage+':'+icon;if(cache.has(key))return cache.get(key);const c=document.createElement('canvas');c.width=icon?32:16;c.height=icon?32:20;const g=c.getContext('2d'),x=icon?9:1,y=icon?6:0;
+r(g,'outline',x+4,y+1,5,1);r(g,'outline',x+2,y+2,9,3);r(g,'outline',x+1,y+5,11,8);r(g,'outline',x+2,y+13,9,3);r(g,'cream',x+3,y+3,7,11);r(g,'creamLight',x+3,y+4,3,7);r(g,'creamShade',x+8,y+7,3,6);r(g,'mint',x+5,y+7,2,2);r(g,'coralLight',x+4,y+11,2,2);if(stage){r(g,'outline',x+6,y+3,1,3);r(g,'outline',x+5,y+6,1,3);r(g,'outline',x+6,y+9,1,3)}cache.set(key,c);return c};
+A.scoutMark=function(){if(cache.has('scout'))return cache.get('scout');const c=document.createElement('canvas');c.width=c.height=32;const g=c.getContext('2d');for(const x of [0,31])r(g,'gold',x,0,1,32);for(const y of [0,31])r(g,'gold',0,y,32,1);r(g,'creamLight',0,0,3,1);r(g,'creamLight',0,0,1,3);cache.set('scout',c);return c};
+A.fairyIcon=function(){const c=document.createElement('canvas');c.width=c.height=32;const g=c.getContext('2d');oct(g,'outline',5,8,7,13,2);oct(g,'mintLight',6,9,5,10,2);oct(g,'outline',21,8,6,13,2);oct(g,'cream',22,9,4,10,1);oct(g,'outline',12,6,9,11,2);oct(g,'skin',13,7,7,9,2);oct(g,'hair',11,4,11,6,2);r(g,'ink',18,11,1,1);r(g,'outline',11,17,11,12);r(g,'mint',12,18,9,9);r(g,'coral',10,26,14,2);r(g,'gold',26,4,1,20);r(g,'creamLight',24,7,5,1);return c};
+})();

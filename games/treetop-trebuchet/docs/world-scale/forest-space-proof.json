@@ -1,0 +1,110 @@
+[
+  {
+    "revision": "before",
+    "phase": "escaped",
+    "failure": "",
+    "preReleaseContacts": [],
+    "release": {
+      "x": -78.18822926331498,
+      "y": 306.0288346664949,
+      "vx": 72.41561236931312,
+      "vy": 173.70752109698893,
+      "angle": 67.36960259624608,
+      "time": 3.383640559737411,
+      "reason": "Release ring cleared the pin",
+      "speed": 188.19756587289717,
+      "energy": 88545809.50120868
+    },
+    "escape": {
+      "version": 1,
+      "world": {
+        "version": 4,
+        "height": 3000,
+        "treeHeight": 110,
+        "launchY": 32
+      },
+      "threshold": 3000,
+      "altitude": 3000,
+      "time": 42.6125646800225,
+      "payload": {
+        "x": 1926.5226186934053,
+        "y": 2968,
+        "vx": 49.84283513656048,
+        "vy": 38.571861081470296,
+        "angle": -78.20327325090203,
+        "omega": -2.05664218234415
+      },
+      "distance": 1950.6414836610727,
+      "height": 2968,
+      "release": {
+        "x": -78.18822926331498,
+        "y": 306.0288346664949,
+        "vx": 72.41561236931312,
+        "vy": 173.70752109698893,
+        "time": 3.383640559737411,
+        "speed": 188.19756587289717,
+        "angle": 67.36960259624608,
+        "energy": 88545809.50120868,
+        "reason": "Release ring cleared the pin"
+      },
+      "failure": "",
+      "grams": 5000000,
+      "animal": "elephant"
+    },
+    "events": 0
+  },
+  {
+    "revision": "after",
+    "phase": "escaped",
+    "failure": "",
+    "preReleaseContacts": [],
+    "release": {
+      "x": -78.18822926331498,
+      "y": 306.0288346664949,
+      "vx": 72.41561236931312,
+      "vy": 173.70752109698893,
+      "angle": 67.36960259624608,
+      "time": 3.383640559737411,
+      "reason": "Release ring cleared the pin",
+      "speed": 188.19756587289717,
+      "energy": 88545809.50120868
+    },
+    "escape": {
+      "version": 1,
+      "world": {
+        "version": 4,
+        "height": 3000,
+        "treeHeight": 110,
+        "launchY": 32
+      },
+      "threshold": 3000,
+      "altitude": 3000,
+      "time": 42.6125646800225,
+      "payload": {
+        "x": 1926.5226186934053,
+        "y": 2968,
+        "vx": 49.84283513656048,
+        "vy": 38.571861081470296,
+        "angle": -78.20327325090203,
+        "omega": -2.05664218234415
+      },
+      "distance": 1950.6414836610727,
+      "height": 2968,
+      "release": {
+        "x": -78.18822926331498,
+        "y": 306.0288346664949,
+        "vx": 72.41561236931312,
+        "vy": 173.70752109698893,
+        "time": 3.383640559737411,
+        "speed": 188.19756587289717,
+        "angle": 67.36960259624608,
+        "energy": 88545809.50120868,
+        "reason": "Release ring cleared the pin"
+      },
+      "failure": "",
+      "grams": 5000000,
+      "animal": "elephant"
+    },
+    "events": 0
+  }
+]

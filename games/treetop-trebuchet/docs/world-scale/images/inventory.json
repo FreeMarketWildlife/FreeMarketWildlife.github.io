@@ -1,0 +1,4616 @@
+[
+  {
+    "id": "animal-frog",
+    "name": "Tree frog",
+    "category": "Animals",
+    "width": 0.08,
+    "height": 0.05,
+    "extent": 0.08,
+    "measure": "8 cm × 5 cm game envelope · 0.03 kg",
+    "animalId": "frog"
+  },
+  {
+    "id": "encounter-vinebug",
+    "name": "Vine bug",
+    "category": "Encounters",
+    "width": 0.12,
+    "height": 0.12,
+    "extent": 0.12,
+    "measure": "12 cm contact diameter"
+  },
+  {
+    "id": "object-canopy-bug",
+    "name": "Vine bug",
+    "category": "World solids",
+    "width": 0.12000000000000455,
+    "height": 0.120000000000001,
+    "extent": 0.12000000000000455,
+    "measure": "Physical enemy · bumper",
+    "objectId": "canopy-bug"
+  },
+  {
+    "id": "encounter-hopper",
+    "name": "Leaf hopper",
+    "category": "Encounters",
+    "width": 0.14,
+    "height": 0.14,
+    "extent": 0.14,
+    "measure": "14 cm contact diameter"
+  },
+  {
+    "id": "object-first-hopper",
+    "name": "Leaf hopper",
+    "category": "World solids",
+    "width": 0.14000000000000057,
+    "height": 0.14000000000000057,
+    "extent": 0.14000000000000057,
+    "measure": "Physical enemy · bumper",
+    "objectId": "first-hopper"
+  },
+  {
+    "id": "object-route-forest-friend-1",
+    "name": "Leaf hopper",
+    "category": "World solids",
+    "width": 0.13999999999998636,
+    "height": 0.14000000000000057,
+    "extent": 0.14000000000000057,
+    "measure": "Physical enemy · bumper",
+    "objectId": "route-forest-friend-1"
+  },
+  {
+    "id": "object-route-forest-friend-4",
+    "name": "Leaf hopper",
+    "category": "World solids",
+    "width": 0.13999999999998636,
+    "height": 0.14000000000000057,
+    "extent": 0.14000000000000057,
+    "measure": "Physical enemy · bumper",
+    "objectId": "route-forest-friend-4"
+  },
+  {
+    "id": "object-route-forest-friend-7",
+    "name": "Leaf hopper",
+    "category": "World solids",
+    "width": 0.13999999999998636,
+    "height": 0.14000000000000057,
+    "extent": 0.14000000000000057,
+    "measure": "Physical enemy · bumper",
+    "objectId": "route-forest-friend-7"
+  },
+  {
+    "id": "object-route-forest-friend-10",
+    "name": "Leaf hopper",
+    "category": "World solids",
+    "width": 0.13999999999998636,
+    "height": 0.14000000000000057,
+    "extent": 0.14000000000000057,
+    "measure": "Physical enemy · bumper",
+    "objectId": "route-forest-friend-10"
+  },
+  {
+    "id": "object-route-forest-friend-13",
+    "name": "Leaf hopper",
+    "category": "World solids",
+    "width": 0.14000000000010004,
+    "height": 0.14000000000000057,
+    "extent": 0.14000000000010004,
+    "measure": "Physical enemy · bumper",
+    "objectId": "route-forest-friend-13"
+  },
+  {
+    "id": "object-route-forest-friend-16",
+    "name": "Leaf hopper",
+    "category": "World solids",
+    "width": 0.14000000000010004,
+    "height": 0.14000000000000057,
+    "extent": 0.14000000000010004,
+    "measure": "Physical enemy · bumper",
+    "objectId": "route-forest-friend-16"
+  },
+  {
+    "id": "ordinary-leaf",
+    "name": "Ordinary leaf",
+    "category": "Props",
+    "width": 0.1404,
+    "height": 0.050544,
+    "extent": 0.1404,
+    "measure": "14 cm leaf length"
+  },
+  {
+    "id": "encounter-beetle",
+    "name": "Archive beetle",
+    "category": "Encounters",
+    "width": 0.16,
+    "height": 0.16,
+    "extent": 0.16,
+    "measure": "16 cm contact diameter"
+  },
+  {
+    "id": "object-first-beetle",
+    "name": "Archive beetle",
+    "category": "World solids",
+    "width": 0.1599999999999966,
+    "height": 0.16000000000000014,
+    "extent": 0.16000000000000014,
+    "measure": "Physical enemy · bumper",
+    "objectId": "first-beetle"
+  },
+  {
+    "id": "object-route-forest-friend-6",
+    "name": "Archive beetle",
+    "category": "World solids",
+    "width": 0.15999999999996817,
+    "height": 0.16000000000000014,
+    "extent": 0.16000000000000014,
+    "measure": "Physical enemy · bumper",
+    "objectId": "route-forest-friend-6"
+  },
+  {
+    "id": "object-route-forest-friend-9",
+    "name": "Archive beetle",
+    "category": "World solids",
+    "width": 0.15999999999996817,
+    "height": 0.16000000000000014,
+    "extent": 0.16000000000000014,
+    "measure": "Physical enemy · bumper",
+    "objectId": "route-forest-friend-9"
+  },
+  {
+    "id": "object-route-forest-friend-0",
+    "name": "Archive beetle",
+    "category": "World solids",
+    "width": 0.160000000000025,
+    "height": 0.16000000000000014,
+    "extent": 0.160000000000025,
+    "measure": "Physical enemy · bumper",
+    "objectId": "route-forest-friend-0"
+  },
+  {
+    "id": "object-route-forest-friend-3",
+    "name": "Archive beetle",
+    "category": "World solids",
+    "width": 0.160000000000025,
+    "height": 0.16000000000000014,
+    "extent": 0.160000000000025,
+    "measure": "Physical enemy · bumper",
+    "objectId": "route-forest-friend-3"
+  },
+  {
+    "id": "object-route-forest-friend-12",
+    "name": "Archive beetle",
+    "category": "World solids",
+    "width": 0.16000000000008185,
+    "height": 0.16000000000000014,
+    "extent": 0.16000000000008185,
+    "measure": "Physical enemy · bumper",
+    "objectId": "route-forest-friend-12"
+  },
+  {
+    "id": "object-route-forest-friend-15",
+    "name": "Archive beetle",
+    "category": "World solids",
+    "width": 0.16000000000008185,
+    "height": 0.16000000000000014,
+    "extent": 0.16000000000008185,
+    "measure": "Physical enemy · bumper",
+    "objectId": "route-forest-friend-15"
+  },
+  {
+    "id": "object-opening-landmark-1-pod-2",
+    "name": "Seedpod · background",
+    "category": "World scenery",
+    "width": 0.17999999999999972,
+    "height": 0.17999999999999972,
+    "extent": 0.17999999999999972,
+    "measure": "Scenery circle · bumper",
+    "objectId": "opening-landmark-1-pod-2"
+  },
+  {
+    "id": "animal-mouse",
+    "name": "Field mouse",
+    "category": "Animals",
+    "width": 0.18,
+    "height": 0.055,
+    "extent": 0.18,
+    "measure": "18 cm × 5.5 cm game envelope · 0.025 kg",
+    "animalId": "mouse"
+  },
+  {
+    "id": "object-opening-landmark-2-pod-2",
+    "name": "Seedpod · background",
+    "category": "World scenery",
+    "width": 0.18000000000000682,
+    "height": 0.17999999999999972,
+    "extent": 0.18000000000000682,
+    "measure": "Scenery circle · bumper",
+    "objectId": "opening-landmark-2-pod-2"
+  },
+  {
+    "id": "object-opening-landmark-1-pod-1",
+    "name": "Seedpod · background",
+    "category": "World scenery",
+    "width": 0.20000000000000284,
+    "height": 0.1999999999999993,
+    "extent": 0.20000000000000284,
+    "measure": "Scenery circle · bumper",
+    "objectId": "opening-landmark-1-pod-1"
+  },
+  {
+    "id": "object-opening-landmark-2-pod-1",
+    "name": "Seedpod · background",
+    "category": "World scenery",
+    "width": 0.20000000000000284,
+    "height": 0.1999999999999993,
+    "extent": 0.20000000000000284,
+    "measure": "Scenery circle · bumper",
+    "objectId": "opening-landmark-2-pod-1"
+  },
+  {
+    "id": "object-spring-return",
+    "name": "Spring pod",
+    "category": "World solids",
+    "width": 0.21999999999999886,
+    "height": 0.21999999999999886,
+    "extent": 0.21999999999999886,
+    "measure": "Physical enemy · bumper",
+    "objectId": "spring-return"
+  },
+  {
+    "id": "object-forest-pod",
+    "name": "Spring pod",
+    "category": "World solids",
+    "width": 0.21999999999999886,
+    "height": 0.21999999999999886,
+    "extent": 0.21999999999999886,
+    "measure": "Physical enemy · bumper",
+    "objectId": "forest-pod"
+  },
+  {
+    "id": "encounter-pod",
+    "name": "Spring pod",
+    "category": "Encounters",
+    "width": 0.22,
+    "height": 0.22,
+    "extent": 0.22,
+    "measure": "22 cm contact diameter"
+  },
+  {
+    "id": "animal-chipmunk",
+    "name": "Chipmunk",
+    "category": "Animals",
+    "width": 0.26,
+    "height": 0.09,
+    "extent": 0.26,
+    "measure": "26 cm × 9 cm game envelope · 0.1 kg",
+    "animalId": "chipmunk"
+  },
+  {
+    "id": "object-sky-gust",
+    "name": "Letter bird",
+    "category": "World solids",
+    "width": 0.29999999999999716,
+    "height": 0.29999999999999716,
+    "extent": 0.29999999999999716,
+    "measure": "Physical enemy · bumper",
+    "objectId": "sky-gust"
+  },
+  {
+    "id": "object-opening-exit-skid",
+    "name": "Waxleaf skid",
+    "category": "World solids",
+    "width": 0.29999999999999716,
+    "height": 0.29999999999999716,
+    "extent": 0.29999999999999716,
+    "measure": "Physical enemy · bumper",
+    "objectId": "opening-exit-skid"
+  },
+  {
+    "id": "encounter-bird",
+    "name": "Letter bird",
+    "category": "Encounters",
+    "width": 0.3,
+    "height": 0.3,
+    "extent": 0.3,
+    "measure": "30 cm contact diameter"
+  },
+  {
+    "id": "encounter-skid",
+    "name": "Waxleaf skid",
+    "category": "Encounters",
+    "width": 0.3,
+    "height": 0.3,
+    "extent": 0.3,
+    "measure": "30 cm contact diameter"
+  },
+  {
+    "id": "object-route-forest-friend-5",
+    "name": "Waxleaf skid",
+    "category": "World solids",
+    "width": 0.2999999999999545,
+    "height": 0.3000000000000007,
+    "extent": 0.3000000000000007,
+    "measure": "Physical enemy · bumper",
+    "objectId": "route-forest-friend-5"
+  },
+  {
+    "id": "object-route-forest-friend-8",
+    "name": "Waxleaf skid",
+    "category": "World solids",
+    "width": 0.2999999999999545,
+    "height": 0.3000000000000007,
+    "extent": 0.3000000000000007,
+    "measure": "Physical enemy · bumper",
+    "objectId": "route-forest-friend-8"
+  },
+  {
+    "id": "object-route-forest-friend-11",
+    "name": "Waxleaf skid",
+    "category": "World solids",
+    "width": 0.2999999999999545,
+    "height": 0.3000000000000007,
+    "extent": 0.3000000000000007,
+    "measure": "Physical enemy · bumper",
+    "objectId": "route-forest-friend-11"
+  },
+  {
+    "id": "object-route-forest-friend-14",
+    "name": "Waxleaf skid",
+    "category": "World solids",
+    "width": 0.2999999999999545,
+    "height": 0.3000000000000007,
+    "extent": 0.3000000000000007,
+    "measure": "Physical enemy · bumper",
+    "objectId": "route-forest-friend-14"
+  },
+  {
+    "id": "object-route-forest-friend-17",
+    "name": "Waxleaf skid",
+    "category": "World solids",
+    "width": 0.2999999999999545,
+    "height": 0.3000000000000007,
+    "extent": 0.3000000000000007,
+    "measure": "Physical enemy · bumper",
+    "objectId": "route-forest-friend-17"
+  },
+  {
+    "id": "object-route-forest-friend-2",
+    "name": "Waxleaf skid",
+    "category": "World solids",
+    "width": 0.30000000000001137,
+    "height": 0.3000000000000007,
+    "extent": 0.30000000000001137,
+    "measure": "Physical enemy · bumper",
+    "objectId": "route-forest-friend-2"
+  },
+  {
+    "id": "object-opening-landmark-1-pod-0",
+    "name": "Seedpod · background",
+    "category": "World scenery",
+    "width": 0.3200000000000003,
+    "height": 0.3200000000000003,
+    "extent": 0.3200000000000003,
+    "measure": "Scenery circle · bumper",
+    "objectId": "opening-landmark-1-pod-0"
+  },
+  {
+    "id": "object-opening-landmark-2-pod-0",
+    "name": "Seedpod · background",
+    "category": "World scenery",
+    "width": 0.3199999999999932,
+    "height": 0.3200000000000003,
+    "extent": 0.3200000000000003,
+    "measure": "Scenery circle · bumper",
+    "objectId": "opening-landmark-2-pod-0"
+  },
+  {
+    "id": "object-floor-stone-0",
+    "name": "Small forest stone",
+    "category": "World solids",
+    "width": 0.3200000000000003,
+    "height": 0.28000000000000114,
+    "extent": 0.3200000000000003,
+    "measure": "Physical polygon · stone",
+    "objectId": "floor-stone-0"
+  },
+  {
+    "id": "encounter-fragment",
+    "name": "Ring fragment",
+    "category": "Encounters",
+    "width": 0.36,
+    "height": 0.36,
+    "extent": 0.36,
+    "measure": "36 cm contact diameter"
+  },
+  {
+    "id": "object-ring-piece",
+    "name": "Ring fragment",
+    "category": "World solids",
+    "width": 0.36000000000001364,
+    "height": 0.36000000000012733,
+    "extent": 0.36000000000012733,
+    "measure": "Physical enemy · bumper",
+    "objectId": "ring-piece"
+  },
+  {
+    "id": "object-floor-stone-1",
+    "name": "Small forest stone",
+    "category": "World solids",
+    "width": 0.37000000000000455,
+    "height": 0.3160000000000025,
+    "extent": 0.37000000000000455,
+    "measure": "Physical polygon · stone",
+    "objectId": "floor-stone-1"
+  },
+  {
+    "id": "encounter-fungus",
+    "name": "Round fungus",
+    "category": "Encounters",
+    "width": 0.4,
+    "height": 0.4,
+    "extent": 0.4,
+    "measure": "40 cm contact diameter"
+  },
+  {
+    "id": "object-small-floor-fungus",
+    "name": "Round fungus",
+    "category": "World solids",
+    "width": 0.4000000000000057,
+    "height": 0.3999999999999986,
+    "extent": 0.4000000000000057,
+    "measure": "Physical enemy · bumper",
+    "objectId": "small-floor-fungus"
+  },
+  {
+    "id": "object-floor-stone-2",
+    "name": "Small forest stone",
+    "category": "World solids",
+    "width": 0.4199999999999875,
+    "height": 0.35199999999999676,
+    "extent": 0.4199999999999875,
+    "measure": "Physical polygon · stone",
+    "objectId": "floor-stone-2"
+  },
+  {
+    "id": "animal-rabbit",
+    "name": "Rabbit",
+    "category": "Animals",
+    "width": 0.45,
+    "height": 0.22,
+    "extent": 0.45,
+    "measure": "45 cm × 22 cm game envelope · 2 kg",
+    "animalId": "rabbit"
+  },
+  {
+    "id": "animal-squirrel",
+    "name": "Squirrel",
+    "category": "Animals",
+    "width": 0.45,
+    "height": 0.14,
+    "extent": 0.45,
+    "measure": "45 cm × 14 cm game envelope · 0.5 kg",
+    "animalId": "squirrel"
+  },
+  {
+    "id": "object-floor-stone-3",
+    "name": "Small forest stone",
+    "category": "World solids",
+    "width": 0.46999999999999886,
+    "height": 0.3879999999999981,
+    "extent": 0.46999999999999886,
+    "measure": "Physical polygon · stone",
+    "objectId": "floor-stone-3"
+  },
+  {
+    "id": "object-royal-hopper-one",
+    "name": "Royal leaf hopper",
+    "category": "World solids",
+    "width": 0.4799999999999969,
+    "height": 0.47999999999998977,
+    "extent": 0.4799999999999969,
+    "measure": "Physical enemy · bumper",
+    "objectId": "royal-hopper-one"
+  },
+  {
+    "id": "encounter-royal-hopper",
+    "name": "Royal leaf hopper",
+    "category": "Encounters",
+    "width": 0.48,
+    "height": 0.48,
+    "extent": 0.48,
+    "measure": "48 cm contact diameter"
+  },
+  {
+    "id": "encounter-yokai",
+    "name": "Wandering yokai",
+    "category": "Encounters",
+    "width": 0.5,
+    "height": 0.5,
+    "extent": 0.5,
+    "measure": "50 cm contact diameter"
+  },
+  {
+    "id": "object-star-yokai",
+    "name": "Wandering yokai",
+    "category": "World solids",
+    "width": 0.5,
+    "height": 0.5,
+    "extent": 0.5,
+    "measure": "Physical enemy · bumper",
+    "objectId": "star-yokai"
+  },
+  {
+    "id": "object-floor-stone-4",
+    "name": "Small forest stone",
+    "category": "World solids",
+    "width": 0.5199999999999818,
+    "height": 0.4239999999999995,
+    "extent": 0.5199999999999818,
+    "measure": "Physical polygon · stone",
+    "objectId": "floor-stone-4"
+  },
+  {
+    "id": "object-cloud-one",
+    "name": "Raincloud",
+    "category": "World solids",
+    "width": 0.5499999999999972,
+    "height": 0.5499999999999972,
+    "extent": 0.5499999999999972,
+    "measure": "Physical enemy · bumper",
+    "objectId": "cloud-one"
+  },
+  {
+    "id": "encounter-cloud",
+    "name": "Raincloud",
+    "category": "Encounters",
+    "width": 0.55,
+    "height": 0.55,
+    "extent": 0.55,
+    "measure": "55 cm contact diameter"
+  },
+  {
+    "id": "object-route-floor-stone-11",
+    "name": "Forest stone",
+    "category": "World solids",
+    "width": 0.599999999999909,
+    "height": 0.4799999999999969,
+    "extent": 0.599999999999909,
+    "measure": "Physical polygon · stone",
+    "objectId": "route-floor-stone-11"
+  },
+  {
+    "id": "object-route-floor-stone-12",
+    "name": "Forest stone",
+    "category": "World solids",
+    "width": 0.599999999999909,
+    "height": 0.4799999999999969,
+    "extent": 0.599999999999909,
+    "measure": "Physical polygon · stone",
+    "objectId": "route-floor-stone-12"
+  },
+  {
+    "id": "object-route-floor-stone-13",
+    "name": "Forest stone",
+    "category": "World solids",
+    "width": 0.599999999999909,
+    "height": 0.4799999999999969,
+    "extent": 0.599999999999909,
+    "measure": "Physical polygon · stone",
+    "objectId": "route-floor-stone-13"
+  },
+  {
+    "id": "object-route-floor-stone-14",
+    "name": "Forest stone",
+    "category": "World solids",
+    "width": 0.599999999999909,
+    "height": 0.4799999999999969,
+    "extent": 0.599999999999909,
+    "measure": "Physical polygon · stone",
+    "objectId": "route-floor-stone-14"
+  },
+  {
+    "id": "object-route-floor-stone-15",
+    "name": "Forest stone",
+    "category": "World solids",
+    "width": 0.599999999999909,
+    "height": 0.4799999999999969,
+    "extent": 0.599999999999909,
+    "measure": "Physical polygon · stone",
+    "objectId": "route-floor-stone-15"
+  },
+  {
+    "id": "object-route-floor-stone-16",
+    "name": "Forest stone",
+    "category": "World solids",
+    "width": 0.599999999999909,
+    "height": 0.4799999999999969,
+    "extent": 0.599999999999909,
+    "measure": "Physical polygon · stone",
+    "objectId": "route-floor-stone-16"
+  },
+  {
+    "id": "object-route-floor-stone-17",
+    "name": "Forest stone",
+    "category": "World solids",
+    "width": 0.599999999999909,
+    "height": 0.4799999999999969,
+    "extent": 0.599999999999909,
+    "measure": "Physical polygon · stone",
+    "objectId": "route-floor-stone-17"
+  },
+  {
+    "id": "object-elder-beetle-one",
+    "name": "Elder archive beetle",
+    "category": "World solids",
+    "width": 0.5999999999999943,
+    "height": 0.5999999999999943,
+    "extent": 0.5999999999999943,
+    "measure": "Physical enemy · bumper",
+    "objectId": "elder-beetle-one"
+  },
+  {
+    "id": "encounter-elder-beetle",
+    "name": "Elder archive beetle",
+    "category": "Encounters",
+    "width": 0.6,
+    "height": 0.6,
+    "extent": 0.6,
+    "measure": "60 cm contact diameter"
+  },
+  {
+    "id": "object-route-floor-stone-0",
+    "name": "Forest stone",
+    "category": "World solids",
+    "width": 0.6000000000000227,
+    "height": 0.4799999999999969,
+    "extent": 0.6000000000000227,
+    "measure": "Physical polygon · stone",
+    "objectId": "route-floor-stone-0"
+  },
+  {
+    "id": "object-route-floor-stone-1",
+    "name": "Forest stone",
+    "category": "World solids",
+    "width": 0.6000000000000227,
+    "height": 0.4799999999999969,
+    "extent": 0.6000000000000227,
+    "measure": "Physical polygon · stone",
+    "objectId": "route-floor-stone-1"
+  },
+  {
+    "id": "object-route-floor-stone-2",
+    "name": "Forest stone",
+    "category": "World solids",
+    "width": 0.6000000000000227,
+    "height": 0.4799999999999969,
+    "extent": 0.6000000000000227,
+    "measure": "Physical polygon · stone",
+    "objectId": "route-floor-stone-2"
+  },
+  {
+    "id": "object-route-floor-stone-3",
+    "name": "Forest stone",
+    "category": "World solids",
+    "width": 0.6000000000000227,
+    "height": 0.4799999999999969,
+    "extent": 0.6000000000000227,
+    "measure": "Physical polygon · stone",
+    "objectId": "route-floor-stone-3"
+  },
+  {
+    "id": "object-route-floor-stone-4",
+    "name": "Forest stone",
+    "category": "World solids",
+    "width": 0.6000000000000227,
+    "height": 0.4799999999999969,
+    "extent": 0.6000000000000227,
+    "measure": "Physical polygon · stone",
+    "objectId": "route-floor-stone-4"
+  },
+  {
+    "id": "object-route-floor-stone-5",
+    "name": "Forest stone",
+    "category": "World solids",
+    "width": 0.6000000000000227,
+    "height": 0.4799999999999969,
+    "extent": 0.6000000000000227,
+    "measure": "Physical polygon · stone",
+    "objectId": "route-floor-stone-5"
+  },
+  {
+    "id": "object-route-floor-stone-6",
+    "name": "Forest stone",
+    "category": "World solids",
+    "width": 0.6000000000000227,
+    "height": 0.4799999999999969,
+    "extent": 0.6000000000000227,
+    "measure": "Physical polygon · stone",
+    "objectId": "route-floor-stone-6"
+  },
+  {
+    "id": "object-route-floor-stone-7",
+    "name": "Forest stone",
+    "category": "World solids",
+    "width": 0.6000000000000227,
+    "height": 0.4799999999999969,
+    "extent": 0.6000000000000227,
+    "measure": "Physical polygon · stone",
+    "objectId": "route-floor-stone-7"
+  },
+  {
+    "id": "object-route-floor-stone-8",
+    "name": "Forest stone",
+    "category": "World solids",
+    "width": 0.6000000000000227,
+    "height": 0.4799999999999969,
+    "extent": 0.6000000000000227,
+    "measure": "Physical polygon · stone",
+    "objectId": "route-floor-stone-8"
+  },
+  {
+    "id": "object-route-floor-stone-9",
+    "name": "Forest stone",
+    "category": "World solids",
+    "width": 0.6000000000000227,
+    "height": 0.4799999999999969,
+    "extent": 0.6000000000000227,
+    "measure": "Physical polygon · stone",
+    "objectId": "route-floor-stone-9"
+  },
+  {
+    "id": "object-route-floor-stone-10",
+    "name": "Forest stone",
+    "category": "World solids",
+    "width": 0.6000000000000227,
+    "height": 0.4799999999999969,
+    "extent": 0.6000000000000227,
+    "measure": "Physical polygon · stone",
+    "objectId": "route-floor-stone-10"
+  },
+  {
+    "id": "animal-armadillo",
+    "name": "Armadillo",
+    "category": "Animals",
+    "width": 0.65,
+    "height": 0.27,
+    "extent": 0.65,
+    "measure": "65 cm × 27 cm game envelope · 5 kg",
+    "animalId": "armadillo"
+  },
+  {
+    "id": "object-opening-landmark-1-stem",
+    "name": "Seedpod stalk",
+    "category": "World scenery",
+    "width": 0.15956119213111464,
+    "height": 0.8078256341147503,
+    "extent": 0.8078256341147503,
+    "measure": "Scenery polygon · wood",
+    "objectId": "opening-landmark-1-stem"
+  },
+  {
+    "id": "object-opening-landmark-2-stem",
+    "name": "Seedpod stalk",
+    "category": "World scenery",
+    "width": 0.15956119213112174,
+    "height": 0.8078256341147512,
+    "extent": 0.8078256341147512,
+    "measure": "Scenery polygon · wood",
+    "objectId": "opening-landmark-2-stem"
+  },
+  {
+    "id": "animal-fox",
+    "name": "Fox",
+    "category": "Animals",
+    "width": 0.85,
+    "height": 0.3,
+    "extent": 0.85,
+    "measure": "85 cm × 30 cm game envelope · 6 kg",
+    "animalId": "fox"
+  },
+  {
+    "id": "rig-small",
+    "name": "Acorn Flyer",
+    "category": "Trebuchets",
+    "width": 1.6156127809178074,
+    "height": 1.4187152958786482,
+    "extent": 1.6156127809178074,
+    "measure": "1.2 m axle · 80 cm feet · 1.3 m beam",
+    "recipeId": "small"
+  },
+  {
+    "id": "academy-door",
+    "name": "Academy doorway",
+    "category": "Props",
+    "width": 1.4,
+    "height": 2.15,
+    "extent": 2.15,
+    "measure": "1.4 m width × 2.15 m height"
+  },
+  {
+    "id": "animal-bear",
+    "name": "Brown bear",
+    "category": "Animals",
+    "width": 2.2,
+    "height": 1.1,
+    "extent": 2.2,
+    "measure": "2.2 m × 1.1 m game envelope · 250 kg",
+    "animalId": "bear"
+  },
+  {
+    "id": "object-floor-leaves-4",
+    "name": "Leaf litter · background",
+    "category": "World scenery",
+    "width": 2.3999999999999773,
+    "height": 0.29999999999999716,
+    "extent": 2.3999999999999773,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "floor-leaves-4"
+  },
+  {
+    "id": "object-floor-fungus",
+    "name": "Ancient round fungus",
+    "category": "World solids",
+    "width": 2.3999999999999986,
+    "height": 2.3999999999999986,
+    "extent": 2.3999999999999986,
+    "measure": "Physical enemy · bumper",
+    "objectId": "floor-fungus"
+  },
+  {
+    "id": "object-floor-leaves-0",
+    "name": "Leaf litter · background",
+    "category": "World scenery",
+    "width": 2.3999999999999986,
+    "height": 0.29999999999999716,
+    "extent": 2.3999999999999986,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "floor-leaves-0"
+  },
+  {
+    "id": "encounter-ancient-fungus",
+    "name": "Ancient round fungus",
+    "category": "Encounters",
+    "width": 2.4,
+    "height": 2.4,
+    "extent": 2.4,
+    "measure": "2.4 m contact diameter"
+  },
+  {
+    "id": "encounter-crown-cloud",
+    "name": "Crown raincloud",
+    "category": "Encounters",
+    "width": 2.4,
+    "height": 2.4,
+    "extent": 2.4,
+    "measure": "2.4 m contact diameter"
+  },
+  {
+    "id": "object-cloud-two",
+    "name": "Crown raincloud",
+    "category": "World solids",
+    "width": 2.3999999999999986,
+    "height": 2.4000000000000057,
+    "extent": 2.4000000000000057,
+    "measure": "Physical enemy · bumper",
+    "objectId": "cloud-two"
+  },
+  {
+    "id": "object-floor-leaves-1",
+    "name": "Leaf litter · background",
+    "category": "World scenery",
+    "width": 2.4000000000000057,
+    "height": 0.29999999999999716,
+    "extent": 2.4000000000000057,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "floor-leaves-1"
+  },
+  {
+    "id": "object-floor-leaves-2",
+    "name": "Leaf litter · background",
+    "category": "World scenery",
+    "width": 2.4000000000000057,
+    "height": 0.29999999999999716,
+    "extent": 2.4000000000000057,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "floor-leaves-2"
+  },
+  {
+    "id": "object-floor-leaves-3",
+    "name": "Leaf litter · background",
+    "category": "World scenery",
+    "width": 2.4000000000000057,
+    "height": 0.29999999999999716,
+    "extent": 2.4000000000000057,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "floor-leaves-3"
+  },
+  {
+    "id": "animal-tiger",
+    "name": "Tiger",
+    "category": "Animals",
+    "width": 2.6,
+    "height": 0.8,
+    "extent": 2.6,
+    "measure": "2.6 m × 80 cm game envelope · 220 kg",
+    "animalId": "tiger"
+  },
+  {
+    "id": "object-oak-twig-0-east",
+    "name": "Oak east fork 1",
+    "category": "World solids",
+    "width": 3.091753975098131,
+    "height": 2.231077107283042,
+    "extent": 3.091753975098131,
+    "measure": "Physical polygon · wood",
+    "objectId": "oak-twig-0-east"
+  },
+  {
+    "id": "object-oak-twig-0-west",
+    "name": "Oak west fork 1",
+    "category": "World solids",
+    "width": 3.0917539750981327,
+    "height": 2.231077107283042,
+    "extent": 3.0917539750981327,
+    "measure": "Physical polygon · wood",
+    "objectId": "oak-twig-0-west"
+  },
+  {
+    "id": "object-floor-log-0",
+    "name": "Fallen log",
+    "category": "World solids",
+    "width": 3.5,
+    "height": 0.29999999999999716,
+    "extent": 3.5,
+    "measure": "Physical polygon · wood",
+    "objectId": "floor-log-0"
+  },
+  {
+    "id": "object-route-floor-log-6",
+    "name": "Fallen forest log",
+    "category": "World solids",
+    "width": 3.502331342931825,
+    "height": 0.3399875108922501,
+    "extent": 3.502331342931825,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-floor-log-6"
+  },
+  {
+    "id": "object-route-floor-log-9",
+    "name": "Fallen forest log",
+    "category": "World solids",
+    "width": 3.502331342931825,
+    "height": 0.3399875108922501,
+    "extent": 3.502331342931825,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-floor-log-9"
+  },
+  {
+    "id": "object-route-floor-log-12",
+    "name": "Fallen forest log",
+    "category": "World solids",
+    "width": 3.502331342931825,
+    "height": 0.3399875108922501,
+    "extent": 3.502331342931825,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-floor-log-12"
+  },
+  {
+    "id": "object-route-floor-log-15",
+    "name": "Fallen forest log",
+    "category": "World solids",
+    "width": 3.502331342931825,
+    "height": 0.3399875108922501,
+    "extent": 3.502331342931825,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-floor-log-15"
+  },
+  {
+    "id": "object-route-floor-log-0",
+    "name": "Fallen forest log",
+    "category": "World solids",
+    "width": 3.5023313429318392,
+    "height": 0.3399875108922501,
+    "extent": 3.5023313429318392,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-floor-log-0"
+  },
+  {
+    "id": "object-route-floor-log-3",
+    "name": "Fallen forest log",
+    "category": "World solids",
+    "width": 3.5023313429318534,
+    "height": 0.3399875108922501,
+    "extent": 3.5023313429318534,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-floor-log-3"
+  },
+  {
+    "id": "object-amazon-bough-0-1",
+    "name": "Forest twig bough",
+    "category": "World solids",
+    "width": 3.533423720225315,
+    "height": 0.9462287759857801,
+    "extent": 3.533423720225315,
+    "measure": "Physical polygon · wood",
+    "objectId": "amazon-bough-0-1"
+  },
+  {
+    "id": "object-amazon-bough-0-0",
+    "name": "Forest twig bough",
+    "category": "World solids",
+    "width": 3.5334237202253185,
+    "height": 0.9462287759857801,
+    "extent": 3.5334237202253185,
+    "measure": "Physical polygon · wood",
+    "objectId": "amazon-bough-0-0"
+  },
+  {
+    "id": "object-floor-log-3",
+    "name": "Fallen log",
+    "category": "World solids",
+    "width": 4,
+    "height": 0.25,
+    "extent": 4,
+    "measure": "Physical polygon · wood",
+    "objectId": "floor-log-3"
+  },
+  {
+    "id": "object-opening-rescue-mat",
+    "name": "Lower fork · fern stems",
+    "category": "World solids",
+    "width": 4,
+    "height": 2.1799999999999997,
+    "extent": 4,
+    "measure": "Physical polygon · leaf",
+    "objectId": "opening-rescue-mat"
+  },
+  {
+    "id": "object-route-floor-log-4",
+    "name": "Fallen forest log",
+    "category": "World solids",
+    "width": 4.002039942627391,
+    "height": 0.33999043790339556,
+    "extent": 4.002039942627391,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-floor-log-4"
+  },
+  {
+    "id": "object-route-floor-log-7",
+    "name": "Fallen forest log",
+    "category": "World solids",
+    "width": 4.002039942627391,
+    "height": 0.33999043790339556,
+    "extent": 4.002039942627391,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-floor-log-7"
+  },
+  {
+    "id": "object-route-floor-log-10",
+    "name": "Fallen forest log",
+    "category": "World solids",
+    "width": 4.002039942627391,
+    "height": 0.33999043790339556,
+    "extent": 4.002039942627391,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-floor-log-10"
+  },
+  {
+    "id": "object-route-floor-log-1",
+    "name": "Fallen forest log",
+    "category": "World solids",
+    "width": 4.00203994262742,
+    "height": 0.33999043790339556,
+    "extent": 4.00203994262742,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-floor-log-1"
+  },
+  {
+    "id": "object-route-floor-log-13",
+    "name": "Fallen forest log",
+    "category": "World solids",
+    "width": 4.002039942627448,
+    "height": 0.33999043790339556,
+    "extent": 4.002039942627448,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-floor-log-13"
+  },
+  {
+    "id": "object-route-floor-log-16",
+    "name": "Fallen forest log",
+    "category": "World solids",
+    "width": 4.002039942627448,
+    "height": 0.33999043790339556,
+    "extent": 4.002039942627448,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-floor-log-16"
+  },
+  {
+    "id": "object-amazon-bough-1-0",
+    "name": "Forest twig bough",
+    "category": "World solids",
+    "width": 4.031868871959958,
+    "height": 0.9593443597997742,
+    "extent": 4.031868871959958,
+    "measure": "Physical polygon · wood",
+    "objectId": "amazon-bough-1-0"
+  },
+  {
+    "id": "object-amazon-bough-1-1",
+    "name": "Forest twig bough",
+    "category": "World solids",
+    "width": 4.031868871959958,
+    "height": 0.9593443597997746,
+    "extent": 4.031868871959958,
+    "measure": "Physical polygon · wood",
+    "objectId": "amazon-bough-1-1"
+  },
+  {
+    "id": "object-oak-twig-1-east",
+    "name": "Oak east fork 2",
+    "category": "World solids",
+    "width": 4.073315645148423,
+    "height": 2.522192741914033,
+    "extent": 4.073315645148423,
+    "measure": "Physical polygon · wood",
+    "objectId": "oak-twig-1-east"
+  },
+  {
+    "id": "object-oak-twig-1-west",
+    "name": "Oak west fork 2",
+    "category": "World solids",
+    "width": 4.073315645148423,
+    "height": 2.522192741914033,
+    "extent": 4.073315645148423,
+    "measure": "Physical polygon · wood",
+    "objectId": "oak-twig-1-west"
+  },
+  {
+    "id": "object-floor-log-2",
+    "name": "Fallen log",
+    "category": "World solids",
+    "width": 4.5,
+    "height": 0.28000000000000114,
+    "extent": 4.5,
+    "measure": "Physical polygon · wood",
+    "objectId": "floor-log-2"
+  },
+  {
+    "id": "object-route-floor-log-2",
+    "name": "Fallen forest log",
+    "category": "World solids",
+    "width": 4.501813293038367,
+    "height": 0.33999244469628565,
+    "extent": 4.501813293038367,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-floor-log-2"
+  },
+  {
+    "id": "object-route-floor-log-14",
+    "name": "Fallen forest log",
+    "category": "World solids",
+    "width": 4.501813293038367,
+    "height": 0.33999244469628565,
+    "extent": 4.501813293038367,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-floor-log-14"
+  },
+  {
+    "id": "object-route-floor-log-17",
+    "name": "Fallen forest log",
+    "category": "World solids",
+    "width": 4.501813293038367,
+    "height": 0.33999244469628565,
+    "extent": 4.501813293038367,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-floor-log-17"
+  },
+  {
+    "id": "object-route-floor-log-5",
+    "name": "Fallen forest log",
+    "category": "World solids",
+    "width": 4.501813293038424,
+    "height": 0.33999244469628565,
+    "extent": 4.501813293038424,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-floor-log-5"
+  },
+  {
+    "id": "object-route-floor-log-8",
+    "name": "Fallen forest log",
+    "category": "World solids",
+    "width": 4.501813293038424,
+    "height": 0.33999244469628565,
+    "extent": 4.501813293038424,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-floor-log-8"
+  },
+  {
+    "id": "object-route-floor-log-11",
+    "name": "Fallen forest log",
+    "category": "World solids",
+    "width": 4.501813293038424,
+    "height": 0.33999244469628565,
+    "extent": 4.501813293038424,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-floor-log-11"
+  },
+  {
+    "id": "object-amazon-bough-2-0",
+    "name": "Forest twig bough",
+    "category": "World solids",
+    "width": 4.530630833575557,
+    "height": 0.9722984388625333,
+    "extent": 4.530630833575557,
+    "measure": "Physical polygon · wood",
+    "objectId": "amazon-bough-2-0"
+  },
+  {
+    "id": "object-amazon-bough-2-1",
+    "name": "Forest twig bough",
+    "category": "World solids",
+    "width": 4.530630833575557,
+    "height": 0.9722984388625342,
+    "extent": 4.530630833575557,
+    "measure": "Physical polygon · wood",
+    "objectId": "amazon-bough-2-1"
+  },
+  {
+    "id": "rig-medium",
+    "name": "Oak field launcher",
+    "category": "Trebuchets",
+    "width": 4.660421483416751,
+    "height": 4.106108433485667,
+    "extent": 4.660421483416751,
+    "measure": "3.46 m axle · 2.31 m feet · 3.75 m beam",
+    "recipeId": "medium"
+  },
+  {
+    "id": "object-floor-log-1",
+    "name": "Fallen log",
+    "category": "World solids",
+    "width": 5,
+    "height": 0.3999999999999986,
+    "extent": 5,
+    "measure": "Physical polygon · wood",
+    "objectId": "floor-log-1"
+  },
+  {
+    "id": "object-route-forest-bough-17-1",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 5.004388210061393,
+    "height": 0.3006491118174175,
+    "extent": 5.004388210061393,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-forest-bough-17-1"
+  },
+  {
+    "id": "object-route-forest-bough-16-2",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 5.0051860664360674,
+    "height": 0.33263916378994685,
+    "extent": 5.0051860664360674,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-16-2"
+  },
+  {
+    "id": "object-route-forest-bough-12-0",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 5.00544012368664,
+    "height": 0.33292532767996263,
+    "extent": 5.00544012368664,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-12-0"
+  },
+  {
+    "id": "object-route-forest-bough-11-1",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 5.006649040061461,
+    "height": 0.36490248391998215,
+    "extent": 5.006649040061461,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-forest-bough-11-1"
+  },
+  {
+    "id": "object-route-forest-bough-6-0",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 5.007655010724079,
+    "height": 0.4099717371806477,
+    "extent": 5.007655010724079,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-6-0"
+  },
+  {
+    "id": "object-route-forest-bough-10-2",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 5.0078579564363395,
+    "height": 0.39687964016000477,
+    "extent": 5.0078579564363395,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-10-2"
+  },
+  {
+    "id": "object-route-forest-bough-5-1",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 5.009356124218357,
+    "height": 0.441926489767388,
+    "extent": 5.009356124218357,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-forest-bough-5-1"
+  },
+  {
+    "id": "object-route-forest-bough-0-0",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 5.010055394388786,
+    "height": 0.4936484912683987,
+    "extent": 5.010055394388786,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-0-0"
+  },
+  {
+    "id": "object-route-forest-bough-4-2",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 5.011057237712521,
+    "height": 0.47388124235412654,
+    "extent": 5.011057237712521,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-4-2"
+  },
+  {
+    "id": "object-route-forest-bough-3-0",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 5.011264651285188,
+    "height": 0.535894727793405,
+    "extent": 5.011264651285188,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-3-0"
+  },
+  {
+    "id": "object-route-forest-bough-9-0",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 5.013579911978184,
+    "height": 0.6169937891117954,
+    "extent": 5.013579911978184,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-9-0"
+  },
+  {
+    "id": "object-route-forest-bough-2-1",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 5.013767907126351,
+    "height": 0.5677966667657266,
+    "extent": 5.013767907126351,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-forest-bough-2-1"
+  },
+  {
+    "id": "object-route-forest-bough-15-0",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 5.015606023887813,
+    "height": 0.6882382015581179,
+    "extent": 5.015606023887813,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-15-0"
+  },
+  {
+    "id": "object-route-forest-bough-1-2",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 5.016271162967513,
+    "height": 0.5996986057380482,
+    "extent": 5.016271162967513,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-1-2"
+  },
+  {
+    "id": "object-route-forest-bough-8-1",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 5.0165976701955515,
+    "height": 0.6488511765649676,
+    "extent": 5.0165976701955515,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-forest-bough-8-1"
+  },
+  {
+    "id": "object-route-forest-bough-14-1",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 5.0190740291960765,
+    "height": 0.7200497236716696,
+    "extent": 5.0190740291960765,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-forest-bough-14-1"
+  },
+  {
+    "id": "object-route-forest-bough-7-2",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 5.019615428412976,
+    "height": 0.6807085640181372,
+    "extent": 5.019615428412976,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-7-2"
+  },
+  {
+    "id": "object-route-forest-bough-13-2",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 5.022542034504454,
+    "height": 0.7518612457852205,
+    "extent": 5.022542034504454,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-13-2"
+  },
+  {
+    "id": "object-amazon-bough-3-0",
+    "name": "Forest twig bough",
+    "category": "World solids",
+    "width": 5.0296232189574965,
+    "height": 0.9851451184843807,
+    "extent": 5.0296232189574965,
+    "measure": "Physical polygon · wood",
+    "objectId": "amazon-bough-3-0"
+  },
+  {
+    "id": "object-amazon-bough-3-1",
+    "name": "Forest twig bough",
+    "category": "World solids",
+    "width": 5.0296232189574965,
+    "height": 0.9851451184843825,
+    "extent": 5.0296232189574965,
+    "measure": "Physical polygon · wood",
+    "objectId": "amazon-bough-3-1"
+  },
+  {
+    "id": "object-oak-twig-2-east",
+    "name": "Oak east fork 3",
+    "category": "World solids",
+    "width": 5.059393614341861,
+    "height": 2.8099881747071294,
+    "extent": 5.059393614341861,
+    "measure": "Physical polygon · wood",
+    "objectId": "oak-twig-2-east"
+  },
+  {
+    "id": "object-oak-twig-2-west",
+    "name": "Oak west fork 3",
+    "category": "World solids",
+    "width": 5.059393614341861,
+    "height": 2.8099881747071294,
+    "extent": 5.059393614341861,
+    "measure": "Physical polygon · wood",
+    "objectId": "oak-twig-2-west"
+  },
+  {
+    "id": "object-oak-leaves-1-west-0",
+    "name": "Oak leaf cluster",
+    "category": "World fields",
+    "width": 5.599999999999994,
+    "height": 3.1999999999999886,
+    "extent": 5.599999999999994,
+    "measure": "Pass-through field polygon · foliage",
+    "objectId": "oak-leaves-1-west-0"
+  },
+  {
+    "id": "object-oak-leaves-1-west-1",
+    "name": "Oak leaf cluster",
+    "category": "World fields",
+    "width": 5.599999999999998,
+    "height": 3.1999999999999886,
+    "extent": 5.599999999999998,
+    "measure": "Pass-through field polygon · foliage",
+    "objectId": "oak-leaves-1-west-1"
+  },
+  {
+    "id": "object-oak-leaves-2-west-0",
+    "name": "Oak leaf cluster",
+    "category": "World fields",
+    "width": 5.599999999999998,
+    "height": 3.1999999999999886,
+    "extent": 5.599999999999998,
+    "measure": "Pass-through field polygon · foliage",
+    "objectId": "oak-leaves-2-west-0"
+  },
+  {
+    "id": "object-oak-leaves-2-west-1",
+    "name": "Oak leaf cluster",
+    "category": "World fields",
+    "width": 5.599999999999998,
+    "height": 3.1999999999999886,
+    "extent": 5.599999999999998,
+    "measure": "Pass-through field polygon · foliage",
+    "objectId": "oak-leaves-2-west-1"
+  },
+  {
+    "id": "object-oak-leaves-3-east-1",
+    "name": "Oak leaf cluster",
+    "category": "World fields",
+    "width": 5.6,
+    "height": 3.1999999999999886,
+    "extent": 5.6,
+    "measure": "Pass-through field polygon · foliage",
+    "objectId": "oak-leaves-3-east-1"
+  },
+  {
+    "id": "object-oak-leaves-0-east-1",
+    "name": "Oak leaf cluster",
+    "category": "World fields",
+    "width": 5.6000000000000005,
+    "height": 3.200000000000003,
+    "extent": 5.6000000000000005,
+    "measure": "Pass-through field polygon · foliage",
+    "objectId": "oak-leaves-0-east-1"
+  },
+  {
+    "id": "object-oak-leaves-3-east-0",
+    "name": "Oak leaf cluster",
+    "category": "World fields",
+    "width": 5.6000000000000005,
+    "height": 3.1999999999999886,
+    "extent": 5.6000000000000005,
+    "measure": "Pass-through field polygon · foliage",
+    "objectId": "oak-leaves-3-east-0"
+  },
+  {
+    "id": "object-oak-leaves-0-west-0",
+    "name": "Oak leaf cluster",
+    "category": "World fields",
+    "width": 5.600000000000001,
+    "height": 3.200000000000003,
+    "extent": 5.600000000000001,
+    "measure": "Pass-through field polygon · foliage",
+    "objectId": "oak-leaves-0-west-0"
+  },
+  {
+    "id": "object-oak-leaves-0-west-1",
+    "name": "Oak leaf cluster",
+    "category": "World fields",
+    "width": 5.600000000000001,
+    "height": 3.200000000000003,
+    "extent": 5.600000000000001,
+    "measure": "Pass-through field polygon · foliage",
+    "objectId": "oak-leaves-0-west-1"
+  },
+  {
+    "id": "object-oak-leaves-0-east-0",
+    "name": "Oak leaf cluster",
+    "category": "World fields",
+    "width": 5.600000000000001,
+    "height": 3.200000000000003,
+    "extent": 5.600000000000001,
+    "measure": "Pass-through field polygon · foliage",
+    "objectId": "oak-leaves-0-east-0"
+  },
+  {
+    "id": "object-oak-leaves-1-east-0",
+    "name": "Oak leaf cluster",
+    "category": "World fields",
+    "width": 5.600000000000001,
+    "height": 3.1999999999999886,
+    "extent": 5.600000000000001,
+    "measure": "Pass-through field polygon · foliage",
+    "objectId": "oak-leaves-1-east-0"
+  },
+  {
+    "id": "object-oak-leaves-1-east-1",
+    "name": "Oak leaf cluster",
+    "category": "World fields",
+    "width": 5.600000000000001,
+    "height": 3.1999999999999886,
+    "extent": 5.600000000000001,
+    "measure": "Pass-through field polygon · foliage",
+    "objectId": "oak-leaves-1-east-1"
+  },
+  {
+    "id": "object-oak-leaves-2-east-0",
+    "name": "Oak leaf cluster",
+    "category": "World fields",
+    "width": 5.600000000000001,
+    "height": 3.1999999999999886,
+    "extent": 5.600000000000001,
+    "measure": "Pass-through field polygon · foliage",
+    "objectId": "oak-leaves-2-east-0"
+  },
+  {
+    "id": "object-oak-leaves-2-east-1",
+    "name": "Oak leaf cluster",
+    "category": "World fields",
+    "width": 5.600000000000001,
+    "height": 3.1999999999999886,
+    "extent": 5.600000000000001,
+    "measure": "Pass-through field polygon · foliage",
+    "objectId": "oak-leaves-2-east-1"
+  },
+  {
+    "id": "object-oak-leaves-3-west-0",
+    "name": "Oak leaf cluster",
+    "category": "World fields",
+    "width": 5.600000000000001,
+    "height": 3.1999999999999886,
+    "extent": 5.600000000000001,
+    "measure": "Pass-through field polygon · foliage",
+    "objectId": "oak-leaves-3-west-0"
+  },
+  {
+    "id": "object-oak-leaves-3-west-1",
+    "name": "Oak leaf cluster",
+    "category": "World fields",
+    "width": 5.600000000000001,
+    "height": 3.1999999999999886,
+    "extent": 5.600000000000001,
+    "measure": "Pass-through field polygon · foliage",
+    "objectId": "oak-leaves-3-west-1"
+  },
+  {
+    "id": "animal-elephant",
+    "name": "Elephant",
+    "category": "Animals",
+    "width": 6,
+    "height": 2.6,
+    "extent": 6,
+    "measure": "6 m × 2.6 m game envelope · 5,000 kg",
+    "animalId": "elephant"
+  },
+  {
+    "id": "object-floor-log-4",
+    "name": "Fallen log",
+    "category": "World solids",
+    "width": 6,
+    "height": 0.5,
+    "extent": 6,
+    "measure": "Physical polygon · wood",
+    "objectId": "floor-log-4"
+  },
+  {
+    "id": "object-opening-skip-3",
+    "name": "Fern stems",
+    "category": "World solids",
+    "width": 6,
+    "height": 3.1799999999999997,
+    "extent": 6,
+    "measure": "Physical polygon · leaf",
+    "objectId": "opening-skip-3"
+  },
+  {
+    "id": "object-route-opening-catch-3",
+    "name": "Fern-stem fork",
+    "category": "World solids",
+    "width": 6,
+    "height": 2.58,
+    "extent": 6,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-opening-catch-3"
+  },
+  {
+    "id": "object-route-opening-catch-4",
+    "name": "Fern-stem fork",
+    "category": "World solids",
+    "width": 6,
+    "height": 2.1799999999999997,
+    "extent": 6,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-opening-catch-4"
+  },
+  {
+    "id": "object-route-opening-catch-5",
+    "name": "Fern-stem fork",
+    "category": "World solids",
+    "width": 6,
+    "height": 2.6799999999999997,
+    "extent": 6,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-opening-catch-5"
+  },
+  {
+    "id": "object-opening-skip-1",
+    "name": "Sunlit stems",
+    "category": "World solids",
+    "width": 6,
+    "height": 3.1799999999999997,
+    "extent": 6,
+    "measure": "Physical polygon · leaf",
+    "objectId": "opening-skip-1"
+  },
+  {
+    "id": "object-opening-skip-2",
+    "name": "Waxleaf stems",
+    "category": "World solids",
+    "width": 6,
+    "height": 3.1799999999999997,
+    "extent": 6,
+    "measure": "Physical polygon · leaf",
+    "objectId": "opening-skip-2"
+  },
+  {
+    "id": "object-route-forest-bough-4-0",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 6.002950402556166,
+    "height": 0.26692902297358856,
+    "extent": 6.002950402556166,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-4-0"
+  },
+  {
+    "id": "object-route-forest-bough-3-1",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 6.003606047568667,
+    "height": 0.29892230554380284,
+    "extent": 6.003606047568667,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-forest-bough-3-1"
+  },
+  {
+    "id": "object-route-forest-bough-2-2",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 6.004261692581167,
+    "height": 0.3309155881140171,
+    "extent": 6.004261692581167,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-2-2"
+  },
+  {
+    "id": "object-route-forest-bough-10-0",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 6.004480877052515,
+    "height": 0.33072393367117314,
+    "extent": 6.004480877052515,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-10-0"
+  },
+  {
+    "id": "object-route-forest-bough-9-1",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 6.005476627508699,
+    "height": 0.3627084374351721,
+    "extent": 6.005476627508699,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-forest-bough-9-1"
+  },
+  {
+    "id": "object-route-forest-bough-16-0",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 6.00632099752147,
+    "height": 0.40749020543455927,
+    "extent": 6.00632099752147,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-16-0"
+  },
+  {
+    "id": "object-route-forest-bough-8-2",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 6.006472377964769,
+    "height": 0.3946929411991693,
+    "extent": 6.006472377964769,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-8-2"
+  },
+  {
+    "id": "object-route-forest-bough-15-1",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 6.007725663637416,
+    "height": 0.43945936108657513,
+    "extent": 6.007725663637416,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-forest-bough-15-1"
+  },
+  {
+    "id": "object-route-forest-bough-14-2",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 6.009130329753134,
+    "height": 0.47142851673859365,
+    "extent": 6.009130329753134,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-14-2"
+  },
+  {
+    "id": "object-route-forest-bough-13-0",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 6.011389410151082,
+    "height": 0.6195989923965044,
+    "extent": 6.011389410151082,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-13-0"
+  },
+  {
+    "id": "object-route-forest-bough-7-0",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 6.0130760570451685,
+    "height": 0.6905010587870208,
+    "extent": 6.0130760570451685,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-7-0"
+  },
+  {
+    "id": "object-route-forest-bough-17-2",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 6.01366248703448,
+    "height": 0.6025139673975244,
+    "extent": 6.01366248703448,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-17-2"
+  },
+  {
+    "id": "object-route-forest-bough-12-1",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 6.013920390184694,
+    "height": 0.6514987438072861,
+    "extent": 6.013920390184694,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-forest-bough-12-1"
+  },
+  {
+    "id": "object-route-forest-bough-1-0",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 6.014386255129779,
+    "height": 0.7457208671312188,
+    "extent": 6.014386255129779,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-1-0"
+  },
+  {
+    "id": "object-route-forest-bough-6-1",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 6.015981847499631,
+    "height": 0.7223688541584412,
+    "extent": 6.015981847499631,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-forest-bough-6-1"
+  },
+  {
+    "id": "object-route-forest-bough-11-2",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 6.016451370218306,
+    "height": 0.6833984952180658,
+    "extent": 6.016451370218306,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-11-2"
+  },
+  {
+    "id": "object-route-forest-bough-0-1",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 6.017583200714171,
+    "height": 0.7775607719509665,
+    "extent": 6.017583200714171,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-forest-bough-0-1"
+  },
+  {
+    "id": "object-route-forest-bough-5-2",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 6.018887637954151,
+    "height": 0.7542366495298585,
+    "extent": 6.018887637954151,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-5-2"
+  },
+  {
+    "id": "object-oak-twig-3-east",
+    "name": "Oak east fork 4",
+    "category": "World solids",
+    "width": 6.0480754615162455,
+    "height": 3.0961509230324964,
+    "extent": 6.0480754615162455,
+    "measure": "Physical polygon · wood",
+    "objectId": "oak-twig-3-east"
+  },
+  {
+    "id": "object-oak-twig-3-west",
+    "name": "Oak west fork 4",
+    "category": "World solids",
+    "width": 6.048075461516248,
+    "height": 3.0961509230324964,
+    "extent": 6.048075461516248,
+    "measure": "Physical polygon · wood",
+    "objectId": "oak-twig-3-west"
+  },
+  {
+    "id": "object-route-opening-catch-0",
+    "name": "Fern-stem fork",
+    "category": "World solids",
+    "width": 7,
+    "height": 3.6799999999999997,
+    "extent": 7,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-opening-catch-0"
+  },
+  {
+    "id": "object-route-opening-catch-1",
+    "name": "Fern-stem fork",
+    "category": "World solids",
+    "width": 7,
+    "height": 3.68,
+    "extent": 7,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-opening-catch-1"
+  },
+  {
+    "id": "object-route-opening-catch-2",
+    "name": "Fern-stem fork",
+    "category": "World solids",
+    "width": 7,
+    "height": 3.6799999999999997,
+    "extent": 7,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-opening-catch-2"
+  },
+  {
+    "id": "object-route-opening-catch-6",
+    "name": "Fern-stem fork",
+    "category": "World solids",
+    "width": 7,
+    "height": 2.280000000000001,
+    "extent": 7,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-opening-catch-6"
+  },
+  {
+    "id": "object-route-opening-catch-7",
+    "name": "Fern-stem fork",
+    "category": "World solids",
+    "width": 7,
+    "height": 2.1799999999999997,
+    "extent": 7,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-opening-catch-7"
+  },
+  {
+    "id": "object-route-perch-0",
+    "name": "Forest landing bough",
+    "category": "World solids",
+    "width": 7,
+    "height": 0.17999999999999972,
+    "extent": 7,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-perch-0"
+  },
+  {
+    "id": "object-route-perch-1",
+    "name": "Forest landing bough",
+    "category": "World solids",
+    "width": 7,
+    "height": 0.17999999999999972,
+    "extent": 7,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-perch-1"
+  },
+  {
+    "id": "object-route-perch-2",
+    "name": "Forest landing bough",
+    "category": "World solids",
+    "width": 7,
+    "height": 0.17999999999999972,
+    "extent": 7,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-perch-2"
+  },
+  {
+    "id": "object-opening-rest-terrace",
+    "name": "Lower fork · fallen bough",
+    "category": "World solids",
+    "width": 7,
+    "height": 0.3500000000000014,
+    "extent": 7,
+    "measure": "Physical polygon · wood",
+    "objectId": "opening-rest-terrace"
+  },
+  {
+    "id": "object-route-forest-bough-11-0",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 7.001028605625493,
+    "height": 0.1939992642742716,
+    "extent": 7.001028605625493,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-11-0"
+  },
+  {
+    "id": "object-route-forest-bough-10-1",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 7.001257184653355,
+    "height": 0.22599844788304324,
+    "extent": 7.001257184653355,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-forest-bough-10-1"
+  },
+  {
+    "id": "object-route-forest-bough-17-0",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 7.00126675503293,
+    "height": 0.20557518056335766,
+    "extent": 7.00126675503293,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-17-0"
+  },
+  {
+    "id": "object-route-forest-bough-5-0",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 7.001282016523248,
+    "height": 0.20631701066031027,
+    "extent": 7.001282016523248,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-5-0"
+  },
+  {
+    "id": "object-route-mid-bay-0",
+    "name": "Emergent landing bough",
+    "category": "World solids",
+    "width": 7.001371393587348,
+    "height": 0.2419951022282305,
+    "extent": 7.001371393587348,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-mid-bay-0"
+  },
+  {
+    "id": "object-route-mid-bay-1",
+    "name": "Emergent landing bough",
+    "category": "World solids",
+    "width": 7.001371393587348,
+    "height": 0.2419951022282305,
+    "extent": 7.001371393587348,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-mid-bay-1"
+  },
+  {
+    "id": "object-route-mid-bay-2",
+    "name": "Emergent landing bough",
+    "category": "World solids",
+    "width": 7.0013713935873625,
+    "height": 0.2419951022282305,
+    "extent": 7.0013713935873625,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-mid-bay-2"
+  },
+  {
+    "id": "object-route-mid-bay-3",
+    "name": "Emergent landing bough",
+    "category": "World solids",
+    "width": 7.0013713935873625,
+    "height": 0.2419951022282305,
+    "extent": 7.0013713935873625,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-mid-bay-3"
+  },
+  {
+    "id": "object-route-mid-bay-4",
+    "name": "Emergent landing bough",
+    "category": "World solids",
+    "width": 7.0013713935873625,
+    "height": 0.24199510222823006,
+    "extent": 7.0013713935873625,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-mid-bay-4"
+  },
+  {
+    "id": "object-route-forest-bough-9-2",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 7.001485763681217,
+    "height": 0.25999336682128416,
+    "extent": 7.001485763681217,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-9-2"
+  },
+  {
+    "id": "object-route-forest-bough-16-1",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 7.001548256151409,
+    "height": 0.23757394236940677,
+    "extent": 7.001548256151409,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-forest-bough-16-1"
+  },
+  {
+    "id": "object-route-forest-bough-4-1",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 7.00156690908392,
+    "height": 0.23831574245125786,
+    "extent": 7.00156690908392,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-forest-bough-4-1"
+  },
+  {
+    "id": "object-route-descent-fork-3",
+    "name": "Forest descent fork",
+    "category": "World solids",
+    "width": 7.0018284520233465,
+    "height": 0.23998955204386618,
+    "extent": 7.0018284520233465,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-descent-fork-3"
+  },
+  {
+    "id": "object-route-descent-fork-4",
+    "name": "Forest descent fork",
+    "category": "World solids",
+    "width": 7.0018284520233465,
+    "height": 0.23998955204386618,
+    "extent": 7.0018284520233465,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-descent-fork-4"
+  },
+  {
+    "id": "object-route-descent-fork-5",
+    "name": "Forest descent fork",
+    "category": "World solids",
+    "width": 7.0018284520233465,
+    "height": 0.23998955204386618,
+    "extent": 7.0018284520233465,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-descent-fork-5"
+  },
+  {
+    "id": "object-route-descent-fork-6",
+    "name": "Forest descent fork",
+    "category": "World solids",
+    "width": 7.0018284520233465,
+    "height": 0.23998955204387062,
+    "extent": 7.0018284520233465,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-descent-fork-6"
+  },
+  {
+    "id": "object-route-descent-fork-7",
+    "name": "Forest descent fork",
+    "category": "World solids",
+    "width": 7.0018284520233465,
+    "height": 0.23998955204387062,
+    "extent": 7.0018284520233465,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-descent-fork-7"
+  },
+  {
+    "id": "object-route-descent-fork-8",
+    "name": "Sturdy landing fork",
+    "category": "World solids",
+    "width": 7.0018284520233465,
+    "height": 0.23998955204386618,
+    "extent": 7.0018284520233465,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-descent-fork-8"
+  },
+  {
+    "id": "object-route-descent-fork-9",
+    "name": "Sturdy landing fork",
+    "category": "World solids",
+    "width": 7.0018284520233465,
+    "height": 0.23998955204386618,
+    "extent": 7.0018284520233465,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-descent-fork-9"
+  },
+  {
+    "id": "object-route-descent-fork-10",
+    "name": "Sturdy landing fork",
+    "category": "World solids",
+    "width": 7.0018284520233465,
+    "height": 0.23998955204386618,
+    "extent": 7.0018284520233465,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-descent-fork-10"
+  },
+  {
+    "id": "object-route-descent-fork-11",
+    "name": "Sturdy landing fork",
+    "category": "World solids",
+    "width": 7.0018284520233465,
+    "height": 0.2399895520438715,
+    "extent": 7.0018284520233465,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-descent-fork-11"
+  },
+  {
+    "id": "object-route-descent-fork-1",
+    "name": "Forest descent fork",
+    "category": "World solids",
+    "width": 7.001828452023354,
+    "height": 0.2399895520438715,
+    "extent": 7.001828452023354,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-descent-fork-1"
+  },
+  {
+    "id": "object-route-descent-fork-0",
+    "name": "Forest descent fork",
+    "category": "World solids",
+    "width": 7.001828452023361,
+    "height": 0.2399895520438715,
+    "extent": 7.001828452023361,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-descent-fork-0"
+  },
+  {
+    "id": "object-route-descent-fork-2",
+    "name": "Forest descent fork",
+    "category": "World solids",
+    "width": 7.001828452023361,
+    "height": 0.2399895520438715,
+    "extent": 7.001828452023361,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-descent-fork-2"
+  },
+  {
+    "id": "object-route-forest-bough-15-2",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 7.001829757269888,
+    "height": 0.26957270417545587,
+    "extent": 7.001829757269888,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-15-2"
+  },
+  {
+    "id": "object-route-forest-bough-3-2",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 7.001851801644619,
+    "height": 0.2703144742422019,
+    "extent": 7.001851801644619,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-3-2"
+  },
+  {
+    "id": "object-route-perch-3",
+    "name": "Forest landing bough",
+    "category": "World solids",
+    "width": 7.002056932976728,
+    "height": 0.24398530837112986,
+    "extent": 7.002056932976728,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-perch-3"
+  },
+  {
+    "id": "object-route-upper-bay-2-a",
+    "name": "Emergent canopy bough",
+    "category": "World solids",
+    "width": 7.002856851356569,
+    "height": 0.299979594959904,
+    "extent": 7.002856851356569,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-upper-bay-2-a"
+  },
+  {
+    "id": "object-route-upper-bay-3-a",
+    "name": "Emergent canopy bough",
+    "category": "World solids",
+    "width": 7.002856851356569,
+    "height": 0.299979594959904,
+    "extent": 7.002856851356569,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-upper-bay-3-a"
+  },
+  {
+    "id": "object-route-upper-bay-4-a",
+    "name": "Emergent canopy bough",
+    "category": "World solids",
+    "width": 7.002856851356569,
+    "height": 0.299979594959904,
+    "extent": 7.002856851356569,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-upper-bay-4-a"
+  },
+  {
+    "id": "object-route-upper-bay-5-a",
+    "name": "Emergent canopy bough",
+    "category": "World solids",
+    "width": 7.002856851356569,
+    "height": 0.299979594959904,
+    "extent": 7.002856851356569,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-upper-bay-5-a"
+  },
+  {
+    "id": "object-route-upper-bay-6-a",
+    "name": "Emergent canopy bough",
+    "category": "World solids",
+    "width": 7.002856851356569,
+    "height": 0.299979594959904,
+    "extent": 7.002856851356569,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-upper-bay-6-a"
+  },
+  {
+    "id": "object-route-upper-bay-7-a",
+    "name": "Emergent canopy bough",
+    "category": "World solids",
+    "width": 7.002856851356569,
+    "height": 0.299979594959904,
+    "extent": 7.002856851356569,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-upper-bay-7-a"
+  },
+  {
+    "id": "object-route-upper-bay-8-a",
+    "name": "Emergent canopy bough",
+    "category": "World solids",
+    "width": 7.002856851356569,
+    "height": 0.299979594959904,
+    "extent": 7.002856851356569,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-upper-bay-8-a"
+  },
+  {
+    "id": "object-route-upper-bay-9-a",
+    "name": "Emergent canopy bough",
+    "category": "World solids",
+    "width": 7.002856851356569,
+    "height": 0.299979594959904,
+    "extent": 7.002856851356569,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-upper-bay-9-a"
+  },
+  {
+    "id": "object-route-upper-bay-10-a",
+    "name": "Emergent canopy bough",
+    "category": "World solids",
+    "width": 7.002856851356569,
+    "height": 0.299979594959904,
+    "extent": 7.002856851356569,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-upper-bay-10-a"
+  },
+  {
+    "id": "object-route-upper-bay-0-a",
+    "name": "Emergent canopy bough",
+    "category": "World solids",
+    "width": 7.002856851356597,
+    "height": 0.299979594959904,
+    "extent": 7.002856851356597,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-upper-bay-0-a"
+  },
+  {
+    "id": "object-route-upper-bay-1-a",
+    "name": "Emergent canopy bough",
+    "category": "World solids",
+    "width": 7.002856851356597,
+    "height": 0.299979594959904,
+    "extent": 7.002856851356597,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-upper-bay-1-a"
+  },
+  {
+    "id": "object-route-upper-bay-0-b",
+    "name": "Emergent canopy fork",
+    "category": "World solids",
+    "width": 7.00342778452756,
+    "height": 0.3099632779522601,
+    "extent": 7.00342778452756,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-upper-bay-0-b"
+  },
+  {
+    "id": "object-route-upper-bay-1-b",
+    "name": "Emergent canopy fork",
+    "category": "World solids",
+    "width": 7.00342778452756,
+    "height": 0.3099632779522601,
+    "extent": 7.00342778452756,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-upper-bay-1-b"
+  },
+  {
+    "id": "object-route-upper-bay-2-b",
+    "name": "Emergent canopy fork",
+    "category": "World solids",
+    "width": 7.00342778452756,
+    "height": 0.3099632779522601,
+    "extent": 7.00342778452756,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-upper-bay-2-b"
+  },
+  {
+    "id": "object-route-upper-bay-3-b",
+    "name": "Emergent canopy fork",
+    "category": "World solids",
+    "width": 7.00342778452756,
+    "height": 0.3099632779522601,
+    "extent": 7.00342778452756,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-upper-bay-3-b"
+  },
+  {
+    "id": "object-route-upper-bay-4-b",
+    "name": "Emergent canopy fork",
+    "category": "World solids",
+    "width": 7.00342778452756,
+    "height": 0.3099632779522601,
+    "extent": 7.00342778452756,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-upper-bay-4-b"
+  },
+  {
+    "id": "object-route-upper-bay-5-b",
+    "name": "Emergent canopy fork",
+    "category": "World solids",
+    "width": 7.00342778452756,
+    "height": 0.3099632779522601,
+    "extent": 7.00342778452756,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-upper-bay-5-b"
+  },
+  {
+    "id": "object-route-upper-bay-6-b",
+    "name": "Emergent canopy fork",
+    "category": "World solids",
+    "width": 7.00342778452756,
+    "height": 0.3099632779522601,
+    "extent": 7.00342778452756,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-upper-bay-6-b"
+  },
+  {
+    "id": "object-route-upper-bay-7-b",
+    "name": "Emergent canopy fork",
+    "category": "World solids",
+    "width": 7.0034277845276165,
+    "height": 0.3099632779522601,
+    "extent": 7.0034277845276165,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-upper-bay-7-b"
+  },
+  {
+    "id": "object-route-upper-bay-8-b",
+    "name": "Emergent canopy fork",
+    "category": "World solids",
+    "width": 7.0034277845276165,
+    "height": 0.3099632779522601,
+    "extent": 7.0034277845276165,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-upper-bay-8-b"
+  },
+  {
+    "id": "object-route-upper-bay-9-b",
+    "name": "Emergent canopy fork",
+    "category": "World solids",
+    "width": 7.0034277845276165,
+    "height": 0.3099632779522601,
+    "extent": 7.0034277845276165,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-upper-bay-9-b"
+  },
+  {
+    "id": "object-route-upper-bay-10-b",
+    "name": "Emergent canopy fork",
+    "category": "World solids",
+    "width": 7.0034277845276165,
+    "height": 0.3099632779522601,
+    "extent": 7.0034277845276165,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-upper-bay-10-b"
+  },
+  {
+    "id": "object-route-perch-4",
+    "name": "Forest landing bough",
+    "category": "World solids",
+    "width": 7.004112607441442,
+    "height": 0.34394126045033957,
+    "extent": 7.004112607441442,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-perch-4"
+  },
+  {
+    "id": "object-route-perch-5",
+    "name": "Forest landing bough",
+    "category": "World solids",
+    "width": 7.005139580393788,
+    "height": 0.39390825102604765,
+    "extent": 7.005139580393788,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-perch-5"
+  },
+  {
+    "id": "object-route-forest-bough-2-0",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 7.012761256908618,
+    "height": 0.7662226632088007,
+    "extent": 7.012761256908618,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-2-0"
+  },
+  {
+    "id": "object-route-forest-bough-8-0",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 7.0132493129327145,
+    "height": 0.7901966496831285,
+    "extent": 7.0132493129327145,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-8-0"
+  },
+  {
+    "id": "object-route-forest-bough-14-0",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 7.01325692398143,
+    "height": 0.7905706789318252,
+    "extent": 7.01325692398143,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-14-0"
+  },
+  {
+    "id": "object-route-forest-bough-1-1",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 7.015597091777181,
+    "height": 0.7980967599112674,
+    "extent": 7.015597091777181,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-forest-bough-1-1"
+  },
+  {
+    "id": "object-route-forest-bough-7-1",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 7.016193604695559,
+    "height": 0.8220609109489292,
+    "extent": 7.016193604695559,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-forest-bough-7-1"
+  },
+  {
+    "id": "object-route-forest-bough-13-1",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 7.016202907088314,
+    "height": 0.8224347838703494,
+    "extent": 7.016202907088314,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-forest-bough-13-1"
+  },
+  {
+    "id": "object-route-rare-bough-55-3",
+    "name": "Rare emergent bough",
+    "category": "World solids",
+    "width": 7.018110681290139,
+    "height": 0.958468461288696,
+    "extent": 7.018110681290139,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-rare-bough-55-3"
+  },
+  {
+    "id": "object-route-forest-bough-0-2",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 7.018432926645744,
+    "height": 0.8299708566137338,
+    "extent": 7.018432926645744,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-0-2"
+  },
+  {
+    "id": "object-route-forest-bough-6-2",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 7.019137896458403,
+    "height": 0.8539251722147329,
+    "extent": 7.019137896458403,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-6-2"
+  },
+  {
+    "id": "object-route-forest-bough-12-2",
+    "name": "Forest branch",
+    "category": "World solids",
+    "width": 7.019148890195424,
+    "height": 0.8542988888088754,
+    "extent": 7.019148890195424,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-forest-bough-12-2"
+  },
+  {
+    "id": "object-route-rare-bough-58-2",
+    "name": "Rare emergent bough",
+    "category": "World solids",
+    "width": 7.02033971793503,
+    "height": 1.0581978061615303,
+    "extent": 7.02033971793503,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-rare-bough-58-2"
+  },
+  {
+    "id": "object-corridor-return-fork",
+    "name": "Forest return fork",
+    "category": "World solids",
+    "width": 7.024748737341554,
+    "height": 1.1732411613907043,
+    "extent": 7.024748737341554,
+    "measure": "Physical polygon · wood",
+    "objectId": "corridor-return-fork"
+  },
+  {
+    "id": "object-route-rare-bough-56-2",
+    "name": "Rare emergent bough",
+    "category": "World solids",
+    "width": 7.024760434521738,
+    "height": 1.257566401502011,
+    "extent": 7.024760434521738,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-rare-bough-56-2"
+  },
+  {
+    "id": "object-route-rare-bough-57-2",
+    "name": "Rare emergent bough",
+    "category": "World solids",
+    "width": 7.024760434521738,
+    "height": 1.257566401502018,
+    "extent": 7.024760434521738,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-rare-bough-57-2"
+  },
+  {
+    "id": "object-route-rare-bough-57-1",
+    "name": "Rare emergent bough",
+    "category": "World solids",
+    "width": 7.042655259392546,
+    "height": 1.6132762969627734,
+    "extent": 7.042655259392546,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-rare-bough-57-1"
+  },
+  {
+    "id": "object-route-rare-bough-58-1",
+    "name": "Rare emergent bough",
+    "category": "World solids",
+    "width": 7.045572576798975,
+    "height": 1.712672025061842,
+    "extent": 7.045572576798975,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-rare-bough-58-1"
+  },
+  {
+    "id": "object-route-rare-bough-55-0",
+    "name": "Rare emergent bough",
+    "category": "World solids",
+    "width": 7.046549531063036,
+    "height": 1.47153893120106,
+    "extent": 7.046549531063036,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-rare-bough-55-0"
+  },
+  {
+    "id": "object-route-rare-bough-57-0",
+    "name": "Rare emergent bough",
+    "category": "World solids",
+    "width": 7.052951736214396,
+    "height": 1.5851247334621803,
+    "extent": 7.052951736214396,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-rare-bough-57-0"
+  },
+  {
+    "id": "object-route-rare-bough-58-0",
+    "name": "Rare emergent bough",
+    "category": "World solids",
+    "width": 7.056873679190119,
+    "height": 1.6843683959503721,
+    "extent": 7.056873679190119,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-rare-bough-58-0"
+  },
+  {
+    "id": "object-route-rare-bough-55-1",
+    "name": "Rare emergent bough",
+    "category": "World solids",
+    "width": 7.063735301672196,
+    "height": 2.2230735558526717,
+    "extent": 7.063735301672196,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-rare-bough-55-1"
+  },
+  {
+    "id": "object-route-rare-bough-56-1",
+    "name": "Rare emergent bough",
+    "category": "World solids",
+    "width": 7.06373530167221,
+    "height": 2.2230735558526717,
+    "extent": 7.06373530167221,
+    "measure": "Physical polygon · leaf",
+    "objectId": "route-rare-bough-56-1"
+  },
+  {
+    "id": "object-route-rare-bough-55-2",
+    "name": "Rare emergent bough",
+    "category": "World solids",
+    "width": 7.06499971139057,
+    "height": 2.052776655407783,
+    "extent": 7.06499971139057,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-rare-bough-55-2"
+  },
+  {
+    "id": "object-route-rare-bough-56-0",
+    "name": "Rare emergent bough",
+    "category": "World solids",
+    "width": 7.083652583444746,
+    "height": 2.292784042056631,
+    "extent": 7.083652583444746,
+    "measure": "Physical polygon · wood",
+    "objectId": "route-rare-bough-56-0"
+  },
+  {
+    "id": "object-opening-skip-4",
+    "name": "Low canopy stems",
+    "category": "World solids",
+    "width": 8,
+    "height": 4.18,
+    "extent": 8,
+    "measure": "Physical polygon · leaf",
+    "objectId": "opening-skip-4"
+  },
+  {
+    "id": "object-amazon-tree-1-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 11,
+    "height": 9,
+    "extent": 11,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-1-crown"
+  },
+  {
+    "id": "object-amazon-tree-4-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 11,
+    "height": 10,
+    "extent": 11,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-4-crown"
+  },
+  {
+    "id": "object-amazon-tree-7-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 11,
+    "height": 10,
+    "extent": 11,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-7-crown"
+  },
+  {
+    "id": "object-amazon-tree-8-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 11,
+    "height": 10,
+    "extent": 11,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-8-crown"
+  },
+  {
+    "id": "object-amazon-tree-9-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 11,
+    "height": 10,
+    "extent": 11,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-9-crown"
+  },
+  {
+    "id": "object-amazon-tree-11-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 11,
+    "height": 10,
+    "extent": 11,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-11-crown"
+  },
+  {
+    "id": "object-amazon-tree-12-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 11,
+    "height": 10,
+    "extent": 11,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-12-crown"
+  },
+  {
+    "id": "object-amazon-tree-13-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 11,
+    "height": 10,
+    "extent": 11,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-13-crown"
+  },
+  {
+    "id": "object-amazon-tree-14-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 11,
+    "height": 10,
+    "extent": 11,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-14-crown"
+  },
+  {
+    "id": "object-amazon-tree-15-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 11,
+    "height": 10,
+    "extent": 11,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-15-crown"
+  },
+  {
+    "id": "object-amazon-tree-17-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 11,
+    "height": 10,
+    "extent": 11,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-17-crown"
+  },
+  {
+    "id": "object-amazon-tree-18-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 11,
+    "height": 10,
+    "extent": 11,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-18-crown"
+  },
+  {
+    "id": "object-amazon-tree-19-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 11,
+    "height": 10,
+    "extent": 11,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-19-crown"
+  },
+  {
+    "id": "object-amazon-tree-20-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 11,
+    "height": 10,
+    "extent": 11,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-20-crown"
+  },
+  {
+    "id": "object-amazon-tree-21-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 11,
+    "height": 10,
+    "extent": 11,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-21-crown"
+  },
+  {
+    "id": "object-amazon-tree-23-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 11,
+    "height": 10,
+    "extent": 11,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-23-crown"
+  },
+  {
+    "id": "object-amazon-tree-24-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 11,
+    "height": 10,
+    "extent": 11,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-24-crown"
+  },
+  {
+    "id": "object-amazon-tree-30-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 11,
+    "height": 10,
+    "extent": 11,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-30-crown"
+  },
+  {
+    "id": "object-amazon-tree-31-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 11,
+    "height": 10,
+    "extent": 11,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-31-crown"
+  },
+  {
+    "id": "object-amazon-tree-43-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 11,
+    "height": 10,
+    "extent": 11,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-43-crown"
+  },
+  {
+    "id": "object-amazon-tree-45-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 11,
+    "height": 10,
+    "extent": 11,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-45-crown"
+  },
+  {
+    "id": "object-amazon-tree-47-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 11,
+    "height": 10,
+    "extent": 11,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-47-crown"
+  },
+  {
+    "id": "object-amazon-tree-48-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 11,
+    "height": 10,
+    "extent": 11,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-48-crown"
+  },
+  {
+    "id": "object-amazon-tree-49-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 11,
+    "height": 10,
+    "extent": 11,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-49-crown"
+  },
+  {
+    "id": "object-amazon-tree-50-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 11,
+    "height": 10,
+    "extent": 11,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-50-crown"
+  },
+  {
+    "id": "object-amazon-tree-0-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 12,
+    "height": 11,
+    "extent": 12,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-0-crown"
+  },
+  {
+    "id": "object-amazon-tree-2-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 14,
+    "height": 12,
+    "extent": 14,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-2-crown"
+  },
+  {
+    "id": "object-amazon-tree-5-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 14,
+    "height": 13,
+    "extent": 14,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-5-crown"
+  },
+  {
+    "id": "object-amazon-tree-6-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 14,
+    "height": 13,
+    "extent": 14,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-6-crown"
+  },
+  {
+    "id": "object-amazon-tree-25-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 14,
+    "height": 13,
+    "extent": 14,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-25-crown"
+  },
+  {
+    "id": "object-amazon-tree-26-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 14,
+    "height": 13,
+    "extent": 14,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-26-crown"
+  },
+  {
+    "id": "object-amazon-tree-10-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 14,
+    "height": 13,
+    "extent": 14,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-10-crown"
+  },
+  {
+    "id": "object-amazon-tree-16-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 14,
+    "height": 13,
+    "extent": 14,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-16-crown"
+  },
+  {
+    "id": "object-amazon-tree-22-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 14,
+    "height": 13,
+    "extent": 14,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-22-crown"
+  },
+  {
+    "id": "object-amazon-tree-27-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 14,
+    "height": 13,
+    "extent": 14,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-27-crown"
+  },
+  {
+    "id": "object-amazon-tree-28-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 14,
+    "height": 13,
+    "extent": 14,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-28-crown"
+  },
+  {
+    "id": "object-amazon-tree-29-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 14,
+    "height": 13,
+    "extent": 14,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-29-crown"
+  },
+  {
+    "id": "object-amazon-tree-32-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 14,
+    "height": 13,
+    "extent": 14,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-32-crown"
+  },
+  {
+    "id": "object-amazon-tree-33-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 14,
+    "height": 13,
+    "extent": 14,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-33-crown"
+  },
+  {
+    "id": "object-amazon-tree-34-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 14,
+    "height": 13,
+    "extent": 14,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-34-crown"
+  },
+  {
+    "id": "object-amazon-tree-35-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 14,
+    "height": 13,
+    "extent": 14,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-35-crown"
+  },
+  {
+    "id": "object-amazon-tree-36-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 14,
+    "height": 13,
+    "extent": 14,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-36-crown"
+  },
+  {
+    "id": "object-amazon-tree-37-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 14,
+    "height": 13,
+    "extent": 14,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-37-crown"
+  },
+  {
+    "id": "object-amazon-tree-38-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 14,
+    "height": 13,
+    "extent": 14,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-38-crown"
+  },
+  {
+    "id": "object-amazon-tree-39-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 14,
+    "height": 13,
+    "extent": 14,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-39-crown"
+  },
+  {
+    "id": "object-amazon-tree-40-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 14,
+    "height": 13,
+    "extent": 14,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-40-crown"
+  },
+  {
+    "id": "object-amazon-tree-41-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 14,
+    "height": 13,
+    "extent": 14,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-41-crown"
+  },
+  {
+    "id": "object-amazon-tree-42-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 14,
+    "height": 13,
+    "extent": 14,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-42-crown"
+  },
+  {
+    "id": "object-amazon-tree-44-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 14,
+    "height": 13,
+    "extent": 14,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-44-crown"
+  },
+  {
+    "id": "object-amazon-tree-46-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 14,
+    "height": 13,
+    "extent": 14,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-46-crown"
+  },
+  {
+    "id": "object-amazon-tree-51-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 14,
+    "height": 13,
+    "extent": 14,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-51-crown"
+  },
+  {
+    "id": "object-amazon-tree-52-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 14,
+    "height": 13,
+    "extent": 14,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-52-crown"
+  },
+  {
+    "id": "object-amazon-tree-53-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 14,
+    "height": 13,
+    "extent": 14,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-53-crown"
+  },
+  {
+    "id": "object-amazon-tree-54-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 14,
+    "height": 13,
+    "extent": 14,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-54-crown"
+  },
+  {
+    "id": "object-amazon-tree-3-crown",
+    "name": "Forest tree crown · background",
+    "category": "World scenery",
+    "width": 16,
+    "height": 14,
+    "extent": 16,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-3-crown"
+  },
+  {
+    "id": "rig-large",
+    "name": "Braced bear launcher",
+    "category": "Trebuchets",
+    "width": 16.5,
+    "height": 9.478371814650933,
+    "extent": 16.5,
+    "measure": "8.1 m axle · 6 m feet · 10.2 m beam",
+    "recipeId": "large"
+  },
+  {
+    "id": "object-oak-scaffold-3-east",
+    "name": "Oak east scaffold 4",
+    "category": "World solids",
+    "width": 17.195202748726906,
+    "height": 10.331844672835743,
+    "extent": 17.195202748726906,
+    "measure": "Physical polygon · wood",
+    "objectId": "oak-scaffold-3-east"
+  },
+  {
+    "id": "object-oak-scaffold-3-west",
+    "name": "Oak west scaffold 4",
+    "category": "World solids",
+    "width": 17.195202748726906,
+    "height": 10.331844672835743,
+    "extent": 17.195202748726906,
+    "measure": "Physical polygon · wood",
+    "objectId": "oak-scaffold-3-west"
+  },
+  {
+    "id": "object-amazon-tree-55-crown",
+    "name": "Rare emergent crown · background",
+    "category": "World scenery",
+    "width": 18,
+    "height": 16,
+    "extent": 18,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-55-crown"
+  },
+  {
+    "id": "object-amazon-tree-56-crown",
+    "name": "Rare emergent crown · background",
+    "category": "World scenery",
+    "width": 18,
+    "height": 16,
+    "extent": 18,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-56-crown"
+  },
+  {
+    "id": "object-amazon-tree-57-crown",
+    "name": "Rare emergent crown · background",
+    "category": "World scenery",
+    "width": 18,
+    "height": 16,
+    "extent": 18,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-57-crown"
+  },
+  {
+    "id": "object-amazon-tree-58-crown",
+    "name": "Rare emergent crown · background",
+    "category": "World scenery",
+    "width": 18,
+    "height": 16,
+    "extent": 18,
+    "measure": "Scenery polygon · foliage",
+    "objectId": "amazon-tree-58-crown"
+  },
+  {
+    "id": "object-oak-scaffold-0-east",
+    "name": "Oak east scaffold 1",
+    "category": "World solids",
+    "width": 22.40703030914954,
+    "height": 9.994962977921098,
+    "extent": 22.40703030914954,
+    "measure": "Physical polygon · wood",
+    "objectId": "oak-scaffold-0-east"
+  },
+  {
+    "id": "object-oak-scaffold-0-west",
+    "name": "Oak west scaffold 1",
+    "category": "World solids",
+    "width": 22.40703030914954,
+    "height": 9.994962977921098,
+    "extent": 22.40703030914954,
+    "measure": "Physical polygon · wood",
+    "objectId": "oak-scaffold-0-west"
+  },
+  {
+    "id": "animal-whale",
+    "name": "Blue whale",
+    "category": "Animals",
+    "width": 24,
+    "height": 4.5,
+    "extent": 24,
+    "measure": "24 m × 4.5 m game envelope · 100,000 kg",
+    "animalId": "whale"
+  },
+  {
+    "id": "object-oak-scaffold-2-east",
+    "name": "Oak east scaffold 3",
+    "category": "World solids",
+    "width": 26.272387815350136,
+    "height": 12.590173599925294,
+    "extent": 26.272387815350136,
+    "measure": "Physical polygon · wood",
+    "objectId": "oak-scaffold-2-east"
+  },
+  {
+    "id": "object-oak-scaffold-2-west",
+    "name": "Oak west scaffold 3",
+    "category": "World solids",
+    "width": 26.272387815350136,
+    "height": 12.590173599925294,
+    "extent": 26.272387815350136,
+    "measure": "Physical polygon · wood",
+    "objectId": "oak-scaffold-2-west"
+  },
+  {
+    "id": "object-amazon-tree-43-trunk",
+    "name": "Canopy tree · 30m",
+    "category": "World scenery",
+    "width": 1.0499999999999972,
+    "height": 30,
+    "extent": 30,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-43-trunk"
+  },
+  {
+    "id": "object-amazon-tree-47-trunk",
+    "name": "Canopy tree · 30m",
+    "category": "World scenery",
+    "width": 1.0499999999999545,
+    "height": 30,
+    "extent": 30,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-47-trunk"
+  },
+  {
+    "id": "object-amazon-tree-48-trunk",
+    "name": "Canopy tree · 30m",
+    "category": "World scenery",
+    "width": 1.0499999999999545,
+    "height": 30,
+    "extent": 30,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-48-trunk"
+  },
+  {
+    "id": "tree-amazon-tree-43",
+    "name": "Jungle canopy tree",
+    "category": "Trees",
+    "width": 11,
+    "height": 30,
+    "extent": 30,
+    "measure": "30 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-47",
+    "name": "Jungle canopy tree",
+    "category": "Trees",
+    "width": 11,
+    "height": 30,
+    "extent": 30,
+    "measure": "30 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-48",
+    "name": "Jungle canopy tree",
+    "category": "Trees",
+    "width": 11,
+    "height": 30,
+    "extent": 30,
+    "measure": "30 m total height"
+  },
+  {
+    "id": "object-oak-scaffold-1-east",
+    "name": "Oak east scaffold 2",
+    "category": "World solids",
+    "width": 30.306386637750997,
+    "height": 11.835599921139085,
+    "extent": 30.306386637750997,
+    "measure": "Physical polygon · wood",
+    "objectId": "oak-scaffold-1-east"
+  },
+  {
+    "id": "object-oak-scaffold-1-west",
+    "name": "Oak west scaffold 2",
+    "category": "World solids",
+    "width": 30.306386637750997,
+    "height": 11.835599921139085,
+    "extent": 30.306386637750997,
+    "measure": "Physical polygon · wood",
+    "objectId": "oak-scaffold-1-west"
+  },
+  {
+    "id": "rig-elephant",
+    "name": "Elephant grove gantry",
+    "category": "Trebuchets",
+    "width": 33,
+    "height": 18.956743629301858,
+    "extent": 33,
+    "measure": "16.2 m axle · 12 m feet · 20.4 m beam",
+    "recipeId": "elephant"
+  },
+  {
+    "id": "object-amazon-tree-9-trunk",
+    "name": "Canopy tree · 34m",
+    "category": "World scenery",
+    "width": 1.1499999999999773,
+    "height": 34,
+    "extent": 34,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-9-trunk"
+  },
+  {
+    "id": "object-amazon-tree-15-trunk",
+    "name": "Canopy tree · 34m",
+    "category": "World scenery",
+    "width": 1.1499999999999773,
+    "height": 34,
+    "extent": 34,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-15-trunk"
+  },
+  {
+    "id": "object-amazon-tree-21-trunk",
+    "name": "Canopy tree · 34m",
+    "category": "World scenery",
+    "width": 1.150000000000091,
+    "height": 34,
+    "extent": 34,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-21-trunk"
+  },
+  {
+    "id": "tree-amazon-tree-9",
+    "name": "Jungle canopy tree",
+    "category": "Trees",
+    "width": 11,
+    "height": 34,
+    "extent": 34,
+    "measure": "34 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-15",
+    "name": "Jungle canopy tree",
+    "category": "Trees",
+    "width": 11,
+    "height": 34,
+    "extent": 34,
+    "measure": "34 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-21",
+    "name": "Jungle canopy tree",
+    "category": "Trees",
+    "width": 11,
+    "height": 34,
+    "extent": 34,
+    "measure": "34 m total height"
+  },
+  {
+    "id": "object-amazon-tree-1-trunk",
+    "name": "Canopy tree · 35m",
+    "category": "World scenery",
+    "width": 0.8499999999999943,
+    "height": 35,
+    "extent": 35,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-1-trunk"
+  },
+  {
+    "id": "tree-amazon-tree-1",
+    "name": "Jungle canopy tree",
+    "category": "Trees",
+    "width": 11,
+    "height": 35,
+    "extent": 35,
+    "measure": "35 m total height"
+  },
+  {
+    "id": "object-amazon-tree-12-trunk",
+    "name": "Canopy tree · 36m",
+    "category": "World scenery",
+    "width": 1.1499999999999773,
+    "height": 36,
+    "extent": 36,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-12-trunk"
+  },
+  {
+    "id": "object-amazon-tree-18-trunk",
+    "name": "Canopy tree · 36m",
+    "category": "World scenery",
+    "width": 1.150000000000091,
+    "height": 36,
+    "extent": 36,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-18-trunk"
+  },
+  {
+    "id": "object-amazon-tree-24-trunk",
+    "name": "Canopy tree · 36m",
+    "category": "World scenery",
+    "width": 1.150000000000091,
+    "height": 36,
+    "extent": 36,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-24-trunk"
+  },
+  {
+    "id": "tree-amazon-tree-12",
+    "name": "Jungle canopy tree",
+    "category": "Trees",
+    "width": 11,
+    "height": 36,
+    "extent": 36,
+    "measure": "36 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-18",
+    "name": "Jungle canopy tree",
+    "category": "Trees",
+    "width": 11,
+    "height": 36,
+    "extent": 36,
+    "measure": "36 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-24",
+    "name": "Jungle canopy tree",
+    "category": "Trees",
+    "width": 11,
+    "height": 36,
+    "extent": 36,
+    "measure": "36 m total height"
+  },
+  {
+    "id": "object-amazon-tree-7-trunk",
+    "name": "Canopy tree · 38m",
+    "category": "World scenery",
+    "width": 0.8500000000000227,
+    "height": 38,
+    "extent": 38,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-7-trunk"
+  },
+  {
+    "id": "object-amazon-tree-13-trunk",
+    "name": "Canopy tree · 38m",
+    "category": "World scenery",
+    "width": 0.8500000000000227,
+    "height": 38,
+    "extent": 38,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-13-trunk"
+  },
+  {
+    "id": "object-amazon-tree-19-trunk",
+    "name": "Canopy tree · 38m",
+    "category": "World scenery",
+    "width": 0.849999999999909,
+    "height": 38,
+    "extent": 38,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-19-trunk"
+  },
+  {
+    "id": "tree-amazon-tree-7",
+    "name": "Jungle canopy tree",
+    "category": "Trees",
+    "width": 11,
+    "height": 38,
+    "extent": 38,
+    "measure": "38 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-13",
+    "name": "Jungle canopy tree",
+    "category": "Trees",
+    "width": 11,
+    "height": 38,
+    "extent": 38,
+    "measure": "38 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-19",
+    "name": "Jungle canopy tree",
+    "category": "Trees",
+    "width": 11,
+    "height": 38,
+    "extent": 38,
+    "measure": "38 m total height"
+  },
+  {
+    "id": "object-amazon-tree-0-trunk",
+    "name": "Canopy tree · 40m",
+    "category": "World scenery",
+    "width": 1.2000000000000028,
+    "height": 40,
+    "extent": 40,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-0-trunk"
+  },
+  {
+    "id": "object-amazon-tree-31-trunk",
+    "name": "Canopy tree · 40m",
+    "category": "World scenery",
+    "width": 1.1999999999999886,
+    "height": 40,
+    "extent": 40,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-31-trunk"
+  },
+  {
+    "id": "object-launch-bough",
+    "name": "Home branch",
+    "category": "World solids",
+    "width": 40,
+    "height": 3,
+    "extent": 40,
+    "measure": "Physical polygon · wood",
+    "objectId": "launch-bough"
+  },
+  {
+    "id": "tree-amazon-tree-0",
+    "name": "Jungle canopy tree",
+    "category": "Trees",
+    "width": 12,
+    "height": 40,
+    "extent": 40,
+    "measure": "40 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-31",
+    "name": "Jungle canopy tree",
+    "category": "Trees",
+    "width": 11,
+    "height": 40,
+    "extent": 40,
+    "measure": "40 m total height"
+  },
+  {
+    "id": "object-amazon-tree-11-trunk",
+    "name": "Canopy tree · 42m",
+    "category": "World scenery",
+    "width": 1,
+    "height": 42,
+    "extent": 42,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-11-trunk"
+  },
+  {
+    "id": "object-amazon-tree-17-trunk",
+    "name": "Canopy tree · 42m",
+    "category": "World scenery",
+    "width": 1,
+    "height": 42,
+    "extent": 42,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-17-trunk"
+  },
+  {
+    "id": "object-amazon-tree-23-trunk",
+    "name": "Canopy tree · 42m",
+    "category": "World scenery",
+    "width": 1,
+    "height": 42,
+    "extent": 42,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-23-trunk"
+  },
+  {
+    "id": "tree-amazon-tree-11",
+    "name": "Jungle canopy tree",
+    "category": "Trees",
+    "width": 11,
+    "height": 42,
+    "extent": 42,
+    "measure": "42 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-17",
+    "name": "Jungle canopy tree",
+    "category": "Trees",
+    "width": 11,
+    "height": 42,
+    "extent": 42,
+    "measure": "42 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-23",
+    "name": "Jungle canopy tree",
+    "category": "Trees",
+    "width": 11,
+    "height": 42,
+    "extent": 42,
+    "measure": "42 m total height"
+  },
+  {
+    "id": "object-amazon-tree-2-trunk",
+    "name": "Canopy tree · 45m",
+    "category": "World scenery",
+    "width": 1.3000000000000114,
+    "height": 45,
+    "extent": 45,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-2-trunk"
+  },
+  {
+    "id": "object-amazon-tree-4-trunk",
+    "name": "Canopy tree · 45m",
+    "category": "World scenery",
+    "width": 0.8000000000000007,
+    "height": 45,
+    "extent": 45,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-4-trunk"
+  },
+  {
+    "id": "object-amazon-tree-8-trunk",
+    "name": "Canopy tree · 45m",
+    "category": "World scenery",
+    "width": 1,
+    "height": 45,
+    "extent": 45,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-8-trunk"
+  },
+  {
+    "id": "object-amazon-tree-14-trunk",
+    "name": "Canopy tree · 45m",
+    "category": "World scenery",
+    "width": 1,
+    "height": 45,
+    "extent": 45,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-14-trunk"
+  },
+  {
+    "id": "object-amazon-tree-20-trunk",
+    "name": "Canopy tree · 45m",
+    "category": "World scenery",
+    "width": 1,
+    "height": 45,
+    "extent": 45,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-20-trunk"
+  },
+  {
+    "id": "object-amazon-tree-30-trunk",
+    "name": "Canopy tree · 45m",
+    "category": "World scenery",
+    "width": 1.1999999999999886,
+    "height": 45,
+    "extent": 45,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-30-trunk"
+  },
+  {
+    "id": "object-amazon-tree-45-trunk",
+    "name": "Canopy tree · 45m",
+    "category": "World scenery",
+    "width": 1.0500000000000114,
+    "height": 45,
+    "extent": 45,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-45-trunk"
+  },
+  {
+    "id": "object-amazon-tree-49-trunk",
+    "name": "Canopy tree · 45m",
+    "category": "World scenery",
+    "width": 1.0499999999999545,
+    "height": 45,
+    "extent": 45,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-49-trunk"
+  },
+  {
+    "id": "object-amazon-tree-50-trunk",
+    "name": "Canopy tree · 45m",
+    "category": "World scenery",
+    "width": 1.0499999999999545,
+    "height": 45,
+    "extent": 45,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-50-trunk"
+  },
+  {
+    "id": "tree-amazon-tree-2",
+    "name": "Jungle canopy tree",
+    "category": "Trees",
+    "width": 14,
+    "height": 45,
+    "extent": 45,
+    "measure": "45 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-4",
+    "name": "Jungle canopy tree",
+    "category": "Trees",
+    "width": 11,
+    "height": 45,
+    "extent": 45,
+    "measure": "45 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-8",
+    "name": "Jungle canopy tree",
+    "category": "Trees",
+    "width": 11,
+    "height": 45,
+    "extent": 45,
+    "measure": "45 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-14",
+    "name": "Jungle canopy tree",
+    "category": "Trees",
+    "width": 11,
+    "height": 45,
+    "extent": 45,
+    "measure": "45 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-20",
+    "name": "Jungle canopy tree",
+    "category": "Trees",
+    "width": 11,
+    "height": 45,
+    "extent": 45,
+    "measure": "45 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-30",
+    "name": "Jungle canopy tree",
+    "category": "Trees",
+    "width": 11,
+    "height": 45,
+    "extent": 45,
+    "measure": "45 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-45",
+    "name": "Jungle canopy tree",
+    "category": "Trees",
+    "width": 11,
+    "height": 45,
+    "extent": 45,
+    "measure": "45 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-49",
+    "name": "Jungle canopy tree",
+    "category": "Trees",
+    "width": 11,
+    "height": 45,
+    "extent": 45,
+    "measure": "45 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-50",
+    "name": "Jungle canopy tree",
+    "category": "Trees",
+    "width": 11,
+    "height": 45,
+    "extent": 45,
+    "measure": "45 m total height"
+  },
+  {
+    "id": "object-amazon-tree-3-trunk",
+    "name": "Emergent forest tree · 60m",
+    "category": "World scenery",
+    "width": 1.5999999999999943,
+    "height": 60,
+    "extent": 60,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-3-trunk"
+  },
+  {
+    "id": "object-amazon-tree-5-trunk",
+    "name": "Emergent forest tree · 60m",
+    "category": "World scenery",
+    "width": 1.25,
+    "height": 60,
+    "extent": 60,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-5-trunk"
+  },
+  {
+    "id": "object-amazon-tree-6-trunk",
+    "name": "Emergent forest tree · 60m",
+    "category": "World scenery",
+    "width": 1.2000000000000028,
+    "height": 60,
+    "extent": 60,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-6-trunk"
+  },
+  {
+    "id": "object-amazon-tree-25-trunk",
+    "name": "Emergent forest tree · 60m",
+    "category": "World scenery",
+    "width": 1.1500000000000057,
+    "height": 60,
+    "extent": 60,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-25-trunk"
+  },
+  {
+    "id": "object-amazon-tree-26-trunk",
+    "name": "Emergent forest tree · 60m",
+    "category": "World scenery",
+    "width": 1.1999999999999886,
+    "height": 60,
+    "extent": 60,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-26-trunk"
+  },
+  {
+    "id": "object-amazon-tree-10-trunk",
+    "name": "Emergent forest tree · 60m",
+    "category": "World scenery",
+    "width": 0.8500000000000227,
+    "height": 60,
+    "extent": 60,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-10-trunk"
+  },
+  {
+    "id": "object-amazon-tree-16-trunk",
+    "name": "Emergent forest tree · 60m",
+    "category": "World scenery",
+    "width": 0.8500000000000227,
+    "height": 60,
+    "extent": 60,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-16-trunk"
+  },
+  {
+    "id": "object-amazon-tree-22-trunk",
+    "name": "Emergent forest tree · 60m",
+    "category": "World scenery",
+    "width": 0.849999999999909,
+    "height": 60,
+    "extent": 60,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-22-trunk"
+  },
+  {
+    "id": "object-amazon-tree-27-trunk",
+    "name": "Emergent forest tree · 60m",
+    "category": "World scenery",
+    "width": 1.1999999999999886,
+    "height": 60,
+    "extent": 60,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-27-trunk"
+  },
+  {
+    "id": "object-amazon-tree-28-trunk",
+    "name": "Emergent forest tree · 60m",
+    "category": "World scenery",
+    "width": 1.1999999999999886,
+    "height": 60,
+    "extent": 60,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-28-trunk"
+  },
+  {
+    "id": "object-amazon-tree-29-trunk",
+    "name": "Emergent forest tree · 60m",
+    "category": "World scenery",
+    "width": 1.1999999999999886,
+    "height": 60,
+    "extent": 60,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-29-trunk"
+  },
+  {
+    "id": "object-amazon-tree-32-trunk",
+    "name": "Emergent forest tree · 60m",
+    "category": "World scenery",
+    "width": 1.25,
+    "height": 60,
+    "extent": 60,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-32-trunk"
+  },
+  {
+    "id": "object-amazon-tree-33-trunk",
+    "name": "Emergent forest tree · 60m",
+    "category": "World scenery",
+    "width": 1.25,
+    "height": 60,
+    "extent": 60,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-33-trunk"
+  },
+  {
+    "id": "object-amazon-tree-34-trunk",
+    "name": "Emergent forest tree · 60m",
+    "category": "World scenery",
+    "width": 1.25,
+    "height": 60,
+    "extent": 60,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-34-trunk"
+  },
+  {
+    "id": "object-amazon-tree-35-trunk",
+    "name": "Emergent forest tree · 60m",
+    "category": "World scenery",
+    "width": 1.25,
+    "height": 60,
+    "extent": 60,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-35-trunk"
+  },
+  {
+    "id": "object-amazon-tree-36-trunk",
+    "name": "Emergent forest tree · 60m",
+    "category": "World scenery",
+    "width": 1.25,
+    "height": 60,
+    "extent": 60,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-36-trunk"
+  },
+  {
+    "id": "object-amazon-tree-37-trunk",
+    "name": "Emergent forest tree · 60m",
+    "category": "World scenery",
+    "width": 1.25,
+    "height": 60,
+    "extent": 60,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-37-trunk"
+  },
+  {
+    "id": "object-amazon-tree-38-trunk",
+    "name": "Emergent forest tree · 60m",
+    "category": "World scenery",
+    "width": 1.25,
+    "height": 60,
+    "extent": 60,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-38-trunk"
+  },
+  {
+    "id": "object-amazon-tree-39-trunk",
+    "name": "Emergent forest tree · 60m",
+    "category": "World scenery",
+    "width": 1.25,
+    "height": 60,
+    "extent": 60,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-39-trunk"
+  },
+  {
+    "id": "object-amazon-tree-40-trunk",
+    "name": "Emergent forest tree · 60m",
+    "category": "World scenery",
+    "width": 1.25,
+    "height": 60,
+    "extent": 60,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-40-trunk"
+  },
+  {
+    "id": "object-amazon-tree-41-trunk",
+    "name": "Emergent forest tree · 60m",
+    "category": "World scenery",
+    "width": 1.25,
+    "height": 60,
+    "extent": 60,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-41-trunk"
+  },
+  {
+    "id": "object-amazon-tree-42-trunk",
+    "name": "Emergent forest tree · 60m",
+    "category": "World scenery",
+    "width": 1.25,
+    "height": 60,
+    "extent": 60,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-42-trunk"
+  },
+  {
+    "id": "object-amazon-tree-44-trunk",
+    "name": "Emergent forest tree · 60m",
+    "category": "World scenery",
+    "width": 1.0499999999999972,
+    "height": 60,
+    "extent": 60,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-44-trunk"
+  },
+  {
+    "id": "object-amazon-tree-46-trunk",
+    "name": "Emergent forest tree · 60m",
+    "category": "World scenery",
+    "width": 1.0500000000000114,
+    "height": 60,
+    "extent": 60,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-46-trunk"
+  },
+  {
+    "id": "object-amazon-tree-51-trunk",
+    "name": "Emergent forest tree · 60m",
+    "category": "World scenery",
+    "width": 1.0500000000000114,
+    "height": 60,
+    "extent": 60,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-51-trunk"
+  },
+  {
+    "id": "object-amazon-tree-52-trunk",
+    "name": "Emergent forest tree · 60m",
+    "category": "World scenery",
+    "width": 1.0500000000000114,
+    "height": 60,
+    "extent": 60,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-52-trunk"
+  },
+  {
+    "id": "object-amazon-tree-53-trunk",
+    "name": "Emergent forest tree · 60m",
+    "category": "World scenery",
+    "width": 1.0500000000000114,
+    "height": 60,
+    "extent": 60,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-53-trunk"
+  },
+  {
+    "id": "object-amazon-tree-54-trunk",
+    "name": "Emergent forest tree · 60m",
+    "category": "World scenery",
+    "width": 1.0499999999999545,
+    "height": 60,
+    "extent": 60,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-54-trunk"
+  },
+  {
+    "id": "tree-amazon-tree-3",
+    "name": "Forest emergent",
+    "category": "Trees",
+    "width": 16,
+    "height": 60,
+    "extent": 60,
+    "measure": "60 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-5",
+    "name": "Forest emergent",
+    "category": "Trees",
+    "width": 14,
+    "height": 60,
+    "extent": 60,
+    "measure": "60 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-6",
+    "name": "Forest emergent",
+    "category": "Trees",
+    "width": 14,
+    "height": 60,
+    "extent": 60,
+    "measure": "60 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-25",
+    "name": "Forest emergent",
+    "category": "Trees",
+    "width": 14,
+    "height": 60,
+    "extent": 60,
+    "measure": "60 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-26",
+    "name": "Forest emergent",
+    "category": "Trees",
+    "width": 14,
+    "height": 60,
+    "extent": 60,
+    "measure": "60 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-10",
+    "name": "Forest emergent",
+    "category": "Trees",
+    "width": 14,
+    "height": 60,
+    "extent": 60,
+    "measure": "60 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-16",
+    "name": "Forest emergent",
+    "category": "Trees",
+    "width": 14,
+    "height": 60,
+    "extent": 60,
+    "measure": "60 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-22",
+    "name": "Forest emergent",
+    "category": "Trees",
+    "width": 14,
+    "height": 60,
+    "extent": 60,
+    "measure": "60 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-27",
+    "name": "Forest emergent",
+    "category": "Trees",
+    "width": 14,
+    "height": 60,
+    "extent": 60,
+    "measure": "60 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-28",
+    "name": "Forest emergent",
+    "category": "Trees",
+    "width": 14,
+    "height": 60,
+    "extent": 60,
+    "measure": "60 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-29",
+    "name": "Forest emergent",
+    "category": "Trees",
+    "width": 14,
+    "height": 60,
+    "extent": 60,
+    "measure": "60 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-32",
+    "name": "Forest emergent",
+    "category": "Trees",
+    "width": 14,
+    "height": 60,
+    "extent": 60,
+    "measure": "60 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-33",
+    "name": "Forest emergent",
+    "category": "Trees",
+    "width": 14,
+    "height": 60,
+    "extent": 60,
+    "measure": "60 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-34",
+    "name": "Forest emergent",
+    "category": "Trees",
+    "width": 14,
+    "height": 60,
+    "extent": 60,
+    "measure": "60 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-35",
+    "name": "Forest emergent",
+    "category": "Trees",
+    "width": 14,
+    "height": 60,
+    "extent": 60,
+    "measure": "60 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-36",
+    "name": "Forest emergent",
+    "category": "Trees",
+    "width": 14,
+    "height": 60,
+    "extent": 60,
+    "measure": "60 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-37",
+    "name": "Forest emergent",
+    "category": "Trees",
+    "width": 14,
+    "height": 60,
+    "extent": 60,
+    "measure": "60 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-38",
+    "name": "Forest emergent",
+    "category": "Trees",
+    "width": 14,
+    "height": 60,
+    "extent": 60,
+    "measure": "60 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-39",
+    "name": "Forest emergent",
+    "category": "Trees",
+    "width": 14,
+    "height": 60,
+    "extent": 60,
+    "measure": "60 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-40",
+    "name": "Forest emergent",
+    "category": "Trees",
+    "width": 14,
+    "height": 60,
+    "extent": 60,
+    "measure": "60 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-41",
+    "name": "Forest emergent",
+    "category": "Trees",
+    "width": 14,
+    "height": 60,
+    "extent": 60,
+    "measure": "60 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-42",
+    "name": "Forest emergent",
+    "category": "Trees",
+    "width": 14,
+    "height": 60,
+    "extent": 60,
+    "measure": "60 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-44",
+    "name": "Forest emergent",
+    "category": "Trees",
+    "width": 14,
+    "height": 60,
+    "extent": 60,
+    "measure": "60 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-46",
+    "name": "Forest emergent",
+    "category": "Trees",
+    "width": 14,
+    "height": 60,
+    "extent": 60,
+    "measure": "60 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-51",
+    "name": "Forest emergent",
+    "category": "Trees",
+    "width": 14,
+    "height": 60,
+    "extent": 60,
+    "measure": "60 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-52",
+    "name": "Forest emergent",
+    "category": "Trees",
+    "width": 14,
+    "height": 60,
+    "extent": 60,
+    "measure": "60 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-53",
+    "name": "Forest emergent",
+    "category": "Trees",
+    "width": 14,
+    "height": 60,
+    "extent": 60,
+    "measure": "60 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-54",
+    "name": "Forest emergent",
+    "category": "Trees",
+    "width": 14,
+    "height": 60,
+    "extent": 60,
+    "measure": "60 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-58",
+    "name": "Rare Amazon emergent",
+    "category": "Trees",
+    "width": 18,
+    "height": 85,
+    "extent": 85,
+    "measure": "85 m total height"
+  },
+  {
+    "id": "object-amazon-tree-58-trunk",
+    "name": "Rare emergent · 85m · background",
+    "category": "World scenery",
+    "width": 2,
+    "height": 85,
+    "extent": 85,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-58-trunk"
+  },
+  {
+    "id": "tree-amazon-tree-55",
+    "name": "Rare Amazon emergent",
+    "category": "Trees",
+    "width": 18,
+    "height": 88.5,
+    "extent": 88.5,
+    "measure": "88.5 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-56",
+    "name": "Rare Amazon emergent",
+    "category": "Trees",
+    "width": 18,
+    "height": 88.5,
+    "extent": 88.5,
+    "measure": "88.5 m total height"
+  },
+  {
+    "id": "tree-amazon-tree-57",
+    "name": "Rare Amazon emergent",
+    "category": "Trees",
+    "width": 18,
+    "height": 88.5,
+    "extent": 88.5,
+    "measure": "88.5 m total height"
+  },
+  {
+    "id": "object-amazon-tree-55-trunk",
+    "name": "Rare emergent · 88.5m · background",
+    "category": "World scenery",
+    "width": 2.1999999999999886,
+    "height": 88.5,
+    "extent": 88.5,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-55-trunk"
+  },
+  {
+    "id": "object-amazon-tree-56-trunk",
+    "name": "Rare emergent · 88.5m · background",
+    "category": "World scenery",
+    "width": 2.1000000000000227,
+    "height": 88.5,
+    "extent": 88.5,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-56-trunk"
+  },
+  {
+    "id": "object-amazon-tree-57-trunk",
+    "name": "Rare emergent · 88.5m · background",
+    "category": "World scenery",
+    "width": 2.1999999999999886,
+    "height": 88.5,
+    "extent": 88.5,
+    "measure": "Scenery polygon · wood",
+    "objectId": "amazon-tree-57-trunk"
+  },
+  {
+    "id": "grandfather-oak",
+    "name": "Grandfather oak",
+    "category": "Trees",
+    "width": 76,
+    "height": 110,
+    "extent": 110,
+    "measure": "110 m total height · 7 m basal trunk · 76 m crown"
+  }
+]

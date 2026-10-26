@@ -1,0 +1,1 @@
+{"schemaVersion":1,"image":"atlas.png","size":[96,32],"task":"M1.TN1","appearanceStatus":"awaiting user visual review","assets":[{"id":"blush","rect":[0,0,32,32],"anchor":[16,32],"sortAnchor":[16,32]},{"id":"mint","rect":[32,0,32,32],"anchor":[16,32],"sortAnchor":[16,32]},{"id":"apricot","rect":[64,0,32,32],"anchor":[16,32],"sortAnchor":[16,32]}]}

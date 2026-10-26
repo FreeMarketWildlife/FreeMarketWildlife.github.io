@@ -1,0 +1,156 @@
+{
+  "assetId": "cad.mini.episode1.desk",
+  "revision": 1,
+  "name": "Reclaimed monitor desk",
+  "kind": "scenery",
+  "biome": "hideout",
+  "family": "mini",
+  "approval": "prototype-review",
+  "source": {
+    "type": "new-native",
+    "file": "src/build-assets.cjs",
+    "recipe": "desk"
+  },
+  "native": {
+    "width": 48,
+    "height": 40,
+    "origin": [
+      0,
+      40
+    ],
+    "originName": "authored-anchor",
+    "selectionBounds": {
+      "x": 0,
+      "y": 0,
+      "width": 48,
+      "height": 40
+    },
+    "visibleBounds": [
+      {
+        "variant": 0,
+        "frame": 0,
+        "x": 0,
+        "y": 1,
+        "width": 48,
+        "height": 39
+      },
+      {
+        "variant": 0,
+        "frame": 1,
+        "x": 0,
+        "y": 1,
+        "width": 48,
+        "height": 39
+      },
+      {
+        "variant": 0,
+        "frame": 2,
+        "x": 0,
+        "y": 1,
+        "width": 48,
+        "height": 39
+      }
+    ],
+    "animationEnvelope": {
+      "x": 0,
+      "y": 0,
+      "width": 48,
+      "height": 40
+    }
+  },
+  "sockets": [
+    {
+      "id": "left",
+      "type": "edge",
+      "x": 0,
+      "y": 0,
+      "facing": -1
+    },
+    {
+      "id": "right",
+      "type": "edge",
+      "x": 48,
+      "y": 0,
+      "facing": 1
+    }
+  ],
+  "render": {
+    "kind": "sprite-sheet",
+    "layer": "scenery",
+    "parallax": {
+      "x": 1,
+      "y": 1
+    },
+    "variants": [
+      {
+        "id": "v0",
+        "uri": "assets/desk.png",
+        "width": 144,
+        "height": 40,
+        "sha256": "85df0fee6bb6b28d528af63582173516ed25162d4b3f1c708481c516d5e8b12a"
+      }
+    ],
+    "frameSize": [
+      48,
+      40
+    ],
+    "frameCount": 3,
+    "allowedFacing": [
+      1,
+      -1
+    ],
+    "scale": 1
+  },
+  "collision": {
+    "defaults": [],
+    "decorative": true,
+    "behavior": "Artwork does not activate gameplay; scene entity kind and properties do."
+  },
+  "properties": {
+    "variant": {
+      "type": "integer",
+      "default": 0
+    }
+  },
+  "animation": {
+    "states": {
+      "idle": {
+        "frames": [
+          0,
+          1,
+          2
+        ],
+        "timingMs": [
+          550,
+          550,
+          550
+        ],
+        "loop": true
+      }
+    },
+    "frameEvents": []
+  },
+  "tags": [
+    "hideout",
+    "operative",
+    "computer",
+    "animated"
+  ],
+  "thumbnail": {
+    "uri": "assets/desk.png",
+    "frame": 0,
+    "variant": 0,
+    "nativeSize": [
+      48,
+      40
+    ],
+    "noResample": true
+  },
+  "placement": {
+    "snap": 1,
+    "suggestedGrid": 8,
+    "preview": "native-with-geometry",
+    "allowScale": false,
+    "allowRotation": false
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "treetop-trebuchet": "<a class=\"game-card\" href=\"./treetop-trebuchet/\"><img src=\"thumbnails/treetop-trebuchet.jpg\" width=\"1280\" height=\"800\" alt=\"\" fetchpriority=\"high\"><h2>Critz: Treetop Trebuchet</h2></a>",
+  "tycoon": "<a class=\"game-card\" href=\"./tycoon/\"><img src=\"thumbnails/tycoon.jpg\" width=\"1280\" height=\"800\" alt=\"\" ><h2>Critz: Tycoon</h2></a>",
+  "baad-math": "<a class=\"game-card\" href=\"./baad-math/\"><img src=\"thumbnails/baad-math.jpg\" width=\"1280\" height=\"800\" alt=\"\" ><h2>Critz: Baa\u2019d Math</h2></a>",
+  "tower-defense": "<a class=\"game-card\" href=\"./tower-defense/\"><img src=\"thumbnails/tower-defense.jpg\" width=\"1280\" height=\"800\" alt=\"\" ><h2>Critz Tower Defense</h2></a>",
+  "kingdom-conquest": "<a class=\"game-card\" href=\"./critz-kingdom-conquest/\"><img src=\"thumbnails/kingdom-conquest.jpg\" width=\"1280\" height=\"800\" alt=\"\" loading=\"lazy\"><h2>Critz Kingdom Conquest</h2></a>",
+  "ctrl-alt-del": "<a class=\"game-card\" href=\"./ctrl-alt-del/\"><img src=\"thumbnails/ctrl-alt-del.jpg\" width=\"1280\" height=\"800\" alt=\"\" loading=\"lazy\"><h2>Ctrl Alt Del \u2014 Episode I</h2></a>",
+  "serpent-siege": "<a class=\"game-card\" href=\"./serpent-siege/\"><img src=\"thumbnails/serpent-siege.jpg\" width=\"1280\" height=\"800\" alt=\"\" loading=\"lazy\"><h2>Serpent Siege</h2></a>",
+  "battlefront": "<a class=\"game-card\" href=\"./battlefront/\"><img src=\"thumbnails/battlefront.jpg\" width=\"1280\" height=\"800\" alt=\"\" loading=\"lazy\"><h2>Critz: Battlefront Minimalist</h2></a>",
+  "runner": "<a class=\"game-card\" href=\"./runner/\"><img src=\"thumbnails/runner.jpg\" width=\"1280\" height=\"800\" alt=\"\" loading=\"lazy\"><h2>Critz Runner</h2></a>",
+  "katana-mouse": "<a class=\"game-card\" href=\"./katana-mouse/\"><img src=\"thumbnails/katana-mouse.jpg\" width=\"1280\" height=\"800\" alt=\"\" loading=\"lazy\"><h2>Katana Mouse</h2></a>",
+  "critter-quest": "<a class=\"game-card\" href=\"./critter-quest/\"><img src=\"thumbnails/critter-quest.jpg\" width=\"1280\" height=\"800\" alt=\"\" loading=\"lazy\"><h2>Critter Quest</h2></a>",
+  "card-game": "<a class=\"game-card\" href=\"./card-game/\"><img src=\"thumbnails/card-game.jpg\" width=\"1280\" height=\"800\" alt=\"\" loading=\"lazy\"><h2>Critz Card Game</h2></a>"
+}

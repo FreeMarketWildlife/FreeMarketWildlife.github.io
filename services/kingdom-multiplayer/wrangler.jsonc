@@ -1,0 +1,37 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "fmw-kingdom-multiplayer",
+  "main": "worker.mjs",
+  "compatibility_date": "2026-10-25",
+  "workers_dev": false,
+  "preview_urls": false,
+  "vars": {
+    "ALLOWED_ORIGINS": "https://freemarketwildlife.com,https://www.freemarketwildlife.com"
+  },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "KINGDOM_ROOMS",
+        "class_name": "KingdomRoom"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": [
+        "KingdomRoom"
+      ]
+    }
+  ],
+  "routes": [
+    {
+      "pattern": "freemarketwildlife.com/api/kingdom/*",
+      "zone_id": "f676247ffd5c08516d90651c43e4a379"
+    },
+    {
+      "pattern": "www.freemarketwildlife.com/api/kingdom/*",
+      "zone_id": "f676247ffd5c08516d90651c43e4a379"
+    }
+  ]
+}

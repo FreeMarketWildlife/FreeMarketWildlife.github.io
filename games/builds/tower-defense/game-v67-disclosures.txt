@@ -1,0 +1,67 @@
+// Shared height motion for inline content; layout resets settle immediately.
+document.body.style.setProperty('--inline-chevron','url('+window.ButtonwoodArt.uiIcon('info').toDataURL()+')');
+const disclosureMotionV67=matchMedia('(prefers-reduced-motion: reduce)'),disclosuresV67=new Set();
+function disclosureV67(trigger,body,{native=null,group=null,scroll=null}={}){
+ let open=native?native.open:!body.hidden,animation=null;
+ const content=body.firstElementChild;
+ const stop=()=>{if(animation){animation.onfinish=null;animation.cancel();animation=null}};
+ const sync=()=>{
+  trigger.setAttribute('aria-expanded',String(open));body.inert=!open;
+  body.setAttribute('aria-hidden',String(!open));
+ };
+ const settle=()=>{
+  stop();body.hidden=!open;body.style.height='';body.style.overflow='';
+  if(native)native.open=open;
+  sync();
+ };
+ const reveal=()=>{
+  if(!scroll||!open||!scroll.getClientRects().length)return;
+  const panel=scroll.getBoundingClientRect(),bounds=body.getBoundingClientRect();
+  const header=scroll.querySelector('header'),top=panel.top+(header?.getBoundingClientRect().height||0)+12;
+  if(bounds.height>panel.bottom-top-8)scroll.scrollTop+=bounds.top-top;
+  else if(bounds.bottom>panel.bottom-8)scroll.scrollTop+=bounds.bottom-panel.bottom+8;
+ };
+ const set=(next,animate=true,retarget=false)=>{
+  next=!!next;
+  if(next&&group)for(const other of disclosuresV67)if(other!==api&&other.group===group&&other.open)other.set(false,animate);
+  if(next===open&&animate&&!retarget)return;
+  const from=body.hidden?0:body.getBoundingClientRect().height;
+  stop();open=next;
+  if(!open&&body.contains(document.activeElement))trigger.focus({preventScroll:true});
+  sync();
+  if(!animate||disclosureMotionV67.matches||!trigger.getClientRects().length){settle();if(animate)reveal();return}
+  if(native)native.open=true;
+  body.hidden=false;body.style.height='';
+  const to=open?body.getBoundingClientRect().height:0;
+  // A tab cannot land on a control while it is still clipped by the reveal.
+  body.style.overflow='hidden';body.inert=true;
+  // Restart from the visible height on reversal or a change in content size.
+  animation=body.animate([{height:from+'px'},{height:to+'px'}],{duration:190,easing:'cubic-bezier(.2,0,0,1)',fill:'both'});
+  animation.onfinish=()=>{settle();reveal()};
+ };
+ const api={set,group,get open(){return open},settle};
+ disclosuresV67.add(api);settle();
+ // Only the inner natural content is observed, so animation frames cannot loop.
+ if(content)new ResizeObserver(()=>{if(animation)set(open,true,true)}).observe(content);
+ return api;
+}
+function setNativeDisclosureV67(el,open){
+ if(el._disclosureV67)el._disclosureV67.set(open,false);else el.open=open;
+}
+function enhanceNativeDisclosureV67(el){
+ const summary=el.querySelector('summary'),body=document.createElement('div'),content=document.createElement('div');
+ body.className='disclosureBodyV67';content.className='disclosureContentV67';
+ for(const child of [...el.childNodes])if(child!==summary)content.append(child);
+ body.append(content);el.append(body);
+ body.id=(el.id||'guide-'+[...el.parentElement.children].indexOf(el))+'-content';
+ summary.setAttribute('aria-controls',body.id);
+ const group=el.closest('.tipsGroups'),api=disclosureV67(summary,body,{native:el,group});el._disclosureV67=api;
+ if(group&&api.open)for(const other of disclosuresV67)if(other!==api&&other.group===group&&other.open)other.set(false,false);
+ summary.addEventListener('click',event=>{event.preventDefault();api.set(!api.open)});
+ // Native programmatic changes (including find-in-page) must reveal the content.
+ new MutationObserver(()=>{
+  if(!el.open&&api.open)api.set(false,false);
+  else if(el.open&&!api.open&&body.hidden)api.set(true,false);
+ }).observe(el,{attributes:true,attributeFilter:['open']});
+}
+disclosureMotionV67.addEventListener('change',()=>{for(const item of disclosuresV67)item.settle()});

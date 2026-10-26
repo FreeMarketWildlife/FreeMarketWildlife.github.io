@@ -1,0 +1,226 @@
+{
+  "map": {
+    "version": 4,
+    "revision": 2,
+    "count": 356,
+    "solidCount": 217,
+    "nearExtent": {
+      "minX": -38.50891299206008,
+      "maxX": 733.0004750331374,
+      "minY": -32,
+      "maxY": 76.93577708764
+    },
+    "fullExtent": {
+      "minX": -38.50891299206008,
+      "maxX": 733.0004750331374,
+      "minY": -32,
+      "maxY": 1400.18
+    }
+  },
+  "protocol": "Actual finite-force Enter carry, observed .25s support, powered winding, observed support, real fire and natural finish. 120 Hz preparation/flight, no weapons or injected launch velocity. maxGap includes release-to-first and last-to-finish, not just distinct-object contacts. Discrete draw samples are not continuous or human play certification.",
+  "runs": [
+    {
+      "id": "small",
+      "draw": 0.4,
+      "phase": "finished",
+      "failure": "",
+      "range": 5.7948367533473,
+      "flightSeconds": 2.9095745520734746,
+      "contactCount": 3,
+      "distinctAuthored": [
+        "launch-bough"
+      ],
+      "maxGapSeconds": 1.382415902271021
+    },
+    {
+      "id": "small",
+      "draw": 0.75,
+      "phase": "finished",
+      "failure": "",
+      "range": 67.80446799193153,
+      "flightSeconds": 13.622991136310128,
+      "contactCount": 14,
+      "distinctAuthored": [
+        "route-perch-0",
+        "route-opening-catch-0",
+        "route-opening-catch-4",
+        "route-opening-catch-5",
+        "opening-skip-3",
+        "opening-skip-4"
+      ],
+      "maxGapSeconds": 1.7491793049142963
+    },
+    {
+      "id": "small",
+      "draw": 1,
+      "phase": "finished",
+      "failure": "",
+      "range": 68.70973836231248,
+      "flightSeconds": 13.824159022709805,
+      "contactCount": 14,
+      "distinctAuthored": [
+        "route-perch-1",
+        "route-opening-catch-0",
+        "opening-skip-1",
+        "opening-skip-2",
+        "route-descent-fork-0",
+        "opening-skip-4",
+        "floor-log-2"
+      ],
+      "maxGapSeconds": 2.4299608716937033
+    },
+    {
+      "id": "medium",
+      "draw": 0.4,
+      "phase": "finished",
+      "failure": "",
+      "range": 89.95737808031892,
+      "flightSeconds": 13.904166666665994,
+      "contactCount": 9,
+      "distinctAuthored": [
+        "route-opening-catch-4",
+        "small-floor-fungus"
+      ],
+      "maxGapSeconds": 2.9583333333332806
+    },
+    {
+      "id": "medium",
+      "draw": 0.75,
+      "phase": "finished",
+      "failure": "",
+      "range": 88.90013141096956,
+      "flightSeconds": 6.997916666666387,
+      "contactCount": 7,
+      "distinctAuthored": [
+        "route-perch-2",
+        "route-descent-fork-1",
+        "amazon-bough-2-0"
+      ],
+      "maxGapSeconds": 1.8458333333332289
+    },
+    {
+      "id": "medium",
+      "draw": 1,
+      "phase": "finished",
+      "failure": "",
+      "range": 135.04581955004258,
+      "flightSeconds": 19.68125000000288,
+      "contactCount": 13,
+      "distinctAuthored": [
+        "route-perch-3",
+        "route-perch-4",
+        "route-perch-5",
+        "route-descent-fork-2",
+        "route-forest-bough-0-2"
+      ],
+      "maxGapSeconds": 3.0291666666664945
+    },
+    {
+      "id": "large",
+      "draw": 0.4,
+      "phase": "finished",
+      "failure": "",
+      "range": 117.89874561702244,
+      "flightSeconds": 13.712556720231902,
+      "contactCount": 9,
+      "distinctAuthored": [
+        "opening-skip-2",
+        "floor-log-3"
+      ],
+      "maxGapSeconds": 3.9437877485426207
+    },
+    {
+      "id": "large",
+      "draw": 0.75,
+      "phase": "finished",
+      "failure": "",
+      "range": 273.50200214610385,
+      "flightSeconds": 13.695760349922914,
+      "contactCount": 12,
+      "distinctAuthored": [
+        "route-perch-3",
+        "route-mid-bay-0",
+        "route-mid-bay-2",
+        "route-descent-fork-3",
+        "route-floor-log-4",
+        "route-forest-bough-4-0"
+      ],
+      "maxGapSeconds": 3.500363572386328
+    },
+    {
+      "id": "large",
+      "draw": 1,
+      "phase": "finished",
+      "failure": "",
+      "range": 338.2943954965153,
+      "flightSeconds": 22.94720111609262,
+      "contactCount": 19,
+      "distinctAuthored": [
+        "route-upper-bay-0-b",
+        "route-upper-bay-1-a",
+        "route-forest-bough-5-2",
+        "route-descent-fork-6",
+        "route-forest-bough-6-1",
+        "route-descent-fork-4",
+        "route-forest-bough-5-0",
+        "route-descent-fork-5",
+        "route-floor-stone-4"
+      ],
+      "maxGapSeconds": 3.74894985295879
+    },
+    {
+      "id": "elephant",
+      "draw": 0.6,
+      "phase": "finished",
+      "failure": "",
+      "range": 54.79106792961605,
+      "flightSeconds": 17.24040257368646,
+      "contactCount": 14,
+      "distinctAuthored": [
+        "oak-scaffold-0-east",
+        "cloud-one",
+        "route-opening-catch-4",
+        "route-descent-fork-0",
+        "canopy-bug"
+      ],
+      "maxGapSeconds": 4.707974359471926
+    },
+    {
+      "id": "elephant",
+      "draw": 0.75,
+      "phase": "finished",
+      "failure": "",
+      "range": 235.04808191167396,
+      "flightSeconds": 23.68239372549814,
+      "contactCount": 16,
+      "distinctAuthored": [
+        "oak-scaffold-0-east",
+        "route-descent-fork-8",
+        "route-upper-bay-0-a",
+        "route-mid-bay-4",
+        "route-forest-bough-2-2",
+        "route-floor-log-3"
+      ],
+      "maxGapSeconds": 4.1996461491152495
+    },
+    {
+      "id": "elephant",
+      "draw": 1,
+      "phase": "finished",
+      "failure": "",
+      "range": 478.4311100094004,
+      "flightSeconds": 16.85084263677747,
+      "contactCount": 15,
+      "distinctAuthored": [
+        "oak-scaffold-0-east",
+        "route-descent-fork-10",
+        "route-forest-bough-6-1",
+        "route-forest-bough-6-2",
+        "route-forest-bough-8-0",
+        "route-floor-log-10"
+      ],
+      "maxGapSeconds": 5.401581076407299
+    }
+  ],
+  "status": "Archived released revision-two baseline; current revision-three comparison is upper-route-comparison.json."
+}

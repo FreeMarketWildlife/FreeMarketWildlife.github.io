@@ -1,0 +1,1201 @@
+// Combat adapters and attached controls. Buttonwood bible §§3–7, 9–10, 12.
+SKY_BUILD = "v93";
+const defenseEnemyBodiesV93 = new Map(),
+  defenseFiresV93 = [];
+let defenseUiTickV93 = 0,
+  defenseDirtyV93 = false,
+  defensePostPickV93 = null,
+  defenseCueTimeV93 = -Infinity;
+function defenseActorsV93() {
+  return wildlifeV71
+    .filter((a) => a.feyV75)
+    .map((a) => {
+      const q = feyBodyV75(a);
+      return {
+        id: "f" + a.id,
+        x: q.position.x,
+        y: q.position.y,
+        fey: true,
+        animal: a,
+        body: q,
+      };
+    })
+    .concat(
+      [...miners].map((q) => ({
+        id: "w" + q.game.id,
+        x: q.position.x,
+        y: q.position.y,
+        fey: false,
+        sleeping: !!q.game.sleepingV55,
+        body: q,
+      })),
+    );
+}
+function defenseTargetV93(z, p) {
+  const building = structuresV46.find(
+    (b) =>
+      structureBodiesV47.get(b.id) === z ||
+      structureBodiesV47.get(b.id) === z.parent,
+  );
+  return {
+    x: p?.x ?? z.position.x,
+    y: p?.y ?? z.position.y,
+    body: z,
+    buildingId: building?.id,
+    material: z.game?.material || "wood",
+  };
+}
+function defenseObstacleV93(a, b, ignore) {
+  const region = {
+    min: { x: Math.min(a.x, b.x) - 1, y: Math.min(a.y, b.y) - 1 },
+    max: { x: Math.max(a.x, b.x) + 1, y: Math.max(a.y, b.y) + 1 },
+  };
+  let first = null;
+  const list = Query.region(worldSolidsV56(), region);
+  for (const z of list) {
+    if (
+      z === structureBodiesV47.get(ignore) ||
+      z.parent === structureBodiesV47.get(ignore)
+    )
+      continue;
+    for (const part of z.parts.length > 1 ? z.parts.slice(1) : [z]) {
+      const t = TowerDefense.segment(a, b, part.bounds);
+      if (t === null || t > 0.995 || t < 0.001) continue;
+      if (!first || t < first.t)
+        first = {
+          t,
+          target: defenseTargetV93(z, {
+            x: a.x + (b.x - a.x) * t,
+            y: a.y + (b.y - a.y) * t,
+          }),
+        };
+    }
+  }
+  return first;
+}
+function defenseSpawnV93(e) {
+  const d = TowerDefense.enemyTypes[e.kind],
+    size = d.size || 1;
+  ensureChunkAtX(e.x);
+  const q = Bodies.rectangle(
+    e.x,
+    e.y,
+    (e.kind === "siege" ? 55 : 20) * size,
+    28 * size,
+    {
+      inertia: Infinity,
+      friction: 0.2,
+      frictionAir: 0.03,
+      isSensor: false,
+      collisionFilter: { category: 0x20000000, mask: 1 },
+    },
+  );
+  q.label = "defense-enemy-" + e.id;
+  q.game = { defenseEnemyV93: e.id };
+  World.add(eng.world, q);
+  defenseEnemyBodiesV93.set(e.id, q);
+}
+function defenseForgetEnemyV93(e) {
+  const q = defenseEnemyBodiesV93.get(e.id);
+  if (q) World.remove(eng.world, q);
+  defenseEnemyBodiesV93.delete(e.id);
+}
+function defenseMoveV93(a, goal) {
+  const g = a.body.game,
+    tag = Math.round(goal.x) + "," + Math.round(goal.y),
+    o = defenseV93.state.orders[a.id];
+  if (g.defenseRouteV93?.tag !== tag)
+    g.defenseRouteV93 = { tag, x: a.x, y: a.y, since: defenseV93.state.time };
+  const r = g.defenseRouteV93;
+  if (Math.hypot(a.x - r.x, a.y - r.y) > 12) {
+    r.x = a.x;
+    r.y = a.y;
+    r.since = defenseV93.state.time;
+  }
+  if (o && defenseV93.state.time - r.since > 5000) o.routeBlocked = true;
+  else if (o) o.routeBlocked = false;
+  if (a.animal) {
+    feyMoveV75(a.animal, goal, performance.now());
+    return;
+  }
+  const q = a.body;
+  moveWorkerV56(q, goal, performance.now());
+}
+function defenseWorldDamageV93(t, n) {
+  if (t.buildingId) {
+    const b = structuresV46.find((b) => b.id === t.buildingId);
+    if (!b) return;
+    b.defenseDamageV93 = (b.defenseDamageV93 || 0) + n;
+    if (b.defenseDamageV93 >= 20) {
+      for (const [id, o] of Object.entries(defenseV93.state.orders))
+        if (o.station === b.id) {
+          o.station = null;
+          o.status = "Station destroyed";
+        }
+      for (const [k, v] of Object.entries(stockV56(b))) addPlayerV56(k, v);
+      if (b.job) {
+        const r = JOBS_V46[b.type]?.[b.job.recipe];
+        if (r)
+          for (const [k, v] of Object.entries(r.inputs)) addPlayerV56(k, v);
+      }
+      removeStructureBodyV47(b);
+      structuresV46 = structuresV46.filter((s) => s !== b);
+      if (selectedBuildingV46 === b.id) $("buildingPanel").close();
+    }
+    return;
+  }
+  const z = t.body;
+  if (!z || !bs.has(z) || !z.game?.placed) return;
+  z.game.hits = Math.min(z.game.max, (z.game.hits || 0) + n);
+  if (z.game.hits >= z.game.max) {
+    bs.delete(z);
+    World.remove(eng.world, z);
+    cleanNailsV78();
+    const anchored = anchoredSetV46();
+    for (const b of bs)
+      if (b.game.nailed && !anchored.has(b)) {
+        b.game.nailed = false;
+        Body.setStatic(b, false);
+      }
+  }
+  solidCacheV57 = null;
+  feyTowerStampV75 = -Infinity;
+  feyTowerCacheV75 = null;
+}
+function defenseSoundV93(kind, p) {
+  if (defenseV93.state.time - defenseCueTimeV93 < 120) return;
+  const s = w2s(p.x, p.y);
+  if (s.x < -80 || s.x > W + 80 || s.y < -80 || s.y > HH + 80) return;
+  defenseCueTimeV93 = defenseV93.state.time;
+  SkyAudio.defenseCue?.(kind, clamp((s.x - W / 2) / (W / 2), -1, 1));
+}
+const defenseV93 = TowerDefense.create({
+  actors: defenseActorsV93,
+  buildings: () => structuresV46,
+  stock: stockV56,
+  door: (b, a) => {
+    const d = STRUCTURES_V46[b.type],
+      right = b.x + d.w * B + 16;
+    return {
+      x:
+        a && Math.abs(a.x - right) < Math.abs(a.x - (b.x - 16))
+          ? right
+          : b.x - 16,
+      y: b.y + d.h * B - B * 0.4 - 0.5,
+    };
+  },
+  stationPoint: (b) => {
+    const d = STRUCTURES_V46[b.type],
+      s = defenseV93.station(b),
+      x = b.x + (d.w * B) / 2;
+    return {
+      x: ["ballista", "repeatingCrossbow"].includes(b.type)
+        ? x + s.facing * (d.w * 16 - 2)
+        : x,
+      y:
+        b.y +
+        (b.type === "trebuchet" || b.type === "catapult"
+          ? 18
+          : ["oilDropper", "rockChute"].includes(b.type)
+            ? 20
+            : b.type === "hangingRam"
+              ? d.h * B - 32
+              : d.h * B - 38),
+    };
+  },
+  paused: () => gameClockV76.paused || document.hidden,
+  changed() {
+    defenseDirtyV93 = true;
+    saveSoon();
+  },
+  move: (a, p) => defenseMoveV93(a, p),
+  face(a, e) {
+    a.body.game.dir = e.x >= a.x ? 1 : -1;
+    if (a.animal) a.animal.direction = a.body.game.dir;
+  },
+  suspendTask(id) {
+    const a = defenseActorsV93().find((a) => a.id === id);
+    if (!a?.animal) return null;
+    const r = a.animal.feyV75,
+      previous = { task: r.task, building: r.building };
+    r.task = "Defend";
+    r.building = null;
+    return previous;
+  },
+  restoreTask(id, previous) {
+    const a = defenseActorsV93().find((a) => a.id === id);
+    if (a?.animal && a.animal.feyV75.task === "Defend") {
+      a.animal.feyV75.task =
+        FEY_TASKS_V75.includes(previous?.task) && previous.task !== "Defend"
+          ? previous.task
+          : "Base";
+      a.animal.feyV75.building = previous?.building || null;
+    }
+  },
+  supplyAmount(b, item) {
+    const kind =
+      item === "oilCharge" ? "oil" : item === "waterCharge" ? "water" : null;
+    if (b.type === "tank" && kind && b.liquidKind === kind)
+      return Math.floor((b.liquidAmount || 0) * 4 + 1e-8);
+    return stockV56(b)[item] || 0;
+  },
+  takeSupply(b, item, n) {
+    const kind =
+      item === "oilCharge" ? "oil" : item === "waterCharge" ? "water" : null;
+    if (b.type === "tank" && kind && b.liquidKind === kind) {
+      if (b.liquidAmount + 1e-8 < n / 4) return false;
+      b.liquidAmount = Math.max(0, b.liquidAmount - n / 4);
+      if (!b.liquidAmount) b.liquidKind = null;
+      return true;
+    }
+    if (!(stockV56(b)[item] >= n)) return false;
+    stockV56(b)[item] -= n;
+    return true;
+  },
+  refund(item, n, source) {
+    const b = structuresV46.find((b) => b.id === source),
+      kind =
+        item === "oilCharge" ? "oil" : item === "waterCharge" ? "water" : null;
+    if (b?.type === "tank" && kind) {
+      if (
+        (!b.liquidKind || b.liquidKind === kind) &&
+        b.liquidAmount + n / 4 <= 32
+      ) {
+        b.liquidKind = kind;
+        b.liquidAmount += n / 4;
+      } else addPlayerV56(item, n);
+    } else if (b) stockV56(b)[item] = (stockV56(b)[item] || 0) + n;
+    else addPlayerV56(item, n);
+  },
+  anchor() {
+    const t = feyTallestTowerV75(),
+      armory = structuresV46.find((b) => b.type === "armory");
+    if (!armory) return null;
+    return {
+      x: t.height ? ((t.minX + t.maxX + 1) / 2) * B : armory.x + 64,
+      y: t.height ? t.minY * B : armory.y,
+      baseX: armory.x + 64,
+      baseY: armory.y + 128,
+      armory: armory.id,
+    };
+  },
+  spawnPoint(a, side, kind) {
+    const t = TowerDefense.enemyTypes[kind],
+      x = a.baseX + side * (t.min ? 900 : 650);
+    ensureChunkAtX(x);
+    return { x, y: t.fly ? a.y - 100 : a.baseY - 50 };
+  },
+  spawn: defenseSpawnV93,
+  removeEnemy: defenseForgetEnemyV93,
+  syncEnemies(es) {
+    for (const e of es) {
+      const q = defenseEnemyBodiesV93.get(e.id);
+      if (q) {
+        e.x = q.position.x;
+        e.y = q.position.y;
+      }
+    }
+  },
+  moveEnemy(e, t, dt, slow) {
+    const q = defenseEnemyBodiesV93.get(e.id),
+      d = TowerDefense.enemyTypes[e.kind];
+    if (!q) return;
+    const dir = t.x >= e.x ? 1 : -1,
+      v = (d.speed / 60) * slow;
+    const ahead = { x: e.x + dir * 20, y: e.y },
+      wall = defenseObstacleV93({ x: e.x, y: e.y }, ahead);
+    if (d.fly) {
+      const dx = t.x - e.x,
+        dy = t.y - e.y,
+        len = Math.hypot(dx, dy) || 1;
+      Body.setVelocity(q, {
+        x: wall ? 0 : (dx / len) * v,
+        y: wall ? -v : (dy / len) * v,
+      });
+    } else if (wall && d.climb) {
+      Body.setVelocity(q, { x: dir * v * 0.3, y: -v * 1.5 });
+    } else {
+      const grounded =
+        Query.ray(
+          worldSolidsV56(),
+          { x: e.x, y: q.bounds.max.y },
+          { x: e.x, y: q.bounds.max.y + 5 },
+        ).length > 0;
+      Body.setVelocity(q, {
+        x: dir * v,
+        y: wall && grounded ? -4 : q.velocity.y,
+      });
+    }
+  },
+  stopEnemy(e) {
+    const q = defenseEnemyBodiesV93.get(e.id);
+    if (q) Body.setVelocity(q, { x: 0, y: q.velocity.y });
+  },
+  knock(e, n) {
+    const q = defenseEnemyBodiesV93.get(e.id);
+    if (q) Body.setVelocity(q, { x: n, y: -3 });
+  },
+  enemyTarget(e, a) {
+    if (e.kind === "climber" || e.kind === "flyer") {
+      const roofs = structuresV46
+        .map((b) => ({
+          x: clamp(e.x, b.x, b.x + STRUCTURES_V46[b.type].w * B),
+          y: b.y,
+          buildingId: b.id,
+        }))
+        .concat(
+          [...placedBodiesV87]
+            .filter((z) => z.isStatic)
+            .map((z) => ({
+              x: clamp(e.x, z.bounds.min.x, z.bounds.max.x),
+              y: z.bounds.min.y,
+              body: z,
+              material: z.game.material,
+            })),
+        );
+      const high = roofs.sort((p, q) => p.y - q.y)[0];
+      if (high) return high;
+    }
+    const targets = structuresV46
+      .map((b) => ({
+        x: clamp(e.x, b.x, b.x + STRUCTURES_V46[b.type].w * B),
+        y: clamp(e.y, b.y, b.y + STRUCTURES_V46[b.type].h * B),
+        buildingId: b.id,
+      }))
+      .concat(
+        [...placedBodiesV87].map((z) => ({
+          x: clamp(e.x, z.bounds.min.x, z.bounds.max.x),
+          y: clamp(e.y, z.bounds.min.y, z.bounds.max.y),
+          body: z,
+          material: z.game.material,
+        })),
+      );
+    return targets.sort(
+      (p, q) =>
+        Math.hypot(p.x - e.x, p.y - e.y) - Math.hypot(q.x - e.x, q.y - e.y),
+    )[0];
+  },
+  obstruction: defenseObstacleV93,
+  damageWorld: defenseWorldDamageV93,
+  supported(b) {
+    return !validStructureV46({ ...b, defenseExistingV93: b.id });
+  },
+  repairTargets() {
+    return structuresV46
+      .filter((b) => b.defenseDamageV93 > 0)
+      .map((b) => ({
+        x: b.x - 16,
+        y: b.y + STRUCTURES_V46[b.type].h * B - 14,
+        buildingId: b.id,
+        material: "wood",
+      }))
+      .concat(
+        [...placedBodiesV87]
+          .filter((z) => z.game.hits > 0)
+          .map((z) => ({ ...defenseTargetV93(z), material: z.game.material })),
+      );
+  },
+  repairPoint(t) {
+    return { x: t.x - 24, y: t.y - 14 };
+  },
+  repair(t) {
+    if (t.buildingId) {
+      const b = structuresV46.find((b) => b.id === t.buildingId);
+      if (b) b.defenseDamageV93 = Math.max(0, b.defenseDamageV93 - 4);
+    } else if (t.body) {
+      t.body.game.hits = Math.max(0, t.body.game.hits - 2);
+    }
+  },
+  lost(a) {
+    return !structuresV46.some((b) => b.id === a.armory);
+  },
+  reward(n) {
+    inv.gold += n;
+    goldBurst(defenseV93.state.anchor.baseX, defenseV93.state.anchor.baseY, n);
+  },
+  event: defenseSoundV93,
+  fires: () => defenseFiresV93,
+  extinguish(p, r) {
+    for (let i = defenseFiresV93.length - 1; i >= 0; i--)
+      if (
+        Math.hypot(defenseFiresV93[i].x - p.x, defenseFiresV93[i].y - p.y) < r
+      )
+        defenseFiresV93.splice(i, 1);
+  },
+  ignite(p) {
+    if (defenseFiresV93.length < 32)
+      defenseFiresV93.push({ x: p.x, y: p.y, left: 6000, tick: 0 });
+  },
+  tickFires(dt) {
+    for (const f of defenseFiresV93) {
+      f.left -= dt;
+      f.tick += dt;
+      if (f.tick >= 1000) {
+        f.tick = 0;
+        const z = Query.point([...placedBodiesV87], f)[0];
+        if (z?.game.material === "wood")
+          defenseV93.worldHit(defenseTargetV93(z), 0.25);
+      }
+    }
+    for (let i = defenseFiresV93.length - 1; i >= 0; i--)
+      if (defenseFiresV93[i].left <= 0) defenseFiresV93.splice(i, 1);
+  },
+});
+// Extend the existing task scheduler without changing any non-combat Fey command.
+FEY_TASKS_V75.push("Defend");
+const defenseTaskOptionV93 = document.createElement("option");
+defenseTaskOptionV93.value = defenseTaskOptionV93.textContent = "Defend";
+$("feyTaskV75").append(defenseTaskOptionV93);
+const defenseCommandBeforeV93 = feyCommandV75;
+feyCommandV75 = function (a, task, building) {
+  if (!a?.feyV75) return false;
+  if (task === "Defend") {
+    const id = "f" + a.id,
+      previous = { task: a.feyV75.task, building: a.feyV75.building };
+    defenseV93.order(id, { alarm: false, active: true });
+    const o = defenseV93.state.orders[id];
+    o.previous = previous;
+    return defenseCommandBeforeV93(a, task, building);
+  }
+  if (defenseV93.state.orders["f" + a.id]) defenseV93.remove("f" + a.id);
+  return defenseCommandBeforeV93(a, task, building);
+};
+skyStackFey.command = (id, task, b) =>
+  feyCommandV75(
+    wildlifeV71.find((a) => a.id === id),
+    task,
+    b,
+  );
+// Defend is intentionally absent from the old non-combat movement dispatch.
+const defenseFeyMoveBeforeV93 = feyMoveV75;
+feyMoveV75 = function (a, p, now) {
+  if (a.feyV75?.task === "Defend" && !defenseMovingV93) return false;
+  return defenseFeyMoveBeforeV93(a, p, now);
+};
+let defenseMovingV93 = false;
+const defenseMoveAdapterV93 = defenseMoveV93;
+defenseMoveV93 = function (a, p) {
+  defenseMovingV93 = true;
+  try {
+    return defenseMoveAdapterV93(a, p);
+  } finally {
+    defenseMovingV93 = false;
+  }
+};
+// The adapter was created with a callable wrapper so movement always uses the guard.
+const defenseCaptureBeforeV93 = captureWildlifeV71;
+captureWildlifeV71 = function (t) {
+  if (
+    t?.animal &&
+    bucketBagV68.bucket > 0 &&
+    (t.cage ? cageAnimalsV71(t.cage) : wildlifeV71).includes(t.animal) &&
+    defenseV93.state.orders["f" + t.animal.id]
+  )
+    defenseV93.remove("f" + t.animal.id);
+  return defenseCaptureBeforeV93(t);
+};
+const defenseStepBeforeV93 = stepStructuresV46;
+stepStructuresV46 = function (ms) {
+  const changed = defenseStepBeforeV93(ms);
+  defenseV93.step(ms);
+  defenseUiTickV93 += ms;
+  if (defenseUiTickV93 >= 400) {
+    defenseUiTickV93 = 0;
+    if (defensePanelV93.open) refreshDefenseV93();
+    if (defenseTurretControlsV93.isConnected) refreshTurretV93();
+  }
+  return changed || defenseDirtyV93;
+};
+const defenseSaveBeforeV93 = saveStructuresV46;
+saveStructuresV46 = function () {
+  const r = defenseSaveBeforeV93();
+  defenseDirtyV93 = false;
+  return {
+    ...r,
+    defenseV93: {
+      ...defenseV93.save(),
+      fires: defenseFiresV93.map((f) => ({ ...f })),
+      buildingDamage: structuresV46
+        .filter((b) => b.defenseDamageV93 > 0)
+        .map((b) => [b.id, b.defenseDamageV93]),
+    },
+  };
+};
+const defenseRestoreBeforeV93 = restoreDynamicState;
+restoreDynamicState = function (s) {
+  defenseRestoreBeforeV93(s);
+  defenseV93.restore(s?.structuresV46?.defenseV93);
+  for (const a of wildlifeV71)
+    if (a.feyV75?.task === "Defend" && !defenseV93.state.orders["f" + a.id])
+      a.feyV75.task = "Base";
+  defenseFiresV93.length = 0;
+  const r = s?.structuresV46?.defenseV93;
+  for (const f of (r?.fires || []).slice(0, 32))
+    if ([f.x, f.y, f.left].every(Number.isFinite))
+      defenseFiresV93.push({ ...f, left: clamp(f.left, 0, 6000), tick: 0 });
+  for (const [id, n] of r?.buildingDamage || []) {
+    const b = structuresV46.find((b) => b.id === id);
+    if (b) b.defenseDamageV93 = clamp(finite(n), 0, 20);
+  }
+};
+// Keep all old structural envelopes. New heavy/overhang weapons have explicit rules.
+function defenseDropClearV93(b, facing) {
+  const d = STRUCTURES_V46[b.type],
+    x = facing > 0 ? b.x + d.w * B + 8 : b.x - 8,
+    start = { x, y: b.y + 20 },
+    end = { x, y: b.y + 20 + B * 1.5 };
+  return !defenseObstacleV93(start, end, b.id);
+}
+const defenseValidBeforeV93 = validStructureV46;
+validStructureV46 = function (b) {
+  if (b.defenseExistingV93) {
+    const old = structuresV46.find((s) => s.id === b.defenseExistingV93);
+    if (!old) return "Missing station";
+    if (!supportV46(b)) return "Needs foundation";
+    const d = TowerDefense.structures[b.type];
+    if (d?.drop && !defenseDropClearV93(b, defenseV93.station(b).facing))
+      return "Needs open drop edge";
+    return null;
+  }
+  const result = defenseValidBeforeV93(b);
+  if (result) return result;
+  const d = TowerDefense.structures[b.type];
+  if (d?.drop && !defenseDropClearV93(b, 1) && !defenseDropClearV93(b, -1))
+    return "Needs open drop edge";
+  if (d?.heavy) {
+    const r = boundsV46(b),
+      under = Query.region([...bs], {
+        min: { x: r.min.x, y: r.max.y - 2 },
+        max: { x: r.max.x, y: r.max.y + 8 },
+      });
+    if (
+      !under.length ||
+      under.some(
+        (z) => !["stone", "deepslate", "obsidian"].includes(z.game.material),
+      )
+    )
+      return "Needs stone foundation";
+    const head = {
+      min: { x: b.x, y: b.y - 32 },
+      max: { x: b.x + d.w * B, y: b.y },
+    };
+    if (Query.region(worldSolidsV56(), head).length)
+      return "Needs arm clearance";
+  }
+  return "";
+};
+// Native station art, fixed footprint, and shared camera scale.
+const defensePaintBeforeV93 = paintStructureV46;
+paintStructureV46 = function (g, b, now, active) {
+  if (!TowerDefense.structures[b.type])
+    return defensePaintBeforeV93(g, b, now, active);
+  const s = defenseV93.station(b),
+    d = TowerDefense.structures[b.type],
+    pose = s.cooldown > d.reload - 250;
+  g.save();
+  if (s.facing < 0 && b.type !== "armory") {
+    g.translate(d.w * B, 0);
+    g.scale(-1, 1);
+  }
+  g.drawImage(ButtonwoodArt.defenseSprite(b.type, pose), 0, 0);
+  g.restore();
+};
+const defenseDrawBeforeV93 = drawGoldBursts;
+drawGoldBursts = function (now) {
+  defenseDrawBeforeV93(now);
+  const S = defenseV93.state,
+    P = ButtonwoodArt.palette;
+  function at(p, draw) {
+    const q = w2s(p.x, p.y);
+    if (q.x < -200 || q.x > W + 200 || q.y < -200 || q.y > HH + 200) return;
+    ctx.save();
+    ctx.translate(Math.round(q.x), Math.round(q.y));
+    ctx.scale(cam.z, cam.z);
+    ctx.imageSmoothingEnabled = false;
+    ctx.globalAlpha = 1 - fogArtV72.opacity(fogLayerV72(cell(p.x), cell(p.y)));
+    draw();
+    ctx.restore();
+  }
+  for (const e of S.enemies)
+    at(e, () => {
+      const sprite = ButtonwoodArt.enemySprite(
+        e.kind,
+        Math.floor(S.time / 180) % 2,
+      );
+      ctx.drawImage(sprite, -Math.floor(sprite.width / 2), -sprite.height + 14);
+      ctx.fillStyle = P.outline;
+      ctx.fillRect(-14, -sprite.height + 9, 28, 3);
+      ctx.fillStyle = P.coral;
+      ctx.fillRect(
+        -13,
+        -sprite.height + 10,
+        Math.ceil((26 * e.hp) / TowerDefense.enemyTypes[e.kind].hp),
+        1,
+      );
+    });
+  for (const a of defenseActorsV93()) {
+    const o = S.orders[a.id];
+    if (!o?.active) continue;
+    at(a, () => {
+      if (o.gear.length)
+        ButtonwoodArt.paintDefenseGear(
+          ctx,
+          o.role,
+          (a.animal
+            ? Math.min(
+                14,
+                ButtonwoodArt.wildlifeSizes[a.animal.species].width / 2,
+              )
+            : 12) * (a.body.game.dir || 1),
+          0,
+          a.body.game.dir || 1,
+          o.pose > 0,
+        );
+      if (o.stun > 0) {
+        ctx.fillStyle = P.gold;
+        ctx.fillRect(-6, -20, 3, 3);
+        ctx.fillRect(4, -22, 3, 3);
+      }
+      if (o.cargo) {
+        ctx.fillStyle = P.woodShade;
+        ctx.fillRect(-10, -6, 10, 10);
+        ctx.fillStyle = P.gold;
+        ctx.fillRect(-9, -5, 8, 2);
+      }
+    });
+  }
+  for (const p of S.shots)
+    at(p, () => {
+      ctx.fillStyle = P.outline;
+      ctx.fillRect(-4, -2, 9, 4);
+      ctx.fillStyle =
+        p.kind === "fire"
+          ? P.lava
+          : p.kind === "frost"
+            ? P.water
+            : p.kind === "seedPod"
+              ? P.grass
+              : P.stoneLight;
+      ctx.fillRect(-3, -1, 7, 2);
+    });
+  for (const f of S.fields)
+    at(f, () => {
+      ctx.fillStyle =
+        f.kind === "bramble"
+          ? P.grassShade
+          : f.kind === "heal"
+            ? P.mint
+            : P.gold;
+      if (f.kind === "spark") {
+        const t = w2s(f.tx, f.ty),
+          p = w2s(f.x, f.y),
+          dx = (t.x - p.x) / cam.z,
+          dy = (t.y - p.y) / cam.z;
+        for (let i = 0; i < 20; i++)
+          ctx.fillRect(
+            Math.round((dx * i) / 20),
+            Math.round((dy * i) / 20) + (i % 2 ? 2 : -2),
+            3,
+            2,
+          );
+      } else if (f.kind === "bramble") {
+        for (let i = -f.radius; i < f.radius; i += 8)
+          ctx.fillRect(i, -3 - Math.abs(i % 13), 3, 10);
+      } else ctx.fillRect(-8, -8, 16, 2);
+    });
+  for (const f of defenseFiresV93)
+    at(f, () => {
+      ctx.fillStyle = P.lavaShade;
+      ctx.fillRect(-8, -5, 16, 5);
+      ctx.fillStyle = P.lava;
+      ctx.fillRect(-4, -11, 5, 10);
+      ctx.fillStyle = P.lavaLight;
+      ctx.fillRect(1, -7, 3, 6);
+    });
+  for (const b of structuresV46)
+    if (TowerDefense.structures[b.type]?.ward && defenseV93.station(b).ward > 0)
+      at({ x: b.x + 32, y: b.y + 26 }, () => {
+        ctx.fillStyle = P.gold;
+        for(let angle=0;angle<Math.PI*2;angle+=.055)ctx.fillRect(Math.round(Math.cos(angle)*180),Math.round(Math.sin(angle)*180),2,2);
+      });
+};
+const defenseOpenV93 = document.createElement("button");
+defenseOpenV93.id = "defenseOpenV93";
+defenseOpenV93.title = "Tower defense";
+defenseOpenV93.setAttribute("aria-label", "Tower defense");
+defenseOpenV93.setAttribute("aria-haspopup", "dialog");
+defenseOpenV93.setAttribute("aria-expanded", "false");
+const defenseBadgeV93 = document.createElement("img");
+defenseBadgeV93.alt = "";
+defenseBadgeV93.src = ButtonwoodArt.defenseIcon("shield").toDataURL();
+defenseOpenV93.append(defenseBadgeV93);
+$("hudGoalsV77").append(defenseOpenV93);
+const defensePanelV93 = document.createElement("dialog");
+defensePanelV93.id = "defensePanelV93";
+defensePanelV93.setAttribute("aria-labelledby", "defenseHeadingV93");
+defensePanelV93.innerHTML = `<header><h2 id="defenseHeadingV93">Defense</h2><button id="defenseCloseV93" type="button">Close</button></header><p id="defenseBattleV93" role="status"></p><button id="defenseBeginV93" type="button">Sound the alarm</button><p id="defenseHelpV93">Craft an Armory in Structures. Craft equipment at a Blacksmith, then STORE it in the Armory. Assign Fey below; Workers can carry supplies or repair.</p><label>Helper<select id="defenseActorV93"></select></label><label>Job<select id="defenseJobV93"><option>Defend</option><option>Supply</option><option>Repair</option></select></label><label>Equipment<select id="defenseRoleV93"><option value="sword">Sword + shield</option><option value="bow">Bow</option><option value="fire">Fire staff</option><option value="frost">Frost staff</option><option value="lightning">Lightning staff</option><option value="healing">Healing staff</option></select></label><label>Post<select id="defenseStationV93"><option value="">Guard position</option></select></label><label><input id="defenseHelperV93" type="checkbox">Reload helper</label><label><input id="defenseAlarmV93" type="checkbox" checked>Respond to alarm</label><div class="defenseButtonsV93"><button id="defenseAssignV93" type="button">Assign</button><button id="defenseAutoV93" type="button">Available gear</button><button id="defensePostV93" type="button">Set guard position</button><button id="defenseReleaseV93" type="button">Release</button></div><p id="defenseActorStateV93" role="status"></p><details><summary>Weapons and supplies</summary><p>Each turret needs one equipped Fey operator. Assign a second Fey as a reload helper. Put ammunition in its building inventory, or assign Supply helpers to carry it from stocked buildings.</p><p>Oil and water loads come from filled buckets at a cauldron. Craft sticky sap and seed pods at a Blacksmith. Magic recharges between attacks. Repair helpers use real building materials.</p><p>Raids begin only when you sound the alarm. Later waves add climbers, flyers, armored attackers, giants and siege engines. A defeated Fey rests for 12 seconds and returns its borrowed gear; combat does not produce fairy blood.</p></details>`;
+document.body.append(defensePanelV93);
+const defenseCssV93 = document.createElement("style");
+defenseCssV93.textContent = `
+#defenseOpenV93{width:44px;height:44px;padding:4px;background:${bwP.cream};border:2px solid ${bwP.outline};border-radius:5px}#defenseOpenV93 img{width:32px;height:32px;image-rendering:pixelated}
+#defensePanelV93{position:fixed;inset:auto;margin:0;width:min(360px,calc(100vw - 16px));box-sizing:border-box;padding:12px;overflow:auto;color:${bwP.ink};background:${bwP.cream};border:2px solid ${bwP.outline};border-radius:8px;font:14px/1.5 ui-monospace,monospace;z-index:80;box-shadow:4px 4px ${bwP.woodShade}}#defensePanelV93 header{display:flex;align-items:center;justify-content:space-between;gap:8px}#defensePanelV93 h2{font-size:18px;margin:0}#defensePanelV93 label{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:8px 0}#defensePanelV93 select{max-width:65%;min-width:0}#defensePanelV93 button,#defensePanelV93 select,.defenseTurretV93 button,.defenseTurretV93 select{min-height:44px;font:inherit;color:${bwP.ink};border:2px solid ${bwP.outline};background:${bwP.creamLight};border-radius:4px;padding:6px}#defensePanelV93 button:disabled{opacity:.6}#defensePanelV93 p{margin:8px 0}#defensePanelV93 :focus-visible,.defenseTurretV93 :focus-visible{outline:3px solid ${bwP.ink};outline-offset:2px}.defenseButtonsV93{display:flex;flex-wrap:wrap;gap:8px}.defenseTurretV93{display:grid;gap:8px;font:14px/1.5 monospace;color:${bwP.ink}}.defenseTurretV93 label{display:flex;justify-content:space-between;gap:8px}.defenseTurretV93 select{max-width:65%}#defensePanelV93[hidden]{display:none}
+`;
+document.head.append(defenseCssV93);
+function positionDefenseV93() {
+  const a = defenseOpenV93.getBoundingClientRect(),
+    bar = $("bar").getBoundingClientRect(),
+    width = Math.min(360, innerWidth - 16);
+  defensePanelV93.style.left =
+    Math.round(clamp(a.left, 8, innerWidth - width - 8)) + "px";
+  defensePanelV93.style.top = Math.round(a.bottom + 8) + "px";
+  defensePanelV93.style.maxHeight =
+    Math.max(100, bar.top - a.bottom - 24) + "px";
+}
+function defenseOptionsV93(select, entries) {
+  const key = JSON.stringify(entries);
+  if (select.dataset.options === key) return;
+  const old = select.value;
+  select.replaceChildren();
+  for (const [value, label] of entries) {
+    const o = document.createElement("option");
+    o.value = value;
+    o.textContent = label;
+    select.append(o);
+  }
+  if (entries.some((e) => e[0] === old)) select.value = old;
+  select.dataset.options = key;
+}
+function refreshDefenseV93() {
+  const S = defenseV93.state;
+  const active = ["battle", "warning", "recovery"].includes(S.phase);
+  $("defenseBattleV93").textContent =
+    "Wave " +
+    S.wave +
+    " · " +
+    (S.phase === "warning"
+      ? Math.ceil(S.phaseTime / 1000) + "s warning"
+      : S.phase === "peace"
+        ? S.outcome
+        : S.phase) +
+    (S.phase === "battle"
+      ? " · " + (S.enemies.length + S.queue.length) + " enemies"
+      : "");
+  $("defenseBeginV93").disabled =
+    active || !structuresV46.some((b) => b.type === "armory");
+  $("defenseBeginV93").title = active
+    ? "Finish the current battle"
+    : "12 seconds to take positions";
+  const entries = defenseActorsV93().map((a) => [
+    a.id,
+    (a.fey ? WILDLIFE_SPECIES_V71[a.animal.species].name : "Worker") +
+      " " +
+      a.id,
+  ]);
+  defenseOptionsV93($("defenseActorV93"), entries);
+  defenseOptionsV93($("defenseStationV93"), [
+    ["", "Guard position"],
+    ...structuresV46
+      .filter(
+        (b) =>
+          TowerDefense.structures[b.type] &&
+          !TowerDefense.structures[b.type].capacity,
+      )
+      .map((b) => [String(b.id), STRUCTURES_V46[b.type].name + " " + b.id]),
+  ]);
+  const a = defenseActorsV93().find((a) => a.id === $("defenseActorV93").value),
+    o = S.orders[a?.id];
+  $("defenseAssignV93").disabled = !a;
+  $("defenseAutoV93").disabled = !a?.fey;
+  $("defenseReleaseV93").disabled = !o;
+  $("defenseActorStateV93").textContent = o
+    ? (o.routeBlocked ? "Needs a route or ladder" : o.status || "Assigned") +
+      " · " +
+      Math.ceil(o.hp) +
+      "/35 · charge " +
+      Math.floor(o.charge) +
+      (o.cargo ? " · " + o.cargo.n + " " + labelV46(o.cargo.item) : "")
+    : "No assignment";
+  $("defenseJobV93").options[0].disabled = !a?.fey;
+}
+function defenseSelectedV93() {
+  const o = defenseV93.state.orders[$("defenseActorV93").value];
+  if (!o) return;
+  $("defenseRoleV93").value = o.role;
+  $("defenseJobV93").value = o.job;
+  $("defenseStationV93").value = o.station || "";
+  $("defenseHelperV93").checked = !!o.helper;
+  $("defenseAlarmV93").checked = o.alarm;
+  refreshDefenseV93();
+}
+function openDefenseV93() {
+  refreshDefenseV93();
+  positionDefenseV93();
+  defensePanelV93.show();
+  defenseOpenV93.setAttribute("aria-expanded", "true");
+}
+defenseOpenV93.onclick = () => {
+  if (defensePanelV93.open) defensePanelV93.close();
+  else openDefenseV93();
+};
+$("defenseCloseV93").onclick = () => {
+  defensePanelV93.close();
+  defenseOpenV93.focus();
+};
+defensePanelV93.addEventListener("close", () =>
+  defenseOpenV93.setAttribute("aria-expanded", "false"),
+);
+addEventListener("resize", () => {
+  if (defensePanelV93.open) positionDefenseV93();
+});
+document.addEventListener(
+  "pointerdown",
+  (e) => {
+    if (
+      defensePanelV93.open &&
+      !defensePanelV93.contains(e.target) &&
+      !defenseOpenV93.contains(e.target)
+    )
+      defensePanelV93.close();
+  },
+  { capture: true },
+);
+$("defenseActorV93").onchange = defenseSelectedV93;
+$("defenseBeginV93").onclick = () => {
+  if (defenseV93.begin()) {
+    saveGame();
+    refreshDefenseV93();
+    toast("Incoming · 12 seconds");
+  }
+};
+function assignDefenseV93() {
+  const id = $("defenseActorV93").value,
+    alarm = $("defenseAlarmV93").checked,
+    job = $("defenseJobV93").value;
+  if (
+    defenseV93.order(id, {
+      role: $("defenseRoleV93").value,
+      job,
+      alarm,
+      active: !alarm || ["warning", "battle"].includes(defenseV93.state.phase),
+      station: Number($("defenseStationV93").value) || null,
+      helper: $("defenseHelperV93").checked,
+    })
+  ) {
+    const o = defenseV93.state.orders[id];
+    if (o.active && !o.previous) o.previous = defenseV93AdapterSuspendV93(id);
+    saveGame();
+    refreshDefenseV93();
+  } else toast("Choose a Fey for combat");
+}
+function defenseV93AdapterSuspendV93(id) {
+  const a = defenseActorsV93().find((a) => a.id === id);
+  if (a?.animal) {
+    const r = a.animal.feyV75,
+      previous = { task: r.task, building: r.building };
+    r.task = "Defend";
+    return previous;
+  }
+  return null;
+}
+$("defenseAssignV93").onclick = assignDefenseV93;
+$("defenseAutoV93").onclick = () => {
+  const stock = structuresV46.filter((b) => b.type === "armory").map(stockV56);
+  const role = Object.entries(TowerDefense.roles).find(([k, d]) =>
+    stock.some((s) => d.gear.every((g) => s[g] > 0)),
+  );
+  if (!role) {
+    toast("Stock weapons in the Armory");
+    return;
+  }
+  $("defenseRoleV93").value = role[0];
+  assignDefenseV93();
+};
+$("defenseReleaseV93").onclick = () => {
+  defenseV93.remove($("defenseActorV93").value);
+  saveGame();
+  refreshDefenseV93();
+};
+$("defensePostV93").onclick = () => {
+  defensePostPickV93 = $("defenseActorV93").value;
+  defensePanelV93.close();
+  toast("Tap a reachable guard position");
+};
+let defensePickStartV93 = null;
+c.addEventListener(
+  "pointerdown",
+  (e) => {
+    if (!defensePostPickV93 || gameClockV76.paused) return;
+    defensePickStartV93 = { x: e.clientX, y: e.clientY, id: e.pointerId };
+    e.preventDefault();
+    e.stopImmediatePropagation();
+  },
+  { capture: true },
+);
+c.addEventListener(
+  "pointerup",
+  (e) => {
+    if (!defensePostPickV93) return;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    const s = defensePickStartV93;
+    defensePickStartV93 = null;
+    if (
+      !s ||
+      s.id !== e.pointerId ||
+      Math.hypot(e.clientX - s.x, e.clientY - s.y) > 8
+    )
+      return;
+    const p = s2w(e.clientX, e.clientY);
+    if (Query.point(worldSolidsV56(), p).length) {
+      toast("Choose clear space above a floor");
+      return;
+    }
+    defenseV93.order(defensePostPickV93, { post: p, station: null });
+    defensePostPickV93 = null;
+    saveGame();
+    openDefenseV93();
+  },
+  { capture: true },
+);
+c.addEventListener("pointercancel", () => {
+  defensePickStartV93 = null;
+});
+document.addEventListener(
+  "keydown",
+  (e) => {
+    if (e.key === "Escape") {
+      defensePostPickV93 = null;
+      defensePickStartV93 = null;
+      defensePanelV93.close();
+    }
+  },
+  { capture: true },
+);
+const defenseTurretControlsV93 = document.createElement("section");
+defenseTurretControlsV93.className = "defenseTurretV93";
+defenseTurretControlsV93.id = "defenseTurretControlsV93";
+defenseTurretControlsV93.innerHTML =
+  '<p id="defenseTurretStateV93" role="status"></p><label>Facing<select id="defenseFacingV93"><option value="1">Right</option><option value="-1">Left</option></select></label><label>Targets<select id="defensePriorityV93"><option value="auto">Auto</option><option value="nearest">Nearest</option><option value="large">Large / armored</option><option value="groups">Groups</option><option value="flyers">Flyers</option></select></label><label id="defenseLoadLabelV93">Load<select id="defenseLoadV93"><option value="oilCharge">Hot oil</option><option value="sapCharge">Sticky sap</option><option value="waterCharge">Water</option></select></label><button id="defenseBucketV93" type="button">Load filled bucket</button><button id="defenseCrewV93" type="button">Assign crew</button>';
+$("buildingInventoryV60").before(defenseTurretControlsV93);
+function refreshTurretV93() {
+  const b = structuresV46.find((b) => b.id === selectedBuildingV46),
+    d = TowerDefense.structures[b?.type];
+  defenseTurretControlsV93.hidden = !d || b.type === "armory";
+  if (!d) return;
+  const s = defenseV93.station(b);
+  $("defenseTurretStateV93").textContent =
+    (s.status || "Needs crew") +
+    " · " +
+    Math.floor(s.charge) +
+    " charge" +
+    (b.defenseDamageV93 ? " · damaged" : "");
+  if (document.activeElement !== $("defenseFacingV93"))
+    $("defenseFacingV93").value = s.facing;
+  if (document.activeElement !== $("defensePriorityV93"))
+    $("defensePriorityV93").value = s.priority;
+  if (document.activeElement !== $("defenseLoadV93"))
+    $("defenseLoadV93").value = s.load;
+  $("defenseLoadLabelV93").hidden = b.type !== "oilDropper";
+  $("defenseBucketV93").hidden = b.type !== "oilDropper";
+  const liquid =
+    s.load === "waterCharge" ? "water" : s.load === "oilCharge" ? "oil" : null;
+  $("defenseBucketV93").disabled =
+    !liquid || !(bucketBagV68["bucket:" + liquid] > 0);
+  $("defenseBucketV93").title =
+    "Transfers one filled bucket into four weapon loads and returns the empty bucket";
+}
+for (const [id, key] of [
+  ["defenseFacingV93", "facing"],
+  ["defensePriorityV93", "priority"],
+  ["defenseLoadV93", "load"],
+])
+  $(id).onchange = () => {
+    defenseV93.configure(selectedBuildingV46, {
+      [key]: key === "facing" ? Number($(id).value) : $(id).value,
+    });
+    saveGame();
+  };
+$("defenseBucketV93").onclick = () => {
+  const b = structuresV46.find((b) => b.id === selectedBuildingV46);
+  if (b?.type !== "oilDropper") return;
+  const load = defenseV93.station(b).load,
+    liquid =
+      load === "oilCharge" ? "oil" : load === "waterCharge" ? "water" : null;
+  if (!liquid || !(bucketBagV68["bucket:" + liquid] > 0)) return;
+  bucketBagV68["bucket:" + liquid]--;
+  bucketBagV68.bucket = (bucketBagV68.bucket || 0) + 1;
+  stockV56(b)[load] = (stockV56(b)[load] || 0) + 4;
+  saveGame();
+  ui();
+  refreshTurretV93();
+};
+$("defenseCrewV93").onclick = () => {
+  const id = selectedBuildingV46;
+  $("buildingPanel").close();
+  openDefenseV93();
+  $("defenseStationV93").value = String(id);
+};
+const defenseOpenBuildingBeforeV93 = openBuildingV46;
+openBuildingV46 = function (b) {
+  defenseOpenBuildingBeforeV93(b);
+  const d = TowerDefense.structures[b.type];
+  refreshTurretV93();
+  if (!d) return;
+  const panel = $("buildingPanel");
+  panel.close();
+  const bar = $("bar").getBoundingClientRect(),
+    anchor = $("structuresOpen").getBoundingClientRect();
+  panel.style.left =
+    Math.round(
+      clamp(anchor.left, 8, innerWidth - Math.min(368, innerWidth - 16) - 8),
+    ) + "px";
+  panel.style.bottom = Math.round(innerHeight - bar.top + 8) + "px";
+  panel.style.maxHeight = Math.max(100, bar.top - 24) + "px";
+  for (const node of [
+    $("buildingRecipe"),
+    document.querySelector('label[for="buildingRecipe"]'),
+    $("buildingIngredients"),
+    $("buildingProgress"),
+    $("buildingStatus"),
+    panel.querySelector(".buildingActions"),
+    buildingControlsV56,
+  ])
+    node.hidden = true;
+  panel.show();
+  refreshInventoryV60();
+  refreshTurretV93();
+};
+// Expose read-only snapshots and player-equivalent commands for diagnostics.
+window.skyStackDefense = {
+  get state() {
+    return defenseV93.save();
+  },
+  defs: TowerDefense.structures,
+  begin: () => defenseV93.begin(),
+  assign: (id, o) => defenseV93.order(id, o),
+  release: (id) => defenseV93.remove(id),
+  configure: (id, o) => defenseV93.configure(id, o),
+  open: openDefenseV93,
+};
+
+const defenseWorkerControlledBeforeV93 = workerControlledV56;
+workerControlledV56 = function (q) {
+  return (
+    !!defenseV93.state.orders["w" + q.game.id]?.active ||
+    defenseWorkerControlledBeforeV93(q)
+  );
+};
+const defenseWorkerTravelBeforeV93 = moveWorkerV56;
+moveWorkerV56 = function (q, p, now) {
+  if (defenseV93.state.orders["w" + q.game.id]?.active && !defenseMovingV93)
+    return;
+  return defenseWorkerTravelBeforeV93(q, p, now);
+};
+const defenseStormImpactBeforeV93 = moonfireImpactV81;
+moonfireImpactV81 = function (r, z) {
+  if (defenseV93.wardAt(r)) {
+    moonfireV81.bursts.push({ x: r.x, y: r.y, age: 0, seed: r.seed });
+    defenseSoundV93("magic", r);
+    return;
+  }
+  return defenseStormImpactBeforeV93(r, z);
+};
+for (const id of Object.keys(TowerDefense.items))
+  if (!inventoryCatalogV78.some((e) => e.id === id))
+    inventoryCatalogV78.push({ id, category: "tools" });
+const defenseItemImageBeforeV93 = itemImageV68;
+itemImageV68 = function (id) {
+  return TowerDefense.items[id]
+    ? ButtonwoodArt.defenseIcon(id).toDataURL()
+    : defenseItemImageBeforeV93(id);
+};
+
+Matter.Events.on(eng, "beforeUpdate", () => {
+  for (const e of defenseV93.state.enemies)
+    if (TowerDefense.enemyTypes[e.kind].fly) {
+      const q = defenseEnemyBodiesV93.get(e.id);
+      if (q)
+        Body.applyForce(q, q.position, {
+          x: 0,
+          y: -q.mass * eng.gravity.y * eng.gravity.scale,
+        });
+    }
+});
+
+const defensePreviewBeforeV93 = preview;
+preview = function () {
+  defensePreviewBeforeV93();
+  const candidate = structureDragV46?.candidate,
+    selected = structuresV46.find((b) => b.id === selectedBuildingV46),
+    b = candidate || ($("buildingPanel").open ? selected : null),
+    d = TowerDefense.structures[b?.type];
+  if (!d || d.capacity) return;
+  const facing = candidate ? 1 : defenseV93.station(b).facing,
+    p = { x: b.x + (d.w * B) / 2, y: b.y + Math.max(4, d.h * B - 38) },
+    s = w2s(p.x, p.y);
+  ctx.save();
+  ctx.translate(Math.round(s.x), Math.round(s.y));
+  ctx.scale(cam.z, cam.z);
+  const color = bwP.woodShade;
+  ctx.fillStyle = color;
+  const distance = d.range;
+  for (let x = d.min; x <= distance; x += 12) {
+    ctx.fillRect(facing * x, -1, 5, 2);
+    if (d.drop) {
+      ctx.fillRect(facing * d.w * 16, x, 2, 5);
+    }
+  }
+  for (const x of [d.min, d.range])
+    for (let y = -20; y < 20; y += 8) ctx.fillRect(facing * x, y, 2, 4);
+  ctx.fillStyle = bwP.mintShade;
+  ctx.fillRect(-d.w * 16 - 16, d.h * B - 38, 6, 6);
+  ctx.fillRect(d.w * 16 + 10, d.h * B - 38, 6, 6);
+  ctx.restore();
+};
+// Guard-position picking owns its gesture before ordinary canvas tools see it.
+document.addEventListener(
+  "pointerdown",
+  (e) => {
+    if (!defensePostPickV93 || e.target !== c || gameClockV76.paused) return;
+    if (defensePickStartV93 && defensePickStartV93.id !== e.pointerId) {
+      defensePickStartV93.cancelled = true;
+    } else
+      defensePickStartV93 = { x: e.clientX, y: e.clientY, id: e.pointerId };
+    gesture = null;
+    pickPendingV49 = null;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+  },
+  { capture: true, passive: false },
+);
+document.addEventListener(
+  "pointerup",
+  (e) => {
+    if (!defensePostPickV93 || e.target !== c) return;
+    const start = defensePickStartV93;
+    defensePickStartV93 = null;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+    if (
+      !start ||
+      start.cancelled ||
+      start.id !== e.pointerId ||
+      Math.hypot(e.clientX - start.x, e.clientY - start.y) > 8
+    )
+      return;
+    const p = s2w(e.clientX, e.clientY);
+    if (Query.point(worldSolidsV56(), p).length) {
+      toast("Choose clear space above a floor");
+      return;
+    }
+    defenseV93.order(defensePostPickV93, { post: p, station: null });
+    defensePostPickV93 = null;
+    saveGame();
+    openDefenseV93();
+  },
+  { capture: true, passive: false },
+);
+// Pause's earlier capture listener owns Escape; cancel a pending post pick there.
+const defensePauseBeforeV93=pauseGameV76;
+pauseGameV76=function(...args){defensePostPickV93=null;defensePickStartV93=null;defensePanelV93.close();return defensePauseBeforeV93(...args)};
+skyStackPause.pause=pauseGameV76;

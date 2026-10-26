@@ -1,0 +1,12 @@
+{
+  "hiddenIds": [
+    "runner",
+    "card-game",
+    "critter-quest",
+    "katana-mouse",
+    "serpent-siege",
+    "battlefront"
+  ],
+  "scope": "public hub/catalog-generated discovery only; direct links remain accessible",
+  "userRequested": true
+}

@@ -1,0 +1,144 @@
+{
+  "assetId": "cad.mini.episode1.checkpoint",
+  "revision": 1,
+  "name": "Repair beacon",
+  "kind": "interactive",
+  "biome": "shared",
+  "family": "mini",
+  "approval": "prototype-review",
+  "source": {
+    "type": "new-native",
+    "file": "src/build-assets.cjs",
+    "recipe": "checkpoint"
+  },
+  "native": {
+    "width": 16,
+    "height": 34,
+    "origin": [
+      8,
+      34
+    ],
+    "originName": "authored-anchor",
+    "selectionBounds": {
+      "x": 0,
+      "y": 0,
+      "width": 16,
+      "height": 34
+    },
+    "visibleBounds": [
+      {
+        "variant": 0,
+        "frame": 0,
+        "x": 1,
+        "y": 1,
+        "width": 14,
+        "height": 33
+      },
+      {
+        "variant": 0,
+        "frame": 1,
+        "x": 1,
+        "y": 1,
+        "width": 14,
+        "height": 33
+      }
+    ],
+    "animationEnvelope": {
+      "x": 0,
+      "y": 0,
+      "width": 16,
+      "height": 34
+    }
+  },
+  "sockets": [
+    {
+      "id": "left",
+      "type": "edge",
+      "x": -8,
+      "y": 0,
+      "facing": -1
+    },
+    {
+      "id": "right",
+      "type": "edge",
+      "x": 8,
+      "y": 0,
+      "facing": 1
+    }
+  ],
+  "render": {
+    "kind": "sprite-sheet",
+    "layer": "scenery",
+    "parallax": {
+      "x": 1,
+      "y": 1
+    },
+    "variants": [
+      {
+        "id": "v0",
+        "uri": "assets/checkpoint.png",
+        "width": 32,
+        "height": 34,
+        "sha256": "0f5e37512d14931238754d05b60108d741d32ee7a15b708799d0f0db97fad8eb"
+      }
+    ],
+    "frameSize": [
+      16,
+      34
+    ],
+    "frameCount": 2,
+    "allowedFacing": [
+      1,
+      -1
+    ],
+    "scale": 1
+  },
+  "collision": {
+    "defaults": [],
+    "decorative": true,
+    "behavior": "Artwork does not activate gameplay; scene entity kind and properties do."
+  },
+  "properties": {
+    "variant": {
+      "type": "integer",
+      "default": 0
+    }
+  },
+  "animation": {
+    "states": {
+      "idle": {
+        "frames": [
+          0,
+          1
+        ],
+        "timingMs": [
+          600,
+          600
+        ],
+        "loop": true
+      }
+    },
+    "frameEvents": []
+  },
+  "tags": [
+    "checkpoint",
+    "repair"
+  ],
+  "thumbnail": {
+    "uri": "assets/checkpoint.png",
+    "frame": 0,
+    "variant": 0,
+    "nativeSize": [
+      16,
+      34
+    ],
+    "noResample": true
+  },
+  "placement": {
+    "snap": 1,
+    "suggestedGrid": 8,
+    "preview": "native-with-geometry",
+    "allowScale": false,
+    "allowRotation": false
+  }
+}

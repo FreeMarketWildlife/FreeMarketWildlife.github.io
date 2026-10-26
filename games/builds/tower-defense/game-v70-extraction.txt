@@ -1,0 +1,177 @@
+// Renewable pumping from real liquid: direct facing ports, separate circuits, finite storage.
+// Art review: Buttonwood bible §§3–5, 7–10; native extraction sprite/port contracts.
+const PIPE_LIMIT_V70=12000,TANK_CAPACITY_V70=32;
+var pipesV70=new Map(),pipeBagV70=0,extractionSelectedV70=null,extractionResultV70=null;
+const extractionNetworkV70=ExtractionNetwork.createNetwork();
+let extractionSaveClockV70=0,extractionDirtyV70=false,pipeHoverV70=null;
+const extractionKindsV70=['oil','water','lava'];
+function extractionPortsV70(b){
+ const x=Math.round(b.x/B),y=Math.round(b.y/B);
+ return b.type==='pumpjack'?{intake:{x:x+1,y:y+3},outlet:{x:x+4,y:y+2},outletFace:{x:b.x+4*B,y:b.y+2.5*B,dx:1,dy:0}}:{ports:[{x:x-1,y:y+2},{x:x+3,y:y+2}],faces:[{x:b.x,y:b.y+2.5*B,dx:-1,dy:0},{x:b.x+3*B,y:b.y+2.5*B,dx:1,dy:0}]};
+}
+function liquidCellsV70(x,y){const cells=[];for(let dy=0;dy<2;dy++)for(let dx=0;dx<2;dx++){const r=liquidSubRecV22(x*2+dx,y*2+dy);if(r?.a>0)cells.push(r)}return cells}
+function queryLiquidV70(x,y){
+ const cells=liquidCellsV70(x,y);if(!cells.length)return null;
+ const kinds=new Set(cells.map(r=>r.kind));return {kind:kinds.size===1?cells[0].kind:'mixed',amount:cells.reduce((sum,r)=>sum+r.a,0)/4};
+}
+function invalidateLiquidV70(){liquidSubVisualV22.clear();liquidSubFlowV22.clear();liquidSubImpactV22.clear()}
+function stepExtractionV70(elapsed){
+ if(!(elapsed>0)||!Number.isFinite(elapsed))return false;
+ const machines=structuresV46.filter(b=>b.type==='pumpjack'||b.type==='tank');
+ // Unpowered pipe runs have no held volume or flow state to simulate.
+ if(!machines.some(b=>b.type==='pumpjack')){extractionResultV70=null;return false}
+ const dt=Math.min(elapsed,1500)/1000;
+ extractionResultV70=extractionNetworkV70.update({renewableSources:true,pipes:[...pipesV70.values()],
+  pumps:machines.filter(b=>b.type==='pumpjack').map(b=>({id:b.id,...extractionPortsV70(b),rate:1,enabled:!b.paused})),
+  tanks:machines.filter(b=>b.type==='tank').map(b=>({id:b.id,...extractionPortsV70(b),capacity:TANK_CAPACITY_V70,amount:b.liquidAmount||0,kind:b.liquidKind||null}))
+ },dt,{query:queryLiquidV70});
+ const byId=new Map(machines.map(b=>[b.id,b]));
+ for(const tank of extractionResultV70.tanks){const b=byId.get(tank.id);b.liquidAmount=tank.amount;b.liquidKind=tank.kind}
+ for(const pump of extractionResultV70.pumps){const b=byId.get(pump.id);b.extractionActive=pump.amount>0;b.extractionStatus=pump.status;b.liquidKind=pump.kind;if(b.extractionActive)b.extractionMotion=((b.extractionMotion||0)+elapsed)%900}
+ if(extractionResultV70.totalTransferred>0)extractionDirtyV70=true;
+ extractionSaveClockV70+=elapsed;
+ if(extractionDirtyV70&&extractionSaveClockV70>=500){extractionDirtyV70=false;extractionSaveClockV70=0;return true}return false;
+}
+const extractionStepBeforeV70=stepStructuresV46;
+stepStructuresV46=function(elapsed){const changed=extractionStepBeforeV70(elapsed);return stepExtractionV70(elapsed)||changed};
+const extractionSaveBeforeV70=saveStructuresV46;
+saveStructuresV46=function(){return {...extractionSaveBeforeV70(),extraction:{version:1,pipeBag:pipeBagV70,pipes:[...pipesV70.values()],tanks:structuresV46.filter(b=>b.type==='tank').map(b=>({id:b.id,kind:b.liquidKind||null,amount:b.liquidAmount||0}))}}};
+const extractionRestoreBeforeV70=restoreDynamicState;
+restoreDynamicState=function(s){
+ extractionRestoreBeforeV70(s);const data=s?.structuresV46?.extraction;
+ pipesV70.clear();pipeBagV70=Number.isSafeInteger(data?.pipeBag)&&data.pipeBag>=0?Math.min(data.pipeBag,PIPE_LIMIT_V70):0;
+ for(const p of (Array.isArray(data?.pipes)?data.pipes:[]).slice(0,PIPE_LIMIT_V70))if(Number.isSafeInteger(p?.x)&&Math.abs(p.x)<1000000&&Number.isSafeInteger(p.y)&&p.y>=-64&&p.y<DEPTH)pipesV70.set(key(p.x,p.y),{x:p.x,y:p.y});
+ const tanks=new Map((Array.isArray(data?.tanks)?data.tanks:[]).filter(t=>t&&Number.isSafeInteger(t.id)).map(t=>[t.id,t]));
+ for(const b of structuresV46){if(b.type!=='pumpjack'&&b.type!=='tank')continue;b.extractionActive=false;b.extractionMotion=0;if(b.type==='tank'){const t=tanks.get(b.id);b.liquidAmount=t&&extractionKindsV70.includes(t.kind)&&Number.isFinite(t.amount)?clamp(t.amount,0,TANK_CAPACITY_V70):0;b.liquidKind=b.liquidAmount>0?t.kind:null}}
+ extractionResultV70=null;extractionDirtyV70=false;extractionSaveClockV70=0;
+};
+function pipeRouteV70(a,b){
+ const start={x:Math.floor(a.x/B),y:Math.floor(a.y/B)},end={x:Math.floor(b.x/B),y:Math.floor(b.y/B)},route=[];
+ if(![start.x,start.y,end.x,end.y].every(Number.isSafeInteger)||Math.abs(start.x-end.x)+Math.abs(start.y-end.y)>255)return null;
+ // Vertical first: drag from a surface intake down to a pocket, then branch sideways.
+ for(let y=start.y;;y+=Math.sign(end.y-start.y)){route.push({x:start.x,y});if(y===end.y)break}
+ for(let x=start.x;x!==end.x;){x+=Math.sign(end.x-start.x);route.push({x,y:end.y})}return route;
+}
+function pipeCellErrorV70(p){
+ if(p.y<-64||p.y>=DEPTH||Math.abs(p.x)>=1000000)return 'Outside the buildable world';
+ if(!generated.has(Math.floor(p.x/24)))return 'Explore this ground first';
+ const solid=grid.get(key(p.x,p.y));if(solid?.game?.material==='bedrock')return 'Bedrock cannot be drilled';
+ for(const b of structuresV46){const d=STRUCTURES_V46[b.type];if(p.x*B>=b.x&&p.x*B<b.x+d.w*B&&p.y*B>=b.y&&p.y*B<b.y+d.h*B)return 'Route around the building'}return null;
+}
+function pipeActionV70(a,b,remove=false){
+ const route=pipeRouteV70(a,b);if(!route){toast('Use a shorter pipe run');return false}
+ const affected=route.filter(p=>remove?pipesV70.has(key(p.x,p.y)):!pipesV70.has(key(p.x,p.y)));
+ if(!affected.length)return false;
+ if(!remove){const error=affected.map(pipeCellErrorV70).find(Boolean);if(error){toast(error);return false}if(affected.length>pipeBagV70){toast('Need '+affected.length+' pipes · '+pipeBagV70+' ready');return false}if(pipesV70.size+affected.length>PIPE_LIMIT_V70){toast('Pipe limit reached');return false}}
+ for(const p of affected){if(remove)pipesV70.delete(key(p.x,p.y));else pipesV70.set(key(p.x,p.y),p)}
+ pipeBagV70+=affected.length*(remove?1:-1);extractionResultV70=null;
+ for(const pump of structuresV46.filter(b=>b.type==='pumpjack'))pump.extractionActive=false;
+ wake();ui();saveGame();return true;
+}
+function craftPipesV70(){if(pipeBagV70+pipesV70.size>PIPE_LIMIT_V70-4||!payIndustryV44({ironIngot:1}))return false;pipeBagV70+=4;ui();saveGame();return true}
+function selectPipeToolV70(remove=false){stopPointerV52();closePhonePanelsV66();tool=remove?'pipeRemoveV70':'pipeV70';pipeHoverV70=null;ui()}
+function bucketTankV70(b,deposit=false,kind=b.liquidKind){
+ if(b.type!=='tank')return false;const amount=b.liquidAmount||0;
+ if(deposit){
+  if(!extractionKindsV70.includes(kind)||(amount>0&&b.liquidKind!==kind)||amount+1>TANK_CAPACITY_V70||!(bucketBagV68['bucket:'+kind]>0)||(bucketBagV68.bucket||0)>=Number.MAX_SAFE_INTEGER)return false;
+  bucketBagV68['bucket:'+kind]--;bucketBagV68.bucket=(bucketBagV68.bucket||0)+1;b.liquidAmount=amount+1;b.liquidKind=kind;
+ }else{
+  if(!(amount>=1)||!extractionKindsV70.includes(b.liquidKind)||!(bucketBagV68.bucket>0)||(bucketBagV68['bucket:'+b.liquidKind]||0)>=Number.MAX_SAFE_INTEGER)return false;
+  bucketBagV68.bucket--;bucketBagV68['bucket:'+b.liquidKind]=(bucketBagV68['bucket:'+b.liquidKind]||0)+1;b.liquidAmount=amount-1;if(b.liquidAmount===0)b.liquidKind=null;
+ }
+ extractionResultV70=null;ui();saveGame();return true;
+}
+function drainTankV70(b){
+ if(b.type!=='tank'||!(b.liquidAmount>0))return false;
+ // A controlled outlet releases up to one block, including the final fractional remainder.
+ // Plan first; blocked or incompatible outlets retain every drop inside the tank.
+ const port=extractionPortsV70(b).ports[1],kind=b.liquidKind,plan=[];let remaining=Math.min(1,b.liquidAmount)*4;
+ if(liquidCellsV70(port.x,port.y).some(r=>r.kind!==kind)){toast('Outlet contains another liquid');return false}
+ const bounds={min:{x:port.x*B+.01,y:port.y*B+.01},max:{x:(port.x+1)*B-.01,y:(port.y+1)*B-.01}};
+ if(Query.region([...bs].filter(q=>!q.game?.liquid&&!q.game?.reservoir).concat([...structureBodiesV47.values()]),bounds).length){toast('Outlet blocked');return false}
+ for(let dy=1;dy>=0;dy--)for(let dx=0;dx<2;dx++){
+  const x=port.x*2+dx,y=port.y*2+dy,r=liquidSubRecV22(x,y);if(!liquidSubOpenV22(x,y)||(r&&r.kind!==kind))continue;
+  const add=Math.min(remaining,Math.max(0,1-(r?.a||0)));if(add>0){plan.push({x,y,r,add});remaining-=add}
+ }
+ const released=plan.reduce((sum,p)=>sum+p.add,0)/4;if(!(released>0)){toast('Outlet blocked');return false}
+ for(const p of plan){if(p.r)p.r.a+=p.add;else liquidSubV22.set(liquidSubKeyV22(p.x,p.y),{x:p.x,y:p.y,kind,a:p.add})}
+ b.liquidAmount-=released;if(b.liquidAmount<=0){b.liquidAmount=0;b.liquidKind=null}invalidateLiquidV70();extractionResultV70=null;wake();ui();saveGame();return true;
+}
+const extractionPackBeforeV70=packStructureV46;
+packStructureV46=function(b){if(b.type==='tank'&&b.liquidAmount>0){toast('Empty the Tank before packing');return false}if(extractionSelectedV70===b.id){extractionSelectedV70=null;extractionPanelV70.close()}extractionPackBeforeV70(b);extractionResultV70=null;return true};
+const extractionPlacementBeforeV70=validStructureV46;
+validStructureV46=function(b){const result=extractionPlacementBeforeV70(b);if(result)return result;const d=STRUCTURES_V46[b.type];for(const p of pipesV70.values())if(p.x*B>=b.x&&p.x*B<b.x+d.w*B&&p.y*B>=b.y&&p.y*B<b.y+d.h*B)return 'Remove pipes from this space first';return result};
+
+// Compact equipment controls live beside the Structures trigger; the world stays usable.
+const equipmentV70=document.createElement('section');equipmentV70.id='equipmentV70';equipmentV70.innerHTML='<h3>LIQUIDS</h3><div class="pipeToolsV70"><img alt=""><b id="pipeCountV70">0</b><button class="btn" id="craftPipeV70" title="One iron ingot makes four pipes">Craft 4<small>1 iron ingot</small></button><button class="btn" id="layPipeV70">Lay</button><button class="btn" id="removePipeV70">Remove</button></div><p>Drag pipes from the intake below a Pumpjack into a liquid pocket. Touch its right outlet to a Tank inlet, or join them with pipes. Keep intake and outlet lines apart.</p><p>Pipes drill through soil and stone. End a pipe in liquid. Pumping leaves the pool unchanged. No fuel or Worker needed.</p>';
+$('structureCards').after(equipmentV70);equipmentV70.querySelector('img').src=ButtonwoodArt.extractionIcon('pipe').toDataURL();
+$('craftPipeV70').onclick=craftPipesV70;$('layPipeV70').onclick=()=>selectPipeToolV70();$('removePipeV70').onclick=()=>selectPipeToolV70(true);
+$('layPipeV70').setAttribute('aria-label','Lay pipes');$('removePipeV70').setAttribute('aria-label','Remove pipes and return them to inventory');
+const pipeModeV70=document.createElement('div');pipeModeV70.id='pipeModeV70';pipeModeV70.hidden=true;pipeModeV70.innerHTML='<img alt=""><span></span><button class="btn">Done</button>';document.body.append(pipeModeV70);pipeModeV70.querySelector('button').onclick=()=>{stopPointerV52();tool='pick';ui()};
+const extractionPanelV70=document.createElement('dialog');extractionPanelV70.id='extractionPanelV70';extractionPanelV70.className='box';extractionPanelV70.setAttribute('aria-labelledby','extractionTitleV70');
+extractionPanelV70.innerHTML='<header><h2 id="extractionTitleV70"></h2><button class="btn" id="extractionCloseV70" aria-label="Close liquid equipment">Close</button></header><div class="extractionSummaryV70"><canvas id="extractionPortraitV70"></canvas><div><strong id="extractionAmountV70"></strong><p id="extractionStatusV70" role="status"></p></div></div><meter id="tankMeterV70" min="0" max="32" value="0" aria-label="Tank contents in blocks"></meter><p id="extractionHintV70"></p><div class="extractionActionsV70"><button class="btn" id="pumpPauseV70">Pause</button><button class="btn" id="tankFillBucketV70">Fill bucket</button><button class="btn" id="tankDrainV70">Drain outlet</button><button class="btn" id="extractionPipesV70">Lay pipes</button></div><div id="tankAddV70"></div><button class="btn" id="extractionPackV70">Pack away</button>';
+document.body.append(extractionPanelV70);phoneDialogsV66.push(extractionPanelV70.id);
+for(const kind of extractionKindsV70){const button=document.createElement('button');button.className='btn';button.dataset.kind=kind;button.innerHTML='<img alt=""><span>Add '+bucketLiquidsV68[kind]+'</span>';button.querySelector('img').src=itemImageV68('bucket:'+kind);button.onclick=()=>{const b=structuresV46.find(b=>b.id===extractionSelectedV70);if(b)bucketTankV70(b,true,kind)};$('tankAddV70').append(button)}
+function positionExtractionV70(){
+ const bar=barV68.getBoundingClientRect(),anchor=triggerV48.getBoundingClientRect(),view=visualViewport,width=view?.width||innerWidth,left=view?.offsetLeft||0,top=view?.offsetTop||0;
+ const floor=phoneActiveV66()?phoneRootV66.getBoundingClientRect().bottom+8:top+8;
+ extractionPanelV70.style.width=Math.min(352,width-16)+'px';extractionPanelV70.style.left=Math.max(left+8,Math.min(anchor.left,left+width-Math.min(352,width-16)-8))+'px';extractionPanelV70.style.bottom=(innerHeight-bar.top+8)+'px';extractionPanelV70.style.maxHeight=Math.max(0,bar.top-floor-8)+'px';
+ pipeModeV70.style.bottom=(innerHeight-bar.top+8)+'px';
+}
+const extractionStatusTextV70={pumping:'Pumping',paused:'Paused','no-intake':'Connect the bottom intake','no-outlet':'Connect the right outlet','no-tank':'Connect an empty Tank',full:'Tank full',dry:'Intake is dry',mixed:'Keep liquids separate',loop:'Separate intake and outlet'};
+function refreshExtractionV70(){
+ $('pipeCountV70').textContent=pipeBagV70;$('pipeCountV70').setAttribute('aria-label',pipeBagV70+' pipes ready');$('craftPipeV70').disabled=!canPayIndustryV44({ironIngot:1})||pipeBagV70+pipesV70.size>PIPE_LIMIT_V70-4;
+ const piping=tool==='pipeV70'||tool==='pipeRemoveV70';pipeModeV70.hidden=!piping;
+ if(piping){pipeModeV70.querySelector('img').src=ButtonwoodArt.extractionIcon(tool==='pipeV70'?'pipe':'remove').toDataURL();pipeModeV70.querySelector('span').textContent=tool==='pipeV70'?'Drag to lay · '+pipeBagV70+' pipes':'Drag to remove pipes';positionExtractionV70()}
+ if(!extractionPanelV70.open)return;const b=structuresV46.find(b=>b.id===extractionSelectedV70);if(!b){extractionPanelV70.close();return}
+ const tank=b.type==='tank',kind=b.liquidKind,amount=b.liquidAmount||0;
+ $('extractionTitleV70').textContent=STRUCTURES_V46[b.type].name;
+ $('extractionAmountV70').textContent=tank?(amount>0&&amount<.01?'<0.01':amount.toFixed(2))+' / 32 blocks':'1 block / second';
+ $('extractionAmountV70').title=tank?String(amount)+' blocks stored':'Maximum transfer rate';
+ $('extractionStatusV70').textContent=tank?(kind?bucketLiquidsV68[kind]:'Empty'):(b.paused?'Paused':extractionStatusTextV70[b.extractionStatus]||'Connect pipes to begin');
+ const canvas=$('extractionPortraitV70'),sprite=ButtonwoodArt.extractionSprite(b.type,{frame:Math.floor((b.extractionMotion||0)/150)%6,active:!!b.extractionActive,kind,fill:amount/32});canvas.width=sprite.width;canvas.height=sprite.height;canvas.getContext('2d').drawImage(sprite,0,0);
+ $('tankMeterV70').hidden=!tank;$('tankMeterV70').value=amount;
+ $('extractionHintV70').textContent=tank?'One liquid per Tank. Touching ports connect directly. Drain releases liquid from the right outlet.':'Bottom intake draws oil, water or lava without draining the pool. Touch the right outlet to a Tank, or use pipes.';
+ $('pumpPauseV70').hidden=tank;$('pumpPauseV70').textContent=b.paused?'Resume':'Pause';
+ $('tankFillBucketV70').hidden=$('tankDrainV70').hidden=!tank;$('tankFillBucketV70').disabled=amount<1||!(bucketBagV68.bucket>0);$('tankFillBucketV70').title='Transfer one block into an empty bucket';$('tankDrainV70').disabled=!(amount>0);
+ $('tankAddV70').hidden=!tank;for(const button of $('tankAddV70').children){const k=button.dataset.kind;button.disabled=!tank||!(bucketBagV68['bucket:'+k]>0)||amount+1>32||(amount>0&&kind!==k)}
+ $('extractionPackV70').disabled=tank&&amount>0;$('extractionPackV70').title=tank&&amount>0?'Empty the Tank before packing':'Return this building to inventory';positionExtractionV70();
+}
+const extractionOpenBeforeV70=openBuildingV46;
+openBuildingV46=function(b){
+ if(b.type!=='pumpjack'&&b.type!=='tank'){extractionPanelV70.close();return extractionOpenBeforeV70(b)}
+ stopPointerV52();closePhonePanelsV66();selectedBuildingV46=null;extractionSelectedV70=b.id;extractionPanelV70.show();refreshExtractionV70();$('extractionCloseV70').focus();
+};
+$('extractionCloseV70').onclick=()=>{extractionPanelV70.close();triggerV48.focus()};
+$('extractionPipesV70').onclick=()=>selectPipeToolV70();
+for(const [id,action] of Object.entries({pumpPauseV70:b=>{b.paused=!b.paused;b.extractionActive=false;ui();saveGame()},tankFillBucketV70:b=>bucketTankV70(b),tankDrainV70:drainTankV70,extractionPackV70:packStructureV46}))$(id).onclick=()=>{const b=structuresV46.find(b=>b.id===extractionSelectedV70);if(b)action(b)};
+const extractionRefreshBeforeV70=refreshStructuresV46;
+refreshStructuresV46=function(){extractionRefreshBeforeV70();refreshExtractionV70()};
+const extractionMarkBeforeV70=markHotbarV68;
+markHotbarV68=function(){extractionMarkBeforeV70();if(tool==='pipeV70'||tool==='pipeRemoveV70')for(const b of barV68.querySelectorAll('.slot')){b.classList.remove('sel');if(b!==triggerV48)b.setAttribute('aria-pressed','false')}};
+addEventListener('resize',positionExtractionV70);visualViewport?.addEventListener('resize',positionExtractionV70);visualViewport?.addEventListener('scroll',positionExtractionV70);
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(extractionPanelV70.open){extractionPanelV70.close();triggerV48.focus()}if(tool==='pipeV70'||tool==='pipeRemoveV70'){stopPointerV52();tool='pick';ui()}}});
+c.addEventListener('pointermove',e=>{const p=pos(e);pipeHoverV70=s2w(p.x,p.y)},{passive:true});c.addEventListener('pointerleave',()=>{pipeHoverV70=null});
+function pipeMaskV70(p,cells=pipesV70){let mask=0;for(const [dx,dy,bit] of [[0,-1,1],[1,0,2],[0,1,4],[-1,0,8]])if(cells.has(key(p.x+dx,p.y+dy)))mask|=bit;
+ for(const b of structuresV46){if(b.type!=='pumpjack'&&b.type!=='tank')continue;const ports=extractionPortsV70(b),matches=q=>q.x===p.x&&q.y===p.y;if(b.type==='pumpjack'){if(matches(ports.intake))mask|=1;if(matches(ports.outlet))mask|=8}else{if(matches(ports.ports[0]))mask|=2;if(matches(ports.ports[1]))mask|=8}}return mask;
+}
+const extractionDrawBeforeV70=drawGoldBursts;
+drawGoldBursts=function(now){
+ const types=extractionResultV70?.componentTypes||{},components=extractionResultV70?.componentByCell||{};
+ for(const p of pipesV70.values()){
+  const s=w2s(p.x*B,p.y*B);if(s.x+B*cam.z<0||s.x>W||s.y+B*cam.z<0||s.y>HH)continue;
+  const id=components[key(p.x,p.y)],kind=types[id];ctx.save();ctx.imageSmoothingEnabled=false;ctx.drawImage(ButtonwoodArt.extractionSprite('pipe',{mask:pipeMaskV70(p),kind,active:!!kind}),s.x,s.y,B*cam.z,B*cam.z);ctx.restore();
+ }
+ extractionDrawBeforeV70(now);
+};
+// Placement guidance stays above world lighting, like the pickaxe/build previews.
+const extractionPreviewBeforeV72=preview;
+preview=function(){
+ extractionPreviewBeforeV72();
+ if(tool==='pipeV70'||tool==='pipeRemoveV70'){
+  const a=gesture?.t===tool?gesture.a:pipeHoverV70,b=gesture?.t===tool?gesture.b:pipeHoverV70;if(!a||!b)return;
+  const route=pipeRouteV70(a,b);if(!route)return;const remove=tool==='pipeRemoveV70',combined=new Map(pipesV70);for(const p of route)combined.set(key(p.x,p.y),p);
+  const cost=route.filter(p=>!pipesV70.has(key(p.x,p.y))).length,invalid=!remove&&(cost>pipeBagV70||route.some(p=>!pipesV70.has(key(p.x,p.y))&&pipeCellErrorV70(p)));
+  for(const p of route){const s=w2s(p.x*B,p.y*B);ctx.save();ctx.imageSmoothingEnabled=false;ctx.globalAlpha=.7;ctx.drawImage(ButtonwoodArt.extractionSprite('pipe',{mask:pipeMaskV70(p,combined)}),s.x,s.y,B*cam.z,B*cam.z);ctx.globalAlpha=1;ctx.strokeStyle=ButtonwoodArt.palette[invalid||remove?'coralShade':'mintShade'];ctx.lineWidth=2;ctx.strokeRect(s.x+1,s.y+1,B*cam.z-2,B*cam.z-2);ctx.restore()}
+ }
+};

@@ -1,0 +1,138 @@
+// A continuous sky follows settlement time, including saves and hidden-tab pauses.
+// All scenery is drawn in world-sized art pixels before the shared camera zoom.
+var skySeedV62=(Math.random()*4294967296)>>>0;
+function skyHashV62(n){n=Math.imul(n^(n>>>16),0x21f0aaad);n=Math.imul(n^(n>>>15),0x735a2d97);return ((n^(n>>>15))>>>0)/4294967296}
+function skySmoothV62(a,b,t){t=clamp((t-a)/(b-a),0,1);return t*t*(3-2*t)}
+function skyMixV62(a,b,t){return a.map((v,i)=>v+(b[i]-v)*t)}
+function skyColorV62(a){return 'rgb('+a.map(Math.round).join(',')+')'}
+const SKY_KEYS_V62=[
+ // Seconds, zenith, horizon, distant ridge, near ridge, cloud shadow, cloud light.
+ [0,[76,79,132],[246,169,124],[111,103,143],[70,87,110],[164,126,157],[255,207,153]],
+ [22,[118,172,207],[250,218,166],[136,160,177],[88,129,143],[183,191,205],[255,233,191]],
+ [48,[115,183,221],[210,232,222],[137,177,183],[89,139,149],[183,209,218],[242,241,216]],
+ [140,[115,183,221],[210,232,222],[137,177,183],[89,139,149],[183,209,218],[242,241,216]],
+ [163,[113,116,171],[250,186,126],[157,125,159],[101,100,135],[175,130,166],[255,217,156]],
+ [180,[58,53,104],[232,130,111],[115,81,126],[66,67,103],[119,82,130],[244,168,135]],
+ [193,[27,32,65],[104,80,126],[62,61,100],[38,48,78],[65,60,97],[130,112,151]],
+ [207,[16,24,49],[48,64,96],[42,53,81],[27,42,64],[40,49,78],[86,106,133]],
+ [226,[16,24,49],[48,64,96],[42,53,81],[27,42,64],[40,49,78],[86,106,133]],
+ [240,[76,79,132],[246,169,124],[111,103,143],[70,87,110],[164,126,157],[255,207,153]]
+];
+function skyStateV62(){
+ const night=workerNightV55(),seconds=(night?DAY_V55:0)/2000+settlementV55.elapsed/2000;
+ let k=0;while(k<SKY_KEYS_V62.length-2&&seconds>SKY_KEYS_V62[k+1][0])k++;
+ const a=SKY_KEYS_V62[k],b=SKY_KEYS_V62[k+1],t=skySmoothV62(a[0],b[0],seconds);
+ const colors=a.slice(1).map((c,i)=>skyMixV62(c,b[i+1],t));
+ const darkness=seconds<48?1-skySmoothV62(-28,24,seconds):skySmoothV62(160,207,seconds)*(1-skySmoothV62(226,252,seconds));
+ // One independent seeded draw per night; reloading cannot reroll the weather.
+ const shower=skyHashV62(skySeedV62^Math.imul(settlementV55.day,0x9e3779b9))<1/12;
+ return {seconds,colors,darkness,night,shower:night&&shower,day:settlementV55.day,time:((settlementV55.day-1)*240+seconds)};
+}
+const skySaveWorkersV62=saveWorkersV55;
+saveWorkersV55=function(){return {...skySaveWorkersV62(),skyV62:{seed:skySeedV62}}};
+const skyRestoreV62=restoreDynamicState;
+restoreDynamicState=function(s){skyRestoreV62(s);const seed=s?.workersV55?.skyV62?.seed;if(Number.isInteger(seed)&&seed>=0&&seed<=4294967295)skySeedV62=seed;syncSkyAudioV62()};
+function syncSkyAudioV62(){window.SkyAudio?.setNightMix?.(skyStateV62().darkness)}
+function skyRectV62(x,y,w,h,color,alpha=1){ctx.globalAlpha=alpha;ctx.fillStyle=color;ctx.fillRect(Math.round(x),Math.round(y),Math.ceil(w),Math.ceil(h))}
+function skyDiscV62(x,y,r,color,alpha=1){for(let dy=-r;dy<r;dy+=2){const half=Math.floor(Math.sqrt(Math.max(0,r*r-(dy+1)*(dy+1))));skyRectV62(x-half,y+dy,half*2,2,color,alpha)}}
+function skyStarsV62(s,w,h){
+ const opacity=skySmoothV62(.28,.86,s.darkness);if(opacity<=0)return;
+ // A quiet diagonal dust lane and a fixed star field; no per-frame randomness.
+ for(let i=0;i<170;i++){
+  const a=skyHashV62(i*19+81),b=skyHashV62(i*37+192),x=a*w,y=(.13+a*.31+(b-.5)*.18)*h;
+  skyRectV62(x,y,i%9===0?2:1,1,i%3?'#a9b5d2':'#bba7cf',opacity*.2);
+ }
+ for(let i=0;i<115;i++){
+  const x=skyHashV62(i*97+1)*w,y=skyHashV62(i*53+12)*h*.89;
+  const twinkle=.68+.32*Math.sin(s.time*(.6+skyHashV62(i)) + i*2.4),alpha=opacity*twinkle*(i%4===0?.95:.52);
+  skyRectV62(x,y,1,1,i%5===0?'#ffe3ad':'#d1dfed',alpha);
+  if(i%17===0){skyRectV62(x-2,y,5,1,'#a7bfdc',alpha*.6);skyRectV62(x,y-2,1,5,'#a7bfdc',alpha*.6);skyRectV62(x,y,1,1,'#f3f1df',alpha)}
+ }
+}
+function skyCelestialV62(s,w,horizon){
+ const t=s.seconds,arc=clamp((t+10)/200,0,1),x=w*(.08+.84*arc),height=Math.min(340,Math.max(130,horizon*.64));
+ const y=horizon+14-Math.sin(arc*Math.PI)*height;
+ const sunAlpha=(1-skySmoothV62(185,198,t));
+ if(sunAlpha>0){
+  const glow=1-skySmoothV62(20,65,Math.min(t,190-t));
+  for(let r=76;r>=28;r-=12)skyDiscV62(x,y,r,'#ffc783',sunAlpha*(.025+glow*.015));
+  skyDiscV62(x,y,20,'#eaa76e',sunAlpha);skyDiscV62(x,y-2,18,'#ffd28a',sunAlpha);skyDiscV62(x,y-5,14,'#ffecb1',sunAlpha);
+  for(let i=0;i<3;i++)skyRectV62(x-23-i*4,y+8+i*5,46+i*8,2,skyColorV62(s.colors[1]),sunAlpha*.7);
+ }
+ const moonAlpha=skySmoothV62(.28,.85,s.darkness);
+ if(moonAlpha>0){
+  const p=t<60?(t+70)/100:(t-170)/100,mx=w*(.19+.61*clamp(p,0,1)),my=Math.max(58,horizon-Math.min(370,horizon*.72))-Math.sin(p*Math.PI)*35;
+  skyDiscV62(mx,my,36,'#9db5d6',moonAlpha*.035);skyDiscV62(mx,my,27,'#bad2e5',moonAlpha*.06);
+  skyDiscV62(mx,my,15,'#849bbd',moonAlpha);skyDiscV62(mx-1,my-1,14,'#c7d7df',moonAlpha);skyDiscV62(mx-3,my-3,11,'#e5e7d5',moonAlpha);
+  skyRectV62(mx+3,my+3,5,3,'#a1b8cc',moonAlpha);skyRectV62(mx-7,my-3,3,4,'#b8ccd6',moonAlpha);skyRectV62(mx+3,my-8,3,2,'#b8ccd6',moonAlpha);
+ }
+}
+function skyCloudsV62(s,w,horizon){
+ const shadow=skyColorV62(s.colors[4]),light=skyColorV62(s.colors[5]);
+ for(let layer=0;layer<2;layer++){
+  const span=310+layer*160,drift=s.time*(layer?.7:1.3)-cam.x*(layer?.055:.095),start=Math.floor(-drift/span)-1;
+  for(let i=start;i<start+Math.ceil(w/span)+3;i++){
+   const n=skyHashV62(i+layer*77),x=i*span+drift,y=horizon-190-layer*145-n*95;
+   // Small scalloped banks, thin wisps and warm undersides at the horizon.
+   skyRectV62(x,y,112,5,shadow,.72);skyRectV62(x+9,y-6,104,6,light,.8);
+   skyRectV62(x+24,y-13,70,7,light,.8);skyRectV62(x+37,y-20,32,7,light,.8);
+   skyRectV62(x+12,y+4,82,3,shadow,.55);skyRectV62(x+121,y-3,28,3,light,.5);
+   skyRectV62(x+47,y-19,19,2,'#fff0cb',.22*(1-s.darkness));
+  }
+ }
+}
+function skyMountainsV62(s,w,horizon){
+ for(let layer=0;layer<3;layer++){
+  const span=260-layer*30,shift=cam.x*(.035+layer*.035),start=Math.floor(shift/span)-1;
+  const color=layer===2?skyMixV62(s.colors[3],[30,57,65],.3):s.colors[2+layer];
+  for(let i=start;i<start+Math.ceil(w/span)+3;i++){
+   const height=85+skyHashV62(i*31+layer*83)*100-layer*29;
+   for(let x=0;x<span;x+=4){
+    const slope=Math.max(0,1-Math.abs(x-span*.47)/(span*.58)),ridge=Math.round((height*slope+14)/4)*4;
+    skyRectV62(i*span-shift+x,horizon-ridge,4,ridge,skyColorV62(color));
+    if(layer===0&&ridge>height*.80&&x<span*.47)skyRectV62(i*span-shift+x,horizon-ridge,4,4,skyColorV62(skyMixV62(color,s.colors[5],.3)));
+   }
+  }
+ }
+ // Sparse distant firs connect the ridges to the world without covering terrain.
+ const start=Math.floor(cam.x*.14/83)-1;
+ for(let i=start;i<start+Math.ceil(w/83)+3;i++){
+  const x=i*83-cam.x*.14,y=horizon-8,h=12+Math.floor(skyHashV62(i+40)*18),color=skyColorV62(skyMixV62(s.colors[3],[27,49,55],.55));
+  for(let j=0;j<4;j++)skyRectV62(x-j*3,y-h+j*h/4,2+j*6,Math.ceil(h/4),color);
+  skyRectV62(x,y-2,2,10,color);
+ }
+}
+function skyMeteorsV62(s,w,h){
+ if(!s.shower)return 0;
+ const time=s.seconds-180,envelope=skySmoothV62(5,14,time)*(1-skySmoothV62(45,56,time));let visible=0;
+ if(envelope<=0)return 0;
+ // A deterministic timeline produces loose clusters with varied lengths and speeds.
+ // Trails consist entirely of stepped pixels; no flashes or foreground effects.
+ for(let i=0;i<34;i++){
+  const seed=skySeedV62^Math.imul(s.day,7919)^Math.imul(i+1,104729),r=skyHashV62(seed);
+  const born=7+i*1.32+r*.8,duration=1.4+skyHashV62(seed+1)*1.4,age=time-born;
+  if(age<0||age>duration)continue;visible++;
+  const p=age/duration,alpha=envelope*skySmoothV62(0,.15,p)*(1-skySmoothV62(.55,1,p));
+  const distance=100+skyHashV62(seed+2)*150,dx=distance*p,dy=dx*.43;
+  const x=w*(.08+skyHashV62(seed+3)*.83)+dx,y=h*(.06+skyHashV62(seed+4)*.37)+dy;
+  const length=38+skyHashV62(seed+5)*64;
+  for(let j=Math.ceil(length);j>=0;j-=2){const fade=1-j/length,xx=x-j,yy=y-j*.43;
+   skyRectV62(xx,yy,3,2,j>length*.55?'#8a87c2':'#9ecce1',alpha*fade*.65);
+   if(j<length*.4)skyRectV62(xx,yy,2,1,'#e3ece7',alpha*fade);
+   if(j%8===0)skyRectV62(xx-3,yy+3+Math.floor((1-fade)*4),1,1,'#c5b3e1',alpha*fade*.5);
+  }
+  skyRectV62(x-1,y-1,3,3,'#fff1cc',alpha);skyRectV62(x+2,y,2,1,'#e3ece7',alpha*.6);
+ }
+ return visible;
+}
+bg=function(){
+ // Reuse the original earth fill, then replace only the sky above the surface.
+ artBaseBgV32();syncSkyAudioV62();const ground=w2s(0,0).y;if(ground<=0)return;
+ const s=skyStateV62(),w=W/cam.z,h=Math.min(HH,ground)/cam.z,horizon=ground/cam.z;
+ ctx.save();ctx.beginPath();ctx.rect(0,0,W,Math.min(HH,ground-4*cam.z));ctx.clip();ctx.scale(cam.z,cam.z);ctx.imageSmoothingEnabled=false;
+ const altitude=clamp(-cam.y/(B*120),0,1),top=skyMixV62(s.colors[0],[17,26,55],altitude*.75);
+ for(let y=0;y<h;y+=4){const p=clamp(y/Math.max(horizon,1),0,1);skyRectV62(0,y,w,4,skyColorV62(skyMixV62(top,s.colors[1],p*p)))}
+ skyStarsV62(s,w,h);skyCelestialV62(s,w,horizon);skyCloudsV62(s,w,horizon);skyMeteorsV62(s,w,h);skyMountainsV62(s,w,horizon);
+ ctx.restore();
+};
+window.__skyStackSkyDebug=()=>{const s=skyStateV62();return {day:s.day,seconds:s.seconds,night:s.night,nightMix:s.darkness,meteorShower:s.shower,seed:skySeedV62,colors:s.colors}};

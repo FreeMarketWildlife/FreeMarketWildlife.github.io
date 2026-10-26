@@ -1,0 +1,17 @@
+/* Buttonwood bible §§3–4, 7, 9: native icons, readable material colors, anchored controls. */
+#cagePanelV71{position:fixed;inset:auto;margin:0;padding:12px;overflow:auto;border:2px solid var(--wildlife-outline);border-radius:8px;background:var(--wildlife-cream);color:var(--wildlife-ink);box-sizing:border-box;box-shadow:0 5px 0 var(--wildlife-woodShade);font-size:14px}
+#cagePanelV71 header{display:flex;align-items:center;justify-content:space-between;gap:8px}
+#cagePanelV71 h2{font-size:16px;margin:0}
+#cagePanelV71 .btn{background:var(--wildlife-creamLight);color:var(--wildlife-ink);border-color:var(--wildlife-outline);min-height:44px;font-size:14px;}
+#cagePanelV71 .btn:disabled{opacity:.5}
+#cagePanelV71 .btn:focus-visible{outline:3px solid var(--wildlife-mintShade);outline-offset:2px}
+#cagePortraitV71{position:static;inset:auto;width:auto;height:auto;display:block;image-rendering:pixelated;margin:10px auto;pointer-events:none}
+#cageCountV71{font-weight:700;margin:8px 0}
+.cageAnimalV71{display:flex;align-items:center;gap:6px;margin:5px 0}
+.cageAnimalV71>span{flex:1;font-size:14px}
+.cageAnimalV71 img,#cageAddV71 img{width:32px;height:32px;flex:none;image-rendering:pixelated}
+#cageAddV71{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+#cageAddV71 button{display:flex;align-items:center;gap:4px;font-size:14px}
+#cageAddV71 button[hidden]{display:none}
+.cageHintV71{font-size:14px;line-height:1.4}
+@media(max-width:360px){.cageAnimalV71{display:grid;grid-template-columns:32px 1fr 1fr}.cageAnimalV71>span{grid-column:2/4}.cageAnimalV71>button:first-of-type{grid-column:2}}
