@@ -1,4 +1,4 @@
-import {counterOutline,counterCenter} from './workshop.js?v=66-trebuchet';
+import {counterOutline,counterCenter} from './workshop.js?v=70-trebuchet';
 /** Read-only mechanism annotations. All marks refer to actual bodies/anchors. */
 export function drawMechanismDetails(ctx,scene,project,{labels=true}={}){
  if(!scene.p||!scene.arm?.getWorldPoint||!Array.isArray(scene.ropes))return;

@@ -1,5 +1,5 @@
-import {scaleInventory,comparisonPanels,scalePanelSVG,authoredMapSVG,formatMetres} from './world-scale.js?v=66';
-import {SCALE_BUILDS,scaleBuildFacts} from './scale-builds.js?v=66';
+import {scaleInventory,comparisonPanels,scalePanelSVG,authoredMapSVG,formatMetres} from './world-scale.js?v=70';
+import {SCALE_BUILDS,scaleBuildFacts} from './scale-builds.js?v=70';
 const $=id=>document.getElementById(id),el=(tag,text)=>{const node=document.createElement(tag);if(text!==undefined)node.textContent=text;return node;};
 const inventory=scaleInventory();
 const forestTrees=inventory.filter(e=>e.category==='Trees'&&e.id!=='grandfather-oak'),ordinary=forestTrees.filter(e=>e.height<=60),rare=forestTrees.filter(e=>e.height>60);
@@ -12,7 +12,7 @@ for(const panel of comparisonPanels(inventory)){
 for(const recipe of SCALE_BUILDS){
  const f=scaleBuildFacts(recipe.build),card=el('article');card.className='build-card';card.append(el('h3',recipe.name),el('p',`${formatMetres(f.axleHeight)} axle · ${formatMetres(f.beamLength)} beam · ${formatMetres(f.feetWidth)} feet`));
  const list=el('ul');for(const text of[`${f.pouchOpening} m pouch opening · ${(f.pouchCapacityGrams/1000).toLocaleString()} kg capacity`,`${(f.volunteerGrams/1000).toLocaleString()} kg volunteer · ${(f.counterGrams/1000).toLocaleString()} kg chosen ballast`,`${f.cordLength} m cords · ${f.stationaryWidth.toFixed(1)} m stationary workspace`])list.append(el('li',text));card.append(list);
- const detail=el('details'),summary=el('summary','Every fitted part'),parts=el('ul');for(const p of f.parts)parts.append(el('li',`${p.label}: ${p.name}`));detail.append(summary,parts);card.append(detail,el('p',`Calibrated from ${Math.round(f.minimumDraw*100)}% draw. Lower draws keep the ratchet engaged. Let a partial stop settle; custom geometry and terrain still need testing.`));
+ const detail=el('details'),summary=el('summary','Every fitted part'),parts=el('ul');for(const p of f.parts)parts.append(el('li',`${p.label}: ${p.name}`));detail.append(summary,parts);card.append(detail,el('p',`Reference throw at ${Math.round(f.minimumDraw*100)}% draw. Weaker swings are allowed and can fail naturally. Let a partial stop settle; custom geometry and terrain still need testing.`));
  const link=el('a','Try this build in Creative');link.href='index.html?qa=1&creative=1&scaleBuild='+encodeURIComponent(recipe.id);link.className='trial';card.append(link);$('buildCards').append(card);
 }
 for(const category of [...new Set(inventory.map(e=>e.category))].sort()){const option=el('option',category);option.value=category;$('category').append(option);}

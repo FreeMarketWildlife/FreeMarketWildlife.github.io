@@ -1,4 +1,4 @@
-import {validateGroveMap,createV4Revision11GroveMap} from './grove-map.js?v=66';
+import {validateGroveMap,createV4Revision11GroveMap} from './grove-map.js?v=70';
 const MAX_JSON=2000000,MAX_LINK=140000;
 async function bytesFromStream(stream,max=MAX_JSON){const reader=stream.getReader(),chunks=[];let length=0;try{while(true){const {value,done}=await reader.read();if(done)break;length+=value.length;if(length>max)throw Error('Map is too large. Use a smaller map or JSON export.');chunks.push(value);}}finally{reader.releaseLock();}const result=new Uint8Array(length);let cursor=0;for(const c of chunks){result.set(c,cursor);cursor+=c.length;}return result;}
 function base64(bytes){let string='';for(let i=0;i<bytes.length;i+=4096)string+=String.fromCharCode(...bytes.subarray(i,i+4096));return btoa(string).replaceAll('+','-').replaceAll('/','_').replaceAll('=','');}

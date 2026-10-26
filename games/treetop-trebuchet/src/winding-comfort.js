@@ -1,4 +1,4 @@
-import {drawLimit,REST_ARM_ANGLE} from './build-catalog.js?v=66';
+import {drawLimit,REST_ARM_ANGLE} from './build-catalog.js?v=70';
 // Arcade preparation balance, separate from bearing friction and launch energy.
 export const BEARING_WINDING_SECONDS=Object.freeze({woodAxle:3.6,bronze:3,bearings:2.4,precision:2});
 export const LOADING_LINEAR_DAMPING=2;

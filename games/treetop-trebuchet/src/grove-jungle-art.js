@@ -1,4 +1,4 @@
-import {foliageClump,fern,liana} from './grove-nature.js?v=66';
+import {foliageClump,fern,liana} from './grove-nature.js?v=70';
 // Four botanical strata in a shared world, with depth fading to zero when the
 // player zooms out. Background trees never masquerade as collision platforms.
 export function drawJungleBackdrop(c,{project,camera:cam,scale:s,width:W,height:H,origin,parallax}){

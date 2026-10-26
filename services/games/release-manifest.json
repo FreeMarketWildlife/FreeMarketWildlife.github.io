@@ -48,8 +48,8 @@
     "sha256": "eee82a3961fd04b4904850df699aae747ac8acf780a388c104736051a4e146d0"
   },
   "games/treetop-trebuchet/index.html": {
-    "bytes": 15503,
-    "sha256": "bb58dce6a65648b8273c4464e8973520812bf5be35ed4b25138757f76d183ebc"
+    "bytes": 15881,
+    "sha256": "edfd522247211a7d5778fda753f445afa3db1244c30e6baacd722e74c6f9cccd"
   },
   "games/treetop-trebuchet/mechanism-lab.html": {
     "bytes": 15241,
@@ -77,15 +77,19 @@
   },
   "games/treetop-trebuchet/editor.html": {
     "bytes": 12649,
-    "sha256": "79dad4439ffcaf53ec2ab2f62055e228ade25ceeaee40c41b13aab933ed6c814"
+    "sha256": "20cbeffe5328b4cbc0e844bc14e993b61436730d9ca8d3f15e6a868cffa1a65d"
   },
   "games/treetop-trebuchet/release-source.json": {
-    "bytes": 18877,
-    "sha256": "26725c5276eef3abfb744add5d3c6e10ae82ed6766a464f16ff61ec177d300c1"
+    "bytes": 18966,
+    "sha256": "48ce8438889191857fb87c3ef85679bbf353f38ca0511a02cf18c26689621ca3"
+  },
+  "games/treetop-trebuchet/tree-shop.css": {
+    "bytes": 21504,
+    "sha256": "c0ef71223ecff8aa1a7ea49f3395bda174889944edd6dacf8cb25fed3dc60b34"
   },
   "games/treetop-trebuchet/clean-play.css": {
-    "bytes": 5338,
-    "sha256": "295860431a824b1e353b98638ad2a1d5ea356a3c6ea02893130cc138f21e3507"
+    "bytes": 6003,
+    "sha256": "971f119699a41dd50517c2557fada1e687af37b343c2a48f51c7a9f5a54d8c1a"
   },
   "games/treetop-trebuchet/mobile.css": {
     "bytes": 3001,
@@ -325,7 +329,7 @@
   },
   "games/treetop-trebuchet/src/map-editor.js": {
     "bytes": 43656,
-    "sha256": "a7fa90caed60be7de9873670f7677db95daa9d7b57d19657bb18e3da4e6f4310"
+    "sha256": "59bb4c7b30d5fe052f02b974ee8e3b6f0024d9d93cd1b3b4aae3bc594f11ffdf"
   },
   "games/treetop-trebuchet/src/workshop.js": {
     "bytes": 2532,
@@ -333,7 +337,7 @@
   },
   "games/treetop-trebuchet/src/grove-starter.js": {
     "bytes": 9889,
-    "sha256": "204bcd491aff6b595347ed34ced705663e682855648693e141e03ad32615a1ec"
+    "sha256": "b929daf5388f701fa429b68027a868177bc57e617cf8b3b74ab5599b2371e08f"
   },
   "games/treetop-trebuchet/src/build-catalog.js": {
     "bytes": 16668,
@@ -341,7 +345,7 @@
   },
   "games/treetop-trebuchet/src/altitude-strip.js": {
     "bytes": 8167,
-    "sha256": "21395350d579dd34490afd9e1a2e2153c92d676160637217ddc5956b2777af58"
+    "sha256": "310cf3ffd3dfe65c15da114c98b2326fa8335eceeaf0cc205dec7a8788f748d3"
   },
   "games/treetop-trebuchet/src/audio-preferences.js": {
     "bytes": 823,
@@ -353,7 +357,7 @@
   },
   "games/treetop-trebuchet/src/mechanism-art.js": {
     "bytes": 4048,
-    "sha256": "577cd1bf0a931ef6e9de3e2b6fccf9d135e378bdeb9a91a585c296eddd8031ff"
+    "sha256": "7db6f04c1bb954bb3f8480ff5d38fc177fef7c2827e73e25f842fb172eace2dc"
   },
   "games/treetop-trebuchet/src/grove-tree-layout.js": {
     "bytes": 1184,
@@ -361,15 +365,15 @@
   },
   "games/treetop-trebuchet/src/flight-art.js": {
     "bytes": 2260,
-    "sha256": "627972cfd326641d166dcaee952e08ff9dab5e5d93c8b52c3d754cbc9ba177e0"
+    "sha256": "39c5943bf38bc354f2e719576830d5bbbba3540664f3566050905fc30b4a1d86"
   },
   "games/treetop-trebuchet/src/review.js": {
     "bytes": 1207,
     "sha256": "0a2dc4ac6a6751d4910cb3d9566daae935a8c128f85918564365e421e20fb137"
   },
   "games/treetop-trebuchet/src/scale-app.js": {
-    "bytes": 4699,
-    "sha256": "e7fd6c741eba67962f21315c7ede341c0980dd5c7a00b1d23eba905bf359c04b"
+    "bytes": 4714,
+    "sha256": "ea2784c0e55d8507e031fc9d237650b89e243df23b822b8ef6b6bb9fda6288e0"
   },
   "games/treetop-trebuchet/src/runtime.js": {
     "bytes": 1656,
@@ -377,7 +381,7 @@
   },
   "games/treetop-trebuchet/src/scenery.js": {
     "bytes": 8424,
-    "sha256": "d228486053e36c6fe86b6a5643a076027cbca4ffb30b93e0c9ce0105559b956d"
+    "sha256": "5d8a7d4cc192a018d2e65490b262cdf04ee1d7a113081ce1f858f6d7a36001f8"
   },
   "games/treetop-trebuchet/src/mushroom-geometry.js": {
     "bytes": 1189,
@@ -385,11 +389,11 @@
   },
   "games/treetop-trebuchet/src/world-link.js": {
     "bytes": 2107,
-    "sha256": "e9319e158fde6fee786ea6dfc6dd8fa579a0cde03abadcedf369bddc564f601c"
+    "sha256": "a2335865d6f5ef5bb71c50c86cf8e8d353f370365a79b70658f809ff2a036897"
   },
   "games/treetop-trebuchet/src/critter-scale-art.js": {
     "bytes": 4610,
-    "sha256": "cbcf0d12bceaba4892bc7e06fc33be28d36a4dfd6f4b72f9674a22ba672ecf5f"
+    "sha256": "bc0852d9d4b589ed33773d870d318b0004957d8788a807bcb2956e4d627a1f2a"
   },
   "games/treetop-trebuchet/src/terrain.js": {
     "bytes": 831,
@@ -397,7 +401,7 @@
   },
   "games/treetop-trebuchet/src/payload-loading.js": {
     "bytes": 12807,
-    "sha256": "dbccdae79140a1f34021f0c1b311c05ccaff8412367aece08a6254e0c07defc7"
+    "sha256": "0c594cad4e12aef3c7f8a7d57c40a705720f137bd9e61c5d584b7246eedfd885"
   },
   "games/treetop-trebuchet/src/oak-world.js": {
     "bytes": 13953,
@@ -405,7 +409,7 @@
   },
   "games/treetop-trebuchet/src/articulated.js": {
     "bytes": 29963,
-    "sha256": "3360a9292fe5b248f84c6b97f74573f80924076bb42f75eb73c04e03f88e71f9"
+    "sha256": "18e13329b3d1cb2e8310e124fe3ce81015b81532e77c39c8dfa8b0d6de6f2b15"
   },
   "games/treetop-trebuchet/src/flight-weapons.js": {
     "bytes": 1852,
@@ -425,19 +429,19 @@
   },
   "games/treetop-trebuchet/src/rope-visual.js": {
     "bytes": 1608,
-    "sha256": "e8314290844ed07eecb0cc8263d98c388a86a5acc27e5df23c69e835fd0e896d"
+    "sha256": "4cc36065eb53bb6680cc06ebad8ab41bcb7fbd3d6d5dafd7c1e23cba4aebea54"
   },
   "games/treetop-trebuchet/src/world.js": {
     "bytes": 5483,
-    "sha256": "73c52a7d77da700a111f857b15134a7cd3e02208f80d1ba8781407d5ba43dc85"
+    "sha256": "7cdc47b0e46a6ec1488a533a722e31fbfb25ea3e6324dc677dea462ca033e2e4"
   },
   "games/treetop-trebuchet/src/grove-jungle.js": {
     "bytes": 3933,
-    "sha256": "b9ffed9b131f66a6cec0cb4e828b0d064aff26acffcbc0fc2aa2b92ec726a6cd"
+    "sha256": "9fbf70827f45672643c61cbd8d5cd385d89eca34c74565cd2597159326fb3898"
   },
   "games/treetop-trebuchet/src/build-progress.js": {
     "bytes": 12731,
-    "sha256": "91156c8b5abd3975a8a9c59d8afec3fa1255e47a169a889cd55037c68cbb76c6"
+    "sha256": "6f94f5054a25190415f018d4029192b48ce9078983734a8db2079a71941e17fa"
   },
   "games/treetop-trebuchet/src/grove-geometry.js": {
     "bytes": 2822,
@@ -445,7 +449,7 @@
   },
   "games/treetop-trebuchet/src/grove-jungle-art.js": {
     "bytes": 4740,
-    "sha256": "640a5f5f069c0a2ccb3dcfb089bd22850a7a072df26aa9e8f03bae7c13566a13"
+    "sha256": "eebbb0b5444b4b9e9682f60a269463167322ca941cf55ec1b80903cf6c8912fc"
   },
   "games/treetop-trebuchet/src/critter-body.js": {
     "bytes": 3380,
@@ -453,19 +457,19 @@
   },
   "games/treetop-trebuchet/src/shop-sandbox.js": {
     "bytes": 951,
-    "sha256": "15cc369dd547cacca9befd35f6704c9b9e7dd363860d1348f0f165b16f1f1b1c"
+    "sha256": "b6be5e675a8d68b9fb6ae6d956b53b4a7e9d3749a6d05199fdc6cdc8acbbed32"
   },
   "games/treetop-trebuchet/src/proportioned-forest-art.js": {
     "bytes": 5783,
-    "sha256": "eb04a7b169ae4a06404ecb4dd8418913a71d49607b8ad9442a303af18cf14fb4"
+    "sha256": "a87de588f7601f2d30975be326515dad8f050475a38008fb10be7d30a9bebbc5"
   },
   "games/treetop-trebuchet/src/launch-feel.js": {
     "bytes": 3521,
-    "sha256": "dc30f2d30611629df07f2399948f2ac84c4fe36d06ec7e7ed47978d9f3d6fda0"
+    "sha256": "13afee50b9cb709d0eda593db3a2ffa337a6965e1346d8869b6385f48ff2f8e6"
   },
   "games/treetop-trebuchet/src/winding-comfort.js": {
     "bytes": 1301,
-    "sha256": "3590bbc595218260229dda8f3166732a97ce6ae494ad813ccd7331ecd7d4e0af"
+    "sha256": "3e14986b832edd2254d9b2a3f62cbe5c110abbdd6d401296547907bc0f854e98"
   },
   "games/treetop-trebuchet/src/loading-refinement.js": {
     "bytes": 2665,
@@ -473,23 +477,23 @@
   },
   "games/treetop-trebuchet/src/landing-opportunity.js": {
     "bytes": 10245,
-    "sha256": "a8ab74b6e2974abc79c18815f233b76d5eadcb7f9d75ce943968c24c0f7afd39"
+    "sha256": "4b2ee593cc3e42c26c6b06eb5ed16a0a64a3f6c1c005791d2f292cf65808a87e"
   },
   "games/treetop-trebuchet/src/forest-depth-art.js": {
     "bytes": 6862,
-    "sha256": "5c053ec7a8aa7367d003d830ef4047802cd8a0239d7f3f07bed01a159456c508"
+    "sha256": "d3e9f733522a812100c14a3f820363967146aa8c64f2016ae2b9f994a3346162"
   },
   "games/treetop-trebuchet/src/grove-environment.js": {
     "bytes": 5060,
-    "sha256": "e3a43334fe22b3d58d205037eedf189c62a8efa868df8f731e78109202dba029"
+    "sha256": "4add2dc4a600263df74b5fd33302462b32b84609119a2333930b71bca7778770"
   },
   "games/treetop-trebuchet/src/render.js": {
     "bytes": 16182,
-    "sha256": "2a5db550fe556fe7561ef3c73df57eeb3a663daebae152bd2816c4568b06032a"
+    "sha256": "34cf73190e3fcd2136a7e046f3547fa188cf29e1cc235ebe5348906e48adf2d8"
   },
   "games/treetop-trebuchet/src/equipment-summary.js": {
     "bytes": 4372,
-    "sha256": "e57e1a5e44b0c2f343a2de9154a36be012da746df7d0ccacf269287950b27d8d"
+    "sha256": "77d73fa4f8cfba06183e4c6b8b70505e4fb9e29ca4a556e01a39c970ab3dfa10"
   },
   "games/treetop-trebuchet/src/economy.js": {
     "bytes": 4701,
@@ -497,7 +501,7 @@
   },
   "games/treetop-trebuchet/src/critter-queue.js": {
     "bytes": 2006,
-    "sha256": "2aed4f999b6fb060c7b28f0d19052de02eb655fe070c27ee22377094710c7e8e"
+    "sha256": "0285776dd7933ff42c743e5c015dea3489fce6a67164b38270c157a130cfd262"
   },
   "games/treetop-trebuchet/src/guillotine.js": {
     "bytes": 4136,
@@ -509,7 +513,7 @@
   },
   "games/treetop-trebuchet/src/shop-art.js": {
     "bytes": 4671,
-    "sha256": "54b2d3684a80f879812994b75fd90dc85522dd95ceac569c4d5bede00fcd56a5"
+    "sha256": "e8725998d18389780351489e02e877d40bba68703a5f9c12566c64414d4e21b6"
   },
   "games/treetop-trebuchet/src/progress-preferences.js": {
     "bytes": 476,
@@ -517,7 +521,7 @@
   },
   "games/treetop-trebuchet/src/world-scale.js": {
     "bytes": 17501,
-    "sha256": "0e4b16e6cc43e67508eb73514fca7f54dec2d64bb65eb3c21b551acdc844dad9"
+    "sha256": "046d5023ca63e6c0381486c1350dcd6bdacf7e993f6b5b051820cd88ec92fd03"
   },
   "games/treetop-trebuchet/src/grip-art.js": {
     "bytes": 909,
@@ -525,7 +529,7 @@
   },
   "games/treetop-trebuchet/src/world-workshop.js": {
     "bytes": 4392,
-    "sha256": "9231a76853baf17c8323d87bbde0a08807c17836c548bc3457158a9e4f50ec5c"
+    "sha256": "aa203620d89d742774e86f94eae77ed3ccd656c613f3bcbdc242d7f722894b2d"
   },
   "games/treetop-trebuchet/src/grove-nature.js": {
     "bytes": 4314,
@@ -537,31 +541,31 @@
   },
   "games/treetop-trebuchet/src/hook-experiment.js": {
     "bytes": 12577,
-    "sha256": "a0e72f5bb6cd9b877954a8e8513934cf8ccbae7882b1b9e422a7eb549f6cdd0d"
+    "sha256": "d1b1bad3ecb4e9134a05899f6ba83dbffd8f2d140286e8ccaba4306e0dc17da6"
   },
   "games/treetop-trebuchet/src/build-art.js": {
     "bytes": 45876,
-    "sha256": "193c281c6e35bf918285142fbf4b3d6aa7d90afd260e76a0f1d6c55100dfc1d8"
+    "sha256": "2e26ef5af2bf9d5dde80c074321c461e8e656b76d9495721eed3c26087fd3b15"
   },
   "games/treetop-trebuchet/src/critter-scale.js": {
     "bytes": 8801,
-    "sha256": "dddab32319bd830b8fbdbf4aca3727f76c28fb946a96a94e223c111acc4ec1c0"
+    "sha256": "936ab850b8a6803689c8b6d93f199eb651043b055105696e4a63766085fc9c81"
   },
   "games/treetop-trebuchet/src/grove-tree-art.js": {
     "bytes": 11767,
-    "sha256": "115ee38ac7590c11e10a4feea6c3c568d3b381562e93e903a456c4c7c30ec23d"
+    "sha256": "0e68690713c78ca81290c008baec6e88f3efe53aa97f98a0ab404be066d22ef1"
   },
   "games/treetop-trebuchet/src/build-equipment.js": {
     "bytes": 2148,
-    "sha256": "abb768ffe692d066fc3fdb1f20f0c58c1efd3499b46cb41845db57cf1ea1a89b"
+    "sha256": "533ce66348c8b8ac1b1e3e56cd358ff4c194e6b390055e5ac2b1c2b012c581f2"
   },
   "games/treetop-trebuchet/src/flight-travel.js": {
     "bytes": 674,
     "sha256": "5bd0c8964d681145ac0aa60943bca783fe871789110747eef5f5777b3720d125"
   },
   "games/treetop-trebuchet/src/build-app.js": {
-    "bytes": 66410,
-    "sha256": "b9e2dc6fe3f0e225f0306edf1ea3da70f13b9357e37c36235d938abe3959be57"
+    "bytes": 68260,
+    "sha256": "ef1c9680de5aac6aa7da4516c9d4ec015add807b39929692c46f4aebfe8651af"
   },
   "games/treetop-trebuchet/src/loading-contact-art.js": {
     "bytes": 1129,
@@ -573,19 +577,19 @@
   },
   "games/treetop-trebuchet/src/progress-choice.js": {
     "bytes": 3555,
-    "sha256": "e9cc1cb0d49add815d65cb0a42937bfb365ea6e0bc5e78aa5096c380b1697fca"
+    "sha256": "5bd0be5432bb8257d82396a28fb02aa23db798d1ed9d38be296cc9355a28ee0a"
   },
   "games/treetop-trebuchet/src/enemy-art.js": {
     "bytes": 4039,
     "sha256": "ca280636c26aa4b106125120de973a65078f01e0ac0247f482ec18f24cc2efc9"
   },
   "games/treetop-trebuchet/src/build-physics.js": {
-    "bytes": 36204,
-    "sha256": "f459f533f38ec57f1d92d53a9c03dbef56f18e89927fba0a005c025944fadcf8"
+    "bytes": 36010,
+    "sha256": "f3ca99eb78f460357b98bca1c933de308363b20f2a9ec6349971db45e1a11b97"
   },
   "games/treetop-trebuchet/src/grove-art.js": {
     "bytes": 15088,
-    "sha256": "7d4c81d1de776ba491c04dcdfc46086e6a441c7bb613e9339bfda2c601941ab6"
+    "sha256": "2e96f16e6d2cffcd5c295dec727f33a0f42edd80ca47f5a4dab05cb867d1c47a"
   },
   "games/treetop-trebuchet/src/audio.js": {
     "bytes": 11187,
@@ -597,11 +601,11 @@
   },
   "games/treetop-trebuchet/src/grove-proportioned.js": {
     "bytes": 15361,
-    "sha256": "59bf5fef8a1f9531077db5aa4f62a3195747347f96077640d2454f11cd7c70c8"
+    "sha256": "5265b4fb6ec8b3144d707bc83e770e3752d8795664a1bc50badd5093ce8510af"
   },
   "games/treetop-trebuchet/src/grove-backdrop.js": {
     "bytes": 9452,
-    "sha256": "6822a4bcf0d608a7d7cc33d5f2740063390a6b9d1f1f2417c262914809c3fb7d"
+    "sha256": "234ed9fa432e02d1f7f4530f8586b9fa8d906fef5b6bc1528b76268e0d866910"
   },
   "games/treetop-trebuchet/src/grove-material-art.js": {
     "bytes": 10895,
@@ -609,11 +613,11 @@
   },
   "games/treetop-trebuchet/src/grove-map.js": {
     "bytes": 20697,
-    "sha256": "6a952f6cadebf9ad783215e77038336fe4fd7471c567be2647fee2ef6f9ff6ec"
+    "sha256": "1d881a7a31f48594dc71409ff18216257feabb4c93f2627606e24c5e05d3ab1f"
   },
   "games/treetop-trebuchet/src/encounter-body.js": {
     "bytes": 1471,
-    "sha256": "827a626fbfce48a6724802cfb367effa06c87de3487aa431926c3aa09695c468"
+    "sha256": "efc4670b822d4103eb8a39328789633ad1d61cb4fa43d7c92bb3694a1ab0ffb5"
   },
   "games/treetop-trebuchet/src/fixed-obstacles.js": {
     "bytes": 1627,
@@ -621,11 +625,11 @@
   },
   "games/treetop-trebuchet/src/encounters.js": {
     "bytes": 10480,
-    "sha256": "87dec128310a2895e54151a966d17abf4aba18a14e54454912b1bc9df0c28397"
+    "sha256": "8e7ef474d327235541878912bd679c59f6136bac5afbdbab82019bc49b73305c"
   },
   "games/treetop-trebuchet/src/lab.js": {
     "bytes": 33269,
-    "sha256": "32847037d2c8d7f3cad9b1d7a8cab9abdac9426a12d42efdff13ab7976c834e7"
+    "sha256": "41164f57b053dba8e0ecf09d5bc1b0089db14044643842e6386e25e47c2710b5"
   },
   "games/treetop-trebuchet/src/pickup.js": {
     "bytes": 657,
@@ -633,7 +637,7 @@
   },
   "games/treetop-trebuchet/src/crank-wheel.js": {
     "bytes": 5311,
-    "sha256": "6f46c55b0f285e5a46870a2c36793070f7f5e96d9333fec9213e6f3831bd4322"
+    "sha256": "e7a7e3e915fd22d4970b070aeb410a2595f994b20e26586b70958531a32b0ce0"
   },
   "games/treetop-trebuchet/src/grove-botanical-art.js": {
     "bytes": 3820,
@@ -641,11 +645,11 @@
   },
   "games/treetop-trebuchet/src/species-art.js": {
     "bytes": 5236,
-    "sha256": "efe649431d3020ee8423adda7552d56e6fb0b05769811966820282758779c425"
+    "sha256": "bfe51864bc326d215bc7340c213e867eb706c0a5106b193736388c1342a4f8d7"
   },
   "games/treetop-trebuchet/src/grove-editor-tools.js": {
     "bytes": 3608,
-    "sha256": "9c240f19ded07a21683373ef24f3f6d5e6631fe14af25c80cbb045b41deae485"
+    "sha256": "978d15411975e69941d63bf3dae40e8bb3b3969463c90c58c29d07b4f84f503a"
   },
   "games/treetop-trebuchet/src/staging.js": {
     "bytes": 2003,
@@ -653,11 +657,11 @@
   },
   "games/treetop-trebuchet/src/weapon-hud.js": {
     "bytes": 4703,
-    "sha256": "bd6408288bf04231f7f036b1e523fb7f7d1e123fb640bd1312bb78583060b30c"
+    "sha256": "7848c0591881c22334bfc52c9fa3146ea71a9a1576e4c68331cb890899db8326"
   },
   "games/treetop-trebuchet/src/impact-feedback.js": {
     "bytes": 3769,
-    "sha256": "9886763487f96d48dc42d292713aecaea376bd7a94104d0c5c961942d2ec5d16"
+    "sha256": "319d6d269b74a5e37cc77cdaa534ca36144e6ef5251037df01b8ca3033ad6d39"
   },
   "games/treetop-trebuchet/src/map-document.js": {
     "bytes": 3773,
@@ -669,7 +673,7 @@
   },
   "games/treetop-trebuchet/src/space-policy.js": {
     "bytes": 3944,
-    "sha256": "3338e808da994dd3b060f331f7864f867183d47f5787053a79e3c94936f1411b"
+    "sha256": "2ae0598171e7265acefcd4c1a7c2b0b302a7453409075bb927dff15e2c5e7e27"
   },
   "games/treetop-trebuchet/src/pause-menu.js": {
     "bytes": 1439,
@@ -685,7 +689,7 @@
   },
   "games/treetop-trebuchet/src/loading-coach.js": {
     "bytes": 2931,
-    "sha256": "7a48d439fd0b76131cf804aea9ead7aeff387ad817412bfb520129e7fabd0197"
+    "sha256": "aa19f656beee7a6e4cc4f130b82526bd72b05b70890cd8361a81fab36d6094ef"
   },
   "games/treetop-trebuchet/src/view-recovery.js": {
     "bytes": 738,
@@ -701,11 +705,11 @@
   },
   "games/treetop-trebuchet/src/prediction.js": {
     "bytes": 3066,
-    "sha256": "7723e437cd6b1ee10fb6a7bc998c4881a9b64e58a0a4fd36dc69675b4d8770c5"
+    "sha256": "0b677b9488f315ba9d768ff7f2743c6eb3b9da0d15e5fba6c861b880a59ba85c"
   },
   "games/treetop-trebuchet/src/scale-builds.js": {
     "bytes": 4310,
-    "sha256": "a49e3d0e0e30d33afae8dd79f5dce0ab3cc8ec60611054c2fa00e0e87a8866fc"
+    "sha256": "abdd407655e00e781e33d99090ef8dd4cacf525d1e5b71d8f851adacf66ca19f"
   },
   "games/treetop-trebuchet/src/surface-art.js": {
     "bytes": 1230,
@@ -713,7 +717,7 @@
   },
   "games/treetop-trebuchet/src/landing-view.js": {
     "bytes": 2828,
-    "sha256": "1d7fa8e563192734bf91bd6fd9dae5331e154d6cc60ee62694471fa666f6170b"
+    "sha256": "a5161a9f0508db801697614b3dee665d16eba823ea0a1c54556fb6788624659a"
   },
   "games/treetop-trebuchet/src/pedestal-cues.js": {
     "bytes": 656,
@@ -721,23 +725,23 @@
   },
   "games/treetop-trebuchet/src/terrain-cues.js": {
     "bytes": 1169,
-    "sha256": "13663745c15c4198cd08a74204042124b2fd0241ff0e37c4b16a9b074dc06950"
+    "sha256": "7f09a26eee53842590e119740192094b419634947d689f1737fe1ec54bdeec9b"
   },
   "games/treetop-trebuchet/src/critter-door.js": {
     "bytes": 2721,
-    "sha256": "7c416a1f0ec7b0068c42035fe513302c9706967ba8a5328ed5bfef66c884c8f4"
+    "sha256": "ab99849b5a2440c64e9621e71dd6049811e33ac56dd7f37fa41bbc3619d2ddb8"
   },
   "games/treetop-trebuchet/src/capacity-controls.js": {
     "bytes": 4468,
-    "sha256": "c6b7fcb5065ae98c178e80705e2af7b8e7230a671007ecca80496f0f6505091d"
+    "sha256": "6d319ad3bfbe472e6338c2ee098a888353a74a1b297ba94f6360dfbdf33882b2"
   },
   "games/treetop-trebuchet/src/build-shop.js": {
     "bytes": 9354,
-    "sha256": "0b00a965229151a97291ddea7cfa0d76bb5ea5afd69abc3fc11dc93e18b2735c"
+    "sha256": "d78792a0a731d74c9c4467c85625d061ac208fd521d642dc2746d23a833522b5"
   },
   "games/treetop-trebuchet/src/map-link-codec.js": {
     "bytes": 3280,
-    "sha256": "5c2fcb119c347d3bd008153f691b1b43da13e913f61382ddc9f64941306c5960"
+    "sha256": "78cf8abdc0435a1910325d32785a3934f0c4be8479ad6fcea0b4feac5bb389b3"
   },
   "games/treetop-trebuchet/src/landing-cue-art.js": {
     "bytes": 3013,
@@ -749,11 +753,11 @@
   },
   "games/treetop-trebuchet/src/world-session.js": {
     "bytes": 2232,
-    "sha256": "e558a3142fb49e8f68edba85ba0502f863c8d7140cbba4974d582b72a7f55765"
+    "sha256": "db613ce42afd01259ab96b661d034fcee64996714cab96e3ba2505215bdfd88a"
   },
   "games/treetop-trebuchet/src/rope.js": {
     "bytes": 8092,
-    "sha256": "644ebcec86365d73b49fb89c8242d0069a9ee88e6960ac094a5916a7ebcfec04"
+    "sha256": "51a98c792a5f94d7f42544cd258a34221748807e2aea1e0d2a9209d9b69e0304"
   },
   "games/treetop-trebuchet/src/input.js": {
     "bytes": 2952,
@@ -761,7 +765,7 @@
   },
   "games/treetop-trebuchet/src/shop-comparison.js": {
     "bytes": 1474,
-    "sha256": "2aa8ba9178f9a9df43028012050deacc51c0a80a3bc44ab362ed07f5a52257b8"
+    "sha256": "93f998f1bb75b20980c144c72b9da59cc58ff0838d99739f3d6f04648f414425"
   },
   "games/treetop-trebuchet/src/hold-control.js": {
     "bytes": 516,
@@ -769,7 +773,7 @@
   },
   "games/treetop-trebuchet/src/progress-coordination.js": {
     "bytes": 2109,
-    "sha256": "926d307c6d9ed2df93cac909bfd9f00477ff0bd8750122d403711e7d65ea5958"
+    "sha256": "098a327de333d5827b7d48a3b10295e31685df5c8e7015c63e9b57342401a86d"
   },
   "games/treetop-trebuchet/src/journey.js": {
     "bytes": 1714,

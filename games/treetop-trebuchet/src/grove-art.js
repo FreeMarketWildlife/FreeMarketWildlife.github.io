@@ -1,13 +1,13 @@
-import {encounterPose,drawWoodlandCreature} from './woodland-encounters.js?v=66';
-import {drawJungleFoliage} from './forest-depth-art.js?v=66';
-import {drawOakCanopy} from './oak-canopy-art.js?v=66';
-import {drawBotanicalBumper} from './grove-botanical-art.js?v=66';
-import {drawMaterialPolygon,GROVE_MATERIALS} from './grove-material-art.js?v=66';
-import {ordinaryLeafHalfLength} from './grove-nature.js?v=66';
-import {drawForestForeground} from './grove-jungle-art.js?v=66';
-import {drawGroveBackdrop} from './grove-backdrop.js?v=66';
-import {pointInPolygon} from './grove-geometry.js?v=66';
-import {enemyRecipe} from './grove-map.js?v=66';
+import {encounterPose,drawWoodlandCreature} from './woodland-encounters.js?v=70';
+import {drawJungleFoliage} from './forest-depth-art.js?v=70';
+import {drawOakCanopy} from './oak-canopy-art.js?v=70';
+import {drawBotanicalBumper} from './grove-botanical-art.js?v=70';
+import {drawMaterialPolygon,GROVE_MATERIALS} from './grove-material-art.js?v=70';
+import {ordinaryLeafHalfLength} from './grove-nature.js?v=70';
+import {drawForestForeground} from './grove-jungle-art.js?v=70';
+import {drawGroveBackdrop} from './grove-backdrop.js?v=70';
+import {pointInPolygon} from './grove-geometry.js?v=70';
+import {enemyRecipe} from './grove-map.js?v=70';
 // Shared world art for the editor and live game. All scenery uses the same
 // metre-to-pixel transform; distant layers alone use deliberate parallax.
 const TAU=Math.PI*2,INK='#302d2b';

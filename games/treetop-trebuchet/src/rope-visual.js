@@ -1,7 +1,7 @@
 /** A gravity-draped, inextensible display strand. The solver's unilateral rope
  * joint supplies actual tension; this lightweight Verlet strand only renders
  * slack, settling and the free release tail. It adds no forces to the throw. */
-import {GRAVITY} from './build-physics.js?v=66';
+import {GRAVITY} from './build-physics.js?v=70';
 export class RopeVisual {
  constructor(count=18){this.count=count;this.points=[];}
  reset(a,b,length){

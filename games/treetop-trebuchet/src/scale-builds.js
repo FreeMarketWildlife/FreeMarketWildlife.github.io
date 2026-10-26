@@ -1,4 +1,4 @@
-import {STARTER,SIXTY_CM_STARTER,SLOTS,part,validateBuild,buildFacts,scaledPreset} from './build-catalog.js?v=66';
+import {STARTER,SIXTY_CM_STARTER,SLOTS,part,validateBuild,buildFacts,scaledPreset} from './build-catalog.js?v=70';
 
 // Optional named recipes, never a starter migration or a purchase. Every value
 // is real solver geometry/mass; comparison views must use one shared scale.

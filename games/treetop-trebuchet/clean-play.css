@@ -23,3 +23,5 @@
 @media(max-width:600px){.space-escaped .result-card{max-width:calc(100% - 76px);left:12px;transform:translateY(-50%)}.space-escaped #resultNumbers{font-size:20px}.space-escaped .result-card h2{font-size:27px}.space-escaped #resultNote{font-size:13px;line-height:1.4}}
 
 .space-escaped #resultNote{color:#486149}.space-escaped #collect,.space-escaped #collectShop{min-height:44px}
+
+.failure-stamp{position:absolute;z-index:12;top:18%;left:50%;transform:translateX(-50%) rotate(-12deg);padding:8px 22px;border:8px double #a62b25;border-radius:10px;background:#fff1d5eb;color:#a62b25;font:900 clamp(42px,8vw,94px)/1.05 "Trebuchet MS",sans-serif;letter-spacing:.07em;text-shadow:2px 2px #f4c194;box-shadow:0 6px 18px #38291f55;pointer-events:none;animation:fail-stamp-in .25s ease-out}.failure-stamp[hidden]{display:none}@keyframes fail-stamp-in{from{opacity:0;transform:translateX(-50%) rotate(-17deg) scale(1.4)}to{opacity:1;transform:translateX(-50%) rotate(-12deg) scale(1)}}@media(prefers-reduced-motion:reduce){.failure-stamp{animation:none}}

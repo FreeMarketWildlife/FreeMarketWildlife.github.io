@@ -1,14 +1,13 @@
-import {encounterPose} from './woodland-encounters.js?v=66';
-import {GUILLOTINE,isGuillotine,bladeHeight} from './guillotine.js?v=66';
-import {escapeAltitude,spaceWorldDescriptor,spaceCrossingFraction,validateSpaceEscape} from './space-policy.js?v=66';
-import {windingMotion} from './winding-comfort.js?v=66';
-import {recipeDrawMinimum} from './scale-builds.js?v=66';
-import {addCritterFixtures} from './critter-body.js?v=66';
-import {createEnvironmentIndex,isEnvironment} from './grove-environment.js?v=66';
+import {encounterPose} from './woodland-encounters.js?v=70';
+import {GUILLOTINE,isGuillotine,bladeHeight} from './guillotine.js?v=70';
+import {escapeAltitude,spaceWorldDescriptor,spaceCrossingFraction,validateSpaceEscape} from './space-policy.js?v=70';
+import {windingMotion} from './winding-comfort.js?v=70';
+import {addCritterFixtures} from './critter-body.js?v=70';
+import {createEnvironmentIndex,isEnvironment} from './grove-environment.js?v=70';
 import * as P from '../vendor/planck/planck.mjs';
-import {validateBuild,buildFacts,part,critter,drawLimit,REST_ARM_ANGLE} from './build-catalog.js?v=66';
-import {validateGroveMap,enemyRecipe,gravityScaleAt,spaceScale} from './grove-map.js?v=66';
-import {triangulatePolygon,objectBounds} from './grove-geometry.js?v=66';
+import {validateBuild,buildFacts,part,critter,drawLimit,REST_ARM_ANGLE} from './build-catalog.js?v=70';
+import {validateGroveMap,enemyRecipe,gravityScaleAt,spaceScale} from './grove-map.js?v=70';
+import {triangulatePolygon,objectBounds} from './grove-geometry.js?v=70';
 const {Vec2,World,Box,Circle,Polygon,Edge,RevoluteJoint,RopeJoint,PrismaticJoint,GearJoint}=P;
 export const EARTH_GRAVITY=9.80665;
 export const GRAVITY=EARTH_GRAVITY*.9;
@@ -240,9 +239,9 @@ export class BuildSimulation{
   const draw=this.drawFraction??1;if(!Number.isFinite(draw)||draw<0||draw>1)return{ready:false,code:'draw-invalid',message:'Invalid winding position. Reset this experiment before launching.'};
   if(this.loading?.assisting)return{ready:false,code:'carrying',message:'Keyboard lift in progress. Let the critter drop into the basket.'};
   if(this.loading&&!this.loading.loaded)return{ready:false,code:this.loading.settling?'settling':'loading',message:this.loading.settling?'The critter is settling in the basket. Wait for support, then hold and release again.':'Load the basket and let the critter settle before winding.'};
-  const minimum=this.loading?recipeDrawMinimum(this.c):null;
-  if(minimum!==null&&draw+1e-9<minimum)return{ready:false,code:'draw',minimumDraw:minimum,message:`Keep cranking to at least ${Math.round(minimum*100)}% for this setup. The ratchet keeps your current draw.`};
-  return{ready:true,code:'ready',minimumDraw:minimum};
+  // Any real draw, including zero, may unlatch. Support and finite state
+  // remain required; gravitational geometry decides the outcome.
+  return{ready:true,code:'ready',minimumDraw:0};
  }
  fire(){
   if(!this.preparationStatus().ready)return false;

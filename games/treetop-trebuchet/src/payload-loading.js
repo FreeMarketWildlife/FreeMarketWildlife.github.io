@@ -1,9 +1,9 @@
-import {pedestalCues} from './pedestal-cues.js?v=66';
-import {loadingStand} from './launch-staging.js?v=66';
-import {critterBodyProfile} from './critter-body.js?v=66';
+import {pedestalCues} from './pedestal-cues.js?v=70';
+import {loadingStand} from './launch-staging.js?v=70';
+import {critterBodyProfile} from './critter-body.js?v=70';
 import {World,Vec2,Box,Edge,RevoluteJoint,MouseJoint} from '../vendor/planck/planck.mjs';
-import {LOADING_LINEAR_DAMPING} from './winding-comfort.js?v=66';
-import {GRAVITY} from './build-physics.js?v=66';
+import {LOADING_LINEAR_DAMPING} from './winding-comfort.js?v=70';
+import {GRAVITY} from './build-physics.js?v=70';
 /** Jointed preparation bodies remain free on real basket contacts, including
  * after a successful drop and while winding. `loaded` only observes support;
  * it never welds, centers, replaces or freezes the ragdoll. */

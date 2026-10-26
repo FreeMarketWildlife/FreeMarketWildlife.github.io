@@ -1,4 +1,4 @@
-import {biomeAt} from './journey.js?v=66-trebuchet';
+import {biomeAt} from './journey.js?v=70-trebuchet';
 // Original passive encounter recipes. Values are gameplay tuning, not biology.
 // Descriptors are observations of a seeded world schedule; no terrain is changed.
 export const encounterPools = Object.freeze({

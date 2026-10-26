@@ -1,5 +1,5 @@
-import {escapeAltitude} from './space-policy.js?v=66';
-import {mapLevels,gravityScaleAt} from './grove-map.js?v=66';
+import {escapeAltitude} from './space-policy.js?v=70';
+import {mapLevels,gravityScaleAt} from './grove-map.js?v=70';
 
 const clamp=(v,lo,hi)=>Math.max(lo,Math.min(hi,v));
 const metres=v=>`${Math.abs(v)>=1e7?v.toExponential(1):Math.round(v).toLocaleString('en-US')} m`;

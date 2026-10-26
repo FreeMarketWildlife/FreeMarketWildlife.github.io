@@ -1,5 +1,5 @@
-import {mapLevels,spaceScale} from './grove-map.js?v=66';
-import {critter} from './build-catalog.js?v=66';
+import {mapLevels,spaceScale} from './grove-map.js?v=70';
+import {critter} from './build-catalog.js?v=70';
 
 const finite=(value,low,high)=>Number.isFinite(value)&&value>=low&&value<=high;
 /** Enough world context to validate a completed run after an editor-map change.

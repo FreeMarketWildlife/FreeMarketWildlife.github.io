@@ -1,8 +1,8 @@
-import {validateQueue} from './critter-queue.js?v=66';
-import {DOORS,availableCritters,critterHeight} from './critter-door.js?v=66';
-import {PARTS,CRITTERS,STARTER,SIXTY_CM_STARTER,COMPACT_STARTER,PREVIOUS_STARTER,LEGACY_STARTER,STARTER_PARTS,STARTER_ANIMALS,SLOTS,part,critter,validateBuild,equipmentOwned} from './build-catalog.js?v=66';
-import {VOUCHERS,validateShop} from './build-shop.js?v=66';
-import {validateSpaceEscape} from './space-policy.js?v=66';
+import {validateQueue} from './critter-queue.js?v=70';
+import {DOORS,availableCritters,critterHeight} from './critter-door.js?v=70';
+import {PARTS,CRITTERS,STARTER,SIXTY_CM_STARTER,COMPACT_STARTER,PREVIOUS_STARTER,LEGACY_STARTER,STARTER_PARTS,STARTER_ANIMALS,SLOTS,part,critter,validateBuild,equipmentOwned} from './build-catalog.js?v=70';
+import {VOUCHERS,validateShop} from './build-shop.js?v=70';
+import {validateSpaceEscape} from './space-policy.js?v=70';
 export const SAVE_KEY='treetop-custom-workshop-v1';
 export function newProgress(){return{version:1,creatureQueue:null,doorTier:0,doorUpgradeRound:-1,saveRevision:0,starterRevision:7,vouchers:[],shop:null,bells:0,points:0,best:0,launches:0,owned:[...STARTER_PARTS],animals:[...STARTER_ANIMALS],build:{...STARTER},blueprints:[],history:[],claimed:[],achievements:[],pendingSpace:null};}
 export function canBuild(state,build,creative=false){validateBuild(build);if(creative)return true;if(build.wind!==0||build.drag!==1)throw Error('Adventure uses calm air with air resistance. Reset Creative atmosphere settings first.');for(const[slot]of SLOTS)if(!equipmentOwned(state.owned,build[slot]))throw Error(`Buy ${part(build[slot]).name} first.`);if(!availableCritters(state).includes(build.animal))throw Error('Upgrade the tree door to let this critter through.');return true;}

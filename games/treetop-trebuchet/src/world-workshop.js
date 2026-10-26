@@ -9,12 +9,12 @@ export function installWorldWorkshop({author=false,world,onEnterEdit,onReturnToP
   if(editor)return editor;
   if(!loading)loading=(async()=>{
    if(loadEditor){editor=await loadEditor({world,onPlay:()=>setMode('play'),isActive:()=>mode==='edit',qa,getDoor,getBuild,getRigOrigin,manageLocation:false,onAdoptMap});await editor.ready;return editor;}
-   const htmlUrl=new URL('editor.html',windowRef.location.href),cssUrl=new URL('editor.css?v=66',windowRef.location.href),[htmlResponse,cssResponse]=await Promise.all([fetchFile(htmlUrl),fetchFile(cssUrl)]);
+   const htmlUrl=new URL('editor.html',windowRef.location.href),cssUrl=new URL('editor.css?v=70',windowRef.location.href),[htmlResponse,cssResponse]=await Promise.all([fetchFile(htmlUrl),fetchFile(cssUrl)]);
    if(!htmlResponse.ok||!cssResponse.ok)throw Error('The map tools could not load. Your world and game are unchanged.');
    const [html,css]=await Promise.all([htmlResponse.text(),cssResponse.text()]),template=new DOMParser().parseFromString(html,'text/html'),shadow=host.shadowRoot??host.attachShadow({mode:'open'}),style=documentRef.createElement('style');
    style.textContent=css.replaceAll(':root',':host').replace(/\bbody\.shared\b/g,':host(.shared)').replace(/\bbody\b/g,':host')+'\n:host{position:fixed;inset:0;z-index:50;display:block}:host([hidden]){display:none!important}.inspector-bottom{padding-bottom:45px}';
    template.querySelectorAll('script,#playOverlay').forEach(n=>n.remove());shadow.replaceChildren(style,...[...template.body.childNodes].map(n=>documentRef.importNode(n,true)));
-   const {mountMapEditor}=await import('./map-editor.js?v=66');
+   const {mountMapEditor}=await import('./map-editor.js?v=70');
    editor=mountMapEditor({root:shadow,world,onPlay:()=>setMode('play'),isActive:()=>mode==='edit',qa,getDoor,getBuild,getRigOrigin,manageLocation:false,onAdoptMap});await editor.ready;return editor;
   })().catch(error=>{loading=null;editor=null;throw error;});
   return loading;

@@ -1,5 +1,5 @@
-import {drawLeafVolume} from './oak-canopy-art.js?v=66';
-import {foliageClump,fern,liana} from './grove-nature.js?v=66';
+import {drawLeafVolume} from './oak-canopy-art.js?v=70';
+import {foliageClump,fern,liana} from './grove-nature.js?v=70';
 const TAU=Math.PI*2,clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 const noise=n=>{const q=Math.sin(n*127.1+311.7)*43758.5453;return q-Math.floor(q);};
 /** The forest interior is opaque below 25 m at every horizontal coordinate.
