@@ -6,10 +6,10 @@ assert(matchesTutorial(' YouTube   STATS ','YouTube stats access'));
 assert(matchesTutorial('viewer permissions','YouTube permissions Viewer limited'));
 assert(!matchesTutorial('youtube billing','YouTube stats access'));
 assert(matchesTutorial('','YouTube stats access'));
-const {inviteEmail,steps}=await load('assets/js/youtube-access-tutorial.js');
+const {inviteEmail,steps,roles}=await load('assets/js/youtube-access-tutorial.js');
 assert.equal(inviteEmail,'freemarketwildlife@gmail.com');assert.equal(steps.length,7);
 const page=readFileSync('tutorials/youtube-stats-access/index.html','utf8');
-assert.match(page,/Editor \(Limited\)/);assert.match(page,/<noscript>/);assert.match(page,/COPY EMAIL/);assert(!page.includes('Open YouTube Studio'));assert(!page.includes('Click here'));
+assert.match(page,/<h1>YouTube Studio Access<\/h1>/);assert.match(page,/<noscript>/);assert.match(page,/Copy email/);assert(!page.includes('Open YouTube Studio'));assert(!page.includes('Click here'));
 assert(!page.includes('therealdragex'));assert(!page.includes('type="password"'));assert(!page.includes('<form'));
 const script=readFileSync('assets/js/youtube-access-tutorial.js','utf8');assert(!/fetch\(|localStorage|sessionStorage/.test(script),'Walkthrough must not submit or store client data');
 assert.match(readFileSync('.github/workflows/pages.yml','utf8'),/privacy tutorials _site/);
@@ -23,8 +23,20 @@ assert(!script.includes("demo.addEventListener('click'"));
 assert.match(script,/prefers-reduced-motion/);
 
 assert.equal(steps[4][0],'Click Access');
-assert.equal(steps[5][0],'Choose Editor (Limited)');
+assert.equal(steps[5][0],'Choose the agreed role');
 assert.equal(steps[6][0],'Review and send');
-assert.match(page,/All done\./);
+assert.match(page,/Guide complete\./);
 
 for(const path of ['index.html','account/index.html','blog/index.html','build-a-business/index.html','contact/index.html','privacy/index.html']) assert(!readFileSync(path,'utf8').includes('href="/tutorials/"'),'Tutorial entry is workspace-only');
+
+assert.deepEqual(roles.map(r=>r.name),['Owner','Manager','Editor','Editor (Limited)','Viewer','Viewer (Limited)','Subtitle Editor']);
+assert.match(roles.find(r=>r.name==='Editor (Limited)').summary,/Editing, uploads and publishing/);
+assert.match(roles.find(r=>r.name==='Viewer (Limited)').summary,/no content editing/);
+assert.match(page,/Limited hides revenue; it does not mean read-only/);
+assert.match(page,/<option value="">Choose a role/);
+assert(!page.includes('selected>Editor'));
+assert.match(page,/9481328/);assert.match(page,/9367690/);
+assert.match(readFileSync('tutorials/index.html','utf8'),/<h2>YouTube Studio Access<\/h2>/);
+assert.match(readFileSync('troykearns/connect/index.html','utf8'),/title="YouTube Studio Access walkthrough"/);
+assert(!/wrong-role|let selectedRole='Editor/.test(script));
+console.log('PASS: neutral role selection, all seven official role names, limited revenue versus editing distinction, generic labels, stable tutorial URL and official references.');

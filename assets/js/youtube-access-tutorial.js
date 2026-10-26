@@ -1,16 +1,32 @@
 export const inviteEmail='freemarketwildlife@gmail.com';
+// Summaries follow the official YouTube Studio channel-permissions table.
+export const roles=[
+ {name:'Owner',summary:'Full channel control, revenue and access management; may delete the channel. Cannot transfer ownership here.'},
+ {name:'Manager',summary:'Revenue, access administration and content management, including deletion; cannot delete the channel.'},
+ {name:'Editor',summary:'Revenue plus editing, uploads and publishing. Deletes drafts, not published content or the channel; no access administration.'},
+ {name:'Editor (Limited)',summary:'Editor abilities without revenue visibility. Editing, uploads and publishing are still allowed.'},
+ {name:'Viewer',summary:'Channel details and revenue without content editing; can organize Analytics groups.'},
+ {name:'Viewer (Limited)',summary:'Viewer abilities without revenue visibility; no content editing.'},
+ {name:'Subtitle Editor',summary:'Adds, edits, publishes or deletes eligible video subtitles; no revenue or other editing.'}
+];
 export const steps=[
- ['Open Settings','In YouTube Studio, check that you’re on the correct channel. Click Settings at the bottom left.'],
- ['Choose Permissions','In the Settings menu, click Permissions.'],
- ['Click Invite','Look for Invite at the top right of the Permissions panel.'],
- ['Enter our email','Enter freemarketwildlife@gmail.com in the Email field.'],
- ['Click Access','After entering the email in YouTube Studio, click the Access drop-down.'],
- ['Choose Editor (Limited)','Select Editor (Limited). Phil can upload, publish, edit content, comment and view non-revenue analytics. He cannot delete the channel or published content, manage permissions or see revenue. He can delete drafts.'],
- ['Review and send','Check the email and Editor (Limited) role, then click Done. If Settings shows an available Save button, click Save too.']
+ ['Open Settings','In YouTube Studio on a computer, open Settings.'],
+ ['Choose Permissions','Open Permissions in Settings.'],
+ ['Click Invite','Choose INVITE.'],
+ ['Enter the email','Enter freemarketwildlife@gmail.com in the Email field.'],
+ ['Click Access','Open the Access menu.'],
+ ['Choose the agreed role','Compare the roles, then select the access needed for the work you agreed on.'],
+ ['Review and send','Confirm the email and agreed role, then choose DONE in YouTube Studio. Invitations expire after 30 days.']
 ];
 if(typeof document!=='undefined'){
  const $=s=>document.querySelector(s);let index=0,typingTimer;
  const demo=$('#studio-demo'),status=$('#guide-status');
+ let selectedRole='';
+ const roleSelect=$('#guide-role'),roleDialog=$('#roles-dialog');
+ for(const role of roles){const option=document.createElement('option');option.value=role.name;option.textContent=role.name;roleSelect.append(option);const term=document.createElement('dt');term.textContent=role.name;const description=document.createElement('dd');description.textContent=role.summary;$('#role-reference').append(term,description);}
+ roleSelect.addEventListener('change',()=>{selectedRole=roleSelect.value;$('#role-summary').textContent=roles.find(r=>r.name===selectedRole)?.summary||'Choose a role to preview it in the guide.';render();});
+ $('#compare-roles').addEventListener('click',()=>roleDialog.showModal());
+ $('#close-roles').addEventListener('click',()=>roleDialog.close());
  const reducedMotion=matchMedia('(prefers-reduced-motion: reduce)');
  demo.inert=true;
  function button(label,action,cls=''){const b=document.createElement('button');b.type='button';b.textContent=label;b.className=cls;b.tabIndex=-1;return b;}
@@ -32,8 +48,8 @@ if(typeof document!=='undefined'){
      const invite=document.createElement('div');invite.className='invite-popover';invite.innerHTML=`<div class="studio-field ${index===3?'hotspot':''}"><span>Email</span><span id="demo-email" class="demo-email">${inviteEmail}</span></div><span class="studio-hint">Enter an email address</span><div class="access-target"></div><p class="invite-notice">You are responsible for the actions of people you give channel access to. Channel access includes private videos and playlists. Invitations expire after 30 days.</p><div class="done-target"></div>`;
      panel.append(invite);
      if(index===3 && !reducedMotion.matches){let letters=0;const email=invite.querySelector('#demo-email');email.textContent='';const type=()=>{email.textContent=inviteEmail.slice(0,++letters);if(letters<inviteEmail.length)typingTimer=setTimeout(type,45);};typingTimer=setTimeout(type,300);}
-     const access=button(index===6?'Editor (Limited)  ⌄':'Access  ⌄',index===4?'access':null,'access-button '+(index===4?'hotspot':''));access.setAttribute('aria-expanded',String(index===5));invite.querySelector('.access-target').append(access);
-     if(index===5){const menu=document.createElement('div');menu.className='roles-menu';menu.setAttribute('aria-label','Access roles');for(const [name,description] of [['Manager','Can edit and manage permissions.'],['Editor','Can edit channel content.'],['Editor (Limited)','Can upload, publish and edit; no revenue access.'],['Subtitle editor','Can edit subtitles.'],['Viewer','Can view, including revenue.'],['Viewer (limited)','Can view, except revenue. Cannot edit.']]){const option=button('',name==='Editor (Limited)'?'advance':'wrong-role',name==='Editor (Limited)'?'role-option hotspot':'role-option');const title=document.createElement('strong');title.textContent=name;const detail=document.createElement('span');detail.textContent=description;option.append(title,detail);menu.append(option);}invite.append(menu);}
+     const access=button(index===6?(selectedRole||'Your agreed role')+'  ⌄':'Access  ⌄',index===4?'access':null,'access-button '+(index===4?'hotspot':''));access.setAttribute('aria-expanded',String(index===5));invite.querySelector('.access-target').append(access);
+     if(index===5){const menu=document.createElement('div');menu.className='roles-menu';menu.setAttribute('aria-label','Access roles');for(const {name} of roles){const option=button(name,null,name===selectedRole?'role-option hotspot':'role-option');menu.append(option);}invite.append(menu);}
      const done=button('Done',null,'studio-pill '+(index===6?'hotspot':''));invite.querySelector('.done-target').append(done);
     }
 
