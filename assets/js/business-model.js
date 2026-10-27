@@ -38,6 +38,7 @@ export function allLabels(nodes){return nodes.flatMap(n=>[n.label,...allLabels(n
 // Generated from the repository-native, reviewed catalog; see docs/business-catalog-contract.md.
 export {BUSINESSES} from './business-catalog.js';
 import {BUSINESSES} from './business-catalog.js';
+import {STARTERS} from './business-starters.js';
 export function cleanSelections(values){
  if(!Array.isArray(values))return [];
  return [...new Set(values.filter(v=>typeof v==='string').map(v=>v.trim().replace(/\s+/g,' ')).filter(v=>v && v.length<=60 && !/[\x00-\x1f\x7f]/.test(v)))].slice(0,LIMIT);
@@ -50,6 +51,7 @@ const exact=(answers,allowed)=>answers.filter(label=>allowed.includes(label));
 export function recommend(skills,interests){
  skills=cleanSelections(skills).filter(v=>knownSkills.has(v));
  interests=cleanSelections(interests).filter(v=>knownInterests.has(v));
+ if(!skills.length||!interests.length)return [];
  const eligible=BUSINESSES.flatMap(b=>{
   const skillMatches=exact(skills,b.skills),interestMatches=exact(interests,b.interests);
   if(!skillMatches.length||!interestMatches.length)return [];
@@ -59,7 +61,7 @@ export function recommend(skills,interests){
   const score=Math.max(...skillMatches.map(v=>skillDepth.get(v))) * 4
    +Math.max(...matchedInterests.map(v=>interestDepth.get(v))) * 3
    +Math.min(skillMatches.length,3)+Math.min(matchedInterests.length,3);
-  return [{...b,skillMatches:skillMatches.sort(),interestMatches:matchedInterests,score}];
+  return [{...b,matchKind:'direct',skillMatches:skillMatches.sort(),interestMatches:matchedInterests,score}];
  }).sort((a,b)=>b.score-a.score||a.id.localeCompare(b.id,'en'));
  const selected=[];
  while(selected.length<3&&eligible.length){
@@ -68,5 +70,15 @@ export function recommend(skills,interests){
   const index=eligible.findIndex(b=>b.score>=floor&&!selected.some(s=>s.family===b.family));
   selected.push(eligible.splice(index<0?0:index,1)[0]);
  }
- return selected;
+ if(selected.length)return selected;
+ // A valid completed selection always gets one actionable starting point.
+ // It fits a reported skill, not an invented interest. Hard topic clauses still
+ // apply; in particular a walking service never bypasses Dogs AND Walking.
+ const starters=[...BUSINESSES,...STARTERS].flatMap(b=>{
+  const skillMatches=exact(skills,b.skills);
+  if(!skillMatches.length||(b.allInterests||[]).some(group=>!exact(interests,group).length))return [];
+  const score=Math.max(...skillMatches.map(v=>skillDepth.get(v)))*4+Math.min(skillMatches.length,3);
+  return [{...b,id:'starter-'+b.id,sourceId:b.id,matchKind:'starter',skillMatches:skillMatches.sort(),interestMatches:[],exploringInterests:[...interests].sort(),score}];
+ }).sort((a,b)=>b.score-a.score||a.id.localeCompare(b.id,'en'));
+ return starters.slice(0,1);
 }

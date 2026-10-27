@@ -26,6 +26,12 @@ export function stepBodies(bodies,width,height,dt,field=null){
  return collisions;
 }
 export function forceField(width,height){return {x:width/2,y:height/2,r:Math.min(48,width*.1,height*.14)};}
+export function bubbleLayout(width,height,interests=false){
+ const radius=Math.min(width<650?38:50,Math.max(26,(height-10)/2));
+ const columns=Math.max(1,Math.floor((width+5)/(radius*2+5))),rows=Math.max(1,Math.floor((height+5)/(radius*2+5)));
+ const capacity=Math.max(1,columns*rows-(interests?Math.min(2,columns-1):0));
+ return {radius,count:Math.min(width>=1000?15:width>=650?12:6,capacity)};
+}
 export function shipPose(width,height,pointer={x:width/2,y:height/2}){
  const x=width/2,y=height/2,angle=Math.atan2(pointer.y-y,pointer.x-x);
  return {x,y,angle,muzzle:{x:x+Math.cos(angle)*24,y:y+Math.sin(angle)*24}};
@@ -54,7 +60,7 @@ export class BusinessScene {
   for(const b of this.bodies){const oldR=b.r;b.r=this.radius(b.node);b.x=Math.max(b.r,Math.min(this.width-b.r,b.x*this.width/oldW));b.y=Math.max(b.r,Math.min(this.height-b.r,b.y*this.height/oldH));if(oldR!==b.r)this.size(b);}
   stepBodies(this.bodies,this.width,this.height,0,this.interests?forceField(this.width,this.height):null);this.draw();this.place();
  }
- radius(node){return Math.min(this.width<650?42:62,Math.max(28,this.height/6));}
+ radius(node){return bubbleLayout(this.width,this.height,this.interests).radius;}
  size(b){b.element.style.width=b.r*2+'px';b.element.style.height=b.r*2+'px';}
  sync(nodes,origin){
   const labels=new Set(nodes.map(n=>n.label));for(const b of this.bodies)if(!labels.has(b.node.label))b.element.remove();this.bodies=this.bodies.filter(b=>labels.has(b.node.label));

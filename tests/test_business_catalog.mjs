@@ -17,11 +17,13 @@ test('all dog-walking boolean/missing combinations require dogs AND walking',()=
  }
  for(const b of dogWalkers){assert.ok(exactEligible(b,['Dog walking'],['Dogs','Walking dogs']),b.id);}
 });
-test('unrelated, unknown and parent-only answers never fabricate eligibility',()=>{
+test('unknown inputs fail closed and skill-first suggestions never fabricate interest eligibility',()=>{
  assert.deepEqual(recommend([],[]),[]);assert.deepEqual(recommend(['unknown talent'],['unknown passion']),[]);
  for(const [s,i] of [[['Writing'],['Gardens']],[['Writing'],['Outdoors']],[['Writing'],['Growing food']],[['Writing'],['Music']],[['Caring for animals'],['Outdoors']]]){
   for(const b of recommend(s,i)){
-   assert.ok(exactEligible(b,s,i),b.id);assert.ok(b.skillMatches.every(v=>s.includes(v)));assert.ok(b.interestMatches.every(v=>i.includes(v)));
+   if(b.matchKind==='direct')assert.ok(exactEligible(b,s,i),b.id);
+   else {assert.equal(b.matchKind,'starter');assert.deepEqual(b.interestMatches,[]);assert.deepEqual(b.exploringInterests,[...i].sort());}
+   assert.ok(b.skillMatches.every(v=>s.includes(v)));assert.ok(b.interestMatches.every(v=>i.includes(v)));
    if(s[0]==='Writing')assert.ok(!/(cleaning service|yard cleanup|garden maintenance|landscap|website build|logo design)/i.test(b.title),b.id);
   }
  }
@@ -36,8 +38,9 @@ test('deterministic ranking, real explanation evidence, deselection and diversit
 });
 test('exhaustive single-answer coverage and eligibility audit',()=>{
  const skills=[...new Set(allLabels(SKILLS))],interests=[...new Set(allLabels(INTERESTS))];
- let zero=0,one=0,two=0,three=0;const examples=[];
+ let zero=0,one=0,two=0,three=0,starter=0;const examples=[];
  for(const s of skills)for(const i of interests){const result=recommend([s],[i]);assert.ok(result.length<=3);if(!result.length){zero++;if(examples.length<20)examples.push({skill:s,interest:i});}else if(result.length===1)one++;else if(result.length===2)two++;else three++;
- for(const b of result){assert.ok(exactEligible(b,[s],[i]),b.id);assert.deepEqual(b.skillMatches,[s]);assert.deepEqual(b.interestMatches,[i]);}}
- fs.mkdirSync('outputs/business-catalog',{recursive:true});fs.writeFileSync('outputs/business-catalog/coverage.json',JSON.stringify({skills:skills.length,interests:interests.length,pairs:skills.length*interests.length,zero,one,two,three,unmatchedExamples:examples},null,2));
+ for(const b of result){assert.deepEqual(b.skillMatches,[s]);if(b.matchKind==='direct'){assert.ok(exactEligible(b,[s],[i]),b.id);assert.deepEqual(b.interestMatches,[i]);}else{starter++;assert.equal(result.length,1);assert.deepEqual(b.interestMatches,[]);assert.deepEqual(b.exploringInterests,[i]);assert.ok((b.allInterests||[]).every(g=>g.includes(i)),b.id);}}}
+ assert.equal(zero,0,'Every valid completed single-answer selection has an actionable option');
+ fs.mkdirSync('outputs/business-catalog',{recursive:true});fs.writeFileSync('outputs/business-catalog/coverage.json',JSON.stringify({skills:skills.length,interests:interests.length,pairs:skills.length*interests.length,zero,one,two,three,starter,unmatchedExamples:examples},null,2));
 });

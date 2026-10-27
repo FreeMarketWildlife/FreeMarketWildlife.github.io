@@ -190,3 +190,38 @@
 .business-cards {align-items:stretch;}
 .business-topline nav {flex-shrink:0;}
 .business-topline nav button {white-space:nowrap;}
+
+/* More discoverable choices without shrinking labels or touch controls. */
+#business-game.game-playing {grid-template-rows:auto auto auto minmax(0,1fr) auto;gap:6px;}
+.choice-tools {display:flex;align-items:center;gap:12px;min-width:0;}
+.choice-tools .outline-button {min-height:44px;padding:10px 12px;font-size:12px;line-height:1.4;}
+.choice-count {margin-left:auto;font-size:12px;line-height:1.5;}
+.game-playing .business-topline nav {flex-wrap:wrap;}
+.game-playing .business-topline button {min-height:44px;font-size:12px;}
+.game-playing .selection-dock {min-height:76px;max-height:min(28dvh,230px);}
+.game-playing .selection-dock > div {min-width:0;}
+.game-playing .selection-list {display:flex;flex-direction:column;gap:2px;min-height:0;max-height:clamp(44px,calc(25dvh - 28px),180px);overflow-y:auto;overflow-x:hidden;padding:0;list-style:none;}
+.game-playing .selection-chip {display:flex;align-items:center;justify-content:space-between;gap:6px;font-size:12px;line-height:1.4;min-height:44px;flex-shrink:0;}
+.game-playing .selection-chip span {min-width:0;overflow-wrap:anywhere;}
+.game-playing .selection-chip button {min-width:44px;min-height:44px;line-height:1.2;flex-shrink:0;}
+.game-playing .selection-empty {min-height:44px;font-size:12px;}
+.game-playing .continue-button {min-height:clamp(48px,calc(48px + var(--growth)*6px),112px);}
+.game-playing .skill-target {font-family:Arial,sans-serif;font-weight:600;font-size:14px;line-height:1.3;padding:10px 8px;overflow-wrap:anywhere;}
+.business-cards.single-result {grid-template-columns:minmax(0,620px);justify-content:center;}
+.choice-option small {display:block;margin-top:6px;font-family:Arial,sans-serif;font-size:12px;line-height:1.4;color:#ddd;}
+.choice-option[aria-pressed=true] small {color:#000;}
+.choice-browser .quiet-button {min-width:44px;min-height:44px;font-size:12px;}
+.starter-fit {border-left:2px solid #fff;padding-left:10px;}
+@media(max-width:680px){
+ .choice-tools {gap:8px;}.choice-tools .outline-button {padding:10px 8px;font-size:12px;}
+ .choice-count {position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);}
+ .game-playing .skill-target {font-size:13px;line-height:1.25;padding:8px 2px;overflow-wrap:anywhere;}
+ .game-playing .selection-chip {font-size:12px;line-height:1.4;}
+ .game-playing .business-topline nav {gap:10px;}
+}
+@media(max-height:550px){
+ .game-playing .business-title {font-size:22px;margin:0;}
+ .game-playing .continue-button {font-size:14px;min-height:clamp(48px,calc(48px + var(--growth)*4px),80px);}
+ .game-playing .business-topline > span {display:none;}
+ .game-playing .business-topline nav {width:100%;justify-content:flex-end;}
+}

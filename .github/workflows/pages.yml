@@ -69,8 +69,9 @@ jobs:
       - name: Validate static source
         run: |
           node scripts/build_business_catalog.mjs
-          git diff --exit-code -- assets/js/business-catalog.js
+          git diff --exit-code -- assets/js/business-catalog.js assets/js/business-starters.js
           node --test tests/test_business_catalog.mjs
+          node tests/test_business_discovery.mjs
           node scripts/build_blog.mjs --check
           node scripts/build_game_hub.mjs --check
           node tests/test_home_routes.mjs

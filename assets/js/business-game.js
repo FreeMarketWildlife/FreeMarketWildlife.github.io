@@ -1,5 +1,6 @@
-import {BusinessScene} from './business-scene.js?v=5';
-import {SKILLS, INTERESTS, LIMIT, cleanSelections, recommend} from './business-model.js?v=5';
+import {BusinessScene,bubbleLayout} from './business-scene.js?v=6';
+import {SKILLS, INTERESTS, LIMIT, cleanSelections, recommend} from './business-model.js?v=6';
+import {choiceDeck,nextChoiceBatch} from './business-discovery.js';
 const root=document.querySelector('#business-game');
 const KEY='fmw-business-adventure-v1';
 const el=(tag,text,cls)=>{const n=document.createElement(tag);if(text)n.textContent=text;if(cls)n.className=cls;return n;};
@@ -21,27 +22,31 @@ function burst(target,asteroid){if(paused)return;const r=target.getBoundingClien
 function play(){
  const interests=state.stage===1,key=interests?'interests':'skills',tree=interests?INTERESTS:SKILLS;
  root.append(heading(interests?'What do you ENJOY doing?':'What are you GOOD at?'));
+ const tools=el('div',null,'choice-tools');root.append(tools);
  const arena=el('div',null,`game-arena ${key}`);arena.setAttribute('role','group');arena.setAttribute('aria-label',interests?'Interest asteroids':'Skill bubbles');root.append(arena);
- let targetCount=matchMedia('(max-width:680px)').matches?4:6;
- let pool=[],rotation=0,won=false;const flatten=(nodes,depth=0)=>nodes.flatMap(n=>[{...n,depth},...flatten(n.children,depth+1)]);
- const all=flatten(tree);let targets=[];
- const browseButton=button('All choices',()=>{
+ const dock=el('div',null,'selection-dock');root.append(dock);
+ let targetCount=6,pool=[],rotation=0,won=false;
+ const all=choiceDeck(tree);let targets=[];
+ const browseButton=button(`Find ${key} (${all.length})`,()=>{
   const dialog=el('dialog',null,'choice-browser');dialog.setAttribute('aria-labelledby','choice-browser-title');
   const bar=el('div',null,'choice-browser-header');const title=el('h2',interests?'Your interests':'Your skills');title.id='choice-browser-title';
   bar.append(title,button('Close',()=>dialog.close(),'quiet-button'));
   const search=el('input');search.type='search';search.placeholder='Search choices';search.setAttribute('aria-label',interests?'Find an interest':'Find a skill');
   const list=el('div',null,'choice-browser-list');
-  const unique=all.filter((n,i)=>all.findIndex(a=>a.label===n.label)===i);
   const draw=()=>{list.replaceChildren();const query=search.value.trim().toLowerCase();
-   for(const n of unique.filter(n=>n.label.toLowerCase().includes(query))){const selected=state[key].includes(n.label);const choice=button(n.label,()=>{if(state[key].includes(n.label))return;select(n);draw();},'choice-option');choice.setAttribute('aria-pressed',String(selected));choice.disabled=selected||state[key].length>=LIMIT;list.append(choice);}
+   for(const n of all.filter(n=>query.split(/\s+/).every(word=>[...n.path,n.label].join(' ').toLowerCase().includes(word)))){const selected=state[key].includes(n.label);const choice=button(n.label,()=>{if(state[key].includes(n.label))return;select(n);draw();},'choice-option');choice.setAttribute('aria-label',n.label);choice.setAttribute('aria-pressed',String(selected));choice.disabled=selected||state[key].length>=LIMIT;if(n.path.length){const context=el('small',n.path.join(' / '));context.id='choice-context-'+all.indexOf(n);choice.setAttribute('aria-describedby',context.id);choice.append(context);}list.append(choice);}
    if(!list.children.length)list.append(el('p','No choices found. Try another word.'));
   };
   search.oninput=draw;dialog.append(bar,search,list);root.append(dialog);dialog.addEventListener('close',()=>dialog.remove(),{once:true});draw();dialog.showModal();search.focus();
- },'quiet-button');
- root.querySelector('.business-topline nav').prepend(browseButton);
+ },'outline-button');
+ browseButton.setAttribute('aria-label',`Search all ${key} (${all.length})`);
+ const countLabel=el('span',null,'choice-count');
+ const more=button('More bubbles',()=>{const next=nextChoiceBatch(all,targets,state[key],targetCount,rotation);targets=next.nodes;rotation=next.cursor;pool=[];targetsView();status('Showing another set of choices. Search all choices to find any skill or interest.');},'outline-button');
+ tools.append(browseButton,more,countLabel);
  function available(n){return !state[key].some(s=>s.toLowerCase()===n.label.toLowerCase());}
  function replenish(){const candidates=[...pool,...tree.map(n=>({...n,depth:0})),...all];for(const n of candidates){if(targets.length>=targetCount)break;if(available(n)&&!targets.some(t=>t.label===n.label))targets.push(n);}pool=pool.filter(n=>available(n)&&!targets.some(t=>t.label===n.label));}
- function targetsView(origin){scene.sync(targets,origin);scene.setDisabled(state[key].length>=LIMIT);}
+ function targetsView(origin){scene.sync(targets,origin);scene.setDisabled(state[key].length>=LIMIT);const remaining=all.filter(available).length;countLabel.textContent=`${targets.length} on screen · ${all.length} total`;more.disabled=won||!targetCount||remaining<=targets.length;}
+ function fitTargets(){scene.resize();targetCount=bubbleLayout(arena.clientWidth,arena.clientHeight,interests).count;targets=targets.slice(0,targetCount);replenish();targetsView();}
  function select(n,target,origin){
   if(won||state[key].length>=LIMIT)return;
   const keyboard=target?.matches(':focus-visible');if(target)burst(target,interests);
@@ -55,25 +60,26 @@ function play(){
   if(keyboard)arena.querySelector('button:not(:disabled)')?.focus();
  }
  scene=new BusinessScene(arena,{interests,isPaused:()=>paused,onPick:select});
- const dock=el('div',null,'selection-dock');
- function dockView(){dock.replaceChildren();root.style.setProperty('--growth',state[key].length);const selections=el('div');const label=el('div',null,'selection-label');label.append(el('span',interests?'YOUR INTERESTS':'YOUR SKILLS'),el('small',`${state[key].length} / ${LIMIT}`));const list=el('ul',null,'selection-list');list.setAttribute('aria-label',interests?'Selected interests':'Selected skills');if(!state[key].length)list.append(el('li','—','selection-empty'));for(const value of state[key]){const chip=el('li',null,'selection-chip');chip.append(el('span',value));const remove=button('×',()=>{const idx=state[key].indexOf(value);state[key]=state[key].filter(v=>v!==value);state.chosen='';state.requestId=crypto.randomUUID();save();dockView();replenish();targetsView();status(value+' removed.');const next=dock.querySelectorAll('.selection-chip button')[Math.max(0,idx-1)];next?.focus();},'');remove.setAttribute('aria-label','Remove '+value);chip.append(remove);list.append(chip);}selections.append(label,list);const next=button('Continue →',()=>setStage(state.stage+1),'continue-button');next.disabled=!state[key].length;next.setAttribute('aria-label',interests?'Continue to three business ideas':'Continue to interests');dock.append(selections,next);}
- replenish();targetsView();dockView();root.append(arena,dock);scene.resize();
- window.addEventListener('resize',()=>{targetCount=matchMedia('(max-width:680px)').matches?4:6;targets=targets.slice(0,targetCount);replenish();targetsView();},{signal:scene.events.signal});
+ function dockView(){dock.replaceChildren();root.style.setProperty('--growth',state[key].length);const selections=el('div');const label=el('div',null,'selection-label');label.append(el('span',interests?'YOUR INTERESTS':'YOUR SKILLS'),el('small',`${state[key].length} / ${LIMIT}`));const list=el('ul',null,'selection-list');list.setAttribute('aria-label',interests?'Selected interests':'Selected skills');if(!state[key].length)list.append(el('li','—','selection-empty'));for(const value of state[key]){const chip=el('li',null,'selection-chip');chip.append(el('span',value));const remove=button('×',()=>{const idx=state[key].indexOf(value);state[key]=state[key].filter(v=>v!==value);state.chosen='';state.requestId=crypto.randomUUID();save();dockView();replenish();targetsView();status(value+' removed.');const next=dock.querySelectorAll('.selection-chip button')[Math.max(0,idx-1)];next?.focus();},'');remove.setAttribute('aria-label','Remove '+value);chip.append(remove);list.append(chip);}selections.append(label,list);const next=button('Continue →',()=>setStage(state.stage+1),'continue-button');next.disabled=!state[key].length;next.setAttribute('aria-label',interests?'Continue to business ideas':'Continue to interests');dock.append(selections,next);if(scene)fitTargets();}
+ dockView();fitTargets();
+ window.addEventListener('resize',fitTargets,{signal:scene.events.signal});
 }
 function ideas(){
  root.append(heading('What do you want to do?'));
  const matches=recommend(state.skills,state.interests);
  if(matches.length<3){
-  const text=matches.length?`We found ${matches.length} strong ${matches.length===1?'match':'matches'}. Add more specific skills or interests for more options.`:'No strong matches yet. Go back and choose more specific skills and interests you actually have.';
-  root.append(el('p',text,'business-help'),button('Refine my answers',()=>setStage(0),'outline-button'));
+  const text=matches[0]?.matchKind==='starter'?'Here’s a skill-first starting point. Test its interest fit with real customers.':matches.length?`We found ${matches.length} direct ${matches.length===1?'match':'matches'}. Explore more choices if you want more options.`:'Choose at least one available skill and interest to get a starting idea.';
+  root.append(el('p',text,'business-help'),button('Explore more choices',()=>setStage(0),'outline-button'));
  }
- const grid=el('div',null,'business-cards');
+ const grid=el('div',null,'business-cards');grid.classList.toggle('single-result',matches.length===1);
  for(const [index,b] of matches.entries()){
   const card=el('article',null,'business-card');
   const title=el('h2',b.title);title.id='idea-'+b.id;card.setAttribute('aria-labelledby',title.id);
-  card.append(el('span',`0${index+1} / YOUR OPTIONS`,'card-number'),title,el('p',b.service),el('p','For '+b.customer,'card-customer'));
+  card.append(el('span',b.matchKind==='starter'?'SKILL-FIRST STARTER':`0${index+1} / DIRECT MATCH`,'card-number'),title,el('p',b.service),el('p','For '+b.customer,'card-customer'));
   const detail=el('div',null,'card-details');
-  detail.append(el('h3','WHY YOU'),el('p',`Your skills: ${b.skillMatches.join(', ')}. Your interests: ${b.interestMatches.join(', ')}.`));
+  detail.append(el('h3','WHY YOU'),el('p',`Your selected skills: ${b.skillMatches.join(', ')}.`));
+  if(b.matchKind==='starter')detail.append(el('p',`Interests to explore: ${b.exploringInterests.join(', ')}. This offer fits your reported skill; a direct interest fit is not established. Ask people in that area whether they need this offer before tailoring it.`,'starter-fit'));
+  else detail.append(el('p',`Your selected interests: ${b.interestMatches.join(', ')}.`));
   detail.append(el('h3','START SMALL'),el('p',b.first));
   const ratings=el('dl',null,'business-ratings');
   for(const [label,value] of [['Startup',b.ratings.startup],['Learning',b.ratings.learning],['Growth',b.ratings.growth]])ratings.append(el('dt',label),el('dd',value));
@@ -86,7 +92,7 @@ function ideas(){
 }
 
 function chosen(){return recommend(state.skills,state.interests).find(b=>b.id===state.chosen);}
-function invitation(){const b=chosen();if(!b){state.stage=2;save();render();return;}const section=el('section',null,'invitation');section.append(el('p','YOUR CHOICE / '+b.title,'chosen-business'),heading('If what you’ve told me is true… then I know you can do this. Let’s get in touch.'));
+function invitation(){const b=chosen();if(!b){state.stage=2;save();render();return;}const section=el('section',null,'invitation');section.append(el('p','YOUR CHOICE / '+b.title,'chosen-business'),heading(b.matchKind==='starter'?'Let’s test this starting point together.':'If what you’ve told me is true… then I know you can do this. Let’s get in touch.'));
  const form=el('form',null,'business-form');const label=el('label','Your name');const name=el('input');name.name='name';name.required=true;name.maxLength=100;name.autocomplete='name';name.value=state.name;name.oninput=()=>{state.name=name.value;save();};label.append(name);const message=el('label','Anything else you wanna share with me?');const notes=el('textarea');notes.name='notes';notes.maxLength=4000;notes.placeholder='Your experience, your questions, what’s holding you back…';notes.value=state.notes;notes.oninput=()=>{state.notes=notes.value;save();};message.append(notes);form.append(label,message);
  const consentLabel=el('label',null,'consent');const consent=el('input');consent.type='checkbox';consent.required=true;consent.checked=state.consent;consent.onchange=()=>{state.consent=consent.checked;save();};consentLabel.append(consent,el('span','Share my name, verified email, skills, interests, recommendations, chosen business, and message with Free Market Wildlife so we can talk about my business.'));form.append(consentLabel);const privacy=el('p',null,'small-print');const link=el('a','Privacy and data removal');link.href='/privacy/';privacy.append(link);form.append(privacy);
  const auth=el('section',null,'business-auth');auth.setAttribute('aria-label','Account verification');
