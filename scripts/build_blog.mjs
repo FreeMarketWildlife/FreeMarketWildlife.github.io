@@ -51,7 +51,9 @@ let index=replaceRegion(await readFile(path.join(root,'blog/index.html'),'utf8')
 index=index.replace(/(<p[^>]*data-blog-status[^>]*>)[\s\S]*?(<\/p>)/,'$1'+(posts.length?'':'No posts published yet.')+'$2');
 updates.set('blog/index.html',index);
 const latest=posts.slice(0,3).map(p=>`<article><h3><a href="/blog/${p.slug}/">${escape(p.title)}</a></h3><p class="blog-meta"><time datetime="${p.date}">${p.label}</time></p><p>${escape(p.excerpt)}</p></article>`).join('\n')||'<p>No posts published yet.</p>';
-updates.set('index.html',replaceRegion(await readFile(path.join(root,'index.html'),'utf8'),'latest',latest));
+const home=await readFile(path.join(root,'index.html'),'utf8');
+// Older layouts may opt into excerpts. The three-choice homepage does not.
+if(home.includes('<!-- blog:latest:'))updates.set('index.html',replaceRegion(home,'latest',latest));
 let changed=0;
 for(const [filename,contents] of updates){const target=path.join(root,filename);let old;try{old=await readFile(target,'utf8');}catch(e){if(e.code!=='ENOENT')throw e;}if(old===contents)continue;changed++;if(check)throw Error('Blog output out of date: '+filename);await mkdir(path.dirname(target),{recursive:true});await writeFile(target+'.tmp',contents);await rename(target+'.tmp',target);}
 console.log(`PASS: ${posts.length} explicitly published posts; ${changed} files ${check?'need changes':'updated'}. Drafts excluded.`);

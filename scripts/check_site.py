@@ -25,7 +25,7 @@ class Document(HTMLParser):
    if attrs.get(attr):self.refs.append(attrs[attr])
   if tag=='input':require(attrs.get('type')!='tel',f'{self.path}: unexpected contact field')
  def handle_startendtag(self,tag,attrs):self.handle_starttag(tag,attrs)
-PAGES=['troykearns/strategy/filming-strategy/index.html','troykearns/strategy/shorts-analysis-summary/index.html','troykearns/strategy/the-mindset-shift/index.html','troykearns/spreadsheets/index.html','troykearns/to-do/index.html','troykearns/links/index.html','kat-kai/to-do/index.html','portfolio/critz/stories/index.html','portfolio/critz/games/index.html','portfolio/critz/dragex/index.html','portfolio/critz/index.html','portfolio/equip/index.html','tanoshi/music/index.html','tanoshi/youtube/index.html','tutorials/index.html','tutorials/youtube-stats-access/index.html','privacy/index.html','build-a-business/index.html','troykearns/content-ideas/index.html','kat-kai/content-ideas/index.html','troykearns/strategy/index.html','troykearns/roadmap/index.html','kat-kai/strategy/index.html','kat-kai/roadmap/index.html','philip-aram/index.html','index.html','blog/index.html','portfolio/index.html','tanoshi/index.html','contact/index.html','troy-kearns/index.html','troykearns/index.html','troykearns/statistics/index.html','troykearns/connect/index.html','kat-kai/index.html','kat-kai/statistics/index.html','404.html']
+PAGES=['game/index.html','troykearns/strategy/filming-strategy/index.html','troykearns/strategy/shorts-analysis-summary/index.html','troykearns/strategy/the-mindset-shift/index.html','troykearns/spreadsheets/index.html','troykearns/to-do/index.html','troykearns/links/index.html','kat-kai/to-do/index.html','portfolio/critz/stories/index.html','portfolio/critz/games/index.html','portfolio/critz/dragex/index.html','portfolio/critz/index.html','portfolio/equip/index.html','tanoshi/music/index.html','tanoshi/youtube/index.html','tutorials/index.html','tutorials/youtube-stats-access/index.html','privacy/index.html','build-a-business/index.html','troykearns/content-ideas/index.html','kat-kai/content-ideas/index.html','troykearns/strategy/index.html','troykearns/roadmap/index.html','kat-kai/strategy/index.html','kat-kai/roadmap/index.html','philip-aram/index.html','index.html','blog/index.html','portfolio/index.html','tanoshi/index.html','contact/index.html','troy-kearns/index.html','troykearns/index.html','troykearns/statistics/index.html','troykearns/connect/index.html','kat-kai/index.html','kat-kai/statistics/index.html','404.html']
 for name in PAGES:
  path=ROOT/name;text=path.read_text();doc=Document(name);doc.feed(text)
  require(doc.h1==1,f'{name}: expected one h1');require(doc.main,f'{name}: missing main')
@@ -46,13 +46,12 @@ for name in PAGES:
  if name.startswith(('philip-aram/','troy-kearns/','troykearns/','kat-kai/')):
   require(doc.gate and doc.hidden if gates_enabled else not doc.gate and not doc.hidden, f'{name}: workspace access does not match configured preview mode')
 home=(ROOT/'index.html').read_text()
-require('Build a Business</a>' in home,'Homepage business menu link missing')
+require('data-home-destination-label>Build a Business</span>' in home,'Homepage business menu link missing')
 require('class="landing-tagline"' not in home,'Removed homepage tagline has returned')
-require(home.index('/build-a-business/')<home.index('/portfolio/')<home.index('/tanoshi/'),'Homepage navigation order wrong')
 nav=re.search(r'<nav class="landing-nav"[^>]*>(.*?)</nav>',home,re.S).group(1)
-require(re.findall(r'href="([^"]+)"',nav)==['/build-a-business/','/portfolio/','/tanoshi/','/blog/'],'Homepage Blog link missing or out of order')
+require(re.findall(r'href="([^"]+)"',nav)==['/build-a-business/','/game/','/blog/'],'Homepage choices missing or out of order')
 require('data-blog-posts' in (ROOT/'blog/index.html').read_text(),'Blog index missing')
-require('home-blog-title' in home,'Homepage blog section missing')
+require('home-blog-title' not in home and '<!-- blog:latest:' not in home,'Removed homepage teaser has returned')
 require('contact blog ' in (ROOT/'.github/workflows/pages.yml').read_text(),'Blog missing from deployment')
 css=(ROOT/'assets/css/styles.css').read_text()
 colors={c.lower() for c in re.findall(r'#[0-9a-fA-F]{3,8}\b',css)}

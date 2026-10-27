@@ -120,6 +120,8 @@ async function handle(req,env) {
   try {path=decodeURIComponent(url.pathname);}catch{return response('Invalid path.',400);}
   if(path.includes('%') || path.includes('//') || path.includes('\\') || path.includes('\0'))return response('Invalid path.',400);
   path=new URL(path,env.SITE_ORIGIN).pathname;
+  if(['GET','HEAD'].includes(req.method) && ['/game','/portfolio/critz','/portfolio/critz/','/portfolio/critz/index.html'].includes(path))
+    return response(null,308,{Location:'/game/'+url.search});
   const workspace=protectedWorkspace(path), isAccount=/^\/account(?:\/|$)/i.test(path);
   // Troy's workspace is publicly viewable; writes and other workspaces keep their access checks.
   const publicView=workspace==='troy-kearns' && ['GET','HEAD'].includes(req.method);

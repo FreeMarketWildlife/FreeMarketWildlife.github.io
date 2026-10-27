@@ -9,18 +9,16 @@ const fs=require('node:fs');
  const page=await browser.newPage(),errors=[];page.on('pageerror',e=>errors.push(e.message));
  for(const width of [1440,390,320]){
   await page.setViewportSize({width,height:900});await page.goto(origin+'/');
-  assert.deepEqual(await page.locator('.landing-nav a').allTextContents(),['Build a Business','Portfolio','Tanoshi','Blog']);
-  const tanoshi=await page.locator('.landing-nav a[href="/tanoshi/"]').boundingBox(),blog=await page.locator('.landing-nav a[href="/blog/"]').boundingBox(),section=await page.locator('.home-blog').boundingBox();
-  assert.ok(blog.y>tanoshi.y&&section.y>blog.y,'Blog sits beneath Tanoshi');
-  assert.ok(await page.locator('.home-blog').isVisible());assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+  assert.deepEqual(await page.locator('.landing-nav a').allTextContents(),['Build a Business','Games','Blog']);
+  assert.equal(await page.locator('.home-blog').count(),0);assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
   await page.screenshot({path:`${out}/home-${width}.png`,fullPage:true});
   await page.locator('.landing-nav a[href="/blog/"]').click();await page.waitForURL('**/blog/');
-  assert.equal(await page.locator('h1').innerText(),'Blog');assert.equal(await page.locator('[data-post-id]').count(),0);await page.selectOption('#blog-sort','popular');assert.match(await page.locator('[data-blog-status]').innerText(),/No posts published yet/);
+  assert.equal(await page.locator('h1').innerText(),'Blog');assert.ok(await page.locator('[data-post-id]').count()>=1);await page.selectOption('#blog-sort','popular');
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));await page.screenshot({path:`${out}/blog-${width}.png`,fullPage:true});
  }
  if(!process.env.BLOG_SKIP_FIXTURE){
  for(const width of [1440,390,320]){
-  await page.setViewportSize({width,height:900});await page.goto(fixture+'/');await page.locator('.home-blog a').click();await page.waitForURL('**/blog/rendering-fixture/');
+  await page.setViewportSize({width,height:900});await page.goto(fixture+'/blog/');await page.locator('[data-post-id] a').first().click();await page.waitForURL('**/blog/rendering-fixture/');
   assert.equal(await page.locator('h1').innerText(),'Local rendering check');assert.equal(await page.locator('meta[name="author"]').getAttribute('content'),'Tanoshi');
   assert.equal(await page.locator('link[rel="canonical"]').getAttribute('href'),'https://freemarketwildlife.com/blog/rendering-fixture/');
   const data=JSON.parse(await page.locator('script[type="application/ld+json"]').textContent());assert.equal(data.author.name,'Tanoshi');assert.equal(data.datePublished,'2026-01-01');

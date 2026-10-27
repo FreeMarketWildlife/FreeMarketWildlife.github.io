@@ -1,4 +1,5 @@
 // Enabled only by the protected Worker asset build. Never authorizes browser access itself.
+import {primaryWorkspacePath} from './account-destination.js';
 const config = await fetch('/assets/data/workspace-auth.json').then(r=>r.ok?r.json():null).catch(()=>null);
 if(config?.enabled) {
   const stylesheet=document.createElement('link');stylesheet.rel='stylesheet';stylesheet.href='/assets/css/account.css?v=4';document.head.append(stylesheet);
@@ -12,6 +13,12 @@ if(config?.enabled) {
   const buttons=[...document.querySelectorAll('[data-open-access]')];
   const status=document.createElement('p');status.setAttribute('role','status');
   let account;
+  const homeDestination=document.querySelector('[data-home-destination]');
+  function renderHomeDestination() {
+    if(!homeDestination)return;
+    homeDestination.href=account?.user?(primaryWorkspacePath(account)||'/?workspaces=1'):'/build-a-business/';
+    homeDestination.querySelector('[data-home-destination-label]').textContent=account?.user?'My Workspace':'Build a Business';
+  }
   function element(tag,text) {const el=document.createElement(tag);if(text)el.textContent=text;return el;}
   function link(text,href) {const el=element('a',text);el.href=href;return el;}
   function renderSwitcher() {
@@ -48,7 +55,7 @@ if(config?.enabled) {
     async function load() {
       try {
         const result=await fetch('/api/account',{cache:'no-store'});if(!result.ok)throw Error();
-        account=await result.json();body.replaceChildren();status.textContent='';
+        account=await result.json();renderHomeDestination();body.replaceChildren();status.textContent='';
         dialog.classList.toggle('account-dialog',!!account.user);
         dialog.classList.toggle('signup-dialog',!account.user);
         if(account.user) {
@@ -122,17 +129,30 @@ if(config?.enabled) {
           body.append(link('Switch account','/auth/start'));
           const form=element('form');form.method='post';form.action='/auth/logout';const logout=element('button','Sign out');logout.type='submit';form.append(logout);body.append(form);
         }
-      }catch{showError();}
+        return true;
+      }catch{account=null;body.replaceChildren();renderHomeDestination();showError();return false;}
     }
+    // Recheck membership on activation: an expired/revoked session must not reuse a stale target.
+    homeDestination?.addEventListener('click',async event=>{
+      if(!account?.user || event.button!==0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)return;
+      event.preventDefault();
+      if(!await load()){dialog.showModal();return;}
+      const destination=primaryWorkspacePath(account);
+      if(destination)location.assign(destination);
+      else if(account?.user)dialog.showModal();
+      else location.assign('/build-a-business/');
+    });
     // app.js still opens/closes the shared dialog. Refresh permissions every time it opens.
     for(const button of buttons)button.addEventListener('click',async()=>{
       await load();
-      if(account?.primaryWorkspace && !document.body.dataset.client)location.assign(account.primaryWorkspace.path);
+      const destination=primaryWorkspacePath(account);
+      if(destination && !document.body.dataset.client)location.assign(destination);
     });
     await load();
     const query=new URLSearchParams(location.search);
     if(query.has('workspaces')||query.has('signin')) {
-      if(query.has('workspaces') && account?.primaryWorkspace){location.replace(account.primaryWorkspace.path);}
+      const destination=primaryWorkspacePath(account);
+      if(query.has('workspaces') && destination){location.replace(destination);}
       dialog.showModal();
       if(query.get('signin')==='failed')status.textContent='Sign-in failed. Please try again with a Gmail or Google Workspace account.';
       if(query.get('signin')==='cancelled')status.textContent='Sign-in cancelled.';

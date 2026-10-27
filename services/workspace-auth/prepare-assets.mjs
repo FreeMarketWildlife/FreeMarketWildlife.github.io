@@ -5,9 +5,10 @@ const root = fileURLToPath(new URL('../../', import.meta.url));
 const target = fileURLToPath(new URL('./public/', import.meta.url));
 execFileSync(process.execPath, [root + 'scripts/build_business_catalog.mjs'], {stdio:'inherit'});
 execFileSync(process.execPath, [root + 'scripts/build_blog.mjs', '--check'], {stdio:'inherit'});
+execFileSync(process.execPath, [root + 'scripts/build_game_hub.mjs', '--check'], {stdio:'inherit'});
 await rm(target, {recursive:true, force:true});
 await mkdir(target, {recursive:true});
-for (const name of ['tutorials','privacy','account','index.html','404.html','assets','portfolio','tanoshi','contact','blog','build-a-business','troy-kearns','troykearns','kat-kai','philip-aram']) {
+for (const name of ['game','tutorials','privacy','account','index.html','404.html','assets','portfolio','tanoshi','contact','blog','build-a-business','troy-kearns','troykearns','kat-kai','philip-aram']) {
   await cp(root + name, target + name, {recursive:true});
 }
 // This config is generated only for the protected Worker build. The Pages preview stays unchanged.

@@ -5,8 +5,8 @@ const assert=require('node:assert/strict');
  const browser=await chromium.launch({channel:'chrome',headless:true});
  const page=await browser.newPage({viewport:{width:1440,height:1000}});const errors=[];page.on('pageerror',e=>errors.push(e.message));
  await page.goto('http://127.0.0.1:4173/portfolio/');await page.locator('.portfolio-card').nth(2).waitFor();
- assert.deepEqual(await page.locator('.portfolio-card h2').allTextContents(),['Tanoshi','Critz','EQUIP']);
- assert.deepEqual(await page.locator('a.portfolio-card').evaluateAll(es=>es.map(e=>e.getAttribute('href'))),['/tanoshi/','/portfolio/critz/','/portfolio/equip/']);
+ assert.deepEqual(await page.locator('.portfolio-card h2').allTextContents(),['Tanoshi','Games','EQUIP']);
+ assert.deepEqual(await page.locator('a.portfolio-card').evaluateAll(es=>es.map(e=>e.getAttribute('href'))),['/tanoshi/','/game/','/portfolio/equip/']);
  assert.equal(await page.locator('.creator-row, blockquote').count(),0);
  assert.ok(!/Troy Kearns|Kat & Kai|Philip Aram/.test(await page.locator('main').innerText()));
  let boxes=await page.locator('.portfolio-card').evaluateAll(es=>es.map(e=>{const b=e.getBoundingClientRect(),h=e.firstElementChild.getBoundingClientRect(),t=e.lastElementChild.getBoundingClientRect();return {x:b.x,y:b.y,w:b.width,h:b.height,header:h.height,thumb:t.height};}));
@@ -17,20 +17,20 @@ const assert=require('node:assert/strict');
  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
  boxes=await page.locator('.portfolio-card').evaluateAll(es=>es.map(e=>e.getBoundingClientRect().y));assert.equal(new Set(boxes).size,2);
  assert.equal(await page.locator('[data-portfolio-more]').isVisible(),false);
- for(const [path,title] of [['/portfolio/critz/','Critz'],['/portfolio/equip/','EQUIP'],['/tanoshi/music/','Music'],['/tanoshi/youtube/','YouTube'],['/portfolio/critz/games/','Games'],['/portfolio/critz/stories/','Stories']]) {
+ for(const [path,title] of [['/portfolio/critz/','Games'],['/portfolio/equip/','EQUIP'],['/tanoshi/music/','Music'],['/tanoshi/youtube/','YouTube'],['/portfolio/critz/games/','Games'],['/portfolio/critz/stories/','Stories']]) {
   await page.goto('http://127.0.0.1:4173'+path);
   assert.equal(await page.locator('h1').innerText(),title);
  }
  await page.goto('http://127.0.0.1:4173/tanoshi/');assert.deepEqual(await page.locator('main .portfolio-card h2').allTextContents(),['YouTube','Music']);
  await page.goto('http://127.0.0.1:4173/portfolio/critz/');
- assert.deepEqual(await page.locator('main .portfolio-card h2').allTextContents(),['Games','Stories']);
+ await page.waitForURL('**/game/');assert.equal(await page.locator('.game-card').count(),6);
  for(const [path,id] of [['/tanoshi/music/','6vHUuOIt6n6TjRfywPL6Tj'],['/portfolio/equip/','6CriqFwf0qX9bJhcNzCNZc']]) {
   await page.goto('http://127.0.0.1:4173'+path);
   assert.ok((await page.locator('iframe.spotify-player').getAttribute('src')).includes('/embed/artist/'+id));
   assert.ok(await page.locator('main a[href="https://open.spotify.com/artist/'+id+'"]').count());
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
  }
- for(const path of ['/portfolio/critz/games/','/portfolio/critz/stories/']) {
+ for(const path of ['/portfolio/critz/stories/']) {
   await page.goto('http://127.0.0.1:4173'+path);await page.locator('main').getByText('Coming Soon',{exact:true}).waitFor();
  }
  await page.goto('http://127.0.0.1:4173/portfolio/critz/dragex/');await page.waitForURL('**/portfolio/critz/stories/');

@@ -23,6 +23,18 @@ test('workspace routes include aliases, subpages and case variants',()=>{
  for(const p of ['/troykearns','/troy-kearns/statistics/','/TROYKEARNS/index.html'])assert.equal(protectedWorkspace(p),'troy-kearns');
  assert.equal(protectedWorkspace('/portfolio/'),null);
 });
+test('new Games hub is public and old portfolio hub redirects without reading private state',async()=>{
+ const env=environment();env.GOOGLE_CLIENT_ID='';
+ let reads=0;env.ASSETS.fetch=async()=>{reads++;return new Response('GAMES HUB');};
+ for(const path of ['/game','/portfolio/critz','/portfolio/critz/','/portfolio/critz/index.html']) {
+  const result=await call(env,path+'?view=all');assert.equal(result.status,308);
+  assert.equal(result.headers.get('location'),'/game/?view=all');
+ }
+ assert.equal(reads,0);
+ assert.equal(await (await call(env,'/game/')).text(),'GAMES HUB');
+ assert.equal((await call(env,'/portfolio/critz/stories/')).status,200);
+ assert.equal((await call(env,'/philip-aram/')).status,503);
+});
 test('all private routes fail closed without configuration',async()=>{
  const env=environment();env.GOOGLE_CLIENT_ID='';
  for(const path of ['/philip-aram/','/kat-kai/statistics/','/api/account','/account/'])assert.equal((await call(env,path)).status,503);
