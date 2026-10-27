@@ -1,6 +1,7 @@
 import { businessAPI, retryBusinessNotifications, businessInboxWelcome } from './business.js';
 import { emailAuth, emailReady, emailCookie } from './email-auth.js';
 import { taskPhotos } from './task-photos.js';
+import { contracts } from './contracts.js';
 import { troySpreadsheetFile } from './troy-spreadsheets.js';
 import { workspaceWelcome } from './workspace-welcome.js';
 import { createRemoteJWKSet, jwtVerify } from 'jose';
@@ -189,6 +190,7 @@ async function handle(req,env) {
   const spreadsheet = await troySpreadsheetFile(req,env,path);
   if(spreadsheet)return spreadsheet;
   if(path.startsWith('/kat-kai/api/task-photos/'))return taskPhotos(req,env,path);
+  if(/^\/(?:kat-kai|philip-aram)\/api\/contracts(?:\/|$)/i.test(path))return contracts(req,env,path);
   // Only the existing PUBLIC YouTube datasets pass through to the GitHub Pages origin.
   // Same-zone route subrequests reach the origin, not this Worker again. Strip cookies.
   if(env.PUBLIC_DATA_PASSTHROUGH==='github-pages' && isPublicData(path)) {
