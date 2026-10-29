@@ -2,9 +2,9 @@
 
 ## Introduction
 
-According to Pew Research Center's 2023–24 study, 61% of Christians in the U.S. say human evolution was guided or allowed by God or a higher power.
+61% of Christians in the U.S. today think that we're related to apes.
 
-What percentage of Christians in the U.S. accept an old-Earth view, where the Earth is millions and millions of years old? And how many don't believe dinosaurs coexisted with humans?
+They think we're distant cousins with apes and with the gorillas behind the bars in the zoo.
 
 My purpose for this devotional today is to help you think about this secondary issue. And I want to emphasize how important secondary issues are.
 
@@ -54,3 +54,9 @@ So today I'm going to be referring to macroevolution as Darwinian evolution. And
 Because let me be clear: these five other definitions of evolution that exist, these five other types of evolution, they are not scientific. They are anything but. They are religious, they are faith-based, and they are ridiculous. And they're just dumb theories.
 
 Theory is too strong of a word to use for all these different things. They wouldn't hold up in a court of law by any means. By any means, they would not hold up in a court of law.
+
+## Source notes outside the spoken script
+
+Opening preserved as Phil's requested draft wording. The 61% figure is not verified for ape ancestry: Pew's 2023–24 study measured belief in human evolution guided or allowed by God, not that specific ancestry claim. Source: https://www.pewresearch.org/religion/2025/02/26/religious-and-spiritual-beliefs/
+
+The Word copy uses large speaking text on the left and source checks on the right. Other scientific and legal assertions remain speaker draft claims, not verified findings.
