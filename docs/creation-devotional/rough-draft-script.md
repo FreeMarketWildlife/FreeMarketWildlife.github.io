@@ -8,7 +8,7 @@ They think we're distant cousins with apes and with the gorillas behind the bars
 
 Now, Christians will often emphasize how creationism, or the creation story in Genesis and whether it's literal or figurative, is a secondary issue.
 
-But I am here right now to tell you that secondary issues in theology does not mean unimportant.
+But I am here right now to tell you that secondary issues in theology do not mean unimportant.
 
 The primary issues in Christianity have to do with salvation, being saved. Is Jesus the Son of God? Is He fully God and fully man? Did He die for our sins and rise from the dead? Are we saved by grace through faith? The Trinity—one God, three persons.
 
