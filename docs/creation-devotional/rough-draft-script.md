@@ -45,22 +45,37 @@ So first, I want to share these six different categories of evolution:
 5. Macroevolution.
 6. Microevolution.
 
-Only one of them, microevolution, is properly documented, observable, repeatable, and seen in a lab.
+Funny enough, I was talking with my father-in-law Ben about a month ago. Whenever I said “evolution,” his mind went straight to stellar evolution.
 
-And I know the response: “But we observe stars forming.” We observe stars blowing up and material coming together. And you're going to tell me, “It just takes so long.”
+I was blown away. You do a Google search on evolution—what pops up? The ape-to-man diagram, right? That's what most of us think of.
 
-No, listen. We've been observing this for what, 3,000 years max? That is not enough time to witness stellar evolution on the scale they're talking about. We've only been properly recording stellar history for maybe 100 or 200 years.
+But there are these six different definitions. So you might have a completely different idea of what I'm talking about.
 
-So today, I'll refer to macroevolution as Darwinian evolution, and microevolution as observable evolution, or scientific evolution.
+For this devotional, I'm going to refer to macroevolution as Darwinian evolution. Life evolved from nonlife—that's the idea I'm talking about. I think it's a foolish, religious ideology.
 
-Let me be clear: these five other types of evolution are not scientific. They are religious, faith-based, and ridiculous. They're dumb theories.
+That's what I'm imagining most of you think of when you hear “evolution,” the same way most of us think Roman Catholic when we hear “catholic.”
 
-Theory is too strong a word. They wouldn't hold up in a court of law.
+The evolution that is factual is observable evolution: microevolution. I'll call it scientific evolution, because it's the only one of these that actually has science in it.
+
+If you look at the five requirements of a scientific theory, microevolution is the only one of these that holds up.
+
+(Point to the ape-to-man diagram.)
+
+This diagram isn't even fair to the evolutionists. This is not what they believe.
+
+They don't believe we came from the apes alive today. They believe we share a common ancestor with them. We have a great-great-great-great-grandfather in common, and we're cousins.
+
+And if you go back far enough, you're not only a cousin of the ape in the zoo. You're a cousin of your dog, of what you had for lunch, and of the grass on the ground.
+
+Go back far enough, and they believe you're cousins with the materials in your house. They believe you're cousins with rocks.
 
 ## Source notes outside the spoken script
+
 
 
 
 Opening preserved as Phil's requested draft wording. The 61% figure is not verified for ape ancestry: Pew's 2023–24 study measured belief in human evolution guided or allowed by God, not that specific ancestry claim. Source: https://www.pewresearch.org/religion/2025/02/26/religious-and-spiritual-beliefs/
 
 The Word copy uses large speaking text on the left and source checks on the right. Other scientific and legal assertions remain speaker draft claims, not verified findings.
+
+New passage source checks: “Darwinian evolution” does not mean abiogenesis; biological common ancestry concerns living organisms, not rocks or household materials. The requested “five requirements” checklist has not been identified and must not be attributed to a standard authority. These remain Phil's draft wording, with checks in the Word margin. Primary references: https://www.ncbi.nlm.nih.gov/books/NBK230200/ and https://humanorigins.si.edu/education/frequently-asked-questions and https://www.nasa.gov/cel-research-overview/
