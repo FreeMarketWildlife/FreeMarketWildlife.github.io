@@ -23,13 +23,68 @@ In recent centuries, people have argued that the Bible does not tell us the age 
 
 That is the case I want to make. And as we go through this devotional, I want to explain why I believe this issue matters.
 
+## First section — Evolution
+
+### The opening statement
+
+Evolution is an observable scientific fact. It's as plain as gravity.
+
+It's how we get all the different dog breeds: different sizes, different coats, different characteristics. We see inherited variation and the results of selective breeding. We also see bacteria develop resistance to antibiotics and insect populations develop resistance to pesticides. Those are examples of changes in populations that we can observe.
+
+Now, for those of you who know me, you might be very surprised to hear me say that. What do I mean by evolution?
+
+Before we answer that, let me tell you something else that might surprise you. Did you know I'm catholic?
+
+Yeah. I hope all of us are catholic.
+
+When we say the Apostles' Creed together on Sundays, what do we mean by “the holy catholic Church”? Are we talking about Rome? Are we talking about Vatican City?
+
+No. We're talking about the universal church.
+
+Words carry meaning. The way people use a word can change over the years, and people can use the same word to mean very different things. So before we agree or disagree about evolution, we need to know exactly what claim we're talking about.
+
+### Six categories for the discussion
+
+[Drafting note: The following is the six-part creationist teaching framework Phil was recalling, rather than a standard scientific classification. Stellar and planetary origins are grouped here to keep six categories. The origin of life is abiogenesis, not biogenesis.]
+
+For this discussion, I want to separate six different subjects that sometimes get grouped under the word evolution.
+
+1. Cosmic evolution: the origin and development of the universe.
+2. Chemical evolution: in this particular framework, the origin of the chemical elements. The scientific term for the formation of atomic nuclei is nucleosynthesis.
+3. Stellar and planetary evolution: the formation and development of stars and planets. These are distinct subjects, grouped together here.
+4. The origin of life, or abiogenesis: how life could first arise from nonliving chemistry.
+5. Macroevolution: large-scale biological change. The particular claim I want to challenge today is that all living things share common ancestry.
+6. Microevolution: changes within populations across generations, including the variation, selection, and adaptation we can observe.
+
+Those are different questions. Showing me that dog breeds change does not, by itself, demonstrate how the first life began or how the universe came into existence.
+
+### Phil's provisional argument
+
+[The following preserves Phil's requested argument and tone as a speaker's rough draft. Its scientific and legal assertions remain unverified or disputed; this is not a fact-checked final script.]
+
+Of these six categories, microevolution is the one I'm saying is properly documented, observable, repeatable, and demonstrated in a lab. It's the one we can watch happen.
+
+And when it comes to stars, I know the response: “But we observe stars forming. It just takes a very long time.”
+
+My objection is that we have not watched an entire process unfold over the millions or billions of years being claimed. Observing a star explode, or seeing material come together, is not the same thing as personally witnessing that entire proposed history.
+
+For this devotional, when I say Darwinian evolution, I'm referring to the claim of large-scale common ancestry that I want to challenge. When I say observable evolution—or scientific evolution—I'm referring to microevolution.
+
+Let me be clear about my position. I regard those other five categories, as naturalistic explanations of origins, as faith-based claims. I don't regard them as established, repeatable experimental science. I think they are religious claims dressed up as science.
+
+[Stronger wording Phil asked to preserve for consideration: “They are not scientific. They are anything but. They are religious, they are faith-based, and they are ridiculous. They're dumb theories. Theory is too strong a word. They would not hold up in a court of law—by any means.”]
+
+That's why I want us to define our terms before we go any further. What has actually been observed, and what conclusions are being drawn from those observations?
+
+[End of material dictated so far. Later evolution topics remain to be workshopped.]
+
 ## Delivery notes
 - Open with the beliefs/statistic, then explain the purpose.
 - Keep the introduction focused on framing; develop the biblical evidence and significance in later sections.
 - Present “no older than 10,000 years” as the thesis Phil will argue from Scripture. Do not suggest a verse explicitly states that numeric age.
 - “Secondary” here means not a test of whether someone belongs to Christ; it does not dismiss the issue's significance.
 - The sentence acknowledging other Christians' stated commitment to Scripture is proposed connective wording, not a quotation from Phil.
-- No later sections have been dictated in this workshop yet.
+- The first evolution section was added from Phil's next dictation. Stronger rhetoric is preserved as provisional speaker wording; research and suggestions remain separate.
 
 ## Research notes — checked October 29, 2026
 
