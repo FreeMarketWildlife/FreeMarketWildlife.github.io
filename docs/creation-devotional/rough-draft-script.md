@@ -102,9 +102,54 @@ Random chance and time lead to chaos. They lead to disorder, not order. It's obs
 
 I like the way Frank Turek explains it. Imagine an airplane flying over your house, carrying red, white, and blue confetti. You drop the confetti, and you want it to assemble into the American flag.
 
-(Continue the confetti illustration here.)
+In this analogy, height is time. If you give the confetti more height—more time and space to organize into the American flag—what happens?
+
+It blows farther and farther apart. It doesn't organize. It disorganizes. It's chaos.
+
+That's what happens in all of nature.
+
+## Jim and Bobby
+
+Let me tell you a story.
+
+Bobby is getting his pilot's license. He's flying over the Pacific with Jim, an instructor who's been flying for over 40 years. Jim knows aviation inside and out.
+
+They fly over an island, and Bobby looks down.
+
+“Hey, Jim, look at that beach. It says SOS in the sand.”
+
+Jim looks down.
+
+“That is incredible, Bobby. Can you believe the way the water hit the beach in just the right ways to perfectly spell out SOS? I've never seen that before.”
+
+Bobby turns to him.
+
+“Are you joking? Are you trolling me? Of course that wasn't brought about by natural processes. There's clearly an intelligent mind behind that SOS. We need to get help for whoever's on that island.”
+
+Jim looks over.
+
+“What evidence do you have? Did you see somebody writing SOS on the beach? How can you claim there's somebody down there who needs help? You never saw anyone.”
+
+Bobby is stunned. He doesn't even have the words to explain how he knows there's an intelligent mind behind those letters. He's blown away that anyone could think they got there by natural processes.
+
+It's the same with your house or a painting. You don't have to see the construction worker or the painter to know there was an intelligent mind behind what you're looking at.
+
+And if that's true for three letters—SOS, written in the correct order—how much more is it true for all the heavens and the earth?
+
+## Design and disease
+
+Think about your body. Your heart pumps blood to all the organs. Your body operates so precisely and consistently that we can have the science of medicine. Doctors can look at your symptoms, run a few tests, and diagnose what disease is attacking you.
+
+Disease isn't a good thing, is it? Disease is terrible.
+
+And when we dig up dinosaur bones, we find evidence of cancer in those bones.
+
+The Darwinian evolutionist would say those bones have been preserved for millions of years. The young-Earth creationist would say they were preserved in a worldwide catastrophic event known as Noah's Flood.
+
+
 
 ## Source notes outside the spoken script
+
 
 
 
@@ -119,3 +164,11 @@ New passage source checks: “Darwinian evolution” does not mean abiogenesis; 
 Genesis 1: read aloud from the ESV before the evolution opening. Reading cue rather than reproduced chapter text: https://www.esv.org/Genesis+1/
 
 New section checks: The description of a God using evolution is Phil's theological argument, not a scientific finding or a quotation from Scripture. Darwinian biological evolution does not explain the formation of the heavens or the Earth. The reported atheist responses are Phil's recollection, not independently verified quotations. The tornado and confetti analogies are illustrations, not models of inherited variation and selection. Time alone does not make every outcome possible; the universal “random chance and time lead to disorder” claim needs qualification. Verify the exact Frank Turek clip and wording before attribution. The confetti illustration remains unfinished pending Phil's continuation.
+
+Confetti continuation: “That's what happens in all of nature” is too broad; natural processes can produce local order. Keep it flagged for revision rather than presenting it as a verified law.
+
+Jim and Bobby is a fictional illustrative story, not a reported aviation incident. Jim is the experienced instructor; Bobby is the student who is stunned. Artifact analogies do not by themselves establish the mechanism or history of biological development.
+
+Medical diagnosis: regular biological function supports medical investigation, but tests do not always identify an exact diagnosis. This is an illustration, not a guarantee.
+
+Dinosaur cancer: verified example is osteosarcoma diagnosed in a fossilized Centrosaurus apertus fibula using imaging and histology (2020). “Evidence of cancer in bone” is supported; intact preserved cancer cells are not established by this source. The mainstream age given is approximately 76–77 million years. The team's account identifies a local flood burial, not the global Flood. The global-Flood explanation in the script is Phil's young-Earth interpretation, not the study's conclusion. Source: https://www.rom.on.ca/news-releases/rare-malignant-cancer-diagnosed-dinosaur ; primary paper: https://pubmed.ncbi.nlm.nih.gov/32758461/
