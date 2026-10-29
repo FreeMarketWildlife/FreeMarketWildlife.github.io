@@ -144,11 +144,12 @@ Disease isn't a good thing, is it? Disease is terrible.
 
 And when we dig up dinosaur bones, we find evidence of cancer in those bones.
 
-The Darwinian evolutionist would say those bones have been preserved for millions of years. The young-Earth creationist would say they were preserved in a worldwide catastrophic event known as Noah's Flood.
+The Darwinian evolutionist dates those bones to millions of years ago. The young-Earth creationist places their burial in a worldwide catastrophe—Noah's Flood.
 
 
 
 ## Source notes outside the spoken script
+
 
 
 
@@ -163,7 +164,7 @@ New passage source checks: “Darwinian evolution” does not mean abiogenesis; 
 
 Genesis 1: read aloud from the ESV before the evolution opening. Reading cue rather than reproduced chapter text: https://www.esv.org/Genesis+1/
 
-New section checks: The description of a God using evolution is Phil's theological argument, not a scientific finding or a quotation from Scripture. Darwinian biological evolution does not explain the formation of the heavens or the Earth. The reported atheist responses are Phil's recollection, not independently verified quotations. The tornado and confetti analogies are illustrations, not models of inherited variation and selection. Time alone does not make every outcome possible; the universal “random chance and time lead to disorder” claim needs qualification. Verify the exact Frank Turek clip and wording before attribution. The confetti illustration remains unfinished pending Phil's continuation.
+New section checks: The description of a God using evolution is Phil's theological argument, not a scientific finding or a quotation from Scripture. Darwinian biological evolution does not explain the formation of the heavens or the Earth. The reported atheist responses are Phil's recollection, not independently verified quotations. The tornado and confetti analogies are illustrations, not models of inherited variation and selection. Time alone does not make every outcome possible; the universal “random chance and time lead to disorder” claim needs qualification. Verify the exact Frank Turek clip and wording before attribution. The confetti illustration was completed in Phil's next dictation.
 
 Confetti continuation: “That's what happens in all of nature” is too broad; natural processes can produce local order. Keep it flagged for revision rather than presenting it as a verified law.
 
