@@ -1,0 +1,85 @@
+{
+  "title": "Creation devotional \u2014 local slide archive",
+  "syncedOn": "2026-10-29",
+  "latestReadingRevision": "creation-reading-118.json",
+  "downloadablePreview": "creation-reading-preview.html",
+  "previousInstalledDeckSnapshot": "versions/creation-71.json",
+  "scope": "Preserves local slide files and their embedded source documents. Browser-only changes after the October 26 export could not be verified because the authenticated browser session stalled.",
+  "installation": "The 118-page revision is a local reading revision. This repository archive does not import it into the live workspace or replace the selected browser deck.",
+  "previewInstructions": "Download creation-reading-preview.html and open it locally. It includes core, speaking-route, and complete-deck modes. JSON files retain editable slide data and source archives.",
+  "files": [
+    {
+      "path": "creation-reading-118.json",
+      "bytes": 886875,
+      "sha256": "30a98034dbbd98d70360ab60c4c17456d9377a10df50ebf8096c3ca677a29139",
+      "slides": 118,
+      "core": 58,
+      "appendix": 60
+    },
+    {
+      "path": "creation-reading-preview.html",
+      "bytes": 156447,
+      "sha256": "67eed33f130e6fbc53df521e09483e2f7246f9b1165e5fb7641cb13275f5e669"
+    },
+    {
+      "path": "versions/creation-71.json",
+      "bytes": 276658,
+      "sha256": "e947ecad9df1b35f42269b9d3d8303af9b1d0b1da3e44657ce46cb1e570ec72d",
+      "slides": 71,
+      "core": 29,
+      "appendix": 42
+    },
+    {
+      "path": "versions/creation-66.json",
+      "bytes": 264989,
+      "sha256": "8cbb5caba12c8e4010fccd6e7357cbdbd1bdb474ad958af406cdae2139d8f37e",
+      "slides": 66,
+      "core": 29,
+      "appendix": 37
+    },
+    {
+      "path": "versions/prior-slides.json",
+      "bytes": 38708,
+      "sha256": "64f0c9193df4a030746948c2275cc54a3f0446b0f9db7af68292800ee067b38e",
+      "slides": 43,
+      "core": 43,
+      "appendix": 0
+    },
+    {
+      "path": "speaking-route-20-minutes.md",
+      "bytes": 19487,
+      "sha256": "b23dea71c21438c666a962a32bcff8ad0bb5b76b19ddcae7af04fcea60257f57"
+    },
+    {
+      "path": "versions/artwork-provenance.md",
+      "bytes": 3392,
+      "sha256": "9e7e48b21d5998f6669928de8c7dfbd9008b1c1ec640c5b8b03452ce0e14e4d0"
+    },
+    {
+      "path": "versions/cosmos.png",
+      "bytes": 2720953,
+      "sha256": "e03cde69ecbcab1277f4507c15fbec04f5adbcae80e7a4badfd4ff82fa06a502"
+    },
+    {
+      "path": "versions/dinosaur-scale.png",
+      "bytes": 3063205,
+      "sha256": "2d2ba5fc196371961acfae81dfd9c75f46f262805b0780dd7b666fb1f65f6c2e"
+    },
+    {
+      "path": "versions/dinosaurs-and-humans.png",
+      "bytes": 2587499,
+      "sha256": "29e236451c7a0f10078bce464adbb02c037b18df04a29ad87efa4cfdf86e35db"
+    },
+    {
+      "path": "versions/garden.png",
+      "bytes": 3052815,
+      "sha256": "a8b086f6b011824ef1d73eb0a931a2685c70b8a79b94d7ed2be527594865133b"
+    },
+    {
+      "path": "versions/resurrection.png",
+      "bytes": 2484480,
+      "sha256": "5e29d4e11f908df04a7717d697c173641ba49f11df1c54cb464099ea00fd925a"
+    }
+  ],
+  "original43SlideArtwork": "versions/ (image paths match prior-slides.json)"
+}
