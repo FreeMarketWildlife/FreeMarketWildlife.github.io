@@ -28,6 +28,14 @@ Evolution is an observable scientific fact. It's as plain as gravity.
 
 It's how we get all the different dog breeds. It's how bacteria develop resistance to antibiotics and insects develop resistance to pesticides.
 
+And we plainly see languages evolve throughout history. Spanish, French, and Italian developed from Latin. We can trace that history.
+
+When I take the Bible at its word, I understand the Tower of Babel as the starting point for the division of human languages. Genesis 11 says that God confused their language and scattered the people. Languages continued changing after that.
+
+That doesn't mean Spanish or French appeared at Babel in the form we speak today. Genesis 11 doesn't give us a list of modern language families.
+
+So when I say language evolves, I'm talking about language changing over time. That's a different process from biological evolution, and a different question from how human speech first began.
+
 For those of you who know me, you might be very surprised to hear me say that.
 
 But let me tell you this. Did you know I was catholic?
@@ -173,3 +181,6 @@ Jim and Bobby is a fictional illustrative story, not a reported aviation inciden
 Medical diagnosis: regular biological function supports medical investigation, but tests do not always identify an exact diagnosis. This is an illustration, not a guarantee.
 
 Dinosaur cancer: verified example is osteosarcoma diagnosed in a fossilized Centrosaurus apertus fibula using imaging and histology (2020). “Evidence of cancer in bone” is supported; intact preserved cancer cells are not established by this source. The mainstream age given is approximately 76–77 million years. The team's account identifies a local flood burial, not the global Flood. The global-Flood explanation in the script is Phil's young-Earth interpretation, not the study's conclusion. Source: https://www.rom.on.ca/news-releases/rare-malignant-cancer-diagnosed-dinosaur ; primary paper: https://pubmed.ncbi.nlm.nih.gov/32758461/
+
+- Language change: Spanish, French, and Italian descend from Latin; documented linguistic descent is not the same question as the ultimate origin of human speech. Eleanor Dickey, *Learn Latin from the Romans*, Introduction, pp. 1–2 (Cambridge University Press): https://assets.cambridge.org/97811071/40844/excerpt/9781107140844_excerpt.pdf
+- Babel: Genesis 11:1–9 (ESV) describes God confusing language and dispersing people. Connecting this event with subsequent language diversity is the speaker's biblical interpretation; the passage does not enumerate modern language families or identify every family with a particular Babel language. Paraphrase, not a Scripture quotation: https://www.esv.org/Gen.%2011/
