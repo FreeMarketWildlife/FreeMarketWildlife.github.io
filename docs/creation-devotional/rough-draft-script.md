@@ -1,5 +1,9 @@
 # Creation devotional rough draft script
 
+## Scripture reading
+
+(Begin immediately by reading Genesis 1:1–31 in the ESV, straight through. No introduction or commentary before the reading. Then continue with the Introduction below.)
+
 ## Introduction
 
 61% of Christians in the U.S. today think that we're distant cousins with apes—with the gorillas behind the bars in the zoo.
@@ -17,10 +21,6 @@ But here's what I'll say: the Scriptures are infallible. In the very first chapt
 Will we take God's Word, or will we take man's word?
 
 Man's word has preached for over 200 years that the Earth came about by natural processes over billions of years. I will argue today that God's Word has preached for thousands of years, since Genesis was written by Moses, that the Earth is no older than 10,000 years old.
-
-## Scripture reading
-
-(Read Genesis 1 in the ESV.)
 
 ## Evolution
 
@@ -162,7 +162,7 @@ The Word copy uses large speaking text on the left and source checks on the righ
 
 New passage source checks: “Darwinian evolution” does not mean abiogenesis; biological common ancestry concerns living organisms, not rocks or household materials. The requested “five requirements” checklist has not been identified and must not be attributed to a standard authority. These remain Phil's draft wording, with checks in the Word margin. Primary references: https://www.ncbi.nlm.nih.gov/books/NBK230200/ and https://humanorigins.si.edu/education/frequently-asked-questions and https://www.nasa.gov/cel-research-overview/
 
-Genesis 1: read aloud from the ESV before the evolution opening. Reading cue rather than reproduced chapter text: https://www.esv.org/Genesis+1/
+Genesis 1:1–31: read aloud from the ESV immediately, in full, before the introduction. Reading cue rather than reproduced chapter text: https://www.esv.org/Genesis+1/
 
 New section checks: The description of a God using evolution is Phil's theological argument, not a scientific finding or a quotation from Scripture. Darwinian biological evolution does not explain the formation of the heavens or the Earth. The reported atheist responses are Phil's recollection, not independently verified quotations. The tornado and confetti analogies are illustrations, not models of inherited variation and selection. Time alone does not make every outcome possible; the universal “random chance and time lead to disorder” claim needs qualification. Verify the exact Frank Turek clip and wording before attribution. The confetti illustration was completed in Phil's next dictation.
 
