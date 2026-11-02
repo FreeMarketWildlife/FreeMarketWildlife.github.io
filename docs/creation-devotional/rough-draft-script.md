@@ -12,7 +12,13 @@ Now, Christians will often emphasize that whether the creation story in Genesis 
 
 The primary issues in Christianity have to do with salvation. Is Jesus the Son of God? Is He fully God and fully man? Did He die for our sins and rise from the dead? Are we saved by grace through faith? The Trinity—one God, three persons.
 
-Creationism is indeed a secondary issue. When you die and enter God's presence, He will not be asking you how old the Earth is. He's going to be asking, “What did you do with Jesus? Did you share the gospel? Did you follow My commands?”
+Think about what Jesus says in Luke 14 about hating your father and mother to follow Him. Matthew 10 makes the priority clear: we must not love father or mother more than we love Christ.
+
+Does that mean loving and honoring your parents doesn't matter? Of course not. As followers of Christ, we should love them and honor them. Jesus comes first, even when following Him puts us at odds with our family.
+
+That's an illustration of priority, not a verse ranking creation doctrines. Something can matter deeply without being the most important thing. Secondary does not mean unimportant.
+
+When I call this secondary, I mean my six-day, young-earth interpretation, not the truth that God created everything. When you die and enter God's presence, He will not be asking you how old the Earth is. He's going to be asking, “What did you do with Jesus? Did you share the gospel? Did you follow My commands?”
 
 God never commands you to believe that the Earth is 6,000 years old. Let me make that very plain. He also never explicitly commands you to believe that He is three persons in one being.
 
@@ -184,3 +190,7 @@ Dinosaur cancer: verified example is osteosarcoma diagnosed in a fossilized Cent
 
 - Language change: Spanish, French, and Italian descend from Latin; documented linguistic descent is not the same question as the ultimate origin of human speech. Eleanor Dickey, *Learn Latin from the Romans*, Introduction, pp. 1–2 (Cambridge University Press): https://assets.cambridge.org/97811071/40844/excerpt/9781107140844_excerpt.pdf
 - Babel: Genesis 11:1–9 (ESV) describes God confusing language and dispersing people. Connecting this event with subsequent language diversity is the speaker's biblical interpretation; the passage does not enumerate modern language families or identify every family with a particular Babel language. Paraphrase, not a Scripture quotation: https://www.esv.org/Gen.%2011/
+
+- Christ and family: Luke 14:26 read alongside Matthew 10:37 concerns Christ's supreme claim on disciples, not permission for malice or neglect. Honor remains required (Exodus 20:12; Mark 7:9–13); Ephesians 6:1–3 addresses children and obedience in the Lord, not unlimited parental control of adults. These passages illustrate ordered loyalties rather than directly establishing doctrinal tiers. Scripture references use ESV; wording above is paraphrase. https://www.esv.org/Luke+14:26/ ; https://www.esv.org/Matthew+10:37/
+- Historical theological cross-check: John Calvin, Commentary on a Harmony of the Evangelists, on Matthew 10:37 and Luke 14:26, preserves family affection and duties while placing Christ first: https://sacred-texts.com/chr/calvin/cc31/cc31097.htm . John Chrysostom, Homily 35 on Matthew, §3, likewise retains parental honor and limits obedience where it would hinder godliness: https://www.newadvent.org/fathers/200135.htm
+- Creation doctrine scope: Samuel Emadi, "Theological Triage and the Doctrine of Creation," distinguishes first-order commitments about God as Creator from disagreements on creation-day length and Earth's age. This is a theological judgment, not unanimous Christian terminology: https://www.thegospelcoalition.org/article/theological-triage-and-the-doctrine-of-creation/
