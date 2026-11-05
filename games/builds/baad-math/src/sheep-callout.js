@@ -25,8 +25,7 @@ export function drawPerfectBubble(ctx, orb, w, h, r, reduced = false) {
   ctx.font = `700 ${w < 600 ? 21 : 25}px 'Space Grotesk',sans-serif`;
   ctx.lineJoin = 'round'; ctx.lineWidth = 4; ctx.strokeStyle = '#142331';
   ctx.shadowColor = '#e9d58c88'; ctx.shadowBlur = 12;
-  const label = orb.bonus ? `Perfect +${orb.bonus}` : 'Perfect';
-  if (orb.bonus) ctx.font = `700 ${w < 600 ? 15 : 18}px 'Space Grotesk',sans-serif`;
+  const label = 'Perfect!';
   ctx.strokeText(label, 0, 0);
   const gold = ctx.createLinearGradient(0, -14, 0, 14);
   gold.addColorStop(0, '#fff9de'); gold.addColorStop(1, '#e4c576');

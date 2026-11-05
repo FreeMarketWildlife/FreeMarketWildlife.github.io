@@ -2344,8 +2344,8 @@
     "sha256": "da08476a6129a5a58b917a57aecd464ff9d14b8e255578e04b36efec541cbd45"
   },
   "games/builds/baad-math/index.html": {
-    "bytes": 3894,
-    "sha256": "db774ef22378c51ded47bb0092401c3950ecd5148a5a57daa1b7e7e46ce1b46e"
+    "bytes": 2987,
+    "sha256": "1e714ff51fcfa3d68028047b441ffea7c5cfc159d0ecf5bb130dfe1386a9349e"
   },
   "games/builds/baad-math/src/counting.js": {
     "bytes": 467,
@@ -2356,8 +2356,8 @@
     "sha256": "7fa12ac78bb8c0cbe72fba78c61a19fd74c09a46afbf6cfb205cb9f114c14b35"
   },
   "games/builds/baad-math/src/game.js": {
-    "bytes": 24405,
-    "sha256": "dc07803d69a1de45b5e34cce447aa038486546513d1e7d453b41cce59b26a9bc"
+    "bytes": 23230,
+    "sha256": "58d514204f48bf6cc65e0958d163c0d9e149c693dc972b20c4a395ed75d08c6c"
   },
   "games/builds/baad-math/src/rules.js": {
     "bytes": 4300,
@@ -2388,16 +2388,16 @@
     "sha256": "8e642daed5f7ef6b423b99d669620d85087c40773685eadb4583df02dc19fa61"
   },
   "games/builds/baad-math/src/style.css": {
-    "bytes": 15924,
-    "sha256": "d0484a70f8bbf8d4f19e9fc415bcfd5592fc1ebcef827cddae586c206b3f46a7"
+    "bytes": 13363,
+    "sha256": "5db44a9bb59178294fa3f9bc9bc929456fdba1c0af9e095597e65298909607f0"
   },
   "games/builds/baad-math/src/exact.js": {
     "bytes": 1309,
     "sha256": "50afbc3b8b8498cbe92f7a1456e0e253881f0166db3b135c283769fd37ae749a"
   },
   "games/builds/baad-math/src/sheep-callout.js": {
-    "bytes": 2469,
-    "sha256": "b1830165a69a6edeaa318c09213f8c75c05c0f1800ad9cd3c02f1efdc4d8a7e1"
+    "bytes": 2347,
+    "sha256": "f7635728595bc9e5d1ebda9ce78d4f5ea8cb469158e718b170395dabe2ad3648"
   },
   "games/builds/baad-math/src/physics.js": {
     "bytes": 2789,

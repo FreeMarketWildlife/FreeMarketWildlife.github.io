@@ -49,7 +49,6 @@ addEventListener('resize', resize); resize();
 
 function screens(id) {
   for (const name of ['menu', 'play', 'result', 'paused', 'collection']) $(name).hidden = name !== id;
-  $('footer').hidden = id === 'play';
   $('pause').disabled = id !== 'play';
   $('collectionButton').disabled = id === 'finale' || id === 'collection';
   $('danger').style.opacity = id === 'play' ? rage * .85 : 0;
@@ -72,30 +71,21 @@ function begin(m) {
   $('encounter').textContent = '';
   $('operation').replaceChildren();
   lastOp = -10; countKick = crossingGlow = tapGlow = 0;
-  $('modeLabel').textContent = 'TIME SURVIVED';
   sounds.start();
   screens('play'); update();
 }
 
 function nextSheep() { return orbs.find(orb => orb.entered && !orb.crossed); }
 function update() {
-  const seconds = Math.floor(elapsed);
-  $('time').textContent = `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, '0')}`;
   $('count').textContent = exactText(exactCount);
   const feedback = countFeedback(count, target, orbs, exactCount);
   $('count').dataset.feedback = feedback.kind;
   $('count').style.color = feedback.kind === 'ready' ? '#b8ffcf' : countColor(count, target);
   $('count').style.transform = `scale(${1 + countKick * .08})`;
-  $('sheep').textContent = n;
   $('runScore').textContent = (n * 100 + perfectScore + Math.floor(elapsed) * 10).toLocaleString();
-  $('state').textContent = feedback.kind === 'ready' ? 'READY FOR NEXT' : levitation.space ? 'DRIFTING IN SPACE' : levitation.falling ? 'FALLING' : levitation.height > 0 ? 'DREAMING HIGHER' : feedback.kind === 'error' && rage > .7 ? 'WAKING UP' : feedback.kind === 'error' && rage > .3 ? 'RESTLESS' : 'SOUND ASLEEP';
-  if (feedback.kind === 'ready') $('feedback').textContent = '✓ Ready for the next sheep';
-  else if (feedback.kind === 'current') $('feedback').textContent = '✓ Current count matched';
-  else $('feedback').textContent = 'Adjust your count · rage is rising';
   $('danger').style.opacity = feedback.kind === 'error' ? rage * (.65 + .2 * Math.sin(visualTime * (4 + rage * 5))) : 0;
   $('operation').style.opacity = Math.max(0, 1 - (elapsed - lastOp) / .65);
   $('operation').style.transform = `translate(-50%, ${-(elapsed - lastOp) * 12}px)`;
-  $('pace').textContent = elapsed < 15 ? 'SETTLE IN' : elapsed < 30 ? 'DREAM DEEPER' : elapsed < 60 ? 'QUICKENING' : 'FEVER DREAM';
   document.documentElement.style.setProperty('--tap-left', tapSide < 0 ? tapGlow * .1 : 0);
   document.documentElement.style.setProperty('--tap-right', tapSide > 0 ? tapGlow * .1 : 0);
 }
@@ -248,7 +238,7 @@ function tick(dt) {
       graceScale = Math.min(.05, .25 / Math.max(1, budget));
       if (matches(count, orb.result, exactCount)) orb.counted = true;
       if (perfect) {
-        perfectHits++; orb.perfectAt = orb.age; orb.bonus = BY_ID[orb.op].bonus; perfectScore += orb.bonus;
+        perfectHits++; orb.perfectAt = orb.age; perfectScore += BY_ID[orb.op].bonus;
         recordSheep(collection, orb.op, true, storage);
         rage = calmForPerfect(rage); sounds.perfect();
       }
@@ -418,8 +408,6 @@ function drawFinale() {
       ellipse(x+Math.cos(angle)*dist,y-30+Math.sin(angle)*dist+beat.phase*25,2+i%3,3+i%4,i%3?'#aa294c':'#eee8d6');
     }
   }
-  ctx.fillStyle='#edc7ba';ctx.textAlign='center';ctx.font="600 15px 'Space Grotesk',sans-serif";
-  ctx.fillText(t < .65 ? '…oh, no.' : t < 1.7 ? 'SWEET DREAMS.' : 'GULP.',w*.5,h*.25);
   ctx.restore();
 }
 
