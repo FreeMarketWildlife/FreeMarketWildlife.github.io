@@ -1,5 +1,9 @@
 # Creation devotional rough draft script
 
+## Scripture reading
+
+(Begin immediately by reading Genesis 1:1–31 in the ESV, straight through. No introduction or commentary before the reading. Then continue with the Introduction below.)
+
 ## Introduction
 
 61% of Christians in the U.S. today think that we're distant cousins with apes—with the gorillas behind the bars in the zoo.
@@ -8,7 +12,13 @@ Now, Christians will often emphasize that whether the creation story in Genesis 
 
 The primary issues in Christianity have to do with salvation. Is Jesus the Son of God? Is He fully God and fully man? Did He die for our sins and rise from the dead? Are we saved by grace through faith? The Trinity—one God, three persons.
 
-Creationism is indeed a secondary issue. When you die and enter God's presence, He will not be asking you how old the Earth is. He's going to be asking, “What did you do with Jesus? Did you share the gospel? Did you follow My commands?”
+Think about what Jesus says in Luke 14 about hating your father and mother to follow Him. Matthew 10 makes the priority clear: we must not love father or mother more than we love Christ.
+
+Does that mean loving and honoring your parents doesn't matter? Of course not. As followers of Christ, we should love them and honor them. Jesus comes first, even when following Him puts us at odds with our family.
+
+That's an illustration of priority, not a verse ranking creation doctrines. Something can matter deeply without being the most important thing. Secondary does not mean unimportant.
+
+When I call this secondary, I mean my six-day, young-earth interpretation, not the truth that God created everything. When you die and enter God's presence, He will not be asking you how old the Earth is. He's going to be asking, “What did you do with Jesus? Did you share the gospel? Did you follow My commands?”
 
 God never commands you to believe that the Earth is 6,000 years old. Let me make that very plain. He also never explicitly commands you to believe that He is three persons in one being.
 
@@ -18,15 +28,19 @@ Will we take God's Word, or will we take man's word?
 
 Man's word has preached for over 200 years that the Earth came about by natural processes over billions of years. I will argue today that God's Word has preached for thousands of years, since Genesis was written by Moses, that the Earth is no older than 10,000 years old.
 
-## Scripture reading
-
-(Read Genesis 1 in the ESV.)
-
 ## Evolution
 
 Evolution is an observable scientific fact. It's as plain as gravity.
 
 It's how we get all the different dog breeds. It's how bacteria develop resistance to antibiotics and insects develop resistance to pesticides.
+
+And we plainly see languages evolve throughout history. Spanish, French, and Italian developed from Latin. We can trace that history.
+
+When I take the Bible at its word, I understand the Tower of Babel as the starting point for the division of human languages. Genesis 11 says that God confused their language and scattered the people. Languages continued changing after that.
+
+That doesn't mean Spanish or French appeared at Babel in the form we speak today. Genesis 11 doesn't give us a list of modern language families.
+
+So when I say language evolves, I'm talking about language changing over time. That's a different process from biological evolution, and a different question from how human speech first began.
 
 For those of you who know me, you might be very surprised to hear me say that.
 
@@ -162,7 +176,7 @@ The Word copy uses large speaking text on the left and source checks on the righ
 
 New passage source checks: “Darwinian evolution” does not mean abiogenesis; biological common ancestry concerns living organisms, not rocks or household materials. The requested “five requirements” checklist has not been identified and must not be attributed to a standard authority. These remain Phil's draft wording, with checks in the Word margin. Primary references: https://www.ncbi.nlm.nih.gov/books/NBK230200/ and https://humanorigins.si.edu/education/frequently-asked-questions and https://www.nasa.gov/cel-research-overview/
 
-Genesis 1: read aloud from the ESV before the evolution opening. Reading cue rather than reproduced chapter text: https://www.esv.org/Genesis+1/
+Genesis 1:1–31: read aloud from the ESV immediately, in full, before the introduction. Reading cue rather than reproduced chapter text: https://www.esv.org/Genesis+1/
 
 New section checks: The description of a God using evolution is Phil's theological argument, not a scientific finding or a quotation from Scripture. Darwinian biological evolution does not explain the formation of the heavens or the Earth. The reported atheist responses are Phil's recollection, not independently verified quotations. The tornado and confetti analogies are illustrations, not models of inherited variation and selection. Time alone does not make every outcome possible; the universal “random chance and time lead to disorder” claim needs qualification. Verify the exact Frank Turek clip and wording before attribution. The confetti illustration was completed in Phil's next dictation.
 
@@ -173,3 +187,13 @@ Jim and Bobby is a fictional illustrative story, not a reported aviation inciden
 Medical diagnosis: regular biological function supports medical investigation, but tests do not always identify an exact diagnosis. This is an illustration, not a guarantee.
 
 Dinosaur cancer: verified example is osteosarcoma diagnosed in a fossilized Centrosaurus apertus fibula using imaging and histology (2020). “Evidence of cancer in bone” is supported; intact preserved cancer cells are not established by this source. The mainstream age given is approximately 76–77 million years. The team's account identifies a local flood burial, not the global Flood. The global-Flood explanation in the script is Phil's young-Earth interpretation, not the study's conclusion. Source: https://www.rom.on.ca/news-releases/rare-malignant-cancer-diagnosed-dinosaur ; primary paper: https://pubmed.ncbi.nlm.nih.gov/32758461/
+
+- Language change: Spanish, French, and Italian descend from Latin; documented linguistic descent is not the same question as the ultimate origin of human speech. Eleanor Dickey, *Learn Latin from the Romans*, Introduction, pp. 1–2 (Cambridge University Press): https://assets.cambridge.org/97811071/40844/excerpt/9781107140844_excerpt.pdf
+- Babel: Genesis 11:1–9 (ESV) describes God confusing language and dispersing people. Connecting this event with subsequent language diversity is the speaker's biblical interpretation; the passage does not enumerate modern language families or identify every family with a particular Babel language. Paraphrase, not a Scripture quotation: https://www.esv.org/Gen.%2011/
+
+- Christ and family: Luke 14:26 read alongside Matthew 10:37 concerns Christ's supreme claim on disciples, not permission for malice or neglect. Honor remains required (Exodus 20:12; Mark 7:9–13); Ephesians 6:1–3 addresses children and obedience in the Lord, not unlimited parental control of adults. These passages illustrate ordered loyalties rather than directly establishing doctrinal tiers. Scripture references use ESV; wording above is paraphrase. https://www.esv.org/Luke+14:26/ ; https://www.esv.org/Matthew+10:37/
+- Historical theological cross-check: John Calvin, Commentary on a Harmony of the Evangelists, on Matthew 10:37 and Luke 14:26, preserves family affection and duties while placing Christ first: https://sacred-texts.com/chr/calvin/cc31/cc31097.htm . John Chrysostom, Homily 35 on Matthew, §3, likewise retains parental honor and limits obedience where it would hinder godliness: https://www.newadvent.org/fathers/200135.htm
+- Creation doctrine scope: Samuel Emadi, "Theological Triage and the Doctrine of Creation," distinguishes first-order commitments about God as Creator from disagreements on creation-day length and Earth's age. This is a theological judgment, not unanimous Christian terminology: https://www.thegospelcoalition.org/article/theological-triage-and-the-doctrine-of-creation/
+
+- Rehearsal margin clarification: the imagined judgment-day questions in the introduction are the speaker's illustration, not a quotation of God's stated words. Young-earth chronology and Mosaic authorship are the speaker's convictions; Genesis does not state an explicit numerical age for Earth.
+- Evidence check: scientific testing is not limited to direct laboratory observation of microevolution. Historical hypotheses can be tested against evidence. National Academy of Sciences, Science and Creationism, Frequently Asked Questions: https://www.ncbi.nlm.nih.gov/books/NBK230200/
