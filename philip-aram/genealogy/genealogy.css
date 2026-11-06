@@ -1,0 +1,88 @@
+.genealogy {
+  --ink: #faf0df;
+  --muted: #c7baaa;
+  --accent: #ecc887;
+  --line: #54483b;
+  color: var(--ink);
+  background: #141413;
+  min-height: 100vh;
+}
+.genealogy .archive-bar {
+  justify-content: space-between;
+  padding: 14px clamp(16px, 4vw, 56px);
+  border-bottom: 1px solid var(--line);
+  font-size: .85rem;
+}
+.archive-bar span, .archive-label {
+  font-size: .7rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 700;
+}
+.genealogy main { max-width: 1460px; margin: auto; padding: clamp(16px, 4vw, 54px); }
+.archive-intro { display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: end; justify-content: space-between; margin-bottom: 20px; }
+.genealogy h1, .genealogy h2 { font-family: Georgia, serif; font-weight: 400; line-height: 1.12; }
+.genealogy h1 { font-size: clamp(2.6rem, 6vw, 5rem); margin: 0; }
+.genealogy h2 { font-size: clamp(1.5rem, 3vw, 2.05rem); margin: 5px 0 8px; overflow-wrap: anywhere; }
+.genealogy p { margin: 0; }
+.archive-intro p:not(.archive-label), .panel-head > p:last-child, .archive-count, .archive-muted { color: var(--muted); }
+.archive-intro h1 + p { margin-top: 9px; }
+.archive-count { font-size: .85rem; }
+.archive-tools { display: flex; flex-wrap: wrap; gap: 10px 14px; align-items: end; }
+.archive-search { flex: 1; min-width: min(100%, 230px); position: relative; }
+.genealogy label { color: var(--muted); font-size: .8rem; margin: 0 0 4px; }
+.genealogy button, .genealogy input, .genealogy select {
+  color: var(--ink);
+  background: #211f1b;
+  border: 1px solid var(--line);
+  border-radius: 7px;
+  min-height: 42px;
+  padding: 8px 12px;
+  font: inherit;
+}
+.genealogy button:hover, .genealogy button[aria-current="true"] { border-color: var(--accent); background: #30281d; }
+.search-results { position: absolute; z-index: 2; top: 100%; width: 100%; max-height: 310px; overflow: auto; background: #221f1b; border: 1px solid var(--line); border-radius: 8px; padding: 5px; box-shadow: 0 10px 30px #0009; }
+.search-results button { display: block; width: 100%; text-align: left; margin-bottom: 3px; }
+.search-results p { padding: 8px; }
+.branch-links, .profile-links { display: flex; flex-wrap: wrap; gap: 6px; }
+.branch-links { margin: 10px 0 16px; }
+.branch-links button, .profile-links button { min-height: 36px; font-size: .82rem; }
+.archive-layout { display: grid; grid-template-columns: minmax(0, 2fr) minmax(270px, 1fr); gap: 14px; align-items: start; }
+.archive-panel { border: 1px solid var(--line); border-radius: 12px; background: #1b1a17; min-width: 0; }
+.panel-head, .profile-panel, .source-panel { padding: 16px; }
+.panel-head > p:last-child, .profile-panel, .source-panel { font-size: .9rem; }
+.tree-scroll {
+  overflow: auto;
+  min-height: 260px;
+  max-height: min(630px, 66vh);
+  border-top: 1px solid var(--line);
+  padding: 18px;
+  background: radial-gradient(circle, #554836 1px, transparent 1px) 0 0 / 20px 20px #181714;
+  border-radius: 0 0 12px 12px;
+}
+.tree-scroll svg { display: block; position: absolute; inset: 0; pointer-events: none; }
+.tree-scroll path { fill: none; stroke: #a0865e; stroke-width: 1.5; }
+.tree-canvas { position: relative; }
+.genealogy .tree-person {
+  position: absolute;
+  width: 168px;
+  height: 65px;
+  padding: 5px 10px;
+  text-align: left;
+  line-height: 1.2;
+  font-size: .86rem;
+  overflow: hidden;
+}
+.tree-person span { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+.tree-person small, .search-results small { display: block; color: var(--muted); margin-top: 4px; }
+.profile-panel h3 { margin: 16px 0 5px; font-size: .88rem; }
+.profile-panel details { border-top: 1px solid var(--line); padding-top: 10px; margin-top: 12px; }
+.profile-panel summary { cursor: pointer; color: var(--accent); }
+.record-text { white-space: pre-wrap; overflow-wrap: anywhere; margin-top: 8px !important; }
+.research-record { padding: 8px 0; border-top: 1px solid var(--line); overflow-wrap: anywhere; }
+.research-record .archive-label { margin-top: 4px; letter-spacing: .08em; }
+.research-record a { font-size: .8rem; }
+.source-panel { margin-top: 14px; }
+.genealogy a { color: var(--accent); }
+@media (max-width: 820px) { .archive-layout { grid-template-columns: minmax(0, 1fr); } }

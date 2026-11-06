@@ -346,3 +346,30 @@ test('public Troy views bypass auth configuration and session lookup, including 
  assert.equal((await call(env,'/troykearns/links/',{method:'POST'})).status,503);
  for(const path of ['/philip-aram/','/kat-kai/','/account/'])assert.equal((await call(env,path)).status,503);
 });
+
+test('family collection is read-only and inherits Philip workspace membership', async () => {
+ const env=environment(), path='/philip-aram/genealogy/api/collection';
+ const key='philip-aram/genealogy/collection-v1.json';
+ let reads=0;
+ env.TASK_PHOTOS={
+  async get(objectKey){assert.equal(objectKey,key);reads++;return {body:'{"version":1}'};},
+  async head(objectKey){assert.equal(objectKey,key);reads++;return {size:13};}
+ };
+ assert.equal((await call(env,path)).status,303);
+ const headers=await session(env,'client','client@gmail.com');
+ assert.equal((await call(env,path,{headers})).status,403);
+ env.db.prepare('INSERT INTO memberships VALUES (?,?,?)').run('client@gmail.com','philip-aram','client');
+ assert.equal((await call(env,path,{headers,method:'POST'})).status,405);
+ assert.equal(reads,0);
+ const data=await call(env,path,{headers});
+ assert.equal(data.headers.get('cache-control'),'private, no-store');
+ assert.equal(data.headers.get('vary'),'Cookie');
+ assert.deepEqual(await data.json(),{version:1});
+ const head=await call(env,path,{headers,method:'HEAD'});
+ assert.equal(head.status,200);
+ assert.equal(await head.text(),'');
+ assert.equal(reads,2);
+ env.db.exec('DELETE FROM memberships');
+ assert.equal((await call(env,path,{headers})).status,403);
+ assert.equal(reads,2);
+});

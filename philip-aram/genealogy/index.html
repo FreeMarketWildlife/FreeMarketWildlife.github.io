@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Family Tree · Philip Aram</title>
+  <link rel="stylesheet" href="/assets/css/troy.css?v=3">
+  <link rel="stylesheet" href="./genealogy.css">
+  <script type="module" src="./genealogy.js"></script>
+</head>
+<body class="genealogy">
+  <header class="archive-bar">
+    <a href="/philip-aram/">← Philip Aram workspace</a>
+    <span>PRIVATE FAMILY ARCHIVE</span>
+  </header>
+  <main id="main">
+    <div class="archive-intro">
+      <div>
+        <p class="archive-label">Genealogy</p>
+        <h1>Family Tree</h1>
+        <p>Explore generations, follow family connections, and read the records behind them.</p>
+      </div>
+      <p id="collection-count" class="archive-count"></p>
+    </div>
+    <p id="load-status" role="status">Loading the family archive…</p>
+    <div id="explorer" hidden>
+      <div class="archive-tools">
+        <div class="archive-search">
+          <label for="person-search">Find a person</label>
+          <input id="person-search" type="search" placeholder="Search by name or surname" autocomplete="off" aria-controls="people-results">
+          <div id="people-results" class="search-results" hidden></div>
+        </div>
+        <div>
+          <label for="tree-depth">Generations shown</label>
+          <select id="tree-depth"><option value="2">2 generations</option><option value="3" selected>3 generations</option><option value="4">4 generations</option><option value="5">5 generations</option></select>
+        </div>
+        <button id="home-person" type="button">Return to starting person</button>
+      </div>
+      <div id="branch-links" class="branch-links" aria-label="Starting branches"></div>
+      <div class="archive-layout">
+        <section class="archive-panel tree-panel" aria-labelledby="tree-title">
+          <div class="panel-head">
+            <p class="archive-label">Explore the tree</p>
+            <h2 id="tree-title">Ancestors</h2>
+            <p>Choose a card to follow that person’s branch. Scroll to see more of the chart.</p>
+          </div>
+          <div id="tree" class="tree-scroll" tabindex="0" role="region" aria-label="Scrollable ancestor chart"></div>
+        </section>
+        <section id="profile" class="archive-panel profile-panel" aria-labelledby="person-title"></section>
+      </div>
+      <section id="archive-source" class="archive-panel source-panel" aria-label="Collection sources"></section>
+    </div>
+  </main>
+</body>
+</html>

@@ -190,6 +190,14 @@ async function handle(req,env) {
   const spreadsheet = await troySpreadsheetFile(req,env,path);
   if(spreadsheet)return spreadsheet;
   if(path.startsWith('/kat-kai/api/task-photos/'))return taskPhotos(req,env,path);
+  if(path==='/philip-aram/genealogy/api/collection') {
+    const headers={'Cache-Control':'private, no-store','Vary':'Cookie','X-Robots-Tag':'noindex, nofollow'};
+    if(!['GET','HEAD'].includes(req.method))return response('Method not allowed.',405,{...headers,Allow:'GET, HEAD'});
+    if(!env.TASK_PHOTOS)return response('Family archive storage unavailable.',503,headers);
+    const object=await env.TASK_PHOTOS[req.method==='HEAD'?'head':'get']('philip-aram/genealogy/collection-v1.json');
+    if(!object)return response('Family archive not installed.',404,headers);
+    return response(req.method==='HEAD'?null:object.body,200,{...headers,'Content-Type':'application/json; charset=utf-8'});
+  }
   if(/^\/(?:kat-kai|philip-aram)\/api\/contracts(?:\/|$)/i.test(path))return contracts(req,env,path);
   // Only the existing PUBLIC YouTube datasets pass through to the GitHub Pages origin.
   // Same-zone route subrequests reach the origin, not this Worker again. Strip cookies.
